@@ -1,0 +1,4206 @@
+{
+  "all_mechanics_ok": 23,
+  "arm": "/tmp/claude-1001/-home-tarstars-prj-troll-farm/ed74509d-57fe-4453-9140-cbacfa7f1fb6/scratchpad/variant-2202/arm.rs",
+  "arm_sha256": "4870a2221b27c94d32a86f938262190f672c40d2c7ddd583cfe372262986f080",
+  "funding_turns_median": 110,
+  "games_with_third_troll": 12,
+  "maps_in_corpus": null,
+  "maps_played": 24,
+  "no_third_troll_reasons": {
+    "bill never paid by turn 200": 12
+  },
+  "own_score_sum_arm_minus_resident": 252,
+  "own_score_sum_arm_minus_resident_on_third_troll_maps": -25,
+  "records": "local_claude_1/third-troll/smoke-maps-seed0.jsonl",
+  "resident": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+  "resident_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+  "rows": [
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 104,
+        "funding_window": [
+          19,
+          122
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          0
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 67,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          47
+        ],
+        "own_score": 188,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 1",
+          "stats": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "turn": 18
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 122
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 1",
+            "stats": [
+              1,
+              2,
+              0,
+              1
+            ],
+            "turn": 18
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 122
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "7b515d6db8085355",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          19,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          2,
+          38
+        ],
+        "own_score": 154,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 1",
+          "stats": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "turn": 18
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 1",
+            "stats": [
+              1,
+              2,
+              0,
+              1
+            ],
+            "turn": 18
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        3,
+        8,
+        8,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 1,
+          "2": 0
+        },
+        "funding_turns": 110,
+        "funding_window": [
+          2,
+          111
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          1,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          32
+        ],
+        "own_score": 128,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 111
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 111
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "64b1d4b14f026f9f",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 76,
+          "2": 88
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          1,
+          32
+        ],
+        "own_score": 130,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        8,
+        6,
+        6,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 48
+        },
+        "funding_idle_streaks": {
+          "0": 36,
+          "2": 3
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          80,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          36,
+          110
+        ],
+        "mechanics_ok": false,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 33,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          6,
+          23
+        ],
+        "own_score": 92,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            1,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 1 0 3",
+          "stats": [
+            3,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "stalled": true,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 1 0 3",
+            "stats": [
+              3,
+              1,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "c84154d29ea19fbc",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 110,
+          "2": 101
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 110,
+          "2": 101
+        },
+        "opp_score": 26,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          15
+        ],
+        "own_score": 60,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            1,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 1 0 3",
+          "stats": [
+            3,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 1 0 3",
+            "stats": [
+              3,
+              1,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        2,
+        2,
+        2,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 1,
+          "2": 2
+        },
+        "funding_turns": 152,
+        "funding_window": [
+          9,
+          160
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          26
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          21
+        ],
+        "own_score": 84,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 160
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 8
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 160
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b086e0e6163a45ac",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 61,
+          "2": 66
+        },
+        "funding_turns": null,
+        "funding_window": [
+          9,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 21,
+          "2": 26
+        },
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          24
+        ],
+        "own_score": 96,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 8
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        4,
+        4,
+        4,
+        7,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 124,
+        "funding_window": [
+          15,
+          138
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          0
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          52
+        ],
+        "own_score": 208,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 138
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 138
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "89e906123ff36a86",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          15,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          53
+        ],
+        "own_score": 212,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        7,
+        10,
+        10,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 4,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          22,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          4,
+          36
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 73,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          6,
+          36
+        ],
+        "own_score": 146,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            2,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 2 0 1",
+          "stats": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 21
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 2 0 1",
+            "stats": [
+              3,
+              2,
+              0,
+              1
+            ],
+            "turn": 21
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "a6062948c27575a8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 36,
+          "2": 12
+        },
+        "funding_turns": null,
+        "funding_window": [
+          22,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 36,
+          "2": 12
+        },
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          29
+        ],
+        "own_score": 116,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            2,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 2 0 1",
+          "stats": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 21
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 2 0 1",
+            "stats": [
+              3,
+              2,
+              0,
+              1
+            ],
+            "turn": 21
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        5,
+        6,
+        3,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 10,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 3,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          10,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          3,
+          44
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          7,
+          41
+        ],
+        "own_score": 164,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "50bcce5e7ae4a14c",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 44,
+          "2": 21
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 44,
+          "2": 21
+        },
+        "opp_score": 36,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          28
+        ],
+        "own_score": 112,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        2,
+        6,
+        4,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 1,
+          "2": 0
+        },
+        "funding_turns": 115,
+        "funding_window": [
+          11,
+          125
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          1,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 52,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          24
+        ],
+        "own_score": 96,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 125
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 10
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 125
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "daadbfd7e8423f86",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 67,
+          "2": 62
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        "own_score": 100,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        3,
+        2,
+        8,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 3,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          3,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          21
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          6,
+          31
+        ],
+        "own_score": 126,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b6a5501980dd849a",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 68
+        },
+        "funding_idle_streaks": {
+          "0": 21,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 21,
+          "2": 0
+        },
+        "opp_score": 32,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          24
+        ],
+        "own_score": 96,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        2,
+        4,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 87,
+          "2": 126
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          50,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          126,
+          123
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 53,
+        "own_inventory": [
+          1,
+          2,
+          2,
+          0,
+          6,
+          27
+        ],
+        "own_score": 113,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "19111bc9b90011bb",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 123,
+          "2": 101
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 123,
+          "2": 101
+        },
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          30
+        ],
+        "own_score": 121,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        7,
+        3,
+        10,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 93,
+        "funding_window": [
+          2,
+          94
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          71
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 35,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          26
+        ],
+        "own_score": 104,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 1 0 2",
+          "stats": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 94
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 1 0 2",
+            "stats": [
+              1,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 94
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b91f102962423ddd",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 66,
+          "2": 71
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 31,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          20
+        ],
+        "own_score": 80,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 1 0 2",
+          "stats": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 1 0 2",
+            "stats": [
+              1,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        2,
+        2,
+        3,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 98,
+        "funding_window": [
+          17,
+          114
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          42
+        ],
+        "own_score": 168,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 114
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 114
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "6d81a00871f22f23",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 51,
+          "2": 51
+        },
+        "funding_turns": null,
+        "funding_window": [
+          17,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          49
+        ],
+        "own_score": 198,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        9,
+        10,
+        9,
+        9,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          47
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 58,
+        "own_inventory": [
+          0,
+          6,
+          8,
+          0,
+          6,
+          27
+        ],
+        "own_score": 122,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "c14dea6aa5d28951",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 47,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 40,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        9,
+        9,
+        8,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 54,
+          "2": 66
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          50,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          66,
+          102
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 74,
+        "own_inventory": [
+          0,
+          0,
+          5,
+          0,
+          7,
+          40
+        ],
+        "own_score": 165,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 2",
+          "stats": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 3 0 2",
+            "stats": [
+              3,
+              3,
+              0,
+              2
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "78e4df84516e04d1",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 89,
+          "2": 102
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 89,
+          "2": 102
+        },
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          4,
+          0,
+          1,
+          41
+        ],
+        "own_score": 168,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 2",
+          "stats": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 2",
+            "stats": [
+              3,
+              3,
+              0,
+              2
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        8,
+        8,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 12,
+          "2": 0
+        },
+        "funding_turns": 195,
+        "funding_window": [
+          2,
+          196
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          58
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          12,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 196
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 3",
+            "stats": [
+              1,
+              2,
+              0,
+              3
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 196
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "33261cf926f7a3eb",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 58,
+          "2": 17
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 37,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          34
+        ],
+        "own_score": 137,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 3",
+            "stats": [
+              1,
+              2,
+              0,
+              3
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        6,
+        3,
+        7,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 115,
+        "funding_window": [
+          2,
+          116
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 60,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          30
+        ],
+        "own_score": 120,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 116
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 116
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "2433a442a41ce6cb",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 17,
+          "2": 17
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          34
+        ],
+        "own_score": 136,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        6,
+        8,
+        4,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 109,
+        "funding_window": [
+          2,
+          110
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          64
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 110
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 110
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "7a082aa227d4192a",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 64,
+          "2": 48
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          41
+        ],
+        "own_score": 164,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        9,
+        8,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 57,
+          "2": 46
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          50,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          57,
+          38
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 72,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          6,
+          55
+        ],
+        "own_score": 221,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "62694c8c0a48cf44",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 37,
+          "2": 38
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 37,
+          "2": 38
+        },
+        "opp_score": 64,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          50
+        ],
+        "own_score": 200,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        10,
+        9,
+        7,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 45,
+          "2": 23
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          45,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          92
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          6,
+          36
+        ],
+        "own_score": 144,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "21d2746745cd7896",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 92,
+          "2": 86
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 92,
+          "2": 86
+        },
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          23
+        ],
+        "own_score": 92,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        7,
+        3,
+        2,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 27,
+          "2": 26
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          27,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          19
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          6,
+          36
+        ],
+        "own_score": 146,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "2d8f315778eba2a8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 19,
+          "2": 14
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 19,
+          "2": 14
+        },
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          31
+        ],
+        "own_score": 124,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        4,
+        2,
+        10,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 25,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          25,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          86
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 39,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          7,
+          39
+        ],
+        "own_score": 156,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "879f73412b531333",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 78,
+          "2": 86
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 78,
+          "2": 86
+        },
+        "opp_score": 27,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          27
+        ],
+        "own_score": 108,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        6,
+        4,
+        4,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 64,
+        "funding_window": [
+          15,
+          78
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          38
+        ],
+        "own_score": 152,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 78
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 78
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "80385f5fdcac43f7",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 70,
+          "2": 66
+        },
+        "funding_turns": null,
+        "funding_window": [
+          15,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 63,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          38
+        ],
+        "own_score": 154,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        7,
+        8,
+        6,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 84,
+        "funding_window": [
+          11,
+          94
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          33
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 58,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          54
+        ],
+        "own_score": 216,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "3": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 1",
+          "stats": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 10
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 94
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 3 0 1",
+            "stats": [
+              2,
+              3,
+              0,
+              1
+            ],
+            "turn": 10
+          },
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 94
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "d9c8059a3038862e",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 33,
+          "2": 6
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 67,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          57
+        ],
+        "own_score": 228,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 1",
+          "stats": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 3 0 1",
+            "stats": [
+              2,
+              3,
+              0,
+              1
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        4,
+        10,
+        3,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "after_horizon_idle_streaks": {
+          "0": 41,
+          "2": 47
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          17,
+          200
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          47,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          7
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 75,
+        "own_inventory": [
+          0,
+          0,
+          3,
+          0,
+          6,
+          62
+        ],
+        "own_score": 251,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": null,
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b64b9915e3f228af",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 73
+        },
+        "funding_idle_streaks": {
+          "0": 7,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          17,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 7,
+          "2": 0
+        },
+        "opp_score": 71,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          56
+        ],
+        "own_score": 224,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        10,
+        8,
+        7,
+        9,
+        0
+      ]
+    }
+  ],
+  "seed": 0,
+  "stalled_maps": [
+    "c84154d29ea19fbc"
+  ],
+  "status": "FAIL",
+  "third_spec_expected": "2 2 0 2",
+  "third_troll_turn_median": 116,
+  "third_troll_turns": [
+    78,
+    94,
+    94,
+    110,
+    111,
+    114,
+    116,
+    122,
+    125,
+    138,
+    160,
+    196
+  ],
+  "turns": 300,
+  "what": "smoke on real ladder maps: mechanics only, not a value gate"
+}

@@ -1,0 +1,36 @@
+  SAME    OSC-001    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-002    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-003    turns 200  first divergence turn 3  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-004    turns 200  first divergence turn 4  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-005    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-006    turns 200  first divergence turn 2  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-007    turns 200  first divergence turn 5  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-008    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-009    turns 200  first divergence turn 3  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-010    turns 200  first divergence turn 20  train arm [{'turn': 19, 'spec': '1 1 0 1'}]  champion [{'turn': 19, 'spec': '1 1 0 1'}]  telemetry errors 0
+  DIFFERS OSC-011    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-012    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-013    turns 200  first divergence turn 2  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-014    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-015    turns 200  first divergence turn 2  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-016    turns 200  first divergence turn 2  train arm []  champion []  telemetry errors 0
+  SAME    OSC-017    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-018    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-019    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-020    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-021    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-022    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-023    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-024    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-025    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-026    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-027    turns 200  first divergence turn 3  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-028    turns 200  first divergence turn 3  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-029    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-030    turns 200  first divergence turn 16  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-031    turns 200  first divergence turn 2  train arm []  champion []  telemetry errors 0
+  SAME    OSC-032    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-033    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-034    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+
+  PASS  plays 34/34, differs from the champion on 27/34, deterministic 34/34, compacted==arm 34/34, telemetry errors 0; arm trained in 1/34 (champion 1/34), a third troll in [], wrong spec [], more than three []  -> /home/tarstars/prj/troll_farm-local_claude_1/local_claude_1/third-troll/results/fixtures.json
