@@ -168,7 +168,8 @@ def main() -> int:
                     help="play the maps in this JSON-lines slice instead of sampling the corpus")
     ap.add_argument("--arm", type=Path, default=ARM, help="another arm to smoke (a variant study)")
     ap.add_argument("--out", type=Path, default=HERE / "results" / "smoke.json")
-    ap.add_argument("--third-spec", default=THIRD_SPEC, help="the expected third troll's talents")
+    ap.add_argument("--third-spec", default=THIRD_SPEC,
+                    help="the expected third troll's talents; several allowed, separated by |")
     args = ap.parse_args()
     THIRD_SPEC = args.third_spec
     if args.records is not None:
@@ -241,7 +242,7 @@ def main() -> int:
                                                                rule_off=True)
                     r["plays"] = len(lines) == args.turns and not ref.error_counts
                     third = r["third_troll"]
-                    r["third_spec_ok"] = third is None or third["spec"] == THIRD_SPEC
+                    r["third_spec_ok"] = third is None or third["spec"] in THIRD_SPEC.split("|")
                     r["third_within_horizon"] = third is None or third["turn"] <= HORIZON_LAST_TURN
                     r["never_four"] = len(r["trains"]) <= 2 and r["own_units"] <= 3
                     r["third_counted_by_referee"] = third is None or r["own_units"] == 3
