@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "id": "champion-final",
+    "label": "the champion of record restored to hold the ladder when the queue ends",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+    "submission_id": 41208579,
+    "submitted_at": "2026-08-28T14:17:17Z"
+  },
   "done": [
     {
       "agent_id": 6670021,
