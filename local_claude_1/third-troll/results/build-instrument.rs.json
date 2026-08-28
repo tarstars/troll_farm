@@ -1,9 +1,9 @@
 {
   "arm": {
-    "bytes": 165179,
-    "lines": 3480,
-    "path": "local_claude_1/third-troll/champion-orchard4-v6-instrument.rs",
-    "sha256": "f9fcba872c1519fc88d4e8b1b09488106de7044f71e0f4ee13fe4ef95ab51a6a"
+    "bytes": 166222,
+    "lines": 3498,
+    "path": "local_claude_1/third-troll/champion-orchard5-v6-instrument.rs",
+    "sha256": "1ad5d838f76cbbef9be965e00392cb5d03a49c9507cf262478d28459aff7e70e"
   },
   "base_arm": {
     "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
@@ -22,9 +22,9 @@
   "bot": "the champion of record; after the second troll both trolls fund a 2/3/0/3 lumberjack, trained the turn it is affordable (while >= 100 turns remain); select chooses jointly for any number of trolls",
   "canonical_token_stream_identical": true,
   "compacted": {
-    "bytes": 71171,
-    "path": "cgauto/submissions/candidate-orchard4-v6-instrument.rs",
-    "sha256": "84950d8f6a60a75e3c79c09bdd558c4dec8ab7c08337cc63254e69722e3eecee"
+    "bytes": 71660,
+    "path": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
+    "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6"
   },
   "compiles": true,
   "distinct_from": {
@@ -63,6 +63,11 @@
       "same_token_stream": false,
       "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600"
     },
+    "orchard 4": {
+      "path": "cgauto/submissions/candidate-orchard4-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "84950d8f6a60a75e3c79c09bdd558c4dec8ab7c08337cc63254e69722e3eecee"
+    },
     "the floor": {
       "path": "cgauto/submissions/candidate-the-floor-v6-instrument.rs",
       "same_token_stream": false,
@@ -95,8 +100,8 @@
     }
   },
   "edit": {
-    "lines_added": 393,
-    "lines_removed": 38,
+    "lines_added": 413,
+    "lines_removed": 40,
     "replacements": [
       {
         "added": 1,
@@ -277,6 +282,26 @@
         "added": 1,
         "name": "early_candidates: the bonus on the fruit score line",
         "removed": 1
+      },
+      {
+        "added": 7,
+        "name": "fruit_candidates: the walking distance home from the shack's doors",
+        "removed": 0
+      },
+      {
+        "added": 4,
+        "name": "fruit_candidates: the way back in the score",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "name": "fruit_candidates: the score line",
+        "removed": 1
+      },
+      {
+        "added": 8,
+        "name": "iron_candidates: the way back in the score",
+        "removed": 1
       }
     ],
     "what": "nine replacements: the third troll"
@@ -284,13 +309,13 @@
   "keep_rule_enabled": false,
   "narrate_v6_enabled": true,
   "readable_diff": {
-    "added": 393,
-    "path": "readable/diffs/orchard4.diff",
-    "removed": 38
+    "added": 413,
+    "path": "readable/diffs/orchard5.diff",
+    "removed": 40
   },
   "readable_edited": {
-    "path": "local_claude_1/third-troll/orchard4-readable.rs",
-    "sha256": "bfb5d564b0e5411085eade90831df8bfbda0e3e77fbbf9e47e2d5db28a9a01d7"
+    "path": "local_claude_1/third-troll/orchard5-readable.rs",
+    "sha256": "880577367bf11c498b169b0555f22c991fef640b6308916b7135fe4dd1f94514"
   },
   "schema": "troll-farm-readable-source-v2",
   "task": "the third troll (owner's one-variable experiment, 2026-08-28: 'set as next goal bot with the third troll')",
