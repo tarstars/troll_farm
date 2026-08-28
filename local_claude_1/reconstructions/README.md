@@ -98,6 +98,22 @@ the pseudo-code and the guesses; they were written by four workers in parallel, 
 against their sources by a fifth (`REVIEW-2026-08-28.md`: contradictions fixed, unsupported claims
 downgraded to guesses, jargon explained, undefined names in the pseudo-code defined).
 
+## Which other players could be restored as a program (owner's question, 04:2xZ)
+
+"Enough information" means two things at once: a first-hand description of the mechanism, and enough
+recorded games to measure the parameters and check a copy. Every author of a write-up in the contest
+thread turns out to have hundreds of games in our corpus (exact replays available for all of them):
+
+| restorability | players (ladder/contest rank; recorded games) | why |
+|---|---|---|
+| **High — concrete rules written by the author + games** | Escdemon (#14 ladder; 303), aangairbender (#16 contest; 381), Konstant (#17 ladder; 240), xSkyline (#14 contest; 575), putibuzu (#15 ladder; 189), 0x6E0FF (#43 contest; 244) | their posts give the formulas (talent choice by resource reach time, chop priority `(wood×100 + max(0,10−d_opp)×10)/time`, task value `× 0.9^turns` + assignment, hard-coded talent lists, the banana plant-chop-drop loop, "don't plant with an opponent nearby"); the games give the constants and a check |
+| **Medium — described as a search, parameters unknown + games** | wala (#5 ladder; 395), laconic_pixel (#8; 212), FinkPloyd (#21 contest; 326), Astrobytes (382), eulerscheZahl (#23; 313), Ztrk (#24; 564) | the mechanism is stated (roles simulated to completion; a mission planner with three map profiles; a state machine with turn-1 simulation of train profiles; assignment + hill climbing; random macro actions simulated 15 turns; a genetic search over task sequences) but the weights and evaluation are not; a copy would need tuning against their games |
+| **Medium — no write-up, but many games and simple behaviour** | norxondor_gorgonax (#2; 220), yaichi (#10; 222), skotz (#11; 184), MSz (#4; 216), Bubaptik (#3; 3,918 over 34 versions) | norxondor's ladder and phases are exact but its target choice is not; yaichi and skotz are two-troll banana plant-chop-drop machines (39–42 bananas a game, one `2/2/0/2` troll) — the simplest behaviour at the top, restorable by measurement plus putibuzu's/Konstant's descriptions of the same loop; MSz and Bubaptik as in this page |
+| **Not as rules** | delineate (#1; 223) | a learned policy; restorable only by repeating its training recipe (weeks) or by a rule-based imitation of its habits |
+
+The already-restored one is yamo (#3 contest; 545 games): our champion is its reproduction from the
+author's post-mortem, and it reads within about a point of the original.
+
 ## Files
 
 - `PLAN.md` — the night's plan. `README.md` — this page.
