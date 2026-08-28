@@ -4,7 +4,7 @@
 `/home/tarstars/prj/troll_farm`, user crontab). It submits the items of `queue.json` in order,
 reads each after 62 minutes (arena-room rank/score, the number the site shows), collects its 160
 games into `games-<submission id>/`, appends the reading to `readings.jsonl`, commits and pushes
-to `origin/main`, and submits the next. `state.json` is the live state; `runner.log` the log.
+to `origin/main`, and submits the next. `state.json` is the live state; the log is `/home/tarstars/ladder-queue-runner.log` on the VM (outside the repo).
 A submission that is not accepted halts the queue (nothing is resubmitted blindly).
 
 To stop it: `ssh troll-vm crontab -l` and remove the `ladder-queue` line, or create the file

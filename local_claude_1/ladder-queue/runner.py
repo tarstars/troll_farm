@@ -42,7 +42,7 @@ sys.path.insert(0, str(REPO / "cgauto"))
 QUEUE = HERE / "queue.json"
 STATE = HERE / "state.json"
 READINGS = HERE / "readings.jsonl"
-LOG = HERE / "runner.log"
+LOG = Path("/home/tarstars/ladder-queue-runner.log")   # outside the repo: a tracked log dirtied the checkout and broke `git pull --rebase` (06:24Z)
 LOCK = Path("/home/tarstars/ladder-queue.lock")
 SCRATCH = Path("/home/tarstars/ladder-queue-scratch")
 READ_AFTER_MIN = 62
