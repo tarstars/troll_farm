@@ -1,5 +1,5 @@
 {
-  "written": "2026-08-28T10:0xZ: orchard 2 r1, r2 in place of the orchard's round 2",
+  "written": "2026-08-28T10:3xZ: orchard 3 r1, r2 in place of orchard 2's round 2",
   "items": [
     {
       "id": "champion-restore-now",
@@ -38,10 +38,16 @@
       "label": "ORCHARD 2 (owner after the ghhttt game, '2 + 1 ok'): the third troll's chop follows the iron (3/2/1/none by walking distance), planting stops once the enemy fells an orchard tree, two lemons + one plum -- round 1"
     },
     {
-      "file": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
-      "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178",
-      "id": "orchard2-r2",
-      "label": "ORCHARD 2 -- round 2"
+      "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+      "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
+      "id": "orchard3-r1",
+      "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1"
+    },
+    {
+      "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+      "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
+      "id": "orchard3-r2",
+      "label": "ORCHARD 3 -- round 2"
     },
     {
       "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",

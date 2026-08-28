@@ -2,12 +2,12 @@
   "current": {
     "agent_id": null,
     "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
-    "id": "orchard2-r1",
-    "label": "ORCHARD 2 (owner after the ghhttt game, '2 + 1 ok'): the third troll's chop follows the iron (3/2/1/none by walking distance), planting stops once the enemy fells an orchard tree, two lemons + one plum -- round 1",
-    "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178",
-    "submission_id": 41207487,
-    "submitted_at": "2026-08-28T10:10:16Z"
+    "file": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+    "id": "orchard3-r1",
+    "label": "ORCHARD 3 (owner: plant first - lemon, lemon, plum from the first turns; each troll on a different resource of the bill) -- round 1",
+    "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600",
+    "submission_id": 41207599,
+    "submitted_at": "2026-08-28T10:44:18Z"
   },
   "done": [
     {
@@ -526,6 +526,77 @@
       "sha256": "8e0c0244a05abd3f6792aacca6ecabd38fcc522ad4a1761f863cc5feb96cd528",
       "submission_id": 41207318,
       "submitted_at": "2026-08-28T09:24:14Z"
+    },
+    {
+      "agent_id": 6670438,
+      "early_looks": [
+        {
+          "age_min": 4.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:15:02Z",
+          "rank": 170,
+          "score": 11.81,
+          "total": 176
+        },
+        {
+          "age_min": 9.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:20:01Z",
+          "rank": 162,
+          "score": 12.85,
+          "total": 176
+        },
+        {
+          "age_min": 14.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:25:02Z",
+          "rank": 150,
+          "score": 14.23,
+          "total": 176
+        },
+        {
+          "age_min": 19.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:30:01Z",
+          "rank": 141,
+          "score": 14.94,
+          "total": 176
+        },
+        {
+          "age_min": 24.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:35:02Z",
+          "rank": 125,
+          "score": 16.03,
+          "total": 176
+        },
+        {
+          "age_min": 29.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:40:02Z",
+          "rank": 117,
+          "score": 16.59,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
+      "id": "orchard2-r1",
+      "label": "ORCHARD 2 (owner after the ghhttt game, '2 + 1 ok'): the third troll's chop follows the iron (3/2/1/none by walking distance), planting stops once the enemy fells an orchard tree, two lemons + one plum -- round 1",
+      "retired": {
+        "at": "2026-08-28T10:3xZ",
+        "by": "the owner: put orchard 3 on the platform as soon as it is ready - orchard 2's round cut short before its reading",
+        "last_early_look": {
+          "age_min": 29.8,
+          "agent_id": 6670438,
+          "at": "2026-08-28T10:40:02Z",
+          "rank": 117,
+          "score": 16.59,
+          "total": 176
+        }
+      },
+      "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178",
+      "submission_id": 41207487,
+      "submitted_at": "2026-08-28T10:10:16Z"
     }
   ]
 }
