@@ -1,9 +1,9 @@
 {
   "arm": {
-    "bytes": 164076,
-    "lines": 3464,
-    "path": "local_claude_1/third-troll/champion-orchard2-v6-instrument.rs",
-    "sha256": "ade71db054318443e4f76e373df2f39688ad4d2f50124ef4e2a6b67375dfdf94"
+    "bytes": 164843,
+    "lines": 3476,
+    "path": "local_claude_1/third-troll/champion-orchard3-v6-instrument.rs",
+    "sha256": "fabdebffd06555a643ddcba54c06d842223bef9a52b57c37ba9da9f5d6819c72"
   },
   "base_arm": {
     "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
@@ -22,9 +22,9 @@
   "bot": "the champion of record; after the second troll both trolls fund a 2/3/0/3 lumberjack, trained the turn it is affordable (while >= 100 turns remain); select chooses jointly for any number of trolls",
   "canonical_token_stream_identical": true,
   "compacted": {
-    "bytes": 70752,
-    "path": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
-    "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178"
+    "bytes": 71068,
+    "path": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+    "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600"
   },
   "compiles": true,
   "distinct_from": {
@@ -52,6 +52,11 @@
       "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
       "same_token_stream": false,
       "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "orchard 2": {
+      "path": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178"
     },
     "the floor": {
       "path": "cgauto/submissions/candidate-the-floor-v6-instrument.rs",
@@ -85,8 +90,8 @@
     }
   },
   "edit": {
-    "lines_added": 371,
-    "lines_removed": 32,
+    "lines_added": 385,
+    "lines_removed": 34,
     "replacements": [
       {
         "added": 1,
@@ -242,6 +247,16 @@
         "added": 1,
         "name": "orchard_candidates: no planting once raided",
         "removed": 0
+      },
+      {
+        "added": 2,
+        "name": "orchard_candidates: plant first, from the first turns, no reserve",
+        "removed": 4
+      },
+      {
+        "added": 19,
+        "name": "early_candidates: each troll works a different resource of the bill",
+        "removed": 5
       }
     ],
     "what": "nine replacements: the third troll"
@@ -249,13 +264,13 @@
   "keep_rule_enabled": false,
   "narrate_v6_enabled": true,
   "readable_diff": {
-    "added": 371,
-    "path": "readable/diffs/orchard2.diff",
-    "removed": 32
+    "added": 385,
+    "path": "readable/diffs/orchard3.diff",
+    "removed": 34
   },
   "readable_edited": {
-    "path": "local_claude_1/third-troll/orchard2-readable.rs",
-    "sha256": "101752d66bb1443e7ab9417c877cb3d4ed61067050ae9b6b0022ff8df05faf1a"
+    "path": "local_claude_1/third-troll/orchard3-readable.rs",
+    "sha256": "5caa13bad2d60192543117ccf362554780a9858e4062a57f7f22cf0920ceb265"
   },
   "schema": "troll-farm-readable-source-v2",
   "task": "the third troll (owner's one-variable experiment, 2026-08-28: 'set as next goal bot with the third troll')",
