@@ -1,0 +1,556 @@
+--- readable/denial-off-champion.rs
++++ readable/denial-off-champion.rs (the third troll)
+@@ -533,6 +533,10 @@
+             idle_harvest: bool,
+             idle_harvest_clock_only: bool,
+             regeneration_commitments: BTreeMap<i32, PlantKind>,
++            // The orchard's memory: the orchard cells that held our tree last turn, and
++            // whether the enemy has felled one (then planting stops for good).
++            orchard_seen: BTreeSet<Cell>,
++            orchard_raided: bool,
+             opponent_eta_penalty: i32,
+         }
+         #[derive(Clone, Copy)]
+@@ -624,7 +628,7 @@
+             }
+             fn can_train(view: &GameState, stats: Stats) -> bool {
+                 let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+-                if n >= 2 || TOTAL_TURNS - view.turn <= 20 {
++                if n >= 3 || TOTAL_TURNS - view.turn <= 20 {
+                     return false;
+                 }
+                 let cost = training_cost(n, stats.tuple());
+@@ -667,11 +671,29 @@
+                 }
+                 let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+                 let cost = training_cost(n, desired.tuple());
++                // Every troll fetches whatever is missing -- fruits if it can harvest, iron
++                // always; the joint choice keeps two trolls off the same tree (three heroes).
++                let fetches_fruit = unit.stats.harvest_power > 0;
++                // Concurrent picking (owner 2026-08-28): the missing items ordered by deficit,
++                // the i-th own troll (by id) takes the i-th; one kind left -> everybody.
++                let mut missing: Vec<usize> = [PLUM, LEMON, APPLE, IRON]
++                    .into_iter()
++                    .filter(|&item| {
++                        cost[item] > view.inventories[0][item] && (item == IRON || fetches_fruit)
++                    })
++                    .collect();
++                missing.sort_by_key(|&item| (-(cost[item] - view.inventories[0][item]), item));
++                let mut own: Vec<i32> =
++                    view.units.iter().filter(|u| u.player == 0).map(|u| u.id).collect();
++                own.sort();
++                let rank = own.iter().position(|id| *id == unit.id).unwrap_or(0);
++                let mine: Vec<usize> = if missing.len() > 1 && own.len() > 1 {
++                    vec![missing[rank % missing.len()]]
++                } else {
++                    missing.clone()
++                };
+                 for item in [PLUM, LEMON, APPLE, IRON] {
+-                    if item == APPLE && cost[item] <= view.inventories[0][item] {
+-                        continue;
+-                    }
+-                    if item != APPLE && cost[item] <= view.inventories[0][item] {
++                    if !mine.contains(&item) {
+                         continue;
+                     }
+                     if item == IRON {
+@@ -686,7 +708,7 @@
+                         out.extend(Self::fruit_candidates(view, unit, kind, 6_000.0));
+                     }
+                 }
+-                if out.len() == 1 {
++                if out.len() == 1 && n < 2 {
+                     out.extend(Self::chop_candidates(view, unit, None));
+                 }
+                 out
+@@ -716,10 +738,13 @@
+                     }
+                     let travel = Self::ceil_div(dist[&plant.cell], unit.stats.movement_speed);
+                     let wait = (Self::ticks_until_fruit(view, plant) - travel).max(0);
++                    // No target on the walk (the dance fix, 2026-08-28): two trolls may head
++                    // for the same tree and the second harvests after the first instead of
++                    // freezing; the move resolver still keeps them off one cell.
+                     out.push(Candidate {
+                         command: format!("MOVE {} {} {}", unit.id, plant.cell.0, plant.cell.1),
+                         score: base_score - (travel + wait) as f64,
+-                        target: Target::Tree(plant.cell),
++                        target: Target::None,
+                     });
+                 }
+                 out
+@@ -852,6 +877,9 @@
+                 let opponent_trolls = view.units.iter().filter(|unit| unit.player == 1).count();
+                 for plant in &view.plants {
+                     if plant.health <= 0 || !from_unit.contains_key(&plant.cell) {
++                        continue;
++                    }
++                    if Self::orchard_protected(view) && Self::orchard_tree(view, plant.cell) {
+                         continue;
+                     }
+                     let travel_turns =
+@@ -898,6 +926,124 @@
+                 }
+                 out
+             }
++            // --------------------------------------------------------------------------
++            // The orchard (owner 2026-08-28): four lemons and two plums at the far gate.
++            //
++            // The gate is the door of our shack (a walkable orthogonal neighbour) with the
++            // largest walking distance from the enemy's doors. The orchard cells are the first
++            // six free cells within two steps on foot of the gate (never on a door, never a
++            // shack), nearest first, water-side first; if the gate has fewer, the
++            // next-farthest doors' cells follow. Planted by the starting troll while the third
++            // troll is wanted; protected from our own axes for as long.
++            // --------------------------------------------------------------------------
++            const ORCHARD_LEMONS: usize = 2;
++            const ORCHARD_PLUMS: usize = 1;
++            const ORCHARD_REACH: i32 = 2;
++            fn doors_of(view: &GameState, shack: Cell) -> Vec<Cell> {
++                ortho_neighbors(shack)
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect()
++            }
++            // Our doors, farthest from the enemy first (walking distance; unreachable = farthest).
++            fn doors_by_farness(view: &GameState) -> Vec<Cell> {
++                let from_enemy = bfs_distances(&view.walkable, &Self::doors_of(view, view.shacks[1]));
++                let mut doors = Self::doors_of(view, view.shacks[0]);
++                doors.sort_by_key(|door| {
++                    (-from_enemy.get(door).copied().unwrap_or(i32::MAX), *door)
++                });
++                doors
++            }
++            fn orchard_gate(view: &GameState) -> Option<Cell> {
++                Self::doors_by_farness(view).first().copied()
++            }
++            fn orchard_cells(view: &GameState) -> Vec<Cell> {
++                let size = Self::ORCHARD_LEMONS + Self::ORCHARD_PLUMS;
++                // Never on a door: a troll waiting on a tree in a doorway blocks the shack.
++                let doors = Self::doors_of(view, view.shacks[0]);
++                let mut cells: Vec<Cell> = Vec::new();
++                for door in Self::doors_by_farness(view) {
++                    if cells.len() >= size {
++                        break;
++                    }
++                    let from_door = bfs_distances(&view.walkable, &[door]);
++                    let mut near: Vec<(i32, bool, Cell)> = from_door
++                        .iter()
++                        .filter(|(cell, d)| {
++                            **d <= Self::ORCHARD_REACH
++                                && **cell != view.shacks[0]
++                                && **cell != view.shacks[1]
++                                && !doors.contains(cell)
++                                && !cells.contains(cell)
++                        })
++                        .map(|(cell, d)| {
++                            let wet = view.water.iter().any(|water| is_adjacent(*water, *cell));
++                            (*d, !wet, *cell)
++                        })
++                        .collect();
++                    near.sort();
++                    for (_, _, cell) in near {
++                        if cells.len() >= size {
++                            break;
++                        }
++                        cells.push(cell);
++                    }
++                }
++                cells
++            }
++            // The empty orchard cells with the kind to plant on each: lemons first, then plums,
++            // minus the lemon and plum trees already standing on orchard cells.
++            fn orchard_plan(view: &GameState) -> Vec<(Cell, PlantKind)> {
++                let cells = Self::orchard_cells(view);
++                let standing = |kind: PlantKind| {
++                    cells
++                        .iter()
++                        .filter(|cell| {
++                            view.plant_at(**cell).is_some_and(|index| {
++                                view.plants[index].kind == kind && view.plants[index].health > 0
++                            })
++                        })
++                        .count()
++                };
++                let mut lemons = Self::ORCHARD_LEMONS.saturating_sub(standing(PlantKind::Lemon));
++                let mut plums = Self::ORCHARD_PLUMS.saturating_sub(standing(PlantKind::Plum));
++                let mut plan = Vec::new();
++                for cell in cells {
++                    if view.plant_at(cell).is_some() {
++                        continue;
++                    }
++                    if lemons > 0 {
++                        lemons -= 1;
++                        plan.push((cell, PlantKind::Lemon));
++                    } else if plums > 0 {
++                        plums -= 1;
++                        plan.push((cell, PlantKind::Plum));
++                    }
++                }
++                plan
++            }
++            fn orchard_tree(view: &GameState, cell: Cell) -> bool {
++                Self::orchard_cells(view).contains(&cell)
++                    && view.plant_at(cell).is_some_and(|index| {
++                        matches!(view.plants[index].kind, PlantKind::Lemon | PlantKind::Plum)
++                            && view.plants[index].health > 0
++                    })
++            }
++            // While the third troll is wanted: fewer than three own trolls and the horizon open.
++            fn orchard_protected(view: &GameState) -> bool {
++                let trolls = view.units.iter().filter(|unit| unit.player == 0).count();
++                trolls < 3
++                    && TOTAL_TURNS - view.turn >= YamoBot::THIRD_TROLL_HORIZON
++                    && YamoBot::third_troll_for(view).is_some()
++            }
++            // The planting troll: the starting troll (the harvester with the lowest id).
++            fn orchard_unit(view: &GameState) -> Option<i32> {
++                view.units
++                    .iter()
++                    .filter(|unit| unit.player == 0 && unit.stats.harvest_power > 0)
++                    .map(|unit| unit.id)
++                    .min()
++            }
+             fn wait() -> Candidate {
+                 Candidate {
+                     command: "WAIT".to_string(),
+@@ -945,25 +1091,30 @@
+                         .unwrap();
+                     return vec![best.command.clone()];
+                 }
+-                if ids.len() == 2 {
++                // The joint choice for every own troll at once (the third troll, 2026-08-28):
++                // a depth-first walk over the trolls in id order through every combination of
++                // one candidate per troll whose targets do not collide and whose PICKs do not
++                // overdraw the shack; the best sum of scores wins, the first found on a tie.
++                // With two trolls this is the pair search it replaces, choice for choice.
++                let lists: Vec<&Vec<Candidate>> =
++                    ids.iter().map(|id| &candidates_by_id[id]).collect();
++                let combinations = lists
++                    .iter()
++                    .fold(1usize, |n, list| n.saturating_mul(list.len()));
++                if combinations <= Self::JOINT_SELECT_LIMIT {
+                     let mut best_score = f64::NEG_INFINITY;
+-                    let mut best_pair = None;
+-                    for a in &candidates_by_id[&ids[0]] {
+-                        for b in &candidates_by_id[&ids[1]] {
+-                            if !Self::compatible(a.target, b.target)
+-                                || !Self::stock_compatible(a, b, inventory)
+-                            {
+-                                continue;
+-                            }
+-                            let score = a.score + b.score;
+-                            if score > best_score {
+-                                best_score = score;
+-                                best_pair = Some((a.command.clone(), b.command.clone()));
+-                            }
+-                        }
+-                    }
+-                    if let Some((a, b)) = best_pair {
+-                        return vec![a, b];
++                    let mut best_set = None;
++                    let mut chosen = Vec::new();
++                    Self::select_joint(
++                        &lists,
++                        inventory,
++                        &mut chosen,
++                        0.0,
++                        &mut best_score,
++                        &mut best_set,
++                    );
++                    if let Some(commands) = best_set {
++                        return commands;
+                     }
+                 }
+                 let mut used_targets = Vec::new();
+@@ -990,6 +1141,55 @@
+                     commands.push(best.command);
+                 }
+                 commands
++            }
++            // Above this many combinations the greedy id-order pass below `select_joint`'s
++            // call is used instead (never reached with the champion's list sizes; a bound on
++            // the turn's time, not a behaviour).
++            const JOINT_SELECT_LIMIT: usize = 400_000;
++            fn select_joint<'a>(
++                lists: &[&'a Vec<Candidate>],
++                inventory: &[i32; 6],
++                chosen: &mut Vec<&'a Candidate>,
++                sum: f64,
++                best_score: &mut f64,
++                best_set: &mut Option<Vec<String>>,
++            ) {
++                let depth = chosen.len();
++                if depth == lists.len() {
++                    if sum > *best_score {
++                        *best_score = sum;
++                        *best_set = Some(chosen.iter().map(|c| c.command.clone()).collect());
++                    }
++                    return;
++                }
++                for candidate in lists[depth] {
++                    let targets_fit = chosen
++                        .iter()
++                        .all(|earlier| Self::compatible(earlier.target, candidate.target));
++                    let stock_fits = match Self::picked_item(&candidate.command) {
++                        Some(item) => {
++                            let taken = chosen
++                                .iter()
++                                .filter(|earlier| Self::picked_item(&earlier.command) == Some(item))
++                                .count() as i32;
++                            taken == 0 || inventory[item] >= taken + 1
++                        }
++                        None => true,
++                    };
++                    if !targets_fit || !stock_fits {
++                        continue;
++                    }
++                    chosen.push(candidate);
++                    Self::select_joint(
++                        lists,
++                        inventory,
++                        chosen,
++                        sum + candidate.score,
++                        best_score,
++                        best_set,
++                    );
++                    chosen.pop();
++                }
+             }
+             fn move_command(command: &str) -> Option<(i32, Cell)> {
+                 let fields: Vec<&str> = command.split_whitespace().collect();
+@@ -1124,6 +1324,8 @@
+                     idle_harvest: false,
+                     idle_harvest_clock_only: false,
+                     regeneration_commitments: BTreeMap::new(),
++                    orchard_seen: BTreeSet::new(),
++                    orchard_raided: false,
+                     opponent_eta_penalty: 0,
+                 }
+             }
+@@ -1246,7 +1448,7 @@
+                             let stats = Stats {
+                                 movement_speed,
+                                 carry_capacity,
+-                                harvest_power: 0,
++                                harvest_power: 1,
+                                 chop_power,
+                             };
+                             options.push(Self::opening_objective(view, stats));
+@@ -1272,7 +1474,7 @@
+                             Stats {
+                                 movement_speed: 1,
+                                 carry_capacity: 1,
+-                                harvest_power: 0,
++                                harvest_power: 1,
+                                 chop_power: 1,
+                             },
+                         )
+@@ -1402,11 +1604,57 @@
+                     self.opening_abandoned = true;
+                 }
+             }
++            // The third troll (owner, 2026-08-28): a fixed lumberjack -- speed 2, carry 3, no
++            // harvest power, chop 3 -- wanted once the second troll exists and while at least
++            // THIRD_TROLL_HORIZON turns remain; both trolls collect its bill together.
++            const THIRD_TROLL_HORIZON: i32 = 100;
++            fn third_troll() -> Stats {
++                Stats {
++                    movement_speed: 2,
++                    carry_capacity: 3,
++                    harvest_power: 0,
++                    chop_power: 3,
++                }
++            }
++            // The third troll's chop follows the iron (owner 2026-08-28): iron costs n + chop^2
++            // and a troll carries two per trip, so far iron means a cheaper axe -- chop 3 with
++            // the nearest iron within 5 steps on foot of our doors, 2 within 10, 1 within 16,
++            // none beyond; iron already in the shack counts against the bill. A map without
++            // iron charges no iron (the referee's rule `can_train` mirrors): chop 3 there.
++            const IRON_STEPS_FOR_CHOP: [(i32, i32); 3] = [(5, 3), (10, 2), (16, 1)];
++            fn iron_steps(view: &GameState) -> Option<i32> {
++                let doors = MoisanBot::doors_of(view, view.shacks[0]);
++                let from_doors = bfs_distances(&view.walkable, &doors);
++                view.iron
++                    .iter()
++                    .flat_map(|iron| ortho_neighbors(*iron))
++                    .filter_map(|cell| from_doors.get(&cell).copied())
++                    .min()
++            }
++            fn third_troll_for(view: &GameState) -> Option<Stats> {
++                if view.iron.is_empty() {
++                    return Some(Self::third_troll());
++                }
++                let steps = Self::iron_steps(view);
++                let stock = view.inventories[0][IRON];
++                for (limit, chop) in Self::IRON_STEPS_FOR_CHOP {
++                    let needed = 2 + chop * chop - stock;
++                    if needed <= 0 || steps.is_some_and(|s| s <= limit) {
++                        return Some(Stats {
++                            movement_speed: 2,
++                            carry_capacity: 3,
++                            harvest_power: 0,
++                            chop_power: chop,
++                        });
++                    }
++                }
++                None
++            }
+             fn fallback_second_troll() -> Stats {
+                 Stats {
+                     movement_speed: 1,
+                     carry_capacity: 1,
+-                    harvest_power: 0,
++                    harvest_power: 1,
+                     chop_power: 1,
+                 }
+             }
+@@ -2054,6 +2302,64 @@
+                     })
+                     .collect()
+             }
++            // --------------------------------------------------------------------------
++            // The orchard: the starting troll's planting turn. Returns its whole candidate
++            // list when it has a tree to plant and the shack can spare the fruit; None when
++            // it carries something (banked the normal way first), when nothing is missing,
++            // or when the third troll is no longer wanted.
++            // --------------------------------------------------------------------------
++            fn orchard_candidates(
++                &mut self,
++                view: &GameState,
++                unit: &Unit,
++                train_now: bool,
++            ) -> Option<Vec<Candidate>> {
++                if !MoisanBot::orchard_protected(view)
++                    || self.orchard_raided
++                    || MoisanBot::orchard_unit(view) != Some(unit.id)
++                {
++                    return None;
++                }
++                // Plant first (owner 2026-08-28): the orchard goes in from the first turns,
++                // from the starting stock, before any collecting.
++                let (cell, kind) = *MoisanBot::orchard_plan(view).first()?;
++                let item = if kind == PlantKind::Lemon { LEMON } else { PLUM };
++                let act = |command: String, target: Target| Candidate {
++                    command,
++                    score: 50_000.0,
++                    target,
++                };
++                let mut out = vec![MoisanBot::wait()];
++                if unit.carry[item] > 0 {
++                    out.push(if unit.cell == cell {
++                        act(format!("PLANT {} {}", unit.id, kind.as_str()), Target::Cell(cell))
++                    } else {
++                        act(format!("MOVE {} {} {}", unit.id, cell.0, cell.1), Target::Cell(cell))
++                    });
++                    self.regeneration_commitments.remove(&unit.id);
++                    return Some(out);
++                }
++                if unit.total_carried() > 0 || train_now || view.inventories[0][item] <= 0 {
++                    return None;
++                }
++                if is_adjacent(unit.cell, view.shacks[0]) {
++                    out.push(act(format!("PICK {} {}", unit.id, kind.as_str()), Target::Cell(unit.cell)));
++                } else {
++                    // The nearest door on foot that no own troll stands on.
++                    let from_unit = bfs_distances(&view.walkable, &[unit.cell]);
++                    let door = MoisanBot::doors_of(view, view.shacks[0])
++                        .into_iter()
++                        .filter(|door| {
++                            !view.units.iter().any(|other| other.player == 0 && other.cell == *door)
++                        })
++                        .filter_map(|door| from_unit.get(&door).map(|d| (*d, door)))
++                        .min()?
++                        .1;
++                    out.push(act(format!("MOVE {} {} {}", unit.id, door.0, door.1), Target::Cell(door)));
++                }
++                self.regeneration_commitments.remove(&unit.id);
++                Some(out)
++            }
+             fn endgame(view: &GameState) -> bool {
+                 view.turn > 250
+                     || (view.plants.len() <= 4
+@@ -2065,11 +2371,49 @@
+                 self.reconcile_regeneration_commitments(view);
+                 self.ensure_opening(view);
+                 self.enforce_training_deadline(view);
+-                let desired = self
+-                    .desired_second
+-                    .map(|objective| objective.stats)
+-                    .unwrap_or_else(Self::fallback_second_troll);
+-                let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
++                // The orchard raided (owner 2026-08-28): while the third troll is wanted we never
++                // fell an orchard tree, so one seen last turn and gone now was the enemy's doing;
++                // planting stops for the rest of the game.
++                let standing: BTreeSet<Cell> = MoisanBot::orchard_cells(view)
++                    .into_iter()
++                    .filter(|cell| MoisanBot::orchard_tree(view, *cell))
++                    .collect();
++                if MoisanBot::orchard_protected(view)
++                    && self.orchard_seen.iter().any(|cell| !standing.contains(cell))
++                {
++                    self.orchard_raided = true;
++                }
++                self.orchard_seen = standing;
++                let own_trolls = view.units.iter().filter(|unit| unit.player == 0).count();
++                let third_troll = Self::third_troll_for(view);
++                let third_wanted = own_trolls == 2
++                    && third_troll.is_some()
++                    && TOTAL_TURNS - view.turn >= Self::THIRD_TROLL_HORIZON;
++                // Reachable: every fruit of the bill still missing has a living tree of its
++                // kind that an own troll can walk to (iron is never the blocker: on a map
++                // without iron the price ignores it). Otherwise the funding ends for now.
++                let third_reachable = third_wanted && {
++                    let cost = training_cost(2, third_troll.unwrap_or_else(Self::third_troll).tuple());
++                    let scout = view.units.iter().find(|unit| unit.player == 0);
++                    [(PLUM, PlantKind::Plum), (LEMON, PlantKind::Lemon), (APPLE, PlantKind::Apple)]
++                        .into_iter()
++                        .all(|(item, kind)| {
++                            cost[item] <= view.inventories[0][item]
++                                || scout.map_or(false, |unit| {
++                                    !MoisanBot::fruit_candidates(view, unit, kind, 0.0).is_empty()
++                                })
++                        })
++                };
++                let desired = if own_trolls >= 2 {
++                    third_troll.unwrap_or_else(Self::third_troll)
++                } else {
++                    self.desired_second
++                        .map(|objective| objective.stats)
++                        .unwrap_or_else(Self::fallback_second_troll)
++                };
++                let train_now = !self.opening_abandoned
++                    && (own_trolls < 2 || third_wanted)
++                    && MoisanBot::can_train(view, desired);
+                 let mut out = Vec::new();
+                 if !self.announced {
+                     self.announced = true;
+@@ -2087,7 +2431,9 @@
+                 let mut my_units: Vec<&Unit> =
+                     view.units.iter().filter(|unit| unit.player == 0).collect();
+                 my_units.sort_by_key(|unit| unit.id);
+-                let early = !self.opening_abandoned && my_units.len() < 2 && !train_now;
++                let early = !self.opening_abandoned
++                    && (my_units.len() < 2 || third_reachable)
++                    && !train_now;
+                 let endgame = Self::endgame(view);
+                 let mut by_id = BTreeMap::new();
+                 for unit in my_units {
+@@ -2122,6 +2468,8 @@
+                             self.opponent_eta_penalty,
+                         )
+                     } else if early {
++                        // Three heroes: while the bill is collected nobody chops -- every
++                        // troll gets the funding list and nothing else.
+                         MoisanBot::early_candidates(view, unit, desired)
+                     } else {
+                         Self::main_candidates(
+@@ -2161,6 +2509,9 @@
+                                 target: Target::Cell(cell),
+                             });
+                         }
++                    }
++                    if let Some(orchard) = self.orchard_candidates(view, unit, train_now) {
++                        candidates = orchard;
+                     }
+                     by_id.insert(unit.id, candidates);
+                 }

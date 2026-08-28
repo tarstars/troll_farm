@@ -1,0 +1,278 @@
+{
+  "arm": {
+    "bytes": 164843,
+    "lines": 3476,
+    "path": "local_claude_1/third-troll/champion-orchard3-v6-instrument.rs",
+    "sha256": "fabdebffd06555a643ddcba54c06d842223bef9a52b57c37ba9da9f5d6819c72"
+  },
+  "base_arm": {
+    "path": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+    "sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f"
+  },
+  "base_arm_and_resident_same_token_stream": true,
+  "base_readable": {
+    "path": "readable/denial-off-champion.rs",
+    "sha256": "4ce3d1e85e8962d84c0ecb1a071de46e844d24f7dbe5a31bd6ca0579db552143"
+  },
+  "base_resident": {
+    "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "board_row": "Track 3, row 3-1",
+  "bot": "orchard 2 with the orchard planted from the first turns (no reserve) and the bill's missing items split between the trolls by deficit",
+  "canonical_token_stream_identical": true,
+  "compacted": {
+    "bytes": 71068,
+    "path": "cgauto/submissions/candidate-orchard3-v6-instrument.rs",
+    "sha256": "52c36e53d821be6ec04cff36efeb7c42d5e6f964a011aef1058c9d6d04611600"
+  },
+  "compiles": true,
+  "distinct_from": {
+    "apple farm": {
+      "path": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c"
+    },
+    "banana farm": {
+      "path": "cgauto/submissions/candidate-banana-farm-v8-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "443a196e51ca8a87066ef25ff88b81800601a6c901d3fe3e684effcad453a536"
+    },
+    "bare champion (old)": {
+      "path": "cgauto/submissions/candidate-door1-pure-deletion.rs",
+      "same_token_stream": false,
+      "sha256": "547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0"
+    },
+    "bot A (old champion + diagnostics)": {
+      "path": "cgauto/submissions/candidate-champion-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82"
+    },
+    "bot B (keep-your-goal)": {
+      "path": "cgauto/submissions/candidate-3-keep-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "04e3db43865121e82a8c6fab65e9fa09f6be487406af3a1fdd8e2a7807a0d879"
+    },
+    "orchard 2": {
+      "path": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178"
+    },
+    "the floor": {
+      "path": "cgauto/submissions/candidate-the-floor-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "31cd23c021f184b0cc39aa7f38d4bfb099d56a9f815ce892bee1f3dada10d420"
+    },
+    "the orchard": {
+      "path": "cgauto/submissions/candidate-orchard-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "8e0c0244a05abd3f6792aacca6ecabd38fcc522ad4a1761f863cc5feb96cd528"
+    },
+    "the resident (champion of record)": {
+      "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+    },
+    "the third troll (a) 2/3/0/3": {
+      "path": "cgauto/submissions/candidate-third-troll-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "89493fa0d68e1dea1079c35ca4b0a8ed9b36273ccb25f5663d51c1a9e48ded33"
+    },
+    "the third troll variant (b) 2/2/0/2": {
+      "path": "cgauto/submissions/candidate-third-troll-2202-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "684104f136f93ac620447dadf95e9d491b467ac68eef8e4180f8081b114c00bf"
+    },
+    "three heroes": {
+      "path": "cgauto/submissions/candidate-three-heroes-v6-instrument.rs",
+      "same_token_stream": false,
+      "sha256": "2abb9fc29c574f330ebf94ddcea3ec4f1968f0961299946777744c831f919f69"
+    }
+  },
+  "edit": {
+    "lines_added": 385,
+    "lines_removed": 34,
+    "replacements": [
+      {
+        "added": 1,
+        "name": "can_train: the roster cap 2 -> 3",
+        "removed": 1
+      },
+      {
+        "added": 12,
+        "name": "the third troll's spec: THIRD_TROLL_HORIZON and third_troll() = 2/3/0/3",
+        "removed": 0
+      },
+      {
+        "added": 13,
+        "name": "commands: with two trolls the wanted build is the third troll, while the horizon holds",
+        "removed": 5
+      },
+      {
+        "added": 2,
+        "name": "commands: the funding mode also runs while the third troll is wanted",
+        "removed": 1
+      },
+      {
+        "added": 15,
+        "name": "commands: a funding troll with nothing left to fetch plays normally",
+        "removed": 1
+      },
+      {
+        "added": 7,
+        "name": "early_candidates: the bill split by ability; the chop fallback for one troll only",
+        "removed": 2
+      },
+      {
+        "added": 1,
+        "name": "early_candidates: the chop fallback for the one-troll case only",
+        "removed": 1
+      },
+      {
+        "added": 23,
+        "name": "select: the joint choice for any number of trolls (select_joint)",
+        "removed": 18
+      },
+      {
+        "added": 49,
+        "name": "select_joint: the depth-first joint search, placed after select",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "name": "opening_options: the second troll's grid gets harvest power 1",
+        "removed": 1
+      },
+      {
+        "added": 1,
+        "name": "choose_second_troll: the baseline troll gets harvest power 1",
+        "removed": 1
+      },
+      {
+        "added": 1,
+        "name": "fallback_second_troll: 1/1/0/1 -> 1/1/1/1",
+        "removed": 1
+      },
+      {
+        "added": 3,
+        "name": "early_candidates: both trolls fetch fruits and iron alike",
+        "removed": 4
+      },
+      {
+        "added": 15,
+        "name": "commands: third_reachable from the game state; funding while wanted and reachable",
+        "removed": 0
+      },
+      {
+        "added": 3,
+        "name": "commands: the funding mode runs while the third troll is wanted and reachable",
+        "removed": 2
+      },
+      {
+        "added": 3,
+        "name": "commands: in the funding mode every troll gets the funding list only (no chopping)",
+        "removed": 15
+      },
+      {
+        "added": 3,
+        "name": "chop_candidates: skip a protected orchard tree",
+        "removed": 0
+      },
+      {
+        "added": 116,
+        "name": "orchard helpers (impl MoisanBot), before wait()",
+        "removed": 0
+      },
+      {
+        "added": 4,
+        "name": "fruit_candidates: the dance fix -- a walk to a fruit tree reserves no target",
+        "removed": 1
+      },
+      {
+        "added": 59,
+        "name": "orchard_candidates (impl YamoBot), before endgame()",
+        "removed": 0
+      },
+      {
+        "added": 3,
+        "name": "commands: the orchard owns the starter's turn when it has something to plant",
+        "removed": 0
+      },
+      {
+        "added": 2,
+        "name": "the orchard's size: 4 lemons + 2 plums -> 2 + 1",
+        "removed": 2
+      },
+      {
+        "added": 4,
+        "name": "YamoBot: the orchard's memory (orchard_seen, orchard_raided)",
+        "removed": 0
+      },
+      {
+        "added": 2,
+        "name": "YamoBot::with_opening_policy: the new fields' initial values",
+        "removed": 0
+      },
+      {
+        "added": 34,
+        "name": "iron_steps + third_troll_for: the third troll's chop follows the iron",
+        "removed": 0
+      },
+      {
+        "added": 4,
+        "name": "commands: the wanted third troll is third_troll_for; none -> no third troll",
+        "removed": 2
+      },
+      {
+        "added": 1,
+        "name": "commands: desired = the wanted third troll",
+        "removed": 1
+      },
+      {
+        "added": 1,
+        "name": "third_reachable prices the wanted troll",
+        "removed": 1
+      },
+      {
+        "added": 3,
+        "name": "orchard_protected: only while a third troll is wanted on this map",
+        "removed": 1
+      },
+      {
+        "added": 13,
+        "name": "commands: the raid check each turn",
+        "removed": 0
+      },
+      {
+        "added": 1,
+        "name": "orchard_candidates: no planting once raided",
+        "removed": 0
+      },
+      {
+        "added": 2,
+        "name": "orchard_candidates: plant first, from the first turns, no reserve",
+        "removed": 4
+      },
+      {
+        "added": 19,
+        "name": "early_candidates: each troll works a different resource of the bill",
+        "removed": 5
+      }
+    ],
+    "what": "thirty-three replacements: orchard 2's thirty-one + orchard 3's two"
+  },
+  "keep_rule_enabled": false,
+  "narrate_v6_enabled": true,
+  "readable_diff": {
+    "added": 385,
+    "path": "readable/diffs/orchard3.diff",
+    "removed": 34
+  },
+  "readable_edited": {
+    "path": "local_claude_1/third-troll/orchard3-readable.rs",
+    "sha256": "5caa13bad2d60192543117ccf362554780a9858e4062a57f7f22cf0920ceb265"
+  },
+  "schema": "troll-farm-readable-source-v2",
+  "task": "orchard 3 (the third troll card, design round 5, owner 2026-08-28 ~10:1xZ: plant first -- lemon, lemon, plum by the shack, then collect; each troll on a different resource of the bill)",
+  "verdict": "CHAMPION_THIRD_TROLL_V6_INSTRUMENT_ROUND_TRIP_EXACT"
+}
