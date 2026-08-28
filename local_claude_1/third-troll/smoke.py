@@ -136,6 +136,8 @@ def read_game(lines, ref, turns):
         "own_unit_stats": {str(uid): [u["speed"], u["cap"], u["harvest"], u["chop"]]
                            for uid, u in sorted(own_units.items())},
         "trains": trains,
+        "plants": [(turn, frag.split()[2]) for turn, line in enumerate(lines, 1)
+                   for frag in line.split(";") if frag.split()[:1] == ["PLANT"] and len(frag.split()) >= 3],
         "second_troll": second,
         "third_troll": third,
         "funding_turns": (third["turn"] - second["turn"]) if second and third else None,
@@ -260,6 +262,7 @@ def main() -> int:
                   f"(funding {a['funding_turns']} turns, idle max arm/resident "
                   f"{a.get('idle_max_funding_arm_vs_resident')} after horizon "
                   f"{a.get('idle_max_after_horizon_arm_vs_resident')})  "
+                  f"plants {len(a['plants'])} (first @{a['plants'][0][0] if a['plants'] else '-'})  "
                   f"resident 2nd {rb.get('spec')} @{rb.get('turn')}  "
                   f"own {a['own_score']} vs {b['own_score']}  telemetry {len(a['telemetry_errors'])}")
 
