@@ -1,86 +1,13 @@
 {
   "current": {
-    "agent_id": 6670298,
-    "early_looks": [
-      {
-        "age_min": 0.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:25:02Z",
-        "rank": 168,
-        "score": 11.98,
-        "total": 176
-      },
-      {
-        "age_min": 5.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:30:02Z",
-        "rank": 145,
-        "score": 14.59,
-        "total": 176
-      },
-      {
-        "age_min": 10.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:35:01Z",
-        "rank": 130,
-        "score": 15.65,
-        "total": 176
-      },
-      {
-        "age_min": 15.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:40:02Z",
-        "rank": 116,
-        "score": 16.53,
-        "total": 176
-      },
-      {
-        "age_min": 20.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:45:02Z",
-        "rank": 127,
-        "score": 15.88,
-        "total": 176
-      },
-      {
-        "age_min": 25.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:50:01Z",
-        "rank": 135,
-        "score": 15.38,
-        "total": 176
-      },
-      {
-        "age_min": 30.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T09:55:02Z",
-        "rank": 135,
-        "score": 15.28,
-        "total": 176
-      },
-      {
-        "age_min": 35.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T10:00:02Z",
-        "rank": 135,
-        "score": 15.36,
-        "total": 176
-      },
-      {
-        "age_min": 40.8,
-        "agent_id": 6670298,
-        "at": "2026-08-28T10:05:01Z",
-        "rank": 141,
-        "score": 14.93,
-        "total": 176
-      }
-    ],
-    "file": "cgauto/submissions/candidate-orchard-v6-instrument.rs",
-    "id": "orchard-r1",
-    "label": "THE ORCHARD (owner 'let's do orchard', far-gate amendment, ok): three heroes + four lemons and two plums at the gate farthest from the enemy, planted after the second troll, protected until the third troll; the dance fix -- round 1",
-    "sha256": "8e0c0244a05abd3f6792aacca6ecabd38fcc522ad4a1761f863cc5feb96cd528",
-    "submission_id": 41207318,
-    "submitted_at": "2026-08-28T09:24:14Z"
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-orchard2-v6-instrument.rs",
+    "id": "orchard2-r1",
+    "label": "ORCHARD 2 (owner after the ghhttt game, '2 + 1 ok'): the third troll's chop follows the iron (3/2/1/none by walking distance), planting stops once the enemy fells an orchard tree, two lemons + one plum -- round 1",
+    "sha256": "2227e506fe425755687d8dac2f176340083553e58a583686ca38d24cda641178",
+    "submission_id": 41207487,
+    "submitted_at": "2026-08-28T10:10:16Z"
   },
   "done": [
     {
@@ -496,6 +423,109 @@
       "sha256": "8c6bc206417c6d22b593372ce42e74ce5698646c1f8a860073f349a2a082708c",
       "submission_id": 41207182,
       "submitted_at": "2026-08-28T08:52:19Z"
+    },
+    {
+      "agent_id": 6670298,
+      "early_looks": [
+        {
+          "age_min": 0.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:25:02Z",
+          "rank": 168,
+          "score": 11.98,
+          "total": 176
+        },
+        {
+          "age_min": 5.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:30:02Z",
+          "rank": 145,
+          "score": 14.59,
+          "total": 176
+        },
+        {
+          "age_min": 10.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:35:01Z",
+          "rank": 130,
+          "score": 15.65,
+          "total": 176
+        },
+        {
+          "age_min": 15.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:40:02Z",
+          "rank": 116,
+          "score": 16.53,
+          "total": 176
+        },
+        {
+          "age_min": 20.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:45:02Z",
+          "rank": 127,
+          "score": 15.88,
+          "total": 176
+        },
+        {
+          "age_min": 25.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:50:01Z",
+          "rank": 135,
+          "score": 15.38,
+          "total": 176
+        },
+        {
+          "age_min": 30.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T09:55:02Z",
+          "rank": 135,
+          "score": 15.28,
+          "total": 176
+        },
+        {
+          "age_min": 35.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T10:00:02Z",
+          "rank": 135,
+          "score": 15.36,
+          "total": 176
+        },
+        {
+          "age_min": 40.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T10:05:01Z",
+          "rank": 141,
+          "score": 14.93,
+          "total": 176
+        },
+        {
+          "age_min": 45.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T10:10:02Z",
+          "rank": 142,
+          "score": 14.83,
+          "total": 176
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard-v6-instrument.rs",
+      "id": "orchard-r1",
+      "label": "THE ORCHARD (owner 'let's do orchard', far-gate amendment, ok): three heroes + four lemons and two plums at the gate farthest from the enemy, planted after the second troll, protected until the third troll; the dance fix -- round 1",
+      "retired": {
+        "at": "2026-08-28T10:1xZ",
+        "by": "the owner: push orchard 2 - the orchard's round 1 cut short before its reading",
+        "last_early_look": {
+          "age_min": 45.8,
+          "agent_id": 6670298,
+          "at": "2026-08-28T10:10:02Z",
+          "rank": 142,
+          "score": 14.83,
+          "total": 176
+        }
+      },
+      "sha256": "8e0c0244a05abd3f6792aacca6ecabd38fcc522ad4a1761f863cc5feb96cd528",
+      "submission_id": 41207318,
+      "submitted_at": "2026-08-28T09:24:14Z"
     }
   ]
 }
