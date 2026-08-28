@@ -26,6 +26,7 @@ def main() -> int:
     ap.add_argument("--to", dest="end", type=int, default=300)
     ap.add_argument("--idle-only", action="store_true")
     ap.add_argument("--resident", action="store_true", help="probe the resident instead of the arm")
+    ap.add_argument("--arm", type=Path, default=None, help="another arm file to probe")
     args = ap.parse_args()
     plan = None
     with open(HERE / "smoke-maps-seed0.jsonl") as fp:
@@ -35,7 +36,7 @@ def main() -> int:
                 plan = (item["rec"], item["draw"], item["profile"])
     assert plan, "map not in the slice"
     rec, draw, profile = plan
-    src = smoke.RESIDENT if args.resident else smoke.ARM
+    src = smoke.RESIDENT if args.resident else (args.arm or smoke.ARM)
     with tempfile.TemporaryDirectory(prefix="probe-") as wd:
         binary = Path(wd) / "bot.bin"
         sh.compile_text(src.read_text(), binary, crate="probe_bot")

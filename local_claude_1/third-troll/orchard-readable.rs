@@ -913,8 +913,8 @@ mod bot {
             //
             // The gate is the door of our shack (a walkable orthogonal neighbour) with the
             // largest walking distance from the enemy's doors. The orchard cells are the first
-            // six free cells within two steps on foot of the gate (the gate included, the
-            // shacks excluded), nearest first, water-side first; if the gate has fewer, the
+            // six free cells within two steps on foot of the gate (never on a door, never a
+            // shack), nearest first, water-side first; if the gate has fewer, the
             // next-farthest doors' cells follow. Planted by the starting troll while the third
             // troll is wanted; protected from our own axes for as long.
             // --------------------------------------------------------------------------
@@ -941,6 +941,8 @@ mod bot {
             }
             fn orchard_cells(view: &GameState) -> Vec<Cell> {
                 let size = Self::ORCHARD_LEMONS + Self::ORCHARD_PLUMS;
+                // Never on a door: a troll waiting on a tree in a doorway blocks the shack.
+                let doors = Self::doors_of(view, view.shacks[0]);
                 let mut cells: Vec<Cell> = Vec::new();
                 for door in Self::doors_by_farness(view) {
                     if cells.len() >= size {
@@ -953,6 +955,7 @@ mod bot {
                             **d <= Self::ORCHARD_REACH
                                 && **cell != view.shacks[0]
                                 && **cell != view.shacks[1]
+                                && !doors.contains(cell)
                                 && !cells.contains(cell)
                         })
                         .map(|(cell, d)| {
@@ -2260,10 +2263,12 @@ mod bot {
                 {
                     return None;
                 }
+                // After the second troll only (its bill and its turns come first).
+                if view.units.iter().filter(|unit| unit.player == 0).count() < 2 {
+                    return None;
+                }
                 let (cell, kind) = *MoisanBot::orchard_plan(view).first()?;
                 let item = if kind == PlantKind::Lemon { LEMON } else { PLUM };
-                let trolls = view.units.iter().filter(|unit| unit.player == 0).count();
-                let reserve = if trolls < 2 { 5 } else { 0 };
                 let act = |command: String, target: Target| Candidate {
                     command,
                     score: 50_000.0,
@@ -2279,14 +2284,23 @@ mod bot {
                     self.regeneration_commitments.remove(&unit.id);
                     return Some(out);
                 }
-                if unit.total_carried() > 0 || train_now || view.inventories[0][item] <= reserve {
+                if unit.total_carried() > 0 || train_now || view.inventories[0][item] <= 0 {
                     return None;
                 }
                 if is_adjacent(unit.cell, view.shacks[0]) {
                     out.push(act(format!("PICK {} {}", unit.id, kind.as_str()), Target::Cell(unit.cell)));
                 } else {
-                    let gate = MoisanBot::orchard_gate(view)?;
-                    out.push(act(format!("MOVE {} {} {}", unit.id, gate.0, gate.1), Target::Cell(gate)));
+                    // The nearest door on foot that no own troll stands on.
+                    let from_unit = bfs_distances(&view.walkable, &[unit.cell]);
+                    let door = MoisanBot::doors_of(view, view.shacks[0])
+                        .into_iter()
+                        .filter(|door| {
+                            !view.units.iter().any(|other| other.player == 0 && other.cell == *door)
+                        })
+                        .filter_map(|door| from_unit.get(&door).map(|d| (*d, door)))
+                        .min()?
+                        .1;
+                    out.push(act(format!("MOVE {} {} {}", unit.id, door.0, door.1), Target::Cell(door)));
                 }
                 self.regeneration_commitments.remove(&unit.id);
                 Some(out)

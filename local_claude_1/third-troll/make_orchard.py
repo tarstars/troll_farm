@@ -8,16 +8,16 @@ THE RULE (owner, plain words), on top of three heroes (harvest-1 second troll; b
 the third troll's bill and nobody chops until the 2/3/0/3 third troll is trained or unreachable):
   1. The gate: our shack's doors are its walkable orthogonal neighbours; the orchard's gate is
      the door with the largest WALKING distance from the enemy's doors (unreachable = farthest).
-  2. The orchard: the first six free cells within two steps on foot of the gate (the gate cell
-     included; both shacks excluded), nearest first, water-side first (a water-side lemon fruits
+  2. The orchard: the first six free cells within two steps on foot of the gate (the shack's
+     doors and both shacks excluded -- a troll waiting on a tree in a doorway blocks the shack),
+     nearest first, water-side first (a water-side lemon fruits
      in 12 turns instead of 32 and regrows every 3 instead of 8); if the gate has fewer than six,
      the next-farthest doors' cells follow. Four lemons and two plums; a lemon or plum already
      standing on an orchard cell counts.
-  3. The starting troll plants (PICK the fruit beside the shack -> walk -> PLANT), from turn 2 on
-     (turn 1 stays the training check), whenever it carries nothing, the shack holds the fruit
-     beyond the reserve (5 plums / 5 lemons kept for the second troll's bill until it is trained;
-     no reserve after), and the third troll is still wanted (fewer than three trolls, >= 100 turns
-     left). A tree the opponent fells is replanted by the same rule (stateless).
+  3. The starting troll plants (PICK the fruit at the nearest free door -> walk -> PLANT) once the
+     second troll is trained (its bill and its turns come first, as MSz does), whenever it carries
+     nothing, the shack holds the fruit, and the third troll is still wanted (fewer than three
+     trolls, >= 100 turns left). A tree the opponent fells is replanted by the same rule (stateless).
   4. No own troll fells an orchard tree while the third troll is wanted; after it (or after the
      horizon) they are wood like any tree.
   5. The dance fix: a troll walking to a fruit tree no longer reserves the tree (the MOVE carries
@@ -83,8 +83,8 @@ REPL_HELPERS = dict(
         "            //\n"
         "            // The gate is the door of our shack (a walkable orthogonal neighbour) with the\n"
         "            // largest walking distance from the enemy's doors. The orchard cells are the first\n"
-        "            // six free cells within two steps on foot of the gate (the gate included, the\n"
-        "            // shacks excluded), nearest first, water-side first; if the gate has fewer, the\n"
+        "            // six free cells within two steps on foot of the gate (never on a door, never a\n"
+        "            // shack), nearest first, water-side first; if the gate has fewer, the\n"
         "            // next-farthest doors' cells follow. Planted by the starting troll while the third\n"
         "            // troll is wanted; protected from our own axes for as long.\n"
         "            // --------------------------------------------------------------------------\n"
@@ -111,6 +111,8 @@ REPL_HELPERS = dict(
         "            }\n"
         "            fn orchard_cells(view: &GameState) -> Vec<Cell> {\n"
         "                let size = Self::ORCHARD_LEMONS + Self::ORCHARD_PLUMS;\n"
+        "                // Never on a door: a troll waiting on a tree in a doorway blocks the shack.\n"
+        "                let doors = Self::doors_of(view, view.shacks[0]);\n"
         "                let mut cells: Vec<Cell> = Vec::new();\n"
         "                for door in Self::doors_by_farness(view) {\n"
         "                    if cells.len() >= size {\n"
@@ -123,6 +125,7 @@ REPL_HELPERS = dict(
         "                            **d <= Self::ORCHARD_REACH\n"
         "                                && **cell != view.shacks[0]\n"
         "                                && **cell != view.shacks[1]\n"
+        "                                && !doors.contains(cell)\n"
         "                                && !cells.contains(cell)\n"
         "                        })\n"
         "                        .map(|(cell, d)| {\n"
@@ -237,10 +240,12 @@ REPL_ORCHARD_TURN = dict(
         "                {\n"
         "                    return None;\n"
         "                }\n"
+        "                // After the second troll only (its bill and its turns come first).\n"
+        "                if view.units.iter().filter(|unit| unit.player == 0).count() < 2 {\n"
+        "                    return None;\n"
+        "                }\n"
         "                let (cell, kind) = *MoisanBot::orchard_plan(view).first()?;\n"
         "                let item = if kind == PlantKind::Lemon { LEMON } else { PLUM };\n"
-        "                let trolls = view.units.iter().filter(|unit| unit.player == 0).count();\n"
-        "                let reserve = if trolls < 2 { 5 } else { 0 };\n"
         "                let act = |command: String, target: Target| Candidate {\n"
         "                    command,\n"
         "                    score: 50_000.0,\n"
@@ -256,14 +261,23 @@ REPL_ORCHARD_TURN = dict(
         "                    self.regeneration_commitments.remove(&unit.id);\n"
         "                    return Some(out);\n"
         "                }\n"
-        "                if unit.total_carried() > 0 || train_now || view.inventories[0][item] <= reserve {\n"
+        "                if unit.total_carried() > 0 || train_now || view.inventories[0][item] <= 0 {\n"
         "                    return None;\n"
         "                }\n"
         "                if is_adjacent(unit.cell, view.shacks[0]) {\n"
         "                    out.push(act(format!(\"PICK {} {}\", unit.id, kind.as_str()), Target::Cell(unit.cell)));\n"
         "                } else {\n"
-        "                    let gate = MoisanBot::orchard_gate(view)?;\n"
-        "                    out.push(act(format!(\"MOVE {} {} {}\", unit.id, gate.0, gate.1), Target::Cell(gate)));\n"
+        "                    // The nearest door on foot that no own troll stands on.\n"
+        "                    let from_unit = bfs_distances(&view.walkable, &[unit.cell]);\n"
+        "                    let door = MoisanBot::doors_of(view, view.shacks[0])\n"
+        "                        .into_iter()\n"
+        "                        .filter(|door| {\n"
+        "                            !view.units.iter().any(|other| other.player == 0 && other.cell == *door)\n"
+        "                        })\n"
+        "                        .filter_map(|door| from_unit.get(&door).map(|d| (*d, door)))\n"
+        "                        .min()?\n"
+        "                        .1;\n"
+        "                    out.push(act(format!(\"MOVE {} {} {}\", unit.id, door.0, door.1), Target::Cell(door)));\n"
         "                }\n"
         "                self.regeneration_commitments.remove(&unit.id);\n"
         "                Some(out)\n"

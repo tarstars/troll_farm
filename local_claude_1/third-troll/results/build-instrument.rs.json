@@ -19,7 +19,7 @@
     "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
   },
   "board_row": "Track 3, row 3-1",
-  "bot": "three heroes + an orchard of four lemons and two plums at the gate farthest from the enemy, planted by the starter while the third troll is wanted and protected from our own axes; the dance fix on fruit walks",
+  "bot": "the champion of record; after the second troll both trolls fund a 2/3/0/3 lumberjack, trained the turn it is affordable (while >= 100 turns remain); select chooses jointly for any number of trolls",
   "canonical_token_stream_identical": true,
   "compacted": {
     "bytes": 69477,
@@ -189,7 +189,7 @@
         "removed": 0
       }
     ],
-    "what": "twenty-one replacements: the third troll's nine + three heroes' seven + the orchard's five"
+    "what": "nine replacements: the third troll"
   },
   "keep_rule_enabled": false,
   "narrate_v6_enabled": true,
@@ -203,6 +203,6 @@
     "sha256": "6f18f71a401786f516e1f5026fcad170eaf63a265094b74d7b300ef6de3b37c4"
   },
   "schema": "troll-farm-readable-source-v2",
-  "task": "the orchard (the third troll card, design round 3, owner 2026-08-28 ~09:0xZ: 'let's do orchard' + the far-gate amendment, 'ok')",
+  "task": "the third troll (owner's one-variable experiment, 2026-08-28: 'set as next goal bot with the third troll')",
   "verdict": "CHAMPION_THIRD_TROLL_V6_INSTRUMENT_ROUND_TRIP_EXACT"
 }
