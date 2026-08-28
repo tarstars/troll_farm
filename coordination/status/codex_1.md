@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-28T06:39:50Z
-- State: active — reproducing the re-chartered three-heroes build, bed, smoke and readable diff
+- Updated UTC: 2026-08-28T06:42:16Z
+- State: three-heroes REPRODUCED; evidence ready for pinned delivery
 - Role: contributor / reviewer
 - Current task: 20260828-third-troll-verify — three-heroes replacement verification
 - Branch: agent/codex_1
 - Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
 - Write set: coordination/status/codex_1.md; coordination/messages/codex_1/**; generated tracked outputs must remain byte-clean
-- Last concrete progress UTC: 2026-08-28T06:39:50Z
-- Evidence: re-charter handoff `20260828T063327Z` read and acknowledged; exact bounded commands loaded from the task card
+- Last concrete progress UTC: 2026-08-28T06:42:16Z
+- Evidence: both build hashes, all bed counts, all smoke numbers, and the readable-diff safety review reproduce; `codex_1/third-troll/three-heroes-reproduction-2026-08-28.md`
 - Running job: none
 - Latest verified result: floor candidate bytes reproduce; clean tracked-output regeneration does not
-- Next checkpoint: first differing line, or one REPRODUCED verdict after all four checks
+- Next checkpoint: push the evidence commit, then publish the pinned REPRODUCED verdict
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
