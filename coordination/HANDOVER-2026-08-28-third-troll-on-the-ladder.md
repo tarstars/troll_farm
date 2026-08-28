@@ -6,7 +6,13 @@ with this computer. So I propose to move ladder queue to VM. let's put three_her
 other tasks later. I want to submit (a)"). Trunk at writing: `origin/main` == `agent/local_claude_1`
 == the checkout `/home/tarstars/prj/troll_farm`.
 
-## Resume here
+## Resume here (UPDATED 06:5xZ — read this block first, the rest below is the 06:1xZ state)
+
+- **(a) was retired by the owner at 06:2xZ** ("extremely low rating and it's quite obvious why: the second troll chops down the trees with resources for the third troll"); the champion of record went back up at 06:24:23Z (`41206635`, agent `6670074`, reading ~07:26Z — a fresh baseline). (a)'s 106 games are in `local_claude_1/ladder-queue/games-41206542/`: the third troll trained in 40/106, those 65 % wins vs 32 % without.
+- **THREE HEROES** (design round 2, the owner's, "ok"): harvest-1 second troll; both trolls collect the bill, nobody chops, until the 2/3/0/3 third troll or unreachable. Generator `local_claude_1/third-troll/make_three_heroes.py` (stacked on the nine), submission `candidate-three-heroes-v6-instrument.rs` sha `2abb9fc2…`, diff `readable/diffs/three-heroes.diff` +128/−31; bed PASS; smoke PASS 24/24 (a third troll in 20/24 at median turn 111, no stall, the unreachable exit on 4 plum-less maps). **VM queue now:** champion (up) → three heroes r1 (~07:27Z, reading ~08:30Z) → three heroes r2 → apple farm r5 → r6 → champion-final. codex_1 re-chartered to reproduce three heroes (row 0-7).
+- The runner's log moved outside the repo (`/home/tarstars/ladder-queue-runner.log`); the VM pushes to `origin/main` — fast-forward `agent/local_claude_1` first thing.
+
+## Resume here (06:1xZ state)
 
 - **On the ladder: the third troll (a)** — `cgauto/submissions/candidate-third-troll-v6-instrument.rs`,
   sha `89493fa0…`, submission `41206542`, 05:49:18Z, agent `6670021`. The champion of record plus one
