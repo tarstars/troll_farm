@@ -1,5 +1,5 @@
 {
-  "written": "2026-08-28T11:3xZ: orchard 6 r1, r2 in place of orchard 5's round 2",
+  "written": "2026-08-28T18:5xZ: orchard 7 r1, r2 in place of orchard 6's round 2",
   "items": [
     {
       "id": "champion-restore-now",
@@ -56,10 +56,16 @@
       "label": "ORCHARD 6 (orchard 5 + the orchard on the cells adjacent to the tent, one door kept free; owner) -- round 1"
     },
     {
-      "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
-      "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
-      "id": "orchard6-r2",
-      "label": "ORCHARD 6 -- round 2"
+      "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
+      "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
+      "id": "orchard7-r1",
+      "label": "ORCHARD 7 (orchard 6 + never abandon the opening, a 2+2 fruit reserve for the second troll, orchard cells within reach of the tent) -- round 1"
+    },
+    {
+      "file": "cgauto/submissions/candidate-orchard7-v6-instrument.rs",
+      "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
+      "id": "orchard7-r2",
+      "label": "ORCHARD 7 -- round 2"
     },
     {
       "file": "cgauto/submissions/candidate-apple-farm-v6-instrument.rs",

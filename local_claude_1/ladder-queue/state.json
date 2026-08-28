@@ -1,7 +1,64 @@
 {
   "current": {
-    "agent_id": null,
-    "early_looks": [],
+    "agent_id": 6671418,
+    "early_looks": [
+      {
+        "age_min": 1.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:10:01Z",
+        "rank": 175,
+        "score": 3.12,
+        "total": 177
+      },
+      {
+        "age_min": 6.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:15:02Z",
+        "rank": 169,
+        "score": 11.7,
+        "total": 177
+      },
+      {
+        "age_min": 11.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:20:02Z",
+        "rank": 130,
+        "score": 15.67,
+        "total": 177
+      },
+      {
+        "age_min": 16.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:25:01Z",
+        "rank": 128,
+        "score": 15.9,
+        "total": 177
+      },
+      {
+        "age_min": 21.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:30:02Z",
+        "rank": 129,
+        "score": 15.87,
+        "total": 177
+      },
+      {
+        "age_min": 26.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:35:02Z",
+        "rank": 107,
+        "score": 17.11,
+        "total": 177
+      },
+      {
+        "age_min": 31.4,
+        "agent_id": 6671418,
+        "at": "2026-08-28T18:40:01Z",
+        "rank": 86,
+        "score": 18.19,
+        "total": 177
+      }
+    ],
     "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
     "id": "orchard6-r1",
     "label": "ORCHARD 6 (orchard 5 + the orchard on the cells adjacent to the tent, one door kept free; owner) -- round 1",
