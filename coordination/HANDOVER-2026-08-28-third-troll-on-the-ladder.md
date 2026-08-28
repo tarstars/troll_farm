@@ -37,6 +37,7 @@ other tasks later. I want to submit (a)"). Trunk at writing: `origin/main` == `a
   a NOT REPRODUCED removes (a)'s second round from the queue and goes to the owner.
 - **The floor is closed**: three readings 19.2 / 19.1 / 17.3 (mean 18.5) vs the champion's 21.2/42;
   its three packages are collected and read (ledger rows FLR-r1…r3). No round 4.
+- **First command of the next session:** `cd /home/tarstars/prj/troll_farm-local_claude_1 && git pull --ff-only origin main` — the VM runner pushes to `origin/main` directly, so `main` will be ahead of `agent/local_claude_1`; fast-forward the branch before anything else (then `git push origin agent/local_claude_1`). The VM checkout is on `main` too; if the runner's push was refused it retries with `git pull --rebase` on the next tick.
 - Ritual unchanged (sweep → read whole → `--mark` → commit; every shell command carries its own `cd`;
   `git pull` for the checkout in a separate call).
 
