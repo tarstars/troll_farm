@@ -70,7 +70,8 @@ Chain, each link checked and each failure fatal (as the floor's):
      readable champion with the same replacements -- the diff the owner reads; its +/- counts
      equal the replacements' own counts.
 
-    python3 local_claude_1/third-troll/make_third_troll.py
+    python3 local_claude_1/third-troll/make_third_troll.py          # the instrument, 2/3/0/3
+    python3 local_claude_1/third-troll/make_third_troll.py 2202     # a variant: 2/2/0/2 (own files)
 """
 from __future__ import annotations
 
@@ -423,7 +424,38 @@ def rustfmt_status(path: Path) -> str:
     return "clean" if proc.returncode == 0 else "NOT clean"
 
 
+def configure_spec(spec: str) -> None:
+    """A variant third troll (e.g. "2202" = speed 2, carry 2, harvest 0, chop 2): the same nine
+    replacements with the talents swapped in `third_troll()`, written to its own files. The
+    default "2303" is the owner's instrument; a variant is a measurement the owner ordered."""
+    global ARM, READABLE_EDITED, SUBMISSION, REPORT, DIFF
+    ms, cc, hp, ch = (int(c) for c in spec)
+    REPL_SPEC["text"] = REPL_SPEC["text"].replace(
+        "                    movement_speed: 2,\n"
+        "                    carry_capacity: 3,\n"
+        "                    harvest_power: 0,\n"
+        "                    chop_power: 3,\n",
+        f"                    movement_speed: {ms},\n"
+        f"                    carry_capacity: {cc},\n"
+        f"                    harvest_power: {hp},\n"
+        f"                    chop_power: {ch},\n")
+    assert f"carry_capacity: {cc}," in REPL_SPEC["text"]
+    if spec != "2303":
+        ARM = HERE / f"champion-third-troll-{spec}-v6-instrument.rs"
+        READABLE_EDITED = HERE / f"third-troll-{spec}-readable.rs"
+        SUBMISSION = REPO / "cgauto" / "submissions" / f"candidate-third-troll-{spec}-v6-instrument.rs"
+        REPORT = REPO / "readable" / "reports" / f"candidate-third-troll-{spec}-v6-instrument.round-trip.json"
+        DIFF = REPO / "readable" / "diffs" / f"third-troll-{spec}.diff"
+        OTHERS_LIST.append(("the third troll 2/3/0/3",
+                            REPO / "cgauto" / "submissions" / "candidate-third-troll-v6-instrument.rs"))
+
+
+OTHERS_LIST = list(OTHERS)
+
+
 def main() -> int:
+    global OTHERS
+    OTHERS = tuple(OTHERS_LIST)
     arm_base = ARM_BASE.read_text()
     require(sha(arm_base) == ARM_BASE_SHA, f"arm base is {sha(arm_base)}, expected {ARM_BASE_SHA}")
     readable = READABLE.read_text()
@@ -520,7 +552,9 @@ def main() -> int:
     }
     REPORT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     (HERE / "results").mkdir(exist_ok=True)
-    (HERE / "results" / "build.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    build_name = "build.json" if SUBMISSION.name == "candidate-third-troll-v6-instrument.rs" \
+        else f"build-{SUBMISSION.name.split('-')[3]}.json"
+    (HERE / "results" / build_name).write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(f"  base        arm {ARM_BASE_SHA[:16]} == resident {RESIDENT_MIN_SHA[:16]} (token stream)")
     print(f"  arm         {sha(arm_text)[:16]}  {report['arm']['lines']} lines"
           f"  (+{expected_added} / -{expected_removed})")
@@ -534,6 +568,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    spec = sys.argv[1] if len(sys.argv) > 1 else "2303"
+    configure_spec(spec)
     try:
         sys.exit(main())
     except BuildError as exc:
