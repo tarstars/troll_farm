@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-orchard5-v6-instrument.rs",
+    "id": "orchard5-r2",
+    "label": "ORCHARD 5 -- round 2",
+    "sha256": "751d7928d15e13fd311f28a6519685815ac24dacae4c6afb9d97991ca641afc6",
+    "submission_id": 41207963,
+    "submitted_at": "2026-08-28T12:07:29Z"
+  },
   "done": [
     {
       "agent_id": 6670021,
