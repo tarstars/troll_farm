@@ -1,7 +1,16 @@
 {
   "current": {
-    "agent_id": null,
-    "early_looks": [],
+    "agent_id": 6670074,
+    "early_looks": [
+      {
+        "age_min": 0.6,
+        "agent_id": 6670074,
+        "at": "2026-08-28T06:25:01Z",
+        "rank": 135,
+        "score": 15.39,
+        "total": 176
+      }
+    ],
     "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
     "id": "champion-restore-now",
     "label": "the champion of record put back at once (owner 06:2xZ: remove the three_troll bot); holds the ladder until the redesigned three-heroes bot is built",
