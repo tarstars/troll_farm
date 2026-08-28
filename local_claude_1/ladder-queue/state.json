@@ -1,71 +1,5 @@
 {
-  "current": {
-    "agent_id": 6671418,
-    "early_looks": [
-      {
-        "age_min": 1.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:10:01Z",
-        "rank": 175,
-        "score": 3.12,
-        "total": 177
-      },
-      {
-        "age_min": 6.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:15:02Z",
-        "rank": 169,
-        "score": 11.7,
-        "total": 177
-      },
-      {
-        "age_min": 11.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:20:02Z",
-        "rank": 130,
-        "score": 15.67,
-        "total": 177
-      },
-      {
-        "age_min": 16.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:25:01Z",
-        "rank": 128,
-        "score": 15.9,
-        "total": 177
-      },
-      {
-        "age_min": 21.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:30:02Z",
-        "rank": 129,
-        "score": 15.87,
-        "total": 177
-      },
-      {
-        "age_min": 26.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:35:02Z",
-        "rank": 107,
-        "score": 17.11,
-        "total": 177
-      },
-      {
-        "age_min": 31.4,
-        "agent_id": 6671418,
-        "at": "2026-08-28T18:40:01Z",
-        "rank": 86,
-        "score": 18.19,
-        "total": 177
-      }
-    ],
-    "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
-    "id": "orchard6-r1",
-    "label": "ORCHARD 6 (orchard 5 + the orchard on the cells adjacent to the tent, one door kept free; owner) -- round 1",
-    "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
-    "submission_id": 41209711,
-    "submitted_at": "2026-08-28T18:08:36Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1173,6 +1107,130 @@
       "submission_id": 41208579,
       "submitted_at": "2026-08-28T14:17:17Z",
       "total": 176
+    },
+    {
+      "age_min": 66.4,
+      "agent_id": 6671418,
+      "early_looks": [
+        {
+          "age_min": 1.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:10:01Z",
+          "rank": 175,
+          "score": 3.12,
+          "total": 177
+        },
+        {
+          "age_min": 6.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:15:02Z",
+          "rank": 169,
+          "score": 11.7,
+          "total": 177
+        },
+        {
+          "age_min": 11.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:20:02Z",
+          "rank": 130,
+          "score": 15.67,
+          "total": 177
+        },
+        {
+          "age_min": 16.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:25:01Z",
+          "rank": 128,
+          "score": 15.9,
+          "total": 177
+        },
+        {
+          "age_min": 21.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:30:02Z",
+          "rank": 129,
+          "score": 15.87,
+          "total": 177
+        },
+        {
+          "age_min": 26.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:35:02Z",
+          "rank": 107,
+          "score": 17.11,
+          "total": 177
+        },
+        {
+          "age_min": 31.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:40:01Z",
+          "rank": 86,
+          "score": 18.19,
+          "total": 177
+        },
+        {
+          "age_min": 36.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:45:02Z",
+          "rank": 84,
+          "score": 18.3,
+          "total": 177
+        },
+        {
+          "age_min": 41.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:50:01Z",
+          "rank": 66,
+          "score": 18.96,
+          "total": 177
+        },
+        {
+          "age_min": 46.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T18:55:02Z",
+          "rank": 70,
+          "score": 18.82,
+          "total": 177
+        },
+        {
+          "age_min": 51.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T19:00:02Z",
+          "rank": 70,
+          "score": 18.84,
+          "total": 177
+        },
+        {
+          "age_min": 56.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T19:05:01Z",
+          "rank": 70,
+          "score": 18.84,
+          "total": 177
+        },
+        {
+          "age_min": 61.4,
+          "agent_id": 6671418,
+          "at": "2026-08-28T19:10:02Z",
+          "rank": 70,
+          "score": 18.84,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard6-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "orchard6-r1",
+      "label": "ORCHARD 6 (orchard 5 + the orchard on the cells adjacent to the tent, one door kept free; owner) -- round 1",
+      "package": "local_claude_1/ladder-queue/games-41209711",
+      "package_sha256": "51162d73faaa91944904e2ae687ff57cacbc8f5b9123edfc7eb69e144394bc52",
+      "rank": 70,
+      "read_at": "2026-08-28T19:17:05Z",
+      "score": 18.84,
+      "sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
+      "submission_id": 41209711,
+      "submitted_at": "2026-08-28T18:08:36Z",
+      "total": 177
     }
   ]
 }
