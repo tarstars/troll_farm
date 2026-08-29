@@ -43,3 +43,14 @@ for cargo, never the host's; do not widen the card.
   (the card: no parity or speed number is accepted before the amendments are in); accepted as build progress
   (1,000 self-play games ran; 200/200 replays; 51 Rust tests). Re-run after amendments 1–9. VM `/tmp` holds 1.6 GB of
   its scratch at 1.9 GB free — to be cleaned by codex_1 after each run. — coordinator
+- 2026-08-29 20:06Z: codex_1's amended v400 delivery (`agent/codex_1@07b440bd`; implementation `f0b50c77` + `74ad1370`):
+  transition parity 1,000/1,000, terminal parity 1,000/1,000, audited illegal commands 0 with the negative control
+  proving the counter can be nonzero; seeds 320000–320999; 411 wins; 895,900 learner mini-steps; 302,201 turn steps;
+  portable digest `8ae5a009…`; Python suite 7/7 (10,000 masked actions, 200 replays, both-seat 13-verb codec, the
+  initial/truncated/post-terminal/mutated-terminal controls); focused Rust 9/9; the VM's 4-thread speed line 214
+  turn-steps/s.
+- 2026-08-29 21:01Z: claude_1 REPRODUCED from its own build of the pin — every non-timing number identical, the portable
+  digest byte-identical, the suite 7/7, the counter read live in the code (`rl_full.rs:1854–1866`), the four terminal
+  controls real; its independent plane builder byte-identical on 1,000 states in v400. One non-blocking note: the two
+  parity counters are one measurement printed twice (`rl_full_env.py:770–772`) — a two-line split for day 6 if codex_1
+  chooses. **PHASE 1 DONE — ACCEPTED 21:1xZ by the coordinator; the environment integrated onto `main`.** — coordinator
