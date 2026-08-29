@@ -767,8 +767,9 @@ def run_random_smoke(
                     if verify_replays:
                         if replay is None:
                             raise AssertionError(f"seed {seed} completed without a replay")
-                        verify_terminal_parity(replay)
+                        verify_transition_parity(replay)
                         transition_parity += 1
+                        verify_terminal_parity(replay)
                         terminal_parity += 1
                     completed[seed] = {
                         "seed": seed,
