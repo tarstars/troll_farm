@@ -84,3 +84,48 @@ check**, not an independent confirmation.
   new maxima for both seats, but not against a compiled environment, because none exists yet.
 - **Seat rotation against the environment on a point-symmetric state.** Required check 1 of the
   table is proved inside the self-test on a hand-built board, not against the library.
+
+## The v400 re-run against the amended environment (2026-08-29, evening)
+
+`codex_1`'s amended Phase 1 delivery (correction `20260829T200655Z`, artifact
+`07b440bd4ab035d5c70935bd549b7f7e8b8987f2`) rebuilds the environment to `TF_FULL_PLAN_SIZE = 400`,
+so the drift test now runs in the generation the dataset is actually built to:
+
+```text
+python3 local_claude_1/nn-bot/build_planes.py --drift \
+    --library /tmp/claude1-p1v400-repro/rust/target/release/libtroll_farm.so \
+    --replays local_claude_1/nn-bot/replays-slice-10 --states 1000
+    drift test, generation v400-2026-08-29: 1000/1000 states byte-identical
+    (200 of them with a staged earlier troll, 0 skipped for having no legal staged prefix)
+    environment observation digest sha256
+    60dd395e815a3374890d78751833e1b05a256e987ec80ac212cddd32b5f21286
+```
+
+The planes themselves needed **no edit** — the v400 tables were already written and self-tested,
+and every one of the 1,000 states matched on the first run against the compiled library. What did
+need an edit is the **sampler**, and the reason is worth recording because it is a real change of
+contract, not a bug in either implementation.
+
+Amendment 2 makes `tf_full_obs_from_state` *validate* the context it is handed
+(`validate_observation_context`, `rust/src/rl_full.rs:363`) and return `-2` for any context a real
+game cannot reach. My sampler was written against the old permissive entry point and offered three
+kinds of impossible context, so the first state of the run aborted with `returned -2`:
+
+1. a plan index that the plan mask forbids (amendment 8's single rule: entry 0 is always legal,
+   every other plan only while the roster has room — `legal_plan_mask`, `rl_full.rs:447`);
+2. a `prior_target_trained` latch on a troll row, or on a plan row with a nonzero plan (the flag is
+   plan-phase-only, and a trained target must have been cleared);
+3. a staged prefix that was one arbitrary earlier troll with an arbitrary cell, where the
+   environment now requires **exactly** the earlier-troll prefix in id order, strictly increasing,
+   each staged action legal for its own troll.
+
+The sampler now builds the prefix one troll at a time and takes the legal MOVE cells from the
+environment's own per-cell mask. **That is a seventh consistency dependency**, and it is a weaker
+one than the other six: it decides which contexts get compared, not what the planes contain. A
+plane that both implementations got wrong would still pass; a context that only the environment
+believes is legal would still be compared. The 200 staged states in the run above are staged from
+that mask, and `0 skipped` says no sampled prefix was rejected.
+
+Two coverage notes change. The v400 scales are no longer untested against a compiled environment —
+they are exercised by the run above. The staged share fell from 324/1,000 to 200/1,000 because a
+legal prefix is only available when the active troll is not the first of the roster.

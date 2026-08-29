@@ -1,0 +1,54 @@
+{
+  "elapsed_seconds": 6.3156818938441575,
+  "episodes": 4,
+  "episodes_detail": [
+    {
+      "action_hash": 10691330284004831770,
+      "illegal_commands": 0,
+      "score_opp": 13,
+      "score_own": 13,
+      "seed": 330000,
+      "state_hash": 2059900611248980844,
+      "turns": 300,
+      "win": false
+    },
+    {
+      "action_hash": 15634274495412663349,
+      "illegal_commands": 0,
+      "score_opp": 14,
+      "score_own": 5,
+      "seed": 330001,
+      "state_hash": 11641098358998485581,
+      "turns": 300,
+      "win": false
+    },
+    {
+      "action_hash": 13473242772711484773,
+      "illegal_commands": 0,
+      "score_opp": 15,
+      "score_own": 18,
+      "seed": 330002,
+      "state_hash": 306165585146187552,
+      "turns": 300,
+      "win": true
+    },
+    {
+      "action_hash": 8858334004226157099,
+      "illegal_commands": 0,
+      "score_opp": 12,
+      "score_own": 16,
+      "seed": 330003,
+      "state_hash": 14773860410121694161,
+      "turns": 300,
+      "win": true
+    }
+  ],
+  "illegal_commands": 0,
+  "mini_steps": 3580,
+  "num_envs": 4,
+  "seed_base": 330000,
+  "terminal_parity": 0,
+  "transition_parity": 0,
+  "turn_steps": 1218,
+  "turn_steps_per_second": 192.8532849615454
+}

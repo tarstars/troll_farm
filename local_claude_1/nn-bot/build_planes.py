@@ -55,6 +55,9 @@ GRID_H = 11
 GRID_W = 22
 CELLS = GRID_H * GRID_W                                         # 242
 OBS_SIZE = CHANNELS * CELLS                                     # 25,168
+ACTION_PLANES = 13                                              # the per-cell verb head
+ACTION_SIZE = ACTION_PLANES * CELLS                             # 3,146
+MAX_TROLLS_PER_PLAYER = 12                                      # the plan mask's one rule
 
 ITEM_NAMES = ("PLUM", "LEMON", "APPLE", "BANANA", "IRON", "WOOD")
 PLUM, LEMON, APPLE, BANANA, IRON, WOOD = range(6)
@@ -623,16 +626,17 @@ class Environment:
                 break
 
     def observation(self, state, seat, active_troll_id, phase, plan_index,
-                    prior_target_trained=False):
+                    prior_target_trained=False, want_mask=False):
         payload = json.dumps(state).encode()
         buffer = (ctypes.c_ubyte * len(payload)).from_buffer_copy(payload)
         obs = (ctypes.c_ubyte * OBS_SIZE)()
+        mask = (ctypes.c_ubyte * ACTION_SIZE)() if want_mask else None
         code = self.lib.tf_full_obs_from_state(
             buffer, len(payload), seat, active_troll_id, phase, plan_index,
-            1 if prior_target_trained else 0, obs, None, None)
+            1 if prior_target_trained else 0, obs, mask, None)
         if code != 0:
             raise RuntimeError(f"tf_full_obs_from_state returned {code}")
-        return bytes(obs)
+        return (bytes(obs), bytes(mask)) if want_mask else bytes(obs)
 
 
 def _states_from_replays(replay_dir, wanted, seed):
@@ -670,35 +674,71 @@ def drift(library, replay_dir, wanted, seed, generation, staged_share=0.5):
         print(f"only {len(states)} states available, wanted {wanted}")
     rng = random.Random(seed ^ 0x5eed)
     checked, mismatched, digest = 0, [], hashlib.sha256()
-    staged_states = 0
+    staged_states, skipped = 0, 0
     for state in states:
         seat = rng.randrange(2)
         own = sorted(u["id"] for u in state["units"] if u["player"] == seat)
+        # Amendment 2 of 2026-08-29 makes `tf_full_obs_from_state` validate its context and refuse
+        # an impossible one, so the sampler may only offer contexts a real game reaches.  Plan
+        # first: amendment 8's single mask rule is entry 0 always legal, every other plan legal
+        # only while the roster has room for another troll.
+        if len(own) >= MAX_TROLLS_PER_PLAYER or rng.random() < 0.3:
+            plan_index = 0
+        else:
+            plan_index = rng.randrange(vocab.size)
         phase = 0 if (not own or rng.random() < 0.25) else 1
-        active = -1 if phase == 0 else rng.choice(own)
-        plan_index = 0 if rng.random() < 0.3 else rng.randrange(vocab.size)
-        prior = rng.random() < 0.2
-        # Required check 2 names the staged earlier-troll commands explicitly, so a share of the
-        # states stages a MOVE for an own troll that is not the active one.
-        earlier = [troll for troll in own if troll != active]
-        if phase == 1 and earlier and rng.random() < staged_share:
-            cell = rng.randrange(CELLS)
-            state = dict(state, staged_actions=[
-                {"troll_id": rng.choice(earlier), "action_index": cell}])
-            staged_states += 1
-        mine = observation(state, seat, active, phase, plan_index, prior, generation)
-        theirs = env.observation(state, seat, active, phase, plan_index, prior)
+        if phase == 0:
+            # The plan row carries no active troll and no staged prefix, and a trained standing
+            # target can only be shown once it has been cleared — that is, on plan 0.
+            active = -1
+            prior = plan_index == 0 and rng.random() < 0.2
+            context = state
+        else:
+            # A troll row's staged actions must be exactly the earlier-troll prefix in id order,
+            # each one legal for its own troll.  The prefix is therefore built one troll at a
+            # time and the legal MOVE cells come from the environment's own per-cell mask (plane
+            # 0).  That is a consistency dependency and is recorded as such in
+            # PLANES-READ-2026-08-29.md; the planes under comparison stay independent.
+            active_index = rng.randrange(len(own))
+            active, prior = own[active_index], False
+            stage_prefix = rng.random() < staged_share
+            staged, reachable = [], True
+            for troll in own[:active_index] if stage_prefix else []:
+                probe = dict(state, staged_actions=list(staged))
+                try:
+                    _, mask = env.observation(probe, seat, troll, 1, plan_index, False,
+                                              want_mask=True)
+                except RuntimeError:
+                    reachable = False
+                    break
+                moves = [cell for cell in range(CELLS) if mask[cell]]
+                if not moves:
+                    reachable = False
+                    break
+                staged.append({"troll_id": troll, "action_index": rng.choice(moves)})
+            if not reachable:
+                skipped += 1
+                continue
+            if not stage_prefix:
+                # No staged prefix means the active troll must be the first of the roster.
+                active = own[0]
+            context = dict(state, staged_actions=staged) if staged else state
+            if staged:
+                staged_states += 1
+        mine = observation(context, seat, active, phase, plan_index, prior, generation)
+        theirs = env.observation(context, seat, active, phase, plan_index, prior)
         checked += 1
         digest.update(theirs)
         if mine != theirs:
             planes = sorted({index // CELLS for index in range(OBS_SIZE)
                              if mine[index] != theirs[index]})
-            mismatched.append({"turn": state["turn"], "seat": seat, "phase": phase,
+            mismatched.append({"turn": context["turn"], "seat": seat, "phase": phase,
                                "plan_index": plan_index, "planes": planes[:12],
                                "differing_bytes": sum(1 for index in range(OBS_SIZE)
                                                       if mine[index] != theirs[index])})
     print(f"drift test, generation {generation}: {checked - len(mismatched)}/{checked} "
-          f"states byte-identical ({staged_states} of them with a staged earlier troll)")
+          f"states byte-identical ({staged_states} of them with a staged earlier troll, "
+          f"{skipped} skipped for having no legal staged prefix)")
     print(f"environment observation digest sha256 {digest.hexdigest()}")
     if mismatched:
         counts = {}
