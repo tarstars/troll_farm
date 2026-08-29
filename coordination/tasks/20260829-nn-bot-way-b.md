@@ -20,7 +20,7 @@ card here does. Nothing touches the platform until Phase 4, and not while codex 
 | 0 | the runtime on the host: Python 3.11 + CPU PyTorch via `uv`; one July trainer re-run small; export through the int8 kernel; a game in the bench | coordinator (host) | 1–2 days | **DONE 2026-08-29 14:2xZ** (owner "wifi" 14:0xZ): `/home/tarstars/nn-venv` (Python 3.11.15, torch 2.13.0+cpu, numpy 2.4.6, 825 MB); `cargo build --release --lib` in the worktree; `pretrain_level1_bc.py --curriculum-level 1 --samples 4000 --num-envs 20 --chunk-steps 10 --epochs 1 --minibatch-size 200 --eval-episodes 1000 --threads 8` → checkpoint in 35 s (accuracy 25 %, a smoke); `export_d11_actor.py` → int8 payload 34,872 B; `generate_d11_actor_rust_k2.py` → kernel 55,768 B; `generate_d11_live_actor_v7.py` → live bot 69,608 B; `rustc -O` compiles; `probe.py 7b515d6db8085355 --arm <live.rs>` plays a legal 300-turn game (the untrained net waits every turn; score 21) | — |
 | 1 | **the full-game environment** (below) | codex_1 | 6 days, one message | 1,000 self-play games, no illegal command, replay parity 1,000/1,000, the tests pass | parity not reachable in budget |
 | 2 | **the dataset, the bench, the clone** (below) | claude_1 (dataset, bench, trainer); coordinator trains on the host | 7 days for the dataset + bench + trainer; the training run 1–2 days | the clone plays 24/24 real maps to the end against the champion's binary; the owner reads its games | after the budget the clone cannot play a whole game → Way A's stages from scratch, July's levels as the base |
-| 3 | PPO from the clone with the clone anchor, real maps, the opponent pool, a fixed bench every few days | coordinator (host); claude_1 reproduces the bench numbers | 2–4 weeks | ≥ 60 % vs the champion and vs orchard 6 on 400 games each, positive margin, three gates in a row | no gain over the clone after 2×10⁸ turn-steps, or the policy exploits an engine hole (replay parity fails on its games) |
+| 3 | PPO from the clone with the clone anchor, real maps, the training pool (the linked strategies + frozen copies of the policy), a fixed bench every few days against the champion's and orchard 6's compiled files | coordinator (host); claude_1 reproduces the bench numbers | 2–4 weeks | ≥ 60 % vs the champion and vs orchard 6 on 400 games each, positive margin, three gates in a row | no gain over the clone after 2×10⁸ turn-steps, or the policy exploits an engine hole (replay parity fails on its games) |
 | 4 | ship: int8 export with the plan head, the parity bed (Python network vs Rust kernel, move for move), < 100,000 characters, ≤ 15 ms a turn here, the readable diff, codex_1's reproduction, the owner's prediction, one hour, one reading — after codex is done with the platform | coordinator; codex_1 reproduces | 3 days + one ladder hour | the reading on the ledger with its 160 games read | over the size or time limit with nothing left to cut |
 
 ## Fixed design (what both builders build against)
@@ -72,9 +72,12 @@ maps with exact initial trees); a 1,000-map slice for the VM at `local_claude_1/
 referee does (seeded). The four board sizes are mixed as they come.
 
 **The opponent pool (training).** Linked strategies from `rust/src/strategies/mod.rs` and the
-`rl_macro.rs` bank: `SecureOrchardBot` (the resident lineage), `MyBot` (the sim mirror — the builder
-states which champion it mirrors), `NorxondorNative`, `LegendFieldProxyV2`, `GoldElite::adaptive`,
-`ScriptBoss`; plus **self-play against frozen copies of the policy** (the environment accepts an
+`rl_macro.rs` bank: `SecureOrchardBot` (the resident lineage, with the sacred source's denial rule),
+`MyBot` (**a model of the Arena's Boss 4 — not a champion mirror**; codex_1's read 2026-08-29),
+`NorxondorNative`, `LegendFieldProxyV2`, `GoldElite::adaptive`, `ScriptBoss`; **no linked strategy
+equals the denial-off champion — the champion's and orchard 6's compiled files are the bench's
+opponents and the gates, never the training pool's** (an exact linked champion is a separate, optional,
+reviewed change); plus **self-play against frozen copies of the policy** (the environment accepts an
 opponent that is "a policy checkpoint" by taking the opponent's actions from Python: the Python side
 runs the frozen network for seat 1 through the same observe/step calls — the env exposes both seats'
 observations when asked). A per-env opponent id is sampled from a weight table.
@@ -155,3 +158,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 14:5xZ: the owner set THE TARGET (`coordination/GOAL.md`) and `/goal coordination/GOAL.md`;
+  both charters accepted (claude_1 14:20Z with the VM runtime in and the bench started; codex_1 14:21Z,
+  day-1 documents next). **Measured on this host (14 threads, `nice 10`): `SpatialActorCritic` 34,926
+  weights; inference 0.44 ms at batch 1, 4.2 ms at batch 64 (15,200 obs/s), 14.9 ms at batch 256
+  (17,200 obs/s), 85 ms at batch 1024; a training step at batch 256 = 43 ms (5,900 samples/s).** So
+  Phase 3's 2×10⁸ turn-steps is two to three days of this host for the 35k network — better than the
+  analysis's estimate (40–80 M a day). — coordinator
