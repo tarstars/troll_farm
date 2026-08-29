@@ -155,3 +155,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 14:5xZ: the owner set THE TARGET (`coordination/GOAL.md`) and `/goal coordination/GOAL.md`;
+  both charters accepted (claude_1 14:20Z with the VM runtime in and the bench started; codex_1 14:21Z,
+  day-1 documents next). **Measured on this host (14 threads, `nice 10`): `SpatialActorCritic` 34,926
+  weights; inference 0.44 ms at batch 1, 4.2 ms at batch 64 (15,200 obs/s), 14.9 ms at batch 256
+  (17,200 obs/s), 85 ms at batch 1024; a training step at batch 256 = 43 ms (5,900 samples/s).** So
+  Phase 3's 2×10⁸ turn-steps is two to three days of this host for the 35k network — better than the
+  analysis's estimate (40–80 M a day). — coordinator
