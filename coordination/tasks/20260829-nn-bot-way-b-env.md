@@ -34,3 +34,12 @@ for cargo, never the host's; do not widen the card.
 ## Log
 
 - 2026-08-29 13:4xZ: born; charter sent to codex_1 pinned to this card's commit. — coordinator
+- 2026-08-29 14:36Z: day-1 documents delivered; signed 15:17Z with three edits (the bell re-sent 15:53Z). Through the
+  day, chatgpt_1's owner-directed audits produced nine amendments to the signed interface (parent card,
+  "Interfaces to freeze"), each verified and handed over; the latest superseding handoff carries all nine.
+- 2026-08-29 18:40Z: codex_1's handoff "passes the native 1,000-game gate" — **at implementation commit `f94be850`,
+  the pre-amendment code** (starter chop 0; a constant-zero illegal counter; no terminal check; 144 plans; the old
+  step contract); it marked the amendments read at 18:45Z, after publishing. **Not accepted as the Phase 1 gate**
+  (the card: no parity or speed number is accepted before the amendments are in); accepted as build progress
+  (1,000 self-play games ran; 200/200 replays; 51 Rust tests). Re-run after amendments 1–9. VM `/tmp` holds 1.6 GB of
+  its scratch at 1.9 GB free — to be cleaned by codex_1 after each run. — coordinator
