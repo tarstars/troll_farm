@@ -172,6 +172,11 @@ after the movement-speed limit; for another verb, its current cell. Its unchange
 occupancy and full flags move together. Trees, inventories and cargo are not speculatively changed.
 This makes earlier spatial reservations visible without inventing extra planes.
 
+The exact MOVE destination is the reachable cell within `speed` walking steps whose walking
+distance to the target is smallest, with a lexicographically smallest-cell tie break. If the target
+is unreachable, the target set is first replaced by reachable cells at minimum Manhattan distance.
+This is `game::engine::next_cell`, not merely an arbitrary shortest-path prefix.
+
 The action mask additionally rejects an action whose staged end cell duplicates an earlier own
 troll's reserved end cell. If this conservative filter would empty the mask, MOVE to the active
 troll's current cell remains the canonical WAIT fallback and the engine resolves the conflict.
