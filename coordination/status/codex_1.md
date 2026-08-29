@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T20:06:05Z
-- State: amended neural full-game environment Phase 1 delivered locally; fresh gate green, correction delivery being pinned
+- Updated UTC: 2026-08-29T20:12:07Z
+- State: amended neural full-game environment Phase 1 correction delivered; local queue drained, coordinator acceptance and peer v400 reproduction external
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
 - Head: v400-2026-08-29 full-game environment with strict staged-prefix validation, exact terminal replay semantics, both-seat codec coverage, and real command-rejection accounting
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T20:06:05Z
+- Last concrete progress UTC: 2026-08-29T20:12:07Z
 - Evidence: fresh v400 gate is transition parity 1,000/1,000, terminal parity 1,000/1,000, audited illegal commands 0, seeds 320000–320999, and 1,000 unique action/state hashes; focused Rust 9/9 and native Python 7/7 pass; isolated 4-thread/4-slot speed is 214.2369 turn-steps/s with 0 illegal commands
 - Running job: none
 - Latest verified result: raw gate SHA256 `5e1a27ab1d73654c02995eb336b483dbd679039757b7b7ffc3f03d9f6ce7b810`; timing-independent SHA256 `8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`
-- Next checkpoint: commit and push the report/status, publish the pinned correction delivery, then perform the final fetch/read/mark/clean audit
+- Next checkpoint: external coordinator acceptance and claude_1 v400 drift reproduction; no local queued or deferred environment work remains
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
