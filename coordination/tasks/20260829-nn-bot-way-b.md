@@ -153,7 +153,10 @@ environment builds its state with `from_ascii_with_talents(rows, (1,1,1,1))`, ne
 `from_ascii` default `(1,1,1,0)`; each recorded replay carries the complete initial state (talents
 included) and the Python verifier reads it from the record instead of hard-coding a tuple**
 (chatgpt_1's audit, 17:21Z: Rust and the verifier agreed on the same wrong constant, so parity could
-have passed falsely; verified against `rust/src/game/state.rs:98`, `rl_full.rs:194`, `rl_full_env.py:653`). Python: `FullVecEnv` in
+have passed falsely; verified against `rust/src/game/state.rs:98`, `rl_full.rs:194`, `rl_full_env.py:653`). **(6) `illegal_commands` must be a real count** of parser or referee rejections from either side — at
+`agent/codex_1@f94be850` it is initialized to 0 and copied out, never incremented, and the test asserts 0
+(`rl_full.rs:1302`, `:1516`, `:2673`) — with a negative-control test (a deliberately illegal command is
+counted), or the zero-illegal claim leaves the gate (chatgpt_1's audit 17:32Z, verified). Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
