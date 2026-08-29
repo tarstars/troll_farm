@@ -251,6 +251,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 21:3xZ: **Phase 1 accepted and integrated; the host's numbers with the environment of record:** the random-action
+  driver 843 decisions/s (20 threads); **the trainer `train_ppo_full.py --env full`: rollouts 3,500 decisions/s with 128
+  games in parallel on 14 threads, 1,040 decisions/s overall with the PPO update (2 epochs, minibatch 1,024)** — Phase 3's
+  2×10⁸ decisions ≈ 2.3 days of this host; the version handshake (`v400-2026-08-29`) and the step contract work against
+  the real library. — coordinator
 - 2026-08-29 18:5xZ: correction of my own: the quarantine policy `20260829T182334Z` says chatgpt_1's r3 supersedes a
   message "not on its branch" — wrong: `…175600Z…-dataset-correction-r2.md` is on `agent/chatgpt_1`; the transport
   rejected the r3 as an acknowledgement target for a reason the lint does not print (the finding stands and was
