@@ -44,10 +44,13 @@ and `harvest 0 and chop 0` is legal in the game and issued by no teacher (0 of 1
 label is unreachable and the codec is total under the mask.
 
 **No target memory in cloning, and no seat augmentation** (the same ruling, points (b) and (d),
-on chatgpt_1's correction of 18:40Z).  Every row carries `standing_plan = 0` ("none"), and the
-plane builder must zero planes 59-71 with it: between two purchases the previous turn's hindsight
-label *is* this turn's label, so feeding it as the standing target would mark the answer on almost
-every row -- held-out games do not remove that.  And the seat swap is withdrawn: the observation
+on chatgpt_1's correction of 18:40Z; the row kinds separated by the coordinator's ruling 2 of
+18:23Z).  A **plan row** carries `standing_plan = 0` ("none") and the plane builder zeroes planes
+59-71 with it: between two purchases the previous turn's hindsight label *is* this turn's label,
+so feeding it as the standing target would mark the answer on almost every row -- held-out games
+do not remove a leak that lives inside the row.  A **troll row** carries the turn's own hindsight
+plan, which is exactly what the environment shows once the plan mini-step has been taken, and is
+no leak, because a troll's label is a command and not the plan.  And the seat swap is withdrawn: the observation
 is already player-relative, so flipping a label onto a state rebuilt from the other seat is a
 different example wearing the first one's label, not an augmentation of it.
 
@@ -110,13 +113,17 @@ PLAN_VOCAB_VERSION = "v400-2026-08-29"                          # amendment 8's 
 PLAN_NOTHING = 0                                                # index 0, repurposed
 OOV = -1
 KIND_PLAN, KIND_COMMAND = 0, 1
-#: The standing target the plan row is scored against.  In behaviour cloning it is *always*
-#: "none" (0) and planes 59-71 are zeroed with it -- the card's second completion of amendment 8,
-#: point (b), on chatgpt_1's leakage correction of 18:40Z: between two purchases the previous
-#: turn's hindsight label *is* this turn's label, so feeding it as a feature would mark the answer
-#: on almost every row and would still do so on held-out games.  In PPO the standing target is the
-#: environment's own state (the policy's previous choice), never synthesized from a label.  The
-#: column is written anyway so that a shard says out loud what the plane builder must put there.
+#: The standing target the row's planes 59-71 must show, by row kind (the coordinator's ruling 2
+#: of 18:23Z, on chatgpt_1's leakage correction).
+#:
+#: * A **plan row** carries `STANDING_PLAN_NONE` and the plane builder zeroes 59-71 with it.  In
+#:   behaviour cloning the standing target would be the previous turn's hindsight label, and
+#:   between two purchases that *is* this turn's label -- it would mark the answer on almost every
+#:   row, and holding games out does not remove a leak that lives inside the row.  In PPO the
+#:   standing target is the environment's own state (the policy's previous choice) and is honest.
+#: * A **troll row** carries the turn's own hindsight plan, which is what the environment really
+#:   shows after the plan mini-step has been taken, and is no leak: the troll's label is a command,
+#:   not the plan.
 STANDING_PLAN_NONE = 0
 TROLL_PLAN, TROLL_NOTHING = -1, -2                              # the plan row's `troll` column
 
@@ -238,6 +245,12 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
         pos_after = {u["id"]: (u["x"], u["y"]) for u in post["units"]}
 
         lab = plan_label[t]
+        # what the troll rows of this turn see in planes 59-71: the plan just decided.  An
+        # unsupported label has no index to show, so those rows fall back to "none" and are
+        # counted (the count is zero over the teacher set).
+        standing = lab if lab != OOV else STANDING_PLAN_NONE
+        if lab == OOV:
+            census["standing_unsupported"] += 1
         rows.append(dict(game=game_id, turn=t, seat=teacher_seat, kind=KIND_PLAN,
                          troll=TROLL_NOTHING if lab == PLAN_NOTHING else TROLL_PLAN,
                          verb=-1, label=lab, standing_plan=STANDING_PLAN_NONE))
@@ -284,7 +297,7 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
                     continue
             rows.append(dict(game=game_id, turn=t, seat=teacher_seat, kind=KIND_COMMAND,
                              troll=uid, verb=plane, label=flat(plane, x, y),
-                             standing_plan=STANDING_PLAN_NONE))
+                             standing_plan=standing))
 
     meta = dict(game=game_id, turns=r.n_turns, w=w, h=h, seat=teacher_seat,
                 mismatch=dict(r.mismatch), trains=len(trains),
@@ -307,6 +320,26 @@ def seat_swapped(*_args, **_kwargs):
     a raising stub so that no caller silently gets the old behaviour back.
     """
     raise RuntimeError("seat-swap augmentation was withdrawn by the card on 2026-08-29 18:5xZ")
+
+
+def check_standing_target(rows):
+    """Ruling 2 of 18:23Z, checked on the rows actually built, not argued for in a comment.
+
+    A plan row's standing target is "none"; a troll row's is its own turn's plan label (or "none"
+    when that label is unsupported).  Raises on the first row that breaks it.
+    """
+    plan_of_turn = {(r["game"], r["turn"], r["seat"]): r["label"]
+                    for r in rows if r["kind"] == KIND_PLAN}
+    for r in rows:
+        key = (r["game"], r["turn"], r["seat"])
+        if r["kind"] == KIND_PLAN:
+            want = STANDING_PLAN_NONE
+        else:
+            lab = plan_of_turn[key]
+            want = STANDING_PLAN_NONE if lab == OOV else lab
+        if r["standing_plan"] != want:
+            raise AssertionError(f"standing target {r['standing_plan']} != {want} on {r}")
+    return len(rows)
 
 
 def held_out(game_id, percent):
@@ -446,6 +479,7 @@ def self_test():
     # the two withdrawn restrictions really are inside the vocabulary now
     assert plan_index_is_legal(plan_index(2, 1, 2, 2))      # harvest > carry, 44 of Bubaptik's
     assert plan_index_is_legal(plan_index(2, 2, 0, 0))      # harvest 0 and chop 0
+    assert STANDING_PLAN_NONE == 0
     # the withdrawn augmentation raises instead of returning the old rows
     try:
         seat_swapped([], 20, 10)
@@ -511,7 +545,7 @@ def main():
     games = [int(a.game)] if a.game else sorted(index)
 
     census = dict(verbs=Counter(), unsupported=Counter(), unparsed=Counter(),
-                  masked_label=Counter())
+                  masked_label=Counter(), standing_unsupported=0)
     all_rows, all_states, metas = [], [], []
     for gid in games:
         rows, meta, turn_states = rows_for_game(gid, replay_dir, int(index[gid]["seat"]), census)
@@ -528,6 +562,8 @@ def main():
               f"{meta['turns']} turns, {meta['w']}x{meta['h']}, {meta['trains']} TRAINs, "
               f"{'held out' if split else 'train'}, "
               f"reconstruction mismatches {meta['mismatch'] or '{}'}", flush=True)
+
+    check_standing_target(all_rows)
 
     if a.show:
         print(f"\nfirst {a.show} rows:")
@@ -548,7 +584,10 @@ def main():
         (Path(a.out) / f"labels-{a.name}-meta.json").write_text(json.dumps(
             dict(plan_action_size=PLAN_ACTION_SIZE,
                  plan_vocab_version=PLAN_VOCAB_VERSION,
-                 fields=list(FIELDS), standing_plan="none (0) on every row; see the module head",
+                 fields=list(FIELDS),
+                 standing_plan=("none (0) on plan rows; the turn's hindsight plan on troll "
+                                "rows -- see the module head"),
+                 standing_unsupported=census["standing_unsupported"],
                  seat_augmentation=False, games=metas, verbs=dict(census["verbs"]),
                  unsupported=[[list(k), v] for k, v in census["unsupported"].items()],
                  masked_label=dict(census["masked_label"]),
@@ -575,7 +614,9 @@ def main():
         nothing = sum(1 for r in plan if r["troll"] == TROLL_NOTHING)
         print(f"plan labels: {len(hist)} distinct; "
               f"nothing {nothing}, unsupported {hist[OOV]}; "
-              f"standing target: none on all {len(plan)} plan rows (no target memory in cloning)")
+              f"standing target: none on all {len(plan)} plan rows (no target memory in "
+              f"cloning), the turn's plan on the {len(cmd)} troll rows "
+              f"({sum(1 for r in cmd if r['standing_plan'] != STANDING_PLAN_NONE)} nonzero)")
         for lab, c in hist.most_common(8):
             name = ("UNSUPPORTED" if lab == OOV else
                     "train nothing" if lab == PLAN_NOTHING else plan_talents(lab))

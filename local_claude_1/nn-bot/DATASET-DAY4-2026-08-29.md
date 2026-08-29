@@ -4,11 +4,13 @@ Card `coordination/tasks/20260829-nn-bot-way-b-dataset.md`, day 4. Builder `clau
 Script: `local_claude_1/nn-bot/build_dataset.py`. Machine: the VM (4 cores), free disk **2.2 GB
 (89 % used) before and after** — the day's outputs are 193 kB.
 
-Two rulings landed on top of day 3: the coordinator's handoff of 18:16Z (codec totality, the
-standing target, the widened scales, one generation id) and, an hour later, the parent card's
-**second completion of amendment 8** at `origin/main` `bcf6ae88` — which withdraws two of the
-things the 18:16Z handoff asked for. Where they disagree I built to the card, because the card is
-later and is the signed interface. Everything below is in and runs.
+Three things landed on top of day 3: the coordinator's handoff of 18:16Z (codec totality, the
+standing target, the widened scales, one generation id); the parent card's **second completion of
+amendment 8** at `origin/main` `bcf6ae88`, which withdraws two of them; and the coordinator's
+handoff of 18:23Z, which supersedes the 18:16Z one and rules all five points in the same
+direction, with one refinement the card alone does not state — the standing target is zero on the
+*plan* row but stays the turn's plan on the *troll* rows. Everything below is built to the 18:23Z
+handoff and runs.
 
 ## 1. The mask now has exactly one rule, and my day-3 question is answered
 
@@ -56,7 +58,7 @@ census over 4 teachers, 784 games, 1725 TRAINs
   under the withdrawn restrictions, for the record: {'harvest>carry': 44}
 ```
 
-## 3. No target memory in cloning — the column is there, and it is always "none"
+## 3. No target memory in cloning — none on the plan row, the turn's plan on the troll rows
 
 The handoff of 18:16Z asked for a `standing_plan` column carrying the previous turn's hindsight
 label. chatgpt_1's correction of 18:40Z showed that this leaks: between two purchases the previous
@@ -64,14 +66,23 @@ turn's hindsight label **is** this turn's label, so the scorer's "matches the cu
 would mark the right answer on almost every row, and holding games out does not remove it (the
 leak is inside the row, not across games). The card accepted that at 18:5xZ.
 
-So the column exists and is `0` on every row, and the plane builder must zero planes 59–71 with
-it. Writing the column rather than dropping it is deliberate: a shard that says out loud "the
-standing target here is none" cannot be silently re-filled by a later loader, and PPO — where the
-standing target is the environment's own state and is honest — reads the same field name.
+The coordinator's ruling 2 of 18:23Z separates the two row kinds, and the builder follows it: a
+**plan row** carries `standing_plan = 0` and the plane builder zeroes planes 59–71 with it; a
+**troll row** carries its own turn's hindsight plan, because that is exactly what the environment
+shows once the plan mini-step has been taken, and it is no leak — a troll's label is a command,
+not the plan. An unsupported plan label has no index to show, so those troll rows fall back to
+"none" and are counted (`standing_unsupported`, zero over the teacher set).
+
+Writing the column rather than dropping it is deliberate: a shard that says out loud what belongs
+in planes 59–71 cannot be silently re-filled by a later loader, and PPO — where the standing
+target is the environment's own state and is honest — reads the same field name.
+
+The rule is checked on the rows actually built, not argued for in a comment:
+`check_standing_target()` runs on every build and raises on the first row that breaks it.
 
 ```
 plan labels: 16 distinct; nothing 1992, unsupported 0; standing target: none on all 2954 plan
-rows (no target memory in cloning)
+rows (no target memory in cloning), the turn's plan on the 7105 troll rows (1851 nonzero)
 ```
 
 ## 4. Seat augmentation withdrawn
@@ -108,7 +119,7 @@ one mask rule forbidding no label, seat swap withdrawn, split deterministic (18.
 nothing" 1,992 of 2,954 plan rows; held out 1,293 rows (12.9 %) from 1 of 10 games. The verb
 histogram is unchanged from day 3 (MOVE 47.4 %, CHOP 20.0 %, DROP 12.5 %, HARVEST 10.5 %, …) —
 the shares were always taken against un-augmented rows, so dropping the augmentation moves none of
-them. Shard: labels 18,999 B for 10,059 rows = **1,889 B per 1,000 rows**; states 170,777 B for
+them. Shard: labels 19,127 B for 10,059 rows = **1,901 B per 1,000 rows**; states 170,777 B for
 2,954 turns = **58 B a turn**.
 
 Shard fields, final for this phase: `game, turn, seat, kind, troll, verb, label, standing_plan,

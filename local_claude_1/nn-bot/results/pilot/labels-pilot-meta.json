@@ -12,7 +12,8 @@
   "standing_plan",
   "split"
  ],
- "standing_plan": "none (0) on every row; see the module head",
+ "standing_plan": "none (0) on plan rows; the turn's hindsight plan on troll rows -- see the module head",
+ "standing_unsupported": 0,
  "seat_augmentation": false,
  "games": [
   {
@@ -230,7 +231,7 @@
  "unparsed": {},
  "rows": 10059,
  "turn_states": 2954,
- "label_bytes": 18999,
+ "label_bytes": 19127,
  "state_bytes": 170777,
  "holdout_percent": 20
 }
