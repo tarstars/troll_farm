@@ -1,6 +1,6 @@
 # Full-game vector environment API
 
-Status: signed interface, 2026-08-29. This document freezes the
+Status: signed interface, amended 2026-08-29 for plan generation `v400-2026-08-29`. This document freezes the
 boundary between `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, the dataset builder, and a frozen
 Python opponent. Implementation starts only after signature.
 
@@ -14,7 +14,8 @@ Python opponent. Implementation starts only after signature.
 | `TF_FULL_OBS_SIZE` | 25,168 |
 | `TF_FULL_ACTION_PLANES` | 13 |
 | `TF_FULL_ACTION_SIZE` | 3,146 |
-| `TF_FULL_PLAN_SIZE` | 144 |
+| `TF_FULL_PLAN_SIZE` | 400 |
+| `TF_FULL_PLAN_VERSION` | `v400-2026-08-29` |
 | `TF_FULL_MAX_RECORDED_TRAINS` | 4 |
 
 All numeric buffers are native-endian, C-contiguous arrays owned by the caller. Rust borrows them
@@ -39,7 +40,9 @@ Each slot has an incrementing `episode_seed`, starting at `seed_base + slot`. A 
 SHA1PRNG seeded by that value selects a map uniformly, a learned seat uniformly, an opponent by
 the supplied weights, and five inclusive-uniform starting stocks in `2..10` for PLUM, LEMON,
 APPLE, BANANA and IRON; the same stock is assigned to both players and WOOD starts at zero. Reset
-increments the batch's next seed. A terminal record's seed therefore reconstructs the episode.
+increments the batch's next seed. Both starter trolls have talents `(1,1,1,1)`, matching the real
+referee; the engine-wide `from_ascii` default is not changed. A terminal record's seed and complete
+serialized initial state therefore reconstruct the episode without a second hidden talent constant.
 
 The episode ends after turn 300 or the referee's persistent no-tree grace/stuck/mercy rule in
 `game::engine::has_stalled`, whichever comes first. The fast-state port must reproduce that rule,
@@ -72,7 +75,7 @@ separate exact linked strategy is added and identified by hash.
 
 Main-side `phase[n]` values are:
 
-- `0 PLAN`: choose one of 144 train plans;
+- `0 PLAN`: choose one of 400 train plans;
 - `1 TROLL`: choose one of 3,146 spatial actions for `active_troll[n]`;
 - `2 EXTERNAL_WAIT`: the learned side is complete and a `python_frozen` opponent still needs
   decisions; both main masks are zero and main action must be `-1`.
@@ -89,15 +92,17 @@ decisions are staged as specified in `OBS-PLANES.md`; the game state itself is u
 players' turn commands are complete. There is no beam search.
 
 Plan index is
-`(((movement-1) * 4 + (carry-1)) * 3 + harvest) * 4 + chop`. Entry 0 is train nothing.
-Entry 0 is always legal. A nonzero entry is legal when harvest and chop are not both zero and
-`harvest <= carry`; current affordability does not affect the plan mask. If global unit capacity
-prevents any further TRAIN, only entry 0 is legal.
+`(((movement-1) * 5 + (carry-1)) * 4 + harvest) * 5 + chop` for movement `1..4`, carry `1..5`,
+harvest `0..3`, and chop `0..4`. Entry 0, whose tuple would be `(1,1,0,0)`, is repurposed as train
+nothing and that purchase tuple is unsupported by the codec. Entry 0 is always legal and every
+other in-range entry is legal; affordability and talent relationships never mask. If global unit
+capacity prevents any further TRAIN, only entry 0 is legal.
 
 The selected plan is the turn's target. At execution, Rust performs an exact dry run of the staged
 commands and emits `TRAIN movement carry harvest chop` only when that command succeeds under the
 post-MOVE/post-PICK bank and shack occupancy. This prevents unaffordable TRAIN spam while preserving
-same-turn MOVE/PICK effects. A failed or zero plan emits no TRAIN. A successful exact target sets the
+same-turn MOVE/PICK effects. A failed or zero plan emits no TRAIN. The selected plan remains the
+policy's standing PPO target across turns until replaced; a successful TRAIN clears it and sets the
 one-turn observation latch described for plane 98.
 
 ## Spatial action index, mask, and command text
@@ -133,19 +138,23 @@ Command helpers use uppercase canonical text without a trailing semicolon:
 
 ```c
 int32_t tf_full_decode_action(
-    int32_t action_index, int32_t troll_id, int32_t width, int32_t height,
+    int32_t action_index, int32_t troll_id, int32_t seat,
+    int32_t width, int32_t height,
     uint8_t *output_utf8, size_t output_capacity);
 
 int32_t tf_full_encode_command(
     const uint8_t *command_utf8, size_t command_length,
-    int32_t expected_troll_id, int32_t width, int32_t height);
+    int32_t expected_troll_id, int32_t seat, int32_t width, int32_t height,
+    int32_t troll_x, int32_t troll_y);
 
 int32_t tf_full_decode_plan(int32_t plan_index, int8_t *talents_4);
 ```
 
 Decode returns the byte length written (excluding NUL), writes a NUL terminator, and returns `-2`
 for an invalid index/coordinate or `-6` for a short output buffer. Encode returns the flat action
-index or a negative status. Plan 0 decodes to four zeros. These functions do not require a handle.
+index or a negative status. Both helpers rotate absolute seat-1 coordinates inside the real board;
+the active troll cell places non-MOVE verbs at the exact cell marked by the mask. Plan 0 decodes to
+four zeros. These functions do not require a handle.
 
 ## C ABI
 
@@ -154,7 +163,8 @@ Size queries let the Python wrapper reject a mismatched library:
 ```c
 size_t tf_full_obs_size(void);       // 25168
 size_t tf_full_action_size(void);    // 3146
-size_t tf_full_plan_size(void);      // 144
+size_t tf_full_plan_size(void);      // 400
+const char *tf_full_plan_version(void); // "v400-2026-08-29"
 
 void *tf_full_create(
     size_t num_envs,
@@ -178,7 +188,7 @@ int32_t tf_full_observe(
     void *handle,
     uint8_t *obs_n_25168,
     uint8_t *masks_n_3146,
-    uint8_t *plan_masks_n_144,
+    uint8_t *plan_masks_n_400,
     int32_t *phase_n,
     int32_t *seat_view_n,
     int32_t *active_troll_n);
@@ -195,9 +205,9 @@ contain `-1`.
 ```c
 int32_t tf_full_step(
     void *handle, const int32_t *actions_n,
-    uint8_t *obs_n_25168, uint8_t *masks_n_3146, uint8_t *plan_masks_n_144,
+    uint8_t *obs_n_25168, uint8_t *masks_n_3146, uint8_t *plan_masks_n_400,
     int32_t *phase_n, int32_t *seat_view_n, int32_t *active_troll_n,
-    float *rewards_n, uint8_t *turn_completed_n, uint8_t *reward_credit_count_n,
+    float *rewards_n, uint8_t *turn_completed_n,
     uint8_t *dones_n, uint8_t *wins_n, uint16_t *episode_turns_n,
     float *episode_returns_n, uint64_t *episode_seeds_n, uint32_t *map_indices_n,
     uint8_t *opponent_ids_n, int32_t *score_own_n, int32_t *score_opp_n,
@@ -217,25 +227,24 @@ Hashes cover the complete ordered command stream and terminal state.
 
 ## Reward credit across mini-steps
 
-Before a full turn executes, reward, `turn_completed`, and `reward_credit_count` are zero. On the
-call that executes it:
+Before a full turn executes, reward and `turn_completed` are zero. On the call that executes it:
 
 - per-turn reward is `wood_shaping * learned wood deposited this turn`;
 - on the terminal turn, add `(own fruit + end_wood_value * own wood) - (opponent fruit +
   end_wood_value * opponent wood)`;
-- `turn_completed=1` and `reward_credit_count=1+number_of_learned_trolls_decided_this_turn`.
+- `turn_completed=1`.
 
-`FullVecEnv` buffers that turn's plan and troll transitions. When `turn_completed` arrives it emits
-all buffered transitions with the identical returned scalar, satisfying the fixed design without
-pretending that an early mini-step knows a future end-of-turn reward. `episode_returns` is the sum
-of one reward per full turn, not the reward multiplied by mini-step count.
+`FullVecEnv` returns one reward row per consumed learner action: earlier plan/troll calls receive
+zero and only the call that completes the turn receives the full scalar. There is no transition
+buffer or variable-length emission. `episode_returns` is the sum of one reward per full turn, not
+the reward multiplied by mini-step count; the trainer discounts by one inside a turn.
 
 ## Python-frozen opponent ABI
 
 ```c
 int32_t tf_full_opponent_observe(
     void *handle,
-    uint8_t *obs_n_25168, uint8_t *masks_n_3146, uint8_t *plan_masks_n_144,
+    uint8_t *obs_n_25168, uint8_t *masks_n_3146, uint8_t *plan_masks_n_400,
     int32_t *phase_n, int32_t *seat_view_n, int32_t *active_troll_n,
     uint8_t *needs_action_n);
 ```
@@ -254,7 +263,7 @@ int32_t tf_full_obs_from_state(
     int32_t seat, int32_t active_troll_id, int32_t phase,
     int32_t plan_index, uint8_t prior_target_trained,
     uint8_t *obs_25168, uint8_t *mask_3146_or_null,
-    uint8_t *plan_mask_144_or_null);
+    uint8_t *plan_mask_400_or_null);
 ```
 
 The JSON object is a strict superset of `Reconstructor.snapshot()`:
@@ -275,15 +284,19 @@ The JSON object is a strict superset of `Reconstructor.snapshot()`:
 ```
 
 `w`, `h`, and `rows` come from `Reconstructor.map`; the remaining required fields are the snapshot
-unchanged. `staged_actions` is optional and contains only earlier same-seat trolls in ascending id
-order. It is necessary to reproduce later troll mini-steps and their reservation masks. PLAN uses
-`active_troll_id=-1`, `plan_index=0`, and no staged actions. A mask pointer may be null when only
-planes are requested. This single function is the Rust side of the 1,000-state dataset drift test.
+unchanged. `staged_actions` is optional and, in TROLL phase, must be the exact strictly ascending
+prefix of earlier same-seat trolls; every staged action is rechecked against the mask under its own
+prefix. PLAN requires `active_troll_id=-1` and no staged actions; TROLL requires an owned active
+troll; malformed/negative staged actions, masked plans and phase/context mismatches return `-2`
+rather than being normalized. A mask pointer may be null when only planes are requested. This
+single function is the Rust side of the 1,000-state dataset drift test.
 
 ## Replay extraction for parity tests
 
-Every environment slot records its map, initial bank, absolute seats, and both players' canonical
-command strings before stepping. A completed replay remains attached to the reset slot until read:
+Every environment slot records its map, complete initial state (including both chop-1 starters),
+absolute seats, and both players' canonical command strings before stepping. It also records the
+terminal kind/reason and final persistent stall counter. A completed replay remains attached to the
+reset slot until read:
 
 ```c
 int64_t tf_full_take_replay(
@@ -293,7 +306,9 @@ int64_t tf_full_take_replay(
 With a null output, return required bytes without consuming. With enough capacity, write that many
 UTF-8 JSON bytes and consume the stored replay. Return `-2` for a bad slot, `-6` for a short buffer,
 and `0` when no completed replay is waiting. `tests/` replays these commands through
-`sim/engine.py` and compares every turn's canonical state plus the terminal hash.
+`sim/engine.py` and compares every turn's canonical state. Terminal parity independently runs
+`has_stalled` after every transition, rejects an early terminal or a nonterminal final prefix, and
+compares kind, reason, final counter and hash.
 
 ## `FullVecEnv` Python surface
 
@@ -314,10 +329,13 @@ FullVecEnv(
 ```
 
 Public arrays have shapes `obs[n,104,11,22]`, `masks[n,13,11,22]`,
-`plan_masks[n,144]`, `phase[n]`, `seat_view[n]`, and `active_troll[n]` with the dtypes above.
+`plan_masks[n,400]`, `phase[n]`, `seat_view[n]`, and `active_troll[n]` with the dtypes above.
 `step(actions)` validates shape `(n,)`, drives any Python-frozen opponent until all affected turns
-execute, and returns buffered mini-step transitions plus copied terminal metadata. `close()` is
-idempotent. The wrapper verifies all three Rust size queries before allocation.
+execute, and returns `rewards, info`, where rewards has shape `(n,)` and `info` is the named record
+`dones, wins, episode_turns, episode_returns, episode_seeds, map_indices, opponent_ids, score_own,
+score_opp, trained_specs, trained_turns, trained_count, trained_overflow, illegal_commands,
+action_hash, state_hash, turn_completed`. `close()` is idempotent. The wrapper verifies all three
+Rust size queries and the exact vocabulary generation before allocation.
 
 ## Implementation prerequisites surfaced by the interface read
 

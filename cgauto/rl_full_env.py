@@ -24,7 +24,8 @@ OBS_WIDTH = 22
 OBS_SIZE = OBS_CHANNELS * OBS_HEIGHT * OBS_WIDTH
 ACTION_PLANES = 13
 ACTION_SIZE = ACTION_PLANES * OBS_HEIGHT * OBS_WIDTH
-PLAN_SIZE = 144
+PLAN_SIZE = 400
+PLAN_VOCAB_VERSION = "v400-2026-08-29"
 MAX_RECORDED_TRAINS = 4
 
 PHASE_PLAN = 0
@@ -48,26 +49,9 @@ FrozenOpponent = Callable[
 
 
 @dataclass(frozen=True)
-class TransitionBatch:
-    """Learner mini-steps credited with a completed turn's scalar reward."""
-
-    obs: np.ndarray
-    masks: np.ndarray
-    plan_masks: np.ndarray
-    phases: np.ndarray
-    seat_view: np.ndarray
-    active_troll: np.ndarray
-    actions: np.ndarray
-    rewards: np.ndarray
-    slots: np.ndarray
-
-
-@dataclass(frozen=True)
 class FullStepInfo:
-    """Copied full-turn and terminal metadata from one vector step."""
+    """Named terminal arrays copied from one vector step."""
 
-    turn_completed: np.ndarray
-    reward_credit_count: np.ndarray
     dones: np.ndarray
     wins: np.ndarray
     episode_turns: np.ndarray
@@ -84,21 +68,11 @@ class FullStepInfo:
     illegal_commands: np.ndarray
     action_hash: np.ndarray
     state_hash: np.ndarray
-
-
-@dataclass
-class _PendingTransition:
-    obs: np.ndarray
-    masks: np.ndarray
-    plan_masks: np.ndarray
-    phase: int
-    seat_view: int
-    active_troll: int
-    action: int
+    turn_completed: np.ndarray
 
 
 class FullVecEnv:
-    """Batched auto-reset full-game environment with learner mini-step credit."""
+    """Batched auto-reset full-game environment with one row per decision call."""
 
     def __init__(
         self,
@@ -155,6 +129,12 @@ class FullVecEnv:
             raise RuntimeError("Rust/Python action-size mismatch")
         if self._lib.tf_full_plan_size() != PLAN_SIZE:
             raise RuntimeError("Rust/Python plan-size mismatch")
+        rust_plan_version = self._lib.tf_full_plan_version()
+        if rust_plan_version is None or rust_plan_version.decode() != PLAN_VOCAB_VERSION:
+            raise RuntimeError(
+                "Rust/Python plan-vocabulary mismatch: "
+                f"Rust={rust_plan_version!r}, Python={PLAN_VOCAB_VERSION!r}"
+            )
         self._handle = self._lib.tf_full_create(
             self.num_envs,
             ctypes.c_uint64(self.seed_base),
@@ -179,7 +159,6 @@ class FullVecEnv:
 
         self.rewards = np.empty(self.num_envs, dtype=np.float32)
         self._turn_completed = np.empty(self.num_envs, dtype=np.uint8)
-        self._reward_credit_count = np.empty(self.num_envs, dtype=np.uint8)
         self._dones = np.empty(self.num_envs, dtype=np.uint8)
         self._wins = np.empty(self.num_envs, dtype=np.uint8)
         self._episode_turns = np.empty(self.num_envs, dtype=np.uint16)
@@ -208,9 +187,6 @@ class FullVecEnv:
         self._opp_seat = np.empty_like(self.seat_view)
         self._opp_active = np.empty_like(self.active_troll)
         self._opp_needs = np.empty(self.num_envs, dtype=np.uint8)
-        self._pending: list[list[_PendingTransition]] = [
-            [] for _ in range(self.num_envs)
-        ]
         self._closed = False
         self.observe()
 
@@ -219,6 +195,7 @@ class FullVecEnv:
         self._lib.tf_full_obs_size.restype = ctypes.c_size_t
         self._lib.tf_full_action_size.restype = ctypes.c_size_t
         self._lib.tf_full_plan_size.restype = ctypes.c_size_t
+        self._lib.tf_full_plan_version.restype = ctypes.c_char_p
         self._lib.tf_full_create.argtypes = [
             ctypes.c_size_t,
             ctypes.c_uint64,
@@ -232,9 +209,9 @@ class FullVecEnv:
         self._lib.tf_full_destroy.restype = None
         self._lib.tf_full_observe.argtypes = [void] * 7
         self._lib.tf_full_observe.restype = ctypes.c_int32
-        self._lib.tf_full_step.argtypes = [void] * 27
+        self._lib.tf_full_step.argtypes = [void] * 26
         self._lib.tf_full_step.restype = ctypes.c_int32
-        self._lib.tf_full_opponent_step.argtypes = [void] * 27
+        self._lib.tf_full_opponent_step.argtypes = [void] * 26
         self._lib.tf_full_opponent_step.restype = ctypes.c_int32
         self._lib.tf_full_opponent_observe.argtypes = [void] * 8
         self._lib.tf_full_opponent_observe.restype = ctypes.c_int32
@@ -287,7 +264,6 @@ class FullVecEnv:
             self._ptr(self.active_troll),
             self._ptr(self.rewards),
             self._ptr(self._turn_completed),
-            self._ptr(self._reward_credit_count),
             self._ptr(self._dones),
             self._ptr(self._wins),
             self._ptr(self._episode_turns),
@@ -306,37 +282,12 @@ class FullVecEnv:
             self._ptr(self._state_hash),
         )
 
-    def _capture_pending(self, actions: np.ndarray) -> list[_PendingTransition | None]:
-        captured: list[_PendingTransition | None] = []
-        for slot in range(self.num_envs):
-            if self.phase[slot] not in (PHASE_PLAN, PHASE_TROLL):
-                captured.append(None)
-                continue
-            captured.append(
-                _PendingTransition(
-                    obs=self.obs[slot].copy(),
-                    masks=self.masks[slot].copy(),
-                    plan_masks=self.plan_masks[slot].copy(),
-                    phase=int(self.phase[slot]),
-                    seat_view=int(self.seat_view[slot]),
-                    active_troll=int(self.active_troll[slot]),
-                    action=int(actions[slot]),
-                )
-            )
-        return captured
-
-    def _commit_pending(self, captured: list[_PendingTransition | None]) -> None:
-        for slot, transition in enumerate(captured):
-            if transition is not None:
-                self._pending[slot].append(transition)
-
     def _snapshot_outputs(self) -> dict[str, np.ndarray]:
         return {
             name: getattr(self, name).copy()
             for name in (
                 "rewards",
                 "_turn_completed",
-                "_reward_credit_count",
                 "_dones",
                 "_wins",
                 "_episode_turns",
@@ -407,45 +358,8 @@ class FullVecEnv:
             self._merge_completed_outputs(merged)
         raise RuntimeError("frozen opponent exceeded 64 mini-steps in one turn")
 
-    def _transitions_for_completed(self) -> TransitionBatch:
-        rows: list[tuple[int, _PendingTransition, float]] = []
-        for slot in np.flatnonzero(self._turn_completed):
-            pending = self._pending[int(slot)]
-            expected = int(self._reward_credit_count[slot])
-            if len(pending) != expected:
-                raise RuntimeError(
-                    f"slot {slot}: Rust credits {expected} mini-steps, Python buffered {len(pending)}"
-                )
-            rows.extend((int(slot), row, float(self.rewards[slot])) for row in pending)
-            pending.clear()
-        if not rows:
-            return TransitionBatch(
-                obs=np.empty((0, OBS_CHANNELS, OBS_HEIGHT, OBS_WIDTH), dtype=np.uint8),
-                masks=np.empty((0, ACTION_PLANES, OBS_HEIGHT, OBS_WIDTH), dtype=np.uint8),
-                plan_masks=np.empty((0, PLAN_SIZE), dtype=np.uint8),
-                phases=np.empty(0, dtype=np.int32),
-                seat_view=np.empty(0, dtype=np.int32),
-                active_troll=np.empty(0, dtype=np.int32),
-                actions=np.empty(0, dtype=np.int32),
-                rewards=np.empty(0, dtype=np.float32),
-                slots=np.empty(0, dtype=np.int32),
-            )
-        return TransitionBatch(
-            obs=np.stack([row.obs for _, row, _ in rows]),
-            masks=np.stack([row.masks for _, row, _ in rows]),
-            plan_masks=np.stack([row.plan_masks for _, row, _ in rows]),
-            phases=np.array([row.phase for _, row, _ in rows], dtype=np.int32),
-            seat_view=np.array([row.seat_view for _, row, _ in rows], dtype=np.int32),
-            active_troll=np.array([row.active_troll for _, row, _ in rows], dtype=np.int32),
-            actions=np.array([row.action for _, row, _ in rows], dtype=np.int32),
-            rewards=np.array([reward for _, _, reward in rows], dtype=np.float32),
-            slots=np.array([slot for slot, _, _ in rows], dtype=np.int32),
-        )
-
     def _info(self) -> FullStepInfo:
         return FullStepInfo(
-            turn_completed=self._turn_completed.copy(),
-            reward_credit_count=self._reward_credit_count.copy(),
             dones=self._dones.copy(),
             wins=self._wins.copy(),
             episode_turns=self._episode_turns.copy(),
@@ -462,26 +376,24 @@ class FullVecEnv:
             illegal_commands=self._illegal_commands.copy(),
             action_hash=self._action_hash.copy(),
             state_hash=self._state_hash.copy(),
+            turn_completed=self._turn_completed.copy(),
         )
 
-    def step(self, actions: np.ndarray) -> tuple[TransitionBatch, FullStepInfo]:
+    def step(self, actions: np.ndarray) -> tuple[np.ndarray, FullStepInfo]:
         actions = np.ascontiguousarray(actions, dtype=np.int32)
         if actions.shape != (self.num_envs,):
             raise ValueError(f"expected actions shape {(self.num_envs,)}, got {actions.shape}")
         waiting = self.phase == PHASE_EXTERNAL_WAIT
         if np.any(actions[waiting] != -1):
             raise ValueError("EXTERNAL_WAIT slots require action -1")
-        captured = self._capture_pending(actions)
         status = self._lib.tf_full_step(*self._step_args(actions))
         if status != self.num_envs:
             raise RuntimeError(f"tf_full_step failed with {status}")
-        self._commit_pending(captured)
         merged = self._snapshot_outputs()
         if np.any(self.phase == PHASE_EXTERNAL_WAIT):
             self._drive_external(merged)
             self._restore_outputs(merged)
-        transitions = self._transitions_for_completed()
-        return transitions, self._info()
+        return self.rewards.copy(), self._info()
 
     def take_replay(self, slot: int) -> dict | None:
         if not 0 <= slot < self.num_envs:
@@ -498,6 +410,12 @@ class FullVecEnv:
         if written != needed:
             raise RuntimeError(f"tf_full_take_replay wrote {written}, expected {needed}")
         return json.loads(output.tobytes())
+
+    @staticmethod
+    def plan_version() -> str:
+        """Return the exact plan-vocabulary generation checked at construction."""
+
+        return PLAN_VOCAB_VERSION
 
     def close(self) -> None:
         if not self._closed:
@@ -625,10 +543,12 @@ def canonical_state_hash(game: object) -> int:
     return value
 
 
-def replay_and_verify(record: Mapping[str, object]) -> int:
-    """Replay a Rust episode in ``sim.engine`` and verify every recorded hash."""
+def replay_and_verify(
+    record: Mapping[str, object], *, terminal_parity: bool = True
+) -> int:
+    """Verify independent transition parity and terminal parity for one replay."""
 
-    from sim.engine import recompute_scores, step
+    from sim.engine import has_stalled, recompute_scores, stall_reason, step
     from sim.state import GameState, SimPlant, SimUnit
 
     map_record = record["map"]
@@ -649,9 +569,20 @@ def replay_and_verify(record: Mapping[str, object]) -> int:
                 shacks[int(cell)] = (x, y)
     if shacks[0] is None or shacks[1] is None:
         raise AssertionError("replay map is missing a player shack")
+    initial = record["initial_state"]
     units = [
-        SimUnit(player, player, *shacks[player], 1, 1, 1, 0, [0] * 6)
-        for player in (0, 1)
+        SimUnit(
+            unit["id"],
+            unit["player"],
+            unit["x"],
+            unit["y"],
+            unit["ms"],
+            unit["cc"],
+            unit["hp"],
+            unit["chop"],
+            list(unit["carry"]),
+        )
+        for unit in initial["units"]
     ]
     plants = [
         SimPlant(
@@ -663,23 +594,27 @@ def replay_and_verify(record: Mapping[str, object]) -> int:
             plant["fruits"],
             plant.get("cooldown", plant.get("cur_cd")),
         )
-        for plant in map_record["trees0"]
+        for plant in initial["plants"]
     ]
     game = GameState(
         len(rows[0]),
         len(rows),
         walkable,
         shacks,
-        [list(row) for row in record["initial_inventories"]],
+        [list(row) for row in initial["inventories"]],
         units,
         plants,
-        [0, 0],
-        1,
-        2,
+        list(initial["scores"]),
+        initial["turn"],
+        initial["next_id"],
         iron,
         water,
     )
     recompute_scores(game)
+    if sorted(unit.chop for unit in game.units if unit.id in (0, 1)) != [1, 1]:
+        raise AssertionError("recorded initial state does not have chop-1 starters")
+    stall_counter = 0
+    terminal_checks: list[tuple[bool, bool, int, str | None]] = []
     for replay_turn in record["turns"]:
         if replay_turn["turn"] != game.turn:
             raise AssertionError(
@@ -738,13 +673,54 @@ def replay_and_verify(record: Mapping[str, object]) -> int:
                 f"state hash mismatch after turn {replay_turn['turn']}: "
                 f"python={actual:#018x}, rust={expected:#018x}"
             )
-    terminal = record["terminal_state_hash"]
-    actual = canonical_state_hash(game)
-    if actual != terminal:
-        raise AssertionError(
-            f"terminal hash mismatch: python={actual:#018x}, rust={terminal:#018x}"
+        stalled, stall_counter = has_stalled(game, stall_counter)
+        turn_limit = game.turn > 300
+        terminal_checks.append(
+            (turn_limit or stalled, turn_limit, stall_counter, stall_reason(game, stall_counter))
         )
+    actual = canonical_state_hash(game)
+    if terminal_parity:
+        if not terminal_checks:
+            raise AssertionError("completed replay has no turns")
+        if any(terminal for terminal, _, _, _ in terminal_checks[:-1]):
+            raise AssertionError("replay contains a transition after an earlier terminal state")
+        final_terminal, final_turn_limit, final_counter, final_stall_reason = terminal_checks[-1]
+        if not final_terminal:
+            raise AssertionError("final replay state is nonterminal")
+        expected_kind = "turn_limit" if final_turn_limit else "stalled"
+        expected_reason = "turn_limit" if final_turn_limit else final_stall_reason
+        if record.get("terminal_kind") != expected_kind:
+            raise AssertionError(
+                f"terminal kind mismatch: python={expected_kind}, rust={record.get('terminal_kind')}"
+            )
+        if record.get("terminal_reason") != expected_reason:
+            raise AssertionError(
+                "terminal reason mismatch: "
+                f"python={expected_reason}, rust={record.get('terminal_reason')}"
+            )
+        if record.get("terminal_stall_counter") != final_counter:
+            raise AssertionError(
+                "terminal counter mismatch: "
+                f"python={final_counter}, rust={record.get('terminal_stall_counter')}"
+            )
+        terminal_hash = record["terminal_state_hash"]
+        if actual != terminal_hash:
+            raise AssertionError(
+                f"terminal hash mismatch: python={actual:#018x}, rust={terminal_hash:#018x}"
+            )
     return actual
+
+
+def verify_transition_parity(record: Mapping[str, object]) -> int:
+    """Verify every supplied transition without trusting the supplied endpoint."""
+
+    return replay_and_verify(record, terminal_parity=False)
+
+
+def verify_terminal_parity(record: Mapping[str, object]) -> int:
+    """Verify the supplied endpoint, reason, and persistent stall counter."""
+
+    return replay_and_verify(record, terminal_parity=True)
 
 
 def run_random_smoke(
@@ -763,7 +739,8 @@ def run_random_smoke(
     completed: dict[int, dict] = {}
     mini_steps = 0
     turn_steps = 0
-    replay_parity = 0
+    transition_parity = 0
+    terminal_parity = 0
     started = time.perf_counter()
     with FullVecEnv(
         num_envs,
@@ -779,8 +756,9 @@ def run_random_smoke(
     ) as env:
         while len(completed) < episodes:
             actions = random_legal_actions(env, rng)
-            transitions, info = env.step(actions)
-            mini_steps += len(transitions.actions)
+            decisions = int(np.count_nonzero(env.phase != PHASE_EXTERNAL_WAIT))
+            _, info = env.step(actions)
+            mini_steps += decisions
             turn_steps += int(info.turn_completed.sum())
             for slot in np.flatnonzero(info.dones):
                 seed = int(info.episode_seeds[slot])
@@ -789,8 +767,9 @@ def run_random_smoke(
                     if verify_replays:
                         if replay is None:
                             raise AssertionError(f"seed {seed} completed without a replay")
-                        replay_and_verify(replay)
-                        replay_parity += 1
+                        verify_terminal_parity(replay)
+                        transition_parity += 1
+                        terminal_parity += 1
                     completed[seed] = {
                         "seed": seed,
                         "turns": int(info.episode_turns[slot]),
@@ -812,7 +791,8 @@ def run_random_smoke(
         "turn_steps": turn_steps,
         "turn_steps_per_second": turn_steps / elapsed,
         "illegal_commands": sum(row["illegal_commands"] for row in rows),
-        "replay_parity": replay_parity,
+        "transition_parity": transition_parity,
+        "terminal_parity": terminal_parity,
         "episodes_detail": rows,
     }
 

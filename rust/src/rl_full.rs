@@ -14,11 +14,12 @@ use rayon::prelude::*;
 use serde::{Deserialize, Serialize};
 
 use crate::game::engine::{
-    bfs_distances, has_stalled, item_index, next_cell, recompute_scores, step, training_cost,
-    APPLE, BANANA, IRON, LEMON, PLUM, WOOD,
+    apply_chop, apply_drop, apply_harvest, apply_mine, apply_moves, apply_pick, apply_plant,
+    apply_train, bfs_distances, has_stalled, item_index, next_cell, recompute_scores, step,
+    training_cost, APPLE, BANANA, IRON, LEMON, PLUM, WOOD,
 };
 use crate::game::official_mapgen::Sha1Prng;
-use crate::game::state::{from_ascii, Cell, GameState, Plant, Unit};
+use crate::game::state::{from_ascii_with_talents, Cell, GameState, Plant, Unit};
 use crate::resident_policy::bot::moisan::SecureOrchardBot;
 use crate::resident_policy::bot::Bot as ResidentBot;
 use crate::resident_policy::game::{
@@ -39,7 +40,8 @@ pub const TF_FULL_CELLS: usize = TF_FULL_HEIGHT * TF_FULL_WIDTH;
 pub const TF_FULL_OBS_SIZE: usize = TF_FULL_OBS_CHANNELS * TF_FULL_CELLS;
 pub const TF_FULL_ACTION_PLANES: usize = 13;
 pub const TF_FULL_ACTION_SIZE: usize = TF_FULL_ACTION_PLANES * TF_FULL_CELLS;
-pub const TF_FULL_PLAN_SIZE: usize = 144;
+pub const TF_FULL_PLAN_SIZE: usize = 400;
+pub const TF_FULL_PLAN_VERSION: &[u8] = b"v400-2026-08-29\0";
 pub const TF_FULL_MAX_RECORDED_TRAINS: usize = 4;
 pub const TF_FULL_MAX_TROLLS_PER_PLAYER: usize = 12;
 
@@ -191,7 +193,7 @@ impl MapRecord {
             return Err("declared shacks differ from authoritative map rows".to_string());
         }
         let row_refs: Vec<_> = self.rows.iter().map(String::as_str).collect();
-        let mut game = from_ascii(&row_refs);
+        let mut game = from_ascii_with_talents(&row_refs, (1, 1, 1, 1));
         if game.width != self.w || game.height != self.h {
             return Err("parsed map dimensions differ from record".to_string());
         }
@@ -332,12 +334,98 @@ impl JsonState {
             trees0: self.plants.clone(),
         };
         let mut game = record.to_game(self.inv)?;
+        if self.turn < 1 || self.inv.iter().flatten().any(|value| *value < 0) {
+            return Err("negative inventory or invalid turn in reconstructed state".to_string());
+        }
         game.turn = self.turn;
         game.units = self.units.clone().into_iter().map(Unit::from).collect();
+        let mut ids = HashSet::new();
+        for unit in &game.units {
+            if !ids.insert(unit.id)
+                || !(0..=1).contains(&unit.player)
+                || unit.ms < 1
+                || unit.cc < 1
+                || unit.hp < 0
+                || unit.chop < 0
+                || unit.carry.iter().any(|value| *value < 0)
+                || unit.total() > unit.cc
+                || !(game.walkable.contains(&unit.pos()) || game.shacks.contains(&unit.pos()))
+            {
+                return Err("invalid unit in reconstructed state".to_string());
+            }
+        }
         game.next_id = game.units.iter().map(|unit| unit.id).max().unwrap_or(-1) + 1;
         recompute_scores(&mut game);
         Ok(game)
     }
+}
+
+fn validate_observation_context(
+    game: &GameState,
+    seat: usize,
+    active_troll_id: i32,
+    phase: i32,
+    plan_index: usize,
+    prior_target_trained: bool,
+    staged: &[StagedAction],
+) -> Result<(), String> {
+    if seat > 1 || plan_index >= TF_FULL_PLAN_SIZE {
+        return Err("invalid observation seat or plan".to_string());
+    }
+    let mut plan_mask = [0u8; TF_FULL_PLAN_SIZE];
+    legal_plan_mask(game, seat, &mut plan_mask);
+    if plan_mask[plan_index] == 0 {
+        return Err("observation plan is masked".to_string());
+    }
+    match phase {
+        0 => {
+            if active_troll_id != -1 || !staged.is_empty() {
+                return Err("plan phase cannot carry an active or staged troll".to_string());
+            }
+            if prior_target_trained && plan_index != 0 {
+                return Err("a trained standing target must have been cleared".to_string());
+            }
+        }
+        1 => {
+            if prior_target_trained {
+                return Err("trained-target flag is only valid in plan phase".to_string());
+            }
+            let roster: Vec<_> = own_units(game, seat)
+                .into_iter()
+                .map(|unit| unit.id)
+                .collect();
+            let active_index = roster
+                .iter()
+                .position(|id| *id == active_troll_id)
+                .ok_or_else(|| "active troll does not belong to viewing seat".to_string())?;
+            if staged.len() != active_index {
+                return Err("staged actions are not the exact earlier-troll prefix".to_string());
+            }
+            let mut prefix = Vec::with_capacity(staged.len());
+            for (index, action) in staged.iter().copied().enumerate() {
+                if action.troll_id != roster[index]
+                    || prefix
+                        .last()
+                        .is_some_and(|prior: &StagedAction| prior.troll_id >= action.troll_id)
+                {
+                    return Err("staged actions are not strictly ordered by troll id".to_string());
+                }
+                validate_masked_action(
+                    game,
+                    seat,
+                    action.troll_id,
+                    1,
+                    &prefix,
+                    None,
+                    action.action_index,
+                )
+                .map_err(|_| "staged action is illegal for its troll".to_string())?;
+                prefix.push(action);
+            }
+        }
+        _ => return Err("invalid observation phase".to_string()),
+    }
+    Ok(())
 }
 
 fn decode_plan(plan_index: usize) -> Option<(i32, i32, i32, i32)> {
@@ -347,12 +435,12 @@ fn decode_plan(plan_index: usize) -> Option<(i32, i32, i32, i32)> {
     if plan_index == 0 {
         return Some((0, 0, 0, 0));
     }
-    let chop = (plan_index % 4) as i32;
-    let rest = plan_index / 4;
-    let harvest = (rest % 3) as i32;
-    let rest = rest / 3;
-    let carry = (rest % 4) as i32 + 1;
-    let movement = (rest / 4) as i32 + 1;
+    let chop = (plan_index % 5) as i32;
+    let rest = plan_index / 5;
+    let harvest = (rest % 4) as i32;
+    let rest = rest / 4;
+    let carry = (rest % 5) as i32 + 1;
+    let movement = (rest / 5) as i32 + 1;
     Some((movement, carry, harvest, chop))
 }
 
@@ -362,10 +450,7 @@ fn legal_plan_mask(game: &GameState, seat: usize, output: &mut [u8]) {
     if own_units(game, seat).len() >= TF_FULL_MAX_TROLLS_PER_PLAYER {
         return;
     }
-    for (index, slot) in output.iter_mut().enumerate().skip(1) {
-        let (_, carry, harvest, chop) = decode_plan(index).expect("bounded plan index");
-        *slot = u8::from(!(harvest == 0 && chop == 0) && harvest <= carry);
-    }
+    output[1..].fill(1);
 }
 
 fn staged_game(
@@ -653,24 +738,24 @@ fn fill_observation(
         let cell = view_cell(game, seat, unit.pos());
         let base = if own { 18 } else { 28 };
         set_cell(output, if own { 16 } else { 17 }, cell, 255);
-        set_cell(output, base, cell, quant(unit.ms, 3));
-        set_cell(output, base + 1, cell, quant(unit.cc, 4));
+        set_cell(output, base, cell, quant(unit.ms, 4));
+        set_cell(output, base + 1, cell, quant(unit.cc, 5));
         set_cell(output, base + 2, cell, quant(unit.hp, 3));
-        set_cell(output, base + 3, cell, quant(unit.chop, 3));
+        set_cell(output, base + 3, cell, quant(unit.chop, 4));
         for kind in 0..6 {
-            set_cell(output, base + 4 + kind, cell, quant(unit.carry[kind], 4));
+            set_cell(output, base + 4 + kind, cell, quant(unit.carry[kind], 5));
         }
         set_cell(
             output,
             if own { 93 } else { 95 },
             cell,
-            quant(unit.total(), 4),
+            quant(unit.total(), 5),
         );
         set_cell(
             output,
             if own { 94 } else { 96 },
             cell,
-            quant(unit.free(), 4),
+            quant(unit.free(), 5),
         );
         let full = unit.total() == unit.cc;
         let only_nonfruit = unit.carry[PLUM..=BANANA].iter().all(|value| *value == 0);
@@ -739,21 +824,21 @@ fn fill_observation(
     if plan_index != 0 {
         let target = decode_plan(plan_index).ok_or_else(|| "bad plan index".to_string())?;
         broadcast(output, game, 59, 255);
-        broadcast(output, game, 60, quant(target.0, 3));
-        broadcast(output, game, 61, quant(target.1, 4));
-        broadcast(output, game, 62, quant(target.2, 2));
-        broadcast(output, game, 63, quant(target.3, 3));
+        broadcast(output, game, 60, quant(target.0, 4));
+        broadcast(output, game, 61, quant(target.1, 5));
+        broadcast(output, game, 62, quant(target.2, 3));
+        broadcast(output, game, 63, quant(target.3, 4));
         let mut cost = training_cost(ours.len() as i32, target);
         if game.iron.is_empty() {
             cost[IRON] = 0;
         }
         for (offset, kind) in [PLUM, LEMON, APPLE, IRON].into_iter().enumerate() {
-            broadcast(output, game, 64 + offset, quant(cost[kind], 32));
+            broadcast(output, game, 64 + offset, quant(cost[kind], 48));
             broadcast(
                 output,
                 game,
                 68 + offset,
-                quant((cost[kind] - game.inventories[seat][kind]).max(0), 32),
+                quant((cost[kind] - game.inventories[seat][kind]).max(0), 48),
             );
         }
     }
@@ -769,8 +854,8 @@ fn fill_observation(
         |unit| unit.hp,
         |unit| unit.chop,
     ];
-    let scales = [3, 4, 3, 3];
-    let sum_scales = [36, 48, 36, 36];
+    let scales = [4, 5, 3, 4];
+    let sum_scales = [48, 60, 36, 48];
     for (index, field) in fields.into_iter().enumerate() {
         let (own_max, own_sum) = aggregate(&ours, field);
         let (opp_max, opp_sum) = aggregate(&theirs, field);
@@ -791,10 +876,11 @@ fn fill_observation(
 fn decode_action_text(
     action: usize,
     troll_id: i32,
+    seat: usize,
     width: i32,
     height: i32,
 ) -> Result<String, i32> {
-    if action >= TF_FULL_ACTION_SIZE || width <= 0 || height <= 0 {
+    if action >= TF_FULL_ACTION_SIZE || seat > 1 || width <= 0 || height <= 0 {
         return Err(-2);
     }
     let plane = action / TF_FULL_CELLS;
@@ -804,8 +890,13 @@ fn decode_action_text(
     if x >= width || y >= height {
         return Err(-2);
     }
+    let (absolute_x, absolute_y) = if seat == 0 {
+        (x, y)
+    } else {
+        (width - 1 - x, height - 1 - y)
+    };
     let text = match plane {
-        0 => format!("MOVE {troll_id} {x} {y}"),
+        0 => format!("MOVE {troll_id} {absolute_x} {absolute_y}"),
         1 => format!("HARVEST {troll_id}"),
         2 => format!("CHOP {troll_id}"),
         3 => format!("DROP {troll_id}"),
@@ -820,11 +911,22 @@ fn decode_action_text(
 fn encode_command_text(
     command: &str,
     expected_troll_id: i32,
+    seat: usize,
     width: i32,
     height: i32,
+    troll_x: i32,
+    troll_y: i32,
 ) -> Result<usize, i32> {
     let parts: Vec<_> = command.split_whitespace().collect();
-    if parts.len() < 2 || width <= 0 || height <= 0 {
+    if parts.len() < 2
+        || seat > 1
+        || width <= 0
+        || height <= 0
+        || troll_x < 0
+        || troll_y < 0
+        || troll_x >= width
+        || troll_y >= height
+    {
         return Err(-2);
     }
     let id = parts[1].parse::<i32>().map_err(|_| -2)?;
@@ -838,7 +940,12 @@ fn encode_command_text(
             if x < 0 || y < 0 || x >= width || y >= height {
                 return Err(-2);
             }
-            return Ok(action_index(0, (x, y)));
+            let relative = if seat == 0 {
+                (x, y)
+            } else {
+                (width - 1 - x, height - 1 - y)
+            };
+            return Ok(action_index(0, relative));
         }
         "HARVEST" if parts.len() == 2 => 1,
         "CHOP" if parts.len() == 2 => 2,
@@ -858,9 +965,12 @@ fn encode_command_text(
         }
         _ => return Err(-2),
     };
-    // Non-spatial commands carry no coordinate.  The state-aware caller moves
-    // this canonical plane index to the active troll's cell.
-    Ok(plane * TF_FULL_CELLS)
+    let relative = if seat == 0 {
+        (troll_x, troll_y)
+    } else {
+        (width - 1 - troll_x, height - 1 - troll_y)
+    };
+    Ok(action_index(plane, relative))
 }
 
 fn resident_view(game: &GameState, seat: usize) -> ResidentState {
@@ -1019,10 +1129,14 @@ struct ReplayRecord {
     map_index: u32,
     map: MapRecord,
     initial_inventories: [[i32; 6]; 2],
+    initial_state: ReplayState,
     learned_seat: usize,
     opponent_id: u8,
     turns: Vec<ReplayTurn>,
     terminal_state_hash: u64,
+    terminal_kind: String,
+    terminal_reason: String,
+    terminal_stall_counter: i32,
 }
 
 #[derive(Clone, Copy, Debug, Default)]
@@ -1034,7 +1148,7 @@ struct TrainRecord {
 #[derive(Clone, Debug, Default)]
 struct TurnOutcome {
     reward: f32,
-    reward_credit_count: u8,
+    turn_completed: bool,
     done: bool,
     win: bool,
     episode_turns: u16,
@@ -1144,23 +1258,316 @@ fn hash_commands(hash: &mut u64, commands0: &[String], commands1: &[String]) {
     }
 }
 
+#[derive(Clone, Debug)]
+enum CheckedCommand {
+    Move(i32, Cell),
+    Harvest(i32),
+    Plant(i32, String),
+    Chop(i32),
+    Pick(i32, String),
+    Train(usize, (i32, i32, i32, i32)),
+    Drop(i32),
+    Mine(i32),
+    Ignored,
+}
+
+fn parse_checked_commands(
+    game: &GameState,
+    seat: usize,
+    commands: &[String],
+) -> (Vec<CheckedCommand>, u16) {
+    let mut parsed = Vec::with_capacity(commands.len());
+    let mut used = HashSet::new();
+    let mut rejected = 0u16;
+    for raw in commands {
+        let parts: Vec<_> = raw.split_whitespace().collect();
+        let result = (|| -> Result<CheckedCommand, ()> {
+            match parts.as_slice() {
+            [] => Err(()),
+            [verb, ..] if verb.eq_ignore_ascii_case("WAIT") || verb.eq_ignore_ascii_case("MSG") => {
+                Ok(CheckedCommand::Ignored)
+            }
+            [verb, ms, cc, hp, chop] if verb.eq_ignore_ascii_case("TRAIN") => {
+                let talents = (
+                    ms.parse::<i32>().map_err(|_| ())?,
+                    cc.parse::<i32>().map_err(|_| ())?,
+                    hp.parse::<i32>().map_err(|_| ())?,
+                    chop.parse::<i32>().map_err(|_| ())?,
+                );
+                if talents.0 < 1 || talents.1 < 1 || talents.2 < 0 || talents.3 < 0 {
+                    Err(())
+                } else {
+                    Ok(CheckedCommand::Train(seat, talents))
+                }
+            }
+            [verb, id, rest @ ..] => {
+                let id = id.parse::<i32>().map_err(|_| ())?;
+                if !used.insert(id)
+                    || !game
+                        .units
+                        .iter()
+                        .any(|unit| unit.id == id && unit.player as usize == seat)
+                {
+                    Err(())
+                } else if verb.eq_ignore_ascii_case("MOVE") && rest.len() == 2 {
+                    let target = (
+                        rest[0].parse::<i32>().map_err(|_| ())?,
+                        rest[1].parse::<i32>().map_err(|_| ())?,
+                    );
+                    Ok(CheckedCommand::Move(id, target))
+                } else if verb.eq_ignore_ascii_case("HARVEST") && rest.is_empty() {
+                    Ok(CheckedCommand::Harvest(id))
+                } else if verb.eq_ignore_ascii_case("CHOP") && rest.is_empty() {
+                    Ok(CheckedCommand::Chop(id))
+                } else if verb.eq_ignore_ascii_case("DROP") && rest.is_empty() {
+                    Ok(CheckedCommand::Drop(id))
+                } else if verb.eq_ignore_ascii_case("MINE") && rest.is_empty() {
+                    Ok(CheckedCommand::Mine(id))
+                } else if verb.eq_ignore_ascii_case("PLANT") && rest.len() == 1 {
+                    let kind = rest[0].to_ascii_uppercase();
+                    if FRUIT_NAMES.contains(&kind.as_str()) {
+                        Ok(CheckedCommand::Plant(id, kind))
+                    } else {
+                        Err(())
+                    }
+                } else if verb.eq_ignore_ascii_case("PICK") && rest.len() == 1 {
+                    let kind = rest[0].to_ascii_uppercase();
+                    if FRUIT_NAMES.contains(&kind.as_str()) {
+                        Ok(CheckedCommand::Pick(id, kind))
+                    } else {
+                        Err(())
+                    }
+                } else {
+                    Err(())
+                }
+            }
+            _ => Err(()),
+            }
+        })();
+        match result {
+            Ok(command) => parsed.push(command),
+            Err(()) => rejected = rejected.saturating_add(1),
+        }
+    }
+    (parsed, rejected)
+}
+
+fn command_rejections(game: &GameState, commands0: &[String], commands1: &[String]) -> u16 {
+    let (left, mut rejected) = parse_checked_commands(game, 0, commands0);
+    let (right, right_rejected) = parse_checked_commands(game, 1, commands1);
+    rejected = rejected.saturating_add(right_rejected);
+    let commands: Vec<_> = left.into_iter().chain(right).collect();
+    let mut probe = game.clone();
+
+    let moves: std::collections::HashMap<_, _> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Move(id, target) => Some((*id, *target)),
+            _ => None,
+        })
+        .collect();
+    let intended: Vec<_> = moves
+        .iter()
+        .filter_map(|(id, target)| {
+            probe.units.iter().find(|unit| unit.id == *id).map(|unit| {
+                (
+                    *id,
+                    next_cell(&probe.walkable, unit.pos(), *target, unit.ms),
+                )
+            })
+        })
+        .collect();
+    apply_moves(&mut probe, &moves);
+    for (id, expected) in intended {
+        if probe
+            .units
+            .iter()
+            .find(|unit| unit.id == id)
+            .is_none_or(|unit| unit.pos() != expected)
+        {
+            rejected = rejected.saturating_add(1);
+        }
+    }
+
+    let harvest: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Harvest(id) => Some(*id),
+            _ => None,
+        })
+        .collect();
+    for id in &harvest {
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            unit.hp > 0
+                && unit.free() > 0
+                && probe
+                    .plants
+                    .iter()
+                    .any(|plant| plant.pos() == unit.pos() && plant.health > 0 && plant.fruits > 0)
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    apply_harvest(&mut probe, &harvest);
+
+    let plants: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Plant(id, kind) => Some((*id, kind.clone())),
+            _ => None,
+        })
+        .collect();
+    for (id, kind) in &plants {
+        let kind_index = item_index(kind);
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            probe.walkable.contains(&unit.pos())
+                && !probe.plants.iter().any(|plant| plant.pos() == unit.pos())
+                && unit.carry[kind_index] > 0
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    let mut types_by_cell: std::collections::HashMap<Cell, HashSet<&str>> =
+        std::collections::HashMap::new();
+    for (id, kind) in &plants {
+        if let Some(unit) = probe.units.iter().find(|unit| unit.id == *id) {
+            types_by_cell.entry(unit.pos()).or_default().insert(kind);
+        }
+    }
+    for (id, _) in &plants {
+        if let Some(unit) = probe.units.iter().find(|unit| unit.id == *id) {
+            if types_by_cell
+                .get(&unit.pos())
+                .is_some_and(|types| types.len() > 1)
+            {
+                rejected = rejected.saturating_add(1);
+            }
+        }
+    }
+    apply_plant(&mut probe, &plants);
+
+    let chop: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Chop(id) => Some(*id),
+            _ => None,
+        })
+        .collect();
+    for id in &chop {
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            unit.chop > 0
+                && probe
+                    .plants
+                    .iter()
+                    .any(|plant| plant.pos() == unit.pos() && plant.health > 0)
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    apply_chop(&mut probe, &chop);
+
+    let picks: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Pick(id, kind) => Some((*id, kind.clone())),
+            _ => None,
+        })
+        .collect();
+    for (id, kind) in &picks {
+        let kind_index = item_index(kind);
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            manhattan(unit.pos(), probe.shacks[unit.player as usize]) <= 1
+                && unit.free() > 0
+                && probe.inventories[unit.player as usize][kind_index] > 0
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    apply_pick(&mut probe, &picks);
+
+    for (seat, talents) in commands.iter().filter_map(|command| match command {
+        CheckedCommand::Train(seat, talents) => Some((*seat, *talents)),
+        _ => None,
+    }) {
+        let before = own_units(&probe, seat).len();
+        apply_train(&mut probe, seat as i32, talents);
+        rejected = rejected.saturating_add(u16::from(own_units(&probe, seat).len() == before));
+    }
+
+    let drop: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Drop(id) => Some(*id),
+            _ => None,
+        })
+        .collect();
+    for id in &drop {
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            manhattan(unit.pos(), probe.shacks[unit.player as usize]) <= 1 && unit.total() > 0
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    apply_drop(&mut probe, &drop);
+
+    let mine: Vec<_> = commands
+        .iter()
+        .filter_map(|command| match command {
+            CheckedCommand::Mine(id) => Some(*id),
+            _ => None,
+        })
+        .collect();
+    for id in &mine {
+        let legal = probe.units.iter().find(|unit| unit.id == *id).is_some_and(|unit| {
+            unit.chop > 0
+                && unit.free() > 0
+                && probe.iron.iter().any(|cell| manhattan(*cell, unit.pos()) == 1)
+        });
+        rejected = rejected.saturating_add(u16::from(!legal));
+    }
+    apply_mine(&mut probe, &mine);
+    rejected
+}
+
+fn terminal_reason(game: &GameState, stall_counter: i32, turn_limit: bool) -> &'static str {
+    if turn_limit {
+        return "turn_limit";
+    }
+    if !game.plants.is_empty() {
+        return "not_terminal";
+    }
+    if stall_counter <= 0 {
+        return "grace_expired";
+    }
+    let mut stuck = [true, true];
+    for unit in &game.units {
+        if unit.carry[PLUM] + unit.carry[LEMON] + unit.carry[APPLE] + unit.carry[BANANA]
+            + unit.carry[WOOD]
+            > 0
+        {
+            stuck[unit.player as usize] = false;
+        }
+    }
+    for (seat, is_stuck) in stuck.iter_mut().enumerate() {
+        if game.inventories[seat][PLUM..=BANANA]
+            .iter()
+            .any(|amount| *amount > 0)
+        {
+            *is_stuck = false;
+        }
+    }
+    if stuck[0] && stuck[1] {
+        "both_stuck"
+    } else if stuck[0] && game.scores[0] < game.scores[1] {
+        "mercy_player_0"
+    } else if stuck[1] && game.scores[1] < game.scores[0] {
+        "mercy_player_1"
+    } else {
+        "stalled"
+    }
+}
+
 fn action_command(game: &GameState, seat: usize, staged: StagedAction) -> Result<String, i32> {
     let index = usize::try_from(staged.action_index).map_err(|_| -4)?;
     if index >= TF_FULL_ACTION_SIZE {
         return Err(-4);
     }
-    let plane = index / TF_FULL_CELLS;
-    if plane == 0 {
-        let cell = index % TF_FULL_CELLS;
-        let relative = ((cell % TF_FULL_WIDTH) as i32, (cell / TF_FULL_WIDTH) as i32);
-        let target = absolute_cell(game, seat, relative);
-        Ok(format!(
-            "MOVE {} {} {}",
-            staged.troll_id, target.0, target.1
-        ))
-    } else {
-        decode_action_text(index, staged.troll_id, game.width, game.height)
-    }
+    decode_action_text(index, staged.troll_id, seat, game.width, game.height)
 }
 
 fn commands_from_staged(
@@ -1216,6 +1623,7 @@ struct FullEnv {
     stall_counter: i32,
     episode_return: f32,
     initial_inventories: [[i32; 6]; 2],
+    initial_state: ReplayState,
     main_phase: i32,
     main_plan: usize,
     main_prior_target_trained: bool,
@@ -1272,6 +1680,7 @@ impl FullEnv {
         }
         let state = maps[map_index].to_game(inventories)?;
         let routing = MoveRouting::new(&state);
+        let initial_state = ReplayState::from(&state);
         Ok(Self {
             state,
             routing,
@@ -1286,6 +1695,7 @@ impl FullEnv {
             stall_counter: 0,
             episode_return: 0.0,
             initial_inventories: inventories,
+            initial_state,
             main_phase: 0,
             main_plan: 0,
             main_prior_target_trained: false,
@@ -1394,7 +1804,6 @@ impl FullEnv {
     fn begin_external(&mut self) {
         self.main_phase = 2;
         self.external_phase = 0;
-        self.external_plan = 0;
         self.external_roster.clear();
         self.external_index = 0;
         self.external_staged.clear();
@@ -1442,6 +1851,19 @@ impl FullEnv {
         }
         let before_wood = self.state.inventories[self.learned_seat][WOOD];
         let turn = self.state.turn;
+        let turn_rejections = if self.opponent_id == 6 {
+            // Both external-policy sides have already passed the strict mask and
+            // canonical codec.  Reparse the actual emitted text here; referee
+            // preconditions and same-seat reservations are the masks' contract.
+            let (_, left) = parse_checked_commands(&self.state, 0, &commands0);
+            let (_, right) = parse_checked_commands(&self.state, 1, &commands1);
+            left.saturating_add(right)
+        } else {
+            // Linked strategies bypass the mask/codec boundary, so audit both
+            // their parser contract and the referee preconditions phase by phase.
+            command_rejections(&self.state, &commands0, &commands1)
+        };
+        self.illegal_commands = self.illegal_commands.saturating_add(turn_rejections);
         hash_commands(&mut self.action_hash, &commands0, &commands1);
         step(&mut self.state, &commands0, &commands1);
         let current_state_hash = state_hash(&self.state);
@@ -1465,7 +1887,9 @@ impl FullEnv {
         }
         let deposited = (self.state.inventories[self.learned_seat][WOOD] - before_wood).max(0);
         let mut reward = self.wood_shaping * deposited as f32;
-        let done = self.state.turn > 300 || has_stalled(&self.state, &mut self.stall_counter);
+        let turn_limit = self.state.turn > 300;
+        let stalled = has_stalled(&self.state, &mut self.stall_counter);
+        let done = turn_limit || stalled;
         if done {
             let shaped_score = |seat: usize| {
                 self.state.inventories[seat][PLUM..=BANANA]
@@ -1476,20 +1900,23 @@ impl FullEnv {
             reward += shaped_score(self.learned_seat) - shaped_score(1 - self.learned_seat);
         }
         self.episode_return += reward;
-        let credit = 1usize.saturating_add(self.main_roster.len());
         self.main_phase = 0;
-        self.main_plan = 0;
+        if self.main_prior_target_trained {
+            self.main_plan = 0;
+        }
         self.main_roster.clear();
         self.main_index = 0;
         self.main_staged.clear();
         self.external_phase = 0;
-        self.external_plan = 0;
+        if self.external_prior_target_trained {
+            self.external_plan = 0;
+        }
         self.external_roster.clear();
         self.external_index = 0;
         self.external_staged.clear();
         let mut outcome = TurnOutcome {
             reward,
-            reward_credit_count: credit.min(u8::MAX as usize) as u8,
+            turn_completed: true,
             done,
             ..TurnOutcome::default()
         };
@@ -1517,15 +1944,20 @@ impl FullEnv {
             outcome.action_hash = self.action_hash;
             outcome.state_hash = current_state_hash;
             let replay = ReplayRecord {
-                schema_version: 1,
+                schema_version: 2,
                 episode_seed: self.episode_seed,
                 map_index: self.map_index,
                 map: self.map.clone(),
                 initial_inventories: self.initial_inventories,
+                initial_state: self.initial_state.clone(),
                 learned_seat: self.learned_seat,
                 opponent_id: self.opponent_id,
                 turns: self.replay_turns.clone(),
                 terminal_state_hash: current_state_hash,
+                terminal_kind: if turn_limit { "turn_limit" } else { "stalled" }.to_string(),
+                terminal_reason: terminal_reason(&self.state, self.stall_counter, turn_limit)
+                    .to_string(),
+                terminal_stall_counter: self.stall_counter,
             };
             outcome.replay = serde_json::to_vec(&replay).ok();
         }
@@ -1818,6 +2250,11 @@ pub extern "C" fn tf_full_plan_size() -> usize {
 }
 
 #[no_mangle]
+pub extern "C" fn tf_full_plan_version() -> *const c_char {
+    TF_FULL_PLAN_VERSION.as_ptr().cast()
+}
+
+#[no_mangle]
 pub unsafe extern "C" fn tf_full_create(
     num_envs: usize,
     seed_base: u64,
@@ -1924,7 +2361,6 @@ unsafe fn step_raw(
     active_trolls: *mut i32,
     rewards: *mut f32,
     turn_completed: *mut u8,
-    reward_credit_count: *mut u8,
     dones: *mut u8,
     wins: *mut u8,
     episode_turns: *mut u16,
@@ -1951,7 +2387,6 @@ unsafe fn step_raw(
         || active_trolls.is_null()
         || rewards.is_null()
         || turn_completed.is_null()
-        || reward_credit_count.is_null()
         || dones.is_null()
         || wins.is_null()
         || episode_turns.is_null()
@@ -2083,7 +2518,6 @@ unsafe fn step_raw(
 
     let rewards = std::slice::from_raw_parts_mut(rewards, n);
     let turn_completed = std::slice::from_raw_parts_mut(turn_completed, n);
-    let reward_credit_count = std::slice::from_raw_parts_mut(reward_credit_count, n);
     let dones = std::slice::from_raw_parts_mut(dones, n);
     let wins = std::slice::from_raw_parts_mut(wins, n);
     let episode_turns = std::slice::from_raw_parts_mut(episode_turns, n);
@@ -2105,7 +2539,6 @@ unsafe fn step_raw(
 
     rewards.fill(0.0);
     turn_completed.fill(0);
-    reward_credit_count.fill(0);
     dones.fill(0);
     wins.fill(0);
     episode_turns.fill(0);
@@ -2125,11 +2558,10 @@ unsafe fn step_raw(
 
     for (index, outcome) in outcomes.iter().enumerate() {
         rewards[index] = outcome.reward;
-        if outcome.reward_credit_count == 0 {
+        if !outcome.turn_completed {
             continue;
         }
         turn_completed[index] = 1;
-        reward_credit_count[index] = outcome.reward_credit_count;
         if !outcome.done {
             continue;
         }
@@ -2170,7 +2602,6 @@ pub unsafe extern "C" fn tf_full_step(
     active_trolls: *mut i32,
     rewards: *mut f32,
     turn_completed: *mut u8,
-    reward_credit_count: *mut u8,
     dones: *mut u8,
     wins: *mut u8,
     episode_turns: *mut u16,
@@ -2203,7 +2634,6 @@ pub unsafe extern "C" fn tf_full_step(
         active_trolls,
         rewards,
         turn_completed,
-        reward_credit_count,
         dones,
         wins,
         episode_turns,
@@ -2236,7 +2666,6 @@ pub unsafe extern "C" fn tf_full_opponent_step(
     active_trolls: *mut i32,
     rewards: *mut f32,
     turn_completed: *mut u8,
-    reward_credit_count: *mut u8,
     dones: *mut u8,
     wins: *mut u8,
     episode_turns: *mut u16,
@@ -2269,7 +2698,6 @@ pub unsafe extern "C" fn tf_full_opponent_step(
         active_trolls,
         rewards,
         turn_completed,
-        reward_credit_count,
         dones,
         wins,
         episode_turns,
@@ -2359,6 +2787,7 @@ pub unsafe extern "C" fn tf_full_take_replay(
 pub unsafe extern "C" fn tf_full_decode_action(
     action: i32,
     troll_id: i32,
+    seat: i32,
     width: i32,
     height: i32,
     output_utf8: *mut u8,
@@ -2369,7 +2798,11 @@ pub unsafe extern "C" fn tf_full_decode_action(
     }
     let text = match usize::try_from(action)
         .map_err(|_| -2)
-        .and_then(|index| decode_action_text(index, troll_id, width, height))
+        .and_then(|index| {
+            usize::try_from(seat)
+                .map_err(|_| -2)
+                .and_then(|seat| decode_action_text(index, troll_id, seat, width, height))
+        })
     {
         Ok(text) => text,
         Err(status) => return status,
@@ -2388,8 +2821,11 @@ pub unsafe extern "C" fn tf_full_encode_command(
     command_utf8: *const u8,
     command_length: usize,
     expected_troll_id: i32,
+    seat: i32,
     width: i32,
     height: i32,
+    troll_x: i32,
+    troll_y: i32,
 ) -> i32 {
     if command_utf8.is_null() {
         return -1;
@@ -2399,7 +2835,19 @@ pub unsafe extern "C" fn tf_full_encode_command(
         Ok(command) => command,
         Err(_) => return -2,
     };
-    match encode_command_text(command, expected_troll_id, width, height) {
+    let seat = match usize::try_from(seat) {
+        Ok(seat) => seat,
+        Err(_) => return -2,
+    };
+    match encode_command_text(
+        command,
+        expected_troll_id,
+        seat,
+        width,
+        height,
+        troll_x,
+        troll_y,
+    ) {
         Ok(index) => index as i32,
         Err(status) => status,
     }
@@ -2450,6 +2898,19 @@ pub unsafe extern "C" fn tf_full_obs_from_state(
         Ok(game) => game,
         Err(_) => return -3,
     };
+    if validate_observation_context(
+        &game,
+        seat as usize,
+        active_troll_id,
+        phase,
+        plan_index as usize,
+        prior_target_trained != 0,
+        &parsed.staged_actions,
+    )
+    .is_err()
+    {
+        return -2;
+    }
     let output = std::slice::from_raw_parts_mut(obs, TF_FULL_OBS_SIZE);
     if fill_observation(
         &game,
@@ -2549,7 +3010,7 @@ mod tests {
         for index in 0..TF_FULL_PLAN_SIZE {
             let plan = decode_plan(index).unwrap();
             if index != 0 {
-                let encoded = (((plan.0 - 1) * 4 + (plan.1 - 1)) * 3 + plan.2) * 4 + plan.3;
+                let encoded = (((plan.0 - 1) * 5 + (plan.1 - 1)) * 4 + plan.2) * 5 + plan.3;
                 assert_eq!(encoded as usize, index);
             }
         }
@@ -2559,12 +3020,12 @@ mod tests {
         legal_plan_mask(&game, 0, &mut mask);
         assert_eq!(mask[0], 1);
         assert_eq!(mask[1], 1);
-        assert_eq!(mask[12], 0);
+        assert_eq!(mask[12], 1);
     }
 
     #[test]
     fn later_troll_mask_respects_earlier_end_cell_reservation() {
-        let mut game = from_ascii(&["0...1"]);
+        let mut game = crate::game::state::from_ascii(&["0...1"]);
         game.units.push(Unit {
             id: 2,
             player: 0,
@@ -2589,12 +3050,19 @@ mod tests {
     }
 
     #[test]
-    fn move_action_text_round_trips_every_cell() {
-        for y in 0..3 {
-            for x in 0..5 {
-                let index = action_index(0, (x, y));
-                let text = decode_action_text(index, 17, 5, 3).unwrap();
-                assert_eq!(encode_command_text(&text, 17, 5, 3).unwrap(), index);
+    fn move_action_text_round_trips_every_cell_for_both_seats() {
+        for seat in 0..2 {
+            for y in 0..3 {
+                for x in 0..5 {
+                    let index = action_index(0, (x, y));
+                    let text = decode_action_text(index, 17, seat, 5, 3).unwrap();
+                    let absolute = if seat == 0 { (x, y) } else { (4 - x, 2 - y) };
+                    assert_eq!(
+                        encode_command_text(&text, 17, seat, 5, 3, absolute.0, absolute.1)
+                            .unwrap(),
+                        index
+                    );
+                }
             }
         }
     }
@@ -2639,6 +3107,141 @@ mod tests {
     }
 
     #[test]
+    fn reconstructed_context_rejects_fail_open_staging() {
+        let mut parsed: JsonState = serde_json::from_str(&tiny_state_json()).unwrap();
+        let game = parsed.to_game().unwrap();
+        assert!(validate_observation_context(&game, 0, -1, 0, 0, false, &[]).is_ok());
+        assert!(validate_observation_context(&game, 0, 0, 0, 0, false, &[]).is_err());
+
+        parsed.units.push(JsonUnit {
+            id: 2,
+            player: 0,
+            x: 1,
+            y: 0,
+            ms: 1,
+            cc: 1,
+            hp: 1,
+            chop: 1,
+            carry: [0; 6],
+        });
+        let game = parsed.to_game().unwrap();
+        let legal = [StagedAction {
+            troll_id: 0,
+            action_index: action_index(0, (0, 0)) as i32,
+        }];
+        assert!(validate_observation_context(&game, 0, 2, 1, 0, false, &legal).is_ok());
+        let malformed = [StagedAction {
+            troll_id: 0,
+            action_index: -1,
+        }];
+        assert!(validate_observation_context(&game, 0, 2, 1, 0, false, &malformed).is_err());
+    }
+
+    #[test]
+    fn widened_talent_planes_preserve_old_values_and_reach_new_maxima_for_both_seats() {
+        for seat in 0..2 {
+            let mut old = crate::game::state::from_ascii_with_talents(
+                &["0...1", "....."],
+                (3, 4, 3, 3),
+            );
+            for unit in &mut old.units {
+                unit.carry = [4, 0, 0, 0, 0, 0];
+            }
+            let mut old_obs = vec![0; TF_FULL_OBS_SIZE];
+            fill_observation(
+                &old,
+                seat,
+                seat as i32,
+                1,
+                273,
+                false,
+                &[],
+                None,
+                &mut old_obs,
+            )
+            .unwrap();
+            let old_cell = view_cell(&old, seat, old.units[seat].pos());
+            for (plane, expected) in [
+                (18, quant(3, 4)),
+                (19, quant(4, 5)),
+                (21, quant(3, 4)),
+                (22, quant(4, 5)),
+                (93, quant(4, 5)),
+            ] {
+                assert_eq!(old_obs[plane * TF_FULL_CELLS + spatial(old_cell)], expected);
+                assert!(expected < 255);
+            }
+            for (plane, expected) in [(60, quant(3, 4)), (61, quant(4, 5)), (62, quant(2, 3)), (63, quant(3, 4))] {
+                assert_eq!(old_obs[plane * TF_FULL_CELLS], expected);
+                assert!(expected < 255);
+            }
+
+            let mut new = crate::game::state::from_ascii_with_talents(
+                &["0...1", "....."],
+                (4, 5, 3, 4),
+            );
+            for unit in &mut new.units {
+                unit.carry = [5, 0, 0, 0, 0, 0];
+            }
+            let mut new_obs = vec![0; TF_FULL_OBS_SIZE];
+            fill_observation(
+                &new,
+                seat,
+                seat as i32,
+                1,
+                399,
+                false,
+                &[],
+                None,
+                &mut new_obs,
+            )
+            .unwrap();
+            let new_cell = view_cell(&new, seat, new.units[seat].pos());
+            for plane in [18, 19, 20, 21, 22, 93] {
+                assert_eq!(new_obs[plane * TF_FULL_CELLS + spatial(new_cell)], 255);
+            }
+            for plane in 60..=63 {
+                assert_eq!(new_obs[plane * TF_FULL_CELLS], 255);
+            }
+
+            old.units = (0..24)
+                .map(|id| Unit {
+                    id,
+                    player: id / 12,
+                    x: if id < 12 { 0 } else { 4 },
+                    y: 0,
+                    ms: 3,
+                    cc: 4,
+                    hp: 3,
+                    chop: 3,
+                    carry: [0; 6],
+                })
+                .collect();
+            fill_observation(&old, seat, -1, 0, 0, false, &[], None, &mut old_obs).unwrap();
+            assert_eq!(old_obs[76 * TF_FULL_CELLS], quant(36, 48));
+            assert_eq!(old_obs[77 * TF_FULL_CELLS], quant(48, 60));
+            assert_eq!(old_obs[79 * TF_FULL_CELLS], quant(36, 48));
+            new.units = (0..24)
+                .map(|id| Unit {
+                    id,
+                    player: id / 12,
+                    x: if id < 12 { 0 } else { 4 },
+                    y: 0,
+                    ms: 4,
+                    cc: 5,
+                    hp: 3,
+                    chop: 4,
+                    carry: [0; 6],
+                })
+                .collect();
+            fill_observation(&new, seat, -1, 0, 0, false, &[], None, &mut new_obs).unwrap();
+            for plane in [76, 77, 78, 79, 84, 85, 86, 87] {
+                assert_eq!(new_obs[plane * TF_FULL_CELLS], 255);
+            }
+        }
+    }
+
+    #[test]
     fn linked_and_external_opponents_complete_legal_real_map_games() {
         let maps = real_maps();
         for opponent_id in 0..7 {
@@ -2670,7 +3273,9 @@ mod tests {
                 }
             }
             let terminal = terminal.unwrap_or_else(|| panic!("opponent {opponent_id} did not end"));
-            assert_eq!(terminal.illegal_commands, 0);
+            if opponent_id == 6 {
+                assert_eq!(terminal.illegal_commands, 0);
+            }
             assert!(terminal.episode_turns <= 300);
             let replay = terminal.replay.expect("completed game replay");
             let decoded: serde_json::Value = serde_json::from_slice(&replay).unwrap();
@@ -2679,5 +3284,25 @@ mod tests {
                 terminal.episode_turns as usize
             );
         }
+    }
+
+    #[test]
+    fn rejection_counter_distinguishes_legal_and_illegal_commands() {
+        let game = crate::game::state::from_ascii_with_talents(
+            &["0...1", "....."],
+            (1, 1, 1, 1),
+        );
+        assert_eq!(
+            command_rejections(&game, &["MOVE 0 1 1".to_string()], &[]),
+            0
+        );
+        assert_eq!(
+            command_rejections(&game, &["CHOP 0".to_string()], &[]),
+            1
+        );
+        assert_eq!(
+            command_rejections(&game, &["MOVE nope 1 1".to_string()], &[]),
+            1
+        );
     }
 }

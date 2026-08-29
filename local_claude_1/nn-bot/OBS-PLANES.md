@@ -1,6 +1,6 @@
 # Full-game neural policy observation planes
 
-Status: signed interface, 2026-08-29. This is the normative plane
+Status: signed interface, amended 2026-08-29 for plan generation `v400-2026-08-29`. This is the normative plane
 layout for both `rust/src/rl_full.rs` and the independent dataset builder. It expands delineate's
 published channel groups into exact per-channel meanings; the source deliberately leaves the
 details open and says that a sensible choice is sufficient.
@@ -43,26 +43,26 @@ details open and says that a sensible choice is sufficient.
 | 15 | tree cooldown | `0..9`, `S=9` |
 | 16 | own troll occupancy | binary at the troll cell, `S=1` |
 | 17 | opponent troll occupancy | binary at the troll cell, `S=1` |
-| 18 | own troll movement speed | at its cell, `S=3` |
-| 19 | own troll carry capacity | at its cell, `S=4` |
+| 18 | own troll movement speed | at its cell, `S=4` |
+| 19 | own troll carry capacity | at its cell, `S=5` |
 | 20 | own troll harvest power | at its cell, `S=3` |
-| 21 | own troll chop power | at its cell, `S=3` |
-| 22 | own troll carried plum | at its cell, `S=4` |
-| 23 | own troll carried lemon | at its cell, `S=4` |
-| 24 | own troll carried apple | at its cell, `S=4` |
-| 25 | own troll carried banana | at its cell, `S=4` |
-| 26 | own troll carried iron | at its cell, `S=4` |
-| 27 | own troll carried wood | at its cell, `S=4` |
-| 28 | opponent troll movement speed | at its cell, `S=3` |
-| 29 | opponent troll carry capacity | at its cell, `S=4` |
+| 21 | own troll chop power | at its cell, `S=4` |
+| 22 | own troll carried plum | at its cell, `S=5` |
+| 23 | own troll carried lemon | at its cell, `S=5` |
+| 24 | own troll carried apple | at its cell, `S=5` |
+| 25 | own troll carried banana | at its cell, `S=5` |
+| 26 | own troll carried iron | at its cell, `S=5` |
+| 27 | own troll carried wood | at its cell, `S=5` |
+| 28 | opponent troll movement speed | at its cell, `S=4` |
+| 29 | opponent troll carry capacity | at its cell, `S=5` |
 | 30 | opponent troll harvest power | at its cell, `S=3` |
-| 31 | opponent troll chop power | at its cell, `S=3` |
-| 32 | opponent troll carried plum | at its cell, `S=4` |
-| 33 | opponent troll carried lemon | at its cell, `S=4` |
-| 34 | opponent troll carried apple | at its cell, `S=4` |
-| 35 | opponent troll carried banana | at its cell, `S=4` |
-| 36 | opponent troll carried iron | at its cell, `S=4` |
-| 37 | opponent troll carried wood | at its cell, `S=4` |
+| 31 | opponent troll chop power | at its cell, `S=4` |
+| 32 | opponent troll carried plum | at its cell, `S=5` |
+| 33 | opponent troll carried lemon | at its cell, `S=5` |
+| 34 | opponent troll carried apple | at its cell, `S=5` |
+| 35 | opponent troll carried banana | at its cell, `S=5` |
+| 36 | opponent troll carried iron | at its cell, `S=5` |
+| 37 | opponent troll carried wood | at its cell, `S=5` |
 | 38 | walking distance from this cell to an own-shack door | clipped distance, `S=40` |
 | 39 | walking distance from this cell to an opponent-shack door | clipped distance, `S=40` |
 | 40 | cell is orthogonally adjacent to iron | binary, `S=1` |
@@ -85,43 +85,43 @@ details open and says that a sensible choice is sufficient.
 | 57 | own troll count | broadcast, `S=12` |
 | 58 | opponent troll count | broadcast, `S=12` |
 | 59 | current turn has a nonzero train target | broadcast binary, `S=1` |
-| 60 | train-target movement speed | broadcast, `S=3` |
-| 61 | train-target carry capacity | broadcast, `S=4` |
-| 62 | train-target harvest power | broadcast, `S=2` |
-| 63 | train-target chop power | broadcast, `S=3` |
-| 64 | effective train cost: plum | broadcast, `S=32` |
-| 65 | effective train cost: lemon | broadcast, `S=32` |
-| 66 | effective train cost: apple | broadcast, `S=32` |
-| 67 | effective train cost: iron | broadcast, `S=32` |
-| 68 | current train deficit: plum | broadcast `max(cost-bank,0)`, `S=32` |
-| 69 | current train deficit: lemon | broadcast `max(cost-bank,0)`, `S=32` |
-| 70 | current train deficit: apple | broadcast `max(cost-bank,0)`, `S=32` |
-| 71 | current train deficit: iron | broadcast `max(cost-bank,0)`, `S=32` |
-| 72 | maximum own movement speed | broadcast, `S=3` |
-| 73 | maximum own carry capacity | broadcast, `S=4` |
+| 60 | train-target movement speed | broadcast, `S=4` |
+| 61 | train-target carry capacity | broadcast, `S=5` |
+| 62 | train-target harvest power | broadcast, `S=3` |
+| 63 | train-target chop power | broadcast, `S=4` |
+| 64 | effective train cost: plum | broadcast, `S=48` |
+| 65 | effective train cost: lemon | broadcast, `S=48` |
+| 66 | effective train cost: apple | broadcast, `S=48` |
+| 67 | effective train cost: iron | broadcast, `S=48` |
+| 68 | current train deficit: plum | broadcast `max(cost-bank,0)`, `S=48` |
+| 69 | current train deficit: lemon | broadcast `max(cost-bank,0)`, `S=48` |
+| 70 | current train deficit: apple | broadcast `max(cost-bank,0)`, `S=48` |
+| 71 | current train deficit: iron | broadcast `max(cost-bank,0)`, `S=48` |
+| 72 | maximum own movement speed | broadcast, `S=4` |
+| 73 | maximum own carry capacity | broadcast, `S=5` |
 | 74 | maximum own harvest power | broadcast, `S=3` |
-| 75 | maximum own chop power | broadcast, `S=3` |
-| 76 | sum of own movement speeds | broadcast, `S=36` |
-| 77 | sum of own carry capacities | broadcast, `S=48` |
+| 75 | maximum own chop power | broadcast, `S=4` |
+| 76 | sum of own movement speeds | broadcast, `S=48` |
+| 77 | sum of own carry capacities | broadcast, `S=60` |
 | 78 | sum of own harvest powers | broadcast, `S=36` |
-| 79 | sum of own chop powers | broadcast, `S=36` |
-| 80 | maximum opponent movement speed | broadcast, `S=3` |
-| 81 | maximum opponent carry capacity | broadcast, `S=4` |
+| 79 | sum of own chop powers | broadcast, `S=48` |
+| 80 | maximum opponent movement speed | broadcast, `S=4` |
+| 81 | maximum opponent carry capacity | broadcast, `S=5` |
 | 82 | maximum opponent harvest power | broadcast, `S=3` |
-| 83 | maximum opponent chop power | broadcast, `S=3` |
-| 84 | sum of opponent movement speeds | broadcast, `S=36` |
-| 85 | sum of opponent carry capacities | broadcast, `S=48` |
+| 83 | maximum opponent chop power | broadcast, `S=4` |
+| 84 | sum of opponent movement speeds | broadcast, `S=48` |
+| 85 | sum of opponent carry capacities | broadcast, `S=60` |
 | 86 | sum of opponent harvest powers | broadcast, `S=36` |
-| 87 | sum of opponent chop powers | broadcast, `S=36` |
+| 87 | sum of opponent chop powers | broadcast, `S=48` |
 | 88 | distance from this cell to the nearest living plum tree | clipped distance, `S=40` |
 | 89 | distance from this cell to the nearest living lemon tree | clipped distance, `S=40` |
 | 90 | distance from this cell to the nearest living apple tree | clipped distance, `S=40` |
 | 91 | distance from this cell to the nearest living banana tree | clipped distance, `S=40` |
 | 92 | distance from this cell to the nearest legal mining cell | clipped distance, `S=40` |
-| 93 | own troll total carried items | at its cell, `S=4` |
-| 94 | own troll free capacity | at its cell, `S=4` |
-| 95 | opponent troll total carried items | at its cell, `S=4` |
-| 96 | opponent troll free capacity | at its cell, `S=4` |
+| 93 | own troll total carried items | at its cell, `S=5` |
+| 94 | own troll free capacity | at its cell, `S=5` |
+| 95 | opponent troll total carried items | at its cell, `S=5` |
+| 96 | opponent troll free capacity | at its cell, `S=5` |
 | 97 | plan action accepted for this turn | broadcast binary after any plan action, zero or nonzero, `S=1` |
 | 98 | prior turn successfully trained its queued target | broadcast binary during the next plan phase, `S=1` |
 | 99 | active troll | one-hot at the active own troll, `S=1`; all zero means plan phase |
@@ -144,9 +144,10 @@ walkable cell orthogonally adjacent to an iron cell. If a target set is empty, t
 ### Train target and plan index
 
 Plan index is
-`(((movement-1) * 4 + (carry-1)) * 3 + harvest) * 4 + chop`, with movement `1..3`, carry
-`1..4`, harvest `0..2`, and chop `0..3`. Index 0 would be `(1,1,0,0)`, which is mechanically
-useless; it is repurposed as **train nothing**. Index 0 zeroes planes 59-71 and 97.
+`(((movement-1) * 5 + (carry-1)) * 4 + harvest) * 5 + chop`, with movement `1..4`, carry
+`1..5`, harvest `0..3`, and chop `0..4`. Index 0 would be `(1,1,0,0)` and is repurposed as
+**train nothing**; that tuple has no purchase label. Index 0 zeroes planes 59-71. Plane 97 is still
+one after index 0 is accepted because it records phase, not target presence.
 
 For a nonzero plan, cost uses the current own troll count `n`:
 `PLUM=n+movement^2`, `LEMON=n+carry^2`, `APPLE=n+harvest^2`, and
@@ -154,10 +155,14 @@ For a nonzero plan, cost uses the current own troll count `n`:
 referee does not charge iron there. Cost and deficit ignore BANANA and WOOD, whose train costs are
 zero.
 
-At plan phase, plane 99 is all zero. Once the plan action is accepted, the plan is visible in
-59-71 during every troll mini-step and plane 97 is one even when the accepted plan is zero. Plane 98 is a
-one-turn latch: it is set only in the plan-phase observation immediately after the prior full turn
-successfully created the queued specification, then cleared when the new plan action is accepted.
+At plan phase, plane 99 is all zero and planes 59-71 show the policy's standing PPO target from the
+prior turn (zero at game start and after that target trains successfully). Once a plan action is
+accepted, the newly selected plan replaces it in 59-71 during every troll mini-step and remains the
+standing target if TRAIN does not succeed. Plane 97 is one even when the accepted plan is zero.
+Plane 98 is a one-turn latch: it is set only in the plan-phase observation immediately after the
+prior full turn successfully created the queued specification, then cleared when the new plan action
+is accepted. Behaviour-cloning plan rows deliberately zero planes 59-71; target memory there would
+leak the hindsight label.
 
 ### Several trolls and staged commands
 
@@ -187,3 +192,5 @@ plane even if it also carries iron or wood.
    1,000 sampled states, including staged earlier-troll commands.
 3. The independent dataset plane builder must match `tf_full_obs_from_state` byte-for-byte on
    1,000 states; comparison uses raw `u8` bytes, not normalized floats.
+4. Both seats have saturation controls at every old and new maximum for planes 18-37, 60-87 and
+   93-96; a generation mismatch against `v400-2026-08-29` is a load error, not clipping.
