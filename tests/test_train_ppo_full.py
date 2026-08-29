@@ -314,6 +314,46 @@ def test_an_iron_free_map_waives_the_iron_cost_and_deficit() -> None:
     assert float(without_iron["deficit"][0, :, 3].abs().max()) == 0.0
 
 
+def test_the_match_column_starts_at_exactly_zero_and_ppo_then_trains_it() -> None:
+    """A clone never sees "matches the standing target" set, so that column starts at zero.
+
+    Then the clone's first PPO plan phase scores the candidates identically whether or not a
+    target is standing, instead of being kicked by a weight nobody ever trained. The scorer is
+    exercised on its own here, with one fixed pooled vector: the shared convolution trunk also
+    reads planes 59-63, so this is the only place the invariance can be stated exactly.
+    """
+
+    torch.manual_seed(41)
+    scorer = PlanCandidateScorer(width=16)
+    match_column = scorer.mlp[0].weight[:, scorer.match_feature_index]
+    assert torch.equal(match_column, torch.zeros_like(match_column))
+    # Every other column keeps its ordinary orthogonal initialisation.
+    other = scorer.mlp[0].weight[:, : scorer.match_feature_index].detach()
+    assert float(other.abs().sum()) > 0.0
+
+    banks, trolls, target = (10, 10, 10, 10), 2, (2, 4, 1, 3)
+    scaled_none = torch.from_numpy(_crafted_observation(banks, trolls, None)).float() / 255.0
+    scaled_target = torch.from_numpy(_crafted_observation(banks, trolls, target)).float() / 255.0
+    valid = scaled_none[:, :1]
+    assert torch.equal(valid, scaled_target[:, :1])
+    pooled = torch.randn(1, 16)
+
+    absent = scorer(pooled, scaled_none, valid)
+    present = scorer(pooled, scaled_target, valid)
+    assert torch.equal(absent, present)          # byte-identical at init
+
+    # One gradient step gives the column a value, and the two part company.
+    optimizer = torch.optim.SGD(scorer.parameters(), lr=0.5)
+    optimizer.zero_grad(set_to_none=True)
+    (-scorer(pooled, scaled_target, valid)[0, plan_index(*target)]).backward()
+    optimizer.step()
+    trained = scorer.mlp[0].weight[:, scorer.match_feature_index].detach()
+    assert float(trained.abs().sum()) > 0.0
+    assert not torch.equal(
+        scorer(pooled, scaled_none, valid), scorer(pooled, scaled_target, valid)
+    )
+
+
 def test_no_candidate_matches_a_target_that_is_none() -> None:
     """Plane 59 at zero means "no standing target", and then the matches column is all zero.
 

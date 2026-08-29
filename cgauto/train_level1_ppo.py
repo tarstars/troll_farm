@@ -141,12 +141,24 @@ class PlanCandidateScorer(nn.Module):
         self.width = width
         self.hidden = hidden
         self.feature_size = width + 14
+        #: The column of the "matches the standing target" flag: the last feature.
+        self.match_feature_index = self.feature_size - 1
         self.mlp = nn.Sequential(
             layer_init(nn.Linear(self.feature_size, hidden)),
             nn.ReLU(inplace=True),
             layer_init(nn.Linear(hidden, 1), std=0.01),
         )
         self.null_bias = nn.Parameter(torch.zeros(1))
+
+        # The "matches the standing target" column starts at exactly zero. A behaviour-cloned
+        # network never sees that feature set -- BC plan rows carry no standing target (amendment
+        # 8, "No target memory in behaviour cloning") -- so a zero column makes the clone's first
+        # PPO plan phase produce identical logits whether or not a target is standing, instead of
+        # being kicked by a weight nobody ever trained. PPO then trains the column from there.
+        # Only this column is identically zero in cloning: the cost, deficit and affordable
+        # columns are live there, so they keep their ordinary initialisation.
+        with torch.no_grad():
+            self.mlp[0].weight[:, self.match_feature_index].zero_()
 
         talents = torch.tensor(
             [list(plan_talents(index)) for index in range(PLAN_ACTION_SIZE)],
