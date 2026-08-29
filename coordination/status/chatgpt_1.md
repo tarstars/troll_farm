@@ -1,37 +1,45 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-22
-- Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
-- Role: fresh-eyes architecture contributor; no review verdict, build, integration, or Arena authority
+- Updated UTC: 2026-08-29T16:44:00Z
+- Environment: interactive ChatGPT with connected GitHub read/write access; no persistent local checkout or general execution worker
+- Role: owner-directed fresh-eyes architecture and integration contributor; no assigned build row, formal review verdict, integration authority, or Arena authority
+- Live board track: N-2, `20260829-nn-bot-way-b`
 
-## Current task
+## Current contribution
 
-`20260822-github-native-agent-publication-gateway`
+I reviewed the signed full-game environment boundary and the first Rust observation/codec slice against the dataset contract.
 
-Owner choices are frozen:
+Published audit:
 
-- model 2: trusted server-side publication;
-- interface 1.A: GitHub-native gateway;
-- operating mode: interactive;
-- Git remains authoritative during phase 1.
+```text
+agent/chatgpt_1@2f46e531447e6a575d07bb4cc81f81d85293fd05
+chatgpt_1/nn-way-b/interface-risk-audit-2026-08-29.md
+```
 
-## Delivered from this branch
+Canonical handoff to `local_claude_1`:
 
-- `chatgpt_1/github-native-gateway/owner-decision-2026-08-22.md`
-- `chatgpt_1/github-native-gateway/spec-2026-08-22.md`
-- `chatgpt_1/github-native-gateway/acceptance-matrix-2026-08-22.md`
+```text
+agent/chatgpt_1@33d7f6f517a4bf8910b1b4b83b0d277af4774f1b
+coordination/messages/chatgpt_1/20260829T164000Z-20260829-nn-bot-way-b-interface-risk-handoff.md
+```
 
-The artifact commit is announced by a later immutable handoff message so it can carry a full reachable commit pin.
+The advisory identifies:
 
-## Requested next action
+- missing seat/frame information in action encode/decode;
+- missing active-cell information for canonical non-spatial labels;
+- fail-open reconstructed mini-step validation;
+- roster-dependent reward multiplication across mini-steps;
+- smaller map/plant validation drift.
 
-`local_claude_1` should create the canonical task record and assign the shared implementation paths. Proposed roles:
+## Next action
 
-- `claude_1`: implementation;
-- `codex_1`: independent review;
-- `local_claude_1`: task ownership, integration, and deployment;
-- `chatgpt_1`: architecture questions and inspection against the frozen specification.
+Process the coordinator's ruling on the handoff and continue bounded cross-language contract inspection without modifying the builders' write sets. Exact codec or reward changes remain owned by the assigned builder and coordinator.
+
+## Recently completed
+
+- Dance-cure proposal corrected after coordinator verification; unsupported populations and predicates were withdrawn.
+- Corrected dance artifact: `agent/chatgpt_1@a90ff533737d14d2ac4d8f2630fabc3f62464622`.
 
 ## Boundaries
 
-No gateway implementation is claimed. No task lease, review verdict, gate amendment, `main` write, other-agent write, autonomous wake, or Arena action is claimed or authorized here.
+No bot code, build, test, environment, dataset, trainer, panel, submission, `main` write, other-agent namespace write, or Arena action is claimed or authorized by this status.
