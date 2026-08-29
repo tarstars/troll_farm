@@ -502,6 +502,23 @@ fn distance_plane(
     }
 }
 
+fn door_distance_plane(
+    output: &mut [u8],
+    game: &GameState,
+    seat: usize,
+    plane: usize,
+    shack: Cell,
+) {
+    let doors: Vec<_> = game
+        .walkable
+        .iter()
+        .copied()
+        .filter(|cell| manhattan(*cell, shack) == 1)
+        .collect();
+    distance_plane(output, game, seat, plane, &doors);
+    set_cell(output, plane, view_cell(game, seat, shack), 0);
+}
+
 fn fill_observation(
     game: &GameState,
     seat: usize,
@@ -602,8 +619,8 @@ fn fill_observation(
             set_cell(output, 99, cell, 255);
         }
     }
-    distance_plane(output, game, seat, 38, &[game.shacks[seat]]);
-    distance_plane(output, game, seat, 39, &[game.shacks[1 - seat]]);
+    door_distance_plane(output, game, seat, 38, game.shacks[seat]);
+    door_distance_plane(output, game, seat, 39, game.shacks[1 - seat]);
     for kind in 0..4 {
         let sources: Vec<_> = game
             .plants
@@ -2525,6 +2542,9 @@ mod tests {
         );
         assert_eq!(obs[59 * TF_FULL_CELLS], 0);
         assert_eq!(obs[99 * TF_FULL_CELLS], 255);
+        assert_eq!(obs[38 * TF_FULL_CELLS], 0, "shack distance");
+        assert_eq!(obs[38 * TF_FULL_CELLS + 1], 0, "door distance");
+        assert_eq!(obs[38 * TF_FULL_CELLS + 2], quant(1, 40));
     }
 
     #[test]
