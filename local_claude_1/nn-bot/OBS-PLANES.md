@@ -1,6 +1,6 @@
 # Full-game neural policy observation planes
 
-Status: proposed interface for coordinator signature, 2026-08-29. This is the normative plane
+Status: signed interface, 2026-08-29. This is the normative plane
 layout for both `rust/src/rl_full.rs` and the independent dataset builder. It expands delineate's
 published channel groups into exact per-channel meanings; the source deliberately leaves the
 details open and says that a sensible choice is sufficient.
@@ -122,7 +122,7 @@ details open and says that a sensible choice is sufficient.
 | 94 | own troll free capacity | at its cell, `S=4` |
 | 95 | opponent troll total carried items | at its cell, `S=4` |
 | 96 | opponent troll free capacity | at its cell, `S=4` |
-| 97 | train target queued for this turn | broadcast binary after a nonzero plan action, `S=1` |
+| 97 | plan action accepted for this turn | broadcast binary after any plan action, zero or nonzero, `S=1` |
 | 98 | prior turn successfully trained its queued target | broadcast binary during the next plan phase, `S=1` |
 | 99 | active troll | one-hot at the active own troll, `S=1`; all zero means plan phase |
 | 100 | own troll is full | binary at its cell, `S=1` |
@@ -155,7 +155,7 @@ referee does not charge iron there. Cost and deficit ignore BANANA and WOOD, who
 zero.
 
 At plan phase, plane 99 is all zero. Once the plan action is accepted, the plan is visible in
-59-71 during every troll mini-step and plane 97 records whether it is nonzero. Plane 98 is a
+59-71 during every troll mini-step and plane 97 is one even when the accepted plan is zero. Plane 98 is a
 one-turn latch: it is set only in the plan-phase observation immediately after the prior full turn
 successfully created the queued specification, then cleared when the new plan action is accepted.
 

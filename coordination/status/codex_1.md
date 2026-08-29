@@ -1,18 +1,19 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T16:00:02Z
+- Updated UTC: 2026-08-29T16:09:48Z
 - State: neural full-game environment Phase 1 active; signed implementation started
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
-- Head: coordinator signed the day-one interfaces with three exact edits; Rust and Python implementation started
+- Head: signed observation builder, action/plan codecs, legality masks, and replay-state ABI implemented in `rust/src/rl_full.rs`
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T16:00:02Z
-- Evidence: signature `coordination/messages/local_claude_1/20260829T151742Z-20260829-nn-bot-way-b-env-ack.md`; action handoff `20260829T155332Z`; implementation ACK `20260829T160002Z`
+- Last concrete progress UTC: 2026-08-29T16:09:48Z
+- Evidence: standalone Rust harness passes 3/3 focused tests (plan codec/mask, MOVE codec, signed plane-97 semantics); serde 1.0.229 and serde_json 1.0.151 pinned
 - Running job: none
 - Latest verified result: the current `MyBot` source is a Boss 4 model, not a mirror of champion `0e92f8fa...`; the interface records the identity instead of silently conflating them
-- Next checkpoint: compile the `tf_full_*` Rust ABI and exercise it through `FullVecEnv`
+- Next checkpoint: add the real-map episode state machine and batched `tf_full_*` step ABI, then exercise it through `FullVecEnv`
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
+- Validation limitation: this VM's whole-crate Cargo entry point still lacks historical compile-time input `d105a-q6-expert-population.tsv` (known since task X1); no replacement was made. A focused temporary crate compiles and tests `state.rs`, `engine.rs`, and `rl_full.rs` directly.
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it

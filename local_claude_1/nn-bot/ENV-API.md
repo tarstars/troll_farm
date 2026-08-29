@@ -1,6 +1,6 @@
 # Full-game vector environment API
 
-Status: proposed interface for coordinator signature, 2026-08-29. This document freezes the
+Status: signed interface, 2026-08-29. This document freezes the
 boundary between `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, the dataset builder, and a frozen
 Python opponent. Implementation starts only after signature.
 
