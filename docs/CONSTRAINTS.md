@@ -498,6 +498,19 @@ claim + decisive number + evidence pointer (`Dnnn` / `Phase n` = journal vol 1
   states on the official substrate (D29's approach, killed pre-D33 by the map-domain
   artifact, never retried) — reopening requires an owner decision citing this entry.
   [D172a]
+- **REOPENED 2026-08-29 13:3xZ by the owner, citing the entry above — for the whole-policy
+  route only.** The owner's words on the analysis `local_claude_1/nn-bot/ANALYSIS-2026-08-29.md`:
+  "1) open line 2) B 3) I'll check". Open: the policy as a network over spatial planes on
+  the official substrate (delineate's construction — 104 planes × 11 × 22, 13 action types
+  per cell, a 144-way train-plan head, one pass per troll), **Way B**: clone the top four's
+  primitive commands from the exact replay reconstruction (`local_claude_1/reconstructions/
+  fits/reconstruct.py`, 784 games, 0 disagreements) with hindsight TRAIN labels for the
+  plan head, then PPO from that start with the clone as a 0.10 anchor, on real maps, against
+  the champion / orchard 6 / a checkpoint pool; the first probe is the clone in the bench,
+  judged by the owner's own read of its games. Stays closed: selector learning on the
+  64-field + affordance observables (the sentence above), generated maps as a training
+  distribution (D29–D33), and held-out accuracy as a gate (fit statistics anti-predict
+  transfer). Track N, card `coordination/tasks/20260829-nn-bot-way-b.md`. [N-2]
 - **H10a cannot reuse the Level-1 104-channel tensor verbatim.** Only 72 channels have
   generic current-state meanings after controlled-seat relabeling/canonical rotation;
   14 encode one selected unit, 2 encode Level-1 episode progress, 15 encode its fixed

@@ -1,4 +1,15 @@
-# GOAL — the third troll (owner 2026-08-28 04:3xZ: "set as next goal bot with the third troll"); the ladder rounds wind down; nothing else without the owner's word
+# GOAL — the third troll (owner 2026-08-28 04:3xZ: "set as next goal bot with the third troll"); since 2026-08-29 13:3xZ also TRACK N — the neural-network bot, Way B (owner: "1) open line 2) B 3) I'll check"); nothing else without the owner's word
+
+**TRACK N — THE NEURAL-NETWORK BOT, WAY B** (card `coordination/tasks/20260829-nn-bot-way-b.md`;
+analysis `local_claude_1/nn-bot/ANALYSIS-2026-08-29.md`): clone the top four's moves from the exact
+replay reconstruction as the starting policy, then PPO from that start with the clone as anchor, on
+real maps; five phases with done/dead/budget on the card. **Allowed:** Phase 1 (codex_1: the full-game
+environment) and the Phase 2 dataset (claude_1) as chartered; the clone's training and the bench on
+this host; the card's tests. **Not allowed:** the ~200 MB PyTorch download before the owner's WiFi
+word; moving or deleting data before the owner names what may move; any platform action while codex
+(the owner's own run outside this repository) holds the ladder — no submission, no collection, no
+leaderboard look — and, after that, no submission outside Phase 4's protocol (bed, reproduction, the
+owner's prediction, one hour, one reading).
 
 **THE NEXT EXPERIMENT — THE THIRD TROLL** (card `coordination/tasks/20260828-third-troll.md`): the
 champion of record (`41202036`, sha `0e92f8fa…`, readable `readable/denial-off-champion.rs`) plus one
