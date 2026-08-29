@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T16:09:48Z
-- State: neural full-game environment Phase 1 active; signed implementation started
+- Updated UTC: 2026-08-29T16:56:15Z
+- State: neural full-game environment Phase 1 implemented; final gates active
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
-- Head: signed observation builder, action/plan codecs, legality masks, and replay-state ABI implemented in `rust/src/rl_full.rs`
+- Head: real-map batched environment, seven-opponent state machine, full C ABI, NumPy wrapper, replay verifier, and tests implemented
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T16:09:48Z
-- Evidence: standalone Rust harness passes 3/3 focused tests (plan codec/mask, MOVE codec, signed plane-97 semantics); serde 1.0.229 and serde_json 1.0.151 pinned
+- Last concrete progress UTC: 2026-08-29T16:56:15Z
+- Evidence: standalone release harness passes 50/50 tests and Python bridge passes 4/4; 20 parity-checked random self-play games completed at 171.88 turn-steps/s with 0 illegal commands and 20/20 replay parity
 - Running job: none
 - Latest verified result: the current `MyBot` source is a Boss 4 model, not a mirror of champion `0e92f8fa...`; the interface records the identity instead of silently conflating them
-- Next checkpoint: add the real-map episode state machine and batched `tf_full_*` step ABI, then exercise it through `FullVecEnv`
+- Next checkpoint: pin and push the implementation, run the 1,000-game parity gate plus 4/20-slot speed lines, then publish the day-6 delivery for independent reproduction
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
 - Validation limitation: this VM's whole-crate Cargo entry point still lacks historical compile-time input `d105a-q6-expert-population.tsv` (known since task X1); no replacement was made. A focused temporary crate compiles and tests `state.rs`, `engine.rs`, and `rl_full.rs` directly.
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
