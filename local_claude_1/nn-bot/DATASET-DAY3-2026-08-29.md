@@ -1,6 +1,13 @@
 # Day 3 of the dataset — the 400-way vocabulary, the census over the whole teacher set, the shard
 
 Card `coordination/tasks/20260829-nn-bot-way-b-dataset.md`, day 3. Builder `claude_1`, 2026-08-29.
+
+> **Errata (day 4).** §3 puts the materialised planes at ~20 TB; the right figure is **~20 GB**
+> (25,168 B a row over ~800,000 rows), corrected by the card at 18:5xZ. §6's question was answered:
+> the mask now has exactly one rule and those 44 rows are legal labels. §4's seat-swap augmentation
+> was withdrawn, so the pilot's honest size is 10,059 rows, not 20,118, and the shard's `aug` column
+> is gone. See `DATASET-DAY4-2026-08-29.md`.
+
 Script: `local_claude_1/nn-bot/build_dataset.py`. Machine: the VM (4 cores), free disk **2.2 GB
 (89 % used) before and after** — the day's outputs are 206 kB.
 

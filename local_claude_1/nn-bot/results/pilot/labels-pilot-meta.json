@@ -1,5 +1,19 @@
 {
  "plan_action_size": 400,
+ "plan_vocab_version": "v400-2026-08-29",
+ "fields": [
+  "game",
+  "turn",
+  "seat",
+  "kind",
+  "troll",
+  "verb",
+  "label",
+  "standing_plan",
+  "split"
+ ],
+ "standing_plan": "none (0) on every row; see the module head",
+ "seat_augmentation": false,
  "games": [
   {
    "game": 891153730,
@@ -16,7 +30,7 @@
     84
    ],
    "player": "delineate",
-   "rows": 2220,
+   "rows": 1110,
    "split": 0
   },
   {
@@ -36,7 +50,7 @@
     156
    ],
    "player": "delineate",
-   "rows": 2082,
+   "rows": 1041,
    "split": 0
   },
   {
@@ -53,7 +67,7 @@
     22
    ],
    "player": "delineate",
-   "rows": 1756,
+   "rows": 878,
    "split": 0
   },
   {
@@ -70,7 +84,7 @@
     1
    ],
    "player": "norxondor",
-   "rows": 1798,
+   "rows": 899,
    "split": 0
   },
   {
@@ -92,7 +106,7 @@
     172
    ],
    "player": "MSz",
-   "rows": 2054,
+   "rows": 1027,
    "split": 0
   },
   {
@@ -111,7 +125,7 @@
     138
    ],
    "player": "norxondor",
-   "rows": 1968,
+   "rows": 984,
    "split": 0
   },
   {
@@ -130,7 +144,7 @@
     133
    ],
    "player": "MSz",
-   "rows": 2586,
+   "rows": 1293,
    "split": 1
   },
   {
@@ -149,7 +163,7 @@
     128
    ],
    "player": "norxondor",
-   "rows": 2466,
+   "rows": 1233,
    "split": 0
   },
   {
@@ -168,7 +182,7 @@
    "trains": 0,
    "train_turns": [],
    "player": "Bubaptik",
-   "rows": 1200,
+   "rows": 600,
    "split": 0
   },
   {
@@ -190,7 +204,7 @@
     128
    ],
    "player": "Bubaptik",
-   "rows": 1988,
+   "rows": 994,
    "split": 0
   }
  ],
@@ -211,13 +225,12 @@
   "PLANT_APPLE": 9,
   "PICK_APPLE": 5
  },
- "oov": [],
- "mask_forbids": {},
+ "unsupported": [],
+ "masked_label": {},
  "unparsed": {},
- "rows": 20118,
+ "rows": 10059,
  "turn_states": 2954,
- "label_bytes": 31419,
+ "label_bytes": 18999,
  "state_bytes": 170777,
- "seat_swap": true,
  "holdout_percent": 20
 }

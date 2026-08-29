@@ -30,16 +30,36 @@ not depend on the plane layout at all.  `--out` therefore writes label shards; t
 shard is added when the table is signed and its per-row cost is stated below in the report.
 
 **Plan labels are censused, never coerced** (chatgpt_1's blocker, 2026-08-29 17:44Z; ruled at
-17:58Z).  A TRAIN tuple outside the vocabulary is counted, named and labelled `OOV` (-1) -- it is
-never silently folded onto a neighbouring index, and in particular a parsed `(1,1,0,0)` reaches
-index 0 only because that tuple really is "speed 1, carry 1, no harvest, no chop"; the
-"train nothing" row carries `troll = -2` so the two are distinguishable in the shard
-(chatgpt_1's mask-totality point, 18:02Z).  `--census-tables` runs the same guard over the whole
-teacher set's exact tables and must report zero.
+17:58Z, completed 18:16Z).  A TRAIN the teacher really issued gets a label only if the codec has
+one for it: a tuple outside the box, *and the in-range tuple `(1,1,0,0)` whose index is repurposed
+as "train nothing"*, are counted, named and labelled `OOV` (-1) rather than folded onto a
+neighbour.  A "train nothing" row carries `troll = -2` and a real plan row `troll = -1`, so the
+two are distinguishable in the shard.  `--census-tables` runs the same guard over the whole
+teacher set's exact tables and must report zero on both counts.
+
+**The mask has exactly one rule** (the card's second completion of amendment 8, 18:5xZ): entry 0
+is "train nothing" and every in-range entry is legal.  Day 3's census is what turned the ruling:
+`harvest > carry` was delineate's restriction and Bubaptik breaks it in 44 of its 425 purchases,
+and `harvest 0 and chop 0` is legal in the game and issued by no teacher (0 of 1,725).  So no real
+label is unreachable and the codec is total under the mask.
+
+**No target memory in cloning, and no seat augmentation** (the same ruling, points (b) and (d),
+on chatgpt_1's correction of 18:40Z).  Every row carries `standing_plan = 0` ("none"), and the
+plane builder must zero planes 59-71 with it: between two purchases the previous turn's hindsight
+label *is* this turn's label, so feeding it as the standing target would mark the answer on almost
+every row -- held-out games do not remove that.  And the seat swap is withdrawn: the observation
+is already player-relative, so flipping a label onto a state rebuilt from the other seat is a
+different example wearing the first one's label, not an augmentation of it.
+
+**One generation id.** `PLAN_VOCAB_VERSION = "v400-2026-08-29"` is written into every shard's
+metadata and checked by `read_shard`, so a 400-label shard cannot be trained against a 144-logit
+runtime or the reverse.
 
 **The shard carries states, not planes** (the coordinator's ruling 1, 17:58Z).  The 104 planes are
-about 25 kB a row -- ~20 TB over the teacher set -- while the per-turn state they are built from is
-~54 bytes gzipped.  So `--out` writes the labels (`labels-*.npz`), the per-turn compact states
+about 25 kB a row -- ~20 GB over the teacher set's ~800,000 rows -- while the per-turn state they
+are built from is ~58 bytes gzipped.  (Day 3's write-up said 20 TB; it was wrong by a thousand,
+corrected by the card at 18:5xZ.  The compact shard stands on size and on the drift discipline of
+one plane builder, not on impossibility.)  So `--out` writes the labels (`labels-*.npz`), the per-turn compact states
 (`states-*.jsonl.gz`) and the metadata, and the planes are built at load time by the Rust
 `tf_full_obs_from_state` the environment uses.  The Python plane builder stays the drift test's
 second implementation and is not written here until `OBS-PLANES.md` is signed.
@@ -61,6 +81,7 @@ import gzip
 import hashlib
 import json
 import sys
+import tempfile
 from collections import Counter
 from pathlib import Path
 
@@ -85,9 +106,18 @@ TYPES = ("PLUM", "LEMON", "APPLE", "BANANA")
 
 PLAN_SPEED, PLAN_CARRY, PLAN_HARVEST, PLAN_CHOP = (1, 4), (1, 5), (0, 3), (0, 4)
 PLAN_ACTION_SIZE = 400                                          # amendment 8
+PLAN_VOCAB_VERSION = "v400-2026-08-29"                          # amendment 8's generation id
 PLAN_NOTHING = 0                                                # index 0, repurposed
 OOV = -1
 KIND_PLAN, KIND_COMMAND = 0, 1
+#: The standing target the plan row is scored against.  In behaviour cloning it is *always*
+#: "none" (0) and planes 59-71 are zeroed with it -- the card's second completion of amendment 8,
+#: point (b), on chatgpt_1's leakage correction of 18:40Z: between two purchases the previous
+#: turn's hindsight label *is* this turn's label, so feeding it as a feature would mark the answer
+#: on almost every row and would still do so on held-out games.  In PPO the standing target is the
+#: environment's own state (the policy's previous choice), never synthesized from a label.  The
+#: column is written anyway so that a shard says out loud what the plane builder must put there.
+STANDING_PLAN_NONE = 0
 TROLL_PLAN, TROLL_NOTHING = -1, -2                              # the plan row's `troll` column
 
 
@@ -109,19 +139,34 @@ def plan_talents(index):
     return speed, carry, harvest, chop
 
 
-def plan_mask_forbids(speed, carry, harvest, chop):
-    """The parent card's mask rules, as a *reported* predicate, never as a coercion.
+def plan_index_is_legal(index):
+    """Amendment 8's mask, second completion (the card, 18:5xZ): **exactly one rule**.
 
-    The card masks `harvest == 0 and chop == 0` and `harvest > carry`.  Neither is a rule of the
-    game: `sim/engine.py::apply_train` charges `n + stat**2` per talent and refuses only on
-    affordability and on an occupied shack.  Real teachers issue tuples this mask forbids, so the
-    builder labels them honestly and counts them here rather than dropping the row."""
-    reasons = []
-    if harvest == 0 and chop == 0:
-        reasons.append("harvest0_and_chop0")
-    if harvest > carry:
-        reasons.append("harvest>carry")
-    return reasons
+    Entry 0 ("train nothing") is always legal, and so is every other in-range entry.  The two
+    rules the card carried before -- `harvest == 0 and chop == 0` and `harvest > carry` -- were
+    delineate's own restrictions, not the game's: `sim/engine.py::apply_train` charges
+    `n + stat**2` per talent and refuses only on affordability and on an occupied shack, and
+    Bubaptik issues `harvest > carry` in 44 of its 425 purchases (day 3's census, which is what
+    the ruling turned on).  Affordability never masks either -- the plan is a target the trolls
+    collect towards.  At run time the global unit cap masks all but entry 0; that is the
+    environment's business, not the shard's.
+    """
+    return 0 <= index < PLAN_ACTION_SIZE
+
+
+def plan_index_of_train(talents):
+    """The label of a TRAIN the teacher really issued, or None when it is unsupported.
+
+    Codec totality (the coordinator's handoff of 18:16Z, item 1).  Two ways a real purchase has
+    no label: a talent outside the 400-way box, and the tuple `(1, 1, 0, 0)` -- a legal purchase
+    in the game, but index 0 is repurposed as "train nothing", so a *parsed* `(1,1,0,0)` is
+    reported unsupported and is never quietly relabelled "the teacher trained nothing".
+    (No teacher issues it: 0 of 1,725.)
+    """
+    idx = plan_index(*talents)
+    if idx is None or idx == PLAN_NOTHING:
+        return None
+    return idx
 
 
 def flat(plane, x, y):
@@ -172,14 +217,14 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
             nxt = t
         if nxt:
             tal = trains[nxt]
-            idx = plan_index(*tal)
+            idx = plan_index_of_train(tal)
             if idx is None:
-                census["oov_tuples"][tal] += 1
+                census["unsupported"][tal] += 1
                 plan_label[t] = OOV
             else:
-                for reason in plan_mask_forbids(*tal):
-                    census["mask_forbids"][f"{reason} {tal}"] += 1
                 plan_label[t] = idx
+                if not plan_index_is_legal(idx):        # cannot happen under the single rule
+                    census["masked_label"][str(tal)] += 1
         else:
             plan_label[t] = PLAN_NOTHING
 
@@ -195,7 +240,7 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
         lab = plan_label[t]
         rows.append(dict(game=game_id, turn=t, seat=teacher_seat, kind=KIND_PLAN,
                          troll=TROLL_NOTHING if lab == PLAN_NOTHING else TROLL_PLAN,
-                         verb=-1, label=lab))
+                         verb=-1, label=lab, standing_plan=STANDING_PLAN_NONE))
 
         given = {}
         for cmd in cmds:
@@ -238,7 +283,8 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
                     census["unparsed"][cmd] += 1
                     continue
             rows.append(dict(game=game_id, turn=t, seat=teacher_seat, kind=KIND_COMMAND,
-                             troll=uid, verb=plane, label=flat(plane, x, y)))
+                             troll=uid, verb=plane, label=flat(plane, x, y),
+                             standing_plan=STANDING_PLAN_NONE))
 
     meta = dict(game=game_id, turns=r.n_turns, w=w, h=h, seat=teacher_seat,
                 mismatch=dict(r.mismatch), trains=len(trains),
@@ -252,22 +298,15 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
 
 # --- augmentation and the held-out split ----------------------------------------------------
 
-def seat_swapped(rows, w, h):
-    """The same game read from the other seat's frame (the card's seat-swap augmentation).
+def seat_swapped(*_args, **_kwargs):
+    """Withdrawn by the card (second completion of amendment 8, point (d), 18:5xZ).
 
-    The observation is player-relative, so a swap is not a second copy of the state: the loader
-    passes the flipped seat to the same `tf_full_obs_from_state`, and only the *label* has to move
-    -- 180 degrees inside the map's own `w x h`, exactly the transform `relative` applies.  The
-    plan label is a talent tuple and does not move at all.
+    The observation is already player-relative, so the seat is canonicalized before the network
+    ever sees it; flipping the label while the state is rebuilt from the *other* seat is not an
+    augmentation of the same example but a different example with the first one's label.  Kept as
+    a raising stub so that no caller silently gets the old behaviour back.
     """
-    out = []
-    for r in rows:
-        q = dict(r, seat=1 - r["seat"], aug=1)
-        if r["kind"] == KIND_COMMAND:
-            plane, x, y = unflat(r["label"])
-            q["label"] = flat(plane, w - 1 - x, h - 1 - y)
-        out.append(q)
-    return out
+    raise RuntimeError("seat-swap augmentation was withdrawn by the card on 2026-08-29 18:5xZ")
 
 
 def held_out(game_id, percent):
@@ -280,7 +319,28 @@ def held_out(game_id, percent):
 
 # --- shards --------------------------------------------------------------------------------
 
-FIELDS = ("game", "turn", "seat", "kind", "troll", "verb", "label", "aug", "split")
+FIELDS = ("game", "turn", "seat", "kind", "troll", "verb", "label",
+          "standing_plan", "split")
+
+
+def read_shard(out_dir, name):
+    """Read a shard back, refusing one built by a different vocabulary generation.
+
+    The generation id (`PLAN_VOCAB_VERSION`, amendment 8) is written into every shard's metadata
+    and checked here on the way in: a 400-label shard loaded against a 144-logit runtime, or the
+    reverse, raises instead of training on relabelled nonsense.  The trainer and the exporter make
+    the same check against a checkpoint's `config`.
+    """
+    out_dir = Path(out_dir)
+    meta = json.loads((out_dir / f"labels-{name}-meta.json").read_text())
+    got = (meta.get("plan_vocab_version"), meta.get("plan_action_size"))
+    want = (PLAN_VOCAB_VERSION, PLAN_ACTION_SIZE)
+    if got != want:
+        raise ValueError(f"shard {name} was built by plan vocabulary {got}, this code is {want}; "
+                         f"refusing to load")
+    with np.load(out_dir / f"labels-{name}.npz") as z:
+        arrays = {f: z[f] for f in FIELDS}
+    return arrays, meta
 
 
 def write_shard(rows, turn_states, out_dir, name):
@@ -299,15 +359,21 @@ def write_shard(rows, turn_states, out_dir, name):
 # --- the total-label guard over the whole teacher set ---------------------------------------
 
 def census_tables(tables_dir):
-    """The vocabulary guard the coordinator kept: every TRAIN of the exact reconstruction tables.
+    """The total-label guard over every TRAIN of the exact reconstruction tables.
 
-    It must report zero out-of-vocabulary tuples under the signed vocabulary.  It also reports the
-    tuples the parent card's *mask* forbids, which is a different question and not zero.
+    It reports the two counts the coordinator's handoff of 18:16Z asks for, and exits non-zero if
+    either is non-zero: **unsupported** purchases (outside the 400-way box, or the parsed
+    `(1,1,0,0)` whose index is repurposed) and **masked-label** purchases (a real TRAIN whose
+    label the mask forbids).  Under the second completion of amendment 8 the mask has one rule,
+    entry 0, so the second count is zero by construction; it is printed anyway, because a count
+    that is only zero by argument is exactly the kind of check that rots silently.  The withdrawn
+    restrictions are counted separately and labelled as history, not as a verdict.
     """
     files = sorted(Path(tables_dir).glob("*_turns.jsonl.gz"))
     if not files:
         raise SystemExit(f"no *_turns.jsonl.gz under {tables_dir}")
-    oov, forbidden, per_player, games = Counter(), Counter(), Counter(), set()
+    unsupported, masked, withdrawn = Counter(), Counter(), Counter()
+    per_player, games = Counter(), set()
     labels, total = Counter(), 0
     for path in files:
         player = path.name[:-len("_turns.jsonl.gz")]
@@ -320,28 +386,42 @@ def census_tables(tables_dir):
                     continue
                 total += 1
                 per_player[player] += 1
-                idx = plan_index(*talents)
+                idx = plan_index_of_train(tuple(talents))
                 if idx is None:
-                    oov[tuple(talents)] += 1
+                    unsupported[tuple(talents)] += 1
                     continue
                 labels[idx] += 1
-                for reason in plan_mask_forbids(*talents):
-                    forbidden[reason] += 1
+                if not plan_index_is_legal(idx):
+                    masked[str(tuple(talents))] += 1
+                speed, carry, harvest, chop = talents
+                if harvest > carry:
+                    withdrawn["harvest>carry"] += 1
+                if harvest == 0 and chop == 0:
+                    withdrawn["harvest0_and_chop0"] += 1
     print(f"census over {len(files)} teachers, {len(games)} games, {total} TRAINs")
-    print(f"  vocabulary: PLAN_ACTION_SIZE = {PLAN_ACTION_SIZE}; distinct labels used "
-          f"{len(labels)}; indices {min(labels)}..{max(labels)}")
-    print(f"  OUT OF VOCABULARY: {sum(oov.values())}" + (f"  {dict(oov)}" if oov else "  (zero)"))
+    print(f"  vocabulary: PLAN_ACTION_SIZE = {PLAN_ACTION_SIZE} "
+          f"({PLAN_VOCAB_VERSION}); distinct labels used {len(labels)}; "
+          f"indices {min(labels)}..{max(labels)}")
+    print(f"  UNSUPPORTED (no label): {sum(unsupported.values())}"
+          + (f"  {dict(unsupported)}" if unsupported else "  (zero)"))
+    print(f"  MASKED LABELS (label the mask forbids): {sum(masked.values())}"
+          + (f"  {dict(masked)}" if masked else "  (zero)"))
     print(f"  TRAINs per teacher: {dict(per_player)}")
-    print(f"  tuples the card's mask forbids: {sum(forbidden.values())} "
-          f"{dict(forbidden) or '(none)'}")
+    print(f"  under the withdrawn restrictions, for the record: {dict(withdrawn) or '(none)'}")
     for idx, count in labels.most_common(5):
         print(f"    {idx:5d} {str(plan_talents(idx)):16s} {count:5d}")
-    return sum(oov.values())
+    return sum(unsupported.values()) + sum(masked.values())
 
 
 def self_test():
-    """The codec's own checks: the 400-way index is a bijection, the mask never coerces, and the
-    seat swap is an involution.  Cheap enough to run before every build."""
+    """The codec's own checks, cheap enough to run before every build.
+
+    Six things: the 400-way index is a bijection over the box; nothing outside the box is folded
+    onto a valid index; a *parsed* `(1,1,0,0)` is reported unsupported rather than relabelled
+    "train nothing"; the mask has exactly one rule and forbids no in-range label; the withdrawn
+    seat swap raises rather than quietly returning; the by-game split is deterministic; and a
+    shard built by another vocabulary generation refuses to load.
+    """
     seen = set()
     for speed in range(1, 5):
         for carry in range(1, 6):
@@ -353,31 +433,53 @@ def self_test():
                     seen.add(idx)
     assert len(seen) == PLAN_ACTION_SIZE, len(seen)
     assert plan_index(1, 1, 0, 0) == PLAN_NOTHING
-    # nothing outside the vocabulary is ever folded onto a valid index
     for bad in ((5, 1, 0, 0), (1, 6, 0, 0), (1, 1, 4, 0), (1, 1, 0, 5), (0, 1, 0, 0)):
         assert plan_index(*bad) is None, bad
-    # a tuple the card's mask forbids is still labelled, and named
-    assert plan_index(2, 1, 2, 2) is not None
-    assert plan_mask_forbids(2, 1, 2, 2) == ["harvest>carry"]
-    assert plan_mask_forbids(2, 2, 1, 1) == []
-    # the seat swap is an involution on the label, and the plan label does not move
-    w, h = 20, 10
-    rows = [dict(game=1, turn=1, seat=0, kind=KIND_COMMAND, troll=3, verb=2,
-                 label=flat(2, 7, 4), aug=0, split=0),
-            dict(game=1, turn=1, seat=0, kind=KIND_PLAN, troll=TROLL_PLAN, verb=-1,
-                 label=147, aug=0, split=0)]
-    once = seat_swapped(rows, w, h)
-    assert unflat(once[0]["label"]) == (2, w - 1 - 7, h - 1 - 4)
-    assert once[1]["label"] == 147 and once[0]["seat"] == 1
-    twice = seat_swapped(once, w, h)
-    assert twice[0]["label"] == rows[0]["label"] and twice[0]["seat"] == 0
+        assert plan_index_of_train(bad) is None, bad
+    # codec totality: the one in-range tuple that has no label of its own says so
+    assert plan_index_of_train((1, 1, 0, 0)) is None
+    assert plan_index_of_train((2, 2, 1, 3)) == plan_index(2, 2, 1, 3)
+    # the mask, second completion: one rule, and it forbids no in-range label
+    assert all(plan_index_is_legal(i) for i in range(PLAN_ACTION_SIZE))
+    assert plan_index_is_legal(PLAN_NOTHING)
+    assert not plan_index_is_legal(PLAN_ACTION_SIZE) and not plan_index_is_legal(-1)
+    # the two withdrawn restrictions really are inside the vocabulary now
+    assert plan_index_is_legal(plan_index(2, 1, 2, 2))      # harvest > carry, 44 of Bubaptik's
+    assert plan_index_is_legal(plan_index(2, 2, 0, 0))      # harvest 0 and chop 0
+    # the withdrawn augmentation raises instead of returning the old rows
+    try:
+        seat_swapped([], 20, 10)
+    except RuntimeError:
+        pass
+    else:                                                   # pragma: no cover
+        raise AssertionError("seat_swapped must raise; it was withdrawn")
     # the by-game split is deterministic and roughly the requested size
     assert all(held_out(g, 0) == 0 for g in range(50))
     share = sum(held_out(g, 20) for g in range(1000)) / 1000
     assert 0.15 <= share <= 0.25, share
     assert held_out(891153730, 20) == held_out(891153730, 20)
-    print(f"self-test OK: {PLAN_ACTION_SIZE}-way codec bijective, mask reported not coerced, "
-          f"seat swap involutive, split deterministic ({100*share:.1f} % at --holdout 20)")
+    # a shard of another vocabulary generation refuses to load
+    with tempfile.TemporaryDirectory() as tmp:
+        tmp = Path(tmp)
+        rows = [dict(game=1, turn=1, seat=0, kind=KIND_PLAN, troll=TROLL_PLAN, verb=-1,
+                     label=147, standing_plan=STANDING_PLAN_NONE, split=0)]
+        write_shard(rows, [], tmp, "t")
+        meta = dict(plan_action_size=PLAN_ACTION_SIZE, plan_vocab_version=PLAN_VOCAB_VERSION)
+        (tmp / "labels-t-meta.json").write_text(json.dumps(meta))
+        arrays, _ = read_shard(tmp, "t")
+        assert arrays["label"][0] == 147 and arrays["standing_plan"][0] == STANDING_PLAN_NONE
+        (tmp / "labels-t-meta.json").write_text(json.dumps(
+            dict(plan_action_size=144, plan_vocab_version="v144-2026-08-28")))
+        try:
+            read_shard(tmp, "t")
+        except ValueError:
+            pass
+        else:                                               # pragma: no cover
+            raise AssertionError("a 144-way shard must refuse to load against the 400-way codec")
+    print(f"self-test OK: {PLAN_ACTION_SIZE}-way codec bijective ({PLAN_VOCAB_VERSION}), "
+          f"(1,1,0,0) unsupported not relabelled, one mask rule forbidding no label, "
+          f"seat swap withdrawn, split deterministic ({100*share:.1f} % at --holdout 20), "
+          f"a foreign-generation shard refuses to load")
 
 
 def main():
@@ -387,7 +489,6 @@ def main():
     ap.add_argument("--game", default=None)
     ap.add_argument("--out", default=None)
     ap.add_argument("--name", default="pilot", help="the shard's name")
-    ap.add_argument("--seat-swap", action="store_true", help="add the seat-swapped rows")
     ap.add_argument("--holdout", type=int, default=0, help="percent of games held out, by game")
     ap.add_argument("--show", type=int, default=0)
     ap.add_argument("--report", action="store_true")
@@ -409,16 +510,14 @@ def main():
     index = {int(g["gameId"]): g for g in json.loads(index_path.read_text())}
     games = [int(a.game)] if a.game else sorted(index)
 
-    census = dict(verbs=Counter(), oov_tuples=Counter(), unparsed=Counter(),
-                  mask_forbids=Counter())
+    census = dict(verbs=Counter(), unsupported=Counter(), unparsed=Counter(),
+                  masked_label=Counter())
     all_rows, all_states, metas = [], [], []
     for gid in games:
         rows, meta, turn_states = rows_for_game(gid, replay_dir, int(index[gid]["seat"]), census)
         split = held_out(gid, a.holdout)
         for r in rows:
-            r["aug"], r["split"] = 0, split
-        if a.seat_swap:
-            rows = rows + seat_swapped(rows, meta["w"], meta["h"])
+            r["split"] = split
         meta["player"] = index[gid]["player"]
         meta["rows"] = len(rows)
         meta["split"] = split
@@ -447,12 +546,15 @@ def main():
     if a.out:
         label_bytes, state_bytes = write_shard(all_rows, all_states, Path(a.out), a.name)
         (Path(a.out) / f"labels-{a.name}-meta.json").write_text(json.dumps(
-            dict(plan_action_size=PLAN_ACTION_SIZE, games=metas, verbs=dict(census["verbs"]),
-                 oov=[[list(k), v] for k, v in census["oov_tuples"].items()],
-                 mask_forbids=dict(census["mask_forbids"]),
+            dict(plan_action_size=PLAN_ACTION_SIZE,
+                 plan_vocab_version=PLAN_VOCAB_VERSION,
+                 fields=list(FIELDS), standing_plan="none (0) on every row; see the module head",
+                 seat_augmentation=False, games=metas, verbs=dict(census["verbs"]),
+                 unsupported=[[list(k), v] for k, v in census["unsupported"].items()],
+                 masked_label=dict(census["masked_label"]),
                  unparsed=dict(census["unparsed"]), rows=len(all_rows),
                  turn_states=len(all_states), label_bytes=label_bytes,
-                 state_bytes=state_bytes, seat_swap=bool(a.seat_swap),
+                 state_bytes=state_bytes,
                  holdout_percent=a.holdout), indent=1))
 
     if a.report:
@@ -465,27 +567,27 @@ def main():
             out = sum(1 for r in all_rows if r["split"])
             print(f"held out: {out} rows ({100*out/max(1,n):.1f} %) from "
                   f"{sum(1 for m in metas if m['split'])} of {len(metas)} games")
-        # the census counts the teacher's own commands once; the seat-swapped rows carry the
-        # same verbs, so the shares are taken against the un-augmented command rows.
-        base = max(1, sum(1 for r in cmd if r["aug"] == 0))
-        print(f"command labels per verb (of {base} un-augmented command rows):")
+        base = max(1, len(cmd))
+        print(f"command labels per verb (of {base} command rows):")
         for v, c in sorted(census["verbs"].items(), key=lambda kv: -kv[1]):
             print(f"  {v:18s} {c:6d}  {100*c/base:5.1f} %")
         hist = Counter(r["label"] for r in plan)
         nothing = sum(1 for r in plan if r["troll"] == TROLL_NOTHING)
         print(f"plan labels: {len(hist)} distinct; "
-              f"nothing {nothing}, out-of-vocabulary {hist[OOV]}")
+              f"nothing {nothing}, unsupported {hist[OOV]}; "
+              f"standing target: none on all {len(plan)} plan rows (no target memory in cloning)")
         for lab, c in hist.most_common(8):
-            name = "OUT OF VOCABULARY" if lab == OOV else plan_talents(lab)
+            name = ("UNSUPPORTED" if lab == OOV else
+                    "train nothing" if lab == PLAN_NOTHING else plan_talents(lab))
             print(f"  {lab:5d} {str(name):22s} {c:6d}")
-        if census["oov_tuples"]:
-            print("out-of-vocabulary TRAIN tuples (speed carry harvest chop -> plan rows):")
-            for tup, c in census["oov_tuples"].most_common():
-                print(f"  {tup} -> {c}")
-        if census["mask_forbids"]:
-            print("plan labels the card's mask forbids (labelled honestly, never coerced):")
-            for reason, c in census["mask_forbids"].most_common():
-                print(f"  {reason} -> {c} rows")
+        print(f"unsupported TRAIN tuples: {sum(census['unsupported'].values())}"
+              + ("" if census["unsupported"] else "  (zero)"))
+        for tup, c in census["unsupported"].most_common():
+            print(f"  {tup} -> {c} plan rows labelled {OOV}")
+        print(f"labels the mask forbids: {sum(census['masked_label'].values())}"
+              + ("" if census["masked_label"] else "  (zero -- the mask has one rule, entry 0)"))
+        for tup, c in census["masked_label"].most_common():
+            print(f"  {tup} -> {c}")
         if census["unparsed"]:
             print("unparsed commands:", dict(census["unparsed"]))
         if label_bytes:
@@ -494,8 +596,10 @@ def main():
                   f"states {state_bytes} bytes for {len(all_states)} turns = "
                   f"{state_bytes/max(1,len(all_states)):.0f} bytes a turn")
             print(f"the planes are NOT stored: one row is 104*11*22 = {104*CELLS} bytes "
-                  f"({104*CELLS*1000/1e6:.1f} MB per 1,000 rows); they are built at load time "
-                  f"from the states above by the same Rust builder the environment uses")
+                  f"({104*CELLS*1000/1e6:.1f} MB per 1,000 rows, ~20 GB over the teacher set's "
+                  f"~800,000 rows); they are built at load time from the states above by the "
+                  f"same Rust builder the environment uses -- for size and for the drift "
+                  f"discipline of one builder, not because storing them is impossible")
 
 
 if __name__ == "__main__":
