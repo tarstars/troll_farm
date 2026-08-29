@@ -251,6 +251,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 21:4xZ: **the full teacher dataset built on the host** with claude_1's `build_dataset.py` (its branch, day-4
+  state; the script is not yet on `main`) over the 784 seat-games of the exact reconstruction (748 replay files:
+  delineate 215, MSz 203, norxondor 184, Bubaptik 182 of its latest version 6568138): **817,811 rows = 224,400 plan +
+  593,411 command**, in 1 min 42 s; command labels MOVE 47.7 %, CHOP 19.4 %, DROP 12.6 %, HARVEST 11.1 %, PLANT 4.2 %,
+  MINE 1.0 %, PICK 1.6 %, WAIT/stayed 2.4 %; plan labels 106 distinct, "train nothing" 141,640 (63 %), then (2,4,1,2),
+  (2,4,1,3), (2,3,1,2), (4,3,1,2), (4,3,0,2)…; **0 unsupported plans, 0 mask-forbidden labels; no standing target on
+  plan rows** — the rulings hold at scale. Size: states 12.9 MB gzipped (58 B a turn) + labels 1.3 MB — **14 MB in
+  all**. Stored outside the repository at `/home/tarstars/nn-data/dataset-v400-2026-08-29/` (`SHA256SUMS` inside);
+  re-run in minutes if claude_1's day-7 final changes the format. — coordinator
 - 2026-08-29 21:3xZ: **Phase 1 accepted and integrated; the host's numbers with the environment of record:** the random-action
   driver 843 decisions/s (20 threads); **the trainer `train_ppo_full.py --env full`: rollouts 3,500 decisions/s with 128
   games in parallel on 14 threads, 1,040 decisions/s overall with the PPO update (2 epochs, minibatch 1,024)** — Phase 3's
