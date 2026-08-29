@@ -1,0 +1,12 @@
+tass = our own bot, for contrast (agent 6665150, the most recent full 160-game batch; the pseudo has 103 agent ids and 10,682 game lines in the corpus, listed in the Notes; win rate 0.600, mean score 190 against 179 — its opponents are weaker than the top four's: 77 % rated 20-25, none of the top four met).
+
+1. Two trolls, always: the second at median turn 8 (96 % by turn 25) with HARVEST 0 in 100 % of games (2 2 0 2 in 20 %, chop 2-3 in 80 %); it never buys a third troll. The top four end with 2.9-3.5 trolls and their third troll arrives around turn 95-120.
+2. It does not harvest: 0.8 HARVEST commands per game (the top four 78-112), all in the first 30 turns; 2.6 fruit points per game versus 27-78. Its economy is wood only (99 % of points).
+3. Chops from the start: first CHOP at median turn 12, first wood at turn 16; 185 CHOP commands per game (more than any top bot) but only 47 wood (delineate 98), because chop power 1 does 63 % of the chopping and the targets are wild size-4 trees far from home (mean 6.6 cells from the shack; 43 % wild, 32 % opponent-planted, 25 % own).
+4. Plants 10 per game, 82 % of them after turn 250 (first PLANT at median turn 252), bananas 57 % and apples 27 %, every one adjacent to the shack (100 % at distance 1); the top four plant 29-40 per game from turn 2 on.
+5. Mines almost never (0.5 MINE per game, only in the first 10 turns of 28 % of games).
+6. Idles: 25 WAIT commands per game and 28 % of its endgame commands are WAIT; 56 of 160 games ended before turn 300 with no tree left; 60 games end with no tree on the map.
+7. Its MOVE targets are one step ahead (1-3 cells) like delineate's; 68 % of MOVE targets are plain grass cells (walking), only 16 % tree cells.
+8. It loses to trained-up opponents: 68 % wins against 2-troll opponents, 37 % against 3, 12.5 % against 4 (the top four win 57-72 % against 4-troll opponents).
+9. NARRATE debug messages every turn (the owner's instrument), the only bot here whose MSG text describes its own state.
+10. Everything the top four do that tass does not: buy a third and fourth troll around turns 95-150 (carry 4, chop 3), harvest 80-130 fruits per game from own-planted lemon/plum/banana trees 1-2 cells from the shack, plant from turn 2 and keep planting (29-40 per game), fell the own farm's trees at size 1, and mine 8-12 iron in mid-game to pay for the chop-3 trolls.

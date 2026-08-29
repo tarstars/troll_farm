@@ -1,0 +1,12 @@
+yamo (agent 6479814, 541 games; the design our bot reproduces; win rate 0.495, mean score 153 against 153; opponents rated 20-25 in 78 % of games).
+
+1. Two trolls, always: the second at median turn 4 (97 % by turn 25), always HARVEST 0 (2 2 0 2 in 17 %, 2 2 0 3 in 10 %; chop 2-3 in 83 %). Never a third troll.
+2. Never harvests (0.5 HARVEST commands per game, all in the first 30 turns; 2 fruit points per game); 99 % of its points are wood.
+3. A wild-tree chopper from turn ~12 (first wood at median turn 17): 157 CHOP commands per game, 38 wood; chop power 1 does 64 % of the chopping. Chop targets: wild 50 %, own 32 %, opponent-planted 18 %; apples are 40 % of chopped trees (54 % after turn 100) — big apples give 4 wood each.
+4. Plants 11 per game, bananas 50 % and apples 33 %, every one exactly adjacent to its shack (100 % at distance 1), from turn ~60 on with a hump at turns 100-150 and again after 250; it then fells them: 62 % of its late chops are its own trees.
+5. Destination-style MOVE commands (mean 5.5 cells away, up to 45): 39 % of targets are a cell next to its own shack (going home to drop), 32 % wild trees, 19 % opponent trees. This is the bot whose intentions the corpus shows best.
+6. Mines only in the first 10 turns of 35 % of games (0.6 iron per game).
+7. Deforests the map: 381 of 541 games ended before turn 300 and 388 end with no tree left; its last DROP is at median turn 221.
+8. 27 timeout strikes over 541 games; 5.3 blocked-move failures per game (its trolls walk into each other).
+9. Loses to trained-up opponents: 52 % wins against 2-troll opponents, 26 % against 3, 0 % against 4 (15 games).
+10. MSG texts like "0>T(12,4)" and "0>T(12,4)|1>T(3,7)": each troll's current target cell (T = tree, M = move) — a readable trace of its targeting.

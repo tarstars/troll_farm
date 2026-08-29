@@ -1,0 +1,4272 @@
+[
+ {
+  "gameId": 900727976,
+  "seat": 1,
+  "own": 264.0,
+  "opp": 313.0,
+  "win": false,
+  "turns": 278,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   66
+  ],
+  "opp_score_agent": 27.95375729647091,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900727977,
+  "seat": 0,
+  "own": 168.0,
+  "opp": 275.0,
+  "win": false,
+  "turns": 297,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   42
+  ],
+  "opp_score_agent": 22.372881568869914,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900727978,
+  "seat": 0,
+  "own": 260.0,
+  "opp": 340.0,
+  "win": false,
+  "turns": 231,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   65
+  ],
+  "opp_score_agent": 20.316582258908802,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900727979,
+  "seat": 0,
+  "own": 228.0,
+  "opp": 144.0,
+  "win": true,
+  "turns": 242,
+  "second_troll": [
+   3,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 33,
+  "floored": false,
+  "own_inv": [
+   1,
+   0,
+   3,
+   4,
+   0,
+   55
+  ],
+  "opp_score_agent": 19.090909566617942,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900727980,
+  "seat": 1,
+  "own": 108.0,
+  "opp": 260.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   2,
+   2,
+   0,
+   5,
+   26
+  ],
+  "opp_score_agent": 18.54333116767007,
+  "own_trolls": 2,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900727981,
+  "seat": 0,
+  "own": 116.0,
+  "opp": 238.0,
+  "win": false,
+  "turns": 274,
+  "second_troll": [
+   1,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 18,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   29
+  ],
+  "opp_score_agent": 17.372710033679738,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900727982,
+  "seat": 1,
+  "own": 320.0,
+  "opp": 236.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   80
+  ],
+  "opp_score_agent": 16.210646777595148,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900727983,
+  "seat": 0,
+  "own": 236.0,
+  "opp": 202.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   59
+  ],
+  "opp_score_agent": 15.307366989930607,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900727984,
+  "seat": 1,
+  "own": 144.0,
+  "opp": 25.0,
+  "win": true,
+  "turns": 186,
+  "second_troll": [
+   3,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   36
+  ],
+  "opp_score_agent": 14.595049772464485,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900727985,
+  "seat": 0,
+  "own": 184.0,
+  "opp": 147.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   46
+  ],
+  "opp_score_agent": 11.270248582882804,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728023,
+  "seat": 0,
+  "own": 248.0,
+  "opp": 364.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   62
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728079,
+  "seat": 1,
+  "own": 172.0,
+  "opp": 160.0,
+  "win": true,
+  "turns": 223,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   43
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728123,
+  "seat": 0,
+  "own": 78.0,
+  "opp": 314.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   0,
+   4,
+   2,
+   0,
+   8,
+   18
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728157,
+  "seat": 0,
+  "own": 236.0,
+  "opp": 270.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   59
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728213,
+  "seat": 1,
+  "own": 200.0,
+  "opp": 212.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   50
+  ],
+  "opp_score_agent": 10.510106531956065,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728290,
+  "seat": 0,
+  "own": 212.0,
+  "opp": 38.0,
+  "win": true,
+  "turns": 221,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   53
+  ],
+  "opp_score_agent": -1.839160303002034,
+  "own_trolls": 3,
+  "opp_trolls": 1
+ },
+ {
+  "gameId": 900728332,
+  "seat": 1,
+  "own": 22.0,
+  "opp": -2.0,
+  "win": true,
+  "turns": 1,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   7,
+   3,
+   2,
+   10,
+   8,
+   0
+  ],
+  "opp_score_agent": -8.817944917462258,
+  "own_trolls": 1,
+  "opp_trolls": 1
+ },
+ {
+  "gameId": 900728353,
+  "seat": 1,
+  "own": 316.0,
+  "opp": 203.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   79
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728400,
+  "seat": 1,
+  "own": 199.0,
+  "opp": 168.0,
+  "win": true,
+  "turns": 206,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   1,
+   3,
+   3,
+   0,
+   48
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728436,
+  "seat": 1,
+  "own": 306.0,
+  "opp": 257.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   1,
+   0,
+   1,
+   0,
+   1,
+   76
+  ],
+  "opp_score_agent": 13.177940420399771,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728492,
+  "seat": 0,
+  "own": 160.0,
+  "opp": 193.0,
+  "win": false,
+  "turns": 283,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   40
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900728513,
+  "seat": 0,
+  "own": 244.0,
+  "opp": 335.0,
+  "win": false,
+  "turns": 299,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   61
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728545,
+  "seat": 0,
+  "own": 404.0,
+  "opp": 425.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   101
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728590,
+  "seat": 0,
+  "own": 244.0,
+  "opp": 491.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   61
+  ],
+  "opp_score_agent": 11.8879416025997,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728671,
+  "seat": 1,
+  "own": 189.0,
+  "opp": 154.0,
+  "win": true,
+  "turns": 231,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 30,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   6,
+   2,
+   0,
+   45
+  ],
+  "opp_score_agent": 11.242990407668362,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728694,
+  "seat": 1,
+  "own": 192.0,
+  "opp": 236.0,
+  "win": false,
+  "turns": 213,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 20,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   48
+  ],
+  "opp_score_agent": 12.068824003042952,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728747,
+  "seat": 0,
+  "own": 246.0,
+  "opp": 187.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   1,
+   61
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728790,
+  "seat": 1,
+  "own": 80.0,
+  "opp": 177.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   0,
+   3,
+   9,
+   0,
+   10,
+   17
+  ],
+  "opp_score_agent": 11.242990407668362,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728814,
+  "seat": 0,
+  "own": 288.0,
+  "opp": 60.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 32,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   72
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900728863,
+  "seat": 0,
+  "own": 192.0,
+  "opp": 196.0,
+  "win": false,
+  "turns": 211,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 32,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   48
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728900,
+  "seat": 1,
+  "own": 220.0,
+  "opp": 251.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   55
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728943,
+  "seat": 0,
+  "own": 304.0,
+  "opp": 229.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 28,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   76
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900728978,
+  "seat": 0,
+  "own": 316.0,
+  "opp": 322.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 34,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   79
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 5
+ },
+ {
+  "gameId": 900729039,
+  "seat": 0,
+  "own": 143.0,
+  "opp": 104.0,
+  "win": true,
+  "turns": 157,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   1,
+   1,
+   0,
+   1,
+   1,
+   35
+  ],
+  "opp_score_agent": 11.270248582882804,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729062,
+  "seat": 1,
+  "own": 288.0,
+  "opp": 329.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   72
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 5
+ },
+ {
+  "gameId": 900729121,
+  "seat": 1,
+  "own": 380.0,
+  "opp": 289.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 22,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   95
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729185,
+  "seat": 0,
+  "own": 132.0,
+  "opp": 112.0,
+  "win": true,
+  "turns": 225,
+  "second_troll": [
+   1,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 23,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   6,
+   1,
+   0,
+   31
+  ],
+  "opp_score_agent": 11.270248582882804,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729206,
+  "seat": 1,
+  "own": 197.0,
+  "opp": 153.0,
+  "win": true,
+  "turns": 224,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 25,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   0,
+   8,
+   0,
+   47
+  ],
+  "opp_score_agent": 11.242990407668362,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729225,
+  "seat": 1,
+  "own": 316.0,
+  "opp": 295.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 20,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   79
+  ],
+  "opp_score_agent": 12.657612045777727,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729264,
+  "seat": 0,
+  "own": 144.0,
+  "opp": 178.0,
+  "win": false,
+  "turns": 270,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   36
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729293,
+  "seat": 0,
+  "own": 97.0,
+  "opp": 69.0,
+  "win": true,
+  "turns": 202,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   2,
+   6,
+   0,
+   22
+  ],
+  "opp_score_agent": 11.270248582882804,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729316,
+  "seat": 1,
+  "own": 241.0,
+  "opp": 181.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   60
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729361,
+  "seat": 1,
+  "own": 256.0,
+  "opp": 236.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   64
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729403,
+  "seat": 1,
+  "own": 208.0,
+  "opp": 113.0,
+  "win": true,
+  "turns": 267,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   52
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729420,
+  "seat": 1,
+  "own": 414.0,
+  "opp": 467.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   1,
+   103
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729452,
+  "seat": 0,
+  "own": 316.0,
+  "opp": 164.0,
+  "win": true,
+  "turns": 284,
+  "second_troll": [
+   2,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   79
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729498,
+  "seat": 1,
+  "own": 296.0,
+  "opp": 385.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   74
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729545,
+  "seat": 1,
+  "own": 208.0,
+  "opp": 192.0,
+  "win": true,
+  "turns": 296,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   52
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729562,
+  "seat": 1,
+  "own": 230.0,
+  "opp": 338.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 26,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   0,
+   57
+  ],
+  "opp_score_agent": 13.177940420399771,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729594,
+  "seat": 1,
+  "own": 441.0,
+  "opp": 479.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   3
+  ],
+  "train_turn": 30,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   1,
+   110
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729632,
+  "seat": 0,
+  "own": 150.0,
+  "opp": 50.0,
+  "win": true,
+  "turns": 163,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   0,
+   1,
+   0,
+   37
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729644,
+  "seat": 0,
+  "own": 324.0,
+  "opp": 196.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   81
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729673,
+  "seat": 1,
+  "own": 212.0,
+  "opp": 252.0,
+  "win": false,
+  "turns": 212,
+  "second_troll": [
+   3,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   53
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729708,
+  "seat": 1,
+  "own": 297.0,
+  "opp": 351.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   1,
+   0,
+   74
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729734,
+  "seat": 0,
+  "own": 192.0,
+  "opp": 109.0,
+  "win": true,
+  "turns": 288,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   48
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729749,
+  "seat": 0,
+  "own": 236.0,
+  "opp": 362.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 12,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   59
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729777,
+  "seat": 1,
+  "own": 244.0,
+  "opp": 303.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   61
+  ],
+  "opp_score_agent": 12.657612045777727,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729794,
+  "seat": 0,
+  "own": 188.0,
+  "opp": 229.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   47
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900729813,
+  "seat": 1,
+  "own": 238.0,
+  "opp": 318.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 26,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   0,
+   59
+  ],
+  "opp_score_agent": 13.177940420399771,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729830,
+  "seat": 1,
+  "own": 184.0,
+  "opp": 130.0,
+  "win": true,
+  "turns": 284,
+  "second_troll": [
+   2,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   46
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729847,
+  "seat": 1,
+  "own": 176.0,
+  "opp": 165.0,
+  "win": true,
+  "turns": 217,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   44
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729863,
+  "seat": 1,
+  "own": 104.0,
+  "opp": 149.0,
+  "win": false,
+  "turns": 170,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   26
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729873,
+  "seat": 1,
+  "own": 143.0,
+  "opp": 130.0,
+  "win": true,
+  "turns": 193,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   3,
+   0,
+   0,
+   35
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729890,
+  "seat": 1,
+  "own": 300.0,
+  "opp": 111.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 24,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   75
+  ],
+  "opp_score_agent": 12.080000096087918,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729912,
+  "seat": 1,
+  "own": 288.0,
+  "opp": 284.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   72
+  ],
+  "opp_score_agent": 12.657612045777727,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900729927,
+  "seat": 1,
+  "own": 316.0,
+  "opp": 421.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   79
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900729988,
+  "seat": 1,
+  "own": 288.0,
+  "opp": 411.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   3,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   72
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730003,
+  "seat": 0,
+  "own": 136.0,
+  "opp": 130.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   34
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900730010,
+  "seat": 1,
+  "own": 213.0,
+  "opp": 92.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   6,
+   2,
+   1,
+   51
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730018,
+  "seat": 1,
+  "own": 168.0,
+  "opp": 182.0,
+  "win": false,
+  "turns": 204,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   42
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730027,
+  "seat": 1,
+  "own": 74.0,
+  "opp": 376.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   3,
+   1,
+   6,
+   0,
+   10,
+   16
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730044,
+  "seat": 1,
+  "own": 132.0,
+  "opp": 143.0,
+  "win": false,
+  "turns": 195,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   33
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730051,
+  "seat": 1,
+  "own": 143.0,
+  "opp": 72.0,
+  "win": true,
+  "turns": 182,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   4,
+   2,
+   0,
+   34
+  ],
+  "opp_score_agent": 12.633945071242383,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730087,
+  "seat": 0,
+  "own": 160.0,
+  "opp": 172.0,
+  "win": false,
+  "turns": 185,
+  "second_troll": [
+   3,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 32,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   40
+  ],
+  "opp_score_agent": 14.179192723867807,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730117,
+  "seat": 0,
+  "own": 168.0,
+  "opp": 147.0,
+  "win": true,
+  "turns": 252,
+  "second_troll": [
+   1,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 30,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   42
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730128,
+  "seat": 1,
+  "own": 108.0,
+  "opp": 164.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   9,
+   1,
+   10,
+   0,
+   7,
+   22
+  ],
+  "opp_score_agent": 12.633945071242383,
+  "own_trolls": 1,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730153,
+  "seat": 1,
+  "own": 292.0,
+  "opp": 325.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   73
+  ],
+  "opp_score_agent": 12.657612045777727,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730172,
+  "seat": 0,
+  "own": 297.0,
+  "opp": 228.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   1,
+   74
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730191,
+  "seat": 0,
+  "own": 185.0,
+  "opp": 199.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   1,
+   46
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730208,
+  "seat": 0,
+  "own": 96.0,
+  "opp": 118.0,
+  "win": false,
+  "turns": 142,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 34,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   24
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730217,
+  "seat": 0,
+  "own": 408.0,
+  "opp": 45.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   102
+  ],
+  "opp_score_agent": 12.068824003042952,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730230,
+  "seat": 0,
+  "own": 152.0,
+  "opp": 150.0,
+  "win": true,
+  "turns": 238,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 24,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   4,
+   0,
+   0,
+   37
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730240,
+  "seat": 0,
+  "own": 256.0,
+  "opp": 181.0,
+  "win": true,
+  "turns": 280,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   64
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730255,
+  "seat": 0,
+  "own": 288.0,
+  "opp": 215.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   72
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730271,
+  "seat": 0,
+  "own": 481.0,
+  "opp": 153.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 28,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   1,
+   120
+  ],
+  "opp_score_agent": 12.657612045777727,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730292,
+  "seat": 1,
+  "own": 85.0,
+  "opp": 285.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   0,
+   4,
+   9,
+   0,
+   9,
+   18
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730307,
+  "seat": 0,
+  "own": 227.0,
+  "opp": 87.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   5,
+   9,
+   0,
+   53
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730328,
+  "seat": 1,
+  "own": 317.0,
+  "opp": 205.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   79
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730342,
+  "seat": 1,
+  "own": 143.0,
+  "opp": 55.0,
+  "win": true,
+  "turns": 196,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   1,
+   5,
+   9,
+   0,
+   32
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730372,
+  "seat": 0,
+  "own": 160.0,
+  "opp": 243.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   3,
+   3,
+   1,
+   3
+  ],
+  "train_turn": 27,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   40
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900730392,
+  "seat": 1,
+  "own": 192.0,
+  "opp": 199.0,
+  "win": false,
+  "turns": 208,
+  "second_troll": [
+   1,
+   3,
+   1,
+   3
+  ],
+  "train_turn": 32,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   3,
+   48
+  ],
+  "opp_score_agent": 12.633945071242383,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730417,
+  "seat": 1,
+  "own": 300.0,
+  "opp": 468.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 24,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   75
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730445,
+  "seat": 1,
+  "own": 428.0,
+  "opp": 300.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 32,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   107
+  ],
+  "opp_score_agent": 13.177940420399771,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730483,
+  "seat": 1,
+  "own": 236.0,
+  "opp": 263.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   59
+  ],
+  "opp_score_agent": 12.307295501516716,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730524,
+  "seat": 1,
+  "own": 140.0,
+  "opp": 135.0,
+  "win": true,
+  "turns": 195,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   35
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900730541,
+  "seat": 1,
+  "own": 153.0,
+  "opp": 100.0,
+  "win": true,
+  "turns": 203,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 26,
+  "floored": true,
+  "own_inv": [
+   1,
+   1,
+   2,
+   1,
+   0,
+   37
+  ],
+  "opp_score_agent": 12.633945071242383,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730566,
+  "seat": 0,
+  "own": 300.0,
+  "opp": 229.0,
+  "win": true,
+  "turns": 280,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 24,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   75
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730581,
+  "seat": 0,
+  "own": 77.0,
+  "opp": 212.0,
+  "win": false,
+  "turns": 295,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   10,
+   19
+  ],
+  "opp_score_agent": 14.179192723867807,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730610,
+  "seat": 0,
+  "own": 238.0,
+  "opp": 136.0,
+  "win": true,
+  "turns": 251,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   1,
+   5,
+   0,
+   0,
+   58
+  ],
+  "opp_score_agent": 12.516243736561368,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730642,
+  "seat": 1,
+  "own": 122.0,
+  "opp": 94.0,
+  "win": true,
+  "turns": 183,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   3,
+   6,
+   1,
+   28
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730672,
+  "seat": 0,
+  "own": 216.0,
+  "opp": 80.0,
+  "win": true,
+  "turns": 272,
+  "second_troll": [
+   1,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 32,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   54
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730688,
+  "seat": 0,
+  "own": 320.0,
+  "opp": 376.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 24,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   80
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730735,
+  "seat": 0,
+  "own": 488.0,
+  "opp": 441.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 30,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   122
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730779,
+  "seat": 1,
+  "own": 268.0,
+  "opp": 90.0,
+  "win": true,
+  "turns": 275,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   67
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730798,
+  "seat": 1,
+  "own": 271.0,
+  "opp": 34.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   3,
+   0,
+   1,
+   67
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730835,
+  "seat": 1,
+  "own": 71.0,
+  "opp": 181.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   3,
+   2,
+   2,
+   0,
+   5,
+   16
+  ],
+  "opp_score_agent": 14.204845010219115,
+  "own_trolls": 1,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900730895,
+  "seat": 0,
+  "own": 291.0,
+  "opp": 225.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   1,
+   2,
+   0,
+   0,
+   72
+  ],
+  "opp_score_agent": 14.149196201514252,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900730913,
+  "seat": 1,
+  "own": 284.0,
+  "opp": 295.0,
+  "win": false,
+  "turns": 256,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   71
+  ],
+  "opp_score_agent": 14.595049772464485,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900730938,
+  "seat": 0,
+  "own": 284.0,
+  "opp": 295.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   71
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731023,
+  "seat": 0,
+  "own": 180.0,
+  "opp": 200.0,
+  "win": false,
+  "turns": 208,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 34,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   45
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731049,
+  "seat": 1,
+  "own": 249.0,
+  "opp": 142.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   0,
+   62
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731102,
+  "seat": 0,
+  "own": 308.0,
+  "opp": 118.0,
+  "win": true,
+  "turns": 280,
+  "second_troll": [
+   3,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   77
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900731120,
+  "seat": 1,
+  "own": 440.0,
+  "opp": 352.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 24,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   110
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731150,
+  "seat": 0,
+  "own": 160.0,
+  "opp": 188.0,
+  "win": false,
+  "turns": 213,
+  "second_troll": [
+   3,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   40
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731170,
+  "seat": 1,
+  "own": 261.0,
+  "opp": 493.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   3,
+   1,
+   3
+  ],
+  "train_turn": 23,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   2,
+   65
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731234,
+  "seat": 0,
+  "own": 150.0,
+  "opp": 144.0,
+  "win": true,
+  "turns": 163,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 25,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   6,
+   0,
+   36
+  ],
+  "opp_score_agent": 14.179192723867807,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731268,
+  "seat": 0,
+  "own": 224.0,
+  "opp": 260.0,
+  "win": false,
+  "turns": 191,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 30,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   56
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731299,
+  "seat": 1,
+  "own": 308.0,
+  "opp": 228.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   77
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731331,
+  "seat": 1,
+  "own": 168.0,
+  "opp": 192.0,
+  "win": false,
+  "turns": 295,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   42
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900731346,
+  "seat": 0,
+  "own": 132.0,
+  "opp": 96.0,
+  "win": true,
+  "turns": 207,
+  "second_troll": [
+   3,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   33
+  ],
+  "opp_score_agent": 14.204845010219115,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900731368,
+  "seat": 1,
+  "own": 202.0,
+  "opp": 38.0,
+  "win": true,
+  "turns": 237,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   2,
+   50
+  ],
+  "opp_score_agent": 14.595049772464485,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731382,
+  "seat": 1,
+  "own": 229.0,
+  "opp": 228.0,
+  "win": true,
+  "turns": 237,
+  "second_troll": [
+   2,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 16,
+  "floored": false,
+  "own_inv": [
+   1,
+   1,
+   5,
+   2,
+   0,
+   55
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731394,
+  "seat": 0,
+  "own": 148.0,
+  "opp": 180.0,
+  "win": false,
+  "turns": 221,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 32,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   37
+  ],
+  "opp_score_agent": 14.55575175520299,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731408,
+  "seat": 1,
+  "own": 316.0,
+  "opp": 385.0,
+  "win": false,
+  "turns": 295,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   79
+  ],
+  "opp_score_agent": 14.928265296776665,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900731427,
+  "seat": 1,
+  "own": 78.0,
+  "opp": 503.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   7,
+   1,
+   10,
+   0,
+   10,
+   15
+  ],
+  "opp_score_agent": 14.54603417015113,
+  "own_trolls": 1,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900731447,
+  "seat": 0,
+  "own": 192.0,
+  "opp": 244.0,
+  "win": false,
+  "turns": 213,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   48
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731473,
+  "seat": 0,
+  "own": 88.0,
+  "opp": 114.0,
+  "win": false,
+  "turns": 187,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   22
+  ],
+  "opp_score_agent": 14.55575175520299,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731489,
+  "seat": 1,
+  "own": 220.0,
+  "opp": 288.0,
+  "win": false,
+  "turns": 275,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   55
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731552,
+  "seat": 1,
+  "own": 312.0,
+  "opp": 135.0,
+  "win": true,
+  "turns": 292,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   78
+  ],
+  "opp_score_agent": 13.351338585274005,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900731578,
+  "seat": 1,
+  "own": 128.0,
+  "opp": 119.0,
+  "win": true,
+  "turns": 241,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   32
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731602,
+  "seat": 0,
+  "own": 300.0,
+  "opp": 104.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 30,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   75
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731641,
+  "seat": 0,
+  "own": 264.0,
+  "opp": 320.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   66
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731665,
+  "seat": 0,
+  "own": 336.0,
+  "opp": 272.0,
+  "win": true,
+  "turns": 273,
+  "second_troll": [
+   2,
+   3,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   84
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731733,
+  "seat": 0,
+  "own": 284.0,
+  "opp": 272.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 20,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   71
+  ],
+  "opp_score_agent": 13.60034893621173,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731783,
+  "seat": 0,
+  "own": 184.0,
+  "opp": 184.0,
+  "win": false,
+  "turns": 209,
+  "second_troll": [
+   2,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   46
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731806,
+  "seat": 1,
+  "own": 120.0,
+  "opp": 212.0,
+  "win": false,
+  "turns": 197,
+  "second_troll": [
+   1,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   30
+  ],
+  "opp_score_agent": 14.592943660835722,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731857,
+  "seat": 0,
+  "own": 73.0,
+  "opp": 268.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": null,
+  "train_turn": null,
+  "floored": false,
+  "own_inv": [
+   0,
+   3,
+   10,
+   0,
+   5,
+   15
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 1,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731902,
+  "seat": 1,
+  "own": 332.0,
+  "opp": 292.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   83
+  ],
+  "opp_score_agent": 14.149196201514252,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900731963,
+  "seat": 0,
+  "own": 148.0,
+  "opp": 160.0,
+  "win": false,
+  "turns": 178,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   37
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900731998,
+  "seat": 1,
+  "own": 324.0,
+  "opp": 397.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   81
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732030,
+  "seat": 0,
+  "own": 514.0,
+  "opp": 356.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 34,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   2,
+   0,
+   1,
+   128
+  ],
+  "opp_score_agent": 14.303326814902306,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732066,
+  "seat": 1,
+  "own": 232.0,
+  "opp": 224.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   3,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   58
+  ],
+  "opp_score_agent": 13.24471206316506,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732096,
+  "seat": 1,
+  "own": 172.0,
+  "opp": 257.0,
+  "win": false,
+  "turns": 228,
+  "second_troll": [
+   3,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   43
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732118,
+  "seat": 1,
+  "own": 200.0,
+  "opp": 80.0,
+  "win": true,
+  "turns": 229,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 24,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   50
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732153,
+  "seat": 0,
+  "own": 156.0,
+  "opp": 219.0,
+  "win": false,
+  "turns": 287,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   39
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 3,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900732180,
+  "seat": 0,
+  "own": 312.0,
+  "opp": 342.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   78
+  ],
+  "opp_score_agent": 13.762410061146385,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732214,
+  "seat": 1,
+  "own": 65.0,
+  "opp": 168.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   1,
+   1,
+   1,
+   3
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   7,
+   2,
+   0,
+   12,
+   14
+  ],
+  "opp_score_agent": 14.090025602047106,
+  "own_trolls": 2,
+  "opp_trolls": 2
+ },
+ {
+  "gameId": 900732258,
+  "seat": 0,
+  "own": 156.0,
+  "opp": 172.0,
+  "win": false,
+  "turns": 288,
+  "second_troll": [
+   1,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 24,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   39
+  ],
+  "opp_score_agent": 14.55575175520299,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732278,
+  "seat": 1,
+  "own": 416.0,
+  "opp": 194.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   3,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   104
+  ],
+  "opp_score_agent": 14.149196201514252,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900732311,
+  "seat": 0,
+  "own": 188.0,
+  "opp": 200.0,
+  "win": false,
+  "turns": 225,
+  "second_troll": [
+   1,
+   3,
+   1,
+   3
+  ],
+  "train_turn": 26,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   3,
+   47
+  ],
+  "opp_score_agent": 14.592943660835722,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732361,
+  "seat": 1,
+  "own": 216.0,
+  "opp": 228.0,
+  "win": false,
+  "turns": 237,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   54
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732390,
+  "seat": 1,
+  "own": 184.0,
+  "opp": 268.0,
+  "win": false,
+  "turns": 293,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   46
+  ],
+  "opp_score_agent": 14.34783427028119,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732426,
+  "seat": 1,
+  "own": 248.0,
+  "opp": 381.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   62
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732493,
+  "seat": 0,
+  "own": 236.0,
+  "opp": 233.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   1
+  ],
+  "train_turn": 35,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   1,
+   59
+  ],
+  "opp_score_agent": 14.146302798864626,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732563,
+  "seat": 1,
+  "own": 180.0,
+  "opp": 176.0,
+  "win": true,
+  "turns": 255,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   45
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732594,
+  "seat": 1,
+  "own": 341.0,
+  "opp": 398.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   2,
+   1,
+   2
+  ],
+  "train_turn": 34,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   1,
+   0,
+   2,
+   85
+  ],
+  "opp_score_agent": 13.177940420399771,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ },
+ {
+  "gameId": 900732625,
+  "seat": 0,
+  "own": 203.0,
+  "opp": 133.0,
+  "win": true,
+  "turns": 238,
+  "second_troll": [
+   2,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   1,
+   0,
+   0,
+   2,
+   0,
+   50
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732667,
+  "seat": 0,
+  "own": 100.0,
+  "opp": 131.0,
+  "win": false,
+  "turns": 199,
+  "second_troll": [
+   2,
+   2,
+   1,
+   3
+  ],
+  "train_turn": 30,
+  "floored": true,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   2,
+   25
+  ],
+  "opp_score_agent": 13.580788410008434,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732689,
+  "seat": 0,
+  "own": 204.0,
+  "opp": 192.0,
+  "win": true,
+  "turns": 300,
+  "second_troll": [
+   1,
+   2,
+   1,
+   1
+  ],
+  "train_turn": 1,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   51
+  ],
+  "opp_score_agent": 13.906738953064881,
+  "own_trolls": 3,
+  "opp_trolls": 3
+ },
+ {
+  "gameId": 900732744,
+  "seat": 0,
+  "own": 164.0,
+  "opp": 282.0,
+  "win": false,
+  "turns": 300,
+  "second_troll": [
+   2,
+   1,
+   1,
+   2
+  ],
+  "train_turn": 34,
+  "floored": false,
+  "own_inv": [
+   0,
+   0,
+   0,
+   0,
+   0,
+   41
+  ],
+  "opp_score_agent": 14.149196201514252,
+  "own_trolls": 3,
+  "opp_trolls": 4
+ }
+]

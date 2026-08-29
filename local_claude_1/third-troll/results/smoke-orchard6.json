@@ -1,0 +1,6806 @@
+{
+  "all_mechanics_ok": 24,
+  "arm": "local_claude_1/third-troll/champion-orchard6-v6-instrument.rs",
+  "arm_sha256": "ff168d8b373ea44bdaf6db9bf492e74bfe7590b331f9f3baf388cee0e470a857",
+  "funding_turns_median": 71,
+  "games_with_third_troll": 24,
+  "maps_in_corpus": null,
+  "maps_played": 24,
+  "no_third_troll_reasons": {},
+  "own_score_sum_arm_minus_resident": 819,
+  "own_score_sum_arm_minus_resident_on_third_troll_maps": 819,
+  "records": "local_claude_1/third-troll/smoke-maps-seed0.jsonl",
+  "resident": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+  "resident_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+  "rows": [
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 64,
+        "funding_window": [
+          36,
+          99
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          0
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 72,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          59
+        ],
+        "own_score": 236,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            6,
+            "LEMON"
+          ],
+          [
+            10,
+            "PLUM"
+          ],
+          [
+            231,
+            "BANANA"
+          ],
+          [
+            233,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            260,
+            "BANANA"
+          ],
+          [
+            264,
+            "BANANA"
+          ],
+          [
+            264,
+            "APPLE"
+          ],
+          [
+            270,
+            "APPLE"
+          ],
+          [
+            271,
+            "APPLE"
+          ],
+          [
+            278,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 1",
+          "stats": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 99
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 1",
+            "stats": [
+              1,
+              2,
+              1,
+              1
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 99
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "7b515d6db8085355",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          19,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          2,
+          38
+        ],
+        "own_score": 154,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            190,
+            "BANANA"
+          ],
+          [
+            196,
+            "BANANA"
+          ],
+          [
+            202,
+            "BANANA"
+          ],
+          [
+            208,
+            "BANANA"
+          ],
+          [
+            214,
+            "BANANA"
+          ],
+          [
+            220,
+            "BANANA"
+          ],
+          [
+            226,
+            "BANANA"
+          ],
+          [
+            232,
+            "BANANA"
+          ],
+          [
+            238,
+            "APPLE"
+          ],
+          [
+            253,
+            "APPLE"
+          ],
+          [
+            255,
+            "APPLE"
+          ],
+          [
+            272,
+            "APPLE"
+          ],
+          [
+            276,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 1",
+          "stats": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "turn": 18
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 1",
+            "stats": [
+              1,
+              2,
+              0,
+              1
+            ],
+            "turn": 18
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        3,
+        8,
+        8,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 6
+        },
+        "funding_turns": 71,
+        "funding_window": [
+          2,
+          72
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          6,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 59,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            5,
+            "LEMON"
+          ],
+          [
+            9,
+            "LEMON"
+          ],
+          [
+            15,
+            "PLUM"
+          ],
+          [
+            135,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "APPLE"
+          ],
+          [
+            260,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 2",
+          "stats": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 72
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 2",
+            "stats": [
+              2,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 72
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "64b1d4b14f026f9f",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 76,
+          "2": 88
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          1,
+          32
+        ],
+        "own_score": 130,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            104,
+            "BANANA"
+          ],
+          [
+            109,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            262,
+            "PLUM"
+          ],
+          [
+            264,
+            "PLUM"
+          ],
+          [
+            268,
+            "LEMON"
+          ],
+          [
+            272,
+            "LEMON"
+          ],
+          [
+            274,
+            "LEMON"
+          ],
+          [
+            280,
+            "APPLE"
+          ],
+          [
+            281,
+            "APPLE"
+          ],
+          [
+            289,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        8,
+        6,
+        6,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 44,
+        "funding_window": [
+          36,
+          79
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 44,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          29
+        ],
+        "own_score": 116,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            12,
+            "PLUM"
+          ],
+          [
+            139,
+            "BANANA"
+          ],
+          [
+            143,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 1 3",
+          "stats": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 79
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 1 3",
+            "stats": [
+              2,
+              1,
+              1,
+              3
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 79
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "c84154d29ea19fbc",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 110,
+          "2": 101
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 26,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          15
+        ],
+        "own_score": 60,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            1,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 1 0 3",
+          "stats": [
+            3,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 1 0 3",
+            "stats": [
+              3,
+              1,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        2,
+        2,
+        2,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 6,
+          "2": 2
+        },
+        "funding_turns": 56,
+        "funding_window": [
+          33,
+          88
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          6,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            13,
+            "PLUM"
+          ],
+          [
+            144,
+            "BANANA"
+          ],
+          [
+            149,
+            "BANANA"
+          ],
+          [
+            154,
+            "BANANA"
+          ],
+          [
+            159,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 2",
+          "stats": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 32
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 88
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 2",
+            "stats": [
+              1,
+              2,
+              1,
+              2
+            ],
+            "turn": 32
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 88
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b086e0e6163a45ac",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 61,
+          "2": 66
+        },
+        "funding_turns": null,
+        "funding_window": [
+          9,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 43,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          24
+        ],
+        "own_score": 96,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            103,
+            "BANANA"
+          ],
+          [
+            108,
+            "BANANA"
+          ],
+          [
+            109,
+            "BANANA"
+          ],
+          [
+            113,
+            "BANANA"
+          ],
+          [
+            115,
+            "PLUM"
+          ],
+          [
+            118,
+            "APPLE"
+          ],
+          [
+            124,
+            "APPLE"
+          ],
+          [
+            127,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 8
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        4,
+        4,
+        4,
+        7,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 1
+        },
+        "funding_turns": 56,
+        "funding_window": [
+          23,
+          78
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          0
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          64
+        ],
+        "own_score": 256,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            186,
+            "BANANA"
+          ],
+          [
+            190,
+            "BANANA"
+          ],
+          [
+            193,
+            "BANANA"
+          ],
+          [
+            194,
+            "BANANA"
+          ],
+          [
+            197,
+            "BANANA"
+          ],
+          [
+            198,
+            "BANANA"
+          ],
+          [
+            201,
+            "BANANA"
+          ],
+          [
+            202,
+            "BANANA"
+          ],
+          [
+            205,
+            "BANANA"
+          ],
+          [
+            206,
+            "BANANA"
+          ],
+          [
+            209,
+            "APPLE"
+          ],
+          [
+            210,
+            "APPLE"
+          ],
+          [
+            215,
+            "APPLE"
+          ],
+          [
+            216,
+            "APPLE"
+          ],
+          [
+            217,
+            "APPLE"
+          ],
+          [
+            223,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 3",
+          "stats": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 22
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 78
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 3",
+            "stats": [
+              2,
+              2,
+              1,
+              3
+            ],
+            "turn": 22
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 78
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "89e906123ff36a86",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          15,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          53
+        ],
+        "own_score": 212,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            172,
+            "BANANA"
+          ],
+          [
+            178,
+            "BANANA"
+          ],
+          [
+            184,
+            "BANANA"
+          ],
+          [
+            190,
+            "BANANA"
+          ],
+          [
+            196,
+            "BANANA"
+          ],
+          [
+            197,
+            "BANANA"
+          ],
+          [
+            201,
+            "BANANA"
+          ],
+          [
+            202,
+            "BANANA"
+          ],
+          [
+            205,
+            "BANANA"
+          ],
+          [
+            208,
+            "BANANA"
+          ],
+          [
+            209,
+            "PLUM"
+          ],
+          [
+            214,
+            "PLUM"
+          ],
+          [
+            219,
+            "LEMON"
+          ],
+          [
+            224,
+            "LEMON"
+          ],
+          [
+            229,
+            "APPLE"
+          ],
+          [
+            236,
+            "APPLE"
+          ],
+          [
+            243,
+            "APPLE"
+          ],
+          [
+            250,
+            "APPLE"
+          ],
+          [
+            257,
+            "APPLE"
+          ],
+          [
+            264,
+            "APPLE"
+          ],
+          [
+            271,
+            "APPLE"
+          ],
+          [
+            275,
+            "APPLE"
+          ],
+          [
+            278,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        7,
+        10,
+        10,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 58,
+        "funding_window": [
+          36,
+          93
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          33
+        ],
+        "own_score": 132,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            12,
+            "PLUM"
+          ],
+          [
+            161,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "PLUM"
+          ],
+          [
+            258,
+            "APPLE"
+          ],
+          [
+            258,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 1 1 1",
+          "stats": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 93
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 1 1 1",
+            "stats": [
+              3,
+              1,
+              1,
+              1
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 93
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "a6062948c27575a8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 36,
+          "2": 12
+        },
+        "funding_turns": null,
+        "funding_window": [
+          22,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          29
+        ],
+        "own_score": 116,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            2,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            106,
+            "BANANA"
+          ],
+          [
+            112,
+            "BANANA"
+          ],
+          [
+            118,
+            "BANANA"
+          ],
+          [
+            123,
+            "APPLE"
+          ],
+          [
+            124,
+            "APPLE"
+          ],
+          [
+            134,
+            "APPLE"
+          ],
+          [
+            141,
+            "APPLE"
+          ],
+          [
+            150,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 2 0 1",
+          "stats": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 21
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 2 0 1",
+            "stats": [
+              3,
+              2,
+              0,
+              1
+            ],
+            "turn": 21
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        5,
+        6,
+        3,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 40,
+        "funding_window": [
+          36,
+          75
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 41,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          32
+        ],
+        "own_score": 128,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            8,
+            "LEMON"
+          ],
+          [
+            144,
+            "BANANA"
+          ],
+          [
+            144,
+            "BANANA"
+          ],
+          [
+            148,
+            "BANANA"
+          ],
+          [
+            150,
+            "BANANA"
+          ],
+          [
+            152,
+            "APPLE"
+          ],
+          [
+            156,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 1 2",
+          "stats": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 75
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 1 2",
+            "stats": [
+              2,
+              1,
+              1,
+              2
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 75
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "50bcce5e7ae4a14c",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 80
+        },
+        "funding_idle_streaks": {
+          "0": 44,
+          "2": 21
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 36,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          28
+        ],
+        "own_score": 112,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            106,
+            "BANANA"
+          ],
+          [
+            112,
+            "BANANA"
+          ],
+          [
+            118,
+            "BANANA"
+          ],
+          [
+            122,
+            "BANANA"
+          ],
+          [
+            124,
+            "APPLE"
+          ],
+          [
+            127,
+            "APPLE"
+          ],
+          [
+            136,
+            "APPLE"
+          ],
+          [
+            141,
+            "APPLE"
+          ],
+          [
+            145,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        2,
+        6,
+        4,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 1,
+          "2": 2
+        },
+        "funding_turns": 71,
+        "funding_window": [
+          31,
+          101
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 52,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          38
+        ],
+        "own_score": 152,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            13,
+            "PLUM"
+          ],
+          [
+            165,
+            "BANANA"
+          ],
+          [
+            169,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 1 2",
+          "stats": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "turn": 30
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 101
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 1 2",
+            "stats": [
+              2,
+              1,
+              1,
+              2
+            ],
+            "turn": 30
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 101
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "daadbfd7e8423f86",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 67,
+          "2": 62
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          25
+        ],
+        "own_score": 100,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            106,
+            "BANANA"
+          ],
+          [
+            111,
+            "BANANA"
+          ],
+          [
+            111,
+            "BANANA"
+          ],
+          [
+            116,
+            "BANANA"
+          ],
+          [
+            117,
+            "BANANA"
+          ],
+          [
+            123,
+            "BANANA"
+          ],
+          [
+            129,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "PLUM"
+          ],
+          [
+            258,
+            "PLUM"
+          ],
+          [
+            258,
+            "LEMON"
+          ],
+          [
+            264,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        7,
+        3,
+        2,
+        8,
+        4,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 12,
+          "2": 4
+        },
+        "funding_turns": 133,
+        "funding_window": [
+          2,
+          134
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          12,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 45,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          41
+        ],
+        "own_score": 164,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            53,
+            "LEMON"
+          ],
+          [
+            67,
+            "LEMON"
+          ],
+          [
+            72,
+            "PLUM"
+          ],
+          [
+            203,
+            "BANANA"
+          ],
+          [
+            207,
+            "BANANA"
+          ],
+          [
+            208,
+            "BANANA"
+          ],
+          [
+            213,
+            "BANANA"
+          ],
+          [
+            218,
+            "BANANA"
+          ],
+          [
+            223,
+            "BANANA"
+          ],
+          [
+            228,
+            "BANANA"
+          ],
+          [
+            233,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 1 2",
+          "stats": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 134
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 1 1 2",
+            "stats": [
+              2,
+              1,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 134
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b6a5501980dd849a",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 68
+        },
+        "funding_idle_streaks": {
+          "0": 21,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 32,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          24
+        ],
+        "own_score": 96,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            132,
+            "BANANA"
+          ],
+          [
+            137,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            148,
+            "BANANA"
+          ],
+          [
+            152,
+            "BANANA"
+          ],
+          [
+            154,
+            "BANANA"
+          ],
+          [
+            157,
+            "PLUM"
+          ],
+          [
+            160,
+            "APPLE"
+          ],
+          [
+            163,
+            "APPLE"
+          ],
+          [
+            172,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 1 0 2",
+          "stats": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 1 0 2",
+            "stats": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        2,
+        4,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 0
+        },
+        "funding_turns": 82,
+        "funding_window": [
+          2,
+          83
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          6
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          29
+        ],
+        "own_score": 116,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            5,
+            "LEMON"
+          ],
+          [
+            9,
+            "LEMON"
+          ],
+          [
+            39,
+            "PLUM"
+          ],
+          [
+            108,
+            "BANANA"
+          ],
+          [
+            112,
+            "BANANA"
+          ],
+          [
+            113,
+            "BANANA"
+          ],
+          [
+            116,
+            "BANANA"
+          ],
+          [
+            118,
+            "BANANA"
+          ],
+          [
+            120,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 2",
+          "stats": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 83
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 2",
+            "stats": [
+              2,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 83
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "19111bc9b90011bb",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 123,
+          "2": 101
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 6,
+          "2": 0
+        },
+        "opp_score": 53,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          30
+        ],
+        "own_score": 121,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            262,
+            "BANANA"
+          ],
+          [
+            264,
+            "BANANA"
+          ],
+          [
+            267,
+            "BANANA"
+          ],
+          [
+            270,
+            "BANANA"
+          ],
+          [
+            272,
+            "BANANA"
+          ],
+          [
+            276,
+            "BANANA"
+          ],
+          [
+            277,
+            "LEMON"
+          ],
+          [
+            282,
+            "LEMON"
+          ],
+          [
+            283,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        7,
+        3,
+        10,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 0
+        },
+        "funding_turns": 110,
+        "funding_window": [
+          2,
+          111
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          71
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 38,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          44
+        ],
+        "own_score": 176,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            53,
+            "LEMON"
+          ],
+          [
+            69,
+            "LEMON"
+          ],
+          [
+            75,
+            "PLUM"
+          ],
+          [
+            228,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            257,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 1 1 2",
+          "stats": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 111
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 1 1 2",
+            "stats": [
+              1,
+              1,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 111
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b91f102962423ddd",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 66,
+          "2": 71
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 31,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          20
+        ],
+        "own_score": 80,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            1,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            163,
+            "BANANA"
+          ],
+          [
+            164,
+            "BANANA"
+          ],
+          [
+            169,
+            "BANANA"
+          ],
+          [
+            169,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 1 0 2",
+          "stats": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 1 0 2",
+            "stats": [
+              1,
+              1,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        2,
+        2,
+        3,
+        8,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 36,
+        "funding_window": [
+          36,
+          71
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 65,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          43
+        ],
+        "own_score": 172,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            6,
+            "LEMON"
+          ],
+          [
+            19,
+            "PLUM"
+          ],
+          [
+            130,
+            "BANANA"
+          ],
+          [
+            134,
+            "BANANA"
+          ],
+          [
+            135,
+            "BANANA"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            140,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            145,
+            "BANANA"
+          ],
+          [
+            146,
+            "BANANA"
+          ],
+          [
+            150,
+            "BANANA"
+          ],
+          [
+            150,
+            "LEMON"
+          ],
+          [
+            154,
+            "APPLE"
+          ],
+          [
+            156,
+            "APPLE"
+          ],
+          [
+            161,
+            "APPLE"
+          ],
+          [
+            165,
+            "APPLE"
+          ],
+          [
+            168,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 3",
+          "stats": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 71
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 3",
+            "stats": [
+              2,
+              2,
+              1,
+              3
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 71
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "6d81a00871f22f23",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 51,
+          "2": 51
+        },
+        "funding_turns": null,
+        "funding_window": [
+          17,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 69,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          49
+        ],
+        "own_score": 198,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            133,
+            "BANANA"
+          ],
+          [
+            135,
+            "BANANA"
+          ],
+          [
+            139,
+            "BANANA"
+          ],
+          [
+            139,
+            "BANANA"
+          ],
+          [
+            143,
+            "BANANA"
+          ],
+          [
+            145,
+            "BANANA"
+          ],
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "PLUM"
+          ],
+          [
+            258,
+            "PLUM"
+          ],
+          [
+            261,
+            "PLUM"
+          ],
+          [
+            266,
+            "PLUM"
+          ],
+          [
+            267,
+            "APPLE"
+          ],
+          [
+            271,
+            "APPLE"
+          ],
+          [
+            277,
+            "APPLE"
+          ],
+          [
+            278,
+            "APPLE"
+          ],
+          [
+            285,
+            "APPLE"
+          ],
+          [
+            292,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        9,
+        10,
+        9,
+        9,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 12,
+          "2": 0
+        },
+        "funding_turns": 187,
+        "funding_window": [
+          2,
+          188
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          47
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          12,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 67,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          37
+        ],
+        "own_score": 149,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            1
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            5,
+            "LEMON"
+          ],
+          [
+            9,
+            "LEMON"
+          ],
+          [
+            161,
+            "PLUM"
+          ],
+          [
+            253,
+            "BANANA"
+          ],
+          [
+            259,
+            "BANANA"
+          ],
+          [
+            262,
+            "BANANA"
+          ],
+          [
+            265,
+            "BANANA"
+          ],
+          [
+            267,
+            "BANANA"
+          ],
+          [
+            271,
+            "BANANA"
+          ],
+          [
+            272,
+            "BANANA"
+          ],
+          [
+            273,
+            "BANANA"
+          ],
+          [
+            277,
+            "APPLE"
+          ],
+          [
+            277,
+            "APPLE"
+          ],
+          [
+            279,
+            "APPLE"
+          ],
+          [
+            292,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 2",
+          "stats": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 1",
+          "stats": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 188
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 2",
+            "stats": [
+              1,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 1",
+            "stats": [
+              2,
+              3,
+              0,
+              1
+            ],
+            "turn": 188
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "c14dea6aa5d28951",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 47,
+          "2": 0
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 40,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            123,
+            "BANANA"
+          ],
+          [
+            129,
+            "BANANA"
+          ],
+          [
+            135,
+            "BANANA"
+          ],
+          [
+            141,
+            "BANANA"
+          ],
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            153,
+            "BANANA"
+          ],
+          [
+            153,
+            "BANANA"
+          ],
+          [
+            158,
+            "BANANA"
+          ],
+          [
+            159,
+            "LEMON"
+          ],
+          [
+            163,
+            "LEMON"
+          ],
+          [
+            169,
+            "LEMON"
+          ],
+          [
+            174,
+            "LEMON"
+          ],
+          [
+            175,
+            "APPLE"
+          ],
+          [
+            184,
+            "APPLE"
+          ],
+          [
+            189,
+            "APPLE"
+          ],
+          [
+            193,
+            "APPLE"
+          ],
+          [
+            202,
+            "APPLE"
+          ],
+          [
+            211,
+            "APPLE"
+          ],
+          [
+            212,
+            "APPLE"
+          ],
+          [
+            220,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        9,
+        9,
+        8,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 1
+        },
+        "funding_turns": 53,
+        "funding_window": [
+          36,
+          88
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          1,
+          1
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          37
+        ],
+        "own_score": 148,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            5,
+            "LEMON"
+          ],
+          [
+            9,
+            "LEMON"
+          ],
+          [
+            12,
+            "PLUM"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            260,
+            "BANANA"
+          ],
+          [
+            262,
+            "APPLE"
+          ],
+          [
+            264,
+            "APPLE"
+          ],
+          [
+            264,
+            "APPLE"
+          ],
+          [
+            271,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 1 2",
+          "stats": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 88
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 3 1 2",
+            "stats": [
+              2,
+              3,
+              1,
+              2
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 88
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "78e4df84516e04d1",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 89,
+          "2": 102
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 1,
+          "2": 0
+        },
+        "opp_score": 70,
+        "own_inventory": [
+          0,
+          0,
+          4,
+          0,
+          1,
+          41
+        ],
+        "own_score": 168,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            255,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            260,
+            "BANANA"
+          ],
+          [
+            264,
+            "BANANA"
+          ],
+          [
+            265,
+            "BANANA"
+          ],
+          [
+            270,
+            "BANANA"
+          ],
+          [
+            270,
+            "BANANA"
+          ],
+          [
+            275,
+            "APPLE"
+          ],
+          [
+            275,
+            "APPLE"
+          ],
+          [
+            288,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 2",
+          "stats": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 2",
+            "stats": [
+              3,
+              3,
+              0,
+              2
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        8,
+        8,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 6,
+          "2": 1
+        },
+        "funding_turns": 103,
+        "funding_window": [
+          2,
+          104
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          58
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          6,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 56,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          53
+        ],
+        "own_score": 212,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            5,
+            "LEMON"
+          ],
+          [
+            47,
+            "LEMON"
+          ],
+          [
+            53,
+            "PLUM"
+          ],
+          [
+            199,
+            "BANANA"
+          ],
+          [
+            203,
+            "BANANA"
+          ],
+          [
+            207,
+            "BANANA"
+          ],
+          [
+            211,
+            "BANANA"
+          ],
+          [
+            215,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 3",
+          "stats": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 104
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 3",
+            "stats": [
+              1,
+              2,
+              1,
+              3
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 104
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "33261cf926f7a3eb",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 58,
+          "2": 17
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 37,
+        "own_inventory": [
+          0,
+          0,
+          1,
+          0,
+          0,
+          34
+        ],
+        "own_score": 137,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            160,
+            "BANANA"
+          ],
+          [
+            164,
+            "BANANA"
+          ],
+          [
+            168,
+            "BANANA"
+          ],
+          [
+            172,
+            "BANANA"
+          ],
+          [
+            175,
+            "BANANA"
+          ],
+          [
+            176,
+            "BANANA"
+          ],
+          [
+            180,
+            "BANANA"
+          ],
+          [
+            181,
+            "LEMON"
+          ],
+          [
+            184,
+            "APPLE"
+          ],
+          [
+            190,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 3",
+          "stats": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 3",
+            "stats": [
+              1,
+              2,
+              0,
+              3
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        6,
+        3,
+        7,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 4,
+          "2": 2
+        },
+        "funding_turns": 109,
+        "funding_window": [
+          2,
+          110
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          4,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          45
+        ],
+        "own_score": 180,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            36,
+            "LEMON"
+          ],
+          [
+            44,
+            "PLUM"
+          ],
+          [
+            184,
+            "BANANA"
+          ],
+          [
+            188,
+            "BANANA"
+          ],
+          [
+            189,
+            "BANANA"
+          ],
+          [
+            193,
+            "BANANA"
+          ],
+          [
+            194,
+            "PLUM"
+          ],
+          [
+            198,
+            "APPLE"
+          ],
+          [
+            200,
+            "APPLE"
+          ],
+          [
+            207,
+            "APPLE"
+          ],
+          [
+            211,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 2",
+          "stats": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 110
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 2",
+            "stats": [
+              1,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 110
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "2433a442a41ce6cb",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 17,
+          "2": 17
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          34
+        ],
+        "own_score": 136,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            153,
+            "BANANA"
+          ],
+          [
+            156,
+            "BANANA"
+          ],
+          [
+            159,
+            "BANANA"
+          ],
+          [
+            161,
+            "LEMON"
+          ],
+          [
+            165,
+            "APPLE"
+          ],
+          [
+            167,
+            "APPLE"
+          ],
+          [
+            176,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ],
+          [
+            261,
+            "APPLE"
+          ],
+          [
+            269,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        6,
+        8,
+        4,
+        5,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 4,
+          "2": 0
+        },
+        "funding_turns": 61,
+        "funding_window": [
+          2,
+          62
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          64
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          4,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 50,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          52
+        ],
+        "own_score": 208,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            6,
+            "LEMON"
+          ],
+          [
+            10,
+            "PLUM"
+          ],
+          [
+            144,
+            "BANANA"
+          ],
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            150,
+            "BANANA"
+          ],
+          [
+            152,
+            "BANANA"
+          ],
+          [
+            156,
+            "BANANA"
+          ],
+          [
+            157,
+            "BANANA"
+          ],
+          [
+            162,
+            "BANANA"
+          ],
+          [
+            162,
+            "BANANA"
+          ],
+          [
+            167,
+            "APPLE"
+          ],
+          [
+            168,
+            "APPLE"
+          ],
+          [
+            180,
+            "APPLE"
+          ],
+          [
+            185,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 2",
+          "stats": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 62
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 2",
+            "stats": [
+              2,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 62
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "7a082aa227d4192a",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 64,
+          "2": 48
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 48,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          41
+        ],
+        "own_score": 164,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            105,
+            "BANANA"
+          ],
+          [
+            106,
+            "BANANA"
+          ],
+          [
+            112,
+            "BANANA"
+          ],
+          [
+            118,
+            "BANANA"
+          ],
+          [
+            124,
+            "BANANA"
+          ],
+          [
+            130,
+            "BANANA"
+          ],
+          [
+            135,
+            "BANANA"
+          ],
+          [
+            136,
+            "BANANA"
+          ],
+          [
+            140,
+            "PLUM"
+          ],
+          [
+            142,
+            "LEMON"
+          ],
+          [
+            146,
+            "LEMON"
+          ],
+          [
+            152,
+            "LEMON"
+          ],
+          [
+            157,
+            "LEMON"
+          ],
+          [
+            158,
+            "APPLE"
+          ],
+          [
+            167,
+            "APPLE"
+          ],
+          [
+            172,
+            "APPLE"
+          ],
+          [
+            176,
+            "APPLE"
+          ],
+          [
+            185,
+            "APPLE"
+          ],
+          [
+            194,
+            "APPLE"
+          ],
+          [
+            195,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        9,
+        8,
+        8,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 9,
+          "2": 2
+        },
+        "funding_turns": 72,
+        "funding_window": [
+          2,
+          73
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          9,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          3,
+          55
+        ],
+        "own_score": 220,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            30,
+            "LEMON"
+          ],
+          [
+            39,
+            "LEMON"
+          ],
+          [
+            43,
+            "PLUM"
+          ],
+          [
+            130,
+            "BANANA"
+          ],
+          [
+            134,
+            "BANANA"
+          ],
+          [
+            134,
+            "BANANA"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            146,
+            "APPLE"
+          ],
+          [
+            146,
+            "APPLE"
+          ],
+          [
+            153,
+            "APPLE"
+          ],
+          [
+            153,
+            "APPLE"
+          ],
+          [
+            160,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 1 3",
+          "stats": [
+            3,
+            3,
+            1,
+            3
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 73
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "3 3 1 3",
+            "stats": [
+              3,
+              3,
+              1,
+              3
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 73
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "62694c8c0a48cf44",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 37,
+          "2": 38
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 64,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          50
+        ],
+        "own_score": 200,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            105,
+            "BANANA"
+          ],
+          [
+            109,
+            "BANANA"
+          ],
+          [
+            113,
+            "BANANA"
+          ],
+          [
+            117,
+            "BANANA"
+          ],
+          [
+            121,
+            "BANANA"
+          ],
+          [
+            125,
+            "BANANA"
+          ],
+          [
+            125,
+            "BANANA"
+          ],
+          [
+            129,
+            "APPLE"
+          ],
+          [
+            131,
+            "APPLE"
+          ],
+          [
+            136,
+            "APPLE"
+          ],
+          [
+            143,
+            "APPLE"
+          ],
+          [
+            148,
+            "APPLE"
+          ],
+          [
+            150,
+            "APPLE"
+          ],
+          [
+            157,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        10,
+        9,
+        7,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 1
+        },
+        "funding_turns": 72,
+        "funding_window": [
+          23,
+          94
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          1,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 68,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          2,
+          32
+        ],
+        "own_score": 128,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            8,
+            "LEMON"
+          ],
+          [
+            159,
+            "BANANA"
+          ],
+          [
+            160,
+            "BANANA"
+          ],
+          [
+            163,
+            "LEMON"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 3",
+          "stats": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 22
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 94
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 3",
+            "stats": [
+              2,
+              2,
+              1,
+              3
+            ],
+            "turn": 22
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 94
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "21d2746745cd7896",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 92,
+          "2": 86
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 47,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          23
+        ],
+        "own_score": 92,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "LEMON"
+          ],
+          [
+            258,
+            "LEMON"
+          ],
+          [
+            261,
+            "APPLE"
+          ],
+          [
+            267,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        5,
+        7,
+        3,
+        2,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 0
+        },
+        "funding_turns": 54,
+        "funding_window": [
+          25,
+          78
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          48
+        ],
+        "own_score": 192,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            10,
+            "PLUM"
+          ],
+          [
+            168,
+            "BANANA"
+          ],
+          [
+            169,
+            "BANANA"
+          ],
+          [
+            172,
+            "BANANA"
+          ],
+          [
+            175,
+            "BANANA"
+          ],
+          [
+            176,
+            "BANANA"
+          ],
+          [
+            180,
+            "BANANA"
+          ],
+          [
+            181,
+            "BANANA"
+          ],
+          [
+            184,
+            "BANANA"
+          ],
+          [
+            187,
+            "BANANA"
+          ],
+          [
+            188,
+            "BANANA"
+          ],
+          [
+            192,
+            "PLUM"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 1 2",
+          "stats": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 24
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 78
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 2 1 2",
+            "stats": [
+              1,
+              2,
+              1,
+              2
+            ],
+            "turn": 24
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 78
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "2d8f315778eba2a8",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 19,
+          "2": 14
+        },
+        "funding_turns": null,
+        "funding_window": [
+          21,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 51,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          4,
+          31
+        ],
+        "own_score": 124,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            262,
+            "BANANA"
+          ],
+          [
+            264,
+            "BANANA"
+          ],
+          [
+            267,
+            "BANANA"
+          ],
+          [
+            270,
+            "BANANA"
+          ],
+          [
+            272,
+            "BANANA"
+          ],
+          [
+            276,
+            "BANANA"
+          ],
+          [
+            277,
+            "PLUM"
+          ],
+          [
+            282,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 2 0 2",
+          "stats": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 20
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "1 2 0 2",
+            "stats": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "turn": 20
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        3,
+        4,
+        2,
+        10,
+        9,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 3,
+          "2": 0
+        },
+        "funding_turns": 85,
+        "funding_window": [
+          2,
+          86
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          3,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 34,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          39
+        ],
+        "own_score": 156,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            42,
+            "LEMON"
+          ],
+          [
+            46,
+            "PLUM"
+          ],
+          [
+            149,
+            "BANANA"
+          ],
+          [
+            154,
+            "BANANA"
+          ],
+          [
+            155,
+            "BANANA"
+          ],
+          [
+            159,
+            "BANANA"
+          ],
+          [
+            161,
+            "LEMON"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 2",
+          "stats": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 86
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 2",
+            "stats": [
+              2,
+              2,
+              1,
+              2
+            ],
+            "turn": 1
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 86
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "879f73412b531333",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 78,
+          "2": 86
+        },
+        "funding_turns": null,
+        "funding_window": [
+          2,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 27,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          27
+        ],
+        "own_score": 108,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            2
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            257,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            262,
+            "PLUM"
+          ],
+          [
+            264,
+            "LEMON"
+          ],
+          [
+            268,
+            "APPLE"
+          ],
+          [
+            273,
+            "APPLE"
+          ],
+          [
+            277,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 2",
+          "stats": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 2",
+            "stats": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "turn": 1
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        6,
+        6,
+        4,
+        4,
+        6,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 2,
+          "2": 0
+        },
+        "funding_turns": 56,
+        "funding_window": [
+          23,
+          78
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          50
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          2,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 55,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          44
+        ],
+        "own_score": 176,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            134,
+            "BANANA"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            143,
+            "BANANA"
+          ],
+          [
+            147,
+            "BANANA"
+          ],
+          [
+            148,
+            "APPLE"
+          ],
+          [
+            151,
+            "APPLE"
+          ],
+          [
+            158,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 1 3",
+          "stats": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 22
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 3",
+          "stats": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 78
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 2 1 3",
+            "stats": [
+              2,
+              2,
+              1,
+              3
+            ],
+            "turn": 22
+          },
+          {
+            "spec": "2 3 0 3",
+            "stats": [
+              2,
+              3,
+              0,
+              3
+            ],
+            "turn": 78
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "80385f5fdcac43f7",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 50,
+          "2": 50
+        },
+        "funding_idle_streaks": {
+          "0": 70,
+          "2": 66
+        },
+        "funding_turns": null,
+        "funding_window": [
+          15,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 63,
+        "own_inventory": [
+          0,
+          0,
+          2,
+          0,
+          0,
+          38
+        ],
+        "own_score": 154,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            2,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            252,
+            "BANANA"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            258,
+            "BANANA"
+          ],
+          [
+            260,
+            "BANANA"
+          ],
+          [
+            264,
+            "BANANA"
+          ],
+          [
+            264,
+            "LEMON"
+          ],
+          [
+            269,
+            "LEMON"
+          ],
+          [
+            270,
+            "APPLE"
+          ],
+          [
+            274,
+            "APPLE"
+          ],
+          [
+            281,
+            "APPLE"
+          ],
+          [
+            288,
+            "APPLE"
+          ],
+          [
+            294,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 2 0 3",
+          "stats": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 2 0 3",
+            "stats": [
+              2,
+              2,
+              0,
+              3
+            ],
+            "turn": 14
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        2,
+        7,
+        8,
+        6,
+        10,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 100,
+        "funding_window": [
+          36,
+          135
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          33
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 72,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          62
+        ],
+        "own_score": 248,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            1,
+            3,
+            1,
+            1
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            12,
+            "PLUM"
+          ],
+          [
+            256,
+            "BANANA"
+          ],
+          [
+            261,
+            "BANANA"
+          ],
+          [
+            261,
+            "BANANA"
+          ],
+          [
+            266,
+            "BANANA"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "1 3 1 1",
+          "stats": [
+            1,
+            3,
+            1,
+            1
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 135
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "1 3 1 1",
+            "stats": [
+              1,
+              3,
+              1,
+              1
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 135
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "d9c8059a3038862e",
+      "profile": "harvester",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 33,
+          "2": 6
+        },
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          11,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 67,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          57
+        ],
+        "own_score": 228,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            0,
+            1
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            210,
+            "BANANA"
+          ],
+          [
+            216,
+            "BANANA"
+          ],
+          [
+            222,
+            "BANANA"
+          ],
+          [
+            226,
+            "BANANA"
+          ],
+          [
+            228,
+            "APPLE"
+          ],
+          [
+            232,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 0 1",
+          "stats": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 10
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "2 3 0 1",
+            "stats": [
+              2,
+              3,
+              0,
+              1
+            ],
+            "turn": 10
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        4,
+        10,
+        3,
+        4,
+        3,
+        0
+      ]
+    },
+    {
+      "arm": {
+        "funding_idle_streaks": {
+          "0": 0,
+          "2": 0
+        },
+        "funding_turns": 31,
+        "funding_window": [
+          36,
+          66
+        ],
+        "idle_max_after_horizon_arm_vs_resident": [
+          0,
+          80
+        ],
+        "idle_max_funding_arm_vs_resident": [
+          0,
+          0
+        ],
+        "mechanics_ok": true,
+        "mechanics_ok_before_stall_check": true,
+        "never_four": true,
+        "opp_score": 67,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          54
+        ],
+        "own_score": 216,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "3": [
+            2,
+            3,
+            0,
+            2
+          ]
+        },
+        "own_units": 3,
+        "plants": [
+          [
+            3,
+            "LEMON"
+          ],
+          [
+            7,
+            "LEMON"
+          ],
+          [
+            13,
+            "PLUM"
+          ],
+          [
+            146,
+            "BANANA"
+          ],
+          [
+            150,
+            "BANANA"
+          ],
+          [
+            151,
+            "BANANA"
+          ],
+          [
+            155,
+            "BANANA"
+          ],
+          [
+            156,
+            "BANANA"
+          ],
+          [
+            160,
+            "BANANA"
+          ],
+          [
+            161,
+            "BANANA"
+          ],
+          [
+            165,
+            "APPLE"
+          ],
+          [
+            166,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ],
+          [
+            252,
+            "APPLE"
+          ]
+        ],
+        "plays": true,
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "2 3 1 2",
+          "stats": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 35
+        },
+        "stalled": false,
+        "telemetry_errors": [],
+        "third_counted_by_referee": true,
+        "third_spec_ok": true,
+        "third_troll": {
+          "spec": "2 3 0 2",
+          "stats": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 66
+        },
+        "third_within_horizon": true,
+        "trains": [
+          {
+            "spec": "2 3 1 2",
+            "stats": [
+              2,
+              3,
+              1,
+              2
+            ],
+            "turn": 35
+          },
+          {
+            "spec": "2 3 0 2",
+            "stats": [
+              2,
+              3,
+              0,
+              2
+            ],
+            "turn": 66
+          }
+        ],
+        "turns_answered": 300
+      },
+      "map_hash": "b64b9915e3f228af",
+      "profile": "chopper_aggressor",
+      "resident": {
+        "after_horizon_idle_streaks": {
+          "0": 80,
+          "2": 73
+        },
+        "funding_idle_streaks": {
+          "0": 7,
+          "2": 0
+        },
+        "funding_turns": null,
+        "funding_window": [
+          17,
+          200
+        ],
+        "idle_streaks_over_arm_window": {
+          "0": 0,
+          "2": 0
+        },
+        "opp_score": 71,
+        "own_inventory": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          56
+        ],
+        "own_score": 224,
+        "own_unit_stats": {
+          "0": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "2": [
+            3,
+            3,
+            0,
+            3
+          ]
+        },
+        "own_units": 2,
+        "plants": [
+          [
+            130,
+            "BANANA"
+          ],
+          [
+            134,
+            "BANANA"
+          ],
+          [
+            138,
+            "BANANA"
+          ],
+          [
+            142,
+            "BANANA"
+          ],
+          [
+            146,
+            "BANANA"
+          ],
+          [
+            150,
+            "BANANA"
+          ],
+          [
+            154,
+            "BANANA"
+          ],
+          [
+            158,
+            "APPLE"
+          ],
+          [
+            162,
+            "APPLE"
+          ],
+          [
+            165,
+            "APPLE"
+          ],
+          [
+            171,
+            "APPLE"
+          ],
+          [
+            178,
+            "APPLE"
+          ],
+          [
+            179,
+            "APPLE"
+          ],
+          [
+            185,
+            "APPLE"
+          ]
+        ],
+        "referee_errors": {},
+        "second_troll": {
+          "spec": "3 3 0 3",
+          "stats": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 16
+        },
+        "third_troll": null,
+        "trains": [
+          {
+            "spec": "3 3 0 3",
+            "stats": [
+              3,
+              3,
+              0,
+              3
+            ],
+            "turn": 16
+          }
+        ],
+        "turns_answered": 300
+      },
+      "start_inventory": [
+        10,
+        10,
+        8,
+        7,
+        9,
+        0
+      ]
+    }
+  ],
+  "seed": 0,
+  "stalled_maps": [],
+  "status": "PASS",
+  "third_spec_expected": "2 3 0 3|2 3 0 2|2 3 0 1",
+  "third_troll_turn_median": 88,
+  "third_troll_turns": [
+    62,
+    66,
+    71,
+    72,
+    73,
+    75,
+    78,
+    78,
+    78,
+    79,
+    83,
+    86,
+    88,
+    88,
+    93,
+    94,
+    99,
+    101,
+    104,
+    110,
+    111,
+    134,
+    135,
+    188
+  ],
+  "turns": 300,
+  "what": "smoke on real ladder maps: mechanics only, not a value gate"
+}

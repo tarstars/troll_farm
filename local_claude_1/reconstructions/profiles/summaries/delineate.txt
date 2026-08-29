@@ -1,0 +1,12 @@
+delineate (Legend #1; agent 6479768; 223 games, all read from raw replays; win rate 0.785, mean score 415 against 253).
+
+1. The strongest of the four and the one that scores most from wood: 93 % of its points are wood (388 wood points and 27 fruit points per game); it collects 98 wood per game, the most of any profiled bot.
+2. It wins with FEWER trolls: 2.9 trolls at the end on average (norxondor 3.5, Bubaptik 3.3, MSz 3.2). A third troll appears in only 56 % of games (median turn 111) and a fourth in 27 % (turn 144); its win rate is 69 % with two trolls and 91 % with four.
+3. Second troll early (median turn 6, 74 % by turn 25) with balanced talents: speed 2 / carry 2 / harvest 1-2 / chop 2 (2 2 2 2 in 20 % of games, chop 2 in 66 %). Later trolls are haulers-choppers: carry 4 in 70 %, chop 3 in 61 % (troll 3) and 97 % (troll 4); 3 4 1 3 is the standard fourth troll.
+4. It plants the most (40 successful plants per game; the others 29): lemons first (67 % of first plants), bananas later (48 % of all plants, 53 % in the last 100 turns). The planting rate rises from 0.7 per 10 turns early to 1.9 per 10 turns after turn 150: the banana farm grows all game.
+5. Plants close to home: median 2 cells from its shack (43 % at distance 1, 5 % beyond 4), 94 % on its own half, 23 % next to water.
+6. Chops 172 times per game (129 land). 64 % of chops hit its own planted trees, 24 % opponent-planted, 13 % wild. In turns 1-100 it is a raider: 56 % of its early chops are on the opponent's freshly planted trees; in turns 201-300 it fells its own farm (80 %). 64 % of all trees it chops are size 1 with no fruit: plant, let it tick once, fell it for one wood (4 points).
+7. Harvests 79 times per game (85 fruits, lemons 42 %), 72 % at its own trees; harvesting peaks around turns 100-150 and fades in the endgame while chopping climbs to 10 per 10 turns.
+8. Mines in 77 % of games (7.8 MINE commands, 11.5 iron), mostly turns 50-150, to pay the chop-3 trolls.
+9. MOVE commands are one step at a time: the target is always within 1-3 cells (its speed), so the corpus never shows its true destinations (the same is true of norxondor and MSz; Bubaptik and yamo send destinations).
+10. Clean play: no MSG, no timeouts, no failed commands in 223 games; 8 games ended early. It beats 4-troll opponents 72 % of the time and 2-troll opponents 82 %.

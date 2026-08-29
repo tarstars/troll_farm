@@ -1,0 +1,12 @@
+norxondor_gorgonax (Legend #2; agent 6480540; 218 games, all from raw replays; win rate 0.665, mean score 345 against 272).
+
+1. The heaviest trainer: 3.5 trolls at the end on average, four or more in 52 % of games, and a rigid four-stage ladder. Troll 2 at median turn 9 = 2 2 2 2 (41 %) or 2 2 1 2 (19 %); troll 3 (85 % of games, turn ~100) = 2 3 1 2 in 64 %; troll 4 (52 %, turn ~132) = 2 3 0 3 in 47 % (chop 3 in 100 %, harvest 0 in 63 %); troll 5 (11 %, turn ~153) = 2 4 0 3 in 58 %. Speed stays 2 in 86 % of all trained trolls.
+2. A two-phase game. Turns 1-100 are almost pure fruit economy: only 7 chops per game in the first 100 turns (delineate 28, Bubaptik 20) and the first wood arrives at median turn 97 (delineate 26, Bubaptik 24).
+3. From turn ~100 the chop rate climbs to 12-13 per 10 turns around turns 170-220, the highest late chop rate of the four: 189 CHOP commands per game (the most), 80 wood.
+4. It fells plums and lemons, not bananas: chopped trees are plum 37 %, lemon 33 %, apple 16 %, banana 14 % (delineate and MSz fell far more bananas). 63 % of the trees it chops are size 1 (just planted), 34 % size 4.
+5. Plants 29 per game: lemon 35 %, plum 32 %, banana 26 % (bananas only in mid-game, 42 % of mid-game plants). The plants are the closest to home of all: median 1 cell from the shack, 57 % at distance 1, never beyond 4 cells.
+6. The most opponent-directed chopper: 30 % of its chops are on opponent-planted trees and 36 % are nearer the opponent's shack than its own; in turns 1-100, 58 % of its (few) chops hit opponent trees.
+7. Harvests 78 times per game (90 fruits; lemon 45 %, plum 31 %), 69 % at its own trees; harvesting almost stops after turn 200 (0.5-0.8 per 10 turns) when every troll becomes a chopper (endgame verb mix: MOVE 59 %, CHOP 29 %).
+8. Mines late (first MINE at median turn 72) in 91 % of games, 12 iron per game, for the chop-3 trolls of stages 3-4.
+9. Sends a MSG every turn with per-troll letters and a timing ("DD 0.5 ms", "PP ...", "DP", "TP"): the letters look like a mode code per troll (D, P, T) — a clue for the reconstruction, not decoded here. MOVE is step-wise (targets 0-4 cells away; 3 % of MOVEs to the cell it already stands on).
+10. It clears the map: 48 games end with no tree left and 34 of 218 games ended before turn 300. With only two trolls it loses (27 % wins in those 30 games); with five or more it wins 83 %.

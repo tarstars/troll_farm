@@ -1,0 +1,78 @@
+# HANDOVER 2026-08-28 06:1xZ — the third troll is on the ladder; the ladder queue runs on the VM for the owner's 8 offline hours
+
+Delta since `coordination/HANDOVER-2026-08-28-third-troll.md` (04:40Z) through 06:1xZ, written by
+`local_claude_1` before the owner takes this computer offline ("I'm going to go offline for 8 hours
+with this computer. So I propose to move ladder queue to VM. let's put three_heroes to the start and
+other tasks later. I want to submit (a)"). Trunk at writing: `origin/main` == `agent/local_claude_1`
+== the checkout `/home/tarstars/prj/troll_farm`.
+
+## Resume here (UPDATED 09:2xZ — read this block first)
+
+- **Three heroes read 11.7/169 and 12.0/167** — the same floor as (a). Its 160 games: the third troll in 89 % at median turn 113; wins 64 % when it came by turn 90, 38 % at 121–160; the dance the owner saw (two trolls at one lemon tree, one frozen) is real but small — 6 contest turns a game (`local_claude_1/third-troll/dance_read.py`); the loss is the ~100-turn funding of one-item trips. Owner: **"let's do orchard"** + "use the gates logic … the farthest gate from the enemy camp" + "ok".
+- **THE ORCHARD** built (`make_orchard.py`, stacked on three heroes): four lemons + two plums on the first six free cells within two steps on foot of the door farthest (on foot) from the enemy's doors — never on a door, never a shack —, planted by the starter after the second troll (PICK at the nearest free door → walk → PLANT), protected from our own axes while the third troll is wanted, replanted while funding; fruit walks carry no target (the dance fix). Submission `candidate-orchard-v6-instrument.rs` sha `8e0c0244…`, diff `readable/diffs/orchard.diff` +313/−32; bed PASS; smoke PASS 24/24 (third troll 21/24 at median turn 119, no stall, +1193 own score vs the resident). Two defects found and fixed on the first smoke (a tree in a doorway blocked the starter; planting before the second troll delayed it to turn 35).
+- **VM queue:** apple farm r5 (up 08:52Z, reading ~09:55Z) → **orchard r1 (~09:56Z, reading ~10:58Z)** → orchard r2 → apple farm r6 → champion-final. codex_1 re-chartered for the orchard (row 0-7). Next session: read `readings.jsonl`, `ladder_read.py` + `dance_read.py` on the orchard's packages; ledger rows ORC-r1/r2; the owner's report.
+
+## Resume here (06:5xZ state)
+
+- **(a) was retired by the owner at 06:2xZ** ("extremely low rating and it's quite obvious why: the second troll chops down the trees with resources for the third troll"); the champion of record went back up at 06:24:23Z (`41206635`, agent `6670074`, reading ~07:26Z — a fresh baseline). (a)'s 106 games are in `local_claude_1/ladder-queue/games-41206542/`: the third troll trained in 40/106, those 65 % wins vs 32 % without.
+- **THREE HEROES** (design round 2, the owner's, "ok"): harvest-1 second troll; both trolls collect the bill, nobody chops, until the 2/3/0/3 third troll or unreachable. Generator `local_claude_1/third-troll/make_three_heroes.py` (stacked on the nine), submission `candidate-three-heroes-v6-instrument.rs` sha `2abb9fc2…`, diff `readable/diffs/three-heroes.diff` +128/−31; bed PASS; smoke PASS 24/24 (a third troll in 20/24 at median turn 111, no stall, the unreachable exit on 4 plum-less maps). **VM queue now:** champion (up) → three heroes r1 (~07:27Z, reading ~08:30Z) → three heroes r2 → apple farm r5 → r6 → champion-final. codex_1 re-chartered to reproduce three heroes (row 0-7).
+- The runner's log moved outside the repo (`/home/tarstars/ladder-queue-runner.log`); the VM pushes to `origin/main` — fast-forward `agent/local_claude_1` first thing.
+
+## Resume here (06:1xZ state)
+
+- **On the ladder: the third troll (a)** — `cgauto/submissions/candidate-third-troll-v6-instrument.rs`,
+  sha `89493fa0…`, submission `41206542`, 05:49:18Z, agent `6670021`. The champion of record plus one
+  change: after the second troll, both trolls collect the bill of a 2/3/0/3 lumberjack (6 plums,
+  11 lemons, 2 apples, 11 iron) and train it the turn it is affordable, while ≥ 100 turns remain.
+  Card `coordination/tasks/20260828-third-troll.md` (design accepted "ok ×4" + the owner's fifth
+  point audited); diff `readable/diffs/third-troll.diff` +123/−29; generator
+  `local_claude_1/third-troll/make_third_troll.py` (nine replacements, seven edits).
+- **The ladder queue runs unattended on the VM**: `local_claude_1/ladder-queue/` — `runner.py` by
+  the VM user's cron every 5 minutes (`ssh troll-vm crontab -l`, the `# ladder-queue` line; log
+  `/home/tarstars/ladder-queue-cron.log` and `local_claude_1/ladder-queue/runner.log`), in the VM
+  checkout `/home/tarstars/prj/troll_farm` (on `main`, pulled to `3ec821b8`+). It reads each item
+  at 62 min (arena-room rank/score — the site's number; `cg_rank.arena_room`, urllib only, the
+  `codingame` package is not installable on the VM), collects the 160 games into
+  `local_claude_1/ladder-queue/games-<submission id>/` (waits for a complete batch until 110 min),
+  appends `readings.jsonl`, commits and pushes to `origin/main`, submits the next. **Queue
+  (`queue.json`):** (a) 2/3/0/3 r1 [up] → (b) the 2/2/0/2 variant (`…-2202-…`, sha `684104f1…`)
+  → (a) r2 → (b) r2 → the apple farm r5 → r6 → the champion of record restored (the last bot stays
+  up). A submission not accepted HALTS the queue (`state.json: halted`). Verified on the VM before
+  leaving: one tick by hand (early look), the collector on the live window (58/58 packaged), a push
+  dry-run through the VM's pre-push hook. **Next session: read `readings.jsonl` and the packages
+  (`local_claude_1/the-floor/ladder_read.py <package.jsonl.gz> <agent id> <label>` — it lists every
+  TRAIN, so the third troll's turn and share are visible), write the ledger rows `TTR-…` and the
+  board, and report to the owner: (a)'s reading vs the champion's 21.2/42, (b)'s, and the second
+  rounds.** The owner's prediction for (a) was not stated.
+- **codex_1's reproduction** of the third-troll build/bed/smoke/select-equivalence is chartered
+  (row 0-7, `coordination/tasks/20260828-third-troll-verify.md`) in parallel with the ladder round;
+  a NOT REPRODUCED removes (a)'s second round from the queue and goes to the owner.
+- **The floor is closed**: three readings 19.2 / 19.1 / 17.3 (mean 18.5) vs the champion's 21.2/42;
+  its three packages are collected and read (ledger rows FLR-r1…r3). No round 4.
+- **First command of the next session:** `cd /home/tarstars/prj/troll_farm-local_claude_1 && git pull --ff-only origin main` — the VM runner pushes to `origin/main` directly, so `main` will be ahead of `agent/local_claude_1`; fast-forward the branch before anything else (then `git push origin agent/local_claude_1`). The VM checkout is on `main` too; if the runner's push was refused it retries with `git pull --rebase` on the next tick.
+- Ritual unchanged (sweep → read whole → `--mark` → commit; every shell command carries its own `cd`;
+  `git pull` for the checkout in a separate call).
+
+## What the smoke taught (the science, for the owner's reading)
+
+- The bill is slow for the starter: speed 1 / carry 1 → one fruit per 10–14-turn round trip, 19
+  fruits → a third troll in 5/24 local games at median turn 158 (the top four: 56–84 %, turn
+  95–118). The iron half is fast (the trained troll, ~30 turns). A 2/2/0/2 third troll (14 fruits):
+  12/24 at turn 116. The top four pay with an orchard planted next to the shack (README idea #2) —
+  not built (the owner had rejected it for this card); it is the next card if the owner wants it.
+- No stall by the change; the idle runs are bare maps (both bots idle). One interaction found: the
+  champion's late replant rule (PICK + PLANT at turn ≥ 100 with ≤ 2 trees) can spend the bill's
+  fruits (`c84154d2`).
+- `select` (the joint choice of the trolls' commands) fell to a greedy pass at three trolls; now a
+  joint search for any number, proven inert at two (58/58 identical games).
+- Own score vs the resident on the bench: +497 (2/3/0/3), +252 (2/2/0/2) over 24 games — a fact;
+  the bench has been wrong by ten points on a real bot.
+
+## Operational notes (new)
+
+- Cron lines for the VM must use absolute paths (cron starts in `$HOME`); the runner resolves the
+  repo from its own path, so no `cd` is needed. I wrote the line without the absolute path three
+  times before getting it right — check `crontab -l` after every install.
+- The VM checkout `/home/tarstars/prj/troll_farm` was 3,848 commits behind `main` (nobody had pulled
+  it since the branch switch); pulled 06:0xZ. The VM's `cg_session.txt` is identical to the host's.
+- The VM has no `codingame` package (pip blocked) and no rustfmt; `rustc` is at `~/.cargo/bin`.

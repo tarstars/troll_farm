@@ -1,0 +1,12 @@
+Bubaptik (Legend #3 at 19:50Z; this profile = agent 6568138, its most-played and most recent id, 191 games; Bubaptik resubmits constantly — 34 agent ids and 3,917 game lines in the corpus, listed in the Notes below; win rate 0.654, mean score 295 against 310: it out-scores weaker opponents and loses on score to the strongest — 32 % wins against opponents rated 28 or more).
+
+1. Second troll on turn 2 in 89 % of games (median turn 2), with mixed talents (harvest 2-3 in 66 %, chop 2 in 54 %, 2 2 2 2 the single most common at 9 %) — whatever the starting stock affords.
+2. The only top bot that buys SPEED 4: troll 3 (81 % of games, median turn 118) is a speed-4 carry-3 runner (4 3 0 2 in 34 %, 4 3 1 2 in 31 %); troll 4 (45 %, turn 153) is 4 3 1 3 in 38 %. Carry 3 in 100 % of its later trolls.
+3. Destination-style MOVE commands: the target is the real destination (mean 2.9 cells away, up to 29), so its intentions are readable in the corpus; 23 % of MOVE targets are its own shack cell (the referee parks the troll next to it), which produces 26.6 "can't move, target blocked" referee failures per game — harmless.
+4. A plum farmer: plants plum 47 %, lemon 30 %, banana 21 % (first plant is a plum in 64 % of games); plums are 52 % of the fruit it harvests and 42 % of the trees it chops.
+5. Plants farther out than the others (mean 2.4 cells from the shack, 12 % beyond 4 cells, up to 15) but 99 % on its own half; 23 % next to water.
+6. Chops the least of the four (136 CHOP commands, 69 wood per game) and with chop-power 2 for 53 % of chops; 57 % of chopped trees are size 1, 40 % size 4.
+7. Early chopping is denial: in turns 1-100, 50 % of its chops hit opponent-planted trees and 41 % wild ones; in turns 201-300, 70 % are its own trees. First wood at median turn 24.
+8. Mines in 92 % of games (8.3 MINE commands, 12 iron), mostly turns 60-130.
+9. Opening: the start troll does move, move, pick, plant, pick, move, plant (a plum or lemon 1-2 cells from the shack) while the second troll is bought on turn 2 and walks to a wild tree; 3.9 WAIT commands per game (the only top bot that waits).
+10. Wins 74 % against 2-troll opponents, 57 % against 4, 33 % against 5+; with its own fourth troll 70 %.
