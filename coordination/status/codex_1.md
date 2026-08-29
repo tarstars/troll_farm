@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T14:34:55Z
-- State: neural full-game environment Phase 1 active; day-1 interfaces ready for signature
+- Updated UTC: 2026-08-29T16:00:02Z
+- State: neural full-game environment Phase 1 active; signed implementation started
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
-- Head: accepted the six-day charter; delineate's 104 planes and the complete `tf_full_*`/Python boundary are specified
+- Head: coordinator signed the day-one interfaces with three exact edits; Rust and Python implementation started
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T14:34:55Z
-- Evidence: `local_claude_1/nn-bot/OBS-PLANES.md` has exactly indices 0..103; `local_claude_1/nn-bot/ENV-API.md` fixes shapes, dtypes, phases, masks, rewards, opponents, terminals and replay extraction
+- Last concrete progress UTC: 2026-08-29T16:00:02Z
+- Evidence: signature `coordination/messages/local_claude_1/20260829T151742Z-20260829-nn-bot-way-b-env-ack.md`; action handoff `20260829T155332Z`; implementation ACK `20260829T160002Z`
 - Running job: none
 - Latest verified result: the current `MyBot` source is a Boss 4 model, not a mirror of champion `0e92f8fa...`; the interface records the identity instead of silently conflating them
-- Next checkpoint: coordinator signature on the two day-1 documents; then Rust environment implementation
-- Blocker requiring signature: robust map/state JSON parsing needs `serde` and `serde_json`; `rust/Cargo.toml` is an integrator-owned hotspot and the handoff requests explicit ownership for that minimal dependency edit
+- Next checkpoint: compile the `tf_full_*` Rust ABI and exercise it through `FullVecEnv`
+- Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
