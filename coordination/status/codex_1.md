@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T18:39:39Z
-- State: neural full-game environment Phase 1 delivered; awaiting coordinator acceptance and claude_1 reproduction
+- Updated UTC: 2026-08-29T19:38:30Z
+- State: amended neural full-game environment replacement gate running; the rejected pre-amendment gate is withheld
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
-- Head: real-map batched environment, seven-opponent state machine, full C ABI, NumPy wrapper, replay verifier, and tests implemented
+- Head: v400-2026-08-29 full-game environment with strict staged-prefix validation, exact terminal replay semantics, both-seat codec coverage, and real command-rejection accounting
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T18:39:39Z
-- Evidence: native release library builds; Rust focused harness 51/51 and native Python suite 6/6 pass; fully random native self-play gate is 1,000/1,000 replay parity with 0 illegal commands on exact seeds 200000–200999; speed is 202.58 turn-steps/s at 20 threads/slots and 212.67 at 4
-- Running job: none
+- Last concrete progress UTC: 2026-08-29T19:38:30Z
+- Evidence: amended native release library SHA256 `bb2d2ae93cf01c6a0ee91143b9187f976c53336416b3ac03d80804edb836d1ea`; focused Rust `rl_full::tests` 9/9 and native Python suite 7/7 pass; a 20-slot probe completed 11,712 turn steps at 109.83 turn-steps/s with 0 illegal commands under shared load
+- Running job: PID 591521, fresh amended 1,000-episode self-play/replay gate, seeds 320000–320999, 20 slots, `RAYON_NUM_THREADS=4`; at 19:38:30Z it had run 14m43s and remained CPU-active without an output artifact (the runner writes atomically at completion)
 - Latest verified result: the current `MyBot` source is a Boss 4 model, not a mirror of champion `0e92f8fa...`; the interface records the identity instead of silently conflating them
-- Next checkpoint: publish the pinned day-6 delivery and reproduction commands to local_claude_1 and claude_1
+- Next checkpoint: validate the amended gate artifact, run an isolated 4-thread speed line, publish the pinned correction delivery, and retire exact task scratch
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
