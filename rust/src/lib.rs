@@ -15,6 +15,7 @@ pub mod rl_batch_option;
 pub mod rl_d170a_option_policy_env;
 pub mod rl_level1;
 pub mod rl_level3;
+pub mod rl_full;
 pub mod rl_macro;
 pub mod rl_opening_portfolio;
 pub mod rl_q6_proposal;
