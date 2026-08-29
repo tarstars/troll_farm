@@ -58,8 +58,12 @@ is written back into planes 59–71.
 troll in id order (the 13-plane head; the active-troll flag marks the troll; earlier trolls' chosen
 commands are visible through the "full" planes and a reserved-cell mask so two trolls do not take one
 cell — no beam search in the environment; delineate's beam is an inference-time nicety for Phase 4);
-then the turn executes for both seats. The opponent's commands come from the pool (below). Rewards are
-paid at the turn's end to every mini-step of that turn (the same scalar).
+then the turn executes for both seats. The opponent's commands come from the pool (below). **The turn's
+reward is paid once, on the mini-step that executes the turn (the last one); the earlier mini-steps of
+that turn carry reward 0** — so a policy-gradient objective does not scale with the number of trolls
+(chatgpt_1's audit finding 4, 2026-08-29, accepted; the earlier "same scalar to every mini-step" rule
+was wrong). The trainer treats the mini-steps of one turn as consecutive steps with discount 1 inside
+the turn and the usual discount between turns.
 
 **The reward.** `score_diff` at the end of the game (own score − opponent score, wood counted 3.5 at
 the end as delineate did) plus, per turn, +0.5 for every wood the policy's trolls deposit. Episode =
@@ -126,7 +130,16 @@ C ABI in the existing `cdylib` (`rust/Cargo.toml`, `libtroll_farm.so`), prefix `
 `observe(obs u8[n·25168], masks u8[n·3146], plan_masks u8[n·144], phase i32[n], seat_view i32) → n`,
 `step(actions i32[n], …) → n` with the same terminal arrays as `tf_level1_step` plus `score_own`,
 `score_opp`, `trained[n·4·4]`; `obs_from_state(json, …)`; `decode_action(idx, …) → command string`;
-`opponent_observe/step` for the frozen-policy opponent. Python: `FullVecEnv` in
+`opponent_observe/step` for the frozen-policy opponent. **Amendments after chatgpt_1's audit
+(2026-08-29 16:40Z, accepted 17:0xZ):** (1) `tf_full_decode_action` and `tf_full_encode_command` take
+the absolute `seat` and rotate internally, so absolute replay coordinates encode to the canonical
+player-relative index for either seat; (2) `tf_full_encode_command` takes the active troll's absolute
+cell, so a non-move verb (HARVEST, CHOP, DROP, MINE, PLANT, PICK) encodes to `plane·242 + rel(y)·22 +
+rel(x)` of that troll's cell — the same index the mask marks legal; (3) `tf_full_obs_from_state`
+validates its inputs and returns `-2` on any impossible combination (phase/active-troll/plan
+mismatch, staged actions out of order or for a troll not earlier in id order, a staged action illegal
+for its troll) — never fail-open; (4) the tests gain both-seat, all-verb conformance fixtures: for each
+seat and each of the 13 verbs, a hand-built state whose label encodes, decodes and is marked legal. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
