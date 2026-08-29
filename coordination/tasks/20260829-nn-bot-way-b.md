@@ -156,7 +156,28 @@ included) and the Python verifier reads it from the record instead of hard-codin
 have passed falsely; verified against `rust/src/game/state.rs:98`, `rl_full.rs:194`, `rl_full_env.py:653`). **(6) `illegal_commands` must be a real count** of parser or referee rejections from either side — at
 `agent/codex_1@f94be850` it is initialized to 0 and copied out, never incremented, and the test asserts 0
 (`rl_full.rs:1302`, `:1516`, `:2673`) — with a negative-control test (a deliberately illegal command is
-counted), or the zero-illegal claim leaves the gate (chatgpt_1's audit 17:32Z, verified). Python: `FullVecEnv` in
+counted), or the zero-illegal claim leaves the gate (chatgpt_1's audit 17:32Z, verified).
+**(7) terminal parity** (chatgpt_1's audit 17:50Z, accepted 18:0xZ): the verifier splits `transition_parity` from
+`terminal_parity`; after every replayed transition it runs Python `has_stalled` with its persistent counter and
+requires every non-final state to be nonterminal and the final state terminal; each replay carries the terminal
+kind/reason and the final counter, compared; negative controls (a truncated replay, one turn appended after an
+early end, a mutated counter/reason) must fail while transition parity stays green.
+**(8) the plan vocabulary is 400, not 144** — the census over the top four's exact tables (1,725 TRAINs): 267
+(15.5 %) lie outside delineate's ranges — speed 4 in 209 (Bubaptik: 222 of its 425 purchases, 52 %), carry 5
+in 10, harvest 3 in 33, chop 4 in 16; the game caps nothing (costs grow as the square). Vocabulary: speed 1–4 ×
+carry 1–5 × harvest 0–3 × chop 0–4 = 400; index `(((speed−1)·5 + (carry−1))·4 + harvest)·5 + chop`; entry 0 =
+(1,1,0,0) repurposed as "train nothing"; masks unchanged (harvest 0 and chop 0 together illegal; harvest > carry
+illegal; affordability never masks). `TF_FULL_PLAN_SIZE` = 400; plane scales 60–63 become S = 4/5/3/4 and the
+cost/deficit planes 64–71 S = 48 (12 + 25 + margin). **The plan head is delineate's per-candidate scorer**, not a
+flat 400-way layer: one small shared network scores each candidate from the pooled board features plus that
+candidate's attributes, its cost, its deficit against the bank, an affordable flag and whether it matches the
+current target — all computable from the observation planes — so 400 candidates cost ~1 thousand weights.
+**The shard format (claude_1's pilot, accepted):** shards carry the compact per-turn state (gzipped JSON, ~54 B a
+turn; ~45 MB for the whole teacher set) plus the labels and metadata — never the planes (20 TB); the planes are
+built at load time, per batch, by the same Rust `tf_full_obs_from_state` the environment uses; claude_1's Python
+plane builder remains the drift test's independent second implementation only. **Label conventions signed as
+they stand in `OBS-PLANES.md`:** the map top-left in the padded grid; seat 1 rotated over the map's own w × h.
+A MOVE that ends where the troll stood (1.7 % of MOVE labels) is WAIT — the rule as written. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
