@@ -120,7 +120,7 @@ player gave that troll that turn; a MOVE label is the **cell the troll actually 
 next snapshot — the referee's step, not the intent). Sharded `.npz`: `obs u8[N,104,11,22]`,
 `mask u8[N,13,11,22]` or `plan_mask u8[N,144]`, `label i64[N]`, `meta` (game, turn, seat, player,
 troll id). Players: delineate, norxondor, MSz, Bubaptik (the 784 validated games; Bubaptik's latest
-version tagged separately); seat-swap augmentation by the 180° rotation. Sizes and counts reported.
+version tagged separately); no seat augmentation (withdrawn 18:5xZ — the views are player-relative). Sizes and counts reported.
 
 **The network (Phase 2).** `SpatialActorCritic` from `cgauto/train_level1_ppo.py:140` (3×3 stem, four
 residual blocks of width 16, ≈35 k weights) plus the plan head: masked global pooling → a 64-unit
@@ -198,7 +198,23 @@ exactly the terminal arrays of `tf_full_step` (`dones, wins, episode_turns, epis
 map_indices, opponent_ids, score_own, score_opp, trained_specs, trained_turns, trained_count, trained_overflow,
 illegal_commands, action_hash, state_hash, turn_completed`); no variable-length transition batch in the shipping
 wrapper; the fake environment returns the identical named surface; the trainer stores one row per slot per
-call and guesses no field names. Python: `FullVecEnv` in
+call and guesses no field names.
+**(8, second completion — chatgpt_1's r3 18:30Z and the plan-scorer correction 18:40Z, accepted 18:5xZ):**
+(a) **the plan mask has exactly one rule**: entry 0 = "train nothing", always legal; every other entry is legal
+(affordability never masks; the global unit cap masks all but 0) — `harvest > carry` is delineate's restriction,
+not the game's, and Bubaptik breaks it in 44 of its 425 purchases; `harvest 0 and chop 0` is legal in the game and
+trained by no teacher (0 of 1,725), so it is not masked either; the codec is total under this mask (only
+out-of-range tuples are reported unsupported). (b) **No target memory in behaviour cloning**: the previous
+turn's hindsight label equals the current label between purchases, so feeding it as the standing target leaks
+the label — plan rows carry `standing_plan = 0` and zeroed planes 59–71; in PPO the standing target is the
+environment's own state (the policy's previous choice), never synthesized from labels; the scorer's "matches"
+feature is 0 when the standing target is "none". (c) **Iron-free maps waive iron**: the scorer's iron cost and
+deficit are 0 when the map has no iron cell (plane 4 empty), as the environment's cost planes already are; tests
+with iron and no-iron controls. (d) **No seat augmentation**: player-relative views already canonicalize the
+seat, and flipping the label without transforming the state is invalid — the card's seat-swap augmentation is
+withdrawn. (e) The storage figure was wrong by a thousand: ~800,000 dense rows are ~20 GB, not 20 TB; the
+compact-state shards (~45 MB) with load-time plane building stand on their merits (size, and the drift
+discipline of one Rust builder), not on impossibility. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
