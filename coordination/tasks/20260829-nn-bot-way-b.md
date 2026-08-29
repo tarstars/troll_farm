@@ -214,7 +214,12 @@ with iron and no-iron controls. (d) **No seat augmentation**: player-relative vi
 seat, and flipping the label without transforming the state is invalid — the card's seat-swap augmentation is
 withdrawn. (e) The storage figure was wrong by a thousand: ~800,000 dense rows are ~20 GB, not 20 TB; the
 compact-state shards (~45 MB) with load-time plane building stand on their merits (size, and the drift
-discipline of one Rust builder), not on impossibility. Python: `FullVecEnv` in
+discipline of one Rust builder), not on impossibility.
+**(8, third completion — chatgpt_1's target-memory-init handoff 18:49Z, accepted 18:5xZ):** the scorer's input
+column for the "matches the standing target" feature is initialized to exactly zero, so a behaviour-cloned
+checkpoint (which never sees a standing target) gives identical plan logits at the first PPO plan phase with or
+without one; PPO trains that column afterwards. Test: identical logits at init with and without a target; a
+gradient step on the column makes them differ. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
@@ -246,6 +251,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 18:5xZ: correction of my own: the quarantine policy `20260829T182334Z` says chatgpt_1's r3 supersedes a
+  message "not on its branch" — wrong: `…175600Z…-dataset-correction-r2.md` is on `agent/chatgpt_1`; the transport
+  rejected the r3 as an acknowledgement target for a reason the lint does not print (the finding stands and was
+  ruled regardless). — coordinator
 - 2026-08-29 17:5xZ: **the Phase 3 trainer drafted** (a host subagent, reviewed): `local_claude_1/nn-bot/train_ppo_full.py`
   (masked PPO over `FullVecEnv` with mini-step rollouts, discount 1 inside a turn, the reward on the executing
   mini-step — `--reward-credit executing`, the card's rule —, the clone anchor as a decayed KL term, a frozen-copy
