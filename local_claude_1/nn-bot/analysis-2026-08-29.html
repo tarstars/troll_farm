@@ -1,0 +1,367 @@
+<title>The Network Route to Legend</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F6F7F3;
+    --bg-2: #EDF0EA;
+    --ink: #1A2620;
+    --muted: #5B6B62;
+    --rule: #D9DED5;
+    --accent: #2E7D5B;
+    --accent-ink: #1F5C42;
+    --accent-soft: #E3EFE8;
+    --warn: #A8552B;
+    --warn-soft: #F5E9E1;
+    --mono-bg: #E9EDE6;
+    --display: "Spectral", Georgia, "Times New Roman", serif;
+    --body: "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121915;
+      --bg-2: #1A231E;
+      --ink: #E4EAE3;
+      --muted: #9AAA9F;
+      --rule: #2A352E;
+      --accent: #6CC39A;
+      --accent-ink: #8FD6B3;
+      --accent-soft: #1B2F25;
+      --warn: #E08A5C;
+      --warn-soft: #33221A;
+      --mono-bg: #1E2823;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121915;
+    --bg-2: #1A231E;
+    --ink: #E4EAE3;
+    --muted: #9AAA9F;
+    --rule: #2A352E;
+    --accent: #6CC39A;
+    --accent-ink: #8FD6B3;
+    --accent-soft: #1B2F25;
+    --warn: #E08A5C;
+    --warn-soft: #33221A;
+    --mono-bg: #1E2823;
+  }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0 48px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 40px 24px 96px;
+  }
+  @media (min-width: 1100px) {
+    .page { grid-template-columns: 220px minmax(0, 1fr); }
+    .rail { position: sticky; top: 24px; align-self: start; }
+  }
+  .rail { font-size: 14px; }
+  .rail .label, .eyebrow, .tag, th, .gate b {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .rail ol { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .rail a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
+  .rail a:hover, .rail a:focus-visible { border-bottom-color: var(--accent); outline: none; }
+  .rail .num { font-family: var(--mono); color: var(--muted); margin-right: 8px; font-size: 12px; }
+  article { max-width: 72ch; }
+  header.title { border-bottom: 1px solid var(--rule); padding-bottom: 20px; margin-bottom: 28px; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(30px, 4.2vw, 42px);
+    line-height: 1.1;
+    margin: 6px 0 12px;
+    text-wrap: balance;
+  }
+  .subtitle { color: var(--muted); font-size: 17px; margin: 0; max-width: 60ch; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.2;
+    margin: 48px 0 12px;
+    text-wrap: balance;
+  }
+  h2 .num { font-family: var(--mono); font-size: 14px; color: var(--muted); margin-right: 10px; vertical-align: 3px; font-weight: 500; }
+  h3 { font-family: var(--body); font-weight: 600; font-size: 18px; margin: 26px 0 8px; }
+  p { margin: 0 0 14px; }
+  a { color: var(--accent-ink); }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  code, .path {
+    font-family: var(--mono);
+    font-size: 0.86em;
+    background: var(--mono-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+    word-break: break-word;
+  }
+  .short { display: flex; flex-direction: column; gap: 14px; margin: 0 0 8px; padding: 0; list-style: none; }
+  .short li { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--rule); }
+  .short li:last-child { border-bottom: 1px solid var(--rule); }
+  .short .lead { font-family: var(--display); font-weight: 600; font-size: 18px; color: var(--accent-ink); line-height: 1.3; }
+  @media (max-width: 560px) { .short li { grid-template-columns: 1fr; gap: 4px; } }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0 22px; }
+  .fact { background: var(--bg-2); padding: 12px 14px; border-top: 2px solid var(--accent); }
+  .fact .v { font-family: var(--mono); font-size: 22px; font-weight: 500; font-variant-numeric: tabular-nums; }
+  .fact .k { color: var(--muted); font-size: 13px; margin-top: 2px; }
+  blockquote { margin: 14px 0; padding: 0 0 0 16px; border-left: 2px solid var(--rule); color: var(--muted); font-style: italic; }
+  .tablewrap { overflow-x: auto; margin: 14px 0 20px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; font-variant-numeric: tabular-nums; }
+  th, td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--rule); }
+  th { border-bottom: 1px solid var(--ink); }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  .lessons { counter-reset: lesson; list-style: none; padding: 0; margin: 0; }
+  .lessons li { counter-increment: lesson; padding: 12px 0 12px 44px; position: relative; border-top: 1px solid var(--rule); }
+  .lessons li::before { content: counter(lesson); position: absolute; left: 0; top: 12px; font-family: var(--mono); color: var(--accent-ink); font-weight: 500; }
+  .lessons li:last-child { border-bottom: 1px solid var(--rule); }
+  .way { padding: 18px 0; border-top: 1px solid var(--rule); }
+  .way:last-of-type { border-bottom: 1px solid var(--rule); }
+  .way h3 { margin: 0 0 8px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px; }
+  .tag { padding: 2px 8px; border-radius: 2px; background: var(--bg-2); }
+  .tag.rec { background: var(--accent-soft); color: var(--accent-ink); }
+  .tag.closed { background: var(--warn-soft); color: var(--warn); }
+  .ruling { margin: 24px 0; padding: 18px 20px; background: var(--accent-soft); border-top: 3px double var(--accent); border-bottom: 3px double var(--accent); }
+  .ruling p:last-child { margin: 0; }
+  .phases { list-style: none; margin: 0; padding: 0; counter-reset: phase -1; }
+  .phase { counter-increment: phase; position: relative; padding: 0 0 26px 52px; }
+  .phase::before { content: counter(phase); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border: 1.5px solid var(--accent); border-radius: 50%; display: grid; place-items: center; font-family: var(--mono); font-weight: 500; color: var(--accent-ink); background: var(--bg); }
+  .phase::after { content: ""; position: absolute; left: 16px; top: 34px; bottom: 0; border-left: 1px solid var(--rule); }
+  .phase:last-child::after { display: none; }
+  .phase h3 { margin: 4px 0 6px; }
+  .phase .meta { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+  .gates { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; font-size: 15px; }
+  @media (max-width: 640px) { .gates { grid-template-columns: 1fr; } }
+  .gate { padding: 10px 12px; background: var(--bg-2); }
+  .gate b { display: block; margin-bottom: 4px; }
+  .gate.dead b { color: var(--warn); }
+  .risks { padding-left: 22px; }
+  .risks li { margin-bottom: 10px; }
+  .decisions { list-style: none; padding: 0; margin: 0; counter-reset: dec; }
+  .decisions li { counter-increment: dec; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; padding: 12px 0; border-top: 1px solid var(--rule); }
+  .decisions li:last-child { border-bottom: 1px solid var(--rule); }
+  .decisions li::before { content: counter(dec); font-family: var(--mono); color: var(--accent-ink); font-weight: 500; }
+  .decisions .q { font-weight: 600; }
+  details { margin-top: 20px; }
+  summary { cursor: pointer; font-weight: 600; }
+  details ul { font-size: 14px; color: var(--muted); }
+  .est { color: var(--muted); font-style: italic; }
+  footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--rule); color: var(--muted); font-size: 14px; }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<div class="page">
+  <nav class="rail" aria-label="Contents">
+    <div class="label">Contents</div>
+    <ol>
+      <li><a href="#short"><span class="num">—</span>The answer in short</a></li>
+      <li><a href="#s1"><span class="num">1</span>What it means, and the proof</a></li>
+      <li><a href="#s2"><span class="num">2</span>What we already have</a></li>
+      <li><a href="#s3"><span class="num">3</span>July's six lessons</a></li>
+      <li><a href="#s4"><span class="num">4</span>Three ways to do it</a></li>
+      <li><a href="#s5"><span class="num">5</span>The programme, phase by phase</a></li>
+      <li><a href="#s6"><span class="num">6</span>Machines, storage, time, people</a></li>
+      <li><a href="#s7"><span class="num">7</span>The risks, ranked</a></li>
+      <li><a href="#s8"><span class="num">8</span>The decisions that are yours</a></li>
+      <li><a href="#sources"><span class="num">§</span>Sources</a></li>
+    </ol>
+  </nav>
+
+  <article>
+    <header class="title">
+      <div class="eyebrow">Troll Farm · analysis for the owner · 2026-08-29</div>
+      <h1>The Network Route to Legend</h1>
+      <p class="subtitle">What it would take to build a bot that plays with a neural network — the proof it works, the pieces already in hand, what is missing, a five-phase programme with gates, and the decisions that are yours. Written by <code>local_claude_1</code> from four reads of the repository; the estimates are mine and marked so. Nothing here touches the platform.</p>
+    </header>
+
+    <section id="short">
+      <h2>The answer in short</h2>
+      <ul class="short">
+        <li><span class="lead">It can be done.</span><span>The #1 player, delineate (30.89 on the ladder), plays with a neural network alone — no search. About 101 thousand weights, 98 thousand characters of source out of 100 thousand allowed, 2–3 ms of the 50 ms turn. Its author published the recipe; we hold that text verbatim.</span></li>
+        <li><span class="lead">Most pieces are in hand.</span><span>A Rust engine that matches the official referee exactly at 0.3 µs a turn; a training environment with delineate's exact observation shape, built here in July; a proven way to ship a trained network inside one Rust file (7 ms a turn, 69 KB); 24,973 recorded ladder games and an exact turn-by-turn reconstruction of the board, validated on 784 games of the top four.</span></li>
+        <li><span class="lead">What is missing.</span><span>The full-game environment (July's stopped at a fixed opening), the head that chooses which troll to train, the production of several trolls' commands each turn, a board→move dataset, the training curriculum, the compute run — and the runtime itself: PyTorch is not installed, Python is 3.10 where the project needs 3.11, the disk is 97 % full.</span></li>
+        <li><span class="lead">Recommendation.</span><span>Five gated phases: the runtime back; the full-game environment on real maps; a clone of the top players' moves as the starting policy; PPO training from that start with the clone as anchor; export, bed, one ladder hour. The first cheap probe, about a week: can a cloned policy play whole games in our bench, and what does it score against the champion?</span></li>
+        <li><span class="lead">Odds and price.</span><span>Five to eight weeks to a first reading. My estimate: one chance in three that the first candidate beats the champion of record, one in seven that it reaches the top-four band (27+) within two months; the repository's own July estimate was one in five to one in ten. The price: a network's play cannot be read as rules — "control over the code" becomes control over the recipe, the data and the gates.</span></li>
+      </ul>
+    </section>
+
+    <section id="s1">
+      <h2><span class="num">1</span>What "a bot with a neural network" means here — and the proof</h2>
+      <p><strong>Words first.</strong> A <em>neural network</em> is a large table of numbers (weights) arranged in layers: put in a description of the board and it puts out a score for every possible move; the best-scored move is played. <em>Training</em> adjusts the weights so those scores lead to wins. <em>PPO</em> (proximal policy optimization) trains by playing: many games, reward for what worked, small nudges so it does not forget. <em>Behaviour cloning</em> shows the network recorded boards and a strong player's move and makes it predict that move. <em>Self-play</em> is playing against copies of itself. A <em>curriculum</em> is a ladder of easier tasks before the full game.</p>
+
+      <div class="facts" aria-label="delineate at a glance">
+        <div class="fact"><div class="v">30.89</div><div class="k">delineate's ladder rating, #1</div></div>
+        <div class="fact"><div class="v">≈101 k</div><div class="k">weights, no search at all</div></div>
+        <div class="fact"><div class="v">98 k</div><div class="k">characters of source (limit 100 k)</div></div>
+        <div class="fact"><div class="v">2–3 ms</div><div class="k">of the 50 ms turn</div></div>
+        <div class="fact"><div class="v">525–146</div><div class="k">wins–losses, 673 Legend games</div></div>
+      </div>
+
+      <h3>delineate's bot, as its author described it</h3>
+      <p><strong>What it sees.</strong> 104 "planes" of numbers over the largest board (11 rows × 22 columns; smaller maps padded): cell type; each tree's kind, size, health, fruits and regrowth timer; which troll stands where with what talents and cargo; distances to the shacks; the current training target with its costs and what is still missing; global counts; and a flag marking <em>the troll being decided</em>. The author's caveat:</p>
+      <blockquote>"I don't think the exact observation planes are all that important and I would guess anything sensible would work."</blockquote>
+      <p><strong>How it is built.</strong> A small convolutional network (a four-block "ResNet" — the kind that reads a grid as image networks read pictures) gives every cell 13 scores, one per action type: move here, harvest, plant (four kinds), chop, pick (four kinds), drop, mine — 3,146 in all — plus a head of 144 scores over every troll it could train next (speed 1–3 × carry 1–4 × harvest 0–2 × chop 0–3, illegal ones masked, one slot meaning "done training"). Two value heads estimate how good the position is; the training needs them, the finished bot does not.</p>
+      <p><strong>How commands come out.</strong> One pass chooses the training target and writes it back into the input; then one pass <em>per troll</em> (only the "troll being decided" flag changes) gives that troll's command — a move is a destination cell among those it can reach; then a small beam search over the trolls' combinations only so they do not collide, never to look ahead. Why per troll: one pass for all trolls "seems to have trouble with some basic path finding".</p>
+      <p><strong>How it was trained.</strong> PPO throughout, five stages: (1) build one prescribed troll, rewarded for getting closer to the bill; (2) random targets, a big reward on completion, the training order fired automatically; (3) random target troll counts 2–5 with the true end-of-game score difference, plus +0.5 per wood deposited (wood counted 3.5 instead of 4 at the end, so it does not hoard); (4) movement frozen while a separate head learns <em>which</em> troll to build on pure score difference — because with a completion bonus "it would learn to build lots of cheap units to spam the completion bonus"; (5) everything fine-tuned on the score difference. "It was truly remarkable to see how much the network improved in the final 36 hours of training."</p>
+      <p><strong>What failed for them.</strong> Plain PPO on the whole game, no curriculum, reached about 25th and "could never learn to mine iron — the benefits to mining iron are extremely far in the future". Residual defects at the end: trolls circling forever or stuck mining; "I tried to manually patch up each of these edge cases but several still remain". Not stated anywhere: how many games, machines or days, or the learning settings.</p>
+      <p><strong>Nobody else in Legend did this.</strong> Eleven of the twelve published Legend write-ups are hand-written search or rules; the only other reinforcement-learning entrant reported 390th place. The #2, norxondor (29.66), is a fast rule bot — rules can reach 30 too. This analysis is about the network route because that is what you asked.</p>
+    </section>
+
+    <section id="s2">
+      <h2><span class="num">2</span>What we already have</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Piece</th><th>What it is</th><th>State</th></tr></thead>
+          <tbody>
+            <tr><td>The engine</td><td>Our Rust re-implementation of the referee: a fixed-size board state copied for free, walking distances precomputed once per map, 0.3 µs a turn on one core; bots linked as Rust code; a bench running A-against-B over hundreds of seeds on all 20 cores. <span class="path">rust/src/game/fast.rs</span>, <span class="path">rust/src/bin/bench.rs</span></td><td>Works; referee-exact after July's parity programme (two divergences found and closed); the official map generator reproduced 120/120.</td></tr>
+            <tr><td>The training environment</td><td>Batched, Python-driven, over the Rust engine, with exactly delineate's shapes: observation 104 × 11 × 22, actions 13 × 11 × 22 with an illegal-move mask. <span class="path">cgauto/rl_level1_env.py</span> … <span class="path">rl_level6_env.py</span></td><td>Nine environments import cleanly today; they cover July's narrow curriculum levels, not the full game.</td></tr>
+            <tr><td>The network</td><td><code>SpatialActorCritic</code>: a 3×3 stem, four residual blocks of width 16, about 35 thousand weights; July's trainers for cloning and PPO.</td><td>Code present; cannot run — PyTorch is not installed (71 scripts import it), Python 3.10 vs the project's ≥ 3.11.</td></tr>
+            <tr><td>The deployment path</td><td>Weights converted to int8 (whole numbers −128…127, four times smaller than decimals), generated into a standalone Rust kernel, checked move-for-move against the Python network (512/512 identical), inside one source file. <span class="path">cgauto/generate_d11_actor_rust_k2.py</span></td><td>Proven: 7.04 ms median a turn, 17.6 ms warm worst case, 68,988 bytes (July's "V5 live substrate", never submitted). 7 ms for 35 thousand weights is ~10× slower per weight than delineate's kernel.</td></tr>
+            <tr><td>The checkpoints</td><td>July's trained weights for all five curriculum levels and the int8 binary.</td><td>Intact on the USB archive, off the main disk.</td></tr>
+            <tr><td>The recorded games</td><td>24,973 raw ladder replays, 7.1 GB — every seat's commands each turn, the referee's log, the board at turn 0; growing ~330 a day. The top four: delineate 224 games, norxondor 222, MSz 216, Bubaptik 3,921 (over 34 versions); our own bot 11,606.</td><td>On this host only; the disk is 97 % full with 34 GB free.</td></tr>
+            <tr><td>The exact board, turn by turn</td><td>A reconstruction that replays both players' commands through our engine and checks every token against the referee's own record: 0 disagreements over 784 games × 300 turns of the top four; 0.2 s a game. <span class="path">local_claude_1/reconstructions/fits/reconstruct.py</span></td><td>Works; returns Python objects, no on-disk store yet; its games index must be rebuilt.</td></tr>
+            <tr><td>The maps</td><td>All 24,973 real ladder maps with exact initial trees. <span class="path">data/processed/maps.jsonl</span></td><td>Four sizes (16×8 … 22×11) about evenly; point-symmetric; iron 2 or 4 cells.</td></tr>
+            <tr><td>The machines</td><td>This host: 20 cores, 31 GB memory (13 free), no GPU. The VM: 4 cores, 16 GB. A cloud GPU was tried in July: 9.8× faster, but its results did not match the CPU's, so training went local; the grant is nearly spent.</td><td>Training runs on this host's CPU unless you decide otherwise.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="s3">
+      <h2><span class="num">3</span>What this project tried in July, and what it taught</h2>
+      <p>Between 2026-07-13 and 07-31 the project ran a large learning programme — all offline analysis, no learned bot ever submitted. The index is <span class="path">docs/CONSTRAINTS.md</span>; the journal is <span class="path">data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md</span>. Six lessons carry over.</p>
+      <ol class="lessons">
+        <li><strong>Train on real maps, never on generated ones.</strong> The one near-miss — a convolutional critic choosing at turn 75 between the resident and a farm plan — gained +36.5 a game on generated maps and lost 78 on real ones: the generator always drew 6 water cells, real maps have 12–104. The real-map corpus exists now.</li>
+        <li><strong>PPO from a teacher collapses unless anchored.</strong> A network started from a rule teacher fell from 94 % to 18 % task success under plain PPO; a small imitation term (weight 0.10) rescued it to 99 % every time. The project's one durable positive learning result — and the device that makes "clone first, then PPO" safe.</li>
+        <li><strong>Small networks cannot copy a rule system's integer filters</strong> (cloning a rule teacher reached 85 % where a decoder reproduces the rules exactly; "when the teacher is a rule system, fit a rule system"). Cloning delineate — itself a network — from the board planes has never been tried: the ledger names "spatial planes at decision states on the official substrate" as the single untried observation class.</li>
+        <li><strong>Fit statistics anti-predict transfer.</strong> Across ~30 supervised selectors, lower fit error went with worse play (correlation +0.89); an imitation at 77 % intent accuracy lost 172 points a game in closed loop. Judge every learned thing by playing games, never by held-out accuracy — your top-down rule, in the language of learning.</li>
+        <li><strong>A network inside the rule bot is closed.</strong> Learned selectors on hand-made features — a dozen designs, ending with 80 thousand exact counterfactual labels — never cleared a +1.5 gate; the ledger marks the question ★ FINAL and says reopening requires an owner decision citing that entry (<span class="path">docs/CONSTRAINTS.md:491–500</span>). The route proposed here is not that route: it is the whole policy as a network over the board, which the same entry leaves open.</li>
+        <li><strong>Shipping is solved; speed is not generous.</strong> The int8 kernel path works to the byte, but at 7 ms for 35 thousand weights; a delineate-sized network through it would take ~20 ms a turn here, and the platform's machines are not faster. Either the kernel gets ~5× faster (delineate's did it, so it is possible) or the network stays at or under ~50 thousand weights. The source budget is the other cap: ~85 thousand characters for weights after the kernel code — about 68 thousand int8 weights in base85 text, or ~90 thousand at 6 bits each.</li>
+      </ol>
+      <p>July's own reason for stopping is the most important fact: the curriculum reached 97–99 % on its narrow tasks and the live kernel worked, but the actor only ever controlled <em>a fixed opening with the training decision made by a rule</em>; "the active research boundary is autonomous recipe/first-move selection and then strategic field transfer". It was superseded by the selector work and never resumed. delineate's stages 4–5 are exactly the missing piece.</p>
+    </section>
+
+    <section id="s4">
+      <h2><span class="num">4</span>Three ways to do it</h2>
+      <div class="way">
+        <h3>Way A — delineate's recipe as written <span class="tag">fallback</span></h3>
+        <p>PPO from scratch through the five-stage curriculum, in our engine, on real maps. Everything is documented; our environment and network match its shapes; July's curriculum is its stages 1–3 in miniature. Cost: the full-game environment with the plan head and per-troll passes (a week), then weeks of CPU. Risk: the curriculum is the art — its author spent the contest on it and still had trolls circling; without their settings we would rediscover them. Their plain-PPO failure ("never learned to mine iron") is the trap this route walks past only if the stages are right.</p>
+      </div>
+      <div class="way">
+        <h3>Way B — clone first, then PPO <span class="tag rec">recommended</span></h3>
+        <p>Build the board→move dataset from the exact reconstruction of the top four's games (784 validated; ~150 thousand troll decisions per player, doubled by the board's point symmetry). Train the network to predict their primitive commands and, for the plan head, the troll they actually trained next — known in hindsight from the replay, a clean label July's readiness audit did not consider. Then PPO from that start with the clone as the anchor, against the champion, the orchard bots and past copies of itself, on real maps, with delineate's score-difference reward and wood shaping.</p>
+        <p>Why better than A: the start already walks, harvests, mines iron and trains — the long-horizon lessons PPO cannot find alone are given, and the anchor keeps them; the first result (the clone playing in the bench) comes in a week and costs no training compute. Risks: cloning primitives failed here on hand features (planes are untried); the top three have only ~200 games each; a clone may copy the look of strong play without its judgment — July's −172 says a clone that plays worse than its teacher is the normal outcome before PPO. The remedy is built in: the clone is a start, the bench decides, PPO does the improving.</p>
+      </div>
+      <div class="way">
+        <h3>Way C — a small network inside the rule bot <span class="tag closed">not recommended</span></h3>
+        <p>A learned target choice or a learned value for plans. It is the route the ledger closed after three weeks and ~40 designs; it inherits the rule bot's ceiling; and it is not what the #1 did.</p>
+      </div>
+      <p style="margin-top:14px"><em>Not on the list:</em> delineate's weights are not published; a search bot with a learned evaluation is a real separate option (our engine is fast enough) but not "a bot with a neural network".</p>
+    </section>
+
+    <section id="s5">
+      <h2><span class="num">5</span>The programme, phase by phase</h2>
+      <p>In the card style you use: each phase with its done and dead conditions and a budget.</p>
+      <ol class="phases">
+        <li class="phase">
+          <h3>The runtime back</h3>
+          <div class="meta">1–2 days · a bot can do it</div>
+          <p>Python 3.11 with a CPU PyTorch installed through <code>uv</code>; one July trainer re-run small; its checkpoint exported through the int8 kernel generator and played in the bench. Free the disk: ~100 GB moved to the USB archive (needs your word — deletions are not mine to make).</p>
+          <div class="gates"><div class="gate"><b>Done</b>A network trains, exports and plays a game here.</div><div class="gate dead"><b>Dead</b>Nothing; this is plumbing.</div></div>
+        </li>
+        <li class="phase">
+          <h3>The full-game environment</h3>
+          <div class="meta">4–6 days · codex_1 / claude_1 build, I review</div>
+          <p>Extend the level-1 backend to the whole game: both seats controllable, the 13-action grid with masks, the 144-way train-plan head, per-troll passes with the "troll being decided" flag, the collision check, real maps from the corpus, an opponent pool of our linked rule bots (the champion, orchard 6, the roster of 22), and a parity test — a game played in the environment then replayed through the reconstruction gives identical states.</p>
+          <div class="gates"><div class="gate"><b>Done</b>1,000 self-play games with no illegal command, parity 1,000/1,000.</div><div class="gate dead"><b>Dead</b>Parity cannot be reached in the budget.</div></div>
+        </li>
+        <li class="phase">
+          <h3>The clone — the first real number</h3>
+          <div class="meta">5–7 days</div>
+          <p>The dataset from the 784 exact games (plus Bubaptik's latest version; our own 11,606 games as a weaker filler if needed): every troll-turn as (planes, command), every TRAIN as (planes, talents). Train the 35–50-thousand-weight network to predict them; report held-out accuracy per verb and then ignore it (lesson 4). The number that counts: the clone on 24 real maps against the champion in the bench — does it finish games, train, mine, and what does it score.</p>
+          <div class="gates"><div class="gate"><b>Done</b>Plays 24/24 games to the end without loops or timeouts and scores at least half the champion's points.</div><div class="gate dead"><b>Dead</b>After a week it cannot play a whole game — the planes or the labels are wrong; Way A is the fallback.</div></div>
+        </li>
+        <li class="phase">
+          <h3>PPO from the clone — the long phase</h3>
+          <div class="meta">2–4 weeks of CPU</div>
+          <p>The clone as the start and as the anchor (weight ~0.1, decayed); reward = end-of-game score difference with delineate's shaping; opponents = the champion and orchard 6 first, then a pool of past checkpoints; real maps, the four board sizes mixed. A fixed bench every few days: 400 games against the champion and 400 against orchard 6, same seeds, both seats.</p>
+          <div class="gates"><div class="gate"><b>Done</b>≥ 60 % wins against both with a positive mean margin, stable over three consecutive gates.</div><div class="gate dead"><b>Dead</b>No gain over the clone after 2×10⁸ turn-steps, or the policy found a hole in the engine (its games fail the replay parity check).</div></div>
+        </li>
+        <li class="phase">
+          <h3>Ship</h3>
+          <div class="meta">3 days + one ladder hour · after codex is done with the platform</div>
+          <p>int8 export; the move-for-move parity bed (Python network against the Rust kernel); the 100-thousand-character check; ≤ 15 ms a turn on this host (the platform is slower; the limit is 50); a readable diff; codex_1's reproduction; your prediction; one hour; one reading. Then the loop you know: read the games, find the defect, fix it in the recipe or in a thin rule patch — as delineate's author did — retrain, re-read.</p>
+          <div class="gates"><div class="gate"><b>Done</b>The reading is on the ledger with its 160 games read.</div><div class="gate dead"><b>Dead</b>Over the character limit or the time limit with no room left to cut.</div></div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="s6">
+      <h2><span class="num">6</span>Machines, storage, time, people</h2>
+      <p class="est">Correction 2026-08-29 14:2xZ, after a direct check: the root disk has 111 GB free (88 % used) — the "97 % full, 34 GB free" above came from a stale read; and the "USB archive" is a read-only cloud bucket mounted at <span class="path">/media/tarstars/medium_data/database/troll_farm</span> (9.8 GB of artifacts, July's checkpoints among them). Nothing needs to move for this programme.</p>
+      <p><strong>Compute</strong> <span class="est">(my estimates)</span>. A 35-thousand-weight network needs about 4.5 million multiply-adds per pass; with one pass for the plan and one per troll, 3–6 passes a turn. On 20 cores with batched inference, roughly 2–3 thousand turns a second during play and about half that while training: ~40–80 million turn-steps a day. Phase 3's 2×10⁸ turn-steps is three to five days of the host; a delineate-sized network is 3–4× slower. Feasible on the CPU for a small network, marginal for a large one. A cloud GPU would be ~10× faster; last time its results did not match the CPU's, and the grant is nearly spent. Recommendation: the host's CPU, the small network, the VM left to the ladder queue.</p>
+      <p><strong>Storage.</strong> The corpus is 17 GB on a disk with 34 GB free; Phase 2's datasets add ~5–10 GB; checkpoints ~1 GB. Something must move to the USB archive first.</p>
+      <p><strong>Time.</strong> Five to eight weeks to the first ladder reading, with a real number after about two (the clone).</p>
+      <p><strong>People.</strong> In your rule ("Fable is expensive — delegate"): codex_1 and claude_1 build phases 0–2 on the VM with their tests; training runs on this host under my supervision; I design, gate, integrate and write to you; you read the clone's games at phase 2 and the candidate's at phase 4.</p>
+    </section>
+
+    <section id="s7">
+      <h2><span class="num">7</span>The risks, ranked — and what a network will not fix</h2>
+      <ol class="risks">
+        <li><strong>The clone does not walk</strong> (phase 2 dead). Cloning failed here twice on other representations. Fallback: Way A's stages from scratch, with July's levels as the base — slower, still open.</li>
+        <li><strong>PPO finds a hole in the engine rather than a strategy.</strong> The engine is referee-exact after the parity programme, but a policy searches for cracks harder than any rule bot did. The replay-parity check on samples of its games is the guard; anything it exploits gets fixed in the engine first.</li>
+        <li><strong>Reward hacking of the plan head</strong> — delineate's own trap (cheap trolls for the completion bonus). Their fix (score difference only for the plan head, movement frozen) is in the recipe.</li>
+        <li><strong>Speed on the platform.</strong> Our kernel is 10× slower per weight than delineate's; the 50 ms limit is hard and three overruns lose the game. Cap the network at ~50 thousand weights until the kernel is measured on real games.</li>
+        <li><strong>The reading is one number, ±1.5, once an hour.</strong> Training decisions rest on the bench (thousands of games); the ladder confirms.</li>
+        <li><strong>Opacity.</strong> The network gives no rule to read. What you can read are its games (as you do now), its recipe, its data and the bench; delineate's author patched residual defects by hand. Your goal of 08-26 was "≥ 25.40 <em>and</em> control over the code / cleanliness": a network bot keeps the second only in the weak sense of a clean kernel plus a weight table. This is the decision that matters most.</li>
+      </ol>
+    </section>
+
+    <section id="s8">
+      <h2><span class="num">8</span>The decisions that are yours</h2>
+      <div class="ruling">
+        <p><strong>My recommendation:</strong> open the line as Way B — clone the top four's moves first, then PPO from that start with the clone as anchor; the host's CPU; codex_1 and claude_1 on phases 0–2; the first probe's bar as written; nothing on the platform until codex is done.</p>
+      </div>
+      <ol class="decisions">
+        <li><span><span class="q">Open the line?</span> A yes reopens spatial-plane learning, which the ledger closed for selectors (<span class="path">docs/CONSTRAINTS.md:491–500</span>: "reopening requires an owner decision citing this entry"). Your word today is that decision; I will record it there.</span></li>
+        <li><span><span class="q">Which way:</span> A (from scratch by curriculum), B (clone, then PPO — recommended), or C (a network inside the rule bot — not recommended).</span></li>
+        <li><span><span class="q">The first probe's bar</span> for phase 2: a clone that plays 24/24 real maps to the end and scores at least half the champion's points — or your own bar.</span></li>
+        <li><span><span class="q">The disk:</span> which ~100 GB may move to the USB archive so the datasets fit.</span></li>
+        <li><span><span class="q">The compute:</span> this host's CPU only (recommended), or a cloud GPU with a parity test first.</span></li>
+        <li><span><span class="q">Who builds:</span> codex_1 and claude_1 chartered for phases 0–2; training on the host under me.</span></li>
+        <li><span><span class="q">Timing:</span> nothing on the platform until codex is done; the orchard 8 question stays separate — the two compete for nothing but the ladder hour.</span></li>
+      </ol>
+    </section>
+
+    <section id="sources">
+      <details>
+        <summary>Sources (all in the repository)</summary>
+        <ul>
+          <li>delineate: <span class="path">local_claude_1/reconstructions/sources/delineate-gist.github.com-2026-05-25.md</span> (the author's own text), <span class="path">…/sources/delineate-forum.codingame.com-2026-05-25.md</span>, <span class="path">local_claude_1/reconstructions/delineate/ALGORITHM.md</span>, <span class="path">…/prior-art.md</span>, <span class="path">docs/reports/2026-08-28-top-four-algorithms.pdf</span>.</li>
+          <li>July's learning programme: <span class="path">docs/CONSTRAINTS.md</span> (181–246, 491–530, 754–796, 1078–1081, 1153–1171), <span class="path">docs/LEDGER-MAP.md</span> (52–75, 531–573), <span class="path">docs/APPROACH-REGISTER-2026-07-30.md</span> §D, <span class="path">docs/BACKLOG.md</span> (528–552), <span class="path">data/analysis/live-agent-6553250/legend-top3-experiment-cycle-2026-07-18.md</span>, <span class="path">coordination/tasks/20260731-l1-delineate-cloning-readiness-audit.md</span>.</li>
+          <li>The engine and environments: <span class="path">rust/src/game/fast.rs</span>, <span class="path">engine.rs</span>, <span class="path">a2_referee_parity.rs</span>, <span class="path">official_mapgen.rs</span>, <span class="path">rust/src/bin/bench.rs</span>, <span class="path">profsim.rs</span>, <span class="path">rust/src/rl_level1.rs</span>, <span class="path">rl_macro.rs</span>, <span class="path">cgauto/rl_level1_env.py</span> … <span class="path">rl_level6_env.py</span>.</li>
+          <li>The deployment path: <span class="path">cgauto/generate_d11_actor_rust_k2.py</span>, <span class="path">generate_d11_live_actor_v7.py</span>, <span class="path">export_d11_actor.py</span>, <span class="path">qualify_d11_rust_actor.py</span>, <span class="path">cgauto/api_submit_once.py</span> (the 100,000-character check), <span class="path">docs/statement.md</span> (1000 ms / 50 ms / 300 turns).</li>
+          <li>The data: <span class="path">/home/tarstars/prj/troll_farm/data/raw/games/</span>, <span class="path">data/processed/turns.jsonl.gz</span>, <span class="path">data/processed/maps.jsonl</span>, <span class="path">data/README.md</span>, <span class="path">scripts/extract_turns.py</span>, <span class="path">local_claude_1/reconstructions/fits/reconstruct.py</span>, <span class="path">fits/README.md</span>.</li>
+          <li>Machines: <code>nproc</code> 20, <code>free -g</code> 31 GB, no <code>nvidia-smi</code>, <code>df</code> 97 % (34 GB free), <code>python3</code> 3.10.12, <code>uv</code> at <code>~/.local/bin/uv</code>, <code>rustc</code> 1.97.1; the VM name <code>compute-vm-4-16-20-ssd-…</code>.</li>
+        </ul>
+      </details>
+    </section>
+
+    <footer>The repository copy of this analysis is <span class="path">local_claude_1/nn-bot/ANALYSIS-2026-08-29.md</span> on <code>main</code>. Written 2026-08-29 while the platform is frozen for us; no submission, collection or leaderboard look was made for it.</footer>
+  </article>
+</div>
