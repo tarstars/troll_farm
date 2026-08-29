@@ -94,6 +94,25 @@ def test_python_frozen_opponent_completes_and_credits_only_learner_steps() -> No
         assert set(transitions.slots.tolist()) == set(range(6))
 
 
+def test_ten_thousand_random_masked_learner_actions_are_accepted() -> None:
+    rng = np.random.default_rng(65)
+    frozen = RandomFrozenOpponent(66)
+    accepted = 0
+    with _env(20, 850, {"python_frozen": 1.0}, frozen=frozen) as env:
+        while accepted < 10_000:
+            actions = random_legal_actions(env, rng)
+            plan_slots = env.phase == PHASE_PLAN
+            troll_slots = env.phase == PHASE_TROLL
+            assert np.all(
+                env.plan_masks[np.flatnonzero(plan_slots), actions[plan_slots]] == 1
+            )
+            flat = env.masks.reshape(20, ACTION_SIZE)
+            assert np.all(flat[np.flatnonzero(troll_slots), actions[troll_slots]] == 1)
+            env.step(actions)
+            accepted += int(plan_slots.sum() + troll_slots.sum())
+    assert accepted >= 10_000
+
+
 def test_completed_replay_matches_python_simulator_each_turn() -> None:
     rng = np.random.default_rng(71)
     with _env(1, 900, {"script_boss": 1.0}) as env:
@@ -107,3 +126,32 @@ def test_completed_replay_matches_python_simulator_each_turn() -> None:
                 break
         else:
             pytest.fail("full-game episode did not terminate")
+
+
+def test_two_hundred_no_train_self_play_replays_match_python_simulator() -> None:
+    class NoTrainFrozen(RandomFrozenOpponent):
+        def __call__(self, *args: np.ndarray) -> np.ndarray:
+            actions = super().__call__(*args)
+            phases = args[3]
+            actions[phases == PHASE_PLAN] = 0
+            return actions
+
+    rng = np.random.default_rng(81)
+    completed = 0
+    with _env(
+        20,
+        1_100,
+        {"python_frozen": 1.0},
+        frozen=NoTrainFrozen(82),
+    ) as env:
+        while completed < 200:
+            actions = random_legal_actions(env, rng)
+            actions[env.phase == PHASE_PLAN] = 0
+            _, info = env.step(actions)
+            for slot in np.flatnonzero(info.dones):
+                assert info.illegal_commands[slot] == 0
+                replay = env.take_replay(int(slot))
+                assert replay is not None
+                assert replay_and_verify(replay) == int(info.state_hash[slot])
+                completed += 1
+    assert completed == 200
