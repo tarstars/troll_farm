@@ -39,6 +39,11 @@ top-four games within the budget — then the coordinator narrows the labels to 
 
 **Rules.** No platform action (the bench is local); no generated maps; the raw corpus stays on the
 host (the 10-game slice is the VM's data; the host's network is metered); do not widen the card.
+**The VM's disk is at 91 % (1.9 GB free on 2026-08-29 13:5xZ): `df -h` before anything; clean your
+own scratch first (`/tmp/claude-1000`); if fewer than 3 GB are free after that, do not install PyTorch
+on the VM — deliver the trainer with a test that runs without it (the model built lazily, the data
+path tested with NumPy) and the coordinator runs the smoke on the host.** A dying session's last act
+is a blocker message, never silence.
 
 ## Log
 

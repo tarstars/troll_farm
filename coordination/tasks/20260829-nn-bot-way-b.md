@@ -143,6 +143,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
 ## Log
 
 - 2026-08-29 13:3xZ: born; the owner's decision recorded in `docs/CONSTRAINTS.md` and `coordination/GOAL.md`;
-  the games index `player_games.json` copied into the repo; the 1,000-map slice cut; charters to codex_1
-  (Phase 1) and claude_1 (Phase 2 dataset, bench, trainer) pinned to this card's commit. Phase 0 waits
-  for the WiFi word. — coordinator
+  the games index `player_games.json` copied into the repo; the 1,000-map slice and a 10-game raw-replay
+  slice cut. The transport allows one open ack-requiring handoff per task, so each phase has a sub-card:
+  `20260829-nn-bot-way-b-env.md` (codex_1, Phase 1) and `20260829-nn-bot-way-b-dataset.md` (claude_1,
+  Phase 2); charters `20260829T134459Z-…-env-handoff.md` and `20260829T134500Z-…-dataset-handoff.md`,
+  pinned to `d20ca356`. Phase 0 waits for the owner's WiFi word. — coordinator
