@@ -177,7 +177,28 @@ turn; ~45 MB for the whole teacher set) plus the labels and metadata — never t
 built at load time, per batch, by the same Rust `tf_full_obs_from_state` the environment uses; claude_1's Python
 plane builder remains the drift test's independent second implementation only. **Label conventions signed as
 they stand in `OBS-PLANES.md`:** the map top-left in the padded grid; seat 1 rotated over the map's own w × h.
-A MOVE that ends where the troll stood (1.7 % of MOVE labels) is WAIT — the rule as written. Python: `FullVecEnv` in
+A MOVE that ends where the troll stood (1.7 % of MOVE labels) is WAIT — the rule as written.
+**(8, completed — chatgpt_1's follow-through audit 18:02/18:10Z, accepted 18:2xZ):** every talent-bearing plane
+widens with the vocabulary, not only the target: own/opponent troll speed 18/28 S 3→4, carry 19/29 S 4→5, chop 21/31
+S 3→4, cargo 22–27/32–37 S 4→5, maxima 72/80 S→4, 73/81 S→5, 75/83 S→4, sums 76/84 S 36→48, 77/85 S 48→60,
+79/87 S 36→48, carried/free 93–96 S 4→5, target 60–63 S 4/5/3/4 (harvest planes already cover 3); saturation
+tests at the old and new maxima for both seats. **Target memory:** at the plan phase, planes 59–71 show the
+*standing* target — the previous turn's plan, kept across turns until changed (zero at the start of a game and
+after a TRAIN succeeds) — and after the plan decision the newly selected one; the dataset feeds the previous
+turn's hindsight label as the standing target, so the scorer's "matches the standing target" feature is
+observable in play and in replays alike. **Codec totality in the dataset:** a parsed TRAIN (1,1,0,0) is
+reported unsupported, never "train nothing"; any range-valid tuple whose mask is zero (harvest > carry) is
+labelled −1 and counted. **One generation id** `PLAN_VOCAB_VERSION = "v400-2026-08-29"` recorded by the
+environment (a size/version query), the codec, the shards, the trainers, the checkpoints and the exporter's
+manifest; any mismatch raises at load.
+**(9) the environment's Python step contract** (chatgpt_1's audit 18:10Z, accepted): `rewards, info =
+env.step(actions)` — one call describes the actions just consumed; `rewards` is `f32[n]` with the turn's reward on
+the executing mini-step and 0 elsewhere (amendment 4 makes buffering unnecessary); `info` is a named record with
+exactly the terminal arrays of `tf_full_step` (`dones, wins, episode_turns, episode_returns, episode_seeds,
+map_indices, opponent_ids, score_own, score_opp, trained_specs, trained_turns, trained_count, trained_overflow,
+illegal_commands, action_hash, state_hash, turn_completed`); no variable-length transition batch in the shipping
+wrapper; the fake environment returns the identical named surface; the trainer stores one row per slot per
+call and guesses no field names. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
