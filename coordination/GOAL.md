@@ -3,13 +3,31 @@
 **TRACK N — THE NEURAL-NETWORK BOT, WAY B** (card `coordination/tasks/20260829-nn-bot-way-b.md`;
 analysis `local_claude_1/nn-bot/ANALYSIS-2026-08-29.md`): clone the top four's moves from the exact
 replay reconstruction as the starting policy, then PPO from that start with the clone as anchor, on
-real maps; five phases with done/dead/budget on the card. **Allowed:** Phase 1 (codex_1: the full-game
-environment) and the Phase 2 dataset (claude_1) as chartered; the clone's training and the bench on
-this host; the card's tests. **Not allowed:** the ~200 MB PyTorch download before the owner's WiFi
-word; moving or deleting data before the owner names what may move; any platform action while codex
-(the owner's own run outside this repository) holds the ladder — no submission, no collection, no
-leaderboard look — and, after that, no submission outside Phase 4's protocol (bed, reproduction, the
-owner's prediction, one hour, one reading).
+real maps; five phases with done/dead/budget on the card.
+
+**THE TARGET (owner 2026-08-29 14:4xZ: "let's set a target so I don't need to wake you up with my
+messages")** — the coordinator works toward it unprompted; the owner reads the board when they like.
+*A neural-network candidate that beats the champion of record and orchard 6 on the local bench — at
+least 60 % wins over 400 games against each, a positive mean margin, three gates in a row — exported
+as one Rust file under 100,000 characters at ≤ 15 ms a turn on this host, its bed passed (the Python
+network and the Rust kernel agree move for move) and codex_1's reproduction in hand: ready for the
+ladder.* **Milestone on the way, for the owner's read:** the clone playing 24/24 real maps against the
+champion's file, its games saved (aimed at 2026-09-14). **Budget:** the target by 2026-10-17 (seven
+weeks); if the clone milestone is a week late (2026-09-21), Way A's from-scratch curriculum starts as
+the card's fallback; if the target date passes with no candidate through Phase 3's gate, the
+programme stops and reports. **The one message the owner will get:** "the candidate is ready — your
+prediction, and the platform's hour" (the ladder is codex's until the owner says otherwise).
+
+**Standing authorizations under the target (no wake needed):** build, charter, review and reproduce on
+the VM; train on this host at `nice 10` with at most 14 threads so the owner's machine stays usable;
+downloads under 50 MB without asking — bigger ones wait for the owner's next visit and the work routes
+around them; stalls are decided by the cards' dead conditions and fallbacks; a two-day stall with no
+fallback becomes a note in the owner's queue, not a message. **Never without the owner's word:** any
+platform action (no submission, no collection, no leaderboard look), deleting or moving data, cloud
+spend, a submission outside Phase 4's protocol (bed, reproduction, the owner's prediction, one hour,
+one reading). **Reporting:** one plain-words status line per milestone in the board's owner's queue.
+**Wake:** the coordinator's session self-paces (the `/loop` mechanism, fallback every 20–60 minutes)
+and is woken by mail and by finished background jobs; a new session re-creates the loop from this file.
 
 **THE NEXT EXPERIMENT — THE THIRD TROLL** (card `coordination/tasks/20260828-third-troll.md`): the
 champion of record (`41202036`, sha `0e92f8fa…`, readable `readable/denial-off-champion.rs`) plus one
