@@ -1,45 +1,45 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-29T16:44:00Z
-- Environment: interactive ChatGPT with connected GitHub read/write access; no persistent local checkout or general execution worker
-- Role: owner-directed fresh-eyes architecture and integration contributor; no assigned build row, formal review verdict, integration authority, or Arena authority
-- Live board track: N-2, `20260829-nn-bot-way-b`
+- Updated UTC: 2026-08-29T17:36:00Z
+- Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
+- Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
+- Active programme: `20260829-nn-bot-way-b`, Phase 1/2 interface follow-through
+- Branch: `agent/chatgpt_1`
 
-## Current contribution
+## Current work
 
-I reviewed the signed full-game environment boundary and the first Rust observation/codec slice against the dataset contract.
+Continuously polling canonical branches, processing direct obligations, and auditing the neural full-game environment/dataset boundary without taking either builder's write set.
 
-Published audit:
+Accepted earlier audit: coordinator accepted all four interface corrections from
+`chatgpt_1/nn-way-b/interface-risk-audit-2026-08-29.md`:
 
-```text
-agent/chatgpt_1@2f46e531447e6a575d07bb4cc81f81d85293fd05
-chatgpt_1/nn-way-b/interface-risk-audit-2026-08-29.md
-```
+- seat-aware action codec;
+- active-cell-aware non-MOVE encoding;
+- fail-closed reconstructed-state context;
+- one reward-bearing mini-step per full turn with explicit within-turn discount semantics.
 
-Canonical handoff to `local_claude_1`:
+## Open validity handoff
 
-```text
-agent/chatgpt_1@33d7f6f517a4bf8910b1b4b83b0d277af4774f1b
-coordination/messages/chatgpt_1/20260829T164000Z-20260829-nn-bot-way-b-interface-risk-handoff.md
-```
+The live, acknowledgement-required message is:
 
-The advisory identifies:
+`coordination/messages/chatgpt_1/20260829T173200Z-20260829-nn-bot-way-b-env-validity-correction.md`
 
-- missing seat/frame information in action encode/decode;
-- missing active-cell information for canonical non-spatial labels;
-- fail-open reconstructed mini-step validation;
-- roster-dependent reward multiplication across mini-steps;
-- smaller map/plant validation drift.
+It supersedes the narrower 17:21 message and pins:
 
-## Next action
+`chatgpt_1/nn-way-b/environment-validity-blockers-r2-2026-08-29.md`
 
-Process the coordinator's ruling on the handoff and continue bounded cross-language contract inspection without modifying the builders' write sets. Exact codec or reward changes remain owned by the assigned builder and coordinator.
+Two common-mode blockers are recorded:
 
-## Recently completed
+1. Rust and Python both use the wrong initial troll `(1,1,1,0)` instead of the real `(1,1,1,1)`, so internal replay parity can certify the wrong game.
+2. `illegal_commands` is initialized to zero and never incremented, so the signed zero-illegal-command gate is not a measurement.
 
-- Dance-cure proposal corrected after coordinator verification; unsupported populations and predicates were withdrawn.
-- Corrected dance artifact: `agent/chatgpt_1@a90ff533737d14d2ac4d8f2630fabc3f62464622`.
+## Next check
+
+- coordinator acknowledgement and exact ruling;
+- Codex repair of initial-state identity and a negative control at turn 0;
+- either a real parser/referee rejection counter or explicit removal/renaming of the false zero gate;
+- implementation of the four already accepted interface amendments before dataset labels or PPO transitions are frozen.
 
 ## Boundaries
 
-No bot code, build, test, environment, dataset, trainer, panel, submission, `main` write, other-agent namespace write, or Arena action is claimed or authorized by this status.
+No code, build row, formal review verdict, experiment, dataset, training run, main integration, submission, leaderboard read, or Arena action is claimed or authorized here.
