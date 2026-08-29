@@ -1,4 +1,5 @@
 {
+ "plan_action_size": 400,
  "games": [
   {
    "game": 891153730,
@@ -15,7 +16,8 @@
     84
    ],
    "player": "delineate",
-   "rows": 1110
+   "rows": 2220,
+   "split": 0
   },
   {
    "game": 891203441,
@@ -34,7 +36,8 @@
     156
    ],
    "player": "delineate",
-   "rows": 1041
+   "rows": 2082,
+   "split": 0
   },
   {
    "game": 891206391,
@@ -50,7 +53,8 @@
     22
    ],
    "player": "delineate",
-   "rows": 878
+   "rows": 1756,
+   "split": 0
   },
   {
    "game": 891215096,
@@ -66,7 +70,8 @@
     1
    ],
    "player": "norxondor",
-   "rows": 899
+   "rows": 1798,
+   "split": 0
   },
   {
    "game": 891304569,
@@ -87,7 +92,8 @@
     172
    ],
    "player": "MSz",
-   "rows": 1027
+   "rows": 2054,
+   "split": 0
   },
   {
    "game": 893255095,
@@ -105,7 +111,8 @@
     138
    ],
    "player": "norxondor",
-   "rows": 984
+   "rows": 1968,
+   "split": 0
   },
   {
    "game": 893255096,
@@ -123,7 +130,8 @@
     133
    ],
    "player": "MSz",
-   "rows": 1293
+   "rows": 2586,
+   "split": 1
   },
   {
    "game": 893255452,
@@ -141,7 +149,8 @@
     128
    ],
    "player": "norxondor",
-   "rows": 1233
+   "rows": 2466,
+   "split": 0
   },
   {
    "game": 894577644,
@@ -159,7 +168,8 @@
    "trains": 0,
    "train_turns": [],
    "player": "Bubaptik",
-   "rows": 600
+   "rows": 1200,
+   "split": 0
   },
   {
    "game": 895362837,
@@ -180,7 +190,8 @@
     128
    ],
    "player": "Bubaptik",
-   "rows": 994
+   "rows": 1988,
+   "split": 0
   }
  ],
  "verbs": {
@@ -201,7 +212,12 @@
   "PICK_APPLE": 5
  },
  "oov": [],
+ "mask_forbids": {},
  "unparsed": {},
- "rows": 10059,
- "bytes": 18419
+ "rows": 20118,
+ "turn_states": 2954,
+ "label_bytes": 31419,
+ "state_bytes": 170777,
+ "seat_swap": true,
+ "holdout_percent": 20
 }
