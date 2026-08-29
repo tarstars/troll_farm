@@ -139,7 +139,12 @@ rel(x)` of that troll's cell — the same index the mask marks legal; (3) `tf_fu
 validates its inputs and returns `-2` on any impossible combination (phase/active-troll/plan
 mismatch, staged actions out of order or for a troll not earlier in id order, a staged action illegal
 for its troll) — never fail-open; (4) the tests gain both-seat, all-verb conformance fixtures: for each
-seat and each of the 13 verbs, a hand-built state whose label encodes, decodes and is marked legal. Python: `FullVecEnv` in
+seat and each of the 13 verbs, a hand-built state whose label encodes, decodes and is marked legal; **(5) the starting troll is (speed 1, carry 1, harvest 1, chop 1) as in the real game — the full
+environment builds its state with `from_ascii_with_talents(rows, (1,1,1,1))`, never the engine's
+`from_ascii` default `(1,1,1,0)`; each recorded replay carries the complete initial state (talents
+included) and the Python verifier reads it from the record instead of hard-coding a tuple**
+(chatgpt_1's audit, 17:21Z: Rust and the verifier agreed on the same wrong constant, so parity could
+have passed falsely; verified against `rust/src/game/state.rs:98`, `rl_full.rs:194`, `rl_full_env.py:653`). Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
