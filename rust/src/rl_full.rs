@@ -135,10 +135,40 @@ impl From<&Plant> for JsonPlant {
 }
 
 #[derive(Clone, Debug, Deserialize, Serialize)]
+struct JsonShacks {
+    p0: [i32; 2],
+    p1: [i32; 2],
+}
+
+impl JsonShacks {
+    fn from_rows(rows: &[String]) -> Result<Self, String> {
+        let mut found = [Vec::new(), Vec::new()];
+        for (y, row) in rows.iter().enumerate() {
+            for (x, cell) in row.chars().enumerate() {
+                match cell {
+                    '0' => found[0].push([x as i32, y as i32]),
+                    '1' => found[1].push([x as i32, y as i32]),
+                    '.' | '#' | '+' | '~' => {}
+                    _ => return Err(format!("unsupported map cell {cell:?}")),
+                }
+            }
+        }
+        if found[0].len() != 1 || found[1].len() != 1 {
+            return Err("map must contain exactly one shack for each player".to_string());
+        }
+        Ok(Self {
+            p0: found[0][0],
+            p1: found[1][0],
+        })
+    }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
 struct MapRecord {
     w: i32,
     h: i32,
     rows: Vec<String>,
+    shacks: JsonShacks,
     trees0: Vec<JsonPlant>,
 }
 
@@ -156,10 +186,31 @@ impl MapRecord {
         {
             return Err("map dimensions or rows do not match the full environment".to_string());
         }
+        let parsed_shacks = JsonShacks::from_rows(&self.rows)?;
+        if parsed_shacks.p0 != self.shacks.p0 || parsed_shacks.p1 != self.shacks.p1 {
+            return Err("declared shacks differ from authoritative map rows".to_string());
+        }
         let row_refs: Vec<_> = self.rows.iter().map(String::as_str).collect();
         let mut game = from_ascii(&row_refs);
         if game.width != self.w || game.height != self.h {
             return Err("parsed map dimensions differ from record".to_string());
+        }
+        let mut occupied = HashSet::new();
+        for plant in &self.trees0 {
+            if !FRUIT_NAMES.contains(&plant.plant_type.as_str())
+                || plant.x < 0
+                || plant.y < 0
+                || plant.x >= self.w
+                || plant.y >= self.h
+                || !game.walkable.contains(&(plant.x, plant.y))
+                || !occupied.insert((plant.x, plant.y))
+                || !(0..=4).contains(&plant.size)
+                || !(1..=20).contains(&plant.health)
+                || !(0..=3).contains(&plant.fruits)
+                || !(0..=9).contains(&plant.cooldown)
+            {
+                return Err("invalid initial tree record".to_string());
+            }
         }
         game.inventories = inventories;
         game.plants = self.trees0.clone().into_iter().map(Plant::from).collect();
@@ -277,6 +328,7 @@ impl JsonState {
             w: self.w,
             h: self.h,
             rows: self.rows.clone(),
+            shacks: JsonShacks::from_rows(&self.rows)?,
             trees0: self.plants.clone(),
         };
         let mut game = record.to_game(self.inv)?;
@@ -394,40 +446,53 @@ fn legal_action_mask(
         output[action_index(0, view_cell(game, seat, target))] = 1;
     }
     let current_view = view_cell(game, seat, unit.pos());
-    output[action_index(0, current_view)] = 1;
     let current = unit.pos();
+    let current_reserved = reservations.contains(&current);
+    if !current_reserved {
+        output[action_index(0, current_view)] = 1;
+    }
     let plant = game
         .plants
         .iter()
         .find(|plant| plant.pos() == current && plant.health > 0);
-    if unit.hp > 0 && unit.free() > 0 && plant.is_some_and(|plant| plant.fruits > 0) {
+    if !current_reserved
+        && unit.hp > 0
+        && unit.free() > 0
+        && plant.is_some_and(|plant| plant.fruits > 0)
+    {
         output[action_index(1, current_view)] = 1;
     }
-    if unit.chop > 0 && plant.is_some() {
+    if !current_reserved && unit.chop > 0 && plant.is_some() {
         output[action_index(2, current_view)] = 1;
     }
-    if unit.total() > 0 && manhattan(current, game.shacks[seat]) <= 1 {
+    if !current_reserved && unit.total() > 0 && manhattan(current, game.shacks[seat]) <= 1 {
         output[action_index(3, current_view)] = 1;
     }
-    if unit.chop > 0
+    if !current_reserved
+        && unit.chop > 0
         && unit.free() > 0
         && game.iron.iter().any(|iron| manhattan(*iron, current) == 1)
     {
         output[action_index(4, current_view)] = 1;
     }
     for kind in 0..4 {
-        if game.walkable.contains(&current)
+        if !current_reserved
+            && game.walkable.contains(&current)
             && !game.plants.iter().any(|plant| plant.pos() == current)
             && unit.carry[kind] > 0
         {
             output[action_index(5 + kind, current_view)] = 1;
         }
-        if unit.free() > 0
+        if !current_reserved
+            && unit.free() > 0
             && manhattan(current, game.shacks[seat]) <= 1
             && game.inventories[seat][kind] > 0
         {
             output[action_index(9 + kind, current_view)] = 1;
         }
+    }
+    if output.iter().all(|value| *value == 0) {
+        output[action_index(0, current_view)] = 1;
     }
     Ok(())
 }
@@ -2495,6 +2560,32 @@ mod tests {
         assert_eq!(mask[0], 1);
         assert_eq!(mask[1], 1);
         assert_eq!(mask[12], 0);
+    }
+
+    #[test]
+    fn later_troll_mask_respects_earlier_end_cell_reservation() {
+        let mut game = from_ascii(&["0...1"]);
+        game.units.push(Unit {
+            id: 2,
+            player: 0,
+            x: 1,
+            y: 0,
+            ms: 1,
+            cc: 1,
+            hp: 1,
+            chop: 1,
+            carry: [0, 0, 0, 0, 0, 1],
+        });
+        game.next_id = 3;
+        let staged = [StagedAction {
+            troll_id: 0,
+            action_index: action_index(0, (1, 0)) as i32,
+        }];
+        let mut mask = vec![0u8; TF_FULL_ACTION_SIZE];
+        legal_action_mask(&game, 0, 2, &staged, None, &mut mask).unwrap();
+        assert_eq!(mask[action_index(3, (1, 0))], 0, "DROP is reserved");
+        assert_eq!(mask[action_index(0, (1, 0))], 0, "WAIT is reserved");
+        assert_eq!(mask[action_index(0, (2, 0))], 1, "another MOVE remains");
     }
 
     #[test]
