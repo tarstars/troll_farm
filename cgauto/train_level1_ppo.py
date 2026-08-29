@@ -51,6 +51,11 @@ PROTOCOL = ANALYSIS / "curriculum-ppo-level1-protocol-2026-07-19.md"
 RANDOM_BASELINE = ANALYSIS / "curriculum-level1-random-2000000-2000999-exact.json"
 TEACHER_BASELINE = ANALYSIS / "curriculum-level1-teacher-2000000-2000999-exact.json"
 
+#: The train-plan head's width: speed 1-3 x carry 1-4 x harvest 0-2 x chop 0-3, entry 0
+#: repurposed as "train nothing" (card 20260829-nn-bot-way-b, "Fixed design"; the frozen constant
+#: TF_FULL_PLAN_SIZE of local_claude_1/nn-bot/ENV-API.md).
+PLAN_ACTION_SIZE = 144
+
 LEVEL5_OPPONENT_ENVS = {
     "complete": Level5VecEnv,
     "complete-recovery": Level5RecoveryVecEnv,
@@ -138,10 +143,22 @@ class ResidualBlock(nn.Module):
 
 
 class SpatialActorCritic(nn.Module):
-    def __init__(self, width: int = 16, blocks: int = 4) -> None:
+    """The shared trunk with a per-cell action head, a value head, and an optional plan head.
+
+    `plan_head` is off by default on purpose: with it off no extra module is registered, so
+    `SpatialActorCritic().state_dict()` has exactly the keys July's checkpoints and the D11
+    exporter expect.  Turn it on (Phase 3 of card 20260829-nn-bot-way-b) and the trunk gains a
+    second head over the same masked global pooling the critic already uses:
+    `Linear(width, 64) -> ReLU -> Linear(64, 144)`.
+    """
+
+    def __init__(
+        self, width: int = 16, blocks: int = 4, *, plan_head: bool = False
+    ) -> None:
         super().__init__()
         self.width = width
         self.blocks = blocks
+        self.plan_head = bool(plan_head)
         self.stem = nn.Sequential(
             layer_init(nn.Conv2d(OBS_CHANNELS, width, 3, padding=1)),
             nn.ReLU(inplace=True),
@@ -153,17 +170,41 @@ class SpatialActorCritic(nn.Module):
             nn.Tanh(),
             layer_init(nn.Linear(64, 1), std=1.0),
         )
+        if self.plan_head:
+            self.plan = nn.Sequential(
+                layer_init(nn.Linear(width, 64)),
+                nn.ReLU(inplace=True),
+                layer_init(nn.Linear(64, PLAN_ACTION_SIZE), std=0.01),
+            )
 
-    def forward(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    def _trunk(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        """The convolution tower's features and their masked global pooling."""
+
         if observations.dtype != torch.float32:
             observations = observations.float()
         observations = observations * (1.0 / 255.0)
         valid = observations[:, :1]
         hidden = self.tower(self.stem(observations))
-        logits = self.actor(hidden).flatten(1)
         pooled = (hidden * valid).sum(dim=(2, 3)) / valid.sum(dim=(2, 3)).clamp_min(1.0)
+        return hidden, pooled
+
+    def forward(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        hidden, pooled = self._trunk(observations)
+        logits = self.actor(hidden).flatten(1)
         value = self.critic(pooled).squeeze(-1)
         return logits, value
+
+    def forward_with_plan(
+        self, observations: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Spatial logits, plan logits and value from one pass through the shared trunk."""
+
+        if not self.plan_head:
+            raise RuntimeError(
+                "forward_with_plan requires SpatialActorCritic(plan_head=True)"
+            )
+        hidden, pooled = self._trunk(observations)
+        return self.actor(hidden).flatten(1), self.plan(pooled), self.critic(pooled).squeeze(-1)
 
     def action_and_value(
         self,

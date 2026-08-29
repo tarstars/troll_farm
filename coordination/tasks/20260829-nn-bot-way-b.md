@@ -20,7 +20,7 @@ card here does. Nothing touches the platform until Phase 4, and not while codex 
 | 0 | the runtime on the host: Python 3.11 + CPU PyTorch via `uv`; one July trainer re-run small; export through the int8 kernel; a game in the bench | coordinator (host) | 1–2 days | **DONE 2026-08-29 14:2xZ** (owner "wifi" 14:0xZ): `/home/tarstars/nn-venv` (Python 3.11.15, torch 2.13.0+cpu, numpy 2.4.6, 825 MB); `cargo build --release --lib` in the worktree; `pretrain_level1_bc.py --curriculum-level 1 --samples 4000 --num-envs 20 --chunk-steps 10 --epochs 1 --minibatch-size 200 --eval-episodes 1000 --threads 8` → checkpoint in 35 s (accuracy 25 %, a smoke); `export_d11_actor.py` → int8 payload 34,872 B; `generate_d11_actor_rust_k2.py` → kernel 55,768 B; `generate_d11_live_actor_v7.py` → live bot 69,608 B; `rustc -O` compiles; `probe.py 7b515d6db8085355 --arm <live.rs>` plays a legal 300-turn game (the untrained net waits every turn; score 21) | — |
 | 1 | **the full-game environment** (below) | codex_1 | 6 days, one message | 1,000 self-play games, no illegal command, replay parity 1,000/1,000, the tests pass | parity not reachable in budget |
 | 2 | **the dataset, the bench, the clone** (below) | claude_1 (dataset, bench, trainer); coordinator trains on the host | 7 days for the dataset + bench + trainer; the training run 1–2 days | the clone plays 24/24 real maps to the end against the champion's binary; the owner reads its games | after the budget the clone cannot play a whole game → Way A's stages from scratch, July's levels as the base |
-| 3 | PPO from the clone with the clone anchor, real maps, the training pool (the linked strategies + frozen copies of the policy), a fixed bench every few days against the champion's and orchard 6's compiled files | coordinator (host); claude_1 reproduces the bench numbers | 2–4 weeks | ≥ 60 % vs the champion and vs orchard 6 on 400 games each, positive margin, three gates in a row | no gain over the clone after 2×10⁸ turn-steps, or the policy exploits an engine hole (replay parity fails on its games) |
+| 3 | PPO from the clone with the clone anchor, real maps, the training pool (the linked strategies + frozen copies of the policy), a fixed bench every few days against the champion's and orchard 6's compiled files | coordinator (host); claude_1 reproduces the bench numbers | 2–4 weeks | ≥ 60 % vs the champion and vs orchard 6 on 400 games each, positive margin, three gates in a row | no gain over the clone after 2×10⁸ network decisions (mini-steps: about 7.5×10⁷ game turns, ~250 thousand games), or the policy exploits an engine hole (replay parity fails on its games) |
 | 4 | ship: int8 export with the plan head, the parity bed (Python network vs Rust kernel, move for move), < 100,000 characters, ≤ 15 ms a turn here, the readable diff, codex_1's reproduction, the owner's prediction, one hour, one reading — after codex is done with the platform | coordinator; codex_1 reproduces | 3 days + one ladder hour | the reading on the ledger with its 160 games read | over the size or time limit with nothing left to cut |
 
 ## Fixed design (what both builders build against)
@@ -96,6 +96,15 @@ for the owner's read and on 400 seeded maps (both seats) for gates. Output: per 
 score, win, trolls trained (talents, turn), timeouts, illegal commands, loops (a troll on the same
 cell 30 turns with cargo it could deposit); a summary table; the games saved as replays the owner can
 read turn by turn with `local_claude_1/third-troll/dance_read.py`-style output.
+**Amendments after chatgpt_1's bench audit (2026-08-29 17:38Z, accepted 17:5xZ) — before a trained clone is
+judged, the bench must present the network exactly what the environment presents:** (1) the planes and masks
+for every mini-step come from the same Rust plane builder (`tf_full_obs_from_state`, with the selected plan and
+the earlier trolls' staged actions), never from a bench-side re-implementation; (2) the plan is an always-legal
+target and TRAIN is emitted only by the same exact dry run the environment uses (post-MOVE/post-PICK bank and
+shack occupancy), through one shared adapter; (3) the game ends when the referee's stall/mercy rule ends it
+(`has_stalled`), with the turn and reason recorded, not at a fixed turn count; (4) both seats: every map is
+played twice, the network on seat 0 and on seat 1, with the seat transformation tested. The random-policy
+smoke of day 1 stays what it is — a proof of the pipes.
 
 **The dataset (Phase 2).** From the exact reconstruction `local_claude_1/reconstructions/fits/reconstruct.py`
 (snapshot schema at lines 136–145: `turn, inv[2][6], units[id,player,x,y,ms,cc,hp,chop,carry[6]],
@@ -176,6 +185,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-29 17:5xZ: **the Phase 3 trainer drafted** (a host subagent, reviewed): `local_claude_1/nn-bot/train_ppo_full.py`
+  (masked PPO over `FullVecEnv` with mini-step rollouts, discount 1 inside a turn, the reward on the executing
+  mini-step — `--reward-credit executing`, the card's rule —, the clone anchor as a decayed KL term, a frozen-copy
+  opponent, four-key checkpoints, a bench-gate hook), `fake_full_env.py` (the signed surface, so the trainer
+  runs without the Rust library), `tests/test_train_ppo_full.py` (14 tests); **the plan head landed as the opt-in
+  flag `SpatialActorCritic(plan_head=True)` + `forward_with_plan()` in `cgauto/train_level1_ppo.py`** (July's
+  keys unchanged; July's tests pass). Untested against the real environment until Phase 1 lands. The budget
+  unit is defined: network decisions (mini-steps). — coordinator
 - 2026-08-29 14:5xZ: the owner set THE TARGET (`coordination/GOAL.md`) and `/goal coordination/GOAL.md`;
   both charters accepted (claude_1 14:20Z with the VM runtime in and the bench started; codex_1 14:21Z,
   day-1 documents next). **Measured on this host (14 threads, `nice 10`): `SpatialActorCritic` 34,926
