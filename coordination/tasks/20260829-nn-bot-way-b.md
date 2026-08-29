@@ -17,7 +17,7 @@ card here does. Nothing touches the platform until Phase 4, and not while codex 
 
 | phase | what | who | budget | done | dead |
 |---|---|---|---|---|---|
-| 0 | the runtime on the host: Python 3.11 + CPU PyTorch via `uv`; one July trainer re-run small; export through the int8 kernel; a game in the bench | coordinator (host) — **waits for the owner's WiFi word** (~230 MB of downloads) | 1–2 days | a network trains, exports and plays here | — |
+| 0 | the runtime on the host: Python 3.11 + CPU PyTorch via `uv`; one July trainer re-run small; export through the int8 kernel; a game in the bench | coordinator (host) | 1–2 days | **DONE 2026-08-29 14:2xZ** (owner "wifi" 14:0xZ): `/home/tarstars/nn-venv` (Python 3.11.15, torch 2.13.0+cpu, numpy 2.4.6, 825 MB); `cargo build --release --lib` in the worktree; `pretrain_level1_bc.py --curriculum-level 1 --samples 4000 --num-envs 20 --chunk-steps 10 --epochs 1 --minibatch-size 200 --eval-episodes 1000 --threads 8` → checkpoint in 35 s (accuracy 25 %, a smoke); `export_d11_actor.py` → int8 payload 34,872 B; `generate_d11_actor_rust_k2.py` → kernel 55,768 B; `generate_d11_live_actor_v7.py` → live bot 69,608 B; `rustc -O` compiles; `probe.py 7b515d6db8085355 --arm <live.rs>` plays a legal 300-turn game (the untrained net waits every turn; score 21) | — |
 | 1 | **the full-game environment** (below) | codex_1 | 6 days, one message | 1,000 self-play games, no illegal command, replay parity 1,000/1,000, the tests pass | parity not reachable in budget |
 | 2 | **the dataset, the bench, the clone** (below) | claude_1 (dataset, bench, trainer); coordinator trains on the host | 7 days for the dataset + bench + trainer; the training run 1–2 days | the clone plays 24/24 real maps to the end against the champion's binary; the owner reads its games | after the budget the clone cannot play a whole game → Way A's stages from scratch, July's levels as the base |
 | 3 | PPO from the clone with the clone anchor, real maps, the opponent pool, a fixed bench every few days | coordinator (host); claude_1 reproduces the bench numbers | 2–4 weeks | ≥ 60 % vs the champion and vs orchard 6 on 400 games each, positive margin, three gates in a row | no gain over the clone after 2×10⁸ turn-steps, or the policy exploits an engine hole (replay parity fails on its games) |
@@ -148,3 +148,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   `20260829-nn-bot-way-b-env.md` (codex_1, Phase 1) and `20260829-nn-bot-way-b-dataset.md` (claude_1,
   Phase 2); charters `20260829T134459Z-…-env-handoff.md` and `20260829T134500Z-…-dataset-handoff.md`,
   pinned to `d20ca356`. Phase 0 waits for the owner's WiFi word. — coordinator
+- 2026-08-29 14:0x–14:2xZ: the owner — "you can use vm, the platform is buzy right now", "wifi", "check
+  again, what is available". The VM's agent launcher restarted (its sparse clone refreshed to `main`;
+  `sudo systemctl start agent-launcher.service`; the proxy probe OK); claude_1 woken 14:17Z, codex_1
+  14:19Z on their charters. Phase 0 DONE (table). The disk re-checked: the root disk has 111 GB free
+  (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
+  by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
+  artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
