@@ -21,22 +21,21 @@ The surface copied from `local_claude_1/nn-bot/ENV-API.md` (signed 2026-08-29, o
 * ``2 EXTERNAL_WAIT`` never reaches the caller: ``step()`` drives a Python-frozen opponent itself;
 * the reward is paid **once, on the mini-step that executes the turn**; the earlier mini-steps of
   that turn carry reward 0 (the amendment on card `20260829-nn-bot-way-b.md`, "The mini-steps");
-* ``turn_completed`` marks that mini-step and ``reward_credit_count`` is
-  ``1 + the number of own trolls decided this turn``;
+* ``step(actions)`` returns exactly ``(rewards, info)`` -- card amendment (9). ``rewards`` is
+  ``f32[n]``; ``info`` is the frozen ``FullStepInfo`` record with exactly the terminal arrays of
+  ``tf_full_step`` plus ``turn_completed``, no variable-length transition batch;
 * completed slots auto-reset and the returned observation already belongs to the new episode;
-* terminal fields are zero for unfinished slots.
+* terminal fields are zero for unfinished slots;
+* at the plan phase planes 59-71 show the STANDING target -- the previous turn's plan, kept until
+  a TRAIN buys it -- and after the plan decision the newly selected one (amendment 8).
 
 Deliberate deviations, all fake-only and marked here:
 
 1. ``maps_path`` may be ``None`` or missing; the fake then invents map indices. The real
    environment refuses a missing map file. This is what lets the tests run with no data files.
-2. ``step()`` returns ``(obs, masks, plan_masks, rewards, info)``. ENV-API.md says only
-   "returns buffered mini-step transitions plus copied terminal metadata" and does not fix the
-   tuple. The trainer therefore does not depend on the arity: it reads the observation from the
-   attributes and finds the reward array and the info object by inspection
-   (``train_ppo_full.unpack_step``).
-3. The selected plan, the staged troll commands and the observation planes are not consistent with
-   any real board. Only the shapes, the dtypes, the phase order and the reward placement are real.
+2. The staged troll commands and the per-cell observation planes are not consistent with any real
+   board. The shapes, the dtypes, the phase order, the reward placement, the step contract and the
+   thirteen broadcast planes the plan head reads (43-48, 57-58, 59-71) are real.
 """
 
 from __future__ import annotations
@@ -76,8 +75,14 @@ PYTHON_FROZEN_ID = 6
 #: The four real board sizes, as `(height, width)`.
 BOARD_SIZES = ((11, 22), (10, 20), (9, 18), (8, 16))
 
-#: The scales of the current-target planes 60-63 after amendment (8).
+#: The scales of the current-target planes 60-63 and of the cost/deficit planes 64-71 after
+#: amendment (8).
 PLAN_ATTRIBUTE_SCALES = (4.0, 5.0, 3.0, 4.0)
+PLAN_COST_SCALE = 48.0
+
+#: The generation id of the plan vocabulary; `plan_version()` reports it and the trainer refuses
+#: an environment whose id is not the one it was built against.
+PLAN_VOCAB_VERSION = "v400-2026-08-29"
 
 
 def quantize(value: float, scale: float) -> int:
@@ -86,34 +91,37 @@ def quantize(value: float, scale: float) -> int:
     return int(max(0, min(255, round(255.0 * value / scale))))
 
 
-@dataclass(frozen=True)
-class FullStepInfo:
-    """Terminal metadata plus the two per-mini-step credit fields.
+try:  # pragma: no cover - the real wrapper owns the record once codex_1 lands it
+    from cgauto.rl_full_env import FullStepInfo
+except ImportError:
 
-    The names are the C parameter names of `tf_full_step` in ENV-API.md, minus the `_n` suffix.
-    `train_ppo_full.py` looks each one up through a list of aliases, so a different spelling in
-    the real `FullVecEnv` costs one line there, not a rewrite.
-    """
+    @dataclass(frozen=True)
+    class FullStepInfo:
+        """The named record `step()` returns beside the rewards (card amendment (9)).
 
-    rewards: np.ndarray            # f32[n]
-    turn_completed: np.ndarray     # u8[n]
-    reward_credit_count: np.ndarray  # u8[n]
-    dones: np.ndarray              # u8[n]
-    wins: np.ndarray               # u8[n]
-    episode_turns: np.ndarray      # u16[n]
-    episode_returns: np.ndarray    # f32[n]
-    episode_seeds: np.ndarray      # u64[n]
-    map_indices: np.ndarray        # u32[n]
-    opponent_ids: np.ndarray       # u8[n]
-    score_own: np.ndarray          # i32[n]
-    score_opp: np.ndarray          # i32[n]
-    trained_specs: np.ndarray      # i8[n,4,4]
-    trained_turns: np.ndarray      # u16[n,4]
-    trained_count: np.ndarray      # u8[n]
-    trained_overflow: np.ndarray   # u8[n]
-    illegal_commands: np.ndarray   # u16[n]
-    action_hash: np.ndarray        # u64[n]
-    state_hash: np.ndarray         # u64[n]
+        Exactly the terminal arrays of `tf_full_step`, all numpy arrays of length `num_envs`, in
+        the order the card lists them. `cgauto/rl_full_env.py` will own this class; until it
+        exists the fake defines it, and the import above picks up the real one the moment it
+        lands, so the two cannot drift.
+        """
+
+        dones: np.ndarray              # u8[n]
+        wins: np.ndarray               # u8[n]
+        episode_turns: np.ndarray      # u16[n]
+        episode_returns: np.ndarray    # f32[n]
+        episode_seeds: np.ndarray      # u64[n]
+        map_indices: np.ndarray        # u32[n]
+        opponent_ids: np.ndarray       # u8[n]
+        score_own: np.ndarray          # i32[n]
+        score_opp: np.ndarray          # i32[n]
+        trained_specs: np.ndarray      # i8[n,4,4]
+        trained_turns: np.ndarray      # u16[n,4]
+        trained_count: np.ndarray      # u8[n]
+        trained_overflow: np.ndarray   # u8[n]
+        illegal_commands: np.ndarray   # u16[n]
+        action_hash: np.ndarray        # u64[n]
+        state_hash: np.ndarray         # u64[n]
+        turn_completed: np.ndarray     # u8[n]
 
 
 def plan_talents(index: int) -> tuple[int, int, int, int]:
@@ -131,21 +139,17 @@ def plan_talents(index: int) -> tuple[int, int, int, int]:
 
 
 def plan_is_legal(index: int) -> bool:
-    """The plan mask rule of ENV-API.md, "Mini-step state machine", as amendment (8) leaves it.
+    """The plan mask's one rule (amendment 8, second completion): every index in range is legal.
 
-    Index 0 ("train nothing") is always legal. A nonzero index is illegal when harvest and chop
-    are both zero, and illegal when harvest exceeds carry. Affordability never masks.
+    Entry 0 is "train nothing". Neither `harvest > carry` nor `harvest 0 and chop 0` masks -- both
+    were delineate's habits, not the game's rules -- and affordability never masks. The only thing
+    the environment still masks is the global unit cap, which leaves entry 0 alone.
     """
 
-    if index == 0:
-        return True
-    _, carry, harvest, chop = plan_talents(index)
-    if harvest == 0 and chop == 0:
-        return False
-    return harvest <= carry
+    return 0 <= index < PLAN_SIZE
 
 
-LEGAL_PLANS = np.array([i for i in range(PLAN_SIZE) if plan_is_legal(i)], dtype=np.int64)
+LEGAL_PLANS = np.arange(PLAN_SIZE, dtype=np.int64)
 
 
 class FakeFullVecEnv:
@@ -249,12 +253,16 @@ class FakeFullVecEnv:
             "height": height,
             "width": width,
             "map_index": int(rng.integers(self.map_count)),
+            # Four maps in five have iron; the rest waive the iron cost entirely.
+            "has_iron": bool(rng.random() < 0.8),
             "seat": int(rng.integers(2)),
             "opponent": int(rng.choice(len(OPPONENT_IDS), p=self.opponent_weights)),
             "turn": 0,
             "total_turns": int(rng.integers(self.min_turns, self.max_turns + 1)),
             # plum, lemon, apple, banana, iron, wood -- the referee's 2..10 opening draw
             "bank": [int(rng.integers(2, 11)) for _ in range(5)] + [0],
+            # The standing target starts at zero and returns to zero when a TRAIN succeeds.
+            "standing_target": 0,
             "trolls": 1,
             "troll_index": 0,
             "phase": PHASE_PLAN,
@@ -277,15 +285,46 @@ class FakeFullVecEnv:
         for slot, state in enumerate(self._slots):
             self._write_slot(slot, state)
 
+    @staticmethod
+    def _write_target_planes(obs: np.ndarray, state: dict, index: int) -> None:
+        """Planes 59-71: the train target, its four costs and its four deficits.
+
+        `cost_i = own troll count + talent_i^2` for plum/lemon/apple/iron and
+        `deficit_i = max(cost_i - own bank_i, 0)`, quantized at S=48 (amendment 8). Index 0 --
+        "train nothing" -- zeroes all thirteen planes.
+        """
+
+        obs[59:72, :, :] = 0
+        if index == 0:
+            return
+        talents = plan_talents(index)
+        obs[59, :, :] = 255
+        for offset, (value, scale) in enumerate(zip(talents, PLAN_ATTRIBUTE_SCALES)):
+            obs[60 + offset, :, :] = quantize(value, scale)
+        banks = (state["bank"][0], state["bank"][1], state["bank"][2], state["bank"][4])
+        for offset, (talent, bank) in enumerate(zip(talents, banks)):
+            # Iron is the fourth resource, and an iron-free map waives it.
+            if offset == 3 and not state["has_iron"]:
+                continue
+            cost = state["trolls"] + talent * talent
+            obs[64 + offset, :, :] = quantize(cost, PLAN_COST_SCALE)
+            obs[68 + offset, :, :] = quantize(max(cost - bank, 0), PLAN_COST_SCALE)
+
     def _write_slot(self, slot: int, state: dict) -> None:
         height, width = state["height"], state["width"]
         rng = state["rng"]
         obs = self.obs[slot]
         obs[:] = 0
         obs[0, :height, :width] = 255                      # plane 0: the valid-cell mask
-        obs[1:16, :height, :width] = rng.integers(
-            0, 256, size=(15, height, width), dtype=np.uint8
+        obs[1:4, :height, :width] = rng.integers(
+            0, 256, size=(3, height, width), dtype=np.uint8
         )
+        obs[5:16, :height, :width] = rng.integers(
+            0, 256, size=(11, height, width), dtype=np.uint8
+        )
+        # Plane 4 is the iron cell, and the scorer waives the iron cost when it is empty.
+        if state["has_iron"]:
+            obs[4, height // 2, width // 2] = 255
         obs[42, :, :] = min(255, state["turn"] * 255 // max(1, state["total_turns"]))
         obs[55, :, :] = min(255, state["score_own"])
         obs[56, :, :] = min(255, state["score_opp"])
@@ -295,10 +334,15 @@ class FakeFullVecEnv:
         obs[48, :, :] = quantize(state["bank"][5], 128.0)
         obs[57, :, :] = quantize(state["trolls"], 12.0)
         obs[58, :, :] = quantize(state["trolls"], 12.0)
-        target = plan_talents(state["plan"]) if state["plan"] else (0, 0, 0, 0)
-        obs[59, :, :] = 255 if state["plan"] else 0
-        for offset, (value, scale) in enumerate(zip(target, PLAN_ATTRIBUTE_SCALES)):
-            obs[60 + offset, :, :] = quantize(value, scale)
+        # Target memory (amendment 8, "Target memory"): at the plan phase the planes show the
+        # STANDING target -- the previous turn's plan, kept until it is trained -- and after the
+        # plan decision they show the newly selected one.
+        shown = (
+            state["standing_target"]
+            if state["phase"] == PHASE_PLAN
+            else state["plan"]
+        )
+        self._write_target_planes(obs, state, shown)
 
         self.masks[slot] = 0
         self.plan_masks[slot] = 0
@@ -307,11 +351,11 @@ class FakeFullVecEnv:
 
         if state["phase"] == PHASE_PLAN:
             self.active_troll[slot] = -1
-            chosen = rng.choice(
-                LEGAL_PLANS, size=int(rng.integers(1, 25)), replace=False
-            )
-            self.plan_masks[slot, 0] = 1                   # entry 0 is always legal
-            self.plan_masks[slot, chosen] = 1
+            # One rule: entry 0 is always legal and so is every other entry -- unless the global
+            # unit cap is reached, and then only entry 0 is.
+            self.plan_masks[slot, 0] = 1
+            if state["trolls"] < self.max_trolls:
+                self.plan_masks[slot, :] = 1
             return
 
         troll = self._troll_ids(state)[state["troll_index"]]
@@ -365,9 +409,6 @@ class FakeFullVecEnv:
             self._advance(slot, int(actions[slot]))
 
         info = FullStepInfo(
-            rewards=self.rewards.copy(),
-            turn_completed=self.turn_completed.copy(),
-            reward_credit_count=self.reward_credit_count.copy(),
             dones=self._dones.copy(),
             wins=self._wins.copy(),
             episode_turns=self._episode_turns.copy(),
@@ -384,8 +425,9 @@ class FakeFullVecEnv:
             illegal_commands=self._illegal_commands.copy(),
             action_hash=self._action_hash.copy(),
             state_hash=self._state_hash.copy(),
+            turn_completed=self.turn_completed.copy(),
         )
-        return self.obs, self.masks, self.plan_masks, self.rewards.copy(), info
+        return self.rewards.copy(), info
 
     def _zero_terminals(self) -> None:
         for array in (
@@ -444,9 +486,14 @@ class FakeFullVecEnv:
         state["bank"][5] += wood_own
         state["score_own"] += int(rng.integers(0, 4)) + wood_own
         state["score_opp"] += int(rng.integers(0, 4)) + wood_opp
-        if state["plan"] != 0 and len(state["trains"]) < 8 and rng.random() < 0.05:
+        trained = (
+            state["plan"] != 0 and len(state["trains"]) < 8 and rng.random() < 0.05
+        )
+        if trained:
             state["trains"].append((plan_talents(state["plan"]), state["turn"] + 1))
             state["trolls"] = min(self.max_trolls, state["trolls"] + 1)
+        # The plan the trolls keep collecting towards: cleared once it has been bought.
+        state["standing_target"] = 0 if trained else state["plan"]
 
         reward = self.wood_shaping * wood_own
         state["turn"] += 1
@@ -548,6 +595,12 @@ class FakeFullVecEnv:
         self._write_slot(slot, self._slots[slot])
 
     # ------------------------------------------------------------------ lifecycle
+
+    @staticmethod
+    def plan_version() -> str:
+        """The generation id of the plan vocabulary this environment speaks (amendment 8)."""
+
+        return PLAN_VOCAB_VERSION
 
     def observe(self):
         return self.obs, self.masks, self.plan_masks, self.phase, self.seat_view, self.active_troll

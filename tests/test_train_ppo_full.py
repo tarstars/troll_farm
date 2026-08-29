@@ -7,6 +7,7 @@ turn, which head the loss uses, the checkpoint format, and the clone anchor.
 
 from __future__ import annotations
 
+import dataclasses
 import importlib.util
 import json
 import sys
@@ -140,33 +141,35 @@ def test_the_plan_index_formula_round_trips_over_all_400_entries() -> None:
         assert fake.plan_talents(index) == plan_talents(index)
 
 
-def test_the_two_plan_mask_rules_and_nothing_else() -> None:
-    """Harvest 0 and chop 0 together illegal; harvest > carry illegal; entry 0 always legal.
+def test_the_plan_mask_has_exactly_one_rule() -> None:
+    """Entry 0 is always legal, and so is every other entry (amendment 8, second completion).
 
-    Affordability never appears -- the plan is a target the trolls collect towards.
+    `harvest > carry` was delineate's own restriction, not the game's, and Bubaptik breaks it in
+    44 of its 425 purchases; `harvest 0 and chop 0` is legal in the game though no teacher ever
+    bought it. Affordability never masks. Only the global unit cap can mask, and it leaves
+    entry 0.
     """
 
     assert plan_index_is_legal(0)
-    illegal_both_zero = illegal_harvest = legal = 0
-    for index in range(1, PLAN_ACTION_SIZE):
-        _, carry, harvest, chop = plan_talents(index)
-        expected = not (harvest == 0 and chop == 0) and harvest <= carry
-        assert plan_index_is_legal(index) is expected
-        assert fake.plan_is_legal(index) is expected
-        if harvest == 0 and chop == 0:
-            illegal_both_zero += 1
-        elif harvest > carry:
-            illegal_harvest += 1
-        else:
-            legal += 1
-    # harvest 0 with chop 0 is one entry per (speed, carry) pair: 4 x 5 = 20, of which
-    # index 0 itself is the repurposed "train nothing" and is not in this loop.
-    assert illegal_both_zero == 19
-    assert illegal_harvest > 0
-    assert legal + illegal_both_zero + illegal_harvest == PLAN_ACTION_SIZE - 1
-    assert len(fake.LEGAL_PLANS) == legal + 1
+    for index in range(PLAN_ACTION_SIZE):
+        assert plan_index_is_legal(index) is True
+        assert fake.plan_is_legal(index) is True
+    assert not plan_index_is_legal(PLAN_ACTION_SIZE)
+    assert not plan_index_is_legal(-1)
+    assert len(fake.LEGAL_PLANS) == PLAN_ACTION_SIZE
+    # Two entries the old rules refused, both legal now.
+    assert plan_index_is_legal(plan_index(2, 1, 3, 1))      # harvest > carry
+    assert plan_index_is_legal(plan_index(3, 2, 0, 0))      # harvest 0 and chop 0
     # A plan nobody can pay for is still legal.
     assert plan_index_is_legal(plan_index(4, 5, 3, 4))
+
+
+def test_the_fake_environment_masks_every_plan_until_the_unit_cap() -> None:
+    with fake.FakeFullVecEnv(2, 3, None, {"secure_orchard": 1.0}) as env:
+        assert env.plan_masks.sum(axis=1).tolist() == [PLAN_ACTION_SIZE, PLAN_ACTION_SIZE]
+        env._slots[0]["trolls"] = env.max_trolls
+        env._write_slot(0, env._slots[0])
+        assert env.plan_masks[0].sum() == 1 and env.plan_masks[0, 0] == 1
 
 
 def test_the_per_candidate_head_is_under_two_thousand_weights() -> None:
@@ -187,11 +190,14 @@ def _crafted_observation(
     target: tuple[int, int, int, int] | None,
     height: int = 9,
     width: int = 18,
+    iron: bool = True,
 ) -> np.ndarray:
-    """One observation with only the broadcast planes the plan head reads filled in."""
+    """One observation with only the planes the plan head reads filled in."""
 
     obs = np.zeros((1, 104, 11, 22), dtype=np.uint8)
     obs[0, 0, :height, :width] = 255
+    if iron:
+        obs[0, 4, height // 2, width // 2] = 255       # plane 4: one iron cell on the map
     for offset, amount in enumerate(banks):
         obs[0, PLAN_BANK_PLANES[offset], :height, :width] = fake.quantize(amount, 64.0)
     obs[0, 57, :height, :width] = fake.quantize(trolls, 12.0)
@@ -266,6 +272,79 @@ def test_the_cost_deficit_and_flag_features_match_a_hand_computation() -> None:
     assert float(without["matches"][0].sum()) == 0.0
 
 
+def test_an_iron_free_map_waives_the_iron_cost_and_deficit() -> None:
+    """Two boards alike but for one iron cell (plane 4).
+
+    On the iron board the candidate (3, 3, 2, 4) costs iron `1 + 16 = 17` against a bank of 0, so
+    it has an iron deficit and is not affordable. On the iron-free board chop can never be paid
+    for in iron at all, so the iron cost and deficit are zero and affordability ignores them.
+    """
+
+    banks = (40, 40, 40, 0)
+    trolls = 1
+    model = SpatialActorCritic(plan_head=True)
+    candidate = (3, 3, 2, 4)
+    row = plan_index(*candidate) - 1
+
+    with_iron = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation(banks, trolls, None, iron=True))
+    )
+    without_iron = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation(banks, trolls, None, iron=False))
+    )
+
+    assert float(with_iron["has_iron"][0]) == 1.0
+    assert float(without_iron["has_iron"][0]) == 0.0
+
+    trolls_hat = fake.quantize(trolls, 12.0) / 255.0 * 12.0
+    assert float(with_iron["cost"][0, row, 3]) == pytest.approx(trolls_hat + 16, abs=1e-4)
+    assert float(with_iron["deficit"][0, row, 3]) == pytest.approx(trolls_hat + 16, abs=1e-4)
+    assert float(with_iron["affordable"][0, row]) == 0.0
+
+    assert float(without_iron["cost"][0, row, 3]) == 0.0
+    assert float(without_iron["deficit"][0, row, 3]) == 0.0
+    assert float(without_iron["affordable"][0, row]) == 1.0
+
+    # The other three resources are untouched by the waiver.
+    assert with_iron["cost"][0, row, :3].tolist() == pytest.approx(
+        without_iron["cost"][0, row, :3].tolist(), abs=1e-6
+    )
+    # Every candidate's iron column is zero on the iron-free board, not just this one.
+    assert float(without_iron["cost"][0, :, 3].abs().max()) == 0.0
+    assert float(without_iron["deficit"][0, :, 3].abs().max()) == 0.0
+
+
+def test_no_candidate_matches_a_target_that_is_none() -> None:
+    """Plane 59 at zero means "no standing target", and then the matches column is all zero.
+
+    This is what keeps behaviour cloning honest: a plan row carries `standing_plan = 0` and zeroed
+    planes 59-71, because the previous turn's hindsight label equals the current one between
+    purchases and feeding it back would leak the label.
+    """
+
+    model = SpatialActorCritic(plan_head=True)
+    absent = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation((10, 10, 10, 10), 2, None))
+    )
+    assert float(absent["has_target"][0]) == 0.0
+    assert float(absent["matches"][0].sum()) == 0.0
+    assert float(absent["matches"][0].max()) == 0.0
+
+    # Even (1, 1, 0, 0) -- the talents a zeroed target would decode to -- matches nothing,
+    # and the flag stays off however the talent planes read.
+    leaked = _crafted_observation((10, 10, 10, 10), 2, (1, 1, 0, 0))
+    leaked[0, 59] = 0                                  # talents present, the flag off
+    still_absent = model.plan_diagnostics(torch.from_numpy(leaked))
+    assert float(still_absent["matches"][0].sum()) == 0.0
+
+    # With the flag on, exactly one candidate matches.
+    present = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation((10, 10, 10, 10), 2, (2, 4, 1, 3)))
+    )
+    assert float(present["matches"][0].sum()) == 1.0
+    assert float(present["matches"][0, plan_index(2, 4, 1, 3) - 1]) == 1.0
+
+
 def test_the_plan_head_reacts_to_the_bank_it_reads() -> None:
     """Same trunk, different bank -> different plan logits, so the features really are used."""
 
@@ -307,7 +386,7 @@ def _phase_batch(seed: int = 3):
     return obs, masks, plan_masks, phase
 
 
-def test_build_legal_keeps_the_plan_mask_below_144_and_zero_above() -> None:
+def test_build_legal_keeps_the_plan_mask_below_400_and_zero_above() -> None:
     _, masks, plan_masks, phase = _phase_batch()
     legal = tpf.build_legal(masks, plan_masks, phase)
     assert legal.shape == (4, tpf.ACTION_SIZE)
@@ -322,8 +401,8 @@ def test_build_legal_keeps_the_plan_mask_below_144_and_zero_above() -> None:
 def test_the_loss_picks_the_plan_head_on_plan_steps_and_the_spatial_head_on_troll_steps() -> None:
     """The PLAN rows' logits must come from the plan head, the TROLL rows' from the per-cell head.
 
-    Proved by construction: `combined_logits` writes the plan head's 144 numbers into columns
-    0..143 of the PLAN rows and leaves the TROLL rows untouched.
+    Proved by construction: `combined_logits` writes the plan head's 400 numbers into columns
+    0..399 of the PLAN rows and leaves the TROLL rows untouched.
     """
 
     torch.manual_seed(11)
@@ -512,15 +591,227 @@ def test_the_fake_environment_has_the_frozen_full_env_surface() -> None:
         seen_boundaries = 0
         for _ in range(200):
             actions = fake.random_legal_actions(env, rng)
-            result = env.step(actions)
-            rewards, info = tpf.unpack_step(result, 4)
-            assert rewards.shape == (4,)
-            completed = tpf.info_field(info, "turn_completed")
+            # Card amendment (9): step() returns exactly two things.
+            rewards, info = env.step(actions)
+            assert rewards.shape == (4,) and rewards.dtype == np.float32
+            completed = info.turn_completed
             # The card's rule: reward only where the turn executed.
             assert not (rewards[completed == 0] != 0).any()
             seen_boundaries += int((completed > 0).sum())
             assert (env.phase != fake.PHASE_EXTERNAL_WAIT).all()
         assert seen_boundaries > 0
+
+
+# -------------------------------- the step contract and the generation id (amendments 8 and 9)
+
+
+def test_step_returns_exactly_rewards_and_the_named_record() -> None:
+    """`rewards, info = env.step(actions)`, with `info` carrying exactly the ruled fields."""
+
+    expected = {
+        "dones",
+        "wins",
+        "episode_turns",
+        "episode_returns",
+        "episode_seeds",
+        "map_indices",
+        "opponent_ids",
+        "score_own",
+        "score_opp",
+        "trained_specs",
+        "trained_turns",
+        "trained_count",
+        "trained_overflow",
+        "illegal_commands",
+        "action_hash",
+        "state_hash",
+        "turn_completed",
+    }
+    assert {field.name for field in dataclasses.fields(fake.FullStepInfo)} == expected
+    assert dataclasses.is_dataclass(fake.FullStepInfo)
+    assert fake.FullStepInfo.__dataclass_params__.frozen
+
+    rng = np.random.default_rng(1)
+    with fake.FakeFullVecEnv(3, 5, None, {"secure_orchard": 1.0}) as env:
+        returned = env.step(fake.random_legal_actions(env, rng))
+        assert isinstance(returned, tuple) and len(returned) == 2
+        rewards, info = returned
+        assert rewards.shape == (3,) and rewards.dtype == np.float32
+        assert isinstance(info, fake.FullStepInfo)
+        dtypes = {
+            "dones": np.uint8,
+            "wins": np.uint8,
+            "episode_turns": np.uint16,
+            "episode_returns": np.float32,
+            "episode_seeds": np.uint64,
+            "map_indices": np.uint32,
+            "opponent_ids": np.uint8,
+            "score_own": np.int32,
+            "score_opp": np.int32,
+            "trained_specs": np.int8,
+            "trained_turns": np.uint16,
+            "trained_count": np.uint8,
+            "trained_overflow": np.uint8,
+            "illegal_commands": np.uint16,
+            "action_hash": np.uint64,
+            "state_hash": np.uint64,
+            "turn_completed": np.uint8,
+        }
+        for name, dtype in dtypes.items():
+            array = getattr(info, name)
+            assert array.dtype == dtype, name
+            assert array.shape[0] == 3, name
+        assert info.trained_specs.shape == (3, 4, 4)
+        assert info.trained_turns.shape == (3, 4)
+
+
+def test_the_environment_and_the_trainer_agree_on_the_plan_generation_id() -> None:
+    assert fake.PLAN_VOCAB_VERSION == "v400-2026-08-29"
+    with fake.FakeFullVecEnv(2, 0, None, {"secure_orchard": 1.0}) as env:
+        assert env.plan_version() == tpf.PLAN_VOCAB_VERSION
+        assert tpf.check_plan_version(env) == tpf.PLAN_VOCAB_VERSION
+
+    class Stale:
+        @staticmethod
+        def plan_version() -> str:
+            return "v144-2026-08-28"
+
+    with pytest.raises(ValueError, match="plan vocabulary"):
+        tpf.check_plan_version(Stale())
+    # An environment that does not report one at all is not refused, only unrecorded.
+    assert tpf.check_plan_version(object()) is None
+
+
+def test_a_checkpoint_from_another_plan_vocabulary_is_refused(tmp_path) -> None:
+    model = SpatialActorCritic(plan_head=True)
+    good = tmp_path / "good.pt"
+    torch.save(
+        {"model": model.state_dict(), "config": {"plan_vocab_version": tpf.PLAN_VOCAB_VERSION}},
+        good,
+    )
+    tpf.load_policy(str(good), torch.device("cpu"))
+    tpf.load_anchor(str(good), torch.device("cpu"))
+
+    stale = tmp_path / "stale.pt"
+    torch.save(
+        {"model": model.state_dict(), "config": {"plan_vocab_version": "v144-2026-08-28"}}, stale
+    )
+    with pytest.raises(ValueError, match="v144-2026-08-28"):
+        tpf.load_policy(str(stale), torch.device("cpu"))
+    with pytest.raises(ValueError, match="v144-2026-08-28"):
+        tpf.load_anchor(str(stale), torch.device("cpu"))
+
+    nameless = tmp_path / "nameless.pt"
+    torch.save({"model": model.state_dict()}, nameless)
+    with pytest.raises(ValueError, match="no 'plan_vocab_version'"):
+        tpf.load_policy(str(nameless), torch.device("cpu"))
+
+    # A July checkpoint has no plan head at all: allowed, the plan head starts fresh.
+    july = tmp_path / "july.pt"
+    torch.save({"model": SpatialActorCritic().state_dict()}, july)
+    restored, _ = tpf.load_policy(str(july), torch.device("cpu"))
+    assert restored.plan_head
+
+
+def test_the_run_records_the_generation_id_in_its_checkpoint(tmp_path) -> None:
+    tpf.main(_fake_run_argv(tmp_path))
+    checkpoint = torch.load(
+        tmp_path / "smoke-update000002.pt", map_location="cpu", weights_only=False
+    )
+    assert checkpoint["config"]["plan_vocab_version"] == tpf.PLAN_VOCAB_VERSION
+    assert checkpoint["config"]["plan_action_size"] == PLAN_ACTION_SIZE
+    assert checkpoint["config"]["environment_plan_version"] == tpf.PLAN_VOCAB_VERSION
+
+
+# ---------------------------------------------------- the standing target (amendment 8, memory)
+
+
+def test_the_standing_target_survives_into_the_next_plan_phase() -> None:
+    """At a plan phase the target planes must show the plan chosen on the previous turn.
+
+    Zero at the start of a game; the newly chosen plan right after the plan decision; the same
+    plan again at the next plan phase, until a TRAIN buys it.
+    """
+
+    with fake.FakeFullVecEnv(1, 11, None, {"secure_orchard": 1.0}) as env:
+        assert env.phase[0] == fake.PHASE_PLAN
+        assert env.obs[0, 59:72].sum() == 0          # nothing standing at the start of a game
+
+        legal = np.flatnonzero(env.plan_masks[0])
+        chosen = int(next(index for index in legal if index != 0))
+        env.step(np.array([chosen], dtype=np.int32))
+
+        talents = fake.plan_talents(chosen)
+        expected = [
+            fake.quantize(value, scale)
+            for value, scale in zip(talents, fake.PLAN_ATTRIBUTE_SCALES)
+        ]
+        assert env.phase[0] == fake.PHASE_TROLL
+        assert env.obs[0, 59, 0, 0] == 255           # the newly selected plan is on show
+        assert [int(env.obs[0, 60 + i, 0, 0]) for i in range(4)] == expected
+
+        rng = np.random.default_rng(0)
+        while env.phase[0] != fake.PHASE_PLAN:
+            env.step(fake.random_legal_actions(env, rng))
+
+        # The next plan phase: the same plan is still standing (unless a TRAIN bought it).
+        standing = env.obs[0, 59, 0, 0]
+        if standing:
+            assert [int(env.obs[0, 60 + i, 0, 0]) for i in range(4)] == expected
+            assert env.obs[0, 64:68].max() > 0       # its costs are shown too
+        else:
+            assert env.obs[0, 59:72].sum() == 0      # cleared, so the TRAIN succeeded
+
+        # Over a longer run the standing target is nonzero at plan phases at least sometimes,
+        # so the scorer's "matches the standing target" feature is not always off.
+        nonzero_at_plan = 0
+        for _ in range(400):
+            if env.phase[0] == fake.PHASE_PLAN and env.obs[0, 59, 0, 0]:
+                nonzero_at_plan += 1
+            env.step(fake.random_legal_actions(env, rng))
+        assert nonzero_at_plan > 0
+
+
+def test_the_scorer_sees_the_standing_target_the_fake_environment_shows() -> None:
+    """Causal, in the fake environment: choose a plan, and the scorer sees exactly that one.
+
+    This is PPO's case -- the standing target is the environment's own state, the policy's
+    previous choice. Nothing here is synthesized from a label.
+    """
+
+    model = SpatialActorCritic(plan_head=True)
+    with fake.FakeFullVecEnv(1, 21, None, {"secure_orchard": 1.0}) as env:
+        # Before any plan is chosen there is no standing target at all.
+        assert float(model.plan_diagnostics(torch.from_numpy(env.obs.copy()))["matches"].sum()) == 0.0
+
+        legal = np.flatnonzero(env.plan_masks[0])
+        chosen = int(next(index for index in legal if index != 0))
+        env.step(np.array([chosen], dtype=np.int32))
+        diagnostics = model.plan_diagnostics(torch.from_numpy(env.obs.copy()))
+        assert float(diagnostics["matches"][0].sum()) == 1.0
+        assert float(diagnostics["matches"][0, chosen - 1]) == 1.0
+
+        # And a different plan on the next turn moves the flag with it.
+        rng = np.random.default_rng(2)
+        while env.phase[0] != fake.PHASE_PLAN:
+            env.step(fake.random_legal_actions(env, rng))
+        other = int(next(index for index in np.flatnonzero(env.plan_masks[0]) if index not in (0, chosen)))
+        env.step(np.array([other], dtype=np.int32))
+        moved = model.plan_diagnostics(torch.from_numpy(env.obs.copy()))
+        assert float(moved["matches"][0, other - 1]) == 1.0
+        assert float(moved["matches"][0, chosen - 1]) == 0.0
+
+
+def test_choosing_train_nothing_leaves_no_standing_target() -> None:
+    """Entry 0 zeroes planes 59-71, so the matches column is empty -- in the fake too."""
+
+    model = SpatialActorCritic(plan_head=True)
+    with fake.FakeFullVecEnv(1, 31, None, {"secure_orchard": 1.0}) as env:
+        env.step(np.array([0], dtype=np.int32))
+        assert env.obs[0, 59:72].sum() == 0
+        diagnostics = model.plan_diagnostics(torch.from_numpy(env.obs.copy()))
+        assert float(diagnostics["has_target"][0]) == 0.0
+        assert float(diagnostics["matches"][0].sum()) == 0.0
 
 
 # --------------------------------------------------------------------------- 4. the clone anchor
@@ -596,7 +887,13 @@ def test_a_run_with_an_anchor_equal_to_the_policy_logs_a_zero_anchor_loss(
     torch.manual_seed(29)
     clone = SpatialActorCritic(plan_head=True)
     clone_path = tmp_path / "clone.pt"
-    torch.save({"model": clone.state_dict()}, clone_path)
+    torch.save(
+        {
+            "model": clone.state_dict(),
+            "config": {"plan_vocab_version": tpf.PLAN_VOCAB_VERSION},
+        },
+        clone_path,
+    )
 
     tpf.main(
         _fake_run_argv(

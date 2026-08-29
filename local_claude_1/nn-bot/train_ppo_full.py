@@ -38,30 +38,31 @@ mini-steps of one turn are consecutive steps of the same decision, and the advan
 **discount 1 between mini-steps inside a turn** and `--gamma` only when crossing a turn boundary.
 `compute_gae` does exactly that, and `tests/test_train_ppo_full.py` pins it to a closed form.
 
-What could not be matched to the real interface (all marked in the code)
-------------------------------------------------------------------------
-`cgauto/rl_full_env.py` does not exist yet -- it is being built by `codex_1`. This trainer was
-written against `local_claude_1/nn-bot/ENV-API.md` (branch `origin/agent/codex_1`), which freezes
-the C ABI and the attribute names but leaves three things open. Each is handled by an adapter that
-is one edit away from the truth:
+The environment contract (card amendment 9)
+-------------------------------------------
+`cgauto/rl_full_env.py` is still being built by `codex_1`, but its Python surface is no longer a
+guess: amendment (9) fixes it to `rewards, info = env.step(actions)` -- one call describing the
+actions just consumed, `rewards` an `f32[n]` with the turn's reward on the executing mini-step and
+0 elsewhere, and `info` a named record carrying exactly the terminal arrays of `tf_full_step` plus
+`turn_completed`. There is no variable-length transition batch and no alias table here any more:
+the trainer stores one row per slot per call and reads every field by its name. The board itself
+comes from the frozen public attributes `env.obs`, `env.masks`, `env.plan_masks`, `env.phase`,
+`env.active_troll`, `env.seat_view`.
 
-1. **The tuple `FullVecEnv.step()` returns.** ENV-API.md says only "returns buffered mini-step
-   transitions plus copied terminal metadata". `unpack_step()` therefore ignores the arity: it
-   reads the board from the public attributes (`env.obs`, `env.masks`, `env.plan_masks`,
-   `env.phase`, `env.active_troll`, `env.seat_view`, which ARE frozen) and finds the reward vector
-   and the info object by inspection.
-2. **The field names on the returned info object.** `info_field()` looks each one up through a list
-   of spellings (`dones`, `turn_completed`, `episode_returns` / `returns`, `episode_seeds` /
-   `seeds`, ...). A name that is missing raises with the list it tried.
-3. **The signature of the `frozen_opponent` callable** (self-play). `FrozenOpponent.__call__`
+Two things remain conventions rather than signed text, and both are marked in the code:
+
+1. **The signature of the `frozen_opponent` callable** (self-play). `FrozenOpponent.__call__`
    accepts the arguments positionally in the ENV-API observe order and ignores anything extra.
+2. **`--reward-credit`.** The card pays the turn's reward once, on the executing mini-step; an
+   earlier draft of ENV-API.md broadcast it to every mini-step of the turn. With
+   `--reward-credit executing` (the default) the trainer keeps only the reward that arrives
+   together with `turn_completed == 1` and zeroes the rest, so the card's rule holds whichever way
+   the environment behaves. `--reward-credit as-returned` trusts the environment instead.
 
-A fourth point is a genuine **contradiction between two signed documents**, not a gap, and is
-resolved by a flag: the card says the earlier mini-steps of a turn carry reward 0, while ENV-API.md
-says `FullVecEnv` "emits all buffered transitions with the identical returned scalar". With
-`--reward-credit executing` (the default) the trainer keeps only the reward that arrives together
-with `turn_completed == 1` and zeroes the rest, so the card's rule holds whichever way the
-environment behaves. `--reward-credit as-returned` trusts the environment instead.
+The plan vocabulary carries one generation id, `PLAN_VOCAB_VERSION` (amendment 8). It is written
+into every checkpoint's config, checked against the environment's `plan_version()` at start, and
+checked when a checkpoint or an anchor is loaded -- a mismatch raises, because the same plan index
+means a different talent set under a different vocabulary.
 
 The bench gate (`--gate-every`) shells out to `local_claude_1/nn-bot/bench.py`. Today's bench (on
 branch `origin/agent/claude_1`) has **no flag that accepts a PyTorch checkpoint** -- its `--policy`
@@ -107,6 +108,7 @@ from cgauto.train_level1_ppo import (  # noqa: E402
     OBS_HEIGHT,
     OBS_WIDTH,
     PLAN_ACTION_SIZE,
+    PLAN_VOCAB_VERSION,
     SpatialActorCritic,
     explained_variance,
     sha256,
@@ -145,45 +147,23 @@ BENCH_CHECKPOINT_FLAGS = (
 # --------------------------------------------------------------------------- environment access
 
 
-def info_field(info: object, *names: str) -> np.ndarray:
-    """One array off the environment's info object, tried under several spellings.
+def check_plan_version(env) -> str | None:
+    """Refuse an environment that speaks a different plan vocabulary.
 
-    ENV-API.md freezes the C parameter names of `tf_full_step` but not the Python attribute names
-    `FullVecEnv` exposes. Every access goes through here, so adapting to the real wrapper is a
-    matter of adding one alias.
+    Amendment (8) gives the vocabulary one generation id. A checkpoint or an environment built
+    against another one would mean a different talent set by the same index, silently.
     """
 
-    if isinstance(info, dict):
-        for name in names:
-            if name in info:
-                return np.asarray(info[name])
-    else:
-        for name in names:
-            if hasattr(info, name):
-                return np.asarray(getattr(info, name))
-    raise AttributeError(
-        f"the environment's step info has none of {names!r}; "
-        "add the real spelling to the alias list in train_ppo_full.info_field"
-    )
-
-
-def unpack_step(result: object, num_envs: int) -> tuple[np.ndarray, object]:
-    """`(rewards, info)` out of whatever `FullVecEnv.step()` returns.
-
-    The observation is deliberately NOT taken from here: ENV-API.md guarantees the public
-    attributes `env.obs` / `env.masks` / `env.plan_masks` / `env.phase`, and reading those is
-    immune to the tuple's shape.
-    """
-
-    if isinstance(result, tuple) or isinstance(result, list):
-        info = result[-1]
-        for item in reversed(result[:-1]):
-            if isinstance(item, np.ndarray) and item.shape == (num_envs,):
-                if item.dtype.kind == "f":
-                    return np.asarray(item, dtype=np.float32), info
-        return np.asarray(info_field(info, "rewards", "reward"), dtype=np.float32), info
-    info = result
-    return np.asarray(info_field(info, "rewards", "reward"), dtype=np.float32), info
+    reader = getattr(env, "plan_version", None)
+    if reader is None:
+        return None
+    version = reader()
+    if version != PLAN_VOCAB_VERSION:
+        raise ValueError(
+            f"the environment speaks plan vocabulary {version!r} but this trainer was built "
+            f"against {PLAN_VOCAB_VERSION!r}; rebuild one of them"
+        )
+    return version
 
 
 def load_fake_env_class():
@@ -660,6 +640,31 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def check_checkpoint_version(path: str | Path, checkpoint: dict, has_plan_weights: bool) -> None:
+    """Refuse a checkpoint whose plan vocabulary is not this one (amendment 8's generation id).
+
+    A checkpoint that carries plan-head weights must name the vocabulary they were trained
+    against; the same index means a different talent set under another one. A checkpoint with no
+    plan head at all (a July run) has no vocabulary to disagree about, so it is allowed and the
+    plan head starts fresh -- but if it names a different vocabulary anyway, that is a mismatch
+    and it is refused.
+    """
+
+    config = checkpoint.get("config") if isinstance(checkpoint, dict) else None
+    version = config.get("plan_vocab_version") if isinstance(config, dict) else None
+    if version is not None and version != PLAN_VOCAB_VERSION:
+        raise ValueError(
+            f"checkpoint {path} was trained against plan vocabulary {version!r}, but this "
+            f"trainer speaks {PLAN_VOCAB_VERSION!r}; the same plan index means a different "
+            "talent set under the two, so the weights cannot be reused"
+        )
+    if has_plan_weights and version is None:
+        raise ValueError(
+            f"checkpoint {path} carries plan-head weights but no 'plan_vocab_version' in its "
+            f"config; refusing to guess that they mean {PLAN_VOCAB_VERSION!r}"
+        )
+
+
 def load_policy(path: str | None, device: torch.device) -> tuple[SpatialActorCritic, str | None]:
     """A plan-head network, restored from a checkpoint when one is given.
 
@@ -673,6 +678,9 @@ def load_policy(path: str | None, device: torch.device) -> tuple[SpatialActorCri
     if path:
         checkpoint = torch.load(Path(path), map_location="cpu", weights_only=False)
         state = checkpoint["model"] if "model" in checkpoint else checkpoint
+        check_checkpoint_version(
+            path, checkpoint, any(key.startswith("plan.") for key in state)
+        )
         missing, unexpected = model.load_state_dict(state, strict=False)
         stray = [name for name in missing if not name.startswith("plan.")]
         if stray or unexpected:
@@ -707,6 +715,7 @@ def load_anchor(path: str, device: torch.device) -> tuple[SpatialActorCritic, st
     checkpoint = torch.load(Path(path), map_location="cpu", weights_only=False)
     state = checkpoint["model"] if "model" in checkpoint else checkpoint
     has_plan = any(key.startswith("plan.") for key in state)
+    check_checkpoint_version(path, checkpoint, has_plan)
     model = SpatialActorCritic(plan_head=has_plan)
     model.load_state_dict(state, strict=True)
     model.to(device).eval()
@@ -754,6 +763,8 @@ def train(args) -> dict:
     else:
         frozen = FrozenOpponent(model, device)
 
+    env = make_env(args, frozen)
+
     config = {
         **vars(args),
         "batch_size": batch_size,
@@ -764,6 +775,9 @@ def train(args) -> dict:
         "anchor_checkpoint_sha256": anchor_sha,
         "anchor_has_plan_head": anchor_has_plan,
         "frozen_checkpoint_sha256": frozen_sha,
+        "plan_vocab_version": PLAN_VOCAB_VERSION,
+        "plan_action_size": PLAN_ACTION_SIZE,
+        "environment_plan_version": check_plan_version(env),
         "turn_step_definition": "one learner mini-step decision (PLAN or TROLL)",
     }
     print(json.dumps({"event": "start", **config}, sort_keys=True, default=str), flush=True)
@@ -776,7 +790,6 @@ def train(args) -> dict:
     turns_completed = 0
     start_wall = time.perf_counter()
 
-    env = make_env(args, frozen)
     try:
         for update in range(1, total_updates + 1):
             update_start = time.perf_counter()
@@ -811,52 +824,34 @@ def train(args) -> dict:
                 buffer.logprobs[step_index] = logprobs.cpu().numpy()
                 buffer.values[step_index] = values.cpu().numpy()
 
-                result = env.step(actions_np.astype(np.int32, copy=False))
-                rewards, info = unpack_step(result, args.num_envs)
-                dones = info_field(info, "dones", "done").astype(np.float32)
-                try:
-                    completed = info_field(
-                        info, "turn_completed", "turns_completed", "turn_done"
-                    ).astype(np.uint8)
-                except AttributeError:
-                    # Documented fallback: without turn_completed, a turn executed exactly when
-                    # the next mini-step is a PLAN again (or the episode ended).
-                    completed = (
-                        (np.asarray(env.phase) == PHASE_PLAN) | (dones > 0)
-                    ).astype(np.uint8)
-                boundary = ((completed > 0) | (dones > 0)).astype(np.uint8)
+                # Card amendment (9): one call, one row per slot, `rewards, info`.
+                rewards, info = env.step(actions_np.astype(np.int32, copy=False))
+                rewards = np.asarray(rewards, dtype=np.float32)
+                dones = info.dones.astype(np.float32)
+                completed = info.turn_completed
 
                 if args.reward_credit == "executing":
                     rewards = np.where(completed > 0, rewards, np.float32(0.0))
                 buffer.rewards[step_index] = rewards * args.reward_scale
                 buffer.dones[step_index] = dones
-                buffer.turn_boundary[step_index] = boundary
+                buffer.turn_boundary[step_index] = completed
                 turn_steps += args.num_envs
                 turns_completed += int((completed > 0).sum())
 
-                for slot in np.flatnonzero(dones > 0):
-                    own = float(info_field(info, "score_own", "scores_own")[slot])
-                    opponent = float(info_field(info, "score_opp", "scores_opp")[slot])
+                for slot in np.flatnonzero(info.dones):
+                    own = float(info.score_own[slot])
+                    opponent = float(info.score_opp[slot])
                     episode_window.append(
                         {
-                            "return": float(
-                                info_field(info, "episode_returns", "returns")[slot]
-                            ),
-                            "turns": int(
-                                info_field(info, "episode_turns", "turns")[slot]
-                            ),
-                            "win": int(info_field(info, "wins", "win")[slot]),
+                            "return": float(info.episode_returns[slot]),
+                            "turns": int(info.episode_turns[slot]),
+                            "win": int(info.wins[slot]),
                             "score_own": own,
                             "score_opp": opponent,
                             "margin": own - opponent,
-                            "opponent_id": int(
-                                info_field(info, "opponent_ids", "opponents")[slot]
-                            ),
-                            "illegal": int(
-                                info_field(
-                                    info, "illegal_commands", "illegal"
-                                )[slot]
-                            ),
+                            "opponent_id": int(info.opponent_ids[slot]),
+                            "illegal": int(info.illegal_commands[slot]),
+                            "trained": int(info.trained_count[slot]),
                         }
                     )
                 episode_window = episode_window[-args.episode_window :]
