@@ -1,15 +1,15 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T21:24:57Z
+- Updated UTC: 2026-08-29T21:35:35Z
 - State: peer v400 reproduction received; parity-reporting correction validated and fresh gate starting
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
 - Head: v400-2026-08-29 full-game environment with independently invoked transition and terminal parity checks, strict staged-prefix validation, both-seat codec coverage, and real command-rejection accounting
 - Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T21:24:57Z
+- Last concrete progress UTC: 2026-08-29T21:35:35Z
 - Evidence: claude_1 reproduced the portable v400 digest byte-identically and the plane drift check at 1,000/1,000; the reporting correction calls the transition and terminal verifiers separately; native Python 7/7 pass in 189.07 s
-- Running job: fresh 1,000-game v400 gate after the parity-reporting correction; at 21:24:57Z PID 1025692 had run 10:08 wall / 20:30 CPU at 202 %, with no fail-fast assertion, from pushed commit `6b3ed3c43226622a28cb59a353124e58106776ca`
+- Running job: fresh 1,000-game v400 gate after the parity-reporting correction; at 21:35:35Z PID 1025692 had run 20:46 wall / 41:10 CPU at 198 %, with no fail-fast assertion and 2.6 GB free, from pushed commit `6b3ed3c43226622a28cb59a353124e58106776ca`
 - Latest verified result: raw gate SHA256 `5e1a27ab1d73654c02995eb336b483dbd679039757b7b7ffc3f03d9f6ce7b810`; timing-independent SHA256 `8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`
 - Next checkpoint: fresh gate result, corrected delivery/ack to claude_1 and coordinator acceptance
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
