@@ -51,6 +51,211 @@ PROTOCOL = ANALYSIS / "curriculum-ppo-level1-protocol-2026-07-19.md"
 RANDOM_BASELINE = ANALYSIS / "curriculum-level1-random-2000000-2000999-exact.json"
 TEACHER_BASELINE = ANALYSIS / "curriculum-level1-teacher-2000000-2000999-exact.json"
 
+#: The train-plan head's width after amendment (8) of card 20260829-nn-bot-way-b: speed 1-4 x
+#: carry 1-5 x harvest 0-3 x chop 0-4 = 400, index
+#: `(((speed-1)*5 + (carry-1))*4 + harvest)*5 + chop`, entry 0 = (1,1,0,0) repurposed as
+#: "train nothing". The census over the top four's 1,725 real TRAINs found 15.5 % outside
+#: delineate's old 144 ranges (speed 4 in 209 of them), so the vocabulary had to grow.
+PLAN_ACTION_SIZE = 400
+
+#: The one generation id of the plan vocabulary (amendment 8, "One generation id"). The
+#: environment, the codec, the shards, the trainers, the checkpoints and the exporter's manifest
+#: all record it, and any mismatch raises at load: a checkpoint trained against a different
+#: vocabulary would silently mean different plans by the same index.
+PLAN_VOCAB_VERSION = "v400-2026-08-29"
+
+#: The four talents in their fixed order, and the value each is divided by when it is fed to the
+#: plan head. These are the scales of observation planes 60-63 after amendment (8)
+#: (`local_claude_1/nn-bot/OBS-PLANES.md`).
+PLAN_ATTRIBUTE_SCALES = (4.0, 5.0, 3.0, 4.0)
+
+#: Broadcast observation planes the plan head reads, with the value each byte-scaled plane must be
+#: multiplied by to recover the real quantity (`OBS-PLANES.md`; 64-71 are S=48 after amendment 8).
+PLAN_BANK_PLANES = (43, 44, 45, 47)      # own bank plum, lemon, apple, iron; S=64
+PLAN_BANK_SCALE = 64.0
+PLAN_TROLL_COUNT_PLANE = 57              # own troll count; S=12
+PLAN_TROLL_COUNT_SCALE = 12.0
+PLAN_TARGET_FLAG_PLANE = 59              # the current turn has a nonzero train target; S=1
+PLAN_TARGET_PLANES = (60, 61, 62, 63)    # the current target's talents; S=4/5/3/4
+PLAN_COST_SCALE = 48.0                   # planes 64-71, the cost and deficit scale
+PLAN_IRON_CELL_PLANE = 4                 # iron cell; empty over the whole map = no iron at all
+
+
+def plan_index(speed: int, carry: int, harvest: int, chop: int) -> int:
+    """The flat plan index of one talent set (amendment 8's formula)."""
+
+    return (((speed - 1) * 5 + (carry - 1)) * 4 + harvest) * 5 + chop
+
+
+def plan_talents(index: int) -> tuple[int, int, int, int]:
+    """The talent set behind a flat plan index. Index 0 is `(1, 1, 0, 0)` = train nothing."""
+
+    chop = index % 5
+    harvest = (index // 5) % 4
+    carry = ((index // 20) % 5) + 1
+    speed = (index // 100) + 1
+    return speed, carry, harvest, chop
+
+
+def plan_index_is_legal(index: int) -> bool:
+    """The plan mask has exactly one rule (amendment 8, second completion).
+
+    Entry 0 is "train nothing" and is always legal; every other entry in range is legal too.
+    The two rules the first draft carried are both gone: `harvest > carry` was delineate's own
+    restriction and not the game's (Bubaptik breaks it in 44 of its 425 purchases), and
+    `harvest 0 and chop 0` is legal in the game though no teacher ever bought it (0 of 1,725).
+    Affordability never masks either -- the plan is a target the trolls collect towards. The one
+    thing the environment may still mask is the global unit cap, which leaves only entry 0.
+    """
+
+    return 0 <= index < PLAN_ACTION_SIZE
+
+
+class PlanCandidateScorer(nn.Module):
+    """delineate's per-candidate train-plan scorer: one small network, 400 candidates.
+
+    Plain words: instead of one wide layer with a separate set of weights for each of the 400
+    talent sets, the network scores each talent set with the *same* small scorer, handing it the
+    board's summary plus a description of that particular talent set -- what it costs, how far the
+    bank still is from paying for it, whether it is affordable right now, and whether it is the
+    target already being saved towards. The scorer therefore generalises across talent sets it has
+    rarely seen, and 400 candidates cost about a thousand weights rather than tens of thousands.
+
+    Everything the scorer needs is read out of the observation tensor itself, so the model stays a
+    pure `observation -> logits` function and can be exported to the Rust kernel in Phase 4.
+
+    Per candidate the features are, in order:
+
+    * the pooled trunk features (`width` numbers, the same masked global pool the critic uses);
+    * the candidate's four talents, each divided by `PLAN_ATTRIBUTE_SCALES`;
+    * its four costs, `cost_i = own troll count + talent_i^2` for plum/lemon/apple/iron, over 48;
+    * its four deficits, `max(cost_i - own bank_i, 0)`, over 48;
+    * an affordable flag (every deficit is zero);
+    * a "matches the current target" flag (planes 59-63).
+
+    Entry 0, "train nothing", is not scored: it carries one learned bias of its own.
+    """
+
+    def __init__(self, width: int = 16, hidden: int = 32) -> None:
+        super().__init__()
+        self.width = width
+        self.hidden = hidden
+        self.feature_size = width + 14
+        #: The column of the "matches the standing target" flag: the last feature.
+        self.match_feature_index = self.feature_size - 1
+        self.mlp = nn.Sequential(
+            layer_init(nn.Linear(self.feature_size, hidden)),
+            nn.ReLU(inplace=True),
+            layer_init(nn.Linear(hidden, 1), std=0.01),
+        )
+        self.null_bias = nn.Parameter(torch.zeros(1))
+
+        # The "matches the standing target" column starts at exactly zero. A behaviour-cloned
+        # network never sees that feature set -- BC plan rows carry no standing target (amendment
+        # 8, "No target memory in behaviour cloning") -- so a zero column makes the clone's first
+        # PPO plan phase produce identical logits whether or not a target is standing, instead of
+        # being kicked by a weight nobody ever trained. PPO then trains the column from there.
+        # Only this column is identically zero in cloning: the cost, deficit and affordable
+        # columns are live there, so they keep their ordinary initialisation.
+        with torch.no_grad():
+            self.mlp[0].weight[:, self.match_feature_index].zero_()
+
+        talents = torch.tensor(
+            [list(plan_talents(index)) for index in range(PLAN_ACTION_SIZE)],
+            dtype=torch.float32,
+        )
+        scales = torch.tensor(PLAN_ATTRIBUTE_SCALES, dtype=torch.float32)
+        # Candidates 1..399; entry 0 never reaches the scorer.
+        self.register_buffer("candidate_talents", talents[1:], persistent=False)
+        self.register_buffer(
+            "candidate_normalized", talents[1:] / scales, persistent=False
+        )
+        self.register_buffer("candidate_squares", talents[1:] ** 2, persistent=False)
+        self.register_buffer("attribute_scales", scales, persistent=False)
+
+    @staticmethod
+    def broadcast_readout(
+        scaled: torch.Tensor, valid: torch.Tensor, planes: tuple[int, ...] | list[int]
+    ) -> torch.Tensor:
+        """The value of one or more broadcast planes, averaged over the valid cells.
+
+        `scaled` is the observation already divided by 255, `valid` is plane 0. A broadcast plane
+        holds one number at every cell, so the masked mean recovers it whether or not the padding
+        outside the map was written.
+        """
+
+        selected = scaled[:, list(planes)]
+        return (selected * valid).sum(dim=(2, 3)) / valid.sum(dim=(2, 3)).clamp_min(1.0)
+
+    def candidate_features(
+        self, pooled: torch.Tensor, scaled: torch.Tensor, valid: torch.Tensor
+    ) -> tuple[torch.Tensor, dict[str, torch.Tensor]]:
+        """`[batch, 399, feature_size]`, plus the readouts a test can check by hand."""
+
+        banks = self.broadcast_readout(scaled, valid, PLAN_BANK_PLANES) * PLAN_BANK_SCALE
+        trolls = (
+            self.broadcast_readout(scaled, valid, (PLAN_TROLL_COUNT_PLANE,))
+            * PLAN_TROLL_COUNT_SCALE
+        )
+        target = (
+            self.broadcast_readout(scaled, valid, PLAN_TARGET_PLANES)
+            * self.attribute_scales
+        )
+        has_target = self.broadcast_readout(scaled, valid, (PLAN_TARGET_FLAG_PLANE,))
+
+        # Iron-free maps waive iron (amendment 8, second completion): where the map has no iron
+        # cell at all, chop can never be paid for in iron, so the iron cost and the iron deficit
+        # are zero and affordability ignores them -- as the environment's own cost planes do.
+        iron_cells = (scaled[:, PLAN_IRON_CELL_PLANE : PLAN_IRON_CELL_PLANE + 1] * valid).sum(
+            dim=(2, 3)
+        )
+        has_iron = (iron_cells > 0.0).to(scaled.dtype)                  # [B, 1]
+        ones = torch.ones_like(has_iron)
+        resource_gate = torch.cat([ones, ones, ones, has_iron], dim=1)[:, None, :]
+
+        cost = (trolls[:, :, None] + self.candidate_squares[None]) * resource_gate
+        deficit = (cost - banks[:, None, :]).clamp_min(0.0) * resource_gate
+        affordable = (deficit.sum(dim=-1) <= 0.0).to(cost.dtype)        # [B, 399]
+        matches = (
+            ((target[:, None, :] - self.candidate_talents[None]).abs() < 0.5).all(dim=-1)
+            # No candidate matches a "none" target: plane 59 is the gate, and it is the only
+            # thing that lets the flag light at all (amendment 8, "No target memory in BC").
+            & (has_target > 0.5)
+        ).to(cost.dtype)
+
+        batch, candidates = cost.shape[0], cost.shape[1]
+        features = torch.cat(
+            [
+                pooled[:, None, :].expand(batch, candidates, self.width),
+                self.candidate_normalized[None].expand(batch, candidates, 4),
+                cost / PLAN_COST_SCALE,
+                deficit / PLAN_COST_SCALE,
+                affordable[:, :, None],
+                matches[:, :, None],
+            ],
+            dim=-1,
+        )
+        diagnostics = {
+            "banks": banks,
+            "has_iron": has_iron.squeeze(-1),
+            "troll_count": trolls.squeeze(-1),
+            "target": target,
+            "has_target": has_target.squeeze(-1),
+            "cost": cost,
+            "deficit": deficit,
+            "affordable": affordable,
+            "matches": matches,
+        }
+        return features, diagnostics
+
+    def forward(
+        self, pooled: torch.Tensor, scaled: torch.Tensor, valid: torch.Tensor
+    ) -> torch.Tensor:
+        features, _ = self.candidate_features(pooled, scaled, valid)
+        scores = self.mlp(features).squeeze(-1)
+        null = self.null_bias.expand(scores.shape[0], 1)
+        return torch.cat([null, scores], dim=1)
+
 LEVEL5_OPPONENT_ENVS = {
     "complete": Level5VecEnv,
     "complete-recovery": Level5RecoveryVecEnv,
@@ -138,10 +343,23 @@ class ResidualBlock(nn.Module):
 
 
 class SpatialActorCritic(nn.Module):
-    def __init__(self, width: int = 16, blocks: int = 4) -> None:
+    """The shared trunk with a per-cell action head, a value head, and an optional plan head.
+
+    `plan_head` is off by default on purpose: with it off no extra module is registered, so
+    `SpatialActorCritic().state_dict()` has exactly the keys July's checkpoints and the D11
+    exporter expect.  Turn it on (Phase 3 of card 20260829-nn-bot-way-b) and the trunk gains a
+    `PlanCandidateScorer`: delineate's per-candidate scorer over the 400-entry train-plan
+    vocabulary, reading the same masked global pooling the critic uses plus per-candidate features
+    it computes from the observation planes itself.
+    """
+
+    def __init__(
+        self, width: int = 16, blocks: int = 4, *, plan_head: bool = False
+    ) -> None:
         super().__init__()
         self.width = width
         self.blocks = blocks
+        self.plan_head = bool(plan_head)
         self.stem = nn.Sequential(
             layer_init(nn.Conv2d(OBS_CHANNELS, width, 3, padding=1)),
             nn.ReLU(inplace=True),
@@ -153,17 +371,55 @@ class SpatialActorCritic(nn.Module):
             nn.Tanh(),
             layer_init(nn.Linear(64, 1), std=1.0),
         )
+        if self.plan_head:
+            self.plan = PlanCandidateScorer(width)
 
-    def forward(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+    def _trunk(
+        self, observations: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        """The tower's features, their masked global pooling, the scaled input and plane 0."""
+
         if observations.dtype != torch.float32:
             observations = observations.float()
         observations = observations * (1.0 / 255.0)
         valid = observations[:, :1]
         hidden = self.tower(self.stem(observations))
-        logits = self.actor(hidden).flatten(1)
         pooled = (hidden * valid).sum(dim=(2, 3)) / valid.sum(dim=(2, 3)).clamp_min(1.0)
+        return hidden, pooled, observations, valid
+
+    def forward(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
+        hidden, pooled, _, _ = self._trunk(observations)
+        logits = self.actor(hidden).flatten(1)
         value = self.critic(pooled).squeeze(-1)
         return logits, value
+
+    def forward_with_plan(
+        self, observations: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        """Spatial logits, plan logits and value from one pass through the shared trunk."""
+
+        if not self.plan_head:
+            raise RuntimeError(
+                "forward_with_plan requires SpatialActorCritic(plan_head=True)"
+            )
+        hidden, pooled, scaled, valid = self._trunk(observations)
+        return (
+            self.actor(hidden).flatten(1),
+            self.plan(pooled, scaled, valid),
+            self.critic(pooled).squeeze(-1),
+        )
+
+    def plan_diagnostics(self, observations: torch.Tensor) -> dict[str, torch.Tensor]:
+        """The plan head's readouts -- banks, troll count, target, cost, deficit, flags.
+
+        Exposed so a test can compare them with a hand computation on a crafted observation.
+        """
+
+        if not self.plan_head:
+            raise RuntimeError("plan_diagnostics requires SpatialActorCritic(plan_head=True)")
+        _, pooled, scaled, valid = self._trunk(observations)
+        _, diagnostics = self.plan.candidate_features(pooled, scaled, valid)
+        return diagnostics
 
     def action_and_value(
         self,
