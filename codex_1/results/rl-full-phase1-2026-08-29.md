@@ -1,8 +1,10 @@
 # Full-game neural environment Phase 1 — amended implementation and gates
 
-Implementation source commit: `f0b50c7704c7e778a0b57167721d8172741458e4` on
-`agent/codex_1`; the exact staged-MOVE routing sentence is at
-`74ad13707422fb2e3c884e81bcf00bc8e4f24c9a`. No Arena action was taken. The byte-sacred
+Implementation source commit: `6b3ed3c43226622a28cb59a353124e58106776ca` on
+`agent/codex_1`; the v400 implementation landed at
+`f0b50c7704c7e778a0b57167721d8172741458e4`, the exact staged-MOVE routing sentence at
+`74ad13707422fb2e3c884e81bcf00bc8e4f24c9a`, and the final commit makes the transition and
+terminal verifier calls separate. No Arena action was taken. The byte-sacred
 resident remained
 `fff6669b0bc0b15b0992637f70c07197e1838f403cb7fd038bc1fae73d52b13f`.
 
@@ -44,7 +46,8 @@ TF_FULL_TEST_LIBRARY=/home/tarstars/prj/troll_farm-codex_1/rust/target/release/l
   /home/tarstars/.local/bin/uv run --with numpy pytest -q tests/test_rl_full_env.py
 ```
 
-Result: **7 passed in 375.07 s**. This includes 10,000 accepted random masked learner actions,
+The final reporting-correction checkout repeated this exact suite: **7 passed in 189.07 s**.
+The earlier amended checkout also passed 7/7 in 375.07 s. This includes 10,000 accepted random masked learner actions,
 **200/200** no-train self-play replays, both seats and all 13 verbs through the C ABI, chop-zero
 initial-state mutation, truncated replay, valid post-terminal append, and mutated terminal
 reason/counter controls.
@@ -63,9 +66,9 @@ The focused harness remains necessary because this worktree's unrelated `rl_q6_p
 module names a historical compile-time TSV under unavailable bulk storage; no replacement dataset
 or symlink was created. The exact 415 MiB harness was removed after the tests completed.
 
-## Required fresh 1,000-game gate
+## First amended 1,000-game gate and peer reproduction
 
-The fresh amended gate uses fully random legal actions on both seats, real maps, exact transition
+The first amended gate used fully random legal actions on both seats, real maps, exact transition
 and terminal replay verification, 20 vector slots, and four Rayon threads:
 
 ```text
@@ -96,6 +99,55 @@ The 232,260-byte raw result SHA-256 is
 SHA-256 after removing
 `elapsed_seconds` and `turn_steps_per_second` and serializing with sorted keys and compact JSON
 separators is `8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`.
+
+Claude independently reproduced every non-timing field and the portable digest at
+`agent/claude_1@669e317e8cbf2029e651d9fbc213b1a03c1a3d0c`. That review found one reporting defect:
+the runner called `verify_terminal_parity` once and incremented both displayed counters. The call
+did verify every transition and the terminal metadata, so the evidence was not false, but the two
+fields were the same successful call printed twice and could never differ. The signed card and the
+coordinator's 20:04Z note required separate reporting.
+
+## Corrected separately invoked 1,000-game gate
+
+Commit `6b3ed3c43226622a28cb59a353124e58106776ca` calls
+`verify_transition_parity(replay)` and increments `transition_parity` only after it succeeds, then
+calls `verify_terminal_parity(replay)` and increments `terminal_parity` only after that succeeds.
+The terminal verifier deliberately replays and checks the transitions again before checking the
+endpoint, so these are separate successful verifier calls, not statistically independent
+experiments.
+
+The final gate ran as:
+
+```text
+PYTHONPATH=. RAYON_NUM_THREADS=4 /home/tarstars/.local/bin/uv run --with numpy \
+  python cgauto/rl_full_env.py --episodes 1000 --num-envs 20 --seed-base 320000 \
+  --self-play --verify-replays --library rust/target/release/libtroll_farm.so \
+  --output /tmp/rl-full-gate-v400-r2.json
+```
+
+| measure | corrected result |
+|---|---:|
+| target episodes | 1,000 |
+| exact seed interval | 320000–320999, 1,000 unique |
+| separately invoked transition parity | **1,000/1,000** |
+| separately invoked terminal parity | **1,000/1,000** |
+| illegal commands | **0** |
+| terminal turns | 300 min / 300 max |
+| wins | 411 |
+| unique action hashes | 1,000 |
+| unique terminal state hashes | 1,000 |
+| learner mini-steps emitted | 895,900 |
+| full turn-steps executed, including batch overshoot | 302,201 |
+| elapsed | 2,865.609412687365 s |
+| full turn-steps/s, including both replay-verifier calls | 105.45784734724063 |
+
+The 232,261-byte raw result SHA-256 is
+`58a098efdb00f2a144ba8926a9b84398cf8ae08dee361e4b7ed066e0a1a88ade`. The timing-independent
+SHA-256 is unchanged at
+`8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`, computed by removing
+`elapsed_seconds` and `turn_steps_per_second` and passing the parsed object to
+`json.dumps(result, sort_keys=True, separators=(",", ":"))`. Do not compute this digest through
+`jq`: several action/state hashes exceed jq's exact integer range.
 
 ## Speed lines
 
