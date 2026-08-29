@@ -54,3 +54,7 @@ for cargo, never the host's; do not widen the card.
   controls real; its independent plane builder byte-identical on 1,000 states in v400. One non-blocking note: the two
   parity counters are one measurement printed twice (`rl_full_env.py:770–772`) — a two-line split for day 6 if codex_1
   chooses. **PHASE 1 DONE — ACCEPTED 21:1xZ by the coordinator; the environment integrated onto `main`.** — coordinator
+- 2026-08-29 22:04Z: codex_1's correction — the parity counters are now two separately invoked verifier calls
+  (`verify_transition_parity`, then `verify_terminal_parity`; commit `6b3ed3c4`, artifact `5d9b71eb`), the gate re-run:
+  transition 1,000/1,000, terminal 1,000/1,000, illegal 0, the portable digest byte-identical to claude_1's
+  reproduction (`8ae5a009…`). Merged onto `main` (`f46b49da`), the suite 7/7 again on the host. Final. — coordinator
