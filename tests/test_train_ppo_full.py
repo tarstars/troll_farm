@@ -33,7 +33,16 @@ def _load(name: str, filename: str):
 tpf = _load("train_ppo_full_under_test", "train_ppo_full.py")
 fake = _load("fake_full_env_under_test", "fake_full_env.py")
 
-from cgauto.train_level1_ppo import SpatialActorCritic  # noqa: E402
+from cgauto.train_level1_ppo import (  # noqa: E402
+    PLAN_ACTION_SIZE,
+    PLAN_ATTRIBUTE_SCALES,
+    PLAN_BANK_PLANES,
+    PlanCandidateScorer,
+    SpatialActorCritic,
+    plan_index,
+    plan_index_is_legal,
+    plan_talents,
+)
 
 
 # --------------------------------------------------------------------------- 1. the GAE returns
@@ -104,6 +113,173 @@ def test_gae_with_discount_one_everywhere_is_the_undiscounted_sum() -> None:
     bootstrap = np.zeros(1, dtype=np.float32)
     _, returns = tpf.compute_gae(rewards, values, dones, boundary, bootstrap, 0.5, 1.0)
     assert returns[:, 0] == pytest.approx([6.0, 5.0, 3.0], rel=1e-6)
+
+
+# ------------------------------------------------- the 400-plan vocabulary (card amendment 8)
+
+
+def test_the_plan_index_formula_round_trips_over_all_400_entries() -> None:
+    """Every talent set in the vocabulary maps to its own index and back."""
+
+    assert PLAN_ACTION_SIZE == 400
+    seen = {}
+    for speed in range(1, 5):
+        for carry in range(1, 6):
+            for harvest in range(0, 4):
+                for chop in range(0, 5):
+                    index = plan_index(speed, carry, harvest, chop)
+                    assert 0 <= index < PLAN_ACTION_SIZE
+                    assert index not in seen
+                    seen[index] = (speed, carry, harvest, chop)
+                    assert plan_talents(index) == (speed, carry, harvest, chop)
+    assert len(seen) == PLAN_ACTION_SIZE
+    assert seen[0] == (1, 1, 0, 0)          # entry 0 = "train nothing"
+    assert plan_talents(399) == (4, 5, 3, 4)
+    # The fake environment must decode identically, or the two drift apart.
+    for index in range(PLAN_ACTION_SIZE):
+        assert fake.plan_talents(index) == plan_talents(index)
+
+
+def test_the_two_plan_mask_rules_and_nothing_else() -> None:
+    """Harvest 0 and chop 0 together illegal; harvest > carry illegal; entry 0 always legal.
+
+    Affordability never appears -- the plan is a target the trolls collect towards.
+    """
+
+    assert plan_index_is_legal(0)
+    illegal_both_zero = illegal_harvest = legal = 0
+    for index in range(1, PLAN_ACTION_SIZE):
+        _, carry, harvest, chop = plan_talents(index)
+        expected = not (harvest == 0 and chop == 0) and harvest <= carry
+        assert plan_index_is_legal(index) is expected
+        assert fake.plan_is_legal(index) is expected
+        if harvest == 0 and chop == 0:
+            illegal_both_zero += 1
+        elif harvest > carry:
+            illegal_harvest += 1
+        else:
+            legal += 1
+    # harvest 0 with chop 0 is one entry per (speed, carry) pair: 4 x 5 = 20, of which
+    # index 0 itself is the repurposed "train nothing" and is not in this loop.
+    assert illegal_both_zero == 19
+    assert illegal_harvest > 0
+    assert legal + illegal_both_zero + illegal_harvest == PLAN_ACTION_SIZE - 1
+    assert len(fake.LEGAL_PLANS) == legal + 1
+    # A plan nobody can pay for is still legal.
+    assert plan_index_is_legal(plan_index(4, 5, 3, 4))
+
+
+def test_the_per_candidate_head_is_under_two_thousand_weights() -> None:
+    scorer = PlanCandidateScorer(width=16)
+    count = sum(parameter.numel() for parameter in scorer.parameters())
+    assert count < 2000
+    # One shared scorer over 399 candidates plus entry 0's own bias -- not a flat 400-way layer.
+    assert count < 0.05 * (64 * PLAN_ACTION_SIZE)
+    assert scorer.feature_size == 16 + 4 + 4 + 4 + 1 + 1
+    model = SpatialActorCritic(plan_head=True)
+    logits = model.forward_with_plan(torch.zeros((2, 104, 11, 22), dtype=torch.uint8))[1]
+    assert logits.shape == (2, PLAN_ACTION_SIZE)
+
+
+def _crafted_observation(
+    banks: tuple[int, int, int, int],
+    trolls: int,
+    target: tuple[int, int, int, int] | None,
+    height: int = 9,
+    width: int = 18,
+) -> np.ndarray:
+    """One observation with only the broadcast planes the plan head reads filled in."""
+
+    obs = np.zeros((1, 104, 11, 22), dtype=np.uint8)
+    obs[0, 0, :height, :width] = 255
+    for offset, amount in enumerate(banks):
+        obs[0, PLAN_BANK_PLANES[offset], :height, :width] = fake.quantize(amount, 64.0)
+    obs[0, 57, :height, :width] = fake.quantize(trolls, 12.0)
+    if target is not None:
+        obs[0, 59, :height, :width] = 255
+        for offset, (value, scale) in enumerate(zip(target, PLAN_ATTRIBUTE_SCALES)):
+            obs[0, 60 + offset, :height, :width] = fake.quantize(value, scale)
+    return obs
+
+
+def test_the_cost_deficit_and_flag_features_match_a_hand_computation() -> None:
+    """A crafted board: bank (10, 3, 40, 5), two trolls, current target (2, 3, 1, 2).
+
+    By hand, for candidate (2, 3, 1, 2):
+      cost  = 2 + attribute^2       -> plum 2+4=6, lemon 2+9=11, apple 2+1=3, iron 2+4=6
+      deficit = max(cost - bank, 0) -> plum 0, lemon 8, apple 0, iron 1     -> not affordable
+    and for candidate (1, 1, 0, 1):
+      cost -> 3, 3, 2, 3 ; deficit -> 0, 0, 0, 0                            -> affordable
+    """
+
+    banks = (10, 3, 40, 5)
+    trolls = 2
+    target = (2, 3, 1, 2)
+    model = SpatialActorCritic(plan_head=True)
+    diagnostics = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation(banks, trolls, target))
+    )
+
+    def dequantized(value: float, scale: float) -> float:
+        """What the network can actually read back: one byte, then the scale again."""
+
+        return fake.quantize(value, scale) / 255.0 * scale
+
+    bank_hat = [dequantized(amount, 64.0) for amount in banks]
+    trolls_hat = dequantized(trolls, 12.0)
+
+    assert diagnostics["banks"][0].tolist() == pytest.approx(bank_hat, abs=1e-4)
+    assert diagnostics["banks"][0].tolist() == pytest.approx(list(banks), abs=0.15)
+    assert float(diagnostics["troll_count"][0]) == pytest.approx(trolls_hat, abs=1e-4)
+    assert diagnostics["target"][0].tolist() == pytest.approx(list(target), abs=0.02)
+    assert float(diagnostics["has_target"][0]) == pytest.approx(1.0)
+
+    def by_hand(candidate: tuple[int, int, int, int]) -> tuple[list[float], list[float]]:
+        cost = [trolls_hat + attribute**2 for attribute in candidate]
+        deficit = [max(c - b, 0.0) for c, b in zip(cost, bank_hat)]
+        return cost, deficit
+
+    # Candidate index -> row in the scorer's table (entry 0 is not scored).
+    row = plan_index(*target) - 1
+    cost, deficit = by_hand(target)
+    assert cost == pytest.approx([6, 11, 3, 6], abs=0.03)
+    assert deficit == pytest.approx([0, 8, 0, 1], abs=0.06)
+    assert diagnostics["cost"][0, row].tolist() == pytest.approx(cost, abs=1e-4)
+    assert diagnostics["deficit"][0, row].tolist() == pytest.approx(deficit, abs=1e-4)
+    assert float(diagnostics["affordable"][0, row]) == 0.0
+    assert float(diagnostics["matches"][0, row]) == 1.0
+
+    cheap = plan_index(1, 1, 0, 1) - 1
+    cost, deficit = by_hand((1, 1, 0, 1))
+    assert cost == pytest.approx([3, 3, 2, 3], abs=0.03)
+    assert deficit == pytest.approx([0, 0, 0, 0], abs=1e-9)
+    assert diagnostics["cost"][0, cheap].tolist() == pytest.approx(cost, abs=1e-4)
+    assert diagnostics["deficit"][0, cheap].tolist() == pytest.approx(deficit, abs=1e-4)
+    assert float(diagnostics["affordable"][0, cheap]) == 1.0
+    assert float(diagnostics["matches"][0, cheap]) == 0.0
+
+    # Exactly one candidate is the current target, and only when the target flag is on.
+    assert float(diagnostics["matches"][0].sum()) == 1.0
+    without = model.plan_diagnostics(
+        torch.from_numpy(_crafted_observation(banks, trolls, None))
+    )
+    assert float(without["matches"][0].sum()) == 0.0
+
+
+def test_the_plan_head_reacts_to_the_bank_it_reads() -> None:
+    """Same trunk, different bank -> different plan logits, so the features really are used."""
+
+    torch.manual_seed(31)
+    model = SpatialActorCritic(plan_head=True)
+    poor = model.forward_with_plan(
+        torch.from_numpy(_crafted_observation((0, 0, 0, 0), 3, None))
+    )[1]
+    rich = model.forward_with_plan(
+        torch.from_numpy(_crafted_observation((60, 60, 60, 60), 3, None))
+    )[1]
+    assert not torch.allclose(poor, rich)
+    # entry 0 is a bare learned bias, so the bank cannot move it
+    assert float(poor[0, 0].detach()) == pytest.approx(float(rich[0, 0].detach()))
 
 
 # --------------------------------------------------------------------------- 2. the two heads
@@ -308,20 +484,24 @@ def test_the_plan_head_off_model_keeps_julys_state_dict_keys() -> None:
     assert not any(key.startswith("plan.") for key in baseline.state_dict())
     with_plan = SpatialActorCritic(plan_head=True).state_dict()
     assert set(with_plan) - set(baseline.state_dict()) == {
-        "plan.0.weight",
-        "plan.0.bias",
-        "plan.2.weight",
-        "plan.2.bias",
+        "plan.null_bias",
+        "plan.mlp.0.weight",
+        "plan.mlp.0.bias",
+        "plan.mlp.2.weight",
+        "plan.mlp.2.bias",
     }
-    assert with_plan["plan.2.weight"].shape == (tpf.PLAN_SIZE, 64)
-    assert with_plan["plan.0.weight"].shape == (64, 16)
+    # The candidate tables are constants, so they stay out of the checkpoint.
+    assert with_plan["plan.mlp.0.weight"].shape == (32, 30)
+    assert with_plan["plan.mlp.2.weight"].shape == (1, 32)
+    assert with_plan["plan.null_bias"].shape == (1,)
 
 
 def test_the_fake_environment_has_the_frozen_full_env_surface() -> None:
     with fake.FakeFullVecEnv(4, 0, None, {"secure_orchard": 1.0}) as env:
         assert env.obs.shape == (4, 104, 11, 22) and env.obs.dtype == np.uint8
         assert env.masks.shape == (4, 13, 11, 22) and env.masks.dtype == np.uint8
-        assert env.plan_masks.shape == (4, 144) and env.plan_masks.dtype == np.uint8
+        assert env.plan_masks.shape == (4, 400) and env.plan_masks.dtype == np.uint8
+        assert env.plan_masks.sum(axis=1).min() >= 1
         assert env.phase.shape == (4,) and env.phase.dtype == np.int32
         assert env.seat_view.shape == (4,) and env.seat_view.dtype == np.int32
         assert env.active_troll.shape == (4,) and env.active_troll.dtype == np.int32

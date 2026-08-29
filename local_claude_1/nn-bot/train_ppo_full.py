@@ -6,7 +6,7 @@ Card: `coordination/tasks/20260829-nn-bot-way-b.md` (Way B -- clone first, then 
 Plain words for the owner
 -------------------------
 The bot decides a whole turn in several small pieces, which the card calls *mini-steps*: first it
-picks the training plan for the turn (one of 144 talent recipes, or "train nothing"), then it gives
+picks the training plan for the turn (one of 400 talent recipes, or "train nothing"), then it gives
 one command to each of its trolls in turn-number order, and then the turn actually happens on the
 board. This program plays many such games at once against our own bots and against frozen copies of
 itself, and nudges the network towards the decisions that ended up scoring more. The clone -- the
@@ -21,11 +21,11 @@ The network is July's `SpatialActorCritic` (a 3x3 stem, four residual blocks of 
 35,000 weights) with the plan head switched on. Both heads read the same trunk. Which head is
 trained on a given mini-step is decided by the environment's `phase`:
 
-* `phase == 0` (PLAN): the 144-wide plan head;
+* `phase == 0` (PLAN): the 400-wide plan head (delineate's per-candidate scorer, amendment 8);
 * `phase == 1` (TROLL): the 13 x 11 x 22 = 3,146-wide per-cell head.
 
-Internally both are written into one 3,146-wide logit row -- the plan logits go into columns 0..143
-and the plan mask is zero everywhere above 143 -- so the sampling, the log-probability, the entropy
+Internally both are written into one 3,146-wide logit row -- the plan logits go into columns 0..399
+and the plan mask is zero everywhere above 399 -- so the sampling, the log-probability, the entropy
 and the PPO ratio are one code path with no branch. Illegal actions are filled with
 `torch.finfo(float32).min` before the softmax, exactly as July's trainer does; that is a finite
 number, so no log-probability is ever `-inf` and nothing becomes NaN.
@@ -242,7 +242,7 @@ def combined_logits(
 ) -> tuple[torch.Tensor, torch.Tensor]:
     """One 3,146-wide logit row per mini-step, plus the value.
 
-    PLAN rows carry the 144 plan logits in columns 0..143; their mask is zero above 143, so the
+    PLAN rows carry the 400 plan logits in columns 0..399; their mask is zero above 399, so the
     per-cell logits sitting there can never be selected. TROLL rows carry the per-cell logits
     unchanged. Both heads come from a single pass through the shared trunk.
     """
@@ -400,7 +400,7 @@ def build_legal(
 ) -> np.ndarray:
     """The mask actually used, one 3,146-wide row per mini-step.
 
-    A PLAN row is the 144 plan entries in columns 0..143 and zero above; a TROLL row is the
+    A PLAN row is the 400 plan entries in columns 0..399 and zero above; a TROLL row is the
     13 x 11 x 22 per-cell mask flattened. This is exactly the row the loss re-uses later, so the
     rollout stores it verbatim.
     """

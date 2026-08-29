@@ -51,10 +51,180 @@ PROTOCOL = ANALYSIS / "curriculum-ppo-level1-protocol-2026-07-19.md"
 RANDOM_BASELINE = ANALYSIS / "curriculum-level1-random-2000000-2000999-exact.json"
 TEACHER_BASELINE = ANALYSIS / "curriculum-level1-teacher-2000000-2000999-exact.json"
 
-#: The train-plan head's width: speed 1-3 x carry 1-4 x harvest 0-2 x chop 0-3, entry 0
-#: repurposed as "train nothing" (card 20260829-nn-bot-way-b, "Fixed design"; the frozen constant
-#: TF_FULL_PLAN_SIZE of local_claude_1/nn-bot/ENV-API.md).
-PLAN_ACTION_SIZE = 144
+#: The train-plan head's width after amendment (8) of card 20260829-nn-bot-way-b: speed 1-4 x
+#: carry 1-5 x harvest 0-3 x chop 0-4 = 400, index
+#: `(((speed-1)*5 + (carry-1))*4 + harvest)*5 + chop`, entry 0 = (1,1,0,0) repurposed as
+#: "train nothing". The census over the top four's 1,725 real TRAINs found 15.5 % outside
+#: delineate's old 144 ranges (speed 4 in 209 of them), so the vocabulary had to grow.
+PLAN_ACTION_SIZE = 400
+
+#: The four talents in their fixed order, and the value each is divided by when it is fed to the
+#: plan head. These are the scales of observation planes 60-63 after amendment (8)
+#: (`local_claude_1/nn-bot/OBS-PLANES.md`).
+PLAN_ATTRIBUTE_SCALES = (4.0, 5.0, 3.0, 4.0)
+
+#: Broadcast observation planes the plan head reads, with the value each byte-scaled plane must be
+#: multiplied by to recover the real quantity (`OBS-PLANES.md`; 64-71 are S=48 after amendment 8).
+PLAN_BANK_PLANES = (43, 44, 45, 47)      # own bank plum, lemon, apple, iron; S=64
+PLAN_BANK_SCALE = 64.0
+PLAN_TROLL_COUNT_PLANE = 57              # own troll count; S=12
+PLAN_TROLL_COUNT_SCALE = 12.0
+PLAN_TARGET_FLAG_PLANE = 59              # the current turn has a nonzero train target; S=1
+PLAN_TARGET_PLANES = (60, 61, 62, 63)    # the current target's talents; S=4/5/3/4
+PLAN_COST_SCALE = 48.0                   # planes 64-71, the cost and deficit scale
+
+
+def plan_index(speed: int, carry: int, harvest: int, chop: int) -> int:
+    """The flat plan index of one talent set (amendment 8's formula)."""
+
+    return (((speed - 1) * 5 + (carry - 1)) * 4 + harvest) * 5 + chop
+
+
+def plan_talents(index: int) -> tuple[int, int, int, int]:
+    """The talent set behind a flat plan index. Index 0 is `(1, 1, 0, 0)` = train nothing."""
+
+    chop = index % 5
+    harvest = (index // 5) % 4
+    carry = ((index // 20) % 5) + 1
+    speed = (index // 100) + 1
+    return speed, carry, harvest, chop
+
+
+def plan_index_is_legal(index: int) -> bool:
+    """Amendment 8's mask rules, unchanged from the 144-entry vocabulary.
+
+    Entry 0 ("train nothing") is always legal. A nonzero entry is illegal when harvest and chop
+    are both zero, and illegal when harvest exceeds carry. Whether the bank can pay for it never
+    enters: the plan is a target the trolls collect towards, so affordability never masks.
+    """
+
+    if index == 0:
+        return True
+    _, carry, harvest, chop = plan_talents(index)
+    if harvest == 0 and chop == 0:
+        return False
+    return harvest <= carry
+
+
+class PlanCandidateScorer(nn.Module):
+    """delineate's per-candidate train-plan scorer: one small network, 400 candidates.
+
+    Plain words: instead of one wide layer with a separate set of weights for each of the 400
+    talent sets, the network scores each talent set with the *same* small scorer, handing it the
+    board's summary plus a description of that particular talent set -- what it costs, how far the
+    bank still is from paying for it, whether it is affordable right now, and whether it is the
+    target already being saved towards. The scorer therefore generalises across talent sets it has
+    rarely seen, and 400 candidates cost about a thousand weights rather than tens of thousands.
+
+    Everything the scorer needs is read out of the observation tensor itself, so the model stays a
+    pure `observation -> logits` function and can be exported to the Rust kernel in Phase 4.
+
+    Per candidate the features are, in order:
+
+    * the pooled trunk features (`width` numbers, the same masked global pool the critic uses);
+    * the candidate's four talents, each divided by `PLAN_ATTRIBUTE_SCALES`;
+    * its four costs, `cost_i = own troll count + talent_i^2` for plum/lemon/apple/iron, over 48;
+    * its four deficits, `max(cost_i - own bank_i, 0)`, over 48;
+    * an affordable flag (every deficit is zero);
+    * a "matches the current target" flag (planes 59-63).
+
+    Entry 0, "train nothing", is not scored: it carries one learned bias of its own.
+    """
+
+    def __init__(self, width: int = 16, hidden: int = 32) -> None:
+        super().__init__()
+        self.width = width
+        self.hidden = hidden
+        self.feature_size = width + 14
+        self.mlp = nn.Sequential(
+            layer_init(nn.Linear(self.feature_size, hidden)),
+            nn.ReLU(inplace=True),
+            layer_init(nn.Linear(hidden, 1), std=0.01),
+        )
+        self.null_bias = nn.Parameter(torch.zeros(1))
+
+        talents = torch.tensor(
+            [list(plan_talents(index)) for index in range(PLAN_ACTION_SIZE)],
+            dtype=torch.float32,
+        )
+        scales = torch.tensor(PLAN_ATTRIBUTE_SCALES, dtype=torch.float32)
+        # Candidates 1..399; entry 0 never reaches the scorer.
+        self.register_buffer("candidate_talents", talents[1:], persistent=False)
+        self.register_buffer(
+            "candidate_normalized", talents[1:] / scales, persistent=False
+        )
+        self.register_buffer("candidate_squares", talents[1:] ** 2, persistent=False)
+        self.register_buffer("attribute_scales", scales, persistent=False)
+
+    @staticmethod
+    def broadcast_readout(
+        scaled: torch.Tensor, valid: torch.Tensor, planes: tuple[int, ...] | list[int]
+    ) -> torch.Tensor:
+        """The value of one or more broadcast planes, averaged over the valid cells.
+
+        `scaled` is the observation already divided by 255, `valid` is plane 0. A broadcast plane
+        holds one number at every cell, so the masked mean recovers it whether or not the padding
+        outside the map was written.
+        """
+
+        selected = scaled[:, list(planes)]
+        return (selected * valid).sum(dim=(2, 3)) / valid.sum(dim=(2, 3)).clamp_min(1.0)
+
+    def candidate_features(
+        self, pooled: torch.Tensor, scaled: torch.Tensor, valid: torch.Tensor
+    ) -> tuple[torch.Tensor, dict[str, torch.Tensor]]:
+        """`[batch, 399, feature_size]`, plus the readouts a test can check by hand."""
+
+        banks = self.broadcast_readout(scaled, valid, PLAN_BANK_PLANES) * PLAN_BANK_SCALE
+        trolls = (
+            self.broadcast_readout(scaled, valid, (PLAN_TROLL_COUNT_PLANE,))
+            * PLAN_TROLL_COUNT_SCALE
+        )
+        target = (
+            self.broadcast_readout(scaled, valid, PLAN_TARGET_PLANES)
+            * self.attribute_scales
+        )
+        has_target = self.broadcast_readout(scaled, valid, (PLAN_TARGET_FLAG_PLANE,))
+
+        cost = trolls[:, :, None] + self.candidate_squares[None]        # [B, 399, 4]
+        deficit = (cost - banks[:, None, :]).clamp_min(0.0)
+        affordable = (deficit.sum(dim=-1) <= 0.0).to(cost.dtype)        # [B, 399]
+        matches = (
+            ((target[:, None, :] - self.candidate_talents[None]).abs() < 0.5).all(dim=-1)
+            & (has_target > 0.5)
+        ).to(cost.dtype)
+
+        batch, candidates = cost.shape[0], cost.shape[1]
+        features = torch.cat(
+            [
+                pooled[:, None, :].expand(batch, candidates, self.width),
+                self.candidate_normalized[None].expand(batch, candidates, 4),
+                cost / PLAN_COST_SCALE,
+                deficit / PLAN_COST_SCALE,
+                affordable[:, :, None],
+                matches[:, :, None],
+            ],
+            dim=-1,
+        )
+        diagnostics = {
+            "banks": banks,
+            "troll_count": trolls.squeeze(-1),
+            "target": target,
+            "has_target": has_target.squeeze(-1),
+            "cost": cost,
+            "deficit": deficit,
+            "affordable": affordable,
+            "matches": matches,
+        }
+        return features, diagnostics
+
+    def forward(
+        self, pooled: torch.Tensor, scaled: torch.Tensor, valid: torch.Tensor
+    ) -> torch.Tensor:
+        features, _ = self.candidate_features(pooled, scaled, valid)
+        scores = self.mlp(features).squeeze(-1)
+        null = self.null_bias.expand(scores.shape[0], 1)
+        return torch.cat([null, scores], dim=1)
 
 LEVEL5_OPPONENT_ENVS = {
     "complete": Level5VecEnv,
@@ -148,8 +318,9 @@ class SpatialActorCritic(nn.Module):
     `plan_head` is off by default on purpose: with it off no extra module is registered, so
     `SpatialActorCritic().state_dict()` has exactly the keys July's checkpoints and the D11
     exporter expect.  Turn it on (Phase 3 of card 20260829-nn-bot-way-b) and the trunk gains a
-    second head over the same masked global pooling the critic already uses:
-    `Linear(width, 64) -> ReLU -> Linear(64, 144)`.
+    `PlanCandidateScorer`: delineate's per-candidate scorer over the 400-entry train-plan
+    vocabulary, reading the same masked global pooling the critic uses plus per-candidate features
+    it computes from the observation planes itself.
     """
 
     def __init__(
@@ -171,14 +342,12 @@ class SpatialActorCritic(nn.Module):
             layer_init(nn.Linear(64, 1), std=1.0),
         )
         if self.plan_head:
-            self.plan = nn.Sequential(
-                layer_init(nn.Linear(width, 64)),
-                nn.ReLU(inplace=True),
-                layer_init(nn.Linear(64, PLAN_ACTION_SIZE), std=0.01),
-            )
+            self.plan = PlanCandidateScorer(width)
 
-    def _trunk(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        """The convolution tower's features and their masked global pooling."""
+    def _trunk(
+        self, observations: torch.Tensor
+    ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, torch.Tensor]:
+        """The tower's features, their masked global pooling, the scaled input and plane 0."""
 
         if observations.dtype != torch.float32:
             observations = observations.float()
@@ -186,10 +355,10 @@ class SpatialActorCritic(nn.Module):
         valid = observations[:, :1]
         hidden = self.tower(self.stem(observations))
         pooled = (hidden * valid).sum(dim=(2, 3)) / valid.sum(dim=(2, 3)).clamp_min(1.0)
-        return hidden, pooled
+        return hidden, pooled, observations, valid
 
     def forward(self, observations: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        hidden, pooled = self._trunk(observations)
+        hidden, pooled, _, _ = self._trunk(observations)
         logits = self.actor(hidden).flatten(1)
         value = self.critic(pooled).squeeze(-1)
         return logits, value
@@ -203,8 +372,24 @@ class SpatialActorCritic(nn.Module):
             raise RuntimeError(
                 "forward_with_plan requires SpatialActorCritic(plan_head=True)"
             )
-        hidden, pooled = self._trunk(observations)
-        return self.actor(hidden).flatten(1), self.plan(pooled), self.critic(pooled).squeeze(-1)
+        hidden, pooled, scaled, valid = self._trunk(observations)
+        return (
+            self.actor(hidden).flatten(1),
+            self.plan(pooled, scaled, valid),
+            self.critic(pooled).squeeze(-1),
+        )
+
+    def plan_diagnostics(self, observations: torch.Tensor) -> dict[str, torch.Tensor]:
+        """The plan head's readouts -- banks, troll count, target, cost, deficit, flags.
+
+        Exposed so a test can compare them with a hand computation on a crafted observation.
+        """
+
+        if not self.plan_head:
+            raise RuntimeError("plan_diagnostics requires SpatialActorCritic(plan_head=True)")
+        _, pooled, scaled, valid = self._trunk(observations)
+        _, diagnostics = self.plan.candidate_features(pooled, scaled, valid)
+        return diagnostics
 
     def action_and_value(
         self,

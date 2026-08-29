@@ -14,8 +14,9 @@ trainer's arithmetic without a compiled library.
 The surface copied from `local_claude_1/nn-bot/ENV-API.md` (signed 2026-08-29, on branch
 `origin/agent/codex_1`):
 
-* attributes ``obs`` ``u8[n,104,11,22]``, ``masks`` ``u8[n,13,11,22]``, ``plan_masks`` ``u8[n,144]``,
-  ``phase`` ``i32[n]``, ``seat_view`` ``i32[n]``, ``active_troll`` ``i32[n]``;
+* attributes ``obs`` ``u8[n,104,11,22]``, ``masks`` ``u8[n,13,11,22]``, ``plan_masks`` ``u8[n,400]``
+  (400 since amendment (8) of the card), ``phase`` ``i32[n]``, ``seat_view`` ``i32[n]``,
+  ``active_troll`` ``i32[n]``;
 * phases ``0 PLAN`` -> ``1 TROLL`` once per own troll in ascending id order -> the turn executes;
 * ``2 EXTERNAL_WAIT`` never reaches the caller: ``step()`` drives a Python-frozen opponent itself;
 * the reward is paid **once, on the mini-step that executes the turn**; the earlier mini-steps of
@@ -53,7 +54,7 @@ OBS_WIDTH = 22
 ACTION_PLANES = 13
 OBS_SIZE = OBS_CHANNELS * OBS_HEIGHT * OBS_WIDTH          # 25168
 ACTION_SIZE = ACTION_PLANES * OBS_HEIGHT * OBS_WIDTH      # 3146
-PLAN_SIZE = 144
+PLAN_SIZE = 400          # amendment (8): speed 1-4 x carry 1-5 x harvest 0-3 x chop 0-4
 MAX_RECORDED_TRAINS = 4
 
 PHASE_PLAN = 0
@@ -74,6 +75,15 @@ PYTHON_FROZEN_ID = 6
 
 #: The four real board sizes, as `(height, width)`.
 BOARD_SIZES = ((11, 22), (10, 20), (9, 18), (8, 16))
+
+#: The scales of the current-target planes 60-63 after amendment (8).
+PLAN_ATTRIBUTE_SCALES = (4.0, 5.0, 3.0, 4.0)
+
+
+def quantize(value: float, scale: float) -> int:
+    """`round(255 * v / scale)`, clipped -- the quantization every plane uses."""
+
+    return int(max(0, min(255, round(255.0 * value / scale))))
 
 
 @dataclass(frozen=True)
@@ -106,19 +116,30 @@ class FullStepInfo:
     state_hash: np.ndarray         # u64[n]
 
 
-def plan_is_legal(index: int) -> bool:
-    """The plan mask rule of ENV-API.md, "Mini-step state machine".
+def plan_talents(index: int) -> tuple[int, int, int, int]:
+    """The talent set behind a flat plan index, amendment (8)'s 400-entry vocabulary.
 
-    Index 0 ("train nothing") is always legal. A nonzero index decodes as
-    `(((movement-1) * 4 + (carry-1)) * 3 + harvest) * 4 + chop` and is legal when harvest and chop
-    are not both zero and harvest is at most carry.
+    The index is `(((speed-1)*5 + (carry-1))*4 + harvest)*5 + chop`; index 0 decodes to
+    `(1, 1, 0, 0)` and is repurposed as "train nothing".
+    """
+
+    chop = index % 5
+    harvest = (index // 5) % 4
+    carry = ((index // 20) % 5) + 1
+    speed = (index // 100) + 1
+    return speed, carry, harvest, chop
+
+
+def plan_is_legal(index: int) -> bool:
+    """The plan mask rule of ENV-API.md, "Mini-step state machine", as amendment (8) leaves it.
+
+    Index 0 ("train nothing") is always legal. A nonzero index is illegal when harvest and chop
+    are both zero, and illegal when harvest exceeds carry. Affordability never masks.
     """
 
     if index == 0:
         return True
-    chop = index % 4
-    harvest = (index // 4) % 3
-    carry = ((index // 12) % 4) + 1
+    _, carry, harvest, chop = plan_talents(index)
     if harvest == 0 and chop == 0:
         return False
     return harvest <= carry
@@ -232,6 +253,8 @@ class FakeFullVecEnv:
             "opponent": int(rng.choice(len(OPPONENT_IDS), p=self.opponent_weights)),
             "turn": 0,
             "total_turns": int(rng.integers(self.min_turns, self.max_turns + 1)),
+            # plum, lemon, apple, banana, iron, wood -- the referee's 2..10 opening draw
+            "bank": [int(rng.integers(2, 11)) for _ in range(5)] + [0],
             "trolls": 1,
             "troll_index": 0,
             "phase": PHASE_PLAN,
@@ -266,6 +289,16 @@ class FakeFullVecEnv:
         obs[42, :, :] = min(255, state["turn"] * 255 // max(1, state["total_turns"]))
         obs[55, :, :] = min(255, state["score_own"])
         obs[56, :, :] = min(255, state["score_opp"])
+        # The broadcast planes the plan head reads back (OBS-PLANES.md, amendment 8's scales).
+        for offset, amount in enumerate(state["bank"][:5]):
+            obs[43 + offset, :, :] = quantize(amount, 64.0)
+        obs[48, :, :] = quantize(state["bank"][5], 128.0)
+        obs[57, :, :] = quantize(state["trolls"], 12.0)
+        obs[58, :, :] = quantize(state["trolls"], 12.0)
+        target = plan_talents(state["plan"]) if state["plan"] else (0, 0, 0, 0)
+        obs[59, :, :] = 255 if state["plan"] else 0
+        for offset, (value, scale) in enumerate(zip(target, PLAN_ATTRIBUTE_SCALES)):
+            obs[60 + offset, :, :] = quantize(value, scale)
 
         self.masks[slot] = 0
         self.plan_masks[slot] = 0
@@ -275,7 +308,7 @@ class FakeFullVecEnv:
         if state["phase"] == PHASE_PLAN:
             self.active_troll[slot] = -1
             chosen = rng.choice(
-                LEGAL_PLANS, size=int(rng.integers(1, 9)), replace=False
+                LEGAL_PLANS, size=int(rng.integers(1, 25)), replace=False
             )
             self.plan_masks[slot, 0] = 1                   # entry 0 is always legal
             self.plan_masks[slot, chosen] = 1
@@ -400,20 +433,19 @@ class FakeFullVecEnv:
         if state["opponent"] == PYTHON_FROZEN_ID and self.frozen_opponent is not None:
             self._drive_frozen_opponent(slot, state)
 
+        for slot_index in range(5):
+            state["bank"][slot_index] = min(
+                60, state["bank"][slot_index] + int(rng.integers(0, 3))
+            )
         wood_own = int(rng.integers(0, 3))
         wood_opp = int(rng.integers(0, 3))
         state["wood_own"] += wood_own
         state["wood_opp"] += wood_opp
+        state["bank"][5] += wood_own
         state["score_own"] += int(rng.integers(0, 4)) + wood_own
         state["score_opp"] += int(rng.integers(0, 4)) + wood_opp
         if state["plan"] != 0 and len(state["trains"]) < 8 and rng.random() < 0.05:
-            chop = state["plan"] % 4
-            harvest = (state["plan"] // 4) % 3
-            carry = ((state["plan"] // 12) % 4) + 1
-            movement = (state["plan"] // 48) + 1
-            state["trains"].append(
-                ((movement, carry, harvest, chop), state["turn"] + 1)
-            )
+            state["trains"].append((plan_talents(state["plan"]), state["turn"] + 1))
             state["trolls"] = min(self.max_trolls, state["trolls"] + 1)
 
         reward = self.wood_shaping * wood_own
