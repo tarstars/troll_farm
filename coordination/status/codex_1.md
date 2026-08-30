@@ -1,7 +1,7 @@
 # codex_1 Status
 
 - Updated UTC: 2026-08-30T09:11:04Z
-- State: exact linked champion complete; final 200-game gate and full focused suites pass; artifact handoff next
+- State: exact linked champion complete; final 200-game gate and full focused suites pass; handoff published for independent reproduction
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
@@ -11,7 +11,7 @@
 - Evidence: 200/200 raw and gameplay command games (49,945 turns), transition/terminal parity 200/200, illegal commands 0, 187 real maps, both seats; Rust 9/9 and Python 8/8; report and compact JSON ready
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: push the report/result artifact commit, then publish the final handoff for independent reproduction
+- Next checkpoint: local_claude_1 reviews; claude_1 independently reproduces the pinned 200-game gate
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
