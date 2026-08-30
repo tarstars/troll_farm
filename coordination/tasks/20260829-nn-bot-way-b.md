@@ -270,6 +270,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
   record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
   on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
+- 2026-08-30 12:3xZ: **YT works.** The owner: "one train takes 3.5 days looks like a job for yt runner" (07:1xZ), "wifi", then
+  "gpu" (11:5xZ) when the CPU tree's pools refused immediate operations. The new CPU-only launcher
+  (`local_claude_1/nn-bot/yt_ppo_launcher.py` + `yt_ppo_entrypoint.py`, 15 tests; run with the helper project's Python) uploaded a
+  2.8 MB payload (a 5,370-map slice, the clone, the library; July's 8.5 GB PyTorch wheelhouse reused from Cypress) and the
+  smoke job ran to completion in July's GPU tree (`gpu_starfield_24g_cloud` / `research_gpu`, one GPU reserved, unused):
+  operation `11d044bd-262b06cb-42e03e8-451600b9`, 10 updates, 36,864 decisions at **899 decisions/s on 16 cores** (the
+  host: ~640 on 14 threads), checkpoints retrieved. Next: four 12-hour jobs in parallel — a sweep over seed, anchor
+  strength and the champion's share of the pool — while `ppo-d` stays the run of record on the host. — coordinator
 - 2026-08-30 11:0xZ: **the second confirmation of the transfer problem** — `ppo-c`'s last checkpoint (the sanitized trainer,
   the old pool, 250 updates) benched against the champion's file: 3 wins of 48 (2 on seat 0, 1 on seat 1), 106.9 points to
   177.4, 0 illegal, 21 games ended early (18 with no trees left) — worse than the clone it started from (9 wins, 133.8),
