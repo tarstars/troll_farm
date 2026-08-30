@@ -157,7 +157,7 @@ def test_shapes_phase_masks_and_atomic_invalid_action() -> None:
 
 def test_identical_batches_are_deterministic() -> None:
     rng = np.random.default_rng(51)
-    weights = {name: 1.0 for name in OPPONENTS[:-1]}
+    weights = {name: 1.0 for name in OPPONENTS if name != "python_frozen"}
     with _env(4, 777, weights) as left, _env(4, 777, weights) as right:
         for _ in range(24):
             np.testing.assert_array_equal(left.obs, right.obs)

@@ -133,7 +133,7 @@ PHASE_PLAN = 0
 PHASE_TROLL = 1
 PHASE_EXTERNAL_WAIT = 2
 
-#: The seven training opponents, in the fixed order of ENV-API.md's weight vector.
+#: The eight training opponents, in the fixed order of ENV-API.md's weight vector.
 OPPONENT_IDS = (
     "secure_orchard",
     "norxondor_native",
@@ -142,6 +142,7 @@ OPPONENT_IDS = (
     "script_boss",
     "mybot_boss4",
     "python_frozen",
+    "champion_exact",
 )
 
 DEFAULT_MAPS = ROOT / "local_claude_1" / "nn-bot" / "maps-slice-1000.jsonl"
@@ -675,7 +676,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--opponent-weights",
         default='{"secure_orchard": 1.0}',
-        help='JSON over the seven pool ids, e.g. \'{"secure_orchard": 2, "python_frozen": 1}\'',
+        help='JSON over the eight pool ids, e.g. \'{"secure_orchard": 2, "python_frozen": 1, "champion_exact": 2}\'',
     )
     parser.add_argument(
         "--frozen-checkpoint",
