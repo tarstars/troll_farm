@@ -5,6 +5,7 @@ Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
 Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
 First-hand source: `local_claude_1/reconstructions/sources/delineate-gist.github.com-2026-05-25.md`
+Revision: r2 — corrects the plan-only invariant after auditing the live trainer
 
 ## Verdict
 
@@ -15,7 +16,7 @@ It can be tested as a project invention, but it must not be attributed to the wi
 The closest source-backed next stage is **parameter- and task-staged training**:
 
 1. verify or train the troll-action policy as an executor of an externally supplied build target;
-2. freeze that executor while training the plan selector and a value head on the real endgame objective;
+2. freeze that executor's parameters while training the plan selector and a value head on the real endgame objective;
 3. only then fine-tune all parameters together.
 
 Our current Phase 3 jumps directly from imitation into joint end-to-end PPO over the trunk, spatial actor, and plan head. That is closer to delineate's unsuccessful initial attempt than to the staged procedure he says made the final bot work.
@@ -109,13 +110,33 @@ This is read-only and identifies which objective term is moving the executor awa
 
 ### Plan-only PPO
 
-Start again from the clone and:
+Start again from the clone and freeze:
 
-- freeze the convolution trunk and spatial actor;
-- keep troll commands exactly clone-equivalent;
-- train the plan-selector MLP and value head on the champion-only environment and real end score;
-- retain the existing full-game bench;
-- stop if plan-only changes cannot improve while command execution is fixed.
+```text
+stem.*
+tower.*
+actor.*
+```
+
+Train:
+
+```text
+plan.*
+critic.*
+```
+
+The invariant is **parameter freezing**, not command-stream identity. The selected target is part of every troll observation; therefore a changed plan can intentionally make the frozen executor choose different commands. What stays fixed is the executor mapping from `(board, target, active troll, staged prefix)` to action logits.
+
+The current trainer needs a narrow `--policy-train-scope plan-only` mode rather than only setting `requires_grad` manually:
+
+1. The current warm-up loop calls `requires_grad_(not in_warmup)` on every non-critic parameter, which would accidentally re-enable a supposedly frozen trunk and actor. Scope must be remembered per named parameter.
+2. PPO policy loss and entropy should be computed only on `PHASE_PLAN` rows in this mode. Troll rows should still contribute to value fitting, but not dilute the policy gradient.
+3. Advantage normalization for the policy term should use the selected PLAN rows, not a mixed PLAN/TROLL minibatch. A minibatch with zero PLAN rows applies value loss only.
+4. Anchor KL should be reported and applied on PLAN rows only in plan-only mode; otherwise frozen troll rows dilute the diagnostic.
+5. Checkpoint config must record the scope, frozen parameter names/count, and PLAN-row fraction.
+6. A negative-control test must prove `stem.*`, `tower.*`, and `actor.*` remain byte-identical after several optimiser updates while `plan.*` and `critic.*` move.
+
+Use the champion-only environment and real end score. Retain the existing full-game bench. Stop if plan-only changes cannot improve while the executor parameters remain fixed.
 
 This is the closest analogue of delineate Level 4 available in the present architecture.
 
@@ -133,7 +154,7 @@ If the assigned-plan executor gate fails, then build the actual Level-1-to-3 ana
 ```text
 CORRECT the attribution: episode cap/small maps are a project idea, not delineate's stated curriculum.
 DO the assigned-plan executor gate and offline gradient decomposition first.
-PREFER plan-only PPO with the executor frozen before another all-parameter fine-tune.
+PREFER plan-only PPO with frozen executor parameters before another all-parameter fine-tune.
 KEEP episode-cap experiments optional and define truncation semantics explicitly.
 ```
 
