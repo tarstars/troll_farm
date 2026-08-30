@@ -85,7 +85,7 @@ Self-play works like this: the network plays 128 games at once on real ladder ma
 
 \begin{figure}[h]\centering
 \includegraphics[width=\textwidth]{transfer.png}
-\caption{The lesson of the day. Each bar: a network snapshot's wins in 48 games against the champion's own file. The clone (copying only) won 9. Every early self-play snapshot so far won fewer --- the runs against our weak practice bots, and the first snapshot of the run of record (D) against the exact champion alike. The early hours of self-play cost competence before they buy any; the question is whether the later snapshots climb past the clone.}
+\caption{The lesson of the day. Each bar: a network snapshot's wins in 48 games against the champion's own file --- \emph{clone}: copying only; \emph{A @1,000}: run A's snapshot after 1,000 updates against the old practice bots; \emph{C @250}: run C's after 250, the fixed trainer, the same bots; \emph{D @500}: the run of record's after 500 updates against the exact champion. Every early self-play snapshot so far won fewer than the clone: the early hours of self-play cost competence before they buy any. The question is whether the later snapshots climb past the clone's 9.}
 \label{fig:transfer}
 \end{figure}
 
