@@ -754,6 +754,42 @@ def self_test(library) -> int:
     check("--plan-decoding sample stays inside the mask and repeats at one seed",
           sampled_plan_obeys_the_mask)
 
+    # 8 -- --command-decoding: argmax by default, a masked draw when asked; the same
+    #      generator and mask rules as the plan draw.
+    def command_decoding_switch():
+        import numpy as np                                        # noqa: PLC0415
+
+        class Logits:
+            def __init__(self, values):
+                self.values = np.asarray(values, dtype=np.float64)
+
+            def detach(self):
+                return self
+
+            def numpy(self):
+                return self.values
+
+        values = np.array([0.0, 1.0, 50.0, 2.0, 0.5])
+        mask = bytes([1, 1, 0, 1, 0])
+        policy = object.__new__(NetworkPolicy)
+        policy.temperature = 1.0
+        policy._forward = lambda obs: (Logits(values), None, None)
+        policy._argmax = lambda logits, m: int(np.flatnonzero(np.frombuffer(m, dtype=np.uint8))[
+            np.argmax(logits.numpy()[np.frombuffer(m, dtype=np.uint8).astype(bool)])])
+        policy.command_decoding = "argmax"
+        assert {policy.action_index(b"", mask) for _ in range(20)} == {3}, \
+            "argmax decoding must always return the best legal index"
+        policy.command_decoding = "sample"
+        policy.rng = np.random.default_rng(0)
+        drawn = [policy.action_index(b"", mask) for _ in range(300)]
+        assert set(drawn) <= {0, 1, 3}, f"the command sample left the mask: {sorted(set(drawn))}"
+        assert len(set(drawn)) > 1, "a command sample that never varies is an argmax"
+        policy.rng = np.random.default_rng(0)
+        assert drawn == [policy.action_index(b"", mask) for _ in range(300)], \
+            "the same seed drew a different run of commands"
+    check("--command-decoding sample draws inside the mask, argmax stays argmax",
+          command_decoding_switch)
+
     print(f"self-test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
     return 0 if not failures else 1
 
