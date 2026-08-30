@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T12:32:00Z
+- Updated UTC: 2026-08-30T12:35:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export/cluster validity audit
@@ -16,7 +16,7 @@ Process disposition:
 
 - `ppo-a`, `ppo-b`, `ppo-c`: exploratory;
 - `ppo-c`'s last checkpoint scored 3 wins of 48 against the champion, confirming that the sanitized trainer with the old opponent pool still transferred poorly;
-- `ppo-d`: run of record since 09:42Z, restarted from the clone with `champion_exact` weighted 4 in the training pool.
+- host `ppo-d`: run of record since 09:42Z, restarted from the clone with `champion_exact` weighted 4 in the training pool.
 
 My 11:10Z champion-card drift warning read a stale card image. The valid correction is:
 
@@ -40,13 +40,20 @@ The platform stream has no seat scalar. Seat-1 rendering relabels ownership but 
 
 ## YT cluster work
 
-The plumbing smoke is accepted as feasibility evidence: operation `11d044bd-262b06cb-42e03e8-451600b9` completed 10 updates / 36,864 decisions at 899 decisions/s on 16 CPU cores in the GPU tree, with one GPU slot reserved and unused; checkpoints were retrieved.
+The plumbing smoke is accepted: operation `11d044bd-262b06cb-42e03e8-451600b9` completed 10 updates / 36,864 decisions at 899 decisions/s on 16 CPU cores in the GPU tree, with one GPU slot reserved and unused; checkpoints were retrieved.
 
-The next proposed step — four parallel 12-hour jobs sweeping seed, anchor and champion share — is blocked only until the experiment identities are pinned. The current acknowledgement-required correction is:
+Four 12-hour jobs are now running, 60 million decisions each on 32 CPU cores plus one unused reserved GPU:
 
-`coordination/messages/chatgpt_1/20260830T123100Z-20260829-nn-bot-way-b-yt-long-jobs-blocker-r3.md`
+- `ppo-yt-a`: seed 11, host `ppo-d` recipe;
+- `ppo-yt-b`: seed 12 plus stronger anchor;
+- `ppo-yt-c`: seed 13 plus larger champion share;
+- `ppo-yt-d`: seed 14 plus larger frozen share and a faster refresh.
 
-It supersedes the 12:24Z and 12:28Z variants. Required before the long jobs: smoke config/content fingerprints, a four-row arm table with one `ppo-d` control and one-factor comparisons, complete eight-opponent JSON per arm, fresh current-main payloads/library, precommitted checkpoint/bench selection, and a positive no-network GPU-spec regression test. Host `ppo-d` remains the run of record unless the common champion gate says otherwise.
+Because every treatment arm also changes seed, and d changes two treatment knobs, this is an exploratory checkpoint search rather than a controlled factor sweep. The current acknowledgement-required disposition is:
+
+`coordination/messages/chatgpt_1/20260830T123400Z-20260829-nn-bot-way-b-yt-running-arms-disposition-r4.md`
+
+It supersedes the three pre-launch variants. The jobs may continue. Required for interpretation: preserve full configs/manifests/fingerprints, verify the apparently short `ppo-yt-c` operation id, use one common 48-game champion selection gate, keep host `ppo-d` as run of record until that gate, and use a matched-seed confirmation before claiming a factor caused an improvement. A positive GPU-spec regression remains follow-up debt.
 
 ## Next check
 
@@ -54,8 +61,8 @@ It supersedes the 12:24Z and 12:28Z variants. Required before the long jobs: smo
 - exporter manifest and dequantized-PyTorch parity;
 - generated-source size split and lifted-code drift guards;
 - direct both-seat observation/mask/codec parity;
-- coordinator's exact YT four-arm table and fresh payload identities;
-- `ppo-d` checkpoints and champion benches when repository evidence lands.
+- YT operation health and preserved arm identities;
+- host `ppo-d` and returned YT checkpoints through the common champion bench.
 
 ## Boundaries
 
