@@ -1,0 +1,169 @@
+{
+  "candidate": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-nn-clone.rs",
+  "candidate_characters": 54218,
+  "candidate_sha256": "4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06",
+  "candidate_size": {
+    "unicode_code_points": 54218,
+    "utf16_code_units": 83282,
+    "utf8_bytes": 141410
+  },
+  "champion": "/home/tarstars/prj/troll_farm-claude_1/cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+  "champion_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+  "compiled_differences": [],
+  "compiled_games_identical": 48,
+  "compiled_turns_compared": 13206,
+  "direct_seat_parity": {
+    "cases": [
+      {
+        "active_troll": 2,
+        "comparisons": {
+          "decoded_command": true,
+          "observation": true,
+          "plan_mask": true,
+          "seat": true,
+          "spatial_mask": true
+        },
+        "decoded_command": "DROP 2",
+        "decoded_non_move_action": 773,
+        "observation_sha256": "8f14ff89ca0457b0abe3fce50f595ff236343666528b209205b58780771818c7",
+        "plan_mask_sha256": "afb6cecb558a0858d1ae9afeff0650dbfe2c109a2e6ee8a4d71e94e88bc43015",
+        "seat": 0,
+        "spatial_mask_sha256": "89ee9475655052122612627fae3e9524266727be061a95860103217a7d09c0db",
+        "staged_non_move_action": 795
+      },
+      {
+        "active_troll": 3,
+        "comparisons": {
+          "decoded_command": true,
+          "observation": true,
+          "plan_mask": true,
+          "seat": true,
+          "spatial_mask": true
+        },
+        "decoded_command": "DROP 3",
+        "decoded_non_move_action": 796,
+        "observation_sha256": "6a7a4d60ca2b121c9218b23ed804a8596f87044010d15c564554dad3b225d0ed",
+        "plan_mask_sha256": "afb6cecb558a0858d1ae9afeff0650dbfe2c109a2e6ee8a4d71e94e88bc43015",
+        "seat": 1,
+        "spatial_mask_sha256": "d3f762165dd834ae453fbb07774147696b10573937def6876ff0b29dd1500d83",
+        "staged_non_move_action": 795
+      }
+    ],
+    "turn1_invalid_id_set_rejected": true,
+    "valid": true
+  },
+  "games": 48,
+  "gates": {
+    "direct_seat_parity": true,
+    "forced_fallback_first_turn_at_most_500_ms": true,
+    "forced_fallback_games_identical": true,
+    "forced_fallback_warm_p99_at_most_50_ms": true,
+    "python_clone_games_identical": true,
+    "runtime_dispatch_first_turn_at_most_500_ms": true,
+    "runtime_dispatch_games_identical": true,
+    "source_under_100000_utf16_code_units": true,
+    "three_timing_runs_command_identical": true,
+    "turn1_id_corpus_valid": true
+  },
+  "maps": "/home/tarstars/prj/troll_farm-claude_1/local_claude_1/third-troll/smoke-maps-seed0.jsonl",
+  "python_clone_games_identical": 48,
+  "python_differences": [],
+  "python_turns_compared": 13206,
+  "quantized_replays": "/home/tarstars/prj/troll_farm-claude_1/codex_1/results/nn-bot-way-b-export/bench-quantized-python-replays.jsonl",
+  "quantized_replays_sha256": "03a1ef8ba5becef06c19020c96da50b94f813b1d9c8f18fa06815f8543b5c717",
+  "reference_replays": "/home/tarstars/prj/troll_farm-claude_1/local_claude_1/nn-bot/results/clone-2026-08-30-a/bench-argmax-replays.jsonl",
+  "reference_replays_sha256": "6eceb8caf5b07cf188bc8d085f28fc2a1c9fa87e891a33f7a70a4d81f031205c",
+  "runtime_paths": {
+    "forced_fallback": {
+      "differences": [],
+      "forced": true,
+      "forcing_mechanism": "rustc --cfg tf_nn_force_fallback",
+      "games_identical": 48,
+      "selected_path": "baseline_fallback",
+      "timing": {
+        "first_turn_max_ms": 33.68,
+        "first_turn_median_ms": 13.246,
+        "warm_turn_max_ms": 32.753,
+        "warm_turn_median_ms": 9.407,
+        "warm_turn_p99_ms": 18.878
+      },
+      "turns_compared": 13206
+    },
+    "runtime_dispatch": {
+      "differences": [],
+      "forced": false,
+      "games_identical": 48,
+      "selected_path": "avx2",
+      "timing": {
+        "first_turn_max_ms": 39.074,
+        "first_turn_median_ms": 11.581,
+        "warm_turn_max_ms": 76.335,
+        "warm_turn_median_ms": 7.046,
+        "warm_turn_p99_ms": 26.151
+      },
+      "turns_compared": 13206
+    }
+  },
+  "timing": {
+    "first_turn_max_ms": 39.074,
+    "first_turn_median_ms": 11.581,
+    "warm_turn_max_ms": 76.335,
+    "warm_turn_median_ms": 7.046,
+    "warm_turn_p99_ms": 26.151
+  },
+  "timing_certification": {
+    "certified": null,
+    "context": "information",
+    "every_warm_turn_p99_at_most_20_ms": false,
+    "first_turn_max_values_ms": [
+      39.074,
+      21.828,
+      25.758
+    ],
+    "median_warm_turn_p99_at_most_15_ms": false,
+    "median_warm_turn_p99_ms": 15.886,
+    "numerical_pass": false,
+    "required_context": "host-of-record-quiet, with no training run active",
+    "runs": [
+      {
+        "first_turn_max_ms": 39.074,
+        "first_turn_median_ms": 11.581,
+        "warm_turn_max_ms": 76.335,
+        "warm_turn_median_ms": 7.046,
+        "warm_turn_p99_ms": 26.151
+      },
+      {
+        "first_turn_max_ms": 21.828,
+        "first_turn_median_ms": 9.883,
+        "warm_turn_max_ms": 28.083,
+        "warm_turn_median_ms": 6.709,
+        "warm_turn_p99_ms": 15.886
+      },
+      {
+        "first_turn_max_ms": 25.758,
+        "first_turn_median_ms": 11.497,
+        "warm_turn_max_ms": 34.084,
+        "warm_turn_median_ms": 6.832,
+        "warm_turn_p99_ms": 15.139
+      }
+    ],
+    "warm_turn_p99_values_ms": [
+      26.151,
+      15.886,
+      15.139
+    ]
+  },
+  "turn1_id_corpus": {
+    "exceptions": [],
+    "path": "/home/tarstars/nn-data/dataset-v400-2026-08-30/states-pilot.jsonl.gz",
+    "seat0_turn1_games": 370,
+    "sha256": "1df412f0425d88566230d36a7c4881711e6ae1744b382d80cd15ae3b14420803",
+    "valid": true
+  },
+  "turn1_id_corpus_authoritative_card_result": {
+    "exceptions": 0,
+    "seat0_turn1_games": 370,
+    "source": "coordination/messages/local_claude_1/20260830T125730Z-20260829-nn-bot-way-b-export-handoff.md"
+  },
+  "what": "full-game generated neural clone bed against the committed Python-clone/champion stream"
+}
