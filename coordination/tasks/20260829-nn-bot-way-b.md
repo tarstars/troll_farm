@@ -293,6 +293,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   real end score, the leash 0.1 → 0.05, the champion pool, 10 threads. `ppo-e` (the objective alone) runs beside it. Both are
   benched at update 500 (after the warm-up for f) and 1,000; **no run is the run of record until a snapshot beats the clone's 9
   of 48**. — coordinator
+- 2026-08-30 14:4xZ: `ppo-e` and `ppo-f` were stopped from outside the session at 14:41Z (both at ~249 updates, one short of
+  their first snapshot) while the machine was busy with the owner's own work; two runs at 20 threads had exceeded the host
+  rule (≤ 14). **From now on one run on the host** (`ppo-f2`, the warm-up variant, 8 threads at the lowest priority, since
+  14:4xZ) **and the variants on the cluster**: the launcher now passes the five new flags; `ppo-yt-e`
+  (`8058416-bb42350-42e03e8-4ed0d880`; γ 0.999, no wood shaping, the real end score, the leash 0.1→0.05) and `ppo-yt-f`
+  (`4d7091d-f64fde1f-42e03e8-fb5457be`; the same plus a 300-update warm-up of the value estimate and the policy's learning
+  rate ×0.3) run beside the four old-objective jobs — six 12-hour jobs, results ~01:00–03:00Z 08-31, each final snapshot
+  benched here against the champion's file. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
