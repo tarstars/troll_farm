@@ -239,6 +239,20 @@ def parse_size(text: str | int) -> int:
     return int(float(match.group(1)) * _SIZE_UNITS[unit])
 
 
+def non_negative_int(text: str) -> int:
+    """An `int` that refuses negative values.
+
+    `--gpu-limit` is a count of GPUs to reserve; a negative count is not a smaller reservation,
+    it is nonsense that would otherwise slip past `> 0` checks silently (see `build_spec`, where
+    a negative value used to skip the `gpu_limit()` call but still print a "GPU slot" title).
+    """
+
+    value = int(text)
+    if value < 0:
+        raise argparse.ArgumentTypeError(f"must not be negative, got {value}")
+    return value
+
+
 def human_bytes(count: int) -> str:
     value = float(count)
     for unit in ("B", "KiB", "MiB", "GiB"):
@@ -1059,6 +1073,12 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--heartbeat-minutes", type=int, default=DEFAULT_HEARTBEAT_MINUTES)
     prepare.add_argument("--pool-tree", default=None, help="only for the dry run's preview")
     prepare.add_argument("--pool", default=None, help="only for the dry run's preview")
+    prepare.add_argument(
+        "--gpu-limit",
+        type=non_negative_int,
+        default=0,
+        help="GPUs to reserve, only for the dry run's preview to match `start` (0 = a CPU tree)",
+    )
     prepare.add_argument("--runtime-archive", default=DEFAULT_RUNTIME)
     prepare.add_argument("--layer-path", dest="layer_paths", action="append")
     prepare.add_argument("--job-time-limit-hours", type=float, default=None)
@@ -1071,7 +1091,7 @@ def build_parser() -> argparse.ArgumentParser:
     start_parser.add_argument("--pool", required=True, help="a pool inside that tree")
     start_parser.add_argument("--cpu-limit", type=int, default=DEFAULT_CPU_LIMIT)
     start_parser.add_argument("--memory-limit", type=parse_size, default=DEFAULT_MEMORY_LIMIT)
-    start_parser.add_argument("--gpu-limit", type=int, default=0,
+    start_parser.add_argument("--gpu-limit", type=non_negative_int, default=0,
                               help="GPUs to reserve (0 = a CPU tree); a GPU tree needs 1 even though "
                                    "the training never touches the card")
     start_parser.add_argument("--job-time-limit-hours", type=float, default=None)

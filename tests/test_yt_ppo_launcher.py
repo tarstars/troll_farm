@@ -305,6 +305,45 @@ def test_the_specification_asks_for_cores_and_never_for_a_gpu(tmp_path: Path) ->
     assert any("wheelhouse_torch241_cu121_py310" in path for path in task["file_paths"])
 
 
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_prepare_dry_run_can_preview_a_reserved_gpu_slot(tmp_path: Path) -> None:
+    """`prepare --dry-run --gpu-limit 1` must show the same GPU-slot spec `start` would submit --
+    that offline preview is the whole point of adding `--gpu-limit` to `prepare` as well."""
+
+    pytest.importorskip("yt.wrapper", reason="the spec builder needs the system python3")
+    args, _, _ = _prepare(
+        tmp_path, "--pool-tree", "gpu_tree", "--pool", "gpu_pool", "--gpu-limit", "1"
+    )
+    assert args.gpu_limit == 1
+    args.job_time_limit_ms = 3600 * 1000
+    preview = launcher.spec_preview(args, launcher.run_paths(args.root, args.run_name))
+    task = preview["tasks"]["train"]
+
+    assert task["gpu_limit"] == 1
+    # the reservation must not disturb the pool/tree the coordinator chose...
+    assert preview["pool"] == "gpu_pool"
+    assert preview["pool_trees"] == ["gpu_tree"]
+    # ...nor the fact that training itself still runs on the CPU...
+    assert task["environment"]["CUDA_VISIBLE_DEVICES"] == ""
+    # ...and the title must say plainly that the GPU is reserved, not used.
+    assert preview["title"] == "Troll Farm self-play PPO (CPU on a GPU slot x1) test-run"
+
+
+def test_gpu_limit_rejects_negative_values() -> None:
+    """A negative `--gpu-limit` is not a smaller reservation, it is nonsense: `gpu_limit > 0`
+    would silently see it as "no GPU" while the title still called it a GPU slot. Both
+    subcommands must refuse it outright, at argument-parsing time."""
+
+    parser = launcher.build_parser()
+    with pytest.raises(SystemExit):
+        parser.parse_args(["prepare", "--gpu-limit", "-1"])
+    with pytest.raises(SystemExit):
+        parser.parse_args(
+            ["start", "--run-name", "x", "--pool-tree", "tree", "--pool", "pool",
+             "--gpu-limit", "-1"]
+        )
+
+
 # --------------------------------------------------------------------------- the job's entrypoint
 
 
