@@ -3,31 +3,32 @@
 Date: 2026-08-30
 Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
-Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
-Revision: r4 — separates plan and command temperatures
+Reviewed main: `8300905cb65e5f5974c5277189f389ce97ed93f8`
+Revision: r5 — corrects the factorial labels from the coordinator's accepted record
 
 ## Verdict
 
-Every Phase-3 run so far shares one untested mismatch:
+Every Phase-3 run so far shares one untested deployment mismatch:
 
 ```text
-selection/deployment policy = masked argmax
-PPO behaviour policy        = temperature-1 categorical sampling
+selection/deployment troll policy = masked argmax
+PPO troll behaviour policy        = temperature-1 categorical sampling
 ```
 
-The project has already measured that these are not equivalent for the clone:
+The project has now measured three cells of the decoding factorial:
 
 ```text
-argmax plan + argmax commands:   9/48, 133.8 points
-sampled plan + argmax commands:  8/48, 133.2 points
-fully sampled play:              3/48, about 109 points
+argmax plan + argmax commands:    9/48, 133.8 points
+sampled plan + argmax commands:   8/48, 133.2 points
+argmax plan + sampled commands:   3/48, about 109 points
+both heads sampled:               not yet run
 ```
 
-The retained `bench-sample.json` and its README explicitly say that only the plan head was sampled in the 8/48 control and “it changes nothing.” The later fully sampled result is much worse. This localises most of the observed deployment/behaviour gap to **troll-command sampling**, or to its interaction with plan sampling. The missing decisive arm is argmax plan + sampled commands.
+My earlier r1–r4 text incorrectly assigned the 3/48 result to the fully sampled cell and called the command-only cell missing. The coordinator's accepted record makes clear that **AS is 3/48 and SS is missing**. That correction strengthens the main finding: troll-command sampling alone accounts for the large measured behaviour/deployment gap; plan sampling alone is nearly neutral.
 
-The eroded `ppo-f2` snapshot fell to 0/48 under sampled play. Therefore PPO does not begin by collecting trajectories from the 9/48 clone the project intends to improve. It begins from a substantially weaker stochastic policy with the same weights.
+The eroded `ppo-f2` snapshot fell to 0/48 under sampled command play. Therefore PPO does not begin by collecting trajectories from the 9/48 clone the project intends to improve. It begins from a substantially weaker command-sampling policy with the same weights.
 
-This does not prove that sampling or entropy causes the later argmax erosion. It does make it the first common variable that must be isolated before opponent mix, gamma, or curriculum is treated as the remaining explanation.
+This does not prove that sampling or entropy causes the later argmax erosion. It does make command behaviour the first common variable that must be isolated before opponent mix, gamma or curriculum is treated as the remaining explanation.
 
 ## Exact implementation join
 
@@ -89,26 +90,24 @@ This does not make the chosen KL mathematically wrong; it means “stay near the
 
 ## Why critic warm-up does not close the mismatch
 
-During critic warm-up the actor parameters are frozen, but rollouts still call `distribution.sample()`.
+During critic warm-up the actor parameters are frozen, but rollouts still sample troll commands.
 
-Thus the value head learns the return of the 3/48-like stochastic behaviour, not the value of the 9/48 argmax policy. When actor updates begin, PPO improves the sampled policy it actually executed. There is no guarantee that this also improves the mode used at deployment.
+Thus the value head learns the return of the 3/48 command-sampling behaviour, not the value of the 9/48 argmax executor. When actor updates begin, PPO improves the sampled policy it actually executed. There is no guarantee that this also improves the mode used at deployment.
 
-## Cheapest decisive diagnostics
+## Cheapest remaining diagnostics
 
-All of these are read-only benches or offline tensor calculations.
+### 1. Run the missing SS interaction cell
 
-### 1. Complete the decoding matrix
-
-The existing evidence is:
+The accepted matrix is:
 
 | arm | plan | troll commands | result |
 |---|---|---|---|
 | AA | argmax | argmax | 9/48, 133.8 |
 | SA | sample at T=1 | argmax | 8/48, 133.2 |
-| AS | argmax | sample at T=1 | **missing** |
-| SS | sample at T=1 | sample at T=1 | 3/48, about 109 |
+| AS | argmax | sample at T=1 | 3/48, about 109 |
+| SS | sample at T=1 | sample at T=1 | **missing** |
 
-Run only the missing AS arm first, on the same maps, seats and game seeds. If AS already reproduces most of the 3/48 loss, plan sampling is discharged and the next work belongs entirely to the spatial behaviour policy.
+SS quantifies interaction only. The command-side main effect is already demonstrated by AA versus AS. Run SS on the same maps, seats and seeds for completeness, but do not delay the command-side diagnostics waiting for it.
 
 Report wins, scores, endings, loops, purchases and fruit-chain command counts.
 
@@ -130,7 +129,7 @@ For MOVE argmax rows, additionally report the sampled destination's distance fro
 
 ### 3. Diagnostic command-temperature sweep
 
-Without training, run the AS arm at fixed **command** temperatures such as `1.0`, `0.5`, and `0.25`, while plans remain argmax. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much command sharpening is required for sampled behaviour to resemble the deployment policy.
+Without training, rerun the AS arm at fixed **command** temperatures such as `1.0`, `0.5`, and `0.25`, while plans remain argmax. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much command sharpening is required for sampled behaviour to resemble the deployment policy.
 
 Do not change plan temperature in the first diagnostic: SA is already near AA, and changing both would discard an existing control.
 
@@ -200,12 +199,12 @@ A longer-term representation fix could sample a verb and a MOVE destination hier
 
 ```text
 DO NOT call the current stochastic rollout policy “the 9/48 clone.”
-RUN the missing argmax-plan / sampled-command arm first.
-MEASURE MOVE probability mass and legal-action multiplicity.
-MEASURE entropy and forward-anchor gradients before another explanatory long run.
+TREAT AA versus AS as direct evidence that command sampling is the main behaviour gap.
+RUN SS for interaction completeness, not as a prerequisite.
+MEASURE MOVE probability mass, entropy and forward-anchor gradients.
 TREAT command temperature, entropy and anchor target as distinct untested factors.
 KEEP plan temperature fixed in the first command-side control.
-CHANGE one factor at a time, with a matched seed, only after the offline diagnostics.
+CHANGE one factor at a time, with a matched seed, only after offline diagnostics.
 ```
 
 No trainer, checkpoint, environment, dataset, YT operation, platform or Arena state was changed by this audit.
