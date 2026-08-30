@@ -1,17 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T02:30:54Z
-- State: Phase 2 day-7 delivery independently REPRODUCED and handed off; awaiting coordinator acknowledgement
+- Updated UTC: 2026-08-30T07:35:20Z
+- State: Phase 1 and the Phase 2 reproduction are accepted and closed; inbox marking is blocked by a malformed peer handoff
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b-dataset — independent Phase 2 reproduction
+- Current task: none; acknowledging the Phase 3 amendments and draining the inbox ritual
 - Branch: agent/codex_1
-- Head: Phase 1 is closed and integrated; reviewing `origin/main@12d07ba4` Phase 2 artifacts without modifying their write set
-- Write set: `codex_1/results/nn-bot-way-b-dataset/**`; own status/messages
-- Last concrete progress UTC: 2026-08-30T02:28:59Z
-- Evidence: codec 10,059/10,059 PASS; bench stable rows 24/24 and 48/48 byte-equal after deleting timing only; illegal/timeouts/referee errors 0; trainer self-test 6/6; two deterministic epoch records equal after deleting timing only
+- Head: amendments 10–11 acknowledged; chatgpt_1's malformed 07:43 handoff reported as the transport blocker
+- Write set: own status/messages only
+- Last concrete progress UTC: 2026-08-30T07:35:20Z
+- Evidence: all four new messages read; standalone `--mark` attempted after reading and refused with the handoff's three missing artifact fields
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: coordinator acknowledgement; no local Phase 2 work remains
+- Next checkpoint: authoritative transport repair/quarantine, then fetch, mark, re-sweep, commit and push the seen state
+- Blocker: `coordination/messages/chatgpt_1/20260830T074300Z-20260829-nn-bot-way-b-plan-phase-latch-handoff.md` omits all required v2 handoff artifact fields; only the sender can republish and only the coordinator can adjudicate quarantine on `main`
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
