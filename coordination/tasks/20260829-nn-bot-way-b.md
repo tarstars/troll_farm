@@ -219,7 +219,19 @@ discipline of one Rust builder), not on impossibility.
 column for the "matches the standing target" feature is initialized to exactly zero, so a behaviour-cloned
 checkpoint (which never sees a standing target) gives identical plan logits at the first PPO plan phase with or
 without one; PPO trains that column afterwards. Test: identical logits at init with and without a target; a
-gradient step on the column makes them differ. Python: `FullVecEnv` in
+gradient step on the column makes them differ.
+**(10) the advantage trace inside a turn** (chatgpt_1 07:03/07:15Z, accepted 07:3xZ): `compute_gae` decayed a turn's reward
+by λ once per mini-step even where the discount was 1, so a plan decision received 0.95^k of its own turn's reward — credit
+depended on the roster after all. Two factors: the value bootstrap uses γ only at a turn boundary (1 inside), the trace uses
+γ·λ only at a turn boundary (1 inside); tests: 0/1/4/12 same-turn mini-steps before one reward R all receive R; the two-turn
+closed form keeps γ·λ across the boundary. **(11) no standing target at plan decisions in the first Phase 3 run**: the
+shared trunk reads planes 59–71, the clone's plan rows had them zero, so a standing target at the clone→PPO handoff shifts
+the plan logits through the trunk whatever the match column does (the zero-init of amendment 8's third completion was
+necessary, not sufficient). Ruled: the trainer zeroes planes 59–71 at every PLAN decision (policy, anchor, frozen opponent
+alike; troll decisions untouched), with a test on the real clone checkpoint that two plan observations differing only in
+those planes give byte-identical plan logits; target persistence returns later through a separate, explicitly gated path.
+**The run started at 04:45Z is exploratory, not the run of record**: it stops when the patched trainer lands and the run
+of record restarts from the clone. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
@@ -251,6 +263,32 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 05:0xZ: **PHASE 3 STARTED on the host** — the smoke first (5 updates from the clone with the clone as anchor:
+  the plan-head checkpoint loads, anchor agreement 0.84–0.88, small policy steps, ~1,000 decisions/s), then the run:
+  `train_ppo_full.py --env full --maps data/processed/maps.jsonl` (all 24,973 real maps) `--initial-checkpoint`
+  `--anchor-checkpoint` = the clone, `--anchor-coef 0.1 → 0 over 1×10⁸ decisions`, `--frozen-checkpoint` = the clone
+  refreshed every 100 updates, opponents secure_orchard 2 / norxondor_native 2 / legend_field_proxy_v2 1 /
+  gold_elite_adaptive 1 / script_boss 0.5 / mybot_boss4 0.5 / python_frozen 3, 128 games in parallel, 32-step rollouts,
+  2 epochs, minibatch 1,024, 14 threads at `nice 10`, a checkpoint every 250 updates (~17 min), no in-line gates —
+  the coordinator benches the latest checkpoint every few hours (48 games vs the champion's file), and runs the
+  card's 400-game gates when a bench passes 55 %; budget 2×10⁸ decisions (≈ 2.3 days); output
+  `/home/tarstars/nn-data/ppo-2026-08-30-a/` (`train.log`, checkpoints). — coordinator
+- 2026-08-30 04:5xZ: **PHASE 2's MILESTONE REACHED — the clone's games are on file for the owner's read**
+  (`local_claude_1/nn-bot/results/clone-2026-08-30-a/README.md`). The bench, argmax decoding, 24 maps × both seats vs
+  the champion's file: **9 wins of 48 (4 seat 0, 5 seat 1), 133.8 vs 186.2, 0 illegal, 0 timeouts**; 31 games to turn
+  300, 8 grace-expired, 9 mercy; 1 loop game (87 turns); a troll bought at turn 1 in 44 games — (2,2,2,2) ×8, (2,2,1,2)
+  ×6, (3,2,2,2) ×6, (2,2,2,1) ×5 … (the champion: (2,2,0,2)); the four games without a purchase averaged 92. The sampled
+  decoding: 8 wins, 133.2, a second troll in 9 games — the same player; **argmax is the decoding of record**. Read of
+  the games: the second troll harvests and plants like a teacher; the first churns PICK/DROP at the shack for stretches
+  (copying without a goal); no chopping as a plan. **Phase 3 starts from this checkpoint.** — coordinator
+- 2026-08-30 04:1xZ: **THE FIRST CLONE IS TRAINED** (`/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt`, 454 kB;
+  `train_clone.py --epochs 4 --batch 512 --workers 16 --seed 1` over the rebuilt shard `dataset-v400-2026-08-30`, 817,811
+  rows, no holdout — the trainer's default; ~30 min an epoch at 430–445 rows/s, the Rust plane builder the ceiling):
+  epoch 1 → 4: plan loss 2.21 → 1.02, plan accuracy 0.63 → 0.74; command loss 1.62 → 1.06, command accuracy 0.54 →
+  0.65; per verb on the last epoch — MOVE 40.7 % (the exact cell reached, one of up to 242), CHOP 90.5 %, DROP 97.1 %,
+  HARVEST 92.7 %, MINE 80.0 %, PLANT banana/lemon/plum 99.8/84.7/88.2 %, PLANT_APPLE 40.2 %, PICK banana/plum/lemon/
+  apple 23.4/15.4/21.6/3.1 % (reported, never a gate). **The bench runs now**: 24 maps × both seats, against the
+  champion's compiled file, plan head decoded by argmax and, separately, by a sample at temperature 1. — coordinator
 - 2026-08-29 21:4xZ: **the full teacher dataset built on the host** with claude_1's `build_dataset.py` (its branch, day-4
   state; the script is not yet on `main`) over the 784 seat-games of the exact reconstruction (748 replay files:
   delineate 215, MSz 203, norxondor 184, Bubaptik 182 of its latest version 6568138): **817,811 rows = 224,400 plan +

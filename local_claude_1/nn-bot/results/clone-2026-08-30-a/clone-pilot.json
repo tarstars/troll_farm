@@ -1,0 +1,309 @@
+{
+  "accuracy_is_not_a_gate": "per-verb and held-out accuracy are reported only; the bench judges the clone (docs/CONSTRAINTS.md)",
+  "checkpoint": "/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt",
+  "config": {
+    "action_size": 3146,
+    "batch": 512,
+    "epochs": 4,
+    "held_out_rows": 0,
+    "holdout_percent": 0,
+    "learning_rate": 0.001,
+    "library": "rust/target/release/libtroll_farm.so",
+    "obs_channels": 104,
+    "plan_action_size": 400,
+    "plan_vocab_version": "v400-2026-08-29",
+    "seed": 1,
+    "shard": "/home/tarstars/nn-data/dataset-v400-2026-08-30",
+    "shard_name": "pilot",
+    "shard_plan_vocab_version": "v400-2026-08-29",
+    "shard_rows": 817811,
+    "task": "20260829-nn-bot-way-b-dataset",
+    "train_rows": 817811,
+    "trainer": "local_claude_1/nn-bot/train_clone.py"
+  },
+  "counts": {
+    "held_out": 0,
+    "train": 817811
+  },
+  "elapsed_seconds": 7465.4,
+  "epochs": [
+    {
+      "epoch": 1,
+      "held_out": {},
+      "held_out_seconds": 0.0,
+      "rows_per_second": 443.1,
+      "train": {
+        "command_accuracy": 0.5366027930051853,
+        "command_loss": 1.6222907690254258,
+        "command_rows": 593411,
+        "per_verb": {
+          "CHOP": {
+            "accuracy": 0.8362601513153328,
+            "rows": 115256
+          },
+          "DROP": {
+            "accuracy": 0.9826746581756883,
+            "rows": 74746
+          },
+          "HARVEST": {
+            "accuracy": 0.8988403912734529,
+            "rows": 66143
+          },
+          "MINE": {
+            "accuracy": 0.7366739532537414,
+            "rows": 5947
+          },
+          "MOVE": {
+            "accuracy": 0.21776605515389869,
+            "rows": 297241
+          },
+          "PICK_APPLE": {
+            "accuracy": 0.011876484560570071,
+            "rows": 421
+          },
+          "PICK_BANANA": {
+            "accuracy": 0.12673719145405518,
+            "rows": 4821
+          },
+          "PICK_LEMON": {
+            "accuracy": 0.017355793772332824,
+            "rows": 1959
+          },
+          "PICK_PLUM": {
+            "accuracy": 0.031050616758826033,
+            "rows": 2351
+          },
+          "PLANT_APPLE": {
+            "accuracy": 0.36532097948378556,
+            "rows": 1511
+          },
+          "PLANT_BANANA": {
+            "accuracy": 0.9952970864877265,
+            "rows": 8718
+          },
+          "PLANT_LEMON": {
+            "accuracy": 0.7018360830228845,
+            "rows": 7516
+          },
+          "PLANT_PLUM": {
+            "accuracy": 0.7081551393599764,
+            "rows": 6781
+          }
+        },
+        "plan_accuracy": 0.634590017825312,
+        "plan_loss": 2.2054133881349616,
+        "plan_rows": 224400
+      },
+      "train_seconds": 1845.74
+    },
+    {
+      "epoch": 2,
+      "held_out": {},
+      "held_out_seconds": 0.0,
+      "rows_per_second": 428.8,
+      "train": {
+        "command_accuracy": 0.6083692415543359,
+        "command_loss": 1.229354981772743,
+        "command_rows": 593411,
+        "per_verb": {
+          "CHOP": {
+            "accuracy": 0.8956410078434095,
+            "rows": 115256
+          },
+          "DROP": {
+            "accuracy": 0.9751291038985364,
+            "rows": 74746
+          },
+          "HARVEST": {
+            "accuracy": 0.9190088142358224,
+            "rows": 66143
+          },
+          "MINE": {
+            "accuracy": 0.7743400033630402,
+            "rows": 5947
+          },
+          "MOVE": {
+            "accuracy": 0.3270544776797279,
+            "rows": 297241
+          },
+          "PICK_APPLE": {
+            "accuracy": 0.0,
+            "rows": 421
+          },
+          "PICK_BANANA": {
+            "accuracy": 0.14540551752748393,
+            "rows": 4821
+          },
+          "PICK_LEMON": {
+            "accuracy": 0.03522205206738132,
+            "rows": 1959
+          },
+          "PICK_PLUM": {
+            "accuracy": 0.038706933219906425,
+            "rows": 2351
+          },
+          "PLANT_APPLE": {
+            "accuracy": 0.3375248180013236,
+            "rows": 1511
+          },
+          "PLANT_BANANA": {
+            "accuracy": 0.9998852947923835,
+            "rows": 8718
+          },
+          "PLANT_LEMON": {
+            "accuracy": 0.8407397551889303,
+            "rows": 7516
+          },
+          "PLANT_PLUM": {
+            "accuracy": 0.8680135673204542,
+            "rows": 6781
+          }
+        },
+        "plan_accuracy": 0.6826737967914438,
+        "plan_loss": 1.4426469919473304,
+        "plan_rows": 224400
+      },
+      "train_seconds": 1907.39
+    },
+    {
+      "epoch": 3,
+      "held_out": {},
+      "held_out_seconds": 0.0,
+      "rows_per_second": 442.7,
+      "train": {
+        "command_accuracy": 0.6365503841351104,
+        "command_loss": 1.1135608271299944,
+        "command_rows": 593411,
+        "per_verb": {
+          "CHOP": {
+            "accuracy": 0.9037100020823211,
+            "rows": 115256
+          },
+          "DROP": {
+            "accuracy": 0.9729885211248762,
+            "rows": 74746
+          },
+          "HARVEST": {
+            "accuracy": 0.9254191675611931,
+            "rows": 66143
+          },
+          "MINE": {
+            "accuracy": 0.784765427946864,
+            "rows": 5947
+          },
+          "MOVE": {
+            "accuracy": 0.3764992043493327,
+            "rows": 297241
+          },
+          "PICK_APPLE": {
+            "accuracy": 0.0166270783847981,
+            "rows": 421
+          },
+          "PICK_BANANA": {
+            "accuracy": 0.21302634308234805,
+            "rows": 4821
+          },
+          "PICK_LEMON": {
+            "accuracy": 0.11995916283818274,
+            "rows": 1959
+          },
+          "PICK_PLUM": {
+            "accuracy": 0.09570395576350489,
+            "rows": 2351
+          },
+          "PLANT_APPLE": {
+            "accuracy": 0.37789543348775645,
+            "rows": 1511
+          },
+          "PLANT_BANANA": {
+            "accuracy": 0.9986235375086029,
+            "rows": 8718
+          },
+          "PLANT_LEMON": {
+            "accuracy": 0.844731240021288,
+            "rows": 7516
+          },
+          "PLANT_PLUM": {
+            "accuracy": 0.8764194071670846,
+            "rows": 6781
+          }
+        },
+        "plan_accuracy": 0.7106194295900178,
+        "plan_loss": 1.1706908252447472,
+        "plan_rows": 224400
+      },
+      "train_seconds": 1847.32
+    },
+    {
+      "epoch": 4,
+      "held_out": {},
+      "held_out_seconds": 0.0,
+      "rows_per_second": 444.7,
+      "train": {
+        "command_accuracy": 0.6528864480098954,
+        "command_loss": 1.0551867485649051,
+        "command_rows": 593411,
+        "per_verb": {
+          "CHOP": {
+            "accuracy": 0.904994100090234,
+            "rows": 115256
+          },
+          "DROP": {
+            "accuracy": 0.9708746956358869,
+            "rows": 74746
+          },
+          "HARVEST": {
+            "accuracy": 0.9273392498072358,
+            "rows": 66143
+          },
+          "MINE": {
+            "accuracy": 0.7995628047755171,
+            "rows": 5947
+          },
+          "MOVE": {
+            "accuracy": 0.4066700085116118,
+            "rows": 297241
+          },
+          "PICK_APPLE": {
+            "accuracy": 0.030878859857482184,
+            "rows": 421
+          },
+          "PICK_BANANA": {
+            "accuracy": 0.23418377929890064,
+            "rows": 4821
+          },
+          "PICK_LEMON": {
+            "accuracy": 0.2164369576314446,
+            "rows": 1959
+          },
+          "PICK_PLUM": {
+            "accuracy": 0.15440238196512124,
+            "rows": 2351
+          },
+          "PLANT_APPLE": {
+            "accuracy": 0.40238252812706815,
+            "rows": 1511
+          },
+          "PLANT_BANANA": {
+            "accuracy": 0.9979353062629044,
+            "rows": 8718
+          },
+          "PLANT_LEMON": {
+            "accuracy": 0.8473922299095263,
+            "rows": 7516
+          },
+          "PLANT_PLUM": {
+            "accuracy": 0.8815808877746645,
+            "rows": 6781
+          }
+        },
+        "plan_accuracy": 0.7373841354723708,
+        "plan_loss": 1.0248220525493383,
+        "plan_rows": 224400
+      },
+      "train_seconds": 1838.85
+    }
+  ],
+  "global_step": 3271244,
+  "what": "behaviour cloning of the four teachers: two masked cross-entropies over SpatialActorCritic(plan_head=True), planes built at load time by tf_full_obs_from_state"
+}

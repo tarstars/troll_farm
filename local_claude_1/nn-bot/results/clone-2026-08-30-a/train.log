@@ -1,0 +1,23 @@
+shard /home/tarstars/nn-data/dataset-v400-2026-08-30 (pilot): train {'plan': 224400, 'command': 593411, 'rows': 817811, 'games': 748}, held out {'plan': 0, 'command': 0, 'rows': 0, 'games': 0}
+{"action_size": 3146, "batch": 512, "epochs": 4, "event": "start", "held_out_rows": 0, "holdout_percent": 0, "learning_rate": 0.001, "library": "rust/target/release/libtroll_farm.so", "obs_channels": 104, "plan_action_size": 400, "plan_vocab_version": "v400-2026-08-29", "seed": 1, "shard": "/home/tarstars/nn-data/dataset-v400-2026-08-30", "shard_name": "pilot", "shard_plan_vocab_version": "v400-2026-08-29", "shard_rows": 817811, "task": "20260829-nn-bot-way-b-dataset", "train_rows": 817811, "trainer": "local_claude_1/nn-bot/train_clone.py"}
+{"command_accuracy": 0.5366, "command_loss": 1.6223, "epoch": 1, "event": "epoch", "held_out_command_accuracy": NaN, "held_out_plan_accuracy": NaN, "plan_accuracy": 0.6346, "plan_loss": 2.2054, "rows_per_second": 443.1}
+{"command_accuracy": 0.6084, "command_loss": 1.2294, "epoch": 2, "event": "epoch", "held_out_command_accuracy": NaN, "held_out_plan_accuracy": NaN, "plan_accuracy": 0.6827, "plan_loss": 1.4426, "rows_per_second": 428.8}
+{"command_accuracy": 0.6366, "command_loss": 1.1136, "epoch": 3, "event": "epoch", "held_out_command_accuracy": NaN, "held_out_plan_accuracy": NaN, "plan_accuracy": 0.7106, "plan_loss": 1.1707, "rows_per_second": 442.7}
+{"command_accuracy": 0.6529, "command_loss": 1.0552, "epoch": 4, "event": "epoch", "held_out_command_accuracy": NaN, "held_out_plan_accuracy": NaN, "plan_accuracy": 0.7374, "plan_loss": 1.0248, "rows_per_second": 444.7}
+
+per-verb accuracy on the last epoch (reported, never a gate):
+  MOVE           297241 rows   40.7 %
+  CHOP           115256 rows   90.5 %
+  DROP            74746 rows   97.1 %
+  HARVEST         66143 rows   92.7 %
+  PLANT_BANANA     8718 rows   99.8 %
+  PLANT_LEMON      7516 rows   84.7 %
+  PLANT_PLUM       6781 rows   88.2 %
+  MINE             5947 rows   80.0 %
+  PICK_BANANA      4821 rows   23.4 %
+  PICK_PLUM        2351 rows   15.4 %
+  PICK_LEMON       1959 rows   21.6 %
+  PLANT_APPLE      1511 rows   40.2 %
+  PICK_APPLE        421 rows    3.1 %
+
+checkpoint -> /home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt (model, optimizer, config, global_step; plan vocabulary v400-2026-08-29)
