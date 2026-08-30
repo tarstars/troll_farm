@@ -270,6 +270,83 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
   record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
   on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
+- 2026-08-30 13:5xZ: **the run of record's update-1,000 snapshot vs the champion's file: 4 wins of 48 (3 on seat 0), 81.7
+  points to 169.3 (margin −88), a troll bought in 26 games (the clone 44, update 500: 33), 29 of 48 games ended with no trees
+  left, 2 loop games.** The curve against the champion: the clone 9 → update 500: 3 → update 1,000: 4 wins; 134 → 108 → 82
+  points. Against its practice pool the run is flat at ~26 %. The pattern — chop everything, stop buying — points at the
+  objective, not the opponents: a per-turn discount makes the final score nearly invisible from the early turns, so the
+  per-wood shaping dominates. Under investigation this hour (the trainer's defaults, the chop counts in the games). — coordinator
+- 2026-08-30 14:0xZ: **the chop hypothesis is refuted by the games**: per game the clone chops 94 times, harvests 38, plants 25;
+  the update-500 snapshot chops 70, harvests 27, plants 19; update 1,000 chops 71, harvests 17, plants 14. The snapshots do
+  *less* of everything productive — they are not deforesting, they are drifting toward inaction (the champion fells the
+  trees while they idle, hence the early endings). The trainer's defaults: γ 0.997, λ 0.95, entropy 0.01, wood shaping 0.5,
+  end-wood 3.5. The likelier cause: **policy updates driven by an untrained critic** — the clone's value head was never
+  trained, so the first hundreds of updates push the policy with random advantages while the exploration bonus loosens it.
+  Two runs to separate the causes: `ppo-e` (started 13:5xZ; γ 0.999, no wood shaping, the real end score, an anchor floor
+  0.05) tests the objective; `ppo-f` (when the flag lands) tests a **critic warm-up** — the value head trained alone for the
+  first N updates with the policy frozen, then the normal loop with a reduced actor learning rate. `ppo-d` runs to its
+  update-1,500 bench, then stops. The four cluster jobs carry the old defaults: a 12-hour negative control. — coordinator
+- 2026-08-30 14:2xZ: `ppo-d` stopped at 1,138 updates (its trend established, the cores freed). **The trainer gained a critic
+  warm-up** (`--critic-warmup-updates N`: for the first N updates only the value head trains — the policy frozen bit for bit,
+  its shared trunk included — then the normal loop; `--actor-lr-scale S`: a reduced learning rate for the policy side; 4 tests,
+  57 in the file). **`ppo-f` started 14:2xZ**: warm-up 300 updates, actor learning rate ×0.3, γ 0.999, no wood shaping, the
+  real end score, the leash 0.1 → 0.05, the champion pool, 10 threads. `ppo-e` (the objective alone) runs beside it. Both are
+  benched at update 500 (after the warm-up for f) and 1,000; **no run is the run of record until a snapshot beats the clone's 9
+  of 48**. — coordinator
+- 2026-08-30 14:4xZ: `ppo-e` and `ppo-f` were stopped from outside the session at 14:41Z (both at ~249 updates, one short of
+  their first snapshot) while the machine was busy with the owner's own work; two runs at 20 threads had exceeded the host
+  rule (≤ 14). **From now on one run on the host** (`ppo-f2`, the warm-up variant, 8 threads at the lowest priority, since
+  14:4xZ) **and the variants on the cluster**: the launcher now passes the five new flags; `ppo-yt-e`
+  (`8058416-bb42350-42e03e8-4ed0d880`; γ 0.999, no wood shaping, the real end score, the leash 0.1→0.05) and `ppo-yt-f`
+  (`4d7091d-f64fde1f-42e03e8-fb5457be`; the same plus a 300-update warm-up of the value estimate and the policy's learning
+  rate ×0.3) run beside the four old-objective jobs — six 12-hour jobs, results ~01:00–03:00Z 08-31, each final snapshot
+  benched here against the champion's file. — coordinator
+- 2026-08-30 15:4xZ: **PHASE 4's ENGINEERING DELIVERED AND REPRODUCED ON THE HOST.** codex_1's amended export (14:57Z,
+  `5be68352`): the clone as one Rust file, `cgauto/submissions/candidate-nn-clone.rs` — 52,854 characters, SHA-256
+  `36bf2f2e…`; effective 16-bit integer weights (int8 + packed residual bits, 72,660 bytes) packed into 29,064 source
+  characters; the lifted state/engine/mask/codec/plane builder with pinned source hashes; the seat read once on turn one from
+  the starting troll's id (fail-closed on a malformed id set). The coordinator's reproduction from a clean checkout of that
+  commit, 15:2xZ: 7/7 tests; regeneration byte-identical; the bed — compiled Rust 48/48 games and 13,206/13,206 commands
+  identical to the signed Python clone, the Python export 48/48, both difference lists empty, the direct parity probe on both
+  seats true, the corpus check 370/370 on the host's complete states file; timing first-turn max 14.8 ms, warm median 6.5 ms,
+  p99 10.6 ms (gate 15), max 26.4 ms under a loaded host. All seven gates true. **Merged onto `main` (`b6075fe8`).** claude_1
+  chartered for the second reproduction (handoff 15:35Z). **A ladder-ready file of the clone exists; it is NOT submitted and will
+  not be without the owner's word** — it would read below the champion (9 of 48). The pipeline snapshot → one file is now
+  hours, so any snapshot that beats the clone ships the same day. Side findings: `/home/tarstars/nn-data/` had been removed from
+  the VM (by whom, unknown; codex_1 asked) — restored from the host copy, checksums verified; the VM's disk is at 96 % (818 MB
+  free) — nothing deleted, the owner asked (board queue). The cluster: jobs a/b/c began running only ~15:20Z (three hours in the
+  queue), d/e/f still waiting for slots at 15:3xZ — the 12-hour results move to ~03:30Z and later. — coordinator
+- 2026-08-30 15:5xZ: **`ppo-f2`'s update-500 snapshot vs the champion's file: 5 wins of 48 (3 on seat 0, 2 on seat 1), 123.5 points
+  to 177.8; 19 games ended early (run D at update 1,000: 31), 0 loops, 0 illegal; a purchase in 0.9 games per game-average as
+  the clone's; per game chop 75 / harvest 37 / plant 21 / move 273 (the clone 94 / 38 / 25 / 253).** Since the warm-up froze the
+  policy for 300 updates, this is 200 policy updates at a third of the learning rate under the corrected objective: less eroded
+  than run D at its update 500 (3 of 48, 108 points; harvest 27, plant 19) but still below the clone (9, 134). The erosion per
+  update is about the same as D's (−0.05 points per update) — one 48-game bench, so the update-1,000 snapshot (~16:25Z) decides
+  whether the remedies hold the line or only slow the drift. Still no run of record. — coordinator
+- 2026-08-30 16:1xZ: **Phase 4's engineering: both reproductions in** — claude_1 PASS on all four items on the VM (15:40Z, every
+  hash identical, the corpus check run again on the restored shard). **And a real hole found by chatgpt_1's audit (15:42Z): the
+  generated bot executes AVX2 unconditionally** — on a platform worker without AVX2 it would crash before its first command;
+  our two machines both have AVX2, so no bed could see it. Ruled on the sub-card: (d) runtime dispatch with a baseline
+  fallback, both paths bedded; (e) the timing gate = three quiet runs on the host, median p99 ≤ 15 ms, each ≤ 20 ms; (f) the
+  size counted in UTF-16 units (≈ 81,918 today — under the limit with 18,000 to spare, so a larger network is not free).
+  codex_1 has the handoff; +1 day on the sub-card. Nothing is shippable until (d) lands — which costs nothing today: no
+  snapshot beats the clone yet. The cluster at 16:00Z: a/b/c at ~300 updates, d started, e/f still queued. — coordinator
+- 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
+  decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
+  retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
+  champion 4 of 10), `ppo-yt-b` (`6539cc3e-6002fe31-42e03e8-f5005ad7`; seed 12; the anchor stronger, 0.3→0.05),
+  `ppo-yt-c` (`e5e5577-4c0e1939-42e03e8-5d7baf26`; seed 13; the champion 7 of 10), `ppo-yt-d`
+  (`dc8fce0a-df0411ee-42e03e8-c700a2b5`; seed 14; frozen copies 4 of 10, refreshed every 50 updates). Their checkpoints
+  are benched on the host against the champion's file when they return (~01:00Z 08-31). `ppo-d` stays the run of
+  record here. — coordinator
+- 2026-08-30 12:3xZ: **YT works.** The owner: "one train takes 3.5 days looks like a job for yt runner" (07:1xZ), "wifi", then
+  "gpu" (11:5xZ) when the CPU tree's pools refused immediate operations. The new CPU-only launcher
+  (`local_claude_1/nn-bot/yt_ppo_launcher.py` + `yt_ppo_entrypoint.py`, 15 tests; run with the helper project's Python) uploaded a
+  2.8 MB payload (a 5,370-map slice, the clone, the library; July's 8.5 GB PyTorch wheelhouse reused from Cypress) and the
+  smoke job ran to completion in July's GPU tree (`gpu_starfield_24g_cloud` / `research_gpu`, one GPU reserved, unused):
+  operation `11d044bd-262b06cb-42e03e8-451600b9`, 10 updates, 36,864 decisions at **899 decisions/s on 16 cores** (the
+  host: ~640 on 14 threads), checkpoints retrieved. Next: four 12-hour jobs in parallel — a sweep over seed, anchor
+  strength and the champion's share of the pool — while `ppo-d` stays the run of record on the host. — coordinator
 - 2026-08-30 11:0xZ: **the second confirmation of the transfer problem** — `ppo-c`'s last checkpoint (the sanitized trainer,
   the old pool, 250 updates) benched against the champion's file: 3 wins of 48 (2 on seat 0, 1 on seat 1), 106.9 points to
   177.4, 0 illegal, 21 games ended early (18 with no trees left) — worse than the clone it started from (9 wins, 133.8),
