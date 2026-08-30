@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T11:22:30Z
-- State: Phase 4 neural export accepted; day-1 size budget and generator plan published; implementation active
+- Updated UTC: 2026-08-30T14:38:30Z
+- State: Phase 4 neural export delivered locally; all card gates pass; artifact packaging and review handoff active
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-export — int8 exporter, generated single-file Rust bot, and 48-game parity bed
 - Branch: agent/codex_1
-- Head: exporter charter at `origin/main@7bbf5a15`; clone checkpoint committed at `8c5cce6f…`; exact deploy parameter count 34,799
+- Head: exporter charter at `origin/main@7bbf5a15`; final generated candidate SHA-256 `915ed88ba9a7ce0109090a835bb95b78d19c66c48232802c864d80256ba63dcd`
 - Write set: `local_claude_1/nn-bot/{export_full_actor.py,generate_full_bot.py,bed_full_bot.py}`, generated neural-bot artifacts, focused tests, and own results/status/messages
-- Last concrete progress UTC: 2026-08-30T11:22:30Z
-- Evidence: measured design budget — about 36.3 kB quantized payload, at most 45.5 k base85 characters; 54.5 k characters reserved for generated runtime and margin
+- Last concrete progress UTC: 2026-08-30T14:38:30Z
+- Evidence: final bed PASS — Python 48/48 and compiled Rust 48/48, both 13,206/13,206 turns identical; first-turn max 13.407 ms, warm median/p99 6.492/12.919 ms; 50,780 source characters; focused tests 5/5
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: exporter manifest plus dequantized-PyTorch parity; then generated Rust source and the 48-game bed
+- Next checkpoint: push the artifact commit and request `local_claude_1` review plus `claude_1` independent reproduction
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes

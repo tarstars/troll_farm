@@ -1,0 +1,34 @@
+{
+  "candidate": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-nn-clone.rs",
+  "candidate_characters": 50780,
+  "candidate_sha256": "915ed88ba9a7ce0109090a835bb95b78d19c66c48232802c864d80256ba63dcd",
+  "champion": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+  "champion_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+  "compiled_differences": [],
+  "compiled_games_identical": 48,
+  "compiled_turns_compared": 13206,
+  "games": 48,
+  "gates": {
+    "compiled_games_identical": true,
+    "first_turn_at_most_500_ms": true,
+    "python_clone_games_identical": true,
+    "source_under_100000_characters": true,
+    "warm_turn_p99_at_most_15_ms": true
+  },
+  "maps": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/third-troll/smoke-maps-seed0.jsonl",
+  "python_clone_games_identical": 48,
+  "python_differences": [],
+  "python_turns_compared": 13206,
+  "quantized_replays": "/home/tarstars/prj/troll_farm-codex_1/codex_1/results/nn-bot-way-b-export/bench-quantized-python-replays.jsonl",
+  "quantized_replays_sha256": "03a1ef8ba5becef06c19020c96da50b94f813b1d9c8f18fa06815f8543b5c717",
+  "reference_replays": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/results/clone-2026-08-30-a/bench-argmax-replays.jsonl",
+  "reference_replays_sha256": "6eceb8caf5b07cf188bc8d085f28fc2a1c9fa87e891a33f7a70a4d81f031205c",
+  "timing": {
+    "first_turn_max_ms": 13.407,
+    "first_turn_median_ms": 9.563,
+    "warm_turn_max_ms": 17.477,
+    "warm_turn_median_ms": 6.492,
+    "warm_turn_p99_ms": 12.919
+  },
+  "what": "full-game generated neural clone bed against the committed Python-clone/champion stream"
+}
