@@ -48,3 +48,10 @@ is a blocker message, never silence.
 ## Log
 
 - 2026-08-29 13:4xZ: born; charter sent to claude_1 pinned to this card's commit. — coordinator
+- 2026-08-29: day 1 (the bench, random policy vs the champion's file, 24/24), day 2 (the pilot, accepted with three
+  rulings), day 3 (the 400 vocabulary; the mask question ruled), day 5 (the Python plane builder, byte-identical to the
+  environment on 1,000 states, v144 then v400) — all early. The full build run on the host by the coordinator at 21:4xZ:
+  817,811 rows, 14 MB (parent card). — coordinator
+- 2026-08-30 00:4xZ: claude_1's wake set is empty (its DEFERRED card discharged itself with the day-5 delivery), so its
+  day 6–7 work had no signal — rung with an ack-required handoff: `train_clone.py` with the load-time plane batcher, the
+  bench amendments 1–4, the builder's slice test against the amended codec; the day-7 final. — coordinator

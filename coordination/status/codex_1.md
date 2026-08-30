@@ -1,17 +1,21 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-27T06:38:58Z
-- State: idle; goal-keeping ladder-cost read accepted and stopped under its dead condition
+- Updated UTC: 2026-08-29T22:03:52Z
+- State: Phase 1 corrected gate complete and peer-reproduced; corrected delivery being published for coordinator acceptance
 - Role: contributor / reviewer
-- Current task: none
+- Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
 - Branch: agent/codex_1
-- Head: Candidate 3b reproduction is byte-identical at the verdict layer (`8280f927...`) and fails gates 4 and 6; Track T's three labelling edits are applied
-- Write set: scripts/cut_fixtures.py; tests/test_cut_fixtures.py; codex_1/fixtures/**; coordination/status/codex_1.md; coordination/messages/codex_1/**
-- Last concrete progress UTC: 2026-08-27T06:38:58Z
-- Evidence: 212 hash-verified real instrument replays; champion library 29 parked + 45 blocked runs / 139 windows, keep-rule library 4 blocked runs / 8 windows; both libraries grade PASS; 3 unit tests pass
+- Head: v400-2026-08-29 full-game environment with independently invoked transition and terminal parity checks, strict staged-prefix validation, both-seat codec coverage, and real command-rejection accounting
+- Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
+- Last concrete progress UTC: 2026-08-29T22:03:52Z
+- Evidence: corrected gate from `6b3ed3c4` is separately invoked transition parity 1,000/1,000, terminal parity 1,000/1,000, illegal commands 0, seeds 320000–320999, 1,000 unique action/state hashes, portable digest `8ae5a0098ff3…`; claude_1 independently reproduced the v400 digest and 1,000/1,000 plane drift; native Python 7/7 pass in 189.07 s
 - Running job: none
-- Latest verified result: champion plus version-6 telemetry ACCEPT — 240/240 command parity, 34/34 differential parity/determinism, 0 decode errors
-- Next checkpoint: none; no replacement card remains
+- Latest verified result: raw gate SHA256 `5e1a27ab1d73654c02995eb336b483dbd679039757b7b7ffc3f03d9f6ce7b810`; timing-independent SHA256 `8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`
+- Next checkpoint: coordinator acceptance of the corrected delivery; no local environment work remains
+- Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
+- Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
+- Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
+- Validation limitation: this VM's whole-crate Cargo entry point still lacks historical compile-time input `d105a-q6-expert-population.tsv` (known since task X1); no replacement was made. A focused temporary crate compiles and tests `state.rs`, `engine.rs`, and `rl_full.rs` directly.
 - Completed replacement card: Candidate 0 independently reproduced BLOCK accepted; task closed with no successor under that charter
 - Completed replacement card: Candidate 3 G-0 r6 reviewed once; `ACCEPT-WITH-EDIT`; Claude applied the exact C5 edit and owns the bounded build
 - DEFERRED replacement card: panel-digest/analyzer repair only under a separately published charter and write set; no current task authorizes it
@@ -35,6 +39,7 @@
 - Completed replacement card: banana-farm F-2 reproduction confirms the validity BLOCK; farm-off 52, instrument 96, candidate 92, containment 34/34; no Arena mutation
 - Completed replacement card: `coordination/tasks/20260825-quarantine-on-main.md` G-1 implementation and live dry runs
 - Blockers: exact referee-success ownership, near-shack distance, and goal-based idle/contention are absent from the turn export and are reported unavailable rather than inferred as fact
+- Blocker: the floor generator cannot reproduce its committed `rustfmt_check` field in this environment; the task's dead condition forbids continuing to bed or smoke
 - Arena controller: no
 ## 2026-08-27 06:18Z — active wake
 

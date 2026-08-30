@@ -313,6 +313,7 @@
 
     <section id="s6">
       <h2><span class="num">6</span>Machines, storage, time, people</h2>
+      <p class="est">Correction 2026-08-29 14:2xZ, after a direct check: the root disk has 111 GB free (88 % used) — the "97 % full, 34 GB free" above came from a stale read; and the "USB archive" is a read-only cloud bucket mounted at <span class="path">/media/tarstars/medium_data/database/troll_farm</span> (9.8 GB of artifacts, July's checkpoints among them). Nothing needs to move for this programme.</p>
       <p><strong>Compute</strong> <span class="est">(my estimates)</span>. A 35-thousand-weight network needs about 4.5 million multiply-adds per pass; with one pass for the plan and one per troll, 3–6 passes a turn. On 20 cores with batched inference, roughly 2–3 thousand turns a second during play and about half that while training: ~40–80 million turn-steps a day. Phase 3's 2×10⁸ turn-steps is three to five days of the host; a delineate-sized network is 3–4× slower. Feasible on the CPU for a small network, marginal for a large one. A cloud GPU would be ~10× faster; last time its results did not match the CPU's, and the grant is nearly spent. Recommendation: the host's CPU, the small network, the VM left to the ladder queue.</p>
       <p><strong>Storage.</strong> The corpus is 17 GB on a disk with 34 GB free; Phase 2's datasets add ~5–10 GB; checkpoints ~1 GB. Something must move to the USB archive first.</p>
       <p><strong>Time.</strong> Five to eight weeks to the first ladder reading, with a real number after about two (the clone).</p>
