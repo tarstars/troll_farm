@@ -1,39 +1,79 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T20:27:00Z
+- Updated UTC: 2026-08-30T20:46:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
 - Branch: `agent/chatgpt_1`
 
-## Phase 3 — live diagnosis
+## Phase 3 — accepted diagnosis and live blocker
 
-Five self-play lines have shown the same erosion pattern: fruit-chain execution decays before immediate chopping. `ppo-g`, even against the exact champion only, fell from 5/48 at update 500 to 4/48 at update 1,000. `ppo-h` changed gamma to `1.0`; its update-500 checkpoint scored 3/48 and 112.8 points, with explained variance about 0.25.
+The coordinator accepted the evening validity audits at:
 
-### Open binding blocker
+`coordination/messages/local_claude_1/20260830T205500Z-20260829-nn-bot-way-b-ack.md`
 
-`coordination/messages/chatgpt_1/20260830T200200Z-20260829-nn-bot-way-b-ppo-h-credit-blocker.md`
+Accepted corrections include:
 
-The card's “discount swept/acquitted” conclusion is not supported while `gae_lambda` remains `.95`. At every turn boundary `compute_gae` uses `trace_factor = gamma * gae_lambda`, so `ppo-h` changes the trace only `0.94905 -> 0.95`. It is valid gamma-only sensitivity evidence, not an undiscounted long-horizon-credit test. The blocker requires relabelling plus an offline `(.999,.95)` / `(1,.95)` / `(1,1)` advantage comparison or a matched-seed lambda-1 confirmation before that causal axis is closed.
+- `ppo-h` is gamma-only sensitivity at lambda `0.95`, not an undiscounted-credit test;
+- delineate's recorded curriculum uses assigned targets and later a frozen movement executor while training plan/value, not a short-game or small-map episode cap;
+- value loss has a direct gradient path through the shared actor trunk after warm-up;
+- the clone decoding factorial is AA `9/48`, SA `8/48`, AS `3/48`, with SS still missing.
 
-Pinned derivation:
+Claude is chartered to build the per-objective gradient falsifier:
 
-`agent/chatgpt_1@5a8f718cb30de3f21f6ffe9ab0c31fcfed84527a`
+`coordination/messages/local_claude_1/20260830T210000Z-20260829-nn-bot-way-b-gradient-handoff.md`
+
+The latest audit specification requires restoring the checkpoint's Adam state and exact config, reporting global clipping, and using both on-policy minibatches and a common fixed observation census:
+
+`agent/chatgpt_1@14a1bdd665e807f49f06188198774a2ddaa24797`
+`chatgpt_1/nn-way-b/shared-trunk-value-gradient-audit-2026-08-30.md`
+
+### Binding blocker on `ppo-i`
+
+The coordinator integrated the first `--train-scope plan-critic` patch at:
+
+`main@213ee7f586a6a0fc6fda22bee9571159a3efdf0f`
+
+It correctly freezes `stem.*`, `tower.*`, and `actor.*`, but changes only parameter gradients. The rollout still samples TROLL commands, and the loss still mixes frozen TROLL rows into PLAN advantage normalization, policy loss, entropy, anchor KL, `approx_kl`, `clip_fraction`, and the `target_kl` stopping rule.
+
+Binding blocker:
+
+`coordination/messages/chatgpt_1/20260830T204230Z-20260829-nn-bot-way-b-plan-critic-scope-blocker.md`
+
+Latest pinned review:
+
+`agent/chatgpt_1@fb3d0c897c27397880d577130531d354fdcd91b3`
+`chatgpt_1/nn-way-b/plan-critic-scope-review-2026-08-30.md`
+
+Minimum clean Level-4-like semantics before launch:
+
+```text
+PLAN rows: sampled; PLAN-only advantage normalization, PPO loss, entropy, anchor KL, approx_kl, clip_fraction and target_kl
+TROLL rows: frozen masked argmax; executed in the environment but excluded from PPO policy terms
+value loss: all rows
+```
+
+Required tests cover TROLL RNG-independence and bench parity, PLAN gradient/anchor/KL invariance to duplicated TROLL rows, no-PLAN minibatches, frozen parameter identity, and checkpoint recording of the scope and executor decoding.
+
+`ppo-i` must not start from `main@213ee7f5`; that code would train a plan selector on the measured `3/48` sampled command executor and gate it using the `9/48` argmax executor.
+
+## Credit-horizon correction
+
+Latest pin:
+
+`agent/chatgpt_1@96373d590939b2f6a0439facf5091d8535c46ad2`
 `chatgpt_1/nn-way-b/ppo-h-gamma-lambda-audit-2026-08-30.md`
 
-### Source-backed staging correction
+The live recipe uses 32 mini-steps per rollout, only about 5–16 real turns depending on troll count. Even gamma `1`, lambda `1` would remove decay only inside that buffer; earlier decisions depend on critic bootstrap. The next honest credit test is a within-buffer estimator comparison plus a full-episode critic audit against realised return-to-go and a census of rows that actually share a buffer with terminal reward.
 
-`chatgpt_1/nn-way-b/curriculum-source-audit-2026-08-30.md`
+## Stochastic behaviour mismatch
 
-The retained delineate source does not describe small maps, short games or an episode cap. It describes assigned build targets with resource-distance shaping, then freezing the movement/action executor while training the plan selector and value head, then joint fine-tuning. The closest bounded next step is an assigned-plan executor gate followed, if it passes, by plan-only PPO with trunk and spatial actor frozen.
+Latest corrected factorial audit:
 
-### Common critic-to-actor path
+`agent/chatgpt_1@aa4d456934c22bd8ce2bf1589528150b34138926`
+`chatgpt_1/nn-way-b/stochastic-behavior-mismatch-audit-2026-08-30.md`
 
-`chatgpt_1/nn-way-b/shared-critic-trunk-audit-2026-08-30.md`
-
-After critic warm-up, ordinary PPO re-enables the shared `stem`/`tower` and includes `value_coef * value_loss`. The value loss therefore backpropagates through the same trunk that produces spatial and plan logits. Every failed run shares this unmeasured path. A post-warm-up gradient decomposition must include value loss, and one value-only counterfactual optimizer step should measure resulting logit/top-1/fruit-action changes before another all-parameter long run.
-
-The six YT arms remain exploratory checkpoint searches. Their common scout bench may rank checkpoints, but seed/treatment confounding prevents factor attribution without matched-seed confirmation.
+Command sampling, not plan sampling, carries the measured deployment gap. The spatial head samples one categorical distribution over up to 3,146 entries, with many legal MOVE destinations. Future diagnostics should measure MOVE probability mass, legal-action multiplicity, entropy, and forward anchor gradients; plan and command temperatures must be separate if a matched-seed temperature control is later justified.
 
 ## Phase 4 — engineering complete
 
@@ -46,15 +86,15 @@ The portable one-file export is integrated and independently reproduced:
 - corpus seat check 370/370;
 - UTF-16 size 83,282 of 100,000.
 
-A real shipping candidate still needs the three-run quiet-host timing certificate and the owner's separate platform word. Nothing has been submitted.
+A real shipping candidate still needs the quiet-host timing certificate and the owner's separate platform word. Nothing has been submitted.
 
 ## Next check
 
-- coordinator acknowledgement/ruling on the gamma/lambda blocker;
-- `ppo-h` update-1,000 evidence, interpreted as gamma-only;
-- offline advantage and gradient decompositions;
-- assigned-plan executor evidence or a source-backed staged-training charter;
-- returned YT checkpoints under scout/confirmation separation.
+- coordinator ruling and corrected implementation for the `plan-critic` blocker;
+- Claude's gradient-instrument claim, code, host outputs, and analysis;
+- `ppo-h` update-1,000 evidence, interpreted only under the actual lambda and rollout horizon;
+- returned YT checkpoints under scout/confirmation separation;
+- any candidate that exceeds the clone's 9/48 scout bar.
 
 ## Boundaries
 
