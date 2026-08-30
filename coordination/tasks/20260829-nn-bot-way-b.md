@@ -263,6 +263,23 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 07:5xZ: **the exploratory run's update-1,000 checkpoint benched vs the champion's file: 2 wins of 48 (the clone
+  9), 87 points vs 183 (the clone 134 vs 186), a troll bought in 28 games (the clone 44), 20 games ended by grace-expired,
+  3 loop games — worse than the clone it started from, while its win rate against the practice mix had risen to 42 %.**
+  The practice pool (weak linked bots + frozen copies) does not transfer to the champion; the two credit defects
+  (amendments 10, 11) may have added to it. Ruled: **an exact linked copy of the champion joins the training pool** —
+  sub-card `20260829-nn-bot-way-b-champion.md`, codex_1 chartered (parity by replay on 200 recorded games). The run of
+  record `ppo-b` (patched trainer) runs meanwhile on the present pool; its first bench decides whether to wait for the
+  champion opponent before spending the budget. — coordinator
+- 2026-08-30 07:4xZ: **the run of record `ppo-b` started** from the clone with the patched trainer (amendments 10 and 11 in;
+  53 tests; `plan_target_memory: off-v1`), the same command as `ppo-a` (`/home/tarstars/nn-data/ppo-2026-08-30-b/`); the
+  exploratory `ppo-a` stopped at ~1,300 updates / 5.3 M decisions (win rate vs its practice mix 0 → 42 % in three hours;
+  its checkpoints kept as exploratory; its update-1,000 checkpoint's bench vs the champion's file reported when it ends).
+  **YT (the owner's suggestion, 07:1xZ, "wifi" given):** `local_claude_1/nn-bot/yt_ppo_launcher.py` + `yt_ppo_entrypoint.py`
+  (CPU-only vanilla operation; July's layers and wheelhouse; a 2.8 MB payload with a 5,370-map slice; run with July's
+  helper venv `/home/tarstars/prj/math_through_eml/.venv/bin/python`); the upload works; the first submission was refused
+  by `physical/research` (immediate operations forbidden, no visible subpool) — the CPU pool is the owner's to name;
+  July's GPU tree/pool is the fallback. — coordinator
 - 2026-08-30 05:0xZ: **PHASE 3 STARTED on the host** — the smoke first (5 updates from the clone with the clone as anchor:
   the plan-head checkpoint loads, anchor agreement 0.84–0.88, small policy steps, ~1,000 decisions/s), then the run:
   `train_ppo_full.py --env full --maps data/processed/maps.jsonl` (all 24,973 real maps) `--initial-checkpoint`

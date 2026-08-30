@@ -35,8 +35,22 @@ Discounting across mini-steps
 The turn's reward is paid **once**, on the mini-step that executes the turn; the earlier mini-steps
 of that turn carry reward 0 (the amendment on the card, after chatgpt_1's audit finding 4). So the
 mini-steps of one turn are consecutive steps of the same decision, and the advantage estimator uses
-**discount 1 between mini-steps inside a turn** and `--gamma` only when crossing a turn boundary.
-`compute_gae` does exactly that, and `tests/test_train_ppo_full.py` pins it to a closed form.
+**discount 1 AND trace factor 1 between mini-steps inside a turn**, `--gamma` and
+`--gamma * --gae-lambda` only when crossing a turn boundary. Both factors matter: decaying the
+trace by lambda inside a turn would hand the plan row only `lambda^k` of its own turn's reward,
+with `k` the number of trolls that decided after it -- credit that shrinks as the roster grows,
+which is the very thing amendment (4) forbids. `compute_gae` does exactly that, and
+`tests/test_train_ppo_full.py` pins it to a closed form.
+
+The standing target at a plan decision (`plan_target_memory: "off-v1"`)
+-----------------------------------------------------------------------
+The clone was taught with planes 59-71 -- the standing train target, its costs and its deficits --
+zero on every plan row, because the previous turn's hindsight label equals the current one between
+purchases and feeding it back would leak the label. The convolution trunk is shared, so a standing
+target would move the plan logits through the trunk even though the scorer's match column starts
+at zero. For this first Phase 3 run the trainer therefore zeroes those thirteen planes on every
+PLAN row before the network sees them (`mask_plan_target_planes`, called inside `combined_logits`,
+the single door observations go through). Troll mini-steps keep their planes untouched.
 
 The environment contract (card amendment 9)
 -------------------------------------------
@@ -217,6 +231,39 @@ def make_env(args, frozen_opponent):
 # --------------------------------------------------------------------------- the two heads
 
 
+#: Planes 59..71 inclusive: the standing train target, its four costs and its four deficits.
+PLAN_TARGET_PLANE_START = 59
+PLAN_TARGET_PLANE_STOP = 72
+
+#: How this run treats the standing target at a plan decision. "off-v1": the thirteen target
+#: planes are zeroed on every PLAN row before the network sees them.
+PLAN_TARGET_MEMORY = "off-v1"
+
+
+def mask_plan_target_planes(
+    observations: torch.Tensor, phase: torch.Tensor
+) -> torch.Tensor:
+    """Zero planes 59-71 on PLAN rows; leave TROLL rows exactly as they came.
+
+    Why: the clone was taught with those thirteen planes zero on every plan row (amendment 8,
+    "No target memory in behaviour cloning" -- feeding the previous turn's hindsight label back
+    would leak the label). The convolution trunk is shared, so a standing target would shift the
+    plan logits through the trunk even though the scorer's match column starts at zero. Zeroing
+    them here makes the clone -> PPO handoff exact: at the first plan phase the network sees the
+    board it was trained on. Troll mini-steps keep their planes, because the clone saw them there.
+
+    This is the ONE place observations enter the network, so it covers the rollout, the update,
+    the anchor's log-probs and the frozen opponent's decisions alike.
+    """
+
+    rows = phase == PHASE_PLAN
+    if not bool(rows.any()):
+        return observations
+    masked = observations.clone()
+    masked[rows, PLAN_TARGET_PLANE_START:PLAN_TARGET_PLANE_STOP] = 0
+    return masked
+
+
 def combined_logits(
     model: SpatialActorCritic, observations: torch.Tensor, phase: torch.Tensor
 ) -> tuple[torch.Tensor, torch.Tensor]:
@@ -225,8 +272,12 @@ def combined_logits(
     PLAN rows carry the 400 plan logits in columns 0..399; their mask is zero above 399, so the
     per-cell logits sitting there can never be selected. TROLL rows carry the per-cell logits
     unchanged. Both heads come from a single pass through the shared trunk.
+
+    Every observation the network ever sees passes through here, and through
+    `mask_plan_target_planes` on the way in.
     """
 
+    observations = mask_plan_target_planes(observations, phase)
     if not getattr(model, "plan_head", False):
         logits, value = model(observations)
         return logits, value
@@ -288,11 +339,22 @@ def compute_gae(
     gamma: float,
     gae_lambda: float,
 ) -> tuple[np.ndarray, np.ndarray]:
-    """Generalised advantage estimation with a per-step discount.
+    """Generalised advantage estimation with a per-step discount AND a per-step trace factor.
 
-    The discount applied from mini-step `t` to `t+1` is `gamma` when `t` executed the turn
-    (`turn_boundary[t]`) and `1.0` when `t+1` is another mini-step of the same turn. An episode end
-    (`dones[t]`) cuts both the bootstrap and the trace, as usual.
+    Two separate factors, because the mini-steps of one turn are one decision cut into pieces:
+
+    * `delta_discount` is `gamma` when mini-step `t` executed the turn and `1.0` when `t+1` is
+      another mini-step of the same turn -- no time passes inside a turn;
+    * `trace_factor` is `gamma * gae_lambda` across a turn boundary and **exactly 1.0** inside a
+      turn.
+
+    The second factor is the whole point. Multiplying by `gae_lambda` once per mini-step, as an
+    earlier draft did, handed the plan row only `lambda^k` of its own turn's reward, where `k` is
+    the number of trolls that decided after it -- credit that shrinks as the roster grows, which
+    is exactly what amendment (4) forbids. With `trace_factor = 1` inside a turn, every mini-step
+    of a turn carries that turn's reward whole.
+
+    An episode end (`dones[t]`) still cuts both the bootstrap and the trace.
 
     All arrays are `[steps, envs]`; `next_value` is `[envs]`, the value of the observation that
     follows the last stored mini-step.
@@ -304,9 +366,13 @@ def compute_gae(
     for index in reversed(range(steps)):
         nonterminal = (1.0 - dones[index]).astype(np.float32)
         following = next_value if index == steps - 1 else values[index + 1]
-        discount = np.where(turn_boundary[index] > 0, np.float32(gamma), np.float32(1.0))
-        delta = rewards[index] + discount * following * nonterminal - values[index]
-        last = delta + discount * np.float32(gae_lambda) * nonterminal * last
+        crossing = turn_boundary[index] > 0
+        delta_discount = np.where(crossing, np.float32(gamma), np.float32(1.0))
+        trace_factor = np.where(
+            crossing, np.float32(gamma) * np.float32(gae_lambda), np.float32(1.0)
+        )
+        delta = rewards[index] + delta_discount * following * nonterminal - values[index]
+        last = delta + trace_factor * nonterminal * last
         advantages[index] = last
     return advantages, advantages + values
 
@@ -777,6 +843,7 @@ def train(args) -> dict:
         "frozen_checkpoint_sha256": frozen_sha,
         "plan_vocab_version": PLAN_VOCAB_VERSION,
         "plan_action_size": PLAN_ACTION_SIZE,
+        "plan_target_memory": PLAN_TARGET_MEMORY,
         "environment_plan_version": check_plan_version(env),
         "turn_step_definition": "one learner mini-step decision (PLAN or TROLL)",
     }
