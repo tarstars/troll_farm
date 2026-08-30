@@ -40,7 +40,9 @@ OPPONENTS = (
     "script_boss",
     "mybot_boss4",
     "python_frozen",
+    "champion_exact",
 )
+PYTHON_FROZEN_ID = OPPONENTS.index("python_frozen")
 
 FrozenOpponent = Callable[
     [np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray],
@@ -71,6 +73,61 @@ class FullStepInfo:
     turn_completed: np.ndarray
 
 
+class ChampionExactPolicy:
+    """Stateful ctypes surface used by recorded-game command-parity tests."""
+
+    def __init__(self, library: Path | str = DEFAULT_LIBRARY) -> None:
+        self.library_path = Path(library).resolve()
+        if not self.library_path.is_file():
+            raise FileNotFoundError(self.library_path)
+        self._lib = ctypes.CDLL(str(self.library_path))
+        self._lib.tf_full_champion_create.argtypes = []
+        self._lib.tf_full_champion_create.restype = ctypes.c_void_p
+        self._lib.tf_full_champion_destroy.argtypes = [ctypes.c_void_p]
+        self._lib.tf_full_champion_destroy.restype = None
+        self._lib.tf_full_champion_commands_from_state.argtypes = [
+            ctypes.c_void_p,
+            ctypes.c_void_p,
+            ctypes.c_size_t,
+            ctypes.c_int32,
+            ctypes.c_void_p,
+            ctypes.c_size_t,
+        ]
+        self._lib.tf_full_champion_commands_from_state.restype = ctypes.c_int32
+        self._handle = self._lib.tf_full_champion_create()
+        if not self._handle:
+            raise RuntimeError("Rust champion strategy allocation failed")
+        self._closed = False
+
+    def commands(self, state: Mapping[str, object], seat: int) -> list[str]:
+        payload = json.dumps(state, sort_keys=True, separators=(",", ":")).encode()
+        source = ctypes.create_string_buffer(payload)
+        output = ctypes.create_string_buffer(4096)
+        status = self._lib.tf_full_champion_commands_from_state(
+            self._handle,
+            ctypes.cast(source, ctypes.c_void_p),
+            len(payload),
+            int(seat),
+            ctypes.cast(output, ctypes.c_void_p),
+            len(output),
+        )
+        if status < 0:
+            raise RuntimeError(f"tf_full_champion_commands_from_state failed with {status}")
+        text = output.raw[:status].decode()
+        return [command for command in text.split(";") if command]
+
+    def close(self) -> None:
+        if not self._closed:
+            self._lib.tf_full_champion_destroy(self._handle)
+            self._closed = True
+
+    def __enter__(self) -> "ChampionExactPolicy":
+        return self
+
+    def __exit__(self, *_: object) -> None:
+        self.close()
+
+
 class FullVecEnv:
     """Batched auto-reset full-game environment with one row per decision call."""
 
@@ -96,7 +153,9 @@ class FullVecEnv:
         if not self.maps_path.is_file():
             raise FileNotFoundError(self.maps_path)
         if opponent_weights is None:
-            opponent_weights = {name: 1.0 for name in OPPONENTS[:-1]}
+            opponent_weights = {
+                name: 1.0 for name in OPPONENTS if name != "python_frozen"
+            }
         unknown = sorted(set(opponent_weights) - set(OPPONENTS))
         if unknown:
             raise ValueError(f"unknown opponent weights: {unknown}")
@@ -106,7 +165,7 @@ class FullVecEnv:
         )
         if not np.all(np.isfinite(weights)) or np.any(weights < 0) or not np.any(weights > 0):
             raise ValueError("opponent weights must be finite, non-negative, and nonempty")
-        if weights[-1] > 0 and frozen_opponent is None:
+        if weights[PYTHON_FROZEN_ID] > 0 and frozen_opponent is None:
             raise ValueError("python_frozen has positive weight but no frozen_opponent callback")
         if not np.isfinite(wood_shaping) or wood_shaping < 0:
             raise ValueError("wood_shaping must be finite and non-negative")
@@ -584,6 +643,13 @@ def replay_and_verify(
         )
         for unit in initial["units"]
     ]
+    initial_plants = list(initial["plants"])
+    if "plant_order" in initial:
+        by_cell = {(plant["x"], plant["y"]): plant for plant in initial_plants}
+        order = [tuple(cell) for cell in initial["plant_order"]]
+        if len(by_cell) != len(initial_plants) or set(order) != set(by_cell):
+            raise AssertionError("initial plant_order is not a permutation of the plants")
+        initial_plants = [by_cell[cell] for cell in order]
     plants = [
         SimPlant(
             plant["type"],
@@ -594,7 +660,7 @@ def replay_and_verify(
             plant["fruits"],
             plant.get("cooldown", plant.get("cur_cd")),
         )
-        for plant in initial["plants"]
+        for plant in initial_plants
     ]
     game = GameState(
         len(rows[0]),
@@ -656,15 +722,20 @@ def replay_and_verify(
             ],
         }
         expected_state = replay_turn.get("state")
-        if expected_state is not None and actual_state != expected_state:
+        expected_comparable = (
+            {name: value for name, value in expected_state.items() if name != "plant_order"}
+            if expected_state is not None
+            else None
+        )
+        if expected_comparable is not None and actual_state != expected_comparable:
             differing = [
                 name
                 for name in actual_state
-                if actual_state[name] != expected_state[name]
+                if actual_state[name] != expected_comparable[name]
             ]
             raise AssertionError(
                 f"state mismatch after turn {replay_turn['turn']} in {differing}: "
-                f"python={actual_state}, rust={expected_state}"
+                f"python={actual_state}, rust={expected_comparable}"
             )
         actual = canonical_state_hash(game)
         expected = replay_turn["state_hash"]

@@ -444,72 +444,104 @@ def test_the_plan_head_reacts_to_the_bank_it_reads() -> None:
 CLONE_CHECKPOINT = Path("/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt")
 
 
-def _plan_pair(target=(2, 4, 1, 2)):
-    """Two observations identical except for planes 59-71."""
+def _plan_abc(target=(2, 4, 1, 2)):
+    """Three PLAN observations differing only in the channels the clone never saw.
+
+    A: planes 59-71 and plane 98 all zero -- the board every cloned plan row showed.
+    B: only 59-71 differ from A (a standing target and its costs).
+    C: only plane 98 differs from A (the "trained last turn" latch, set).
+    """
 
     banks, trolls = (10, 10, 10, 10), 2
-    absent = _crafted_observation(banks, trolls, None)
-    present = _crafted_observation(banks, trolls, target)
-    assert not np.array_equal(absent, present)
-    assert np.array_equal(absent[:, :59], present[:, :59])
-    assert np.array_equal(absent[:, 72:], present[:, 72:])
-    assert present[:, 59:72].sum() > 0 and absent[:, 59:72].sum() == 0
-    return torch.from_numpy(absent), torch.from_numpy(present)
+    board_a = _crafted_observation(banks, trolls, None)
+    board_b = _crafted_observation(banks, trolls, target)
+    board_c = board_a.copy()
+    board_c[0, 98, :9, :18] = 255
+
+    assert board_a[:, 59:72].sum() == 0 and board_a[:, 98].sum() == 0
+    assert board_b[:, 59:72].sum() > 0 and board_b[:, 98].sum() == 0
+    assert board_c[:, 59:72].sum() == 0 and board_c[:, 98].sum() > 0
+    for other in (board_b, board_c):
+        assert not np.array_equal(board_a, other)
+        assert np.array_equal(board_a[:, :59], other[:, :59])
+        assert np.array_equal(board_a[:, 72:98], other[:, 72:98])
+        assert np.array_equal(board_a[:, 99:], other[:, 99:])
+    return (torch.from_numpy(board) for board in (board_a, board_b, board_c))
 
 
 @pytest.mark.skipif(
     not CLONE_CHECKPOINT.exists(), reason=f"{CLONE_CHECKPOINT} is not on this host"
 )
-def test_the_clone_scores_a_plan_the_same_with_or_without_a_standing_target() -> None:
+def test_the_clone_scores_a_plan_the_same_whatever_the_plan_only_channels_say() -> None:
     """The invariant the clone -> PPO handoff needs, on the real pilot clone.
 
-    The clone was taught with planes 59-71 zero on every plan row. The trunk is shared, so a
-    standing target would move the plan logits through it even though the scorer's match column
-    starts at zero. The trainer zeroes those thirteen planes on PLAN rows, so the two must give
-    byte-identical logits.
+    Behaviour cloning never set planes 59-71 (the standing target) nor plane 98 (the "a troll was
+    trained last turn" latch) on a plan row. The trunk is shared, so either would move the plan
+    logits through it even though the scorer's match column starts at zero. After the sanitizer
+    all three boards must score byte-identically.
     """
 
     model, _ = tpf.load_policy(str(CLONE_CHECKPOINT), torch.device("cpu"))
-    absent, present = _plan_pair()
+    board_a, board_b, board_c = _plan_abc()
     phase = torch.tensor([tpf.PHASE_PLAN], dtype=torch.int64)
 
-    absent_logits, absent_value = tpf.combined_logits(model, absent, phase)
-    present_logits, present_value = tpf.combined_logits(model, present, phase)
+    logits_a, value_a = tpf.combined_logits(model, board_a, phase)
+    logits_b, value_b = tpf.combined_logits(model, board_b, phase)
+    logits_c, value_c = tpf.combined_logits(model, board_c, phase)
 
-    assert torch.equal(absent_logits[:, :PLAN_ACTION_SIZE], present_logits[:, :PLAN_ACTION_SIZE])
-    assert torch.equal(absent_logits, present_logits)
-    assert torch.equal(absent_value, present_value)
+    for logits, value in ((logits_b, value_b), (logits_c, value_c)):
+        assert torch.equal(logits[:, :PLAN_ACTION_SIZE], logits_a[:, :PLAN_ACTION_SIZE])
+        assert torch.equal(logits, logits_a)
+        assert torch.equal(value, value_a)
 
-    # Without the masking the two would part company -- the invariant is not vacuous.
-    unmasked_absent = model.forward_with_plan(absent)[1]
-    unmasked_present = model.forward_with_plan(present)[1]
-    assert not torch.equal(unmasked_absent, unmasked_present)
+    # Unsanitized, B and C each part company with A -- the invariant is not vacuous.
+    plain_a = model.forward_with_plan(board_a)[1]
+    assert not torch.equal(model.forward_with_plan(board_b)[1], plain_a)
+    assert not torch.equal(model.forward_with_plan(board_c)[1], plain_a)
 
 
-def test_a_troll_observation_keeps_its_target_planes() -> None:
+def test_a_troll_observation_keeps_its_plan_only_planes() -> None:
     """Troll mini-steps saw those planes during cloning, so they are left alone."""
 
-    _, present = _plan_pair()
+    _, board_b, _ = _plan_abc()
+    board_b[0, 98, :9, :18] = 255                  # both plan-only groups set at once
     troll = torch.tensor([tpf.PHASE_TROLL], dtype=torch.int64)
-    assert torch.equal(tpf.mask_plan_target_planes(present, troll), present)
+    assert torch.equal(tpf.mask_plan_target_planes(board_b, troll), board_b)
 
-    # A mixed batch: only the PLAN row is touched, and only planes 59-71 of it.
-    batch = torch.cat([present, present], dim=0)
+    # A mixed batch: only the PLAN row is touched, and only planes 59-71 and 98 of it.
+    batch = torch.cat([board_b, board_b], dim=0)
+    original = batch.clone()
     mixed = torch.tensor([tpf.PHASE_PLAN, tpf.PHASE_TROLL], dtype=torch.int64)
     masked = tpf.mask_plan_target_planes(batch, mixed)
     assert int(masked[0, 59:72].sum()) == 0
-    assert torch.equal(masked[1], present[0])
-    assert torch.equal(masked[0, :59], present[0, :59])
-    assert torch.equal(masked[0, 72:], present[0, 72:])
-    assert torch.equal(batch, torch.cat([present, present], dim=0))  # the input is not mutated
+    assert int(masked[0, 98].sum()) == 0
+    assert torch.equal(masked[1], board_b[0])
+    assert torch.equal(masked[0, :59], board_b[0, :59])
+    assert torch.equal(masked[0, 72:98], board_b[0, 72:98])
+    assert torch.equal(masked[0, 99:], board_b[0, 99:])
+    assert torch.equal(batch, original)            # the input is not mutated
 
 
-def test_the_run_records_the_plan_target_memory_flag(tmp_path) -> None:
+def test_the_run_records_the_plan_target_memory_flag(tmp_path, capsys) -> None:
     tpf.main(_fake_run_argv(tmp_path))
     checkpoint = torch.load(
         tmp_path / "smoke-update000002.pt", map_location="cpu", weights_only=False
     )
-    assert checkpoint["config"]["plan_target_memory"] == "off-v1"
+    assert checkpoint["config"]["plan_target_memory"] == "off-v2"
+
+    # The final summary line embeds the update rows, so filter after parsing, not on the text.
+    updates = [
+        row
+        for row in (
+            json.loads(line)
+            for line in capsys.readouterr().out.splitlines()
+            if line.startswith("{")
+        )
+        if row.get("event") == "update"
+    ]
+    assert updates
+    for row in updates:
+        assert 0.0 <= row["rollout_mid_turn_cut_fraction"] <= 1.0
 
 
 # --------------------------------------------------------------------------- 2. the two heads
@@ -1064,9 +1096,13 @@ def test_a_run_with_an_anchor_equal_to_the_policy_logs_a_zero_anchor_loss(
         )
     )
     updates = [
-        json.loads(line)
-        for line in capsys.readouterr().out.splitlines()
-        if line.startswith("{") and '"event": "update"' in line
+        row
+        for row in (
+            json.loads(line)
+            for line in capsys.readouterr().out.splitlines()
+            if line.startswith("{")
+        )
+        if row.get("event") == "update"
     ]
     assert updates
     assert updates[0]["anchor_coef"] == pytest.approx(0.1, rel=1e-3)

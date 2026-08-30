@@ -1,0 +1,52 @@
+{
+  "authoritative_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+  "authoritative_source": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+  "champion_seats": {
+    "0": 91,
+    "1": 109
+  },
+  "elapsed_seconds": 201.29018633626401,
+  "environment": {
+    "decisions": 115920,
+    "step_seconds": 49.47088121762499,
+    "turn_steps": 52326,
+    "turn_steps_per_second": 1057.7131175370657
+  },
+  "episode_seed_base": 410000,
+  "episodes_completed": 200,
+  "episodes_requested": 200,
+  "gameplay_command_games_passed": 200,
+  "gameplay_command_turns_passed": 49945,
+  "gameplay_first_divergence": null,
+  "gate": "paired_exact_input_champion",
+  "illegal_commands": 0,
+  "library": "rust/target/release/libtroll_farm.so",
+  "library_sha256": "aef9723663997af0e6586c0b7b2258c55a1932f3e98c063b5d6d87d46239bb2c",
+  "maps": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/maps-slice-1000.jsonl",
+  "num_envs": 20,
+  "opponent_action_modes": {
+    "first_legal": 56,
+    "last_legal": 57,
+    "middle_legal": 49,
+    "random_legal": 38
+  },
+  "portable_digest": "090ced4d98f0b9a8a19abdb896b9e3b1e311ff60290ab738d71ef1fd9e5f992c",
+  "protocol_digest": "bb4db2bb5a4d84de2e2c2aac470095a3a61cceeb095c14f3a6b0991c768824b5",
+  "random_seed": 20260830,
+  "raw_command_games_passed": 200,
+  "raw_command_turns_passed": 49945,
+  "raw_first_divergence": null,
+  "schema_version": 2,
+  "standalone_binary": "/tmp/champion-exact-v888w7s1/champion",
+  "standalone_protocol_latency_ms": {
+    "maximum": 5.885469727218151,
+    "median": 0.40586385875940323,
+    "p95": 0.790569931268692,
+    "samples": 49945
+  },
+  "standalone_sha256": "0637d35d7ea75a7b84955ec255eceb635f77fc9450aa6e4d6ff85cd8998fa1a1",
+  "terminal_parity": 200,
+  "total_turns": 49945,
+  "transition_parity": 200,
+  "unique_map_indices": 187
+}

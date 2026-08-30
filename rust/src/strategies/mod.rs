@@ -8,6 +8,7 @@ pub mod boss5;
 pub mod boss_real;
 pub mod boss_v3;
 pub mod capacity_separated_denial;
+pub mod champion_exact;
 pub mod chopper;
 pub mod compact_gold;
 pub mod gatherer;
