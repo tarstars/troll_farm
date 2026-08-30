@@ -4,6 +4,7 @@ Date: 2026-08-30
 Agent: `chatgpt_1`
 Task: `20260829-nn-bot-way-b`
 Reviewed implementation: `main@213ee7f586a6a0fc6fda22bee9571159a3efdf0f`
+Revision: r2 — adds phase-correct PPO diagnostics and target-KL semantics
 Verdict: **BLOCKED AS A CLEAN LEVEL-4 / PLAN-ONLY EXPERIMENT**
 
 ## What the patch gets right
@@ -66,17 +67,27 @@ Frozen TROLL rows have no policy gradient path to `plan.*`, but their advantages
 
 Since one turn contributes one PLAN row and one TROLL row per own troll, the plan optimiser's effective objective becomes roster-dependent.
 
-### 3. TROLL rows dilute entropy and anchor KL
+### 3. TROLL rows dilute entropy, anchor and PPO diagnostics
 
-The code still computes:
+The code computes:
 
 ```python
 entropy_loss = entropy.mean()
+approx_kl = (((ratio - 1) - log_ratio).mean())
+clip_fraction = (...).mean()
 ```
 
 over all phases.
 
-With a plan-bearing anchor, `keep` is all rows and `anchor_kl` also returns a mean over all kept rows. Frozen TROLL rows do not update the frozen executor, but they remain in both denominators. The plan entropy and anchor gradients are scaled by the stochastic PLAN/TROLL mixture in each minibatch.
+With a plan-bearing anchor, `keep` is all rows and `anchor_kl` also returns a mean over all kept rows.
+
+Frozen TROLL rows do not update the frozen executor, but they remain in all these denominators. Consequences:
+
+- plan entropy and anchor gradients are scaled by the stochastic PLAN/TROLL mixture;
+- `approx_kl` is diluted by frozen TROLL rows whose ratio remains one;
+- `clip_fraction` is diluted the same way;
+- the `target_kl` early-stop decision can fail to fire even when PLAN KL alone exceeds the threshold;
+- the logged diagnostics do not describe the only policy that is actually trainable.
 
 ### 4. The critic still competes with the plan head through global clipping
 
@@ -110,14 +121,19 @@ This is a project-specific Level-4 definition: the source says the movement netw
 
 Define `policy_rows = (mb_phase == PHASE_PLAN)`.
 
-- normalize policy advantages on `policy_rows` only;
-- compute PPO policy loss on `policy_rows` only;
-- compute entropy on `policy_rows` only;
-- compute anchor KL and top-1 agreement on `policy_rows` only;
-- let value loss use all rows;
-- if a minibatch has zero PLAN rows, run value loss only.
+On `policy_rows` only:
 
-This makes the plan objective invariant to how many frozen TROLL rows happen to accompany it.
+- normalize policy advantages;
+- compute old/new log-probabilities and ratios used by the policy objective;
+- compute PPO policy loss;
+- compute entropy;
+- compute anchor KL and top-1 agreement;
+- compute `approx_kl` and `clip_fraction`;
+- apply `target_kl` early stopping.
+
+Let value loss use all rows. If a minibatch has zero PLAN rows, run value loss only and do not update the PLAN policy diagnostics from that minibatch.
+
+This makes the plan objective and its stopping rule invariant to how many frozen TROLL rows happen to accompany it.
 
 ### Value branch and clipping
 
@@ -135,7 +151,7 @@ Prefer separate plan/critic clipping if the gradient falsifier shows critic domi
 1. Existing frozen-parameter byte-identity test.
 2. **TROLL determinism:** changing the Torch RNG seed cannot change any TROLL action in plan-critic mode; PLAN draws remain seeded and stochastic.
 3. **Executor parity:** plan-critic TROLL actions equal `bench.py` argmax commands on the same observation/mask/staged prefix.
-4. **Population invariance:** duplicate arbitrary frozen TROLL rows around the same PLAN rows; the normalized PLAN advantages and `plan.*` policy gradient remain equal.
+4. **Population invariance:** duplicate arbitrary frozen TROLL rows around the same PLAN rows; normalized PLAN advantages, `plan.*` policy gradient, `approx_kl`, `clip_fraction`, entropy and target-KL decision remain equal.
 5. **Anchor invariance:** duplicating TROLL rows cannot change plan-anchor KL or its gradient.
 6. **No-PLAN minibatch:** value parameters may move; plan parameters and policy diagnostics remain unchanged/empty.
 7. Checkpoint config records `train_scope`, `troll_decoding = argmax`, and the PLAN-row fraction.
@@ -148,7 +164,7 @@ The repaired experiment asks:
 
 The current patch asks instead:
 
-> Can a plan selector improve a weak sampled executor, while its gradient scaling depends on how many frozen troll rows are mixed into each minibatch?
+> Can a plan selector improve a weak sampled executor, while its gradient scaling and stopping diagnostics depend on how many frozen troll rows are mixed into each minibatch?
 
 Those are not equivalent.
 
@@ -157,9 +173,9 @@ Those are not equivalent.
 ```text
 DO NOT START ppo-i from main@213ee7f5.
 KEEP the parameter-freeze implementation.
-ADD phase-specific rollout semantics and PLAN-only policy/entropy/anchor losses.
+ADD phase-specific rollout semantics and PLAN-only policy/entropy/anchor/KL calculations.
 RUN the focused invariance tests.
 THEN start ppo-i with the exact config pinned.
 ```
 
-No training process, checkpoint, environment, YT operation, platform, or Arena state was changed by this review.
+No training process, checkpoint, environment, YT operation, platform or Arena state was changed by this review.
