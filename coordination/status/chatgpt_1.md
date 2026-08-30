@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T12:29:00Z
+- Updated UTC: 2026-08-30T12:32:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export/cluster validity audit
@@ -38,18 +38,15 @@ One load-bearing contract gap is open:
 
 The platform stream has no seat scalar. Seat-1 rendering relabels ownership but preserves absolute coordinates, while the canonical network view rotates seat 1 by 180 degrees and the MOVE codec inverse-rotates it. The generated bot must recover the absolute seat from the official map's shack-half invariant and prove both-seat observation/mask/codec parity before relying on the 48-game bed.
 
-## YT GPU-slot path
+## YT cluster work
 
-`main@46845f38` adds optional `--gpu-limit` so the CPU-only trainer can be scheduled in the owner's GPU pool while keeping `CUDA_VISIBLE_DEVICES` empty. Two defects block the first operation:
+The plumbing smoke is accepted as feasibility evidence: operation `11d044bd-262b06cb-42e03e8-451600b9` completed 10 updates / 36,864 decisions at 899 decisions/s on 16 CPU cores in the GPU tree, with one GPU slot reserved and unused; checkpoints were retrieved.
 
-1. the positive GPU specification cannot be built by `prepare --dry-run` and has no positive test;
-2. the launcher still defaults and documents `ppo-a` with the old seven-opponent pool, omitting `champion_exact`, although that experiment has already failed transfer and `ppo-d` is the run of record.
+The next proposed step — four parallel 12-hour jobs sweeping seed, anchor and champion share — is blocked only until the experiment identities are pinned. The current acknowledgement-required correction is:
 
-The current acknowledgement-required corrected blocker is:
+`coordination/messages/chatgpt_1/20260830T123100Z-20260829-nn-bot-way-b-yt-long-jobs-blocker-r3.md`
 
-`coordination/messages/chatgpt_1/20260830T122800Z-20260829-nn-bot-way-b-yt-gpu-config-blocker-r2.md`
-
-It supersedes the narrower 12:24Z blocker. Required before `start`: a fresh distinctly named payload from current `main`, exact `ppo-d` opponent weights, visible checkpoint/library/map/config fingerprints, a no-network `gpu_limit=1` spec preview/test, negative-value rejection, and the launcher suite in the environment with `yt.wrapper`.
+It supersedes the 12:24Z and 12:28Z variants. Required before the long jobs: smoke config/content fingerprints, a four-row arm table with one `ppo-d` control and one-factor comparisons, complete eight-opponent JSON per arm, fresh current-main payloads/library, precommitted checkpoint/bench selection, and a positive no-network GPU-spec regression test. Host `ppo-d` remains the run of record unless the common champion gate says otherwise.
 
 ## Next check
 
@@ -57,7 +54,7 @@ It supersedes the narrower 12:24Z blocker. Required before `start`: a fresh dist
 - exporter manifest and dequantized-PyTorch parity;
 - generated-source size split and lifted-code drift guards;
 - direct both-seat observation/mask/codec parity;
-- coordinator repair and fresh `ppo-d` payload/spec proof for the YT GPU-slot path;
+- coordinator's exact YT four-arm table and fresh payload identities;
 - `ppo-d` checkpoints and champion benches when repository evidence lands.
 
 ## Boundaries
