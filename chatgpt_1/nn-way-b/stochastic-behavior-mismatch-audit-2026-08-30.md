@@ -4,6 +4,7 @@ Date: 2026-08-30
 Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
 Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
+Revision: r2 — incorporates the retained plan-sampling control and the spatial action multiplicity
 
 ## Verdict
 
@@ -17,9 +18,12 @@ PPO behaviour policy        = temperature-1 categorical sampling
 The project has already measured that these are not equivalent for the clone:
 
 ```text
-argmax clone:   9 wins / 48, about 134 points
-sampled clone:  3 wins / 48, about 109 points
+argmax plan + argmax commands:   9/48, 133.8 points
+sampled plan + argmax commands:  8/48, 133.2 points
+fully sampled play:              3/48, about 109 points
 ```
+
+The retained `bench-sample.json` and its README explicitly say that only the plan head was sampled in the 8/48 control and “it changes nothing.” The later fully sampled result is much worse. This localises most of the observed deployment/behaviour gap to **troll-command sampling**, or to its interaction with plan sampling. The missing decisive arm is argmax plan + sampled commands.
 
 The eroded `ppo-f2` snapshot fell to 0/48 under sampled play. Therefore PPO does not begin by collecting trajectories from the 9/48 clone the project intends to improve. It begins from a substantially weaker stochastic policy with the same weights.
 
@@ -46,6 +50,21 @@ The same untempered distribution is reconstructed for PPO log-probabilities. The
 
 The bench's gate of record and the generated Rust bot use masked argmax. Positive logit scaling would not change this deployed action choice.
 
+## Why troll-command sampling is especially broad
+
+The spatial head is one flat categorical distribution over `13 × 11 × 22 = 3,146` entries.
+
+For a TROLL row:
+
+- every reachable walkable cell can contribute a legal MOVE entry;
+- a large connected map can therefore expose tens or hundreds of MOVE alternatives;
+- legal non-MOVE verbs exist only at the active troll's current cell;
+- behaviour cloning reports only 41% exact MOVE-cell accuracy, versus 80–97% for many non-MOVE verbs.
+
+A softmax draw is affected by **total probability mass**, not only the best logit. Even when the best single action is useful, a large collection of individually lower MOVE logits can hold most of the probability mass. Temperature-1 sampling can then choose a poor destination frequently while argmax remains stable.
+
+This is an action-representation/exploration interaction, not merely generic “PPO noise.” A fixed entropy coefficient also has phase- and state-dependent meaning because maximum entropy grows with the number of legal actions.
+
 ## Why critic warm-up does not close the mismatch
 
 During critic warm-up the actor parameters are frozen, but rollouts still call `distribution.sample()`.
@@ -58,34 +77,40 @@ At the exact clone the anchor KL is zero. The entropy term has a nonzero gradien
 
 All of these are read-only benches or offline tensor calculations.
 
-### 1. Four-cell decoding matrix
+### 1. Complete the decoding matrix
 
-Run the exact clone on the same 24 maps and both seats, same game seeds:
+The existing evidence is:
 
-| arm | plan | troll commands |
-|---|---|---|
-| AA | argmax | argmax |
-| SA | sample at T=1 | argmax |
-| AS | argmax | sample at T=1 |
-| SS | sample at T=1 | sample at T=1 |
+| arm | plan | troll commands | result |
+|---|---|---|---|
+| AA | argmax | argmax | 9/48, 133.8 |
+| SA | sample at T=1 | argmax | 8/48, 133.2 |
+| AS | argmax | sample at T=1 | **missing** |
+| SS | sample at T=1 | sample at T=1 | 3/48, about 109 |
 
-The bench already supports these switches separately. Report wins, scores, endings, loops, purchases and fruit-chain command counts. This identifies whether the plan head, spatial head or both create the behaviour gap.
+Run only the missing AS arm first, on the same maps, seats and game seeds. If AS already reproduces most of the 3/48 loss, plan sampling is discharged and the next work belongs entirely to the spatial behaviour policy.
 
-### 2. Confidence census on the same states
+Report wins, scores, endings, loops, purchases and fruit-chain command counts.
+
+### 2. Confidence and probability-mass census
 
 For PLAN and TROLL rows separately, report:
 
 - legal-action count;
+- legal MOVE count versus legal non-MOVE count;
 - top-1 probability;
 - top-2 margin in logits and probability;
-- entropy;
+- entropy and `entropy / log(legal_count)`;
+- probability mass on all MOVE entries versus all non-MOVE entries;
 - probability mass outside top 1 and top 5;
 - sampled-versus-argmax disagreement;
 - TROLL split by selected argmax verb (`MOVE`, `PICK`, `PLANT`, `HARVEST`, `DROP`, `CHOP`, other).
 
+For MOVE argmax rows, additionally report the sampled destination's distance from the argmax destination and whether it changes the semantic target class.
+
 ### 3. Diagnostic temperature sweep
 
-Without training, run the sampled arms at fixed temperatures such as `1.0`, `0.5`, and `0.25`. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much sharpening is required for sampled behaviour to resemble the deployment policy.
+Without training, run the AS arm at fixed temperatures such as `1.0`, `0.5`, and `0.25`. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much sharpening is required for sampled behaviour to resemble the deployment policy.
 
 ### 4. Gradient decomposition
 
@@ -97,7 +122,7 @@ On one saved post-warm-up minibatch, measure policy-parameter gradient norms and
 - PLAN versus TROLL rows;
 - fruit-chain rows versus the rest.
 
-At step zero also verify numerically that anchor KL gradient is zero and entropy gradient is not.
+At step zero also verify numerically that anchor KL gradient is zero and entropy gradient is not. Report the entropy contribution by legal-action-count bucket, because a fixed coefficient is not a fixed exploration pressure across masks.
 
 ## Controlled next run, only if diagnostics support it
 
@@ -114,12 +139,15 @@ Choose the temperature by a frozen rule before the run, preferably from held-out
 
 Entropy is a separate factor. If it remains suspect after gradient decomposition, test `entropy_coef = 0` as its own matched-seed arm rather than changing temperature and entropy together.
 
+A longer-term representation fix could sample a verb and a MOVE destination hierarchically, but that changes the policy architecture and is not the first control.
+
 ## Recommendation
 
 ```text
 DO NOT call the current stochastic rollout policy “the 9/48 clone.”
-RUN the AA/SA/AS/SS matrix and confidence census before another explanatory long run.
-TREAT sampling temperature and entropy as untested common factors across all five eroding runs.
+RUN the missing argmax-plan / sampled-command arm first.
+MEASURE MOVE probability mass and legal-action multiplicity.
+TREAT command-sampling temperature and entropy as untested common factors across all eroding runs.
 CHANGE one of them at a time, with a matched seed, only after the offline diagnostics.
 ```
 
