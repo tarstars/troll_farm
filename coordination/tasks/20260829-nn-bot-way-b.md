@@ -263,6 +263,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 07:5xZ: **the exploratory run's update-1,000 checkpoint benched vs the champion's file: 2 wins of 48 (the clone
+  9), 87 points vs 183 (the clone 134 vs 186), a troll bought in 28 games (the clone 44), 20 games ended by grace-expired,
+  3 loop games — worse than the clone it started from, while its win rate against the practice mix had risen to 42 %.**
+  The practice pool (weak linked bots + frozen copies) does not transfer to the champion; the two credit defects
+  (amendments 10, 11) may have added to it. Ruled: **an exact linked copy of the champion joins the training pool** —
+  sub-card `20260829-nn-bot-way-b-champion.md`, codex_1 chartered (parity by replay on 200 recorded games). The run of
+  record `ppo-b` (patched trainer) runs meanwhile on the present pool; its first bench decides whether to wait for the
+  champion opponent before spending the budget. — coordinator
 - 2026-08-30 07:4xZ: **the run of record `ppo-b` started** from the clone with the patched trainer (amendments 10 and 11 in;
   53 tests; `plan_target_memory: off-v1`), the same command as `ppo-a` (`/home/tarstars/nn-data/ppo-2026-08-30-b/`); the
   exploratory `ppo-a` stopped at ~1,300 updates / 5.3 M decisions (win rate vs its practice mix 0 → 42 % in three hours;
