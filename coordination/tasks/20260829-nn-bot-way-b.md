@@ -219,7 +219,19 @@ discipline of one Rust builder), not on impossibility.
 column for the "matches the standing target" feature is initialized to exactly zero, so a behaviour-cloned
 checkpoint (which never sees a standing target) gives identical plan logits at the first PPO plan phase with or
 without one; PPO trains that column afterwards. Test: identical logits at init with and without a target; a
-gradient step on the column makes them differ. Python: `FullVecEnv` in
+gradient step on the column makes them differ.
+**(10) the advantage trace inside a turn** (chatgpt_1 07:03/07:15Z, accepted 07:3xZ): `compute_gae` decayed a turn's reward
+by λ once per mini-step even where the discount was 1, so a plan decision received 0.95^k of its own turn's reward — credit
+depended on the roster after all. Two factors: the value bootstrap uses γ only at a turn boundary (1 inside), the trace uses
+γ·λ only at a turn boundary (1 inside); tests: 0/1/4/12 same-turn mini-steps before one reward R all receive R; the two-turn
+closed form keeps γ·λ across the boundary. **(11) no standing target at plan decisions in the first Phase 3 run**: the
+shared trunk reads planes 59–71, the clone's plan rows had them zero, so a standing target at the clone→PPO handoff shifts
+the plan logits through the trunk whatever the match column does (the zero-init of amendment 8's third completion was
+necessary, not sufficient). Ruled: the trainer zeroes planes 59–71 at every PLAN decision (policy, anchor, frozen opponent
+alike; troll decisions untouched), with a test on the real clone checkpoint that two plan observations differing only in
+those planes give byte-identical plan logits; target persistence returns later through a separate, explicitly gated path.
+**The run started at 04:45Z is exploratory, not the run of record**: it stops when the patched trainer lands and the run
+of record restarts from the clone. Python: `FullVecEnv` in
 `cgauto/rl_full_env.py` mirroring `Level1VecEnv` (`cgauto/rl_level1_env.py:42–161`), NumPy buffers,
 context manager. Tests under `tests/` in the repo's style: decode/encode round trip on every legal
 index; mask legality against the engine (a random legal action is never rejected by `step`, 10,000
