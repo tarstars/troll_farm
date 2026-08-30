@@ -342,6 +342,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (9, 134); the champion's own score rose with it (178 → 194: the games last longer, 34 of 48 to the turn limit), so the
   margin (−61) is no better than at update 500 (−54). One 48-game bench is ±2 wins; update 1,500 (~17:25Z) is the next
   reading; a snapshot at or above the clone's 9 with a better margin would make `ppo-f2` the run of record. — coordinator
+- 2026-08-30 17:0xZ: **a correction of my own cluster reading.** At 15:3xZ I read the jobs' *first* heartbeat lines as their current
+  state and logged "a/b/c began running only ~15:20Z after three hours in the queue" (also in the report's fourth edition).
+  Wrong: at 17:06Z the monitor's last heartbeats show `ppo-yt-a/b/c` at 270 minutes elapsed — running since ~12:35Z, right
+  after launch — at updates 4,204 / 3,725 / 4,275 (≈ 17 million decisions each), practice win rates 27 % / 26 % / 17 % (c's
+  champion-heavy pool is the harder one); `ppo-yt-d` since ~15:55Z at 1,064 updates (29 %); `ppo-yt-e`/`f` running but not
+  yet reporting. a/b/c finish ~00:35Z, d ~04:00Z; e/f later. The report's next edition carries the correction. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
