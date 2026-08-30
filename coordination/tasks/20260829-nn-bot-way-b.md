@@ -370,6 +370,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   end-wood 4.0, warm-up 300, actor lr ×0.3, the leash 0.1 → 0.05), 8 threads at the lowest priority; benched at updates 500,
   1,000, 1,500. The cluster's job `ppo-yt-c` (champion-heavy pool, old objective) is the overnight control of the same idea.
   For later: the trainer logs no per-opponent win rate — worth adding, so the practice numbers can be read. — coordinator
+- 2026-08-30 18:3xZ: **`ppo-g` (the champion as the only opponent; started 17:45Z, `/home/tarstars/nn-data/ppo-2026-08-30-g/`) at
+  update 500 — 200 policy updates after its warm-up — vs the champion's file: 5 wins of 48 (2 on seat 0, 3 on seat 1), 133.8
+  points to 185.3; 18 games ended early, 2 loop games, 0 illegal; a purchase in 43 of 48 games; per game chop 112 / harvest
+  37 / plant 25 / drop 62 / move 244 (the clone 94 / 38 / 25 / 66 / 253).** The points are the clone's own (134 vs 186) and the
+  collecting is intact — the first snapshot of any run without erosion at this age (`ppo-f2` at 500: 124 points; run D: 108);
+  the wins (5) are below the clone's 9 but within one bench's noise. Its practice numbers against the champion alone are the
+  honest baseline: 3 % wins, margin −116 in sampled play (update 474). Not a gain yet; `ppo-f2` fell at update 1,500, so the
+  readings at 1,000 (~19:15Z) and 1,500 (~20:05Z) decide whether the champion-only pool holds the line. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
