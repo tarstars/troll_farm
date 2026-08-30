@@ -1,68 +1,51 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T10:36:00Z
+- Updated UTC: 2026-08-30T12:14:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
-- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring plus the exact-champion opponent sub-card
+- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export audit
 - Branch: `agent/chatgpt_1`
 
-## Parent task — validity gate closed
+## Phase 3 — current run of record
 
-The coordinator completed amendment 11 at `main@1f1dae6d`:
+The clone-to-PPO validity gate is closed: within-turn credit uses trace factor 1; every PLAN network call sanitizes planes 59–71 and 98 (`plan_target_memory: off-v2`); the real-clone A/B/C invariant passes; fixed-horizon rollout cuts use the ordinary value bootstrap.
 
-- every PLAN network call zeroes planes 59–71 and plane 98 (`plan_target_memory: off-v2`);
-- policy, value, anchor and frozen opponent all pass through the same sanitizer;
-- troll rows are preserved;
-- actual-clone A/B/C full-model logits and values are byte-identical after sanitization, while both unsanitized B and C diverge from A;
-- the mid-turn rollout-cut fraction is logged as non-gating instrumentation, consistent with the 09:10 withdrawal of the overstrong complete-turn blocker.
+The exact linked champion is now DONE and ACCEPTED. Codex's paired exact-input gate passed 200/200 games and 49,945 turns for raw and gameplay commands, transition and terminal parity passed 200/200, and Claude independently reproduced the portable digests and all load-bearing counts. Pool id 7 `champion_exact` is on `main`.
 
-Process disposition is explicit on the card:
+Process disposition:
 
-- `ppo-a`: exploratory;
-- `ppo-b`: stopped at 446 updates, exploratory;
-- `ppo-c`: run of record, restarted from the original clone under `off-v2`.
+- `ppo-a`, `ppo-b`, `ppo-c`: exploratory;
+- `ppo-c`'s last checkpoint scored 3 wins of 48 against the champion, confirming that the sanitized trainer with the old opponent pool still transferred poorly;
+- `ppo-d`: run of record since 09:42Z, restarted from the clone with `champion_exact` weighted 4 in the training pool.
 
-My 10:30 progress note asked that the process/config version be explicit; the card now supplies it. No parent validity blocker remains.
+My 11:10Z champion-card drift warning read a stale card image. The valid correction is:
 
-## Exact-champion sub-card — active proof
+`coordination/messages/chatgpt_1/20260830T121200Z-20260829-nn-bot-way-b-champion-card-drift-correction.md`
 
-Codex's implementation source is accepted:
+Current `main` already contains the ruled authority, paired proof and DONE line.
 
-- exact readable diagnostic arm SHA `321723933c2a...`;
-- authoritative compacted target SHA `0e92f8fa1e90...`;
-- generator refuses hash/token drift;
-- linked stateful strategy, eight-entry pool and C/Python ABI compile;
-- frozen opponent remains ID 6, exact champion is ID 7, and the allocation boundary copies exactly eight weights;
-- seat adapter swaps shacks, inventories, scores and unit ownership while preserving absolute coordinates/ids;
-- authoritative source has no clock, randomness, or randomized hash containers.
+## Phase 4 — exporter and single-file bot
 
-The reconstructed-replay command gate was correctly stopped: the authoritative standalone and linked wrapper agree on the supplied reconstructed state while both differ from the recorded command, proving that the package does not contain literal player stdin.
+The engineering sub-card is active:
 
-The coordinator has ruled the replacement proof route on the parent card:
+`coordination/tasks/20260829-nn-bot-way-b-export.md`
 
-- 200 real-map paired exact-input games, both seats;
-- persistent authoritative standalone and linked instance per game;
-- identical canonical engine state each turn;
-- exact contest protocol to the standalone, direct adapter to the linked strategy;
-- raw command parity reported separately; gameplay parity with MSG stripped is load-bearing;
-- two engine copies compare every transition and terminal result;
-- report hashes, games/turns, first divergence and speed.
+Codex accepted it and published the day-1 budget: 34,799 shipping parameters, about 36.3 kB as per-output int8, at most 45.5 k base85 characters, with 32 k characters reserved for protocol/planes/masks/staging and 13 k for the kernel and plan scorer. Planned order: dequantized-PyTorch parity, generated Rust source, then 48-game command bed plus compacted size and cold/warm timing gates.
 
-Reviewed serializer reuse: `nn_runtime.py::SeatRendering` already supplies the exact both-seat player view and is pinned by bench self-tests.
+One load-bearing contract gap is open:
 
-Codex has cleared transport but has not yet published the paired harness/results after the amended card. That is the active item.
+`coordination/messages/chatgpt_1/20260830T121300Z-20260829-nn-bot-way-b-export-seat-recovery-blocker.md`
 
-## Transport — cleared
-
-The coordinator quarantined both immutable delivery failures (entries 25–26). Codex and Claude fetched the adjudication and their standalone `--mark` rituals now report zero delivery/quarantine errors.
+The platform stream has no seat scalar. Seat-1 rendering relabels ownership but preserves absolute coordinates, while the canonical network view rotates seat 1 by 180 degrees and the MOVE codec inverse-rotates it. The generated bot must recover the absolute seat from the official map's shack-half invariant and prove both-seat observation/mask/codec parity before relying on the 48-game bed.
 
 ## Next check
 
-- Codex fetches the amended card and resumes the paired exact-input proof;
-- review harness construction, both seats, 200 games, state/terminal parity and speed;
-- verify champion integration against the final report before it is merged into the training pool;
-- monitor `ppo-c` checkpoints and champion benches once evidence lands.
+- Codex/coordinator acknowledgement and implementation of seat recovery;
+- exporter manifest and dequantized-PyTorch parity;
+- generated-source size split and lifted-code drift guards;
+- direct both-seat observation/mask/codec parity;
+- `ppo-d` checkpoints and champion benches when repository evidence lands.
 
 ## Boundaries
 
-No code, build row, formal review verdict, experiment, dataset, training run, main integration, submission, leaderboard read, or Arena action is claimed or authorized here.
+No code build, formal review verdict, experiment, dataset, training process, main integration, platform submission, leaderboard read, or Arena action is claimed or authorized here.
