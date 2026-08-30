@@ -458,6 +458,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   update-500 bench ~00:10Z; with the movement frozen the floor is the clone's own play, so whatever moves is the plan head's
   doing. Cluster note: `ppo-yt-b` was preempted and restarted from scratch ~22:08Z (the entrypoint has no resume) — its
   result comes last; a/c finish ~00:35Z, d ~03:15Z, e/f ~05:50Z. — coordinator
+- 2026-08-30 23:1xZ: **the staged run's first test — `ppo-i` at update 500 (200 plan-head updates after its warm-up): 9 wins of
+  48 (5 on seat 0, 4 on seat 1), 128.6 points to 184.4 — the clone's 9, the first snapshot of any run to hold the bar.** A
+  purchase in 44 of 48 games; per game chop 85 / harvest 40 / plant 23 / move 256 — the clone's profile, as the freeze
+  guarantees; 2 loop games, 0 illegal. And the practice numbers finally mean something: with the movement executed argmax,
+  the run's own win rate is 17.7 % (the bench's 9/48 = 18.75 %) at margin −49.7, against 1.6–3.8 % and −112…−122 for the
+  full-parameter runs — the practice metric now tracks the bench. Anchor agreement 0.988, entropy 0.90. Points slightly
+  under the clone's 133.9 (within one bench's noise); **whether the plan head climbs above the clone is the update-1,000
+  question (~00:25Z)**. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
