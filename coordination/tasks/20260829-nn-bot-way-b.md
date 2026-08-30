@@ -270,6 +270,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
   record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
   on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
+- 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
+  decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
+  retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
+  champion 4 of 10), `ppo-yt-b` (`6539cc3e-6002fe31-42e03e8-f5005ad7`; seed 12; the anchor stronger, 0.3→0.05),
+  `ppo-yt-c` (`e5e5577-4c0e1939-42e03e8-5d7baf26`; seed 13; the champion 7 of 10), `ppo-yt-d`
+  (`dc8fce0a-df0411ee-42e03e8-c700a2b5`; seed 14; frozen copies 4 of 10, refreshed every 50 updates). Their checkpoints
+  are benched on the host against the champion's file when they return (~01:00Z 08-31). `ppo-d` stays the run of
+  record here. — coordinator
 - 2026-08-30 12:3xZ: **YT works.** The owner: "one train takes 3.5 days looks like a job for yt runner" (07:1xZ), "wifi", then
   "gpu" (11:5xZ) when the CPU tree's pools refused immediate operations. The new CPU-only launcher
   (`local_claude_1/nn-bot/yt_ppo_launcher.py` + `yt_ppo_entrypoint.py`, 15 tests; run with the helper project's Python) uploaded a
