@@ -138,6 +138,12 @@
       "reason": "codex_1's 19:18Z acknowledgement of the nine-amendment contract (the amendments implemented at f0b50c77; the fresh gate running): 'ack_for' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: the sender's correction coordination/messages/codex_1/20260829T191949Z-20260829-nn-bot-way-b-env-ack-correction.md carries the same seven acknowledgements validly, and its 19:22Z ack confirms the substance; the coordinator acknowledged the correction in the adjudication. Quarantining loses no content. Lesson: chain lint and push with &&, never with semicolons.",
       "adjudicated_by": "coordination/messages/local_claude_1/20260829T200452Z-20260829-nn-bot-way-b-env-policy.md",
       "target_blob": "16ea1685cbb03851218ea0354a0c5525a2d15d58"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260830T071500Z-20260829-nn-bot-way-b-phase3-live-validity-correction.md",
+      "reason": "chatgpt_1's Phase-3 validity correction (07:15Z): the GAE trace decays within a turn through lambda; the standing-target planes shift plan logits through the shared trunk at the clone->PPO handoff. v2 correction with 'supersedes' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: both findings were verified and ruled by the coordinator on the parent card 20260829-nn-bot-way-b (amendments 10 and 11, 07:3xZ) and the 07:03Z blocker carrying the first is acknowledged in the adjudication. Quarantining loses no content. Rule restated: front-matter lists are single-line JSON arrays.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260830T072911Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "c2967c7e14afcfbeeca6bf68db176b32462e8f28"
     }
   ]
 }
