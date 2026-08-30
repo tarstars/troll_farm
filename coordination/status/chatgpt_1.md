@@ -1,72 +1,67 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T10:18:00Z
+- Updated UTC: 2026-08-30T10:36:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
-- Active programme: `20260829-nn-bot-way-b`, Phase 3 live-training validity plus the exact-champion opponent sub-card
+- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring plus the exact-champion opponent sub-card
 - Branch: `agent/chatgpt_1`
 
-## Parent task
+## Parent task — validity gate closed
 
-Amendments 10 and 11 are merged at `b98c23d5`: trace factor 1 inside a turn; target planes 59–71 sanitized for every PLAN network call; actual-clone A/B invariant; `ppo-a` exploratory.
+The coordinator completed amendment 11 at `main@1f1dae6d`:
 
-The current acknowledgement-required message is:
+- every PLAN network call zeroes planes 59–71 and plane 98 (`plan_target_memory: off-v2`);
+- policy, value, anchor and frozen opponent all pass through the same sanitizer;
+- troll rows are preserved;
+- actual-clone A/B/C full-model logits and values are byte-identical after sanitization, while both unsanitized B and C diverge from A;
+- the mid-turn rollout-cut fraction is logged as non-gating instrumentation, consistent with the 09:10 withdrawal of the overstrong complete-turn blocker.
 
-`coordination/messages/chatgpt_1/20260830T091000Z-20260829-nn-bot-way-b-ppo-b-validity-correction.md`
+Process disposition is explicit on the card:
 
-It withdraws the overstrong rollout-boundary blocker. Standard fixed-horizon bootstrap is not a different objective and does not invalidate `ppo-b`.
+- `ppo-a`: exploratory;
+- `ppo-b`: stopped at 446 updates, exploratory;
+- `ppo-c`: run of record, restarted from the original clone under `off-v2`.
 
-The sole remaining parent-task issue is plane 98:
+My 10:30 progress note asked that the process/config version be explicit; the card now supplies it. No parent validity blocker remains.
 
-- clone training and all 48 clone-bench PLAN rows had `prior_target_trained=false`;
-- PPO sets plane 98 after a successful TRAIN;
-- plane 98 enters the shared trunk;
-- amendment 11 currently sanitizes only 59–71.
-
-Required narrow repair: sanitize 59–71 and 98 at every PLAN network call; actual-clone A/B/C invariant (zero context / target-only / plane98-only). The coordinator decides `ppo-b` disposition.
-
-## Exact-champion sub-card
+## Exact-champion sub-card — active proof
 
 Codex's implementation source is accepted:
 
 - exact readable diagnostic arm SHA `321723933c2a...`;
 - authoritative compacted target SHA `0e92f8fa1e90...`;
-- generator refuses any hash/token drift;
+- generator refuses hash/token drift;
 - linked stateful strategy, eight-entry pool and C/Python ABI compile;
-- frozen opponent remains ID 6, exact champion is ID 7, and the allocation boundary copies exactly eight weights.
+- frozen opponent remains ID 6, exact champion is ID 7, and the allocation boundary copies exactly eight weights;
+- seat adapter swaps shacks, inventories, scores and unit ownership while preserving absolute coordinates/ids;
+- authoritative source has no clock, randomness, or randomized hash containers.
 
-Codex's direct blocker is processed and acknowledged:
+The reconstructed-replay command gate was correctly stopped: the authoritative standalone and linked wrapper agree on the supplied reconstructed state while both differ from the recorded command, proving that the package does not contain literal player stdin.
 
-`coordination/messages/codex_1/20260830T081012Z-20260829-nn-bot-way-b-champion-parity-blocker.md`
+The coordinator has ruled the replacement proof route on the parent card:
 
-The first reconstructed-replay mismatch reproduces identically in the authoritative standalone and linked wrapper, proving the reconstruction is not literal player stdin. The recorded package is therefore a reconstruction-limitation report, not command-parity authority.
+- 200 real-map paired exact-input games, both seats;
+- persistent authoritative standalone and linked instance per game;
+- identical canonical engine state each turn;
+- exact contest protocol to the standalone, direct adapter to the linked strategy;
+- raw command parity reported separately; gameplay parity with MSG stripped is load-bearing;
+- two engine copies compare every transition and terminal result;
+- report hashes, games/turns, first divergence and speed.
 
-Recommended coordinator ruling: 200 real-map paired exact-input games, both seats, one persistent authoritative process and linked instance per game, identical canonical state, exact contest protocol to the standalone and direct adapter to the linked strategy, raw/gameplay command comparison plus two-engine transition/terminal parity.
+Reviewed serializer reuse: `nn_runtime.py::SeatRendering` already supplies the exact both-seat player view and is pinned by bench self-tests.
 
-The proof can reuse reviewed code: `nn_runtime.py::SeatRendering` already serializes the exact player view for both seats and is pinned by the bench self-tests. Progress note:
+Codex has cleared transport but has not yet published the paired harness/results after the amended card. That is the active item.
 
-`coordination/messages/chatgpt_1/20260830T100500Z-20260829-nn-bot-way-b-champion-exact-input-progress.md`
+## Transport — cleared
 
-## Transport
-
-Codex's transport blocker is acknowledged at:
-
-`coordination/messages/chatgpt_1/20260830T101000Z-20260829-nn-bot-way-b-transport-deferred-ack.md`
-
-Coordinator quarantine is requested for:
-
-1. the invalid 07:43Z handoff missing artifact metadata;
-2. the immutable 09:50Z correction that failed Codex's sweep during a stale-ref window.
-
-The r3 supersession target is now demonstrably an ancestor of the current branch, but quarantine remains the clean way to clear already-recorded delivery errors. The valid 09:51Z ACK and 10:05Z progress preserve all champion substance.
+The coordinator quarantined both immutable delivery failures (entries 25–26). Codex and Claude fetched the adjudication and their standalone `--mark` rituals now report zero delivery/quarantine errors.
 
 ## Next check
 
-- coordinator ruling and plane98 patch/disposition for `ppo-b`;
-- coordinator quarantine of the two immutable delivery failures;
-- coordinator authorization of paired exact-input champion proof;
-- review A/B/C invariant, paired harness, 200-game results and speed;
-- then checkpoint/bench monitoring resumes.
+- Codex fetches the amended card and resumes the paired exact-input proof;
+- review harness construction, both seats, 200 games, state/terminal parity and speed;
+- verify champion integration against the final report before it is merged into the training pool;
+- monitor `ppo-c` checkpoints and champion benches once evidence lands.
 
 ## Boundaries
 
