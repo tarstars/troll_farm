@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T09:12:00Z
+- Updated UTC: 2026-08-30T09:55:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 live-training validity plus the exact-champion opponent sub-card
@@ -8,59 +8,56 @@
 
 ## Current work
 
-Continuously polling canonical branches, processing direct obligations, and verifying the clone-to-PPO run. Phase 1 is accepted; Phase 2 produced a legal clone and its 48-game owner-readable bench.
+Continuously polling canonical branches, processing direct obligations, and verifying the clone-to-PPO run and exact-champion opponent.
 
-## Accepted and merged
+## Parent task
 
-The coordinator accepted amendments 10 and 11. `main@b98c23d5`:
-
-1. uses trace factor 1 on artificial within-turn mini-steps and `gamma*lambda` only across a real turn boundary;
-2. zeroes target planes 59–71 at every PLAN network call for policy, value, anchor and frozen opponent;
-3. includes the real-clone A/B full-model invariance test;
-4. keeps `ppo-a` exploratory.
-
-## Parent-task correction
+Amendments 10 and 11 are merged at `b98c23d5`: trace factor 1 inside a turn; target planes 59–71 sanitized for every PLAN network call; actual-clone A/B invariant; `ppo-a` exploratory.
 
 The current acknowledgement-required message is:
 
 `coordination/messages/chatgpt_1/20260830T091000Z-20260829-nn-bot-way-b-ppo-b-validity-correction.md`
 
-It supersedes and withdraws the overstrong complete-turn/rollout-boundary blocker. Fixed-horizon PPO may truncate at a nonterminal mini-step and bootstrap `V(s_next)`; with the phase and staged actions in the state this is standard truncated GAE. An initially weak critic adds ordinary bootstrap estimation error, not a different objective. `ppo-b` is not invalid on that basis.
+It withdraws the overstrong rollout-boundary blocker. Standard fixed-horizon bootstrap is not a different objective and does not invalidate `ppo-b`.
 
-The sole remaining parent-task blocker is plane 98:
+The sole remaining parent-task issue is plane 98:
 
-- BC and all 48 clone-bench PLAN rows had `prior_target_trained=false`;
+- clone training and all 48 clone-bench PLAN rows had `prior_target_trained=false`;
 - PPO sets plane 98 after a successful TRAIN;
 - plane 98 enters the shared trunk;
-- amendment 11 currently sanitizes only 59–71.
+- amendment 11 sanitizes only 59–71.
 
-Required narrow repair: sanitize 59–71 and 98 at every PLAN network call and extend the actual-clone invariant to A = zero context, B = target-only, C = plane98-only. The coordinator decides whether `ppo-b` restarts or continues after this rare context is patched.
+Required narrow repair: sanitize 59–71 and 98 at every PLAN network call; actual-clone A/B/C invariant (zero context / target-only / plane98-only). The coordinator decides `ppo-b` disposition.
 
-## Exact-champion sub-card blocker
+## Exact-champion sub-card
 
-The current acknowledgement-required source blocker is:
+Codex's generator source review is accepted:
 
-`coordination/messages/chatgpt_1/20260830T090000Z-20260829-nn-bot-way-b-champion-source-blocker-r2.md`
+- exact readable diagnostic arm SHA `321723933c2a...`;
+- authoritative compacted target SHA `0e92f8fa1e90...`;
+- generator refuses any hash/token drift;
+- eight-entry pool and ABI compile.
 
-The repository already contains the exact diagnostic arm and its round-trip authority:
+Codex's direct blocker is processed and acknowledged:
 
-- compacted target: `cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs`, SHA-256 `0e92f8fa...`;
-- exact readable arm: `local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs`, SHA-256 `32172393...`;
-- report: `readable/reports/candidate-champion-denial-off-v6-instrument.round-trip.json`, canonical token stream identical.
+`coordination/messages/codex_1/20260830T081012Z-20260829-nn-bot-way-b-champion-parity-blocker.md`
 
-Codex should generate from that arm, or explicitly prove gameplay-without-MSG parity from the simpler readable source before state/terminal parity.
+The first reconstructed-replay mismatch reproduces identically in the authoritative standalone and linked wrapper, proving the reconstructed state is not the literal player stdin. My proxy-population blocker is withdrawn by:
+
+`coordination/messages/chatgpt_1/20260830T095000Z-20260829-nn-bot-way-b-champion-source-correction.md`
+
+Recommended coordinator ruling: 200 real-map paired exact-input games, both seats, authoritative persistent process fed the exact contest protocol versus linked persistent strategy fed the direct adapter, two engine copies, raw/gameplay command parity plus transition/terminal parity. The recorded package remains a reconstruction-limitation report.
 
 ## Next check
 
 - coordinator ruling and plane98 patch/disposition for `ppo-b`;
-- A/B/C actual-clone invariant;
-- exact-champion authority/parity acknowledgement before the generator lands;
-- review linked opponent parity and speed;
+- coordinator authorization of paired exact-input champion proof;
+- review A/B/C invariant, paired harness, 200-game results and speed;
 - then checkpoint/bench monitoring resumes.
 
 ## Transport debt
 
-The invalid 07:43Z handoff remains an immutable delivery error even though its finding was republished and superseded. Codex and Claude both report that inbox marking is blocked until the coordinator quarantines that path.
+The invalid 07:43Z handoff remains an immutable delivery error even though its finding was republished and superseded. Codex and Claude report that inbox marking is blocked until the coordinator quarantines that path.
 
 ## Boundaries
 
