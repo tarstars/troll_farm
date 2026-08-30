@@ -301,9 +301,11 @@ single function is the Rust side of the 1,000-state dataset drift test.
 ## Replay extraction for parity tests
 
 Every environment slot records its map, complete initial state (including both chop-1 starters),
-absolute seats, and both players' canonical command strings before stepping. It also records the
-terminal kind/reason and final persistent stall counter. A completed replay remains attached to the
-reset slot until read:
+absolute seats, and both players' canonical command strings before stepping. Each saved state has
+canonical cell-sorted `plants` for transition comparison and a `plant_order` list of `[x,y]` cells
+that preserves the engine vector's exact order for platform-protocol replay; a deterministic policy
+may use input order to break an otherwise equal score. It also records the terminal kind/reason and
+final persistent stall counter. A completed replay remains attached to the reset slot until read:
 
 ```c
 int64_t tf_full_take_replay(

@@ -1093,6 +1093,7 @@ struct ReplayState {
     scores: [i32; 2],
     units: Vec<ReplayUnit>,
     plants: Vec<JsonPlant>,
+    plant_order: Vec<[i32; 2]>,
 }
 
 impl From<&GameState> for ReplayState {
@@ -1113,6 +1114,15 @@ impl From<&GameState> for ReplayState {
                 carry: unit.carry,
             })
             .collect();
+        // The canonical state comparison sorts plants by cell, but a real player receives
+        // them in the engine vector's order.  That order can affect a deterministic policy's
+        // tie-breaking and therefore belongs in the paired protocol proof even though it is
+        // irrelevant to transition-state equality.
+        let plant_order = game
+            .plants
+            .iter()
+            .map(|plant| [plant.x, plant.y])
+            .collect();
         let mut plants: Vec<_> = game.plants.iter().collect();
         plants.sort_by_key(|plant| (plant.pos(), &plant.plant_type));
         Self {
@@ -1122,6 +1132,7 @@ impl From<&GameState> for ReplayState {
             scores: game.scores,
             units,
             plants: plants.into_iter().map(JsonPlant::from).collect(),
+            plant_order,
         }
     }
 }

@@ -23,6 +23,7 @@ from cgauto.rl_full_env import (
     verify_terminal_parity,
     verify_transition_parity,
 )
+from codex_1.nn_bot.champion_exact_parity import protocol_header, protocol_turn
 
 
 TEST_LIBRARY = Path(os.environ.get("TF_FULL_TEST_LIBRARY", DEFAULT_LIBRARY))
@@ -130,6 +131,48 @@ def _append_empty_turn(record: dict) -> dict:
         }
     )
     return amended
+
+
+def test_champion_exact_pool_id_and_protocol_seat_rendering() -> None:
+    assert OPPONENTS[7] == "champion_exact"
+    game_map = {"w": 5, "h": 2, "rows": ["0.+.1", "..~.."]}
+    assert protocol_header(game_map, 0) == "5 2\n0.+.1\n..~..\n"
+    assert protocol_header(game_map, 1) == "5 2\n1.+.0\n..~..\n"
+
+    snapshot = {
+        "turn": 7,
+        "next_id": 2,
+        "inventories": [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12]],
+        "scores": [34, 76],
+        "plants": [
+            {
+                "type": "LEMON", "x": 2, "y": 0, "size": 3,
+                "health": 10, "fruits": 2, "cooldown": 6,
+            }
+        ],
+        "plant_order": [[2, 0]],
+        "units": [
+            {
+                "id": 0, "player": 0, "x": 0, "y": 0,
+                "ms": 1, "cc": 2, "hp": 1, "chop": 1,
+                "carry": [1, 0, 0, 0, 0, 0],
+            },
+            {
+                "id": 1, "player": 1, "x": 4, "y": 0,
+                "ms": 2, "cc": 3, "hp": 0, "chop": 2,
+                "carry": [0, 1, 0, 0, 0, 0],
+            },
+        ],
+    }
+    assert protocol_turn(snapshot, 1).splitlines() == [
+        "7 8 9 10 11 12",
+        "1 2 3 4 5 6",
+        "1",
+        "LEMON 2 0 3 10 2 6",
+        "2",
+        "0 1 0 0 1 2 1 1 1 0 0 0 0 0",
+        "1 0 4 0 2 3 0 2 0 1 0 0 0 0",
+    ]
 
 
 def test_shapes_phase_masks_and_atomic_invalid_action() -> None:

@@ -643,6 +643,13 @@ def replay_and_verify(
         )
         for unit in initial["units"]
     ]
+    initial_plants = list(initial["plants"])
+    if "plant_order" in initial:
+        by_cell = {(plant["x"], plant["y"]): plant for plant in initial_plants}
+        order = [tuple(cell) for cell in initial["plant_order"]]
+        if len(by_cell) != len(initial_plants) or set(order) != set(by_cell):
+            raise AssertionError("initial plant_order is not a permutation of the plants")
+        initial_plants = [by_cell[cell] for cell in order]
     plants = [
         SimPlant(
             plant["type"],
@@ -653,7 +660,7 @@ def replay_and_verify(
             plant["fruits"],
             plant.get("cooldown", plant.get("cur_cd")),
         )
-        for plant in initial["plants"]
+        for plant in initial_plants
     ]
     game = GameState(
         len(rows[0]),
@@ -715,6 +722,8 @@ def replay_and_verify(
             ],
         }
         expected_state = replay_turn.get("state")
+        if expected_state is not None and "plant_order" in expected_state:
+            actual_state["plant_order"] = [[plant.x, plant.y] for plant in game.plants]
         if expected_state is not None and actual_state != expected_state:
             differing = [
                 name

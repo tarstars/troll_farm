@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T08:48:10Z
-- State: exact linked champion compiles; paired exact-input proof route approved and implementation resumed
+- Updated UTC: 2026-08-30T08:58:46Z
+- State: paired exact-input gate driver and focused missing-archive build harness implemented; 200-game run next
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
 - Head: authoritative `0e92f8fa…` target and token-identical `32172393…` arm pinned; stateful wrapper and pool id 7 compile at pushed `3d7ca5fa…`
 - Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
-- Last concrete progress UTC: 2026-08-30T08:48:10Z
-- Evidence: coordinator ruling `20260830T083515Z` authorizes the paired exact-input route; the gate will replay the Rust environment's exact pre-turn states through the authoritative standalone and compare them with the linked commands over 200 games
+- Last concrete progress UTC: 2026-08-30T08:58:46Z
+- Evidence: focused Rust champion/full-environment test passes; first four-game smoke exposed and fixed replay plant-order loss by adding `plant_order` alongside canonical sorted state; Python protocol-rendering test passes
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: push the deterministic paired gate driver and focused tests; then run the 200-game command, transition and terminal gates
+- Next checkpoint: build the focused release library and run the deterministic 200-game command, transition and terminal gates
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
