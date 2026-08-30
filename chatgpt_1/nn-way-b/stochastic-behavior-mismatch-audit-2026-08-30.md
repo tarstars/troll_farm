@@ -4,7 +4,7 @@ Date: 2026-08-30
 Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
 Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
-Revision: r3 — adds the anchor direction's effect on distribution sharpening
+Revision: r4 — separates plan and command temperatures
 
 ## Verdict
 
@@ -128,9 +128,11 @@ For PLAN and TROLL rows separately, report:
 
 For MOVE argmax rows, additionally report the sampled destination's distance from the argmax destination and whether it changes the semantic target class.
 
-### 3. Diagnostic temperature sweep
+### 3. Diagnostic command-temperature sweep
 
-Without training, run the AS arm at fixed temperatures such as `1.0`, `0.5`, and `0.25`. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much sharpening is required for sampled behaviour to resemble the deployment policy.
+Without training, run the AS arm at fixed **command** temperatures such as `1.0`, `0.5`, and `0.25`, while plans remain argmax. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much command sharpening is required for sampled behaviour to resemble the deployment policy.
+
+Do not change plan temperature in the first diagnostic: SA is already near AA, and changing both would discard an existing control.
 
 ### 4. Gradient and regularizer decomposition
 
@@ -148,38 +150,49 @@ On a fixed clone observation census, apply infinitesimal steps for entropy alone
 
 ## Controlled next runs, only if diagnostics support them
 
-### Temperature
+### Separate phase temperatures
 
-Add a recorded `--policy-temperature` used consistently in:
+Add two recorded flags:
 
-- rollout sampling;
-- update-time policy log-probabilities and entropy;
+```text
+--plan-temperature
+--command-temperature
+```
+
+Both default to `1.0` for byte-compatible old behaviour. The trainer selects the temperature by `phase` before constructing the live categorical distribution.
+
+The first causal arm changes **only `command-temperature`**. `plan-temperature` stays `1.0`, because plan sampling already has a near-neutral control.
+
+Each selected temperature must be used consistently in:
+
+- rollout sampling for that phase;
+- update-time old/new log-probabilities and entropy for that phase;
 - any sampled frozen-policy path intended to match the learner.
 
-The anchor requires an explicit decision:
+The anchor requires an explicit phase-aware decision:
 
-- compare live and anchor at the same temperature if the goal is to preserve a tempered behaviour distribution; or
-- keep a fixed, separately named anchor temperature if the anchor represents another policy.
+- compare live and anchor at the same phase temperature if the goal is to preserve tempered behaviour distributions; or
+- keep separately named anchor plan/command temperatures if the anchor represents another policy.
 
-Do not silently divide only the live logits while leaving anchor semantics unchanged. Checkpoint config must record both temperatures.
+Do not divide only the live logits while silently leaving anchor semantics unchanged. Checkpoint config records all live and anchor temperatures.
 
-Apply temperature before legal masking. Add tests that old/new log-probabilities use the same live temperature and that positive scaling leaves argmax actions unchanged.
+Apply temperature before legal masking. Add tests that rollout and update distributions use the same phase temperature, that old/new log-probabilities agree on a frozen batch, and that positive scaling leaves argmax actions unchanged.
 
-Choose the temperature by a frozen rule before the run, preferably from held-out clone logits or the decoding diagnostic, not by repeatedly selecting on the champion gate. Then compare against the current recipe with the same seed and every other flag identical.
+Choose command temperature by a frozen rule before the run, preferably from held-out clone logits or the AS diagnostic, not by repeatedly selecting on the champion gate. Compare against the current recipe with the same seed and every other flag identical.
 
 ### Entropy
 
-Entropy is a separate factor. If it remains suspect after gradient decomposition, test `entropy_coef = 0` as its own matched-seed arm rather than changing temperature and entropy together.
+Entropy is a separate factor. If it remains suspect after gradient decomposition, test `entropy_coef = 0` as its own matched-seed arm rather than changing command temperature and entropy together.
 
 ### Anchor target
 
-Only after the sampling diagnostics, consider whether the safety target should be:
+Only after the sampling diagnostics, consider whether the troll-row safety target should be:
 
 - the original clone distribution;
-- a temperature-sharpened clone distribution; or
+- a command-temperature-sharpened clone distribution; or
 - explicit cross-entropy/behaviour-cloning on the clone's greedy action or original teacher rows.
 
-These are different objectives and must not be bundled with the first temperature test.
+These are different objectives and must not be bundled with the first command-temperature test.
 
 A longer-term representation fix could sample a verb and a MOVE destination hierarchically, but that changes the policy architecture and is not the first control.
 
@@ -190,8 +203,9 @@ DO NOT call the current stochastic rollout policy “the 9/48 clone.”
 RUN the missing argmax-plan / sampled-command arm first.
 MEASURE MOVE probability mass and legal-action multiplicity.
 MEASURE entropy and forward-anchor gradients before another explanatory long run.
-TREAT command-sampling temperature, entropy and anchor target as distinct untested factors.
-CHANGE one at a time, with a matched seed, only after the offline diagnostics.
+TREAT command temperature, entropy and anchor target as distinct untested factors.
+KEEP plan temperature fixed in the first command-side control.
+CHANGE one factor at a time, with a matched seed, only after the offline diagnostics.
 ```
 
 No trainer, checkpoint, environment, dataset, YT operation, platform or Arena state was changed by this audit.
