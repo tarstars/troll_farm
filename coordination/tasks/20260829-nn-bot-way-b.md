@@ -385,6 +385,18 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   beside one dispatched AVX2 symbol, no fused multiply-add. Merged (`bb3645ea`). Open: the host's three-quiet-run timing
   certificate, taken when a shipping candidate exists (the host trains now; the clone is not submitted). Details on the
   export sub-card. — coordinator
+- 2026-08-30 19:2xZ: **`ppo-g` at update 1,000: 4 wins of 48, 107.0 points to 179.3** (update 500: 5, 133.8); a purchase in 38 of
+  48 games (was 43); per game chop 96 / harvest 23.5 / plant 22 / drop 51 (was 112 / 37 / 25 / 62); 4 loop games; practice vs the
+  champion 1.6 % wins, margin −122. **The champion-only pool did not hold the line — the erosion arrived between updates 500
+  and 1,000, exactly as in every other run.** Five runs (A, C, D, F2, G) now show one replicated shape across pools, objectives,
+  warm-up and learning rates: the clone's multi-step fruit economy (harvest → carry → drop, plant) decays first while the
+  immediate chopping survives — long-chain credit erodes, dense credit stays. The one cheap untested lever on that axis: the
+  discount itself — γ 0.999 over ~600 mini-steps still discounts the final score to ~0.55 from the early game. **`ppo-g`
+  stopped at update 1,073; `ppo-h` starts: γ = 1.0 exactly** (the end score undiscounted; GAE λ 0.95 unchanged), everything
+  else as `ppo-g` (champion only, warm-up 300, actor lr ×0.3, no shaping, end-wood 4.0, the leash 0.1 → 0.05), 8 threads,
+  seed 9, `/home/tarstars/nn-data/ppo-2026-08-30-h/`; benches at 500 / 1,000 / 1,500. If the same shape appears, the next
+  lever is delineate's curriculum (short games, small maps first) — a design change, to be spec'd on this card. The six
+  cluster jobs (44 M decisions each) remain the long-horizon test tonight (~00:35Z–04:00Z). — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
