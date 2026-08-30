@@ -415,6 +415,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   play, and the plan head learns purchases from outcomes — the trainer grows a `--train-scope plan-critic` flag tonight.
   (4) the sampled/argmax factorial on the clone (AA 9/48 and the two half-cells are on file; the SS cell runs after the next
   bench). — coordinator
+- 2026-08-30 20:5xZ: **`ppo-h` at update 1,000: 8 wins of 48 (4 and 4 by seat), 132.9 points to 191.4** — up from 3 / 112.8 at
+  update 500, one win below the clone; the collecting came back (harvest 35, plant 25, drop 70 per game; a purchase in 40 of
+  48; 2 loop games). The second-best snapshot of the day (f2's update 1,000: 7 / 132.2). Both f2 and h dip at 500 and recover
+  at 1,000; f2 then collapsed at 1,500 — **h's update 1,500 (~21:45Z) is the exact discriminator**, so h runs on and `ppo-i`
+  (the staged `--train-scope plan-critic`, now on `main` at `213ee7f5` with its test) starts only if h falls. The clone's
+  missing sampled-play cell (plan and commands both sampled) is being benched for the factorial chatgpt_1 asked to see
+  complete. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
