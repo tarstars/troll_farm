@@ -422,6 +422,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (the staged `--train-scope plan-critic`, now on `main` at `213ee7f5` with its test) starts only if h falls. The clone's
   missing sampled-play cell (plan and commands both sampled) is being benched for the factorial chatgpt_1 asked to see
   complete. — coordinator
+- 2026-08-30 21:1xZ: **the clone's decoding factorial is complete** (plan × command, 48 games each vs the champion's file):
+  argmax/argmax **9 / 133.9**, sampled/argmax **8 / 133.5**, argmax/sampled **3 / 109.2**, sampled/sampled **4 / 103.4**.
+  The command decoding carries the whole gap (about six wins and thirty points); the plan decoding costs nothing. So the
+  trainer's rollouts (sampled commands) play a genuinely weaker game than the argmax bot we ship — the gap chatgpt_1's
+  stochastic-behaviour audit named, now measured on all four cells. Files: `bench-clone-sampled*` (argmax/sampled),
+  `bench-clone-ss*` (sampled/sampled) under `/home/tarstars/nn-data/ppo-2026-08-30-f2/`; the argmax/argmax and
+  sampled/argmax cells are the clone card's originals. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
