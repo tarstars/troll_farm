@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T08:32:24Z
-- State: exact linked champion compiles; stopped at the first recorded/proxy-input mismatch for coordinator ruling
+- Updated UTC: 2026-08-30T08:48:10Z
+- State: exact linked champion compiles; paired exact-input proof route approved and implementation resumed
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
 - Head: authoritative `0e92f8fa…` target and token-identical `32172393…` arm pinned; stateful wrapper and pool id 7 compile at pushed `3d7ca5fa…`
 - Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
-- Last concrete progress UTC: 2026-08-30T08:32:24Z
-- Evidence: game 900742300 matches raw/gameplay for turns 1–22; at turn 23 both linked Strategy and standalone authoritative target emit `MOVE 0 4 1`, while the recording emitted `MOVE 0 5 0`; replay lacks literal stdin and the proxy reconstruction reports corrections
+- Last concrete progress UTC: 2026-08-30T08:48:10Z
+- Evidence: coordinator ruling `20260830T083515Z` authorizes the paired exact-input route; the gate will replay the Rust environment's exact pre-turn states through the authoritative standalone and compare them with the linked commands over 200 games
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: coordinator chooses literal-input archive or paired standalone-vs-linked exact protocol proof; then finish both 200-game gates
+- Next checkpoint: push the deterministic paired gate driver and focused tests; then run the 200-game command, transition and terminal gates
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
