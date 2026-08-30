@@ -4,7 +4,7 @@ Date: 2026-08-30
 Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
 Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
-Revision: r2 — incorporates the retained plan-sampling control and the spatial action multiplicity
+Revision: r3 — adds the anchor direction's effect on distribution sharpening
 
 ## Verdict
 
@@ -65,13 +65,33 @@ A softmax draw is affected by **total probability mass**, not only the best logi
 
 This is an action-representation/exploration interaction, not merely generic “PPO noise.” A fixed entropy coefficient also has phase- and state-dependent meaning because maximum entropy grows with the number of legal actions.
 
+## Why the present regularizers do not naturally repair it
+
+### Entropy
+
+At the exact clone the entropy term has a nonzero gradient toward a flatter distribution. Its sign therefore initially moves sampled behaviour farther from greedy deployment, unless the PPO gradient overwhelms it.
+
+### Anchor direction
+
+The anchor is:
+
+```text
+KL(anchor || policy)
+```
+
+not one-hot imitation of the anchor's argmax and not `KL(policy || anchor)`.
+
+This forward-KL direction is support-covering: if the behaviour-cloned anchor spreads meaningful probability over many legal MOVE destinations, sharpening the live policy onto the anchor's own best action lowers probability on the other anchor-supported actions and incurs anchor loss. The anchor therefore preserves the clone's broad probability support, including the support responsible for weak temperature-1 play.
+
+At step zero the anchor gradient is exactly zero, so it cannot counter the first entropy/PPO move. Later it resists both harmful changes and potentially useful sharpening. As its coefficient decays, the protection weakens without changing this direction.
+
+This does not make the chosen KL mathematically wrong; it means “stay near the clone distribution” is not the same objective as “preserve or improve the clone's argmax player.”
+
 ## Why critic warm-up does not close the mismatch
 
 During critic warm-up the actor parameters are frozen, but rollouts still call `distribution.sample()`.
 
 Thus the value head learns the return of the 3/48-like stochastic behaviour, not the value of the 9/48 argmax policy. When actor updates begin, PPO improves the sampled policy it actually executed. There is no guarantee that this also improves the mode used at deployment.
-
-At the exact clone the anchor KL is zero. The entropy term has a nonzero gradient toward a flatter distribution. This makes the early update geometry worth measuring, but is not yet proof that entropy dominates the PPO gradient.
 
 ## Cheapest decisive diagnostics
 
@@ -112,7 +132,7 @@ For MOVE argmax rows, additionally report the sampled destination's distance fro
 
 Without training, run the AS arm at fixed temperatures such as `1.0`, `0.5`, and `0.25`. This is diagnostic, not checkpoint selection. A positive temperature scale preserves every argmax action, so it asks only how much sharpening is required for sampled behaviour to resemble the deployment policy.
 
-### 4. Gradient decomposition
+### 4. Gradient and regularizer decomposition
 
 On one saved post-warm-up minibatch, measure policy-parameter gradient norms and pairwise cosine similarities for:
 
@@ -122,22 +142,44 @@ On one saved post-warm-up minibatch, measure policy-parameter gradient norms and
 - PLAN versus TROLL rows;
 - fruit-chain rows versus the rest.
 
-At step zero also verify numerically that anchor KL gradient is zero and entropy gradient is not. Report the entropy contribution by legal-action-count bucket, because a fixed coefficient is not a fixed exploration pressure across masks.
+At step zero verify numerically that anchor KL gradient is zero and entropy gradient is not. Report the entropy contribution by legal-action-count bucket, because a fixed coefficient is not a fixed exploration pressure across masks.
 
-## Controlled next run, only if diagnostics support it
+On a fixed clone observation census, apply infinitesimal steps for entropy alone and for a sharpening direction alone, then report how `KL(anchor || policy)` changes. This makes the anchor/temperature tradeoff concrete.
+
+## Controlled next runs, only if diagnostics support them
+
+### Temperature
 
 Add a recorded `--policy-temperature` used consistently in:
 
 - rollout sampling;
 - update-time policy log-probabilities and entropy;
-- anchor distributions and KL;
 - any sampled frozen-policy path intended to match the learner.
 
-Apply temperature before legal masking. Checkpoint config must record it. Add tests that old/new log-probabilities use the same temperature and that positive scaling leaves argmax actions unchanged.
+The anchor requires an explicit decision:
+
+- compare live and anchor at the same temperature if the goal is to preserve a tempered behaviour distribution; or
+- keep a fixed, separately named anchor temperature if the anchor represents another policy.
+
+Do not silently divide only the live logits while leaving anchor semantics unchanged. Checkpoint config must record both temperatures.
+
+Apply temperature before legal masking. Add tests that old/new log-probabilities use the same live temperature and that positive scaling leaves argmax actions unchanged.
 
 Choose the temperature by a frozen rule before the run, preferably from held-out clone logits or the decoding diagnostic, not by repeatedly selecting on the champion gate. Then compare against the current recipe with the same seed and every other flag identical.
 
+### Entropy
+
 Entropy is a separate factor. If it remains suspect after gradient decomposition, test `entropy_coef = 0` as its own matched-seed arm rather than changing temperature and entropy together.
+
+### Anchor target
+
+Only after the sampling diagnostics, consider whether the safety target should be:
+
+- the original clone distribution;
+- a temperature-sharpened clone distribution; or
+- explicit cross-entropy/behaviour-cloning on the clone's greedy action or original teacher rows.
+
+These are different objectives and must not be bundled with the first temperature test.
 
 A longer-term representation fix could sample a verb and a MOVE destination hierarchically, but that changes the policy architecture and is not the first control.
 
@@ -147,8 +189,9 @@ A longer-term representation fix could sample a verb and a MOVE destination hier
 DO NOT call the current stochastic rollout policy “the 9/48 clone.”
 RUN the missing argmax-plan / sampled-command arm first.
 MEASURE MOVE probability mass and legal-action multiplicity.
-TREAT command-sampling temperature and entropy as untested common factors across all eroding runs.
-CHANGE one of them at a time, with a matched seed, only after the offline diagnostics.
+MEASURE entropy and forward-anchor gradients before another explanatory long run.
+TREAT command-sampling temperature, entropy and anchor target as distinct untested factors.
+CHANGE one at a time, with a matched seed, only after the offline diagnostics.
 ```
 
-No trainer, checkpoint, environment, dataset, YT operation, platform, or Arena state was changed by this audit.
+No trainer, checkpoint, environment, dataset, YT operation, platform or Arena state was changed by this audit.
