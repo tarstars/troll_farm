@@ -397,6 +397,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   seed 9, `/home/tarstars/nn-data/ppo-2026-08-30-h/`; benches at 500 / 1,000 / 1,500. If the same shape appears, the next
   lever is delineate's curriculum (short games, small maps first) — a design change, to be spec'd on this card. The six
   cluster jobs (44 M decisions each) remain the long-horizon test tonight (~00:35Z–04:00Z). — coordinator
+- 2026-08-30 20:0xZ: **`ppo-h` (γ = 1.0) at update 500: 3 wins of 48, 112.8 points to 181.8** — the worst of the three runs at this
+  age (`ppo-g` 5 / 133.8; `ppo-f2` 5 / 123.5); harvests held (38) but plantings 18, picks 17, moves up to 317, 3 loop games;
+  purchases 44 of 48; **the value estimate collapsed (explained variance 0.25** — the undiscounted end margin is far harder to
+  predict than the γ-0.999 return's 0.6–0.97). The discount is now swept — 0.997 (run D), 0.999 (F2, G), 1.0 (H) — and no value
+  stops the erosion; γ 0.999 with the warm-up remains the best-behaved setting. `ppo-h` runs to update 1,000 (~20:55Z) for the
+  curve's second point, then the host waits for the cluster. **If the six long jobs also erode by their final snapshots, the
+  next lever is a curriculum (short games, small maps first — delineate's own recipe): a training-time episode cap in the
+  environment, spec'd as an interface amendment on this card tomorrow; the bench stays the real 300-turn game.** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
