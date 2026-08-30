@@ -316,6 +316,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the VM (by whom, unknown; codex_1 asked) — restored from the host copy, checksums verified; the VM's disk is at 96 % (818 MB
   free) — nothing deleted, the owner asked (board queue). The cluster: jobs a/b/c began running only ~15:20Z (three hours in the
   queue), d/e/f still waiting for slots at 15:3xZ — the 12-hour results move to ~03:30Z and later. — coordinator
+- 2026-08-30 15:5xZ: **`ppo-f2`'s update-500 snapshot vs the champion's file: 5 wins of 48 (3 on seat 0, 2 on seat 1), 123.5 points
+  to 177.8; 19 games ended early (run D at update 1,000: 31), 0 loops, 0 illegal; a purchase in 0.9 games per game-average as
+  the clone's; per game chop 75 / harvest 37 / plant 21 / move 273 (the clone 94 / 38 / 25 / 253).** Since the warm-up froze the
+  policy for 300 updates, this is 200 policy updates at a third of the learning rate under the corrected objective: less eroded
+  than run D at its update 500 (3 of 48, 108 points; harvest 27, plant 19) but still below the clone (9, 134). The erosion per
+  update is about the same as D's (−0.05 points per update) — one 48-game bench, so the update-1,000 snapshot (~16:25Z) decides
+  whether the remedies hold the line or only slow the drift. Still no run of record. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
