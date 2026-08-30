@@ -233,6 +233,56 @@ def test_job_config_round_trips_through_the_trainers_own_parser(tmp_path: Path) 
 
 
 @pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_the_five_new_trainer_flags_round_trip_with_non_default_values(tmp_path: Path) -> None:
+    """`--gamma`, `--wood-shaping`, `--end-wood`, `--critic-warmup-updates` and `--actor-lr-scale`
+    must reach the job exactly as the coordinator names them, through `yt_run_config.json` and
+    into the trainer's own parser -- not silently fall back to the trainer's defaults."""
+
+    trainer = _trainer()
+    _, payload_dir, _ = _prepare(
+        tmp_path,
+        "--gamma", "0.99",
+        "--wood-shaping", "0.75",
+        "--end-wood", "4.5",
+        "--critic-warmup-updates", "50",
+        "--actor-lr-scale", "0.25",
+    )
+    config = json.loads((payload_dir / "yt_run_config.json").read_text())
+    for flag in (
+        "--gamma",
+        "--wood-shaping",
+        "--end-wood",
+        "--critic-warmup-updates",
+        "--actor-lr-scale",
+    ):
+        assert flag in config["trainer_args"]
+
+    parsed = trainer.build_parser().parse_args(config["trainer_args"])
+    assert parsed.gamma == pytest.approx(0.99)
+    assert parsed.wood_shaping == pytest.approx(0.75)
+    assert parsed.end_wood == pytest.approx(4.5)
+    assert parsed.critic_warmup_updates == 50
+    assert parsed.actor_lr_scale == pytest.approx(0.25)
+
+
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_the_five_new_trainer_flags_default_to_the_trainers_own_defaults(tmp_path: Path) -> None:
+    """Named on neither the launcher's command line nor the job config, the job must still ask
+    the trainer for exactly its own defaults -- not zero, not `None`, not some other placeholder."""
+
+    trainer = _trainer()
+    _, payload_dir, _ = _prepare(tmp_path)
+    config = json.loads((payload_dir / "yt_run_config.json").read_text())
+
+    parsed = trainer.build_parser().parse_args(config["trainer_args"])
+    assert parsed.gamma == pytest.approx(0.997)
+    assert parsed.wood_shaping == pytest.approx(0.5)
+    assert parsed.end_wood == pytest.approx(3.5)
+    assert parsed.critic_warmup_updates == 0
+    assert parsed.actor_lr_scale == pytest.approx(1.0)
+
+
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
 def test_hours_become_a_conservative_batch_aligned_budget(tmp_path: Path) -> None:
     trainer = _trainer()
     _, payload_dir, manifest = _prepare(tmp_path, "--hours", "6")

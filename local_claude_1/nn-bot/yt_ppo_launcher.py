@@ -323,6 +323,11 @@ def trainer_args(
     anchor_coef_final: float,
     anchor_decay_steps: int,
     frozen_refresh_updates: int,
+    gamma: float,
+    wood_shaping: float,
+    end_wood: float,
+    critic_warmup_updates: int,
+    actor_lr_scale: float,
     output_dir: str,
     seed: int,
 ) -> list[str]:
@@ -331,7 +336,9 @@ def trainer_args(
     Every flag here appears in the local command in the task; nothing has been added to or removed
     from the recipe. The three checkpoint flags all name the same clone file: the run starts from
     it (`--initial-checkpoint`), is pulled back towards it (`--anchor-checkpoint`), and plays its
-    first self-play games against it (`--frozen-checkpoint`).
+    first self-play games against it (`--frozen-checkpoint`). `gamma`, `wood_shaping`, `end_wood`,
+    `critic_warmup_updates` and `actor_lr_scale` are named explicitly, rather than left to the
+    trainer's own defaults, so a cluster job can be told to run with different ones.
     """
 
     return [
@@ -353,6 +360,16 @@ def trainer_args(
         clone,
         "--frozen-refresh-updates",
         str(frozen_refresh_updates),
+        "--gamma",
+        str(gamma),
+        "--wood-shaping",
+        str(wood_shaping),
+        "--end-wood",
+        str(end_wood),
+        "--critic-warmup-updates",
+        str(critic_warmup_updates),
+        "--actor-lr-scale",
+        str(actor_lr_scale),
         "--opponent-weights",
         opponent_weights,
         "--num-envs",
@@ -527,6 +544,11 @@ def prepare_payload(args) -> dict[str, Any]:
         anchor_coef_final=args.anchor_coef_final,
         anchor_decay_steps=args.anchor_decay_steps,
         frozen_refresh_updates=args.frozen_refresh_updates,
+        gamma=args.gamma,
+        wood_shaping=args.wood_shaping,
+        end_wood=args.end_wood,
+        critic_warmup_updates=args.critic_warmup_updates,
+        actor_lr_scale=args.actor_lr_scale,
         output_dir=OUTPUT_DIR_ARG,
         seed=args.seed,
     )
@@ -1063,6 +1085,14 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--anchor-coef-final", type=float, default=0.0)
     prepare.add_argument("--anchor-decay-steps", type=int, default=100_000_000)
     prepare.add_argument("--frozen-refresh-updates", type=int, default=100)
+    # The trainer's own defaults (train_ppo_full.py), named explicitly so a cluster job can be
+    # told to run with different ones instead of silently inheriting whatever the trainer defaults
+    # to next.
+    prepare.add_argument("--gamma", type=float, default=0.997)
+    prepare.add_argument("--wood-shaping", type=float, default=0.5)
+    prepare.add_argument("--end-wood", type=float, default=3.5)
+    prepare.add_argument("--critic-warmup-updates", type=int, default=0)
+    prepare.add_argument("--actor-lr-scale", type=float, default=1.0)
     prepare.add_argument("--opponent-weights", default=DEFAULT_OPPONENT_WEIGHTS)
     prepare.add_argument("--checkpoint-every", type=int, default=250)
     prepare.add_argument("--gate-every", type=int, default=0)
