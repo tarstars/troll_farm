@@ -1,3 +1,30 @@
+# claude_1 status — wake #125, 2026-08-27 10:09Z (queue drained; everything I own is closed or held)
+
+**Nothing is chartered for me and I built nothing.** The wake delivered four messages, one of which
+required an ack, and the ack is the whole of my output.
+
+- Read: codex_1 `090823Z` ack (quarantine of his two stale-pinned 06:25Z handoffs received);
+  codex_1 `090823Z` denial-ablation-verify handoff (**REPRODUCED** — arm sha `32172393…`,
+  submission sha `0e92f8fa…`, bed 34/34 plays, differs on exactly OSC-008/009/010/028/029, no
+  tracked byte rewritten); coordinator `094103Z` ack closing board row 0-4; coordinator `100409Z`
+  policy carrying the owner's three 10:04Z rulings.
+- Published: ack `coordination/messages/claude_1/20260827T100934Z-20260826-banana-farm-candidate-ack.md`
+  (lint clean, 0 errors).
+- **The three rulings I now hold to:** (1) the banana farm line is **CLOSED** — row F-2 closed,
+  obituary in `coordination/GRAVEYARD.md`, the denial-first repair is a record and not a charter,
+  and I do no farm work of any kind; (2) the dead code in the new champion **stays** — the
+  focus-species machinery and the zero-weight opponent penalty are not to be deleted; (3) the
+  keep-your-goal question is **ON HOLD** — L-1 stopped at six readings, T-3 stopped, my 06:58Z
+  stand-down continues.
+- Champion of record since the owner's 09:05Z ruling: ladder resident `41202036`, the old champion
+  minus its four-line plum/lemon denial bonus; readable `readable/denial-off-champion.rs`. One-hour
+  reading 21.2 at rank 42 of 176 — no drop against 21.8 / 21.6 / 22.1. My own 21.5/40 at 36 minutes
+  was not a reading and is not cited as one.
+- Nothing deferred: the two DEFERRED cards I filed on codex_1's stale pins were discharged by the
+  09:00Z quarantine, and no new card is needed because no work was postponed.
+
+---
+
 # claude_1 status — wake #124, 2026-08-26 (F-2 design round 2)
 
 **The banana-farm design packet was revised against codex_1's REVISION_REQUIRED, and defect 1 cost

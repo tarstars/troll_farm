@@ -1,0 +1,239 @@
+{
+ "plan_action_size": 400,
+ "plan_vocab_version": "v400-2026-08-29",
+ "fields": [
+  "game",
+  "turn",
+  "seat",
+  "kind",
+  "troll",
+  "verb",
+  "label",
+  "standing_plan",
+  "split"
+ ],
+ "standing_plan": "none (0) on plan rows; the turn's hindsight plan on troll rows -- see the module head",
+ "standing_unsupported": 0,
+ "seat_augmentation": false,
+ "games": [
+  {
+   "game": 891153730,
+   "turns": 300,
+   "w": 20,
+   "h": 10,
+   "seat": 1,
+   "mismatch": {
+    "growth_engine_only(expected)": 472
+   },
+   "trains": 2,
+   "train_turns": [
+    6,
+    84
+   ],
+   "player": "delineate",
+   "rows": 1110,
+   "split": 0
+  },
+  {
+   "game": 891203441,
+   "turns": 300,
+   "w": 20,
+   "h": 10,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 306,
+    "unit_x": 1,
+    "unit_y_unreported": 1
+   },
+   "trains": 2,
+   "train_turns": [
+    3,
+    156
+   ],
+   "player": "delineate",
+   "rows": 1041,
+   "split": 0
+  },
+  {
+   "game": 891206391,
+   "turns": 300,
+   "w": 22,
+   "h": 11,
+   "seat": 1,
+   "mismatch": {
+    "growth_engine_only(expected)": 249
+   },
+   "trains": 1,
+   "train_turns": [
+    22
+   ],
+   "player": "delineate",
+   "rows": 878,
+   "split": 0
+  },
+  {
+   "game": 891215096,
+   "turns": 300,
+   "w": 22,
+   "h": 11,
+   "seat": 1,
+   "mismatch": {
+    "growth_engine_only(expected)": 359
+   },
+   "trains": 1,
+   "train_turns": [
+    1
+   ],
+   "player": "norxondor",
+   "rows": 899,
+   "split": 0
+  },
+  {
+   "game": 891304569,
+   "turns": 300,
+   "w": 20,
+   "h": 10,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 187,
+    "unit_y": 15,
+    "unit_x_unreported": 15,
+    "unit_x": 19,
+    "unit_y_unreported": 18
+   },
+   "trains": 2,
+   "train_turns": [
+    1,
+    172
+   ],
+   "player": "MSz",
+   "rows": 1027,
+   "split": 0
+  },
+  {
+   "game": 893255095,
+   "turns": 254,
+   "w": 18,
+   "h": 9,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 240
+   },
+   "trains": 3,
+   "train_turns": [
+    42,
+    106,
+    138
+   ],
+   "player": "norxondor",
+   "rows": 984,
+   "split": 0
+  },
+  {
+   "game": 893255096,
+   "turns": 300,
+   "w": 22,
+   "h": 11,
+   "seat": 1,
+   "mismatch": {
+    "growth_engine_only(expected)": 549
+   },
+   "trains": 3,
+   "train_turns": [
+    1,
+    73,
+    133
+   ],
+   "player": "MSz",
+   "rows": 1293,
+   "split": 1
+  },
+  {
+   "game": 893255452,
+   "turns": 300,
+   "w": 18,
+   "h": 9,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 415
+   },
+   "trains": 3,
+   "train_turns": [
+    34,
+    105,
+    128
+   ],
+   "player": "norxondor",
+   "rows": 1233,
+   "split": 0
+  },
+  {
+   "game": 894577644,
+   "turns": 300,
+   "w": 18,
+   "h": 9,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 249,
+    "unit_x": 20,
+    "unit_y": 18,
+    "unit_x_unreported": 11,
+    "unit_y_unreported": 13
+   },
+   "trains": 0,
+   "train_turns": [],
+   "player": "Bubaptik",
+   "rows": 600,
+   "split": 0
+  },
+  {
+   "game": 895362837,
+   "turns": 300,
+   "w": 18,
+   "h": 9,
+   "seat": 0,
+   "mismatch": {
+    "growth_engine_only(expected)": 413,
+    "unit_x": 27,
+    "unit_y_unreported": 17,
+    "unit_y": 15,
+    "unit_x_unreported": 10
+   },
+   "trains": 2,
+   "train_turns": [
+    78,
+    128
+   ],
+   "player": "Bubaptik",
+   "rows": 994,
+   "split": 0
+  }
+ ],
+ "verbs": {
+  "MOVE": 3365,
+  "MINE": 48,
+  "DROP": 891,
+  "PICK_LEMON": 29,
+  "PLANT_LEMON": 83,
+  "PICK_PLUM": 23,
+  "PLANT_PLUM": 71,
+  "CHOP": 1418,
+  "HARVEST": 746,
+  "PLANT_BANANA": 206,
+  "WAIT_or_silent": 72,
+  "PICK_BANANA": 82,
+  "MOVE_stayed": 57,
+  "PLANT_APPLE": 9,
+  "PICK_APPLE": 5
+ },
+ "unsupported": [],
+ "masked_label": {},
+ "unparsed": {},
+ "rows": 10059,
+ "turn_states": 2954,
+ "label_bytes": 19127,
+ "state_bytes": 170777,
+ "map_bytes": 2638,
+ "maps": 10,
+ "holdout_percent": 20
+}

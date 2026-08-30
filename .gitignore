@@ -19,3 +19,6 @@ data/boss5_games/
 .superpowers/
 cgauto/cg_session.txt
 local_claude_1/ladder-queue/runner.log
+
+# Track N bench replays: regenerated in ~16 s by local_claude_1/nn-bot/bench.py
+local_claude_1/nn-bot/results/bench-replays.jsonl
