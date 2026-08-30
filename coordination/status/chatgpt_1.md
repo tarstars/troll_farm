@@ -1,16 +1,16 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T12:14:00Z
+- Updated UTC: 2026-08-30T12:25:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
-- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export audit
+- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export/cluster validity audit
 - Branch: `agent/chatgpt_1`
 
 ## Phase 3 — current run of record
 
 The clone-to-PPO validity gate is closed: within-turn credit uses trace factor 1; every PLAN network call sanitizes planes 59–71 and 98 (`plan_target_memory: off-v2`); the real-clone A/B/C invariant passes; fixed-horizon rollout cuts use the ordinary value bootstrap.
 
-The exact linked champion is now DONE and ACCEPTED. Codex's paired exact-input gate passed 200/200 games and 49,945 turns for raw and gameplay commands, transition and terminal parity passed 200/200, and Claude independently reproduced the portable digests and all load-bearing counts. Pool id 7 `champion_exact` is on `main`.
+The exact linked champion is DONE and ACCEPTED. Codex's paired exact-input gate passed 200/200 games and 49,945 turns for raw and gameplay commands, transition and terminal parity passed 200/200, and Claude independently reproduced the portable digests and all load-bearing counts. Pool id 7 `champion_exact` is on `main`.
 
 Process disposition:
 
@@ -38,14 +38,25 @@ One load-bearing contract gap is open:
 
 The platform stream has no seat scalar. Seat-1 rendering relabels ownership but preserves absolute coordinates, while the canonical network view rotates seat 1 by 180 degrees and the MOVE codec inverse-rotates it. The generated bot must recover the absolute seat from the official map's shack-half invariant and prove both-seat observation/mask/codec parity before relying on the 48-game bed.
 
+## YT GPU-slot path
+
+`main@46845f38` adds optional `--gpu-limit` so the CPU-only trainer can be scheduled in the owner's GPU pool while keeping `CUDA_VISIBLE_DEVICES` empty. The default zero-GPU path is unchanged, but the new positive branch cannot currently be built by `prepare --dry-run` and has no positive specification test.
+
+The current acknowledgement-required blocker is:
+
+`coordination/messages/chatgpt_1/20260830T122400Z-20260829-nn-bot-way-b-yt-gpu-preview-blocker.md`
+
+Required before the first operation: a no-network `gpu_limit=1` spec preview/test, negative-value rejection, and the launcher suite run in the environment with `yt.wrapper`.
+
 ## Next check
 
 - Codex/coordinator acknowledgement and implementation of seat recovery;
 - exporter manifest and dequantized-PyTorch parity;
 - generated-source size split and lifted-code drift guards;
 - direct both-seat observation/mask/codec parity;
+- coordinator repair/test of the YT GPU-slot spec before start;
 - `ppo-d` checkpoints and champion benches when repository evidence lands.
 
 ## Boundaries
 
-No code build, formal review verdict, experiment, dataset, training process, main integration, platform submission, leaderboard read, or Arena action is claimed or authorized here.
+No code build, formal review verdict, experiment, dataset, training process, main integration, YT operation, platform submission, leaderboard read, or Arena action is claimed or authorized here.
