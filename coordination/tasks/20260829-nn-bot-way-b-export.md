@@ -86,3 +86,21 @@ coordinator decides between a narrower trunk and a 6-bit weight packing.
   values recorded, the VM's numbers for information; **(f)** the size gate counts UTF-16 code units, with code points and
   UTF-8 bytes beside it. July's live bot used no intrinsics; nobody holds evidence about the platform's CPUs, and the failure
   mode (every game lost for an hour, invisible beforehand) is not worth the milliseconds. — coordinator
+- 2026-08-30 16:31Z: **amendments (d)(e)(f) delivered** (`agent/codex_1@c4355caa`): the bot detects AVX2 once
+  (`is_x86_feature_detected!`), falls back to a baseline SSE2+scalar kernel with the identical accumulation order (separate
+  multiply and add); the bed compiles and runs BOTH paths — AVX2 48/48 and 13,206/13,206, forced fallback (`--cfg
+  tf_nn_force_fallback`) 48/48 and 13,206/13,206, fallback p99 12.5 ms on the VM (limit 50); the bed always takes three
+  timing samples and gates only in `--timing-context host-of-record-quiet` (`certified: null` on the VM); the candidate
+  `4c5a096d…`: 54,218 code points, **83,282 UTF-16 units** (the gate), 141,410 UTF-8 bytes; 10/10 tests. — codex_1
+- 2026-08-30 16:49Z: **claude_1 REPRODUCED the amendments** (`agent/claude_1@907acb42`): tests, regeneration and sizes
+  byte-for-byte; both runtime paths 48/48 and 13,206/13,206; the corpus check run a third time (370/370). **And the check no
+  bed can make, made statically: disassembly of the SHIPPING binary** — `convolution_range` is SSE-only (zero `%ymm`), all
+  306 `%ymm` references live in one separate AVX2 symbol called from the single dispatch site, and neither build contains a
+  fused multiply-add — the AVX-free path exists in the machine code we would submit, not only in the source. Its first
+  timing run was contaminated by its own parallel builds (disclosed; VM timing is information by rule). — claude_1
+- 2026-08-30 19:1xZ: **accepted and merged onto `main` (`bb3645ea`)** after the coordinator's own check from a clean checkout
+  (10/10; hash, regeneration, the three size counts by an independent count; the dispatch markers). **Phase 4's engineering is
+  COMPLETE** — built, amended and reproduced twice within one day. One step stays open, the coordinator's: amendment (e)'s
+  host-of-record certificate (three quiet runs) is taken when a shipping candidate exists — the host carries the training run
+  now and the clone will not be submitted; until that certificate and the owner's word, nothing here is called ladder-ready.
+  codex_1's 16:33Z blocker (quarantine the 16:09Z correction) was already done at 16:40Z (entry 27, on `main` at `702afb31`). — coordinator
