@@ -276,6 +276,16 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   points. Against its practice pool the run is flat at ~26 %. The pattern — chop everything, stop buying — points at the
   objective, not the opponents: a per-turn discount makes the final score nearly invisible from the early turns, so the
   per-wood shaping dominates. Under investigation this hour (the trainer's defaults, the chop counts in the games). — coordinator
+- 2026-08-30 14:0xZ: **the chop hypothesis is refuted by the games**: per game the clone chops 94 times, harvests 38, plants 25;
+  the update-500 snapshot chops 70, harvests 27, plants 19; update 1,000 chops 71, harvests 17, plants 14. The snapshots do
+  *less* of everything productive — they are not deforesting, they are drifting toward inaction (the champion fells the
+  trees while they idle, hence the early endings). The trainer's defaults: γ 0.997, λ 0.95, entropy 0.01, wood shaping 0.5,
+  end-wood 3.5. The likelier cause: **policy updates driven by an untrained critic** — the clone's value head was never
+  trained, so the first hundreds of updates push the policy with random advantages while the exploration bonus loosens it.
+  Two runs to separate the causes: `ppo-e` (started 13:5xZ; γ 0.999, no wood shaping, the real end score, an anchor floor
+  0.05) tests the objective; `ppo-f` (when the flag lands) tests a **critic warm-up** — the value head trained alone for the
+  first N updates with the policy frozen, then the normal loop with a reduced actor learning rate. `ppo-d` runs to its
+  update-1,500 bench, then stops. The four cluster jobs carry the old defaults: a 12-hour negative control. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
