@@ -267,7 +267,8 @@ class NetworkPolicy:
     it was not trained on.
     """
 
-    def __init__(self, checkpoint: Path, deterministic: bool = True):
+    def __init__(self, checkpoint: Path, deterministic: bool = True,
+                 plan_decoding: str = "argmax", plan_temperature: float = 1.0, seed: int = 0):
         import importlib.util                                     # noqa: PLC0415
 
         import torch                                              # noqa: PLC0415
@@ -279,7 +280,19 @@ class NetworkPolicy:
         self.torch = torch
         self.model, _ = module.load_policy(str(checkpoint), torch.device("cpu"))
         self.model.eval()
-        self.name = f"network:{Path(checkpoint).name}"
+        if plan_decoding not in ("argmax", "sample"):
+            raise ValueError(f"plan_decoding must be argmax or sample, not {plan_decoding!r}")
+        if not (plan_temperature > 0.0):
+            raise ValueError("plan_temperature must be positive")
+        # The plan head's decoding is a coordinator's ruling (card, 2026-08-30 02:1xZ): the bench
+        # judges the clone under BOTH decodings -- the masked argmax, and a sample from the masked
+        # softmax at a temperature -- because "train nothing" is 67 % of the plan labels and a
+        # greedy argmax over that class may never buy a troll. Troll commands stay argmax.
+        self.plan_decoding = plan_decoding
+        self.plan_temperature = float(plan_temperature)
+        self.generator = torch.Generator().manual_seed(int(seed))
+        suffix = "" if plan_decoding == "argmax" else f":plan-sample-t{self.plan_temperature:g}"
+        self.name = f"network:{Path(checkpoint).name}{suffix}"
         self.deterministic = deterministic
 
     def _forward(self, obs: bytes):
@@ -298,8 +311,19 @@ class NetworkPolicy:
         masked = logits.masked_fill(~legal, self.torch.finfo(logits.dtype).min)
         return int(masked.argmax(1).item())
 
+    def _sample(self, logits, mask: bytes) -> int:
+        import numpy as np                                        # noqa: PLC0415
+
+        legal = self.torch.from_numpy(
+            np.frombuffer(mask, dtype=np.uint8).copy()).bool().unsqueeze(0)
+        masked = logits.masked_fill(~legal, self.torch.finfo(logits.dtype).min)
+        probs = self.torch.softmax(masked / self.plan_temperature, dim=1)
+        return int(self.torch.multinomial(probs, 1, generator=self.generator).item())
+
     def plan_index(self, obs: bytes, plan_mask: bytes) -> int:
         _, plan_logits, _ = self._forward(obs)
+        if self.plan_decoding == "sample":
+            return self._sample(plan_logits, plan_mask)
         return self._argmax(plan_logits, plan_mask)
 
     def action_index(self, obs: bytes, mask: bytes) -> int:
@@ -687,6 +711,11 @@ def main() -> int:
                          "over the amended tensor path; network needs --checkpoint")
     ap.add_argument("--checkpoint", type=Path, default=None,
                     help="a clone checkpoint (train_clone.py) for --policy network")
+    ap.add_argument("--plan-decoding", default="argmax", choices=["argmax", "sample"],
+                    help="how the network's plan head is decoded: the masked argmax, or a sample "
+                         "from the masked softmax (troll commands are always argmax)")
+    ap.add_argument("--plan-temperature", type=float, default=1.0,
+                    help="the softmax temperature for --plan-decoding sample")
     ap.add_argument("--library", type=Path, default=Path(nr.DEFAULT_LIBRARY),
                     help="libtroll_farm.so: the planes and both masks come from it")
     ap.add_argument("--both-seats", action="store_true",
@@ -736,7 +765,9 @@ def main() -> int:
         replay_fh = None if args.no_replays else open(args.replays, "w")
         if args.policy == "network" and args.checkpoint is None:
             raise SystemExit("--policy network needs --checkpoint")
-        network = (NetworkPolicy(args.checkpoint) if args.policy == "network" else None)
+        network = (NetworkPolicy(args.checkpoint, plan_decoding=args.plan_decoding,
+                                 plan_temperature=args.plan_temperature, seed=args.seed)
+                   if args.policy == "network" else None)
         for i, (rec, draw, seat) in enumerate(schedule):
             if args.policy == "random-legal":
                 policy = RandomLegalPolicy(seed=args.seed + i, train_p=args.train_p)
