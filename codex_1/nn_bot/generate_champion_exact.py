@@ -159,6 +159,7 @@ def generated_text(source_path: Path, target_path: Path) -> str:
             "unexpected absolute paths before main: "
             f"crate::game={expected_game_paths}, crate::bot={expected_bot_paths}"
         )
+    policy = "\n".join(line.rstrip() for line in policy.splitlines())
     policy = policy.replace("mod game {", "pub(crate) mod game {", 1)
     policy = policy.replace("mod bot {", "pub(crate) mod bot {", 1)
     policy = policy.replace(

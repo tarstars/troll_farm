@@ -629,7 +629,7 @@ pub(crate) mod bot {
                     .copied()
                     .collect();
                 let dist = bfs_distances(&view.walkable, &starts);
-                let sum = |kind: PlantKind| 
+                let sum = |kind: PlantKind|
                     view.plants
                         .iter()
                         .filter(|plant| plant.kind == kind)
@@ -1116,7 +1116,7 @@ pub(crate) mod bot {
                 let command_by_id: BTreeMap<i32, usize> = commands
                     .iter()
                     .enumerate()
-                    .filter_map(|(index, command)| 
+                    .filter_map(|(index, command)|
                         Self::move_command(command).map(|(id, _)| (id, index))
                     )
                     .collect();
@@ -1533,7 +1533,7 @@ pub(crate) mod bot {
                 MoisanBot::bank_candidates(view, unit)
                     .into_iter()
                     .filter(|candidate| match candidate.target {
-                        Target::Bank(cell) if cell != unit.cell => 
+                        Target::Bank(cell) if cell != unit.cell =>
                             !view.units.iter().any(|other| {
                                 other.player == unit.player
                                     && other.id != unit.id
@@ -1624,7 +1624,7 @@ pub(crate) mod bot {
                         return;
                     }
                     let forbidden = BTreeSet::from([door, view.shacks[0]]);
-                    if let Some((landing, _)) = candidates.get(&blocker.id).and_then(|options| 
+                    if let Some((landing, _)) = candidates.get(&blocker.id).and_then(|options|
                         Self::planned_egress(view, blocker, options, &forbidden)
                     ) {
                         candidates.insert(blocker.id, vec![Self::forced_move(blocker, landing)]);
@@ -1704,7 +1704,7 @@ pub(crate) mod bot {
                     forbidden.insert(door);
                     if candidates
                         .get(&blocker.id)
-                        .and_then(|options| 
+                        .and_then(|options|
                             Self::planned_egress(view, blocker, options, &forbidden)
                         )
                         .filter(|(_, target)| MoisanBot::compatible(*target, Target::Cell(door)))
@@ -2020,7 +2020,7 @@ pub(crate) mod bot {
                         let return_turns = to_shack
                             .get(cell)
                             .copied()
-                            .map(|distance| 
+                            .map(|distance|
                                 MoisanBot::ceil_div(distance, unit.stats.movement_speed) + 1
                             )
                             .unwrap_or(10_000);
