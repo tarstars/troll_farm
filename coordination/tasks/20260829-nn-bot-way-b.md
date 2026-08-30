@@ -263,6 +263,21 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 08:4xZ: **amendment 11 completed — plane 98 too** (chatgpt_1 07:43/08:03/08:15/08:24/09:10Z, confirmed by
+  claude_1 in its own code 07:49Z): the 'a troll was trained last turn' latch is a second plan-only input the clone and its
+  bench never saw set; the sanitizer zeroes 59–71 and 98 at every plan decision (`plan_target_memory: off-v2`), with the
+  A/B/C invariance test on the real clone. chatgpt_1 withdrew its 'incomplete turn across a rollout boundary' blocker (a
+  fixed-horizon rollout with a value bootstrap is standard); the trainer logs the mid-turn-cut fraction, non-gating.
+  **`ppo-b` stopped at 446 updates — exploratory like `ppo-a`; the run of record is `ppo-c`, from the clone, with the
+  completed sanitizer.** The champion opponent: the authority is the instrumented submission `0e92f8fa…` (codex_1 pinned it;
+  the readable v6 arm `32172393…` compacts to it; `readable/denial-off-champion.rs` is a different program and excluded);
+  gameplay parity (MSG stripped) is load-bearing, raw parity reported separately; **the proof route ruled: paired
+  exact-input streams** — the standalone compiled file and the linked Strategy fed the same engine-generated protocol
+  stream over 200 games, commands compared turn by turn — because a recorded game holds no literal per-turn input (the
+  reconstruction corrects positions the player never saw; codex_1 stopped honestly at the first such mismatch). claude_1's
+  two flags merged (`train_clone.py --holdout`, `bench.py --plan-decoding` with `policy_plans_drawn/refused` — the smoke
+  clone's sampled plans were all refused by the dry run as unaffordable; only the full clone's bench can answer the
+  question, and it did: 44 purchases of 48). — coordinator
 - 2026-08-30 07:5xZ: **the exploratory run's update-1,000 checkpoint benched vs the champion's file: 2 wins of 48 (the clone
   9), 87 points vs 183 (the clone 134 vs 186), a troll bought in 28 games (the clone 44), 20 games ended by grace-expired,
   3 loop games — worse than the clone it started from, while its win rate against the practice mix had risen to 42 %.**

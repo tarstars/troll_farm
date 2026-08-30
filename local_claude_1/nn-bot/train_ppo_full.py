@@ -42,15 +42,18 @@ with `k` the number of trolls that decided after it -- credit that shrinks as th
 which is the very thing amendment (4) forbids. `compute_gae` does exactly that, and
 `tests/test_train_ppo_full.py` pins it to a closed form.
 
-The standing target at a plan decision (`plan_target_memory: "off-v1"`)
------------------------------------------------------------------------
-The clone was taught with planes 59-71 -- the standing train target, its costs and its deficits --
-zero on every plan row, because the previous turn's hindsight label equals the current one between
-purchases and feeding it back would leak the label. The convolution trunk is shared, so a standing
-target would move the plan logits through the trunk even though the scorer's match column starts
-at zero. For this first Phase 3 run the trainer therefore zeroes those thirteen planes on every
-PLAN row before the network sees them (`mask_plan_target_planes`, called inside `combined_logits`,
-the single door observations go through). Troll mini-steps keep their planes untouched.
+The PLAN-only channels the clone never saw (`plan_target_memory: "off-v2"`)
+---------------------------------------------------------------------------
+Two groups of planes are written by the environment only at a plan phase, and both were
+identically zero throughout behaviour cloning, so the clone has never seen either of them set:
+planes 59-71, the standing train target with its costs and deficits (the previous turn's hindsight
+label equals the current one between purchases, so feeding it back would leak the label), and
+plane 98, the "a troll was trained last turn" latch (never set in cloning or in the clone's
+bench). The convolution trunk is shared, so either would move the plan logits through the trunk
+even though the scorer's match column starts at zero. For this first Phase 3 run the trainer
+therefore zeroes all fourteen on every PLAN row before the network sees them
+(`mask_plan_target_planes`, called inside `combined_logits`, the single door observations go
+through). Troll mini-steps keep their planes untouched.
 
 The environment contract (card amendment 9)
 -------------------------------------------
@@ -236,25 +239,37 @@ def make_env(args, frozen_opponent):
 PLAN_TARGET_PLANE_START = 59
 PLAN_TARGET_PLANE_STOP = 72
 
-#: How this run treats the standing target at a plan decision. "off-v1": the thirteen target
-#: planes are zeroed on every PLAN row before the network sees them.
-PLAN_TARGET_MEMORY = "off-v1"
+#: Plane 98: the "the previous turn's queued target was trained" latch. The environment writes it
+#: only at a plan phase, only after a TRAIN succeeded.
+PLAN_TRAINED_LATCH_PLANE = 98
+
+#: How this run treats the PLAN-only channels the clone never saw. "off-v2": the thirteen target
+#: planes AND the trained latch are zeroed on every PLAN row before the network sees them.
+PLAN_TARGET_MEMORY = "off-v2"
 
 
 def mask_plan_target_planes(
     observations: torch.Tensor, phase: torch.Tensor
 ) -> torch.Tensor:
-    """Zero planes 59-71 on PLAN rows; leave TROLL rows exactly as they came.
+    """Zero the PLAN-only channels on PLAN rows; leave TROLL rows exactly as they came.
 
-    Why: the clone was taught with those thirteen planes zero on every plan row (amendment 8,
-    "No target memory in behaviour cloning" -- feeding the previous turn's hindsight label back
-    would leak the label). The convolution trunk is shared, so a standing target would shift the
-    plan logits through the trunk even though the scorer's match column starts at zero. Zeroing
-    them here makes the clone -> PPO handoff exact: at the first plan phase the network sees the
-    board it was trained on. Troll mini-steps keep their planes, because the clone saw them there.
+    Two groups, both written by the environment only at a plan phase and both identically zero
+    throughout behaviour cloning, so the clone has never seen either of them set:
+
+    * planes 59-71, the standing train target with its costs and deficits -- zero on every cloned
+      plan row (amendment 8, "No target memory in behaviour cloning": the previous turn's
+      hindsight label equals the current one between purchases, so feeding it back leaks the
+      label);
+    * plane 98, the "a troll was trained last turn" latch -- never set in cloning or in the
+      clone's bench.
+
+    The convolution trunk is shared, so either channel would shift the plan logits through the
+    trunk even though the scorer's match column starts at zero. Zeroing them makes the
+    clone -> PPO handoff exact: at the first plan phase the network sees the board it was trained
+    on. Troll mini-steps keep their planes, because the clone saw them there.
 
     This is the ONE place observations enter the network, so it covers the rollout, the update,
-    the anchor's log-probs and the frozen opponent's decisions alike.
+    the anchor's log-probs and the frozen opponent's decisions alike. The input is not mutated.
     """
 
     rows = phase == PHASE_PLAN
@@ -262,6 +277,7 @@ def mask_plan_target_planes(
         return observations
     masked = observations.clone()
     masked[rows, PLAN_TARGET_PLANE_START:PLAN_TARGET_PLANE_STOP] = 0
+    masked[rows, PLAN_TRAINED_LATCH_PLANE] = 0
     return masked
 
 
@@ -924,6 +940,13 @@ def train(args) -> dict:
                     )
                 episode_window = episode_window[-args.episode_window :]
             rollout_elapsed = time.perf_counter() - update_start
+            # Instrumentation only, nothing gates on it: the share of slots whose last stored
+            # mini-step did not execute a turn, so the rollout cut that turn in half and its
+            # reward lands in the next update. High values mean the rollout is short relative to
+            # a turn's mini-steps.
+            mid_turn_cut_fraction = float(
+                (buffer.turn_boundary[args.rollout_steps - 1] == 0).mean()
+            )
 
             phase_np = np.asarray(env.phase)
             with torch.no_grad():
@@ -1072,6 +1095,7 @@ def train(args) -> dict:
                 "mean_episode_turns": (
                     float(np.mean([row["turns"] for row in recent])) if recent else None
                 ),
+                "rollout_mid_turn_cut_fraction": mid_turn_cut_fraction,
                 "plan_step_fraction": float(
                     (buffer.phase == PHASE_PLAN).mean()
                 ),
