@@ -251,6 +251,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 04:5xZ: **PHASE 2's MILESTONE REACHED — the clone's games are on file for the owner's read**
+  (`local_claude_1/nn-bot/results/clone-2026-08-30-a/README.md`). The bench, argmax decoding, 24 maps × both seats vs
+  the champion's file: **9 wins of 48 (4 seat 0, 5 seat 1), 133.8 vs 186.2, 0 illegal, 0 timeouts**; 31 games to turn
+  300, 8 grace-expired, 9 mercy; 1 loop game (87 turns); a troll bought at turn 1 in 44 games — (2,2,2,2) ×8, (2,2,1,2)
+  ×6, (3,2,2,2) ×6, (2,2,2,1) ×5 … (the champion: (2,2,0,2)); the four games without a purchase averaged 92. The sampled
+  decoding: 8 wins, 133.2, a second troll in 9 games — the same player; **argmax is the decoding of record**. Read of
+  the games: the second troll harvests and plants like a teacher; the first churns PICK/DROP at the shack for stretches
+  (copying without a goal); no chopping as a plan. **Phase 3 starts from this checkpoint.** — coordinator
 - 2026-08-30 04:1xZ: **THE FIRST CLONE IS TRAINED** (`/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt`, 454 kB;
   `train_clone.py --epochs 4 --batch 512 --workers 16 --seed 1` over the rebuilt shard `dataset-v400-2026-08-30`, 817,811
   rows, no holdout — the trainer's default; ~30 min an epoch at 430–445 rows/s, the Rust plane builder the ceiling):
