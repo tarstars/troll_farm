@@ -323,6 +323,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   than run D at its update 500 (3 of 48, 108 points; harvest 27, plant 19) but still below the clone (9, 134). The erosion per
   update is about the same as D's (−0.05 points per update) — one 48-game bench, so the update-1,000 snapshot (~16:25Z) decides
   whether the remedies hold the line or only slow the drift. Still no run of record. — coordinator
+- 2026-08-30 16:1xZ: **Phase 4's engineering: both reproductions in** — claude_1 PASS on all four items on the VM (15:40Z, every
+  hash identical, the corpus check run again on the restored shard). **And a real hole found by chatgpt_1's audit (15:42Z): the
+  generated bot executes AVX2 unconditionally** — on a platform worker without AVX2 it would crash before its first command;
+  our two machines both have AVX2, so no bed could see it. Ruled on the sub-card: (d) runtime dispatch with a baseline
+  fallback, both paths bedded; (e) the timing gate = three quiet runs on the host, median p99 ≤ 15 ms, each ≤ 20 ms; (f) the
+  size counted in UTF-16 units (≈ 81,918 today — under the limit with 18,000 to spare, so a larger network is not free).
+  codex_1 has the handoff; +1 day on the sub-card. Nothing is shippable until (d) lands — which costs nothing today: no
+  snapshot beats the clone yet. The cluster at 16:00Z: a/b/c at ~300 updates, d started, e/f still queued. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
