@@ -5,7 +5,7 @@ Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
 Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
 First-hand source: `local_claude_1/reconstructions/sources/delineate-gist.github.com-2026-05-25.md`
-Revision: r2 — corrects the plan-only invariant after auditing the live trainer
+Revision: r3 — makes the frozen-executor behaviour policy explicit
 
 ## Verdict
 
@@ -54,7 +54,7 @@ The observed failure is unusually consistent:
 - purchases often remain;
 - chopping survives longer;
 - `PICK` / `PLANT` / `HARVEST` / `DROP` chains decay;
-- changing opponent mix, shaping, gamma, warm-up, and actor learning rate has delayed but not removed the decay.
+- changing opponent mix, shaping, gamma, warm-up and actor learning rate has delayed but not removed the decay.
 
 That is compatible with destructive updates to the shared executor, especially because the current PPO stage updates:
 
@@ -84,15 +84,15 @@ Therefore an episode cap should not be the unexamined default meaning of “deli
 
 Freeze the clone checkpoint. On real maps and both seats, externally supply a diverse target plan and use the existing target/deficit observation during troll mini-steps. Do not let the plan head choose the target.
 
-Measure:
+Run the executor by masked argmax, because that is the deployed clone whose competence is being tested. Measure:
 
 - fraction reaching affordability;
 - turns to affordability and TRAIN;
 - estimated resource-distance progress;
 - illegal/stall rate;
-- command mix and completion split by target talents, map size, and iron requirement.
+- command mix and completion split by target talents, map size and iron requirement.
 
-Compare the unchanged clone with one early eroded PPO checkpoint. This tells us whether the executor itself is the object being destroyed.
+Compare the unchanged clone with one early eroded PPO checkpoint under the same assigned targets and argmax executor. This tells us whether the executor itself is the object being destroyed.
 
 ### B. Offline gradient decomposition
 
@@ -101,6 +101,7 @@ On one saved post-warm-up minibatch, measure policy-parameter gradient norms and
 - PPO clipped policy loss;
 - entropy bonus;
 - clone-anchor KL;
+- value loss through the shared trunk;
 - plan rows versus troll rows;
 - fruit-chain action rows versus all others.
 
@@ -108,7 +109,7 @@ This is read-only and identifies which objective term is moving the executor awa
 
 ## Recommended next training stage if the executor gate passes
 
-### Plan-only PPO
+### Plan-only PPO with a deterministic frozen executor
 
 Start again from the clone and freeze:
 
@@ -130,15 +131,19 @@ The invariant is **parameter freezing**, not command-stream identity. The select
 The current trainer needs a narrow `--policy-train-scope plan-only` mode rather than only setting `requires_grad` manually:
 
 1. The current warm-up loop calls `requires_grad_(not in_warmup)` on every non-critic parameter, which would accidentally re-enable a supposedly frozen trunk and actor. Scope must be remembered per named parameter.
-2. PPO policy loss and entropy should be computed only on `PHASE_PLAN` rows in this mode. Troll rows should still contribute to value fitting, but not dilute the policy gradient.
-3. Advantage normalization for the policy term should use the selected PLAN rows, not a mixed PLAN/TROLL minibatch. A minibatch with zero PLAN rows applies value loss only.
-4. Anchor KL should be reported and applied on PLAN rows only in plan-only mode; otherwise frozen troll rows dilute the diagnostic.
-5. Checkpoint config must record the scope, frozen parameter names/count, and PLAN-row fraction.
-6. A negative-control test must prove `stem.*`, `tower.*`, and `actor.*` remain byte-identical after several optimiser updates while `plan.*` and `critic.*` move.
+2. **PLAN rows are sampled** from the trainable plan distribution and contribute PPO policy loss, entropy and plan-anchor KL.
+3. **TROLL rows use masked argmax from the frozen executor.** They do not call `Categorical.sample()`, and their log-probabilities do not enter PPO. This makes the environment being optimised the plan policy composed with the same executor used at deployment, rather than the already measured 3/48 temperature-1 troll behaviour.
+4. Troll rows may still contribute observations and returns to value fitting, but not dilute plan policy gradients.
+5. Advantage normalization for the policy term uses PLAN rows only. A minibatch with zero PLAN rows applies value loss only.
+6. Anchor KL is reported and applied on PLAN rows only in plan-only mode.
+7. The value branch must not update the frozen trunk; `pooled.detach()` is required for critic fitting in this scope.
+8. Checkpoint config records the scope, frozen parameter names/count, PLAN-row fraction, and executor decoding (`argmax`).
+9. A negative-control test proves `stem.*`, `tower.*`, and `actor.*` remain byte-identical after several optimiser updates while `plan.*` and `critic.*` move.
+10. Another test proves changing RNG state cannot change any TROLL action in plan-only mode, while PLAN sampling remains stochastic and reproducible from its seed.
 
 Use the champion-only environment and real end score. Retain the existing full-game bench. Stop if plan-only changes cannot improve while the executor parameters remain fixed.
 
-This is the closest analogue of delineate Level 4 available in the present architecture.
+This is the closest analogue of delineate Level 4 available in the present architecture. The source says the movement network was frozen; it does not state whether his frozen executor was sampled or greedy during Level 4. Using argmax here is a project-specific choice justified by the measured fact that our argmax clone is much stronger than its temperature-1 sampled behaviour, and it matches the submitted policy.
 
 If plan-only PPO improves, proceed to a tightly bounded Level-5-like fine-tune:
 
@@ -147,15 +152,15 @@ If plan-only PPO improves, proceed to a tightly bounded Level-5-like fine-tune:
 - use lower learning rate for trunk/spatial parameters than for the plan/value heads;
 - gate fruit-chain retention directly.
 
-If the assigned-plan executor gate fails, then build the actual Level-1-to-3 analogue: assigned targets, automatic TRAIN, and distance-to-resource shaping. That is a larger environment amendment but is source-backed.
+If the assigned-plan executor gate fails, then build the actual Level-1-to-3 analogue: assigned targets, automatic TRAIN and distance-to-resource shaping. That is a larger environment amendment but is source-backed.
 
 ## Recommendation
 
 ```text
 CORRECT the attribution: episode cap/small maps are a project idea, not delineate's stated curriculum.
 DO the assigned-plan executor gate and offline gradient decomposition first.
-PREFER plan-only PPO with frozen executor parameters before another all-parameter fine-tune.
+PREFER plan-only PPO with frozen executor parameters and argmax troll actions before another all-parameter fine-tune.
 KEEP episode-cap experiments optional and define truncation semantics explicitly.
 ```
 
-No environment, trainer, checkpoint, dataset, YT operation, platform, or Arena state was changed by this audit.
+No environment, trainer, checkpoint, dataset, YT operation, platform or Arena state was changed by this audit.
