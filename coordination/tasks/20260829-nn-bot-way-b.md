@@ -286,6 +286,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   0.05) tests the objective; `ppo-f` (when the flag lands) tests a **critic warm-up** — the value head trained alone for the
   first N updates with the policy frozen, then the normal loop with a reduced actor learning rate. `ppo-d` runs to its
   update-1,500 bench, then stops. The four cluster jobs carry the old defaults: a 12-hour negative control. — coordinator
+- 2026-08-30 14:2xZ: `ppo-d` stopped at 1,138 updates (its trend established, the cores freed). **The trainer gained a critic
+  warm-up** (`--critic-warmup-updates N`: for the first N updates only the value head trains — the policy frozen bit for bit,
+  its shared trunk included — then the normal loop; `--actor-lr-scale S`: a reduced learning rate for the policy side; 4 tests,
+  57 in the file). **`ppo-f` started 14:2xZ**: warm-up 300 updates, actor learning rate ×0.3, γ 0.999, no wood shaping, the
+  real end score, the leash 0.1 → 0.05, the champion pool, 10 threads. `ppo-e` (the objective alone) runs beside it. Both are
+  benched at update 500 (after the warm-up for f) and 1,000; **no run is the run of record until a snapshot beats the clone's 9
+  of 48**. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
