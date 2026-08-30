@@ -19,7 +19,9 @@ What is trained:
   mask.  Each row trains exactly one head -- a plan row carries no command and a troll row carries
   no purchase -- and a batch is the mixture the shard's own mini-step order produces.
 * held out **by game** (`split` in the shard, deterministic by game id), so a held-out number is
-  never a turn of a game the network trained on.
+  never a turn of a game the network trained on.  A shard built without a holdout can be split
+  here instead, with `--holdout PERCENT`: the same `build_dataset.held_out` function draws the
+  line, so trainer-side and builder-side splits agree game for game.
 * per-verb accuracy is reported and **never gates anything**: fit statistics anti-predict transfer
   in this project (`docs/CONSTRAINTS.md`); the bench is the judge.
 * the checkpoint is the four-key format PPO reads -- `model`, `optimizer`, `config`,
@@ -58,7 +60,7 @@ for _path in (HERE, REPO):
 
 import nn_runtime as nr                                          # noqa: E402
 from build_dataset import (KIND_COMMAND, KIND_PLAN, OOV, VERBS,   # noqa: E402
-                           PLAN_VOCAB_VERSION, read_maps, read_shard, unflat)
+                           PLAN_VOCAB_VERSION, held_out, read_maps, read_shard, unflat)
 
 
 def load_states(shard_dir: Path, name: str) -> dict:
@@ -85,15 +87,24 @@ class PlaneBatcher:
     """
 
     def __init__(self, shard_dir, name, library=nr.DEFAULT_LIBRARY, *, split=None, limit=0,
-                 seed=0):
+                 seed=0, holdout=0):
         self.shard_dir, self.name = Path(shard_dir), name
         self.library = library
         arrays, self.meta = read_shard(self.shard_dir, name)
         maps = read_maps(self.shard_dir, name)
         states = load_states(self.shard_dir, name)
+        if holdout and int(self.meta.get("holdout_percent") or 0):
+            raise SystemExit(
+                f"--holdout {holdout} on a shard already built with "
+                f"--holdout {self.meta['holdout_percent']}: re-split at load time would move "
+                "games across the line the shard drew; drop the flag or rebuild the shard")
+        self.holdout = holdout
         contexts = []
         for context in nr.shard_contexts(arrays, states, maps):
-            if split is not None and context["split"] != split:
+            # `--holdout` draws the split here, by game, with the builder's own function -- so a
+            # dataset built without one can still be judged on games it never trained on.
+            row_split = held_out(int(context["game"]), holdout) if holdout else context["split"]
+            if split is not None and row_split != split:
                 continue
             if context["kind"] == KIND_PLAN and context["label"] == OOV:
                 continue                      # censused as unsupported: it has no label to fit
@@ -265,7 +276,9 @@ def checkpoint_config(meta, args, counts) -> dict:
         "shard_plan_vocab_version": meta.get("plan_vocab_version"),
         "shard_rows": meta.get("rows"),
         "epochs": args.epochs, "batch": args.batch, "learning_rate": args.lr,
-        "seed": args.seed, "holdout_percent": meta.get("holdout_percent"),
+        "seed": args.seed,
+        "holdout_percent": args.holdout or meta.get("holdout_percent"),
+        "holdout_drawn_by": "trainer" if args.holdout else "builder",
         "train_rows": counts["train"], "held_out_rows": counts["held_out"],
         "library": str(args.library),
     }
@@ -284,12 +297,18 @@ def save_checkpoint(path, model, optimizer, config, global_step):
 
 def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
     """The trainer's own checks.  The data half runs without PyTorch; the rest is skipped then."""
-    failures = []
+    failures, skipped = [], []
+
+    class Skip(Exception):
+        """What a check raises when it needs something this invocation was not given."""
 
     def check(label, fn):
         try:
             fn()
             print(f"ok   {label}")
+        except Skip as exc:
+            skipped.append(f"{label}: {exc}")
+            print(f"skip {label}: {exc}")
         except Exception as exc:                                  # noqa: BLE001
             failures.append(f"{label}: {exc}")
             print(f"FAIL {label}: {exc}")
@@ -315,7 +334,7 @@ def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
     # 3 -- the staged prefix is the turn's earlier trolls, in order, and a plan row has none.
     def staging():
         if shard is None:
-            raise AssertionError("skipped: no --shard given")
+            raise Skip("no --shard given; pass --shard/--name to run this one")
         arrays, _ = read_shard(shard, name)
         maps = read_maps(shard, name)
         states = load_states(Path(shard), name)
@@ -335,18 +354,40 @@ def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
         assert seen > 0
     check("the staged prefix is the turn's earlier trolls in ascending id order", staging)
 
+    # 4 -- the trainer's `--holdout` draws the builder's own line: one side per game, right share.
+    def holdout_split():
+        ids = list(range(3000))
+        train = {g for g in ids if not held_out(g, 20)}
+        out = {g for g in ids if held_out(g, 20)}
+        assert not (train & out), "a game landed on both sides of the holdout"
+        assert train | out == set(ids)
+        share = len(out) / len(ids)
+        assert 0.15 <= share <= 0.25, f"--holdout 20 held out {100 * share:.1f} %"
+        assert all(not held_out(g, 0) for g in ids), "--holdout 0 must hold nothing out"
+        assert [held_out(g, 20) for g in ids] == [held_out(g, 20) for g in ids], "not stable"
+        if shard is not None:
+            arrays, _ = read_shard(shard, name)
+            games = {int(g) for g in arrays["game"]}
+            sides = {g: held_out(g, 20) for g in games}
+            assert set(sides.values()) <= {0, 1}
+            print(f"     shard games {len(games)}: "
+                  f"{sum(sides.values())} held out at --holdout 20")
+    check("--holdout splits by game with the builder's own function, one side per game",
+          holdout_split)
+
     try:
         import torch                                              # noqa: F401,PLC0415
     except ImportError:
         print("torch is not installed here: the model half of the self-test is skipped "
               "(the card's disk rule); the coordinator runs it on the host")
-        print(f"self-test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
+        print(f"self-test: {'PASS' if not failures else 'FAIL'} "
+              f"({len(failures)} failures, {len(skipped)} skipped)")
         return 0 if not failures else 1
 
     import torch                                                  # noqa: PLC0415
     from cgauto.train_level1_ppo import SpatialActorCritic        # noqa: PLC0415
 
-    # 4 -- each row kind trains exactly one head.
+    # 5 -- each row kind trains exactly one head.
     def one_head_per_row():
         torch.manual_seed(0)
         model = SpatialActorCritic(plan_head=True)
@@ -370,7 +411,7 @@ def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
     check("a plan row trains the plan head and a troll row the per-cell head, not both",
           one_head_per_row)
 
-    # 5 -- a label the mask forbids raises instead of training.
+    # 6 -- a label the mask forbids raises instead of training.
     def refuses_illegal_label():
         logits = torch.zeros(1, 8)
         mask = torch.tensor([[1, 1, 0, 0, 0, 0, 0, 0]], dtype=torch.uint8)
@@ -381,7 +422,7 @@ def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
         raise AssertionError("an illegal label must raise")
     check("a label outside the mask raises rather than being trained on", refuses_illegal_label)
 
-    # 6 -- the four-key checkpoint loads into the PPO trainer, and a foreign vocabulary does not.
+    # 7 -- the four-key checkpoint loads into the PPO trainer, and a foreign vocabulary does not.
     def checkpoint_loads():
         import importlib.util                                     # noqa: PLC0415
         import tempfile                                           # noqa: PLC0415
@@ -411,7 +452,8 @@ def self_test(library=nr.DEFAULT_LIBRARY, shard=None, name="pilot"):
     check("the four-key checkpoint loads into train_ppo_full.load_policy, a foreign one is "
           "refused", checkpoint_loads)
 
-    print(f"self-test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
+    print(f"self-test: {'PASS' if not failures else 'FAIL'} "
+          f"({len(failures)} failures, {len(skipped)} skipped)")
     return 0 if not failures else 1
 
 
@@ -426,6 +468,9 @@ def main() -> int:
     ap.add_argument("--batch", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--holdout", type=int, default=0,
+                    help="percent of games held out at load time, by game, with the builder's "
+                         "own deterministic split; refuses a shard that already carries one")
     ap.add_argument("--limit", type=int, default=0,
                     help="train on at most N rows (the smoke); 0 = every row")
     ap.add_argument("--workers", type=int, default=0,
@@ -449,9 +494,10 @@ def main() -> int:
     started = time.time()
 
     train_set = PlaneBatcher(args.shard, args.name, args.library, split=0, limit=args.limit,
-                             seed=args.seed)
+                             seed=args.seed, holdout=args.holdout)
     held_set = PlaneBatcher(args.shard, args.name, args.library, split=1,
-                            limit=max(1, args.limit // 4) if args.limit else 0, seed=args.seed)
+                            limit=max(1, args.limit // 4) if args.limit else 0, seed=args.seed,
+                            holdout=args.holdout)
     counts = {"train": len(train_set), "held_out": len(held_set)}
     print(f"shard {args.shard} ({args.name}): train {train_set.counts()}, "
           f"held out {held_set.counts()}", flush=True)

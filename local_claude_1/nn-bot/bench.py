@@ -260,14 +260,29 @@ class RandomMaskPolicy:
 
 
 class NetworkPolicy:
-    """The clone: masked argmax over `SpatialActorCritic(plan_head=True)`.
+    """The clone: masked decoding over `SpatialActorCritic(plan_head=True)`.
 
     The checkpoint is loaded by `train_ppo_full.load_policy`, which is the loader that also
     refuses a foreign plan vocabulary -- so the bench cannot judge a network against a vocabulary
     it was not trained on.
+
+    The **plan** head is decoded either by masked argmax or by a masked sample at a temperature
+    (`--plan-decoding`): a clone fits a distribution, and its argmax can be a plan the teachers
+    took a minority of the time even where they bought often.  Commands are always argmax -- only
+    the plan call was in question.  Sampling draws from a generator reseeded per game, so a run
+    at one `--seed` reproduces.
     """
 
-    def __init__(self, checkpoint: Path, deterministic: bool = True):
+    def __init__(self, checkpoint: Path, deterministic: bool = True,
+                 plan_decoding: str = "argmax", temperature: float = 1.0, seed: int = 0):
+        import numpy as np                                        # noqa: PLC0415
+
+        if plan_decoding not in ("argmax", "sample"):
+            raise SystemExit(f"unknown --plan-decoding {plan_decoding!r}")
+        if temperature <= 0:
+            raise SystemExit("--plan-temperature must be positive")
+        self.plan_decoding, self.temperature = plan_decoding, temperature
+        self.rng = np.random.default_rng(seed)
         import importlib.util                                     # noqa: PLC0415
 
         import torch                                              # noqa: PLC0415
@@ -279,7 +294,7 @@ class NetworkPolicy:
         self.torch = torch
         self.model, _ = module.load_policy(str(checkpoint), torch.device("cpu"))
         self.model.eval()
-        self.name = f"network:{Path(checkpoint).name}"
+        self.name = f"network:{Path(checkpoint).name}:{self.plan_decoding}"
         self.deterministic = deterministic
 
     def _forward(self, obs: bytes):
@@ -298,8 +313,33 @@ class NetworkPolicy:
         masked = logits.masked_fill(~legal, self.torch.finfo(logits.dtype).min)
         return int(masked.argmax(1).item())
 
+    def reseed(self, seed: int) -> None:
+        """One generator per game, so the schedule's order cannot change a game's draws."""
+        import numpy as np                                        # noqa: PLC0415
+
+        self.rng = np.random.default_rng(seed)
+
+    def _sample(self, logits, mask: bytes) -> int:
+        """A draw from the masked soft-max at `self.temperature`; an illegal index cannot win."""
+        import numpy as np                                        # noqa: PLC0415
+
+        legal = np.frombuffer(mask, dtype=np.uint8).copy().astype(bool)
+        if not legal.any():
+            raise RuntimeError("the runtime offered an empty mask")
+        scores = logits.detach().numpy().reshape(-1)[: legal.size].astype(np.float64)
+        scores = scores / self.temperature
+        scores[~legal] = -np.inf
+        scores -= scores.max()
+        weights = np.exp(scores)
+        total = weights.sum()
+        if not np.isfinite(total) or total <= 0:                  # every legal score underflowed
+            return int(np.flatnonzero(legal)[0])
+        return int(self.rng.choice(legal.size, p=weights / total))
+
     def plan_index(self, obs: bytes, plan_mask: bytes) -> int:
         _, plan_logits, _ = self._forward(obs)
+        if self.plan_decoding == "sample":
+            return self._sample(plan_logits, plan_mask)
         return self._argmax(plan_logits, plan_mask)
 
     def action_index(self, obs: bytes, mask: bytes) -> int:
@@ -403,6 +443,7 @@ def play(rec, draw, binary: Path, policy, turns: int, keep_replay: bool, *,
 
     illegal = []           # commands the policy proposed that the mask rejects
     policy_trains, replay = [], []
+    plans_drawn = plans_refused = 0
     tracks = {}            # troll id -> {"cells": [...], "carrying": [...]}
     policy_time = 0.0
     turns_until_end = 0
@@ -459,6 +500,12 @@ def play(rec, draw, binary: Path, policy, turns: int, keep_replay: bool, *,
             # the TRAIN command is emitted at all -- one shared adapter, `nn_runtime.plan_trains`.
             emitted, talents = nr.plan_trains(ref, policy_seat, plan_index, policy_line,
                                               bot_line, builder)
+            # A plan the head asked for and the dry run refused leaves no other trace: without
+            # these two counts a report that bought nothing cannot say whether the head never
+            # asked or whether every plan it asked for was unaffordable that turn.
+            if plan_index:
+                plans_drawn += 1
+                plans_refused += 0 if emitted else 1
             if emitted:
                 policy_line = ("TRAIN %d %d %d %d" % talents
                                + (";" + policy_line if policy_line else ""))
@@ -507,6 +554,8 @@ def play(rec, draw, binary: Path, policy, turns: int, keep_replay: bool, *,
         "bot_trains": bot_events,
         "policy_trains": policy_events,
         "policy_trains_requested": policy_trains,
+        "policy_plans_drawn": plans_drawn,
+        "policy_plans_refused": plans_refused,
         "policy_trolls": len(view.trolls()),
         "bot_trolls": len(view.trolls(bot_seat)),
         "timeouts": bot.timeouts,
@@ -653,6 +702,49 @@ def self_test(library) -> int:
     check("a whole turn taken through the runtime's masks is accepted by the referee",
           tensor_turn)
 
+    # 7 -- --plan-decoding sample: the mask still binds, and one seed is one run.
+    def sampled_plan_obeys_the_mask():
+        import numpy as np                                        # noqa: PLC0415
+
+        class Logits:
+            """What `_sample` needs of a torch tensor -- so this check needs no PyTorch."""
+
+            def __init__(self, values):
+                self.values = np.asarray(values, dtype=np.float64)
+
+            def detach(self):
+                return self
+
+            def numpy(self):
+                return self.values
+
+        policy = object.__new__(NetworkPolicy)
+        policy.temperature = 1.0
+        # An illegal index carries by far the largest logit: only the mask can keep it out.
+        values = np.array([0.0, 1.0, 50.0, 2.0, 0.5])
+        mask = bytes([1, 1, 0, 1, 0])
+        policy.rng = np.random.default_rng(0)
+        drawn = [policy._sample(Logits(values), mask) for _ in range(300)]
+        assert set(drawn) <= {0, 1, 3}, f"the sample left the mask: {sorted(set(drawn))}"
+        assert len(set(drawn)) > 1, "a sample that never varies is an argmax"
+        policy.rng = np.random.default_rng(0)
+        again = [policy._sample(Logits(values), mask) for _ in range(300)]
+        assert drawn == again, "the same seed drew a different run"
+        # A cold temperature is the argmax of the legal entries; a hot one spreads.
+        policy.temperature = 0.01
+        policy.rng = np.random.default_rng(1)
+        assert {policy._sample(Logits(values), mask) for _ in range(50)} == {3}, \
+            "at temperature 0.01 the best legal index must win"
+        policy.temperature = 1.0
+        try:
+            policy._sample(Logits(values), bytes(5))
+        except RuntimeError:
+            pass
+        else:
+            raise AssertionError("an empty mask must raise")
+    check("--plan-decoding sample stays inside the mask and repeats at one seed",
+          sampled_plan_obeys_the_mask)
+
     print(f"self-test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
     return 0 if not failures else 1
 
@@ -687,6 +779,10 @@ def main() -> int:
                          "over the amended tensor path; network needs --checkpoint")
     ap.add_argument("--checkpoint", type=Path, default=None,
                     help="a clone checkpoint (train_clone.py) for --policy network")
+    ap.add_argument("--plan-decoding", default="argmax", choices=("argmax", "sample"),
+                    help="how --policy network reads its plan head; commands stay argmax")
+    ap.add_argument("--plan-temperature", type=float, default=1.0,
+                    help="the temperature of --plan-decoding sample")
     ap.add_argument("--library", type=Path, default=Path(nr.DEFAULT_LIBRARY),
                     help="libtroll_farm.so: the planes and both masks come from it")
     ap.add_argument("--both-seats", action="store_true",
@@ -736,7 +832,9 @@ def main() -> int:
         replay_fh = None if args.no_replays else open(args.replays, "w")
         if args.policy == "network" and args.checkpoint is None:
             raise SystemExit("--policy network needs --checkpoint")
-        network = (NetworkPolicy(args.checkpoint) if args.policy == "network" else None)
+        network = (NetworkPolicy(args.checkpoint, plan_decoding=args.plan_decoding,
+                                 temperature=args.plan_temperature, seed=args.seed)
+                   if args.policy == "network" else None)
         for i, (rec, draw, seat) in enumerate(schedule):
             if args.policy == "random-legal":
                 policy = RandomLegalPolicy(seed=args.seed + i, train_p=args.train_p)
@@ -744,6 +842,7 @@ def main() -> int:
                 policy = RandomMaskPolicy(seed=args.seed + i, train_p=args.train_p)
             else:
                 policy = network
+                policy.reseed(args.seed + i)
             row = play(rec, draw, binary, policy, args.turns,
                        keep_replay=replay_fh is not None, policy_seat=seat, builder=builder)
             if replay_fh is not None:
@@ -771,6 +870,10 @@ def main() -> int:
         "bot": rel(args.bot), "bot_sha256": sha(bot_text),
         "policy": args.policy, "seed": args.seed, "train_p": args.train_p,
         "checkpoint": rel(args.checkpoint) if args.checkpoint else None,
+        "plan_decoding": args.plan_decoding if args.policy == "network" else None,
+        "plan_temperature": (args.plan_temperature
+                             if args.policy == "network" and args.plan_decoding == "sample"
+                             else None),
         "library": rel(args.library) if builder else None,
         "plan_vocab_version": builder.plan_version if builder else None,
         "maps": rel(args.maps), "maps_played": len(plan),
@@ -786,6 +889,8 @@ def main() -> int:
         "policy_wins": wins,
         "policy_score_mean": round(sum(r["policy_score"] for r in rows) / n, 1),
         "bot_score_mean": round(sum(r["bot_score"] for r in rows) / n, 1),
+        "plans_drawn_total": sum(r["policy_plans_drawn"] for r in rows),
+        "plans_refused_total": sum(r["policy_plans_refused"] for r in rows),
         "illegal_commands_total": sum(len(r["illegal_commands"]) for r in rows),
         "timeouts_total": sum(r["timeouts"] for r in rows),
         "referee_errors_total": sum(sum(r["referee_errors"].values()) for r in rows),
