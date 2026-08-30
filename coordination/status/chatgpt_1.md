@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T08:04:00Z
+- Updated UTC: 2026-08-30T08:17:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 live-training validity
@@ -10,30 +10,34 @@
 
 Continuously polling canonical branches, processing direct obligations, and verifying the accepted clone-to-PPO repair. Phase 1 is accepted; Phase 2 produced a legal clone and its 48-game owner-readable bench.
 
-## Accepted rulings
+## Accepted and merged
 
-The coordinator accepted amendments 10 and 11 at 07:29Z:
+The coordinator accepted amendments 10 and 11. `main@b98c23d5` now:
 
-1. GAE uses trace factor 1 on artificial within-turn mini-steps and `gamma*lambda` only across a real turn boundary.
-2. The first Phase-3 run zeroes target planes 59–71 at every PLAN decision for policy, value, anchor and frozen opponent; troll rows remain unchanged.
-3. The run started at 04:45Z is exploratory, stops after the patched trainer lands, and the run of record restarts from the original clone.
+1. uses trace factor 1 on artificial within-turn mini-steps and `gamma*lambda` only across a real turn boundary;
+2. zeroes target planes 59–71 at every PLAN network call for policy, value, anchor and frozen opponent;
+3. includes the real-clone A/B full-model invariance test;
+4. keeps the 04:45Z run exploratory.
 
-The 07:15Z correction was quarantined because its `supersedes` list used multiline YAML. The 07:43Z follow-through was invalid because a v2 handoff lacked artifact metadata. Both delivery errors are superseded by the blocker below.
+Source review: amendment 10 is correct inside one GAE array; amendment 11 is correct for planes 59–71. The run of record has not been recorded as restarted.
 
-## Open follow-through
+## Open blocker
 
-The transport-valid acknowledgement-required message is:
+The one transport-valid acknowledgement-required message is:
 
-`coordination/messages/chatgpt_1/20260830T080300Z-20260829-nn-bot-way-b-plan-phase-latch-blocker.md`
+`coordination/messages/chatgpt_1/20260830T081500Z-20260829-nn-bot-way-b-complete-turn-rollout-blocker.md`
 
-It extends amendment 11 to plane 98. BC and the 48-game bench also had `prior_target_trained=false` on every PLAN row, while the PPO environment sets plane 98 after a successful purchase. Because plane 98 enters the shared trunk, the first-run PLAN sanitizer and real-clone invariant test should cover 59–71 **and 98**.
+It supersedes the plane-98-only blocker and carries two remaining joins:
+
+1. A fixed 32-step rollout can end mid-turn. The trainer immediately bootstraps and updates the incomplete suffix; the executing reward arrives in the next rollout and cannot propagate back across the PPO update. The clone critic is unsupervised by behaviour cloning, so this is not an exact substitute. No PPO update should consume an incomplete logical turn; add a split-at-every-boundary regression and explicit pending-turn handling.
+2. PLAN sanitization and the real-clone test must include plane 98 as well as 59–71. BC and the clone bench never set the `prior_target_trained` latch, while PPO does after a purchase.
 
 ## Next check
 
-- coordinator acknowledgement of the plane-98 blocker;
-- trainer patch and tests for amendments 10–11;
-- A/B/C real-clone full-model invariant: zero context, standing target only, plane-98 latch only;
-- exploratory run stopped and run of record restarted from the clone;
+- coordinator ruling on the complete-turn/plane-98 blocker;
+- pending-turn design and split-turn regression;
+- A/B/C real-clone invariant including plane 98;
+- exploratory run stopped and run of record restarted from the clone only after both pass;
 - then checkpoint/bench monitoring resumes.
 
 ## Boundaries
