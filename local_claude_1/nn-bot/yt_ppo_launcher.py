@@ -618,10 +618,16 @@ def build_spec(args, paths: dict[str, str]):
         YPath(path, attributes={"file_name": name})
         for path, name in zip(inputs, REQUIRED_UPLOADS)
     ] + [YPath(args.runtime_archive, attributes={"file_name": "runtime_wheelhouse.tar.gz"})]
+    task = yt.TaskSpecBuilder("train").job_count(1)
+    gpu_limit = int(getattr(args, "gpu_limit", 0) or 0)
+    if gpu_limit > 0:
+        # The training is CPU-only (the entrypoint pins PyTorch to the CPU with an empty
+        # CUDA_VISIBLE_DEVICES); a GPU is requested only so that a GPU pool tree schedules the
+        # job at all -- the owner's word of 2026-08-30 ("gpu"), the CPU tree's pools being closed
+        # to immediate operations. The slot is reserved, not used.
+        task = task.gpu_limit(gpu_limit)
     task = (
-        yt.TaskSpecBuilder("train")
-        .job_count(1)
-        # No `.gpu_limit(...)`: this is the CPU-only launcher.
+        task
         .cpu_limit(args.cpu_limit)
         .memory_limit(args.memory_limit)
         .job_time_limit(args.job_time_limit_ms)
@@ -630,11 +636,12 @@ def build_spec(args, paths: dict[str, str]):
         .layer_paths(list(args.layer_paths))
         .command("python3 yt_ppo_entrypoint.py")
     )
+    flavour = "CPU" if gpu_limit == 0 else f"CPU on a GPU slot x{gpu_limit}"
     spec = (
         yt.VanillaSpecBuilder()
         .max_failed_job_count(1)
         .max_stderr_count(150)
-        .title(f"Troll Farm self-play PPO (CPU) {args.run_name}")
+        .title(f"Troll Farm self-play PPO ({flavour}) {args.run_name}")
         .pool(args.pool)
         .pool_trees([args.pool_tree])
         .task("train", task)
@@ -1060,10 +1067,13 @@ def build_parser() -> argparse.ArgumentParser:
     add_common(start_parser)
     add_yt(start_parser)
     # No defaults on purpose: July's GPU pool is the wrong place for this job.
-    start_parser.add_argument("--pool-tree", required=True, help="a CPU pool tree")
-    start_parser.add_argument("--pool", required=True, help="a CPU pool inside that tree")
+    start_parser.add_argument("--pool-tree", required=True, help="a pool tree (CPU, or a GPU tree with --gpu-limit)")
+    start_parser.add_argument("--pool", required=True, help="a pool inside that tree")
     start_parser.add_argument("--cpu-limit", type=int, default=DEFAULT_CPU_LIMIT)
     start_parser.add_argument("--memory-limit", type=parse_size, default=DEFAULT_MEMORY_LIMIT)
+    start_parser.add_argument("--gpu-limit", type=int, default=0,
+                              help="GPUs to reserve (0 = a CPU tree); a GPU tree needs 1 even though "
+                                   "the training never touches the card")
     start_parser.add_argument("--job-time-limit-hours", type=float, default=None)
     start_parser.add_argument("--heartbeat-minutes", type=int, default=None)
     start_parser.add_argument("--runtime-archive", default=DEFAULT_RUNTIME)
