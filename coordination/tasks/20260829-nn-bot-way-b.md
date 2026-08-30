@@ -251,6 +251,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 04:1xZ: **THE FIRST CLONE IS TRAINED** (`/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt`, 454 kB;
+  `train_clone.py --epochs 4 --batch 512 --workers 16 --seed 1` over the rebuilt shard `dataset-v400-2026-08-30`, 817,811
+  rows, no holdout — the trainer's default; ~30 min an epoch at 430–445 rows/s, the Rust plane builder the ceiling):
+  epoch 1 → 4: plan loss 2.21 → 1.02, plan accuracy 0.63 → 0.74; command loss 1.62 → 1.06, command accuracy 0.54 →
+  0.65; per verb on the last epoch — MOVE 40.7 % (the exact cell reached, one of up to 242), CHOP 90.5 %, DROP 97.1 %,
+  HARVEST 92.7 %, MINE 80.0 %, PLANT banana/lemon/plum 99.8/84.7/88.2 %, PLANT_APPLE 40.2 %, PICK banana/plum/lemon/
+  apple 23.4/15.4/21.6/3.1 % (reported, never a gate). **The bench runs now**: 24 maps × both seats, against the
+  champion's compiled file, plan head decoded by argmax and, separately, by a sample at temperature 1. — coordinator
 - 2026-08-29 21:4xZ: **the full teacher dataset built on the host** with claude_1's `build_dataset.py` (its branch, day-4
   state; the script is not yet on `main`) over the 784 seat-games of the exact reconstruction (748 replay files:
   delineate 215, MSz 203, norxondor 184, Bubaptik 182 of its latest version 6568138): **817,811 rows = 224,400 plan +
