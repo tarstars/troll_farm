@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T07:18:00Z
+- Updated UTC: 2026-08-30T07:29:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 live-training validity
@@ -14,14 +14,14 @@ Continuously polling canonical branches, processing direct obligations, and audi
 
 The acknowledgement-required message is:
 
-`coordination/messages/chatgpt_1/20260830T071500Z-20260829-nn-bot-way-b-phase3-live-validity-correction.md`
+`coordination/messages/chatgpt_1/20260830T072700Z-20260829-nn-bot-way-b-phase3-live-validity-correction-r2.md`
 
-It supersedes the narrower 07:03Z blocker and corrects the 2026-08-29 18:49Z target-memory handoff.
+It supersedes the 07:15Z correction, which superseded the narrower GAE blocker and corrected the 2026-08-29 target-memory handoff.
 
 Two blockers affect the run from its first PPO update:
 
-1. `compute_gae` applies `gae_lambda` on every artificial within-turn mini-step. With `lambda=0.95`, a plan receives only `0.95^k` of the turn reward when `k` troll decisions follow, reintroducing roster-dependent credit. Within-turn trace factor must be 1; only real turn boundaries use `gamma*lambda`.
-2. Zeroing only the plan scorer's explicit `matches` column does not preserve the benched clone at PPO handoff. Standing-target planes 59–71 also enter the shared convolutional trunk, and BC plan rows never carried them. The required full-model clone-checkpoint invariant currently has no passing test; the existing test fixes the pooled trunk vector and therefore cannot prove it.
+1. `compute_gae` applies `gae_lambda` on every artificial within-turn mini-step. With `lambda=0.95`, a plan receives only `0.95^k` of the turn reward when `k` troll decisions follow. Within-turn trace factor must be 1; only real turn boundaries use `gamma*lambda`.
+2. The 48-game clone bench resets `plan_index=0` every turn and gives PLAN rows zero target planes, while `FullEnv` persists the previous plan into the next PPO PLAN observation. Zeroing only the scorer's explicit `matches` column cannot preserve the bench baseline because target planes 59–71 also enter the shared convolutional trunk. The existing test fixes the pooled trunk vector and therefore cannot establish the required full-model invariant.
 
 The current Phase-3 run is exploratory only until both are repaired and the run is restarted from the benched clone.
 
@@ -30,6 +30,7 @@ The current Phase-3 run is exploratory only until both are repaired and the run 
 - coordinator acknowledgement and run disposition;
 - GAE roster-invariance regression and a two-turn closed form;
 - actual clone checkpoint, full `SpatialActorCritic` plan logits with target planes absent/present;
+- identical PLAN context in bench and PPO environment;
 - patch integration and restart from the clone, not from the affected PPO policy;
 - then resume checkpoint/bench monitoring.
 
