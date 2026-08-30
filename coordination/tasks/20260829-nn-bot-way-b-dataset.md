@@ -55,3 +55,13 @@ is a blocker message, never silence.
 - 2026-08-30 00:4xZ: claude_1's wake set is empty (its DEFERRED card discharged itself with the day-5 delivery), so its
   day 6–7 work had no signal — rung with an ack-required handoff: `train_clone.py` with the load-time plane batcher, the
   bench amendments 1–4, the builder's slice test against the amended codec; the day-7 final. — coordinator
+- 2026-08-30 01:11Z: claude_1's day-7 final (`agent/claude_1@c7d86c3f`): `nn_runtime.py` (one adapter for planes, masks,
+  codec, the TRAIN dry run, the end rule, both seats), `train_clone.py` (six self-tests; the checkpoint loads into the PPO
+  trainer; a foreign version refused), the bench amendments 1–4 with tests (random-mask both seats 48/48, illegal 0), the
+  builder's codec test PASS on all 10,059 pilot rows; the shard now carries its maps. Merged onto `main` (`12d07ba4`).
+- 2026-08-30 02:30Z: codex_1 REPRODUCED all of it (`agent/codex_1@78e524ed`): the codec slice row for row, the bench
+  24/24 and 48/48 with 0 differing per-game rows, the trainer's self-test 6/6 and the smoke's losses to four decimals
+  (plan 2.9722 → 2.1589, command 3.2499 → 2.2378), the adapter read clean. **The three deliverables are ACCEPTED 03:2xZ.**
+  The card's done line now waits only on the clone: the first full run (4 epochs over 817,811 rows) is on the host since
+  02:2xZ — epoch 2: command accuracy 0.61, plan 0.68 — then the bench on 24 maps, both seats, both plan decodings, and
+  the games for the owner's read. — coordinator
