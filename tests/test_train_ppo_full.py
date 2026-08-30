@@ -806,6 +806,44 @@ def test_the_critic_warmup_moves_the_value_head_and_nothing_else(tmp_path, capsy
         assert row["anchor_loss"] is None
 
 
+def test_train_scope_plan_critic_freezes_the_trunk_and_the_per_cell_head(tmp_path) -> None:
+    """`--train-scope plan-critic` past the warm-up: stem/tower/actor byte for byte, plan moved.
+
+    Three updates with a warm-up of 1: updates 2 and 3 run the ordinary PPO loss, so under scope
+    'all' the trunk would move. Under 'plan-critic' the trunk (`stem.*`, `tower.*`) and the
+    per-cell head (`actor.*`) must come out identical to the starting checkpoint -- `torch.equal`
+    -- while at least one plan-head tensor and one value-head tensor have moved.
+    """
+
+    clone_path, initial = _clone_like_checkpoint(tmp_path, seed=107)
+    tpf.main(
+        _fake_run_argv(
+            tmp_path,
+            [
+                "--initial-checkpoint",
+                str(clone_path),
+                "--train-scope",
+                "plan-critic",
+                "--critic-warmup-updates",
+                "1",
+                "--total-turn-steps",
+                "192",
+            ],
+        )
+    )
+
+    trained = _saved_model(tmp_path, 3)
+    assert set(trained) == set(initial)
+    frozen = [n for n in initial if n.split(".")[0] in ("stem", "tower", "actor")]
+    assert frozen, "the model must expose stem/tower/actor parameters"
+    for name in frozen:
+        assert torch.equal(trained[name], initial[name]), name
+    plan_names = [n for n in initial if n.startswith("plan.")]
+    critic_names = [n for n in initial if tpf.is_critic_parameter(n)]
+    assert any(not torch.equal(trained[n], initial[n]) for n in plan_names)
+    assert any(not torch.equal(trained[n], initial[n]) for n in critic_names)
+
+
 def test_the_first_update_after_the_warmup_moves_the_actor(tmp_path, capsys) -> None:
     """Update 4 with a warm-up of 3: the policy side starts learning, and the log says so."""
 

@@ -764,6 +764,15 @@ def build_parser() -> argparse.ArgumentParser:
         help="multiply the learning rate by this for everything that is not the value head "
         "(the trunk, the per-cell head, the plan head); the value head keeps --learning-rate",
     )
+    parser.add_argument(
+        "--train-scope",
+        choices=("all", "plan-critic"),
+        default="all",
+        help="'all' trains every parameter after the warm-up; 'plan-critic' is the winner's "
+        "staged recipe -- the trunk (stem.*, tower.*) and the per-cell head (actor.*) stay "
+        "byte for byte the starting checkpoint for the whole run, and only the plan head and "
+        "the value head learn, so the trolls' movement cannot erode by construction",
+    )
     parser.add_argument("--gamma", type=float, default=0.997)
     parser.add_argument("--gae-lambda", type=float, default=0.95)
     parser.add_argument("--clip-coef", type=float, default=0.2)
@@ -938,6 +947,22 @@ def train(args) -> dict:
     model, initial_sha = load_policy(args.initial_checkpoint, device)
     optimizer = build_optimizer(model, args.learning_rate, args.actor_lr_scale)
     _, policy_parameters = split_parameters(model)
+    if args.train_scope == "plan-critic":
+        # The winner's staged recipe: the trunk and the per-cell head are frozen for the whole
+        # run -- requires_grad stays False, Adam skips a parameter whose grad is None, so those
+        # tensors remain byte for byte the starting checkpoint. Only the plan head keeps
+        # toggling with the warm-up below; the value head trains as always.
+        togglable: list[nn.Parameter] = []
+        for name, parameter in model.named_parameters():
+            if is_critic_parameter(name):
+                continue
+            if name.startswith("plan."):
+                togglable.append(parameter)
+            else:
+                parameter.requires_grad_(False)
+        policy_parameters = togglable
+        if not policy_parameters:
+            raise SystemExit("--train-scope plan-critic needs a checkpoint with a plan head")
     warmup_updates = max(0, int(args.critic_warmup_updates))
 
     anchor = anchor_sha = None
