@@ -357,6 +357,19 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (win rate 19 % → 25 %, margin −77 → −67 by update 1,327, sampled play against the pool). One hypothesis fits that divergence:
   the bench plays the argmax command while training plays sampled commands — a policy trained by sampling can have a mode
   that is not its typical play. Test now: the same snapshot benched with sampled commands. — coordinator
+- 2026-08-30 17:4xZ: **the decoding hypothesis is refuted — and the sampled-play control taught more than the test.** `bench.py`
+  gained `--command-decoding {argmax,sample}` (self-test check 8; `2481680e`). With sampled commands: **the clone 3 of 48,
+  109 to 207** (argmax: 9, 134 to 186) — its trolls wander (329 moves a game against 253), harvest more (47) and chop less
+  (73); **`ppo-f2` at update 1,500: 0 of 48, 82 to 196** (argmax: 2, 95). So (1) the argmax bench is the right measure and the
+  shipped bot's decoding; (2) the trainer's rollouts start from a sampled behaviour worth 109 points, not the 134 we measure —
+  the policy is soft (entropy 1.19 nats over the legal moves); and (3) **sampled play against the champion also got worse with
+  training** — the rising practice win rate (19 → 25 %) came from the 60 % of games against the weaker linked bots and the frozen
+  copies of itself. The morning's transfer finding in a milder form: the pool still teaches what does not transfer. Decision:
+  **`ppo-f2` stops now** (three points, 5 → 7 → 2, its trend established; its update-2,000 would add little) and **`ppo-g` starts:
+  the champion only** (`champion_exact` weight 1, no other bot, no frozen self), the remedies kept (γ 0.999, no wood shaping,
+  end-wood 4.0, warm-up 300, actor lr ×0.3, the leash 0.1 → 0.05), 8 threads at the lowest priority; benched at updates 500,
+  1,000, 1,500. The cluster's job `ppo-yt-c` (champion-heavy pool, old objective) is the overnight control of the same idea.
+  For later: the trainer logs no per-opponent win rate — worth adding, so the practice numbers can be read. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
