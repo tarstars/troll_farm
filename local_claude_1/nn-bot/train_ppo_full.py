@@ -76,6 +76,32 @@ Two things remain conventions rather than signed text, and both are marked in th
    together with `turn_completed == 1` and zeroes the rest, so the card's rule holds whichever way
    the environment behaves. `--reward-credit as-returned` trusts the environment instead.
 
+Starting from a clone: the critic warm-up (`--critic-warmup-updates`)
+--------------------------------------------------------------------
+The clone knows how to play but has never been asked "how good is this position?" -- its value
+head was never trained, so at update 1 it answers with noise. PPO multiplies that noise into every
+advantage, and the first few hundred updates then push the policy around at random: fewer
+harvests, fewer plants, fewer purchases, and a bot worse than the clone it started from. That is
+the failure this flag exists for.
+
+With `--critic-warmup-updates N` the first N updates play exactly as before -- the same starting
+policy, sampling its own moves -- but the update trains **only the value head**
+(`critic.0.*`, `critic.2.*`). The policy loss, the entropy bonus and the anchor term are not
+applied, and every other parameter has its gradient switched off, so at the end of the warm-up the
+trunk, the per-cell head and the plan head are byte for byte the network we started from. The log
+line for those updates says `"phase": "critic-warmup"`.
+
+The convolution trunk is counted with the policy, not with the critic, on purpose: it is shared,
+so a value gradient flowing into it would move the actor's decisions even with the actor's own
+weights untouched -- the very drift the warm-up is meant to prevent. The price is that the warm-up
+can only fit the two small linear layers on top of frozen features; that is enough to replace
+noise with a rough baseline, which is all the first updates need.
+
+`--actor-lr-scale S` is the softer companion: after the warm-up everything that is not the value
+head learns at `S x --learning-rate` while the value head keeps the full rate, so the critic can
+keep catching up while the policy edges forward slowly. It is two parameter groups in the
+optimizer, and the linear anneal scales both from their own base rates.
+
 The plan vocabulary carries one generation id, `PLAN_VOCAB_VERSION` (amendment 8). It is written
 into every checkpoint's config, checked against the environment's `plan_version()` at start, and
 checked when a checkpoint or an anchor is loaded -- a mismatch raises, because the same plan index
@@ -631,6 +657,69 @@ class RolloutBuffer:
         }
 
 
+# ------------------------------------------------------- which weights are "the critic"
+
+
+#: The value head and nothing else. `SpatialActorCritic.critic` is two small linear layers --
+#: `critic.0.weight`, `critic.0.bias`, `critic.2.weight`, `critic.2.bias` -- that turn the pooled
+#: trunk features into one number, the answer to "how good is this position?".
+CRITIC_PARAMETER_PREFIX = "critic."
+
+
+def is_critic_parameter(name: str) -> bool:
+    """True for the value head's own weights, false for everything that decides moves.
+
+    The shared convolution trunk (`stem.*`, `tower.*`) is deliberately NOT counted as critic, even
+    though the value head reads it: a gradient into the trunk moves the actor's decisions even
+    when the actor's own weights are untouched, so counting it as critic would let the warm-up
+    change the policy by the back door. `actor.*` and `plan.*` are the two heads.
+    """
+
+    return name.startswith(CRITIC_PARAMETER_PREFIX)
+
+
+def split_parameters(model: nn.Module) -> tuple[list[nn.Parameter], list[nn.Parameter]]:
+    """`(the value head's parameters, everything else)`, in `named_parameters` order."""
+
+    critic: list[nn.Parameter] = []
+    policy: list[nn.Parameter] = []
+    for name, parameter in model.named_parameters():
+        (critic if is_critic_parameter(name) else policy).append(parameter)
+    return critic, policy
+
+
+def build_optimizer(
+    model: nn.Module,
+    learning_rate: float,
+    actor_lr_scale: float = 1.0,
+    *,
+    eps: float = 1e-5,
+) -> torch.optim.Optimizer:
+    """Adam with two parameter groups: the policy side first, the value head second.
+
+    Group 0 (`name: "actor"`) is the trunk, the per-cell head and the plan head, at
+    `learning_rate * actor_lr_scale`; group 1 (`name: "critic"`) is the value head, at
+    `learning_rate`. Each group carries its own `base_lr` so the linear anneal can scale both
+    without losing the multiplier.
+    """
+
+    critic, policy = split_parameters(model)
+    actor_lr = float(learning_rate) * float(actor_lr_scale)
+    return torch.optim.Adam(
+        [
+            {"params": policy, "lr": actor_lr, "base_lr": actor_lr, "name": "actor"},
+            {
+                "params": critic,
+                "lr": float(learning_rate),
+                "base_lr": float(learning_rate),
+                "name": "critic",
+            },
+        ],
+        lr=float(learning_rate),
+        eps=eps,
+    )
+
+
 # --------------------------------------------------------------------------- the run
 
 
@@ -659,6 +748,22 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--learning-rate", type=float, default=2.5e-4)
     parser.add_argument("--anneal-lr", action="store_true", default=True)
     parser.add_argument("--no-anneal-lr", dest="anneal_lr", action="store_false")
+    parser.add_argument(
+        "--critic-warmup-updates",
+        type=int,
+        default=0,
+        help="train ONLY the value head for this many updates first: the rollouts still come "
+        "from the starting policy, but the policy loss, the entropy bonus and the anchor term "
+        "are not applied and every non-critic weight is left byte for byte unchanged, so the "
+        "critic stops answering with noise before it is allowed to steer",
+    )
+    parser.add_argument(
+        "--actor-lr-scale",
+        type=float,
+        default=1.0,
+        help="multiply the learning rate by this for everything that is not the value head "
+        "(the trunk, the per-cell head, the plan head); the value head keeps --learning-rate",
+    )
     parser.add_argument("--gamma", type=float, default=0.997)
     parser.add_argument("--gae-lambda", type=float, default=0.95)
     parser.add_argument("--clip-coef", type=float, default=0.2)
@@ -831,7 +936,9 @@ def train(args) -> dict:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     model, initial_sha = load_policy(args.initial_checkpoint, device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=args.learning_rate, eps=1e-5)
+    optimizer = build_optimizer(model, args.learning_rate, args.actor_lr_scale)
+    _, policy_parameters = split_parameters(model)
+    warmup_updates = max(0, int(args.critic_warmup_updates))
 
     anchor = anchor_sha = None
     anchor_has_plan = False
@@ -877,6 +984,12 @@ def train(args) -> dict:
     try:
         for update in range(1, total_updates + 1):
             update_start = time.perf_counter()
+            # The critic warm-up: for the first `warmup_updates` updates nothing but the value
+            # head may move. Switching the gradients off is what makes that exact -- Adam skips
+            # a parameter whose `.grad` is None, so those tensors stay byte for byte as loaded.
+            in_warmup = update <= warmup_updates
+            for parameter in policy_parameters:
+                parameter.requires_grad_(not in_warmup)
             for step_index in range(args.rollout_steps):
                 phase_np = np.asarray(env.phase)
                 if (phase_np == PHASE_EXTERNAL_WAIT).any():
@@ -968,7 +1081,9 @@ def train(args) -> dict:
             flat = buffer.flat()
             flat_advantages = advantages.reshape(buffer.size)
             flat_returns = returns.reshape(buffer.size)
-            coefficient = anchor_coefficient(args, turn_steps)
+            # During the warm-up the anchor term is not applied, and the logged coefficient is
+            # the one actually used, so the log never claims a pull that never happened.
+            coefficient = 0.0 if in_warmup else anchor_coefficient(args, turn_steps)
 
             indices = np.arange(buffer.size)
             clip_fractions: list[float] = []
@@ -1013,10 +1128,16 @@ def train(args) -> dict:
                         new_value - torch.from_numpy(flat_returns[rows]).to(device)
                     ).pow(2).mean()
                     entropy_loss = entropy.mean()
+                    # In the warm-up only the value term is optimised; the policy loss and the
+                    # entropy above are still computed, but only as diagnostics for the log.
                     loss = (
-                        policy_loss
-                        - args.entropy_coef * entropy_loss
-                        + args.value_coef * value_loss
+                        args.value_coef * value_loss
+                        if in_warmup
+                        else (
+                            policy_loss
+                            - args.entropy_coef * entropy_loss
+                            + args.value_coef * value_loss
+                        )
                     )
 
                     if anchor is not None and coefficient != 0.0:
@@ -1052,9 +1173,9 @@ def train(args) -> dict:
                     break
 
             if args.anneal_lr:
-                optimizer.param_groups[0]["lr"] = args.learning_rate * max(
-                    0.0, 1.0 - update / total_updates
-                )
+                fraction = max(0.0, 1.0 - update / total_updates)
+                for group in optimizer.param_groups:
+                    group["lr"] = group["base_lr"] * fraction
             if (
                 args.frozen_refresh_updates > 0
                 and update % args.frozen_refresh_updates == 0
@@ -1067,6 +1188,7 @@ def train(args) -> dict:
             log = {
                 "event": "update",
                 "update": update,
+                "phase": "critic-warmup" if in_warmup else "ppo",
                 "turn_steps": turn_steps,
                 "turns_completed": turns_completed,
                 "policy_loss": policy_loss_value,
@@ -1082,6 +1204,7 @@ def train(args) -> dict:
                 ),
                 "epochs_run": epochs_run,
                 "learning_rate": optimizer.param_groups[0]["lr"],
+                "critic_learning_rate": optimizer.param_groups[1]["lr"],
                 "episodes_recent": len(recent),
                 "mean_episode_return": (
                     float(np.mean([row["return"] for row in recent])) if recent else None

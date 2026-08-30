@@ -713,6 +713,179 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
     assert (tmp_path / "smoke-training-summary.json").exists()
 
 
+# ------------------------------------- 3b. the critic warm-up and the slowed-down policy side
+
+
+def _clone_like_checkpoint(tmp_path: Path, seed: int = 101) -> tuple[Path, dict]:
+    """A stand-in for the clone: a network on disk, plus a copy of every tensor it started with.
+
+    The real clone's value head was never trained, which is why PPO's first updates run on random
+    advantages; here only the shape of the problem matters, so a freshly initialised network does.
+    """
+
+    torch.manual_seed(seed)
+    clone = SpatialActorCritic(plan_head=True)
+    path = tmp_path / "clone.pt"
+    torch.save(
+        {
+            "model": clone.state_dict(),
+            "config": {"plan_vocab_version": tpf.PLAN_VOCAB_VERSION},
+        },
+        path,
+    )
+    return path, {name: tensor.clone() for name, tensor in clone.state_dict().items()}
+
+
+def _saved_model(tmp_path: Path, update: int) -> dict:
+    checkpoint = torch.load(
+        tmp_path / f"smoke-update{update:06d}.pt", map_location="cpu", weights_only=False
+    )
+    return checkpoint["model"]
+
+
+def test_the_critic_warmup_moves_the_value_head_and_nothing_else(tmp_path, capsys) -> None:
+    """Three warm-up updates: the policy side is byte for byte the clone, the critic is not.
+
+    This is the whole promise of `--critic-warmup-updates`. The rollouts are collected by the
+    starting policy as usual, but the update applies only the value term, so the trunk, the
+    per-cell head and the plan head must come out of update 3 identical to the tensors that went
+    in -- `torch.equal`, not `allclose` -- while at least one of the four value-head tensors has
+    moved.
+    """
+
+    clone_path, initial = _clone_like_checkpoint(tmp_path)
+    tpf.main(
+        _fake_run_argv(
+            tmp_path,
+            [
+                "--initial-checkpoint",
+                str(clone_path),
+                "--critic-warmup-updates",
+                "3",
+                # 8 envs x 8 rollout steps = 64 mini-steps an update, so 192 is three updates.
+                "--total-turn-steps",
+                "192",
+            ],
+        )
+    )
+
+    trained = _saved_model(tmp_path, 3)
+    assert set(trained) == set(initial)
+
+    critic_names = [name for name in initial if tpf.is_critic_parameter(name)]
+    assert critic_names == [
+        "critic.0.weight",
+        "critic.0.bias",
+        "critic.2.weight",
+        "critic.2.bias",
+    ]
+    frozen_names = [name for name in initial if not tpf.is_critic_parameter(name)]
+    # The trunk counts with the policy: a value gradient into it would move the actor's decisions
+    # even with the actor's own weights untouched.
+    assert {"actor.weight", "actor.bias", "stem.0.weight"} <= set(frozen_names)
+    assert any(name.startswith("plan.") for name in frozen_names)
+    assert any(name.startswith("tower.") for name in frozen_names)
+
+    for name in frozen_names:
+        assert torch.equal(trained[name], initial[name]), name
+    assert any(not torch.equal(trained[name], initial[name]) for name in critic_names)
+
+    updates = [
+        row
+        for row in (
+            json.loads(line)
+            for line in capsys.readouterr().out.splitlines()
+            if line.startswith("{")
+        )
+        if row.get("event") == "update"
+    ]
+    assert [row["update"] for row in updates] == [1, 2, 3]
+    for row in updates:
+        assert row["phase"] == "critic-warmup"
+        assert np.isfinite(row["value_loss"])
+        assert row["anchor_loss"] is None
+
+
+def test_the_first_update_after_the_warmup_moves_the_actor(tmp_path, capsys) -> None:
+    """Update 4 with a warm-up of 3: the policy side starts learning, and the log says so."""
+
+    clone_path, initial = _clone_like_checkpoint(tmp_path, seed=103)
+    tpf.main(
+        _fake_run_argv(
+            tmp_path,
+            [
+                "--initial-checkpoint",
+                str(clone_path),
+                "--critic-warmup-updates",
+                "3",
+                "--total-turn-steps",
+                "256",                      # four updates of 64 mini-steps
+            ],
+        )
+    )
+
+    third = _saved_model(tmp_path, 3)
+    fourth = _saved_model(tmp_path, 4)
+    for name in ("actor.weight", "actor.bias"):
+        assert torch.equal(third[name], initial[name]), name
+        assert not torch.equal(fourth[name], third[name]), name
+
+    phases = [
+        row["phase"]
+        for row in (
+            json.loads(line)
+            for line in capsys.readouterr().out.splitlines()
+            if line.startswith("{")
+        )
+        if row.get("event") == "update"
+    ]
+    assert phases == ["critic-warmup", "critic-warmup", "critic-warmup", "ppo"]
+
+
+def test_the_actor_lr_scale_slows_every_group_but_the_critic() -> None:
+    """Two parameter groups: the policy side at `scale x lr`, the value head at `lr`."""
+
+    model = SpatialActorCritic(plan_head=True)
+    named = dict(model.named_parameters())
+    optimizer = tpf.build_optimizer(model, 2.5e-4, 0.1)
+    groups = optimizer.param_groups
+
+    assert [group["name"] for group in groups] == ["actor", "critic"]
+    assert groups[0]["lr"] == pytest.approx(2.5e-5)
+    assert groups[1]["lr"] == pytest.approx(2.5e-4)
+    assert groups[0]["base_lr"] == pytest.approx(groups[0]["lr"])
+    assert groups[1]["base_lr"] == pytest.approx(groups[1]["lr"])
+
+    critic_ids = {id(p) for name, p in named.items() if name.startswith("critic.")}
+    policy_ids = {id(p) for name, p in named.items() if not name.startswith("critic.")}
+    assert {id(p) for p in groups[1]["params"]} == critic_ids
+    assert {id(p) for p in groups[0]["params"]} == policy_ids
+    assert len(groups[0]["params"]) + len(groups[1]["params"]) == len(named)
+    assert len(critic_ids) == 4
+
+    # The default multiplier leaves the two groups on the same rate, as before the flag existed.
+    plain = tpf.build_optimizer(model, 2.5e-4)
+    assert plain.param_groups[0]["lr"] == pytest.approx(2.5e-4)
+    assert plain.param_groups[1]["lr"] == pytest.approx(2.5e-4)
+
+
+def test_the_run_records_the_warmup_and_the_actor_lr_scale(tmp_path) -> None:
+    defaults = tpf.build_parser().parse_args([])
+    assert defaults.critic_warmup_updates == 0
+    assert defaults.actor_lr_scale == pytest.approx(1.0)
+
+    tpf.main(
+        _fake_run_argv(
+            tmp_path, ["--critic-warmup-updates", "1", "--actor-lr-scale", "0.25"]
+        )
+    )
+    config = torch.load(
+        tmp_path / "smoke-update000002.pt", map_location="cpu", weights_only=False
+    )["config"]
+    assert config["critic_warmup_updates"] == 1
+    assert config["actor_lr_scale"] == pytest.approx(0.25)
+
+
 def test_the_plan_head_off_model_keeps_julys_state_dict_keys() -> None:
     """`SpatialActorCritic()` must still export: the D11 exporter compares key sets."""
 

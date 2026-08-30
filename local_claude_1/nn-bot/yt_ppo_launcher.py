@@ -239,6 +239,20 @@ def parse_size(text: str | int) -> int:
     return int(float(match.group(1)) * _SIZE_UNITS[unit])
 
 
+def non_negative_int(text: str) -> int:
+    """An `int` that refuses negative values.
+
+    `--gpu-limit` is a count of GPUs to reserve; a negative count is not a smaller reservation,
+    it is nonsense that would otherwise slip past `> 0` checks silently (see `build_spec`, where
+    a negative value used to skip the `gpu_limit()` call but still print a "GPU slot" title).
+    """
+
+    value = int(text)
+    if value < 0:
+        raise argparse.ArgumentTypeError(f"must not be negative, got {value}")
+    return value
+
+
 def human_bytes(count: int) -> str:
     value = float(count)
     for unit in ("B", "KiB", "MiB", "GiB"):
@@ -309,6 +323,11 @@ def trainer_args(
     anchor_coef_final: float,
     anchor_decay_steps: int,
     frozen_refresh_updates: int,
+    gamma: float,
+    wood_shaping: float,
+    end_wood: float,
+    critic_warmup_updates: int,
+    actor_lr_scale: float,
     output_dir: str,
     seed: int,
 ) -> list[str]:
@@ -317,7 +336,9 @@ def trainer_args(
     Every flag here appears in the local command in the task; nothing has been added to or removed
     from the recipe. The three checkpoint flags all name the same clone file: the run starts from
     it (`--initial-checkpoint`), is pulled back towards it (`--anchor-checkpoint`), and plays its
-    first self-play games against it (`--frozen-checkpoint`).
+    first self-play games against it (`--frozen-checkpoint`). `gamma`, `wood_shaping`, `end_wood`,
+    `critic_warmup_updates` and `actor_lr_scale` are named explicitly, rather than left to the
+    trainer's own defaults, so a cluster job can be told to run with different ones.
     """
 
     return [
@@ -339,6 +360,16 @@ def trainer_args(
         clone,
         "--frozen-refresh-updates",
         str(frozen_refresh_updates),
+        "--gamma",
+        str(gamma),
+        "--wood-shaping",
+        str(wood_shaping),
+        "--end-wood",
+        str(end_wood),
+        "--critic-warmup-updates",
+        str(critic_warmup_updates),
+        "--actor-lr-scale",
+        str(actor_lr_scale),
         "--opponent-weights",
         opponent_weights,
         "--num-envs",
@@ -513,6 +544,11 @@ def prepare_payload(args) -> dict[str, Any]:
         anchor_coef_final=args.anchor_coef_final,
         anchor_decay_steps=args.anchor_decay_steps,
         frozen_refresh_updates=args.frozen_refresh_updates,
+        gamma=args.gamma,
+        wood_shaping=args.wood_shaping,
+        end_wood=args.end_wood,
+        critic_warmup_updates=args.critic_warmup_updates,
+        actor_lr_scale=args.actor_lr_scale,
         output_dir=OUTPUT_DIR_ARG,
         seed=args.seed,
     )
@@ -618,10 +654,16 @@ def build_spec(args, paths: dict[str, str]):
         YPath(path, attributes={"file_name": name})
         for path, name in zip(inputs, REQUIRED_UPLOADS)
     ] + [YPath(args.runtime_archive, attributes={"file_name": "runtime_wheelhouse.tar.gz"})]
+    task = yt.TaskSpecBuilder("train").job_count(1)
+    gpu_limit = int(getattr(args, "gpu_limit", 0) or 0)
+    if gpu_limit > 0:
+        # The training is CPU-only (the entrypoint pins PyTorch to the CPU with an empty
+        # CUDA_VISIBLE_DEVICES); a GPU is requested only so that a GPU pool tree schedules the
+        # job at all -- the owner's word of 2026-08-30 ("gpu"), the CPU tree's pools being closed
+        # to immediate operations. The slot is reserved, not used.
+        task = task.gpu_limit(gpu_limit)
     task = (
-        yt.TaskSpecBuilder("train")
-        .job_count(1)
-        # No `.gpu_limit(...)`: this is the CPU-only launcher.
+        task
         .cpu_limit(args.cpu_limit)
         .memory_limit(args.memory_limit)
         .job_time_limit(args.job_time_limit_ms)
@@ -630,11 +672,12 @@ def build_spec(args, paths: dict[str, str]):
         .layer_paths(list(args.layer_paths))
         .command("python3 yt_ppo_entrypoint.py")
     )
+    flavour = "CPU" if gpu_limit == 0 else f"CPU on a GPU slot x{gpu_limit}"
     spec = (
         yt.VanillaSpecBuilder()
         .max_failed_job_count(1)
         .max_stderr_count(150)
-        .title(f"Troll Farm self-play PPO (CPU) {args.run_name}")
+        .title(f"Troll Farm self-play PPO ({flavour}) {args.run_name}")
         .pool(args.pool)
         .pool_trees([args.pool_tree])
         .task("train", task)
@@ -1042,6 +1085,14 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--anchor-coef-final", type=float, default=0.0)
     prepare.add_argument("--anchor-decay-steps", type=int, default=100_000_000)
     prepare.add_argument("--frozen-refresh-updates", type=int, default=100)
+    # The trainer's own defaults (train_ppo_full.py), named explicitly so a cluster job can be
+    # told to run with different ones instead of silently inheriting whatever the trainer defaults
+    # to next.
+    prepare.add_argument("--gamma", type=float, default=0.997)
+    prepare.add_argument("--wood-shaping", type=float, default=0.5)
+    prepare.add_argument("--end-wood", type=float, default=3.5)
+    prepare.add_argument("--critic-warmup-updates", type=int, default=0)
+    prepare.add_argument("--actor-lr-scale", type=float, default=1.0)
     prepare.add_argument("--opponent-weights", default=DEFAULT_OPPONENT_WEIGHTS)
     prepare.add_argument("--checkpoint-every", type=int, default=250)
     prepare.add_argument("--gate-every", type=int, default=0)
@@ -1052,6 +1103,12 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--heartbeat-minutes", type=int, default=DEFAULT_HEARTBEAT_MINUTES)
     prepare.add_argument("--pool-tree", default=None, help="only for the dry run's preview")
     prepare.add_argument("--pool", default=None, help="only for the dry run's preview")
+    prepare.add_argument(
+        "--gpu-limit",
+        type=non_negative_int,
+        default=0,
+        help="GPUs to reserve, only for the dry run's preview to match `start` (0 = a CPU tree)",
+    )
     prepare.add_argument("--runtime-archive", default=DEFAULT_RUNTIME)
     prepare.add_argument("--layer-path", dest="layer_paths", action="append")
     prepare.add_argument("--job-time-limit-hours", type=float, default=None)
@@ -1060,10 +1117,13 @@ def build_parser() -> argparse.ArgumentParser:
     add_common(start_parser)
     add_yt(start_parser)
     # No defaults on purpose: July's GPU pool is the wrong place for this job.
-    start_parser.add_argument("--pool-tree", required=True, help="a CPU pool tree")
-    start_parser.add_argument("--pool", required=True, help="a CPU pool inside that tree")
+    start_parser.add_argument("--pool-tree", required=True, help="a pool tree (CPU, or a GPU tree with --gpu-limit)")
+    start_parser.add_argument("--pool", required=True, help="a pool inside that tree")
     start_parser.add_argument("--cpu-limit", type=int, default=DEFAULT_CPU_LIMIT)
     start_parser.add_argument("--memory-limit", type=parse_size, default=DEFAULT_MEMORY_LIMIT)
+    start_parser.add_argument("--gpu-limit", type=non_negative_int, default=0,
+                              help="GPUs to reserve (0 = a CPU tree); a GPU tree needs 1 even though "
+                                   "the training never touches the card")
     start_parser.add_argument("--job-time-limit-hours", type=float, default=None)
     start_parser.add_argument("--heartbeat-minutes", type=int, default=None)
     start_parser.add_argument("--runtime-archive", default=DEFAULT_RUNTIME)

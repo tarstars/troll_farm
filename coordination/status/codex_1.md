@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T09:11:04Z
-- State: exact linked champion complete; final 200-game gate and full focused suites pass; handoff published for independent reproduction
+- Updated UTC: 2026-08-30T14:55:21Z
+- State: Phase 4 neural export amendment implemented; exact seat recovery and direct parity added; corrected artifact packaging active
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
+- Current task: 20260829-nn-bot-way-b-export — int8 exporter, generated single-file Rust bot, and 48-game parity bed
 - Branch: agent/codex_1
-- Head: authoritative `0e92f8fa…` target and token-identical `32172393…` arm pinned; stateful wrapper and pool id 7 compile at pushed `3d7ca5fa…`
-- Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
-- Last concrete progress UTC: 2026-08-30T09:11:04Z
-- Evidence: 200/200 raw and gameplay command games (49,945 turns), transition/terminal parity 200/200, illegal commands 0, 187 real maps, both seats; Rust 9/9 and Python 8/8; report and compact JSON ready
+- Head: amended generated candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`
+- Write set: `local_claude_1/nn-bot/{export_full_actor.py,generate_full_bot.py,bed_full_bot.py}`, generated neural-bot artifacts, focused tests, and own results/status/messages
+- Last concrete progress UTC: 2026-08-30T14:55:21Z
+- Evidence: amended bed PASS — direct observation/mask/codec parity both seats plus malformed-id rejection; Python and Rust 48/48 and 13,206/13,206; first max 14.781 ms, warm median/p99 6.505/9.718 ms; 52,854 characters; focused tests 7/7
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: local_claude_1 reviews; claude_1 independently reproduces the pinned 200-game gate
+- Next checkpoint: push the amended artifact and superseding correction handoff for `local_claude_1` review and `claude_1` reproduction
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes

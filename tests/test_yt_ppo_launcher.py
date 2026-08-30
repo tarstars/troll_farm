@@ -233,6 +233,56 @@ def test_job_config_round_trips_through_the_trainers_own_parser(tmp_path: Path) 
 
 
 @pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_the_five_new_trainer_flags_round_trip_with_non_default_values(tmp_path: Path) -> None:
+    """`--gamma`, `--wood-shaping`, `--end-wood`, `--critic-warmup-updates` and `--actor-lr-scale`
+    must reach the job exactly as the coordinator names them, through `yt_run_config.json` and
+    into the trainer's own parser -- not silently fall back to the trainer's defaults."""
+
+    trainer = _trainer()
+    _, payload_dir, _ = _prepare(
+        tmp_path,
+        "--gamma", "0.99",
+        "--wood-shaping", "0.75",
+        "--end-wood", "4.5",
+        "--critic-warmup-updates", "50",
+        "--actor-lr-scale", "0.25",
+    )
+    config = json.loads((payload_dir / "yt_run_config.json").read_text())
+    for flag in (
+        "--gamma",
+        "--wood-shaping",
+        "--end-wood",
+        "--critic-warmup-updates",
+        "--actor-lr-scale",
+    ):
+        assert flag in config["trainer_args"]
+
+    parsed = trainer.build_parser().parse_args(config["trainer_args"])
+    assert parsed.gamma == pytest.approx(0.99)
+    assert parsed.wood_shaping == pytest.approx(0.75)
+    assert parsed.end_wood == pytest.approx(4.5)
+    assert parsed.critic_warmup_updates == 50
+    assert parsed.actor_lr_scale == pytest.approx(0.25)
+
+
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_the_five_new_trainer_flags_default_to_the_trainers_own_defaults(tmp_path: Path) -> None:
+    """Named on neither the launcher's command line nor the job config, the job must still ask
+    the trainer for exactly its own defaults -- not zero, not `None`, not some other placeholder."""
+
+    trainer = _trainer()
+    _, payload_dir, _ = _prepare(tmp_path)
+    config = json.loads((payload_dir / "yt_run_config.json").read_text())
+
+    parsed = trainer.build_parser().parse_args(config["trainer_args"])
+    assert parsed.gamma == pytest.approx(0.997)
+    assert parsed.wood_shaping == pytest.approx(0.5)
+    assert parsed.end_wood == pytest.approx(3.5)
+    assert parsed.critic_warmup_updates == 0
+    assert parsed.actor_lr_scale == pytest.approx(1.0)
+
+
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
 def test_hours_become_a_conservative_batch_aligned_budget(tmp_path: Path) -> None:
     trainer = _trainer()
     _, payload_dir, manifest = _prepare(tmp_path, "--hours", "6")
@@ -303,6 +353,45 @@ def test_the_specification_asks_for_cores_and_never_for_a_gpu(tmp_path: Path) ->
     names = [row["file_name"] for row in task["file_paths_named"]]
     assert names == [*launcher.REQUIRED_UPLOADS, "runtime_wheelhouse.tar.gz"]
     assert any("wheelhouse_torch241_cu121_py310" in path for path in task["file_paths"])
+
+
+@pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
+def test_prepare_dry_run_can_preview_a_reserved_gpu_slot(tmp_path: Path) -> None:
+    """`prepare --dry-run --gpu-limit 1` must show the same GPU-slot spec `start` would submit --
+    that offline preview is the whole point of adding `--gpu-limit` to `prepare` as well."""
+
+    pytest.importorskip("yt.wrapper", reason="the spec builder needs the system python3")
+    args, _, _ = _prepare(
+        tmp_path, "--pool-tree", "gpu_tree", "--pool", "gpu_pool", "--gpu-limit", "1"
+    )
+    assert args.gpu_limit == 1
+    args.job_time_limit_ms = 3600 * 1000
+    preview = launcher.spec_preview(args, launcher.run_paths(args.root, args.run_name))
+    task = preview["tasks"]["train"]
+
+    assert task["gpu_limit"] == 1
+    # the reservation must not disturb the pool/tree the coordinator chose...
+    assert preview["pool"] == "gpu_pool"
+    assert preview["pool_trees"] == ["gpu_tree"]
+    # ...nor the fact that training itself still runs on the CPU...
+    assert task["environment"]["CUDA_VISIBLE_DEVICES"] == ""
+    # ...and the title must say plainly that the GPU is reserved, not used.
+    assert preview["title"] == "Troll Farm self-play PPO (CPU on a GPU slot x1) test-run"
+
+
+def test_gpu_limit_rejects_negative_values() -> None:
+    """A negative `--gpu-limit` is not a smaller reservation, it is nonsense: `gpu_limit > 0`
+    would silently see it as "no GPU" while the title still called it a GPU slot. Both
+    subcommands must refuse it outright, at argument-parsing time."""
+
+    parser = launcher.build_parser()
+    with pytest.raises(SystemExit):
+        parser.parse_args(["prepare", "--gpu-limit", "-1"])
+    with pytest.raises(SystemExit):
+        parser.parse_args(
+            ["start", "--run-name", "x", "--pool-tree", "tree", "--pool", "pool",
+             "--gpu-limit", "-1"]
+        )
 
 
 # --------------------------------------------------------------------------- the job's entrypoint

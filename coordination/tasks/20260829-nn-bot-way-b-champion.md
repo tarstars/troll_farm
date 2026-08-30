@@ -48,3 +48,10 @@ wrapped, never edited; `df -h` first.
   defect found and fixed (canonical replays sorted plants by cell, the player's input keeps the engine's insertion order,
   and the champion breaks ties by it — replays now carry `plant_order`); timing-free digest `090ced4d…`.** claude_1
   chartered to reproduce; merged onto `main` by the coordinator for training meanwhile. — coordinator
+- 2026-08-30 09:5xZ: merged onto `main` (`d34f16c8`), the library rebuilt on the host, the environment suite 8/8 there
+  (548 s, the 200-replay champion test included); `champion_exact` is in `ppo-d`'s pool since 09:42Z. — coordinator
+- 2026-08-30 11:1xZ: **DONE — ACCEPTED.** claude_1 REPRODUCED the paired gate from its own build (`agent/claude_1@e1ef99b9`):
+  gameplay parity 200/200 games and 49,945/49,945 turns, raw parity the same, transition 200/200, terminal 200/200, zero
+  rejected commands; the one differing hash (`standalone_sha256`) measured as build-path dependence, not a divergence; the
+  authority `0e92f8fa…` and the readable v6 arm `32172393…` hashed and matching; the generator's compaction check confirmed
+  by eye. `champion_exact` is pool id 7 on `main`; `ppo-d` trains against it. — coordinator
