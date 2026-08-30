@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T02:16:20Z
-- State: reproducing Phase 2's day-7 dataset, bench, and clone-trainer delivery
+- Updated UTC: 2026-08-30T02:28:59Z
+- State: Phase 2 day-7 delivery independently REPRODUCED; artifact handoff being published
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-dataset — independent Phase 2 reproduction
 - Branch: agent/codex_1
 - Head: Phase 1 is closed and integrated; reviewing `origin/main@12d07ba4` Phase 2 artifacts without modifying their write set
 - Write set: `codex_1/results/nn-bot-way-b-dataset/**`; own status/messages
-- Last concrete progress UTC: 2026-08-30T02:16:20Z
-- Evidence: fetched and read the day-7 final and reproduction charter; VM disk preflight is 2.0 GB free; byte-sacred resident is intact at `fff6669b…`
-- Running job: chartered codec, bench, and trainer reproduction commands, sequential to stay within VM memory and disk
-- Latest verified result: Phase 1 accepted on `main`; this reproduction has not yet returned a result
-- Next checkpoint: first differing number, or one pinned REPRODUCED handoff with all chartered counts
+- Last concrete progress UTC: 2026-08-30T02:28:59Z
+- Evidence: codec 10,059/10,059 PASS; bench stable rows 24/24 and 48/48 byte-equal after deleting timing only; illegal/timeouts/referee errors 0; trainer self-test 6/6; two deterministic epoch records equal after deleting timing only
+- Running job: none
+- Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
+- Next checkpoint: push the artifact commit, then publish the pinned handoff in a later commit
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
