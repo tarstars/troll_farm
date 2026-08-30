@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T08:17:00Z
+- Updated UTC: 2026-08-30T08:26:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 live-training validity
@@ -8,36 +8,39 @@
 
 ## Current work
 
-Continuously polling canonical branches, processing direct obligations, and verifying the accepted clone-to-PPO repair. Phase 1 is accepted; Phase 2 produced a legal clone and its 48-game owner-readable bench.
+Continuously polling canonical branches, processing direct obligations, and verifying the clone-to-PPO run. Phase 1 is accepted; Phase 2 produced a legal clone and its 48-game owner-readable bench.
 
 ## Accepted and merged
 
-The coordinator accepted amendments 10 and 11. `main@b98c23d5` now:
+The coordinator accepted amendments 10 and 11. `main@b98c23d5`:
 
 1. uses trace factor 1 on artificial within-turn mini-steps and `gamma*lambda` only across a real turn boundary;
 2. zeroes target planes 59–71 at every PLAN network call for policy, value, anchor and frozen opponent;
 3. includes the real-clone A/B full-model invariance test;
-4. keeps the 04:45Z run exploratory.
+4. keeps `ppo-a` exploratory.
 
-Source review: amendment 10 is correct inside one GAE array; amendment 11 is correct for planes 59–71. The run of record has not been recorded as restarted.
+Source review: amendment 10 is correct inside one GAE array; amendment 11 is correct for planes 59–71.
 
-## Open blocker
+## New chronology and open blocker
 
-The one transport-valid acknowledgement-required message is:
+The parent card records that `ppo-b` was started at 07:40:57Z from `b98c23d5`, before the complete-turn/plane-98 findings were published. The one transport-valid acknowledgement-required message is now:
 
-`coordination/messages/chatgpt_1/20260830T081500Z-20260829-nn-bot-way-b-complete-turn-rollout-blocker.md`
+`coordination/messages/chatgpt_1/20260830T082400Z-20260829-nn-bot-way-b-ppo-b-validity-blocker.md`
 
-It supersedes the plane-98-only blocker and carries two remaining joins:
+It supersedes the earlier complete-turn blocker and requires `ppo-b` to be stopped and reclassified exploratory because:
 
-1. A fixed 32-step rollout can end mid-turn. The trainer immediately bootstraps and updates the incomplete suffix; the executing reward arrives in the next rollout and cannot propagate back across the PPO update. The clone critic is unsupervised by behaviour cloning, so this is not an exact substitute. No PPO update should consume an incomplete logical turn; add a split-at-every-boundary regression and explicit pending-turn handling.
-2. PLAN sanitization and the real-clone test must include plane 98 as well as 59–71. BC and the clone bench never set the `prior_target_trained` latch, while PPO does after a purchase.
+1. fixed 32-step rollouts can end mid-turn; the trainer updates incomplete plan/troll rows before the executing reward arrives in the next rollout. The clone critic was not supervised by behaviour cloning. No run of record should start before a complete-turn collector and split-at-every-boundary regression exist;
+2. PLAN sanitization omits plane 98, although BC and the clone bench never set the latch and PPO does after a successful TRAIN. The real-clone invariant must cover zero context / target-only / plane-98-only.
+
+The exact-champion opponent sub-card is useful and independent, but cannot repair `ppo-b`'s already assigned credit.
 
 ## Next check
 
-- coordinator ruling on the complete-turn/plane-98 blocker;
-- pending-turn design and split-turn regression;
+- coordinator ruling and `ppo-b` disposition;
+- complete-turn collector design and split-turn regression;
 - A/B/C real-clone invariant including plane 98;
-- exploratory run stopped and run of record restarted from the clone only after both pass;
+- new run from the original clone only after both pass;
+- exact-champion opponent parity work proceeds separately;
 - then checkpoint/bench monitoring resumes.
 
 ## Boundaries
