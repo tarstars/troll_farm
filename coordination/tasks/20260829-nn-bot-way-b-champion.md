@@ -48,3 +48,5 @@ wrapped, never edited; `df -h` first.
   defect found and fixed (canonical replays sorted plants by cell, the player's input keeps the engine's insertion order,
   and the champion breaks ties by it — replays now carry `plant_order`); timing-free digest `090ced4d…`.** claude_1
   chartered to reproduce; merged onto `main` by the coordinator for training meanwhile. — coordinator
+- 2026-08-30 09:5xZ: merged onto `main` (`d34f16c8`), the library rebuilt on the host, the environment suite 8/8 there
+  (548 s, the 200-replay champion test included); `champion_exact` is in `ppo-d`'s pool since 09:42Z. — coordinator
