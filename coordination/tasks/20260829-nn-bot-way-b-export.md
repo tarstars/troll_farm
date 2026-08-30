@@ -37,3 +37,14 @@ coordinator decides between a narrower trunk and a 6-bit weight packing.
 ## Log
 
 - 2026-08-30 11:2xZ: born; charter sent to codex_1 pinned to this card's commit. — coordinator
+- 2026-08-30 13:0xZ: **amendment (a) — the seat.** The protocol carries no seat field (the reader is always "player 0"; the map's
+  `0` is the reader's shack), and the map's geometry does not tell either: over the 26,850 real maps player 0's shack is in the
+  left half in 14,340 (53 %) — chatgpt_1's half-rule (12:13Z) is false, its requirement is right. **The bot recovers its absolute
+  seat on turn 1 from its own troll's id**: the referee numbers trolls in creation order, so player 0's starting troll is id 0
+  and player 1's is id 1 — verified on every recorded game with a seat-0 row in the training set (370 games, 0 exceptions).
+  Fail closed if the turn-1 ids are not exactly {0, 1}. Then rotate for seat 1 exactly as the environment does (the
+  canonical player-relative frame), never mixing the two representations. **Amendment (b) — the direct parity test before
+  the bed**: for a sample of states on both seats, the standalone's observation bytes, spatial mask, plan mask and decoded
+  command must equal `tf_full_obs_from_state` and the canonical codec for the same state, plan and staged prefix.
+  **Amendment (c)**: the id rule checked mechanically over the training set's turn-1 states as a test. The 48/48 bed stays
+  the final end-to-end gate. — coordinator
