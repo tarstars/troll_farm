@@ -53,7 +53,8 @@ only_nonfruit aggregate phase plan_mask shack speed active_troll current_best fi
 mine_sources validate_masked_action action_mask routes picks pooled queue rest tdist theirs
 banks chunk doors gate goals item left load size right block before trolls header values layer
 has_target has_iron movement option field base ours reachable to_target from_source
-own_max own_sum opp_max opp_sum is_free is_near type_name best_dist""".split()
+own_max own_sum opp_max opp_sum is_free is_near type_name best_dist use_avx2
+convolution_range_avx2 convolution_range_fallback path_name""".split()
 SHORT_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
 
@@ -71,6 +72,16 @@ SHORT_NAMES = {name: short_name(index) for index, name in enumerate(SHORTEN)}
 
 def sha256_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def source_size_counts(source: str) -> dict[str, int]:
+    """Count the three source-size units relevant to generation and submission."""
+
+    return {
+        "unicode_code_points": len(source),
+        "utf16_code_units": len(source.encode("utf-16-le")) // 2,
+        "utf8_bytes": len(source.encode()),
+    }
 
 
 def unicode20(data: bytes) -> str:
@@ -299,12 +310,15 @@ fn decode_payload()->Vec<u8>{let mut chars=PAYLOAD_U20.chars();let mut output=Ve
 fn read_f32(payload:&[u8],offset:usize)->f32{f32::from_le_bytes(payload[offset..offset+4].try_into().unwrap())}
 struct Layer{o:usize,i:usize,w:Vec<f32>,b:Vec<f32>}
 struct Workspace{input:Vec<f32>,hidden:Vec<f32>,scratch:Vec<f32>,residual:Vec<f32>,action:Vec<f32>}
-struct Actor{conv:Vec<Layer>,linear:Vec<Layer>,null:f32,work:Workspace}
+struct Actor{conv:Vec<Layer>,linear:Vec<Layer>,null:f32,use_avx2:bool,work:Workspace}
 impl Actor{
  fn load(payload:&[u8],meta:&[(usize,usize,usize,usize,usize,usize,usize,usize)])->Vec<Layer>{meta.iter().map(|&(o,i,wo,ro,so,bo,bits,group)|{let mut w=Vec::with_capacity(o*i);let rb=bits-8;let groups=(i+group-1)/group;for output in 0..o{for offset in 0..i{let scale=read_f32(payload,so+4*(output*groups+offset/group));let index=output*i+offset;let bit=index*rb;let shift=bit%8;let mut residual=(payload[ro+bit/8]as usize)>>shift;if shift+rb>8{residual|=(payload[ro+bit/8+1]as usize)<<(8-shift);}residual&=(1<<rb)-1;let coarse=payload[wo+index]as i8 as i32;w.push((coarse*(1<<rb)+residual as i32)as f32*scale);}}let b=(0..o).map(|output|read_f32(payload,bo+4*output)).collect();Layer{o,i,w,b}}).collect()}
- fn new()->Self{let payload=decode_payload();let conv=Self::load(&payload,&CONV_META);let linear=Self::load(&payload,&LINEAR_META);let null=read_f32(&payload,NULL_OFFSET);Self{conv,linear,null,work:Workspace{input:vec![0.;TF_FULL_OBS_SIZE],hidden:vec![0.;16*TF_FULL_CELLS],scratch:vec![0.;16*TF_FULL_CELLS],residual:vec![0.;16*TF_FULL_CELLS],action:vec![0.;TF_FULL_ACTION_SIZE]}}}
- #[target_feature(enable="avx2")]unsafe fn convolution_range(layer:&Layer,input:&[f32],output:&mut[f32],kernel:usize,relu:bool,first:usize){let pad=kernel/2;let channels=layer.i/(kernel*kernel);for local in 0..output.len()/TF_FULL_CELLS{let oc=first+local;output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS].fill(layer.b[oc]);for ic in 0..channels{for ky in 0..kernel{let y0=pad.saturating_sub(ky);let y1=(TF_FULL_HEIGHT+pad-ky).min(TF_FULL_HEIGHT);for kx in 0..kernel{let x0=pad.saturating_sub(kx);let x1=(TF_FULL_WIDTH+pad-kx).min(TF_FULL_WIDTH);let weight=layer.w[((oc*channels+ic)*kernel+ky)*kernel+kx];let packed=_mm256_set1_ps(weight);let packed4=_mm_set1_ps(weight);for y in y0..y1{let ir=ic*TF_FULL_CELLS+(y+ky-pad)*TF_FULL_WIDTH;let or=local*TF_FULL_CELLS+y*TF_FULL_WIDTH;let mut x=x0;while x+8<=x1{let out=output.as_mut_ptr().add(or+x);let value=_mm256_loadu_ps(input.as_ptr().add(ir+x+kx-pad));_mm256_storeu_ps(out,_mm256_add_ps(_mm256_loadu_ps(out),_mm256_mul_ps(value,packed)));x+=8;}while x+4<=x1{let out=output.as_mut_ptr().add(or+x);let value=_mm_loadu_ps(input.as_ptr().add(ir+x+kx-pad));_mm_storeu_ps(out,_mm_add_ps(_mm_loadu_ps(out),_mm_mul_ps(value,packed4)));x+=4;}while x<x1{*output.get_unchecked_mut(or+x)+=*input.get_unchecked(ir+x+kx-pad)*weight;x+=1;}}}}}if relu{for value in &mut output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS]{*value=(*value).max(0.);}}}}
- fn forward(&mut self,observation:&[u8],mode:usize){for index in 0..self.work.input.len(){self.work.input[index]=observation[index]as f32*(1./255.);}unsafe{Self::convolution_range(&self.conv[0],&self.work.input,&mut self.work.hidden,3,true,0);for block in 0..4{Self::convolution_range(&self.conv[1+2*block],&self.work.hidden,&mut self.work.scratch,3,true,0);Self::convolution_range(&self.conv[2+2*block],&self.work.scratch,&mut self.work.residual,3,false,0);for index in 0..self.work.hidden.len(){self.work.hidden[index]=(self.work.hidden[index]+self.work.residual[index]).max(0.);}}if mode!=0{Self::convolution_range(&self.conv[9],&self.work.hidden,&mut self.work.action,1,false,0);}}}
+ fn new()->Self{let payload=decode_payload();let conv=Self::load(&payload,&CONV_META);let linear=Self::load(&payload,&LINEAR_META);let null=read_f32(&payload,NULL_OFFSET);let use_avx2=!cfg!(tf_nn_force_fallback)&&std::arch::is_x86_feature_detected!("avx2");Self{conv,linear,null,use_avx2,work:Workspace{input:vec![0.;TF_FULL_OBS_SIZE],hidden:vec![0.;16*TF_FULL_CELLS],scratch:vec![0.;16*TF_FULL_CELLS],residual:vec![0.;16*TF_FULL_CELLS],action:vec![0.;TF_FULL_ACTION_SIZE]}}}
+ #[target_feature(enable="avx2")]unsafe fn convolution_range_avx2(layer:&Layer,input:&[f32],output:&mut[f32],kernel:usize,relu:bool,first:usize){let pad=kernel/2;let channels=layer.i/(kernel*kernel);for local in 0..output.len()/TF_FULL_CELLS{let oc=first+local;output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS].fill(layer.b[oc]);for ic in 0..channels{for ky in 0..kernel{let y0=pad.saturating_sub(ky);let y1=(TF_FULL_HEIGHT+pad-ky).min(TF_FULL_HEIGHT);for kx in 0..kernel{let x0=pad.saturating_sub(kx);let x1=(TF_FULL_WIDTH+pad-kx).min(TF_FULL_WIDTH);let weight=layer.w[((oc*channels+ic)*kernel+ky)*kernel+kx];let packed=_mm256_set1_ps(weight);let packed4=_mm_set1_ps(weight);for y in y0..y1{let ir=ic*TF_FULL_CELLS+(y+ky-pad)*TF_FULL_WIDTH;let or=local*TF_FULL_CELLS+y*TF_FULL_WIDTH;let mut x=x0;while x+8<=x1{let out=output.as_mut_ptr().add(or+x);let value=_mm256_loadu_ps(input.as_ptr().add(ir+x+kx-pad));_mm256_storeu_ps(out,_mm256_add_ps(_mm256_loadu_ps(out),_mm256_mul_ps(value,packed)));x+=8;}while x+4<=x1{let out=output.as_mut_ptr().add(or+x);let value=_mm_loadu_ps(input.as_ptr().add(ir+x+kx-pad));_mm_storeu_ps(out,_mm_add_ps(_mm_loadu_ps(out),_mm_mul_ps(value,packed4)));x+=4;}while x<x1{*output.get_unchecked_mut(or+x)+=*input.get_unchecked(ir+x+kx-pad)*weight;x+=1;}}}}}if relu{for value in &mut output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS]{*value=(*value).max(0.);}}}}
+ unsafe fn convolution_range_fallback(layer:&Layer,input:&[f32],output:&mut[f32],kernel:usize,relu:bool,first:usize){let pad=kernel/2;let channels=layer.i/(kernel*kernel);for local in 0..output.len()/TF_FULL_CELLS{let oc=first+local;output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS].fill(layer.b[oc]);for ic in 0..channels{for ky in 0..kernel{let y0=pad.saturating_sub(ky);let y1=(TF_FULL_HEIGHT+pad-ky).min(TF_FULL_HEIGHT);for kx in 0..kernel{let x0=pad.saturating_sub(kx);let x1=(TF_FULL_WIDTH+pad-kx).min(TF_FULL_WIDTH);let weight=layer.w[((oc*channels+ic)*kernel+ky)*kernel+kx];let packed4=_mm_set1_ps(weight);for y in y0..y1{let ir=ic*TF_FULL_CELLS+(y+ky-pad)*TF_FULL_WIDTH;let or=local*TF_FULL_CELLS+y*TF_FULL_WIDTH;let mut x=x0;while x+4<=x1{let out=output.as_mut_ptr().add(or+x);let value=_mm_loadu_ps(input.as_ptr().add(ir+x+kx-pad));_mm_storeu_ps(out,_mm_add_ps(_mm_loadu_ps(out),_mm_mul_ps(value,packed4)));x+=4;}while x<x1{*output.get_unchecked_mut(or+x)+=*input.get_unchecked(ir+x+kx-pad)*weight;x+=1;}}}}}if relu{for value in &mut output[local*TF_FULL_CELLS..(local+1)*TF_FULL_CELLS]{*value=(*value).max(0.);}}}}
+ unsafe fn convolution_range(use_avx2:bool,layer:&Layer,input:&[f32],output:&mut[f32],kernel:usize,relu:bool,first:usize){if use_avx2{Self::convolution_range_avx2(layer,input,output,kernel,relu,first)}else{Self::convolution_range_fallback(layer,input,output,kernel,relu,first)}}
+ fn path_name(&self)->&'static str{if self.use_avx2{"avx2"}else{"baseline_fallback"}}
+ fn forward(&mut self,observation:&[u8],mode:usize){for index in 0..self.work.input.len(){self.work.input[index]=observation[index]as f32*(1./255.);}let use_avx2=self.use_avx2;unsafe{Self::convolution_range(use_avx2,&self.conv[0],&self.work.input,&mut self.work.hidden,3,true,0);for block in 0..4{Self::convolution_range(use_avx2,&self.conv[1+2*block],&self.work.hidden,&mut self.work.scratch,3,true,0);Self::convolution_range(use_avx2,&self.conv[2+2*block],&self.work.scratch,&mut self.work.residual,3,false,0);for index in 0..self.work.hidden.len(){self.work.hidden[index]=(self.work.hidden[index]+self.work.residual[index]).max(0.);}}if mode!=0{Self::convolution_range(use_avx2,&self.conv[9],&self.work.hidden,&mut self.work.action,1,false,0);}}}
  fn plane_mean(observation:&[u8],plane:usize,valid:f32)->f32{let start=plane*TF_FULL_CELLS;observation[start..start+TF_FULL_CELLS].iter().map(|value|*value as f32*(1./255.)).sum::<f32>()/valid.max(1.)}
  fn plan_logits(&self,observation:&[u8])->[f32;400]{let valid=observation[..TF_FULL_CELLS].iter().filter(|value|**value!=0).count()as f32;let mut pooled=[0f32;16];for channel in 0..16{let start=channel*TF_FULL_CELLS;let mut total=0.;for cell in 0..TF_FULL_CELLS{total+=self.work.hidden[start+cell]*(observation[cell]as f32*(1./255.));}pooled[channel]=total/valid.max(1.);}
   let banks=[43,44,45,47].map(|plane|Self::plane_mean(observation,plane,valid)*64.);let trolls=Self::plane_mean(observation,57,valid)*12.;let target=[60,61,62,63].map(|plane|Self::plane_mean(observation,plane,valid));let has_target=Self::plane_mean(observation,59,valid)>0.5;let has_iron=observation[4*TF_FULL_CELLS..5*TF_FULL_CELLS].iter().any(|value|*value!=0);let scales=[4.,5.,3.,4.];let mut logits=[0f32;400];logits[0]=self.null;
@@ -314,9 +328,11 @@ fn masked_argmax(logits:&[f32],mask:&[u8])->usize{let mut best=usize::MAX;let mu
 fn train_succeeds_local(game:&GameState,seat:usize,plan:usize,staged:&[StagedAction],routing:Option<&MoveRouting>)->bool{if plan==0{return false;}let mut shown=staged_game(game,seat,staged,routing);let mut picks=Vec::new();for action in staged{let index=action.action_index as usize;let plane=index/TF_FULL_CELLS;if(9..=12).contains(&plane){picks.push((action.troll_id,FRUIT_NAMES[plane-9].to_string()));}}apply_pick(&mut shown,&picks);let before=own_units(&shown,seat).len();apply_train(&mut shown,seat as i32,decode_plan(plan).unwrap());own_units(&shown,seat).len()>before}
 #[cfg(tf_full_parity_probe)]
 fn bytes_hex(data:&[u8])->String{const HEX:&[u8;16]=b"0123456789abcdef";let mut out=String::with_capacity(2*data.len());for value in data{out.push(HEX[(value>>4)as usize]as char);out.push(HEX[(value&15)as usize]as char);}out}
-#[cfg(tf_full_parity_probe)]
+#[cfg(tf_nn_path_probe)]
+fn main(){println!("{}",Actor::new().path_name());}
+#[cfg(all(tf_full_parity_probe,not(tf_nn_path_probe)))]
 fn main(){let stdin=io::stdin();let stdout=io::stdout();let mut reader=io::BufReader::new(stdin.lock());let mut output=io::BufWriter::new(stdout.lock());let Some(map)=read_static_map(&mut reader)else{return;};let Some((_,seat))=read_turn(&mut reader,&map,1,None)else{return;};let Some((game,confirmed))=read_turn(&mut reader,&map,2,Some(seat))else{return;};if confirmed!=seat{return;}let Some(config)=read_line(&mut reader)else{return;};let v:Vec<i32>=config.split_whitespace().map(|x|x.parse().ok()).collect::<Option<Vec<_>>>().unwrap_or_default();if v.len()!=6{return;}let count:usize=read_line(&mut reader).and_then(|x|x.parse().ok()).unwrap_or(usize::MAX);if count==usize::MAX{return;}let mut staged=Vec::with_capacity(count);for _ in 0..count{let Some(line)=read_line(&mut reader)else{return;};let s:Vec<i32>=line.split_whitespace().map(|x|x.parse().ok()).collect::<Option<Vec<_>>>().unwrap_or_default();if s.len()!=2{return;}staged.push(StagedAction{troll_id:s[0],action_index:s[1]});}let routes=MoveRouting::new(&game);let mut observation=vec![0u8;TF_FULL_OBS_SIZE];let mut action_mask=vec![0u8;TF_FULL_ACTION_SIZE];let mut plan_mask=[0u8;TF_FULL_PLAN_SIZE];if fill_observation(&game,seat,v[2],v[0],v[1]as usize,v[3]!=0,&staged,Some(&routes),&mut observation).is_err(){return;}if legal_action_mask(&game,seat,v[2],&staged,Some(&routes),&mut action_mask).is_err(){return;}legal_plan_mask(&game,seat,&mut plan_mask);let Ok(command)=decode_action_text(v[5]as usize,v[4],seat,game.width,game.height)else{return;};writeln!(output,"SEAT {}\nOBS {}\nACTION {}\nPLAN {}\nCOMMAND {}",seat,bytes_hex(&observation),bytes_hex(&action_mask),bytes_hex(&plan_mask),command).unwrap();output.flush().unwrap();}
-#[cfg(not(tf_full_parity_probe))]
+#[cfg(not(any(tf_full_parity_probe,tf_nn_path_probe)))]
 fn main(){let stdin=io::stdin();let stdout=io::stdout();let mut reader=io::BufReader::new(stdin.lock());let mut output=io::BufWriter::new(stdout.lock());let Some(map)=read_static_map(&mut reader)else{return;};let mut actor=Actor::new();let mut routing=None;let mut turn=1;let mut absolute_seat=None;while let Some((game,seat))=read_turn(&mut reader,&map,turn,absolute_seat){absolute_seat=Some(seat);if routing.is_none(){routing=Some(MoveRouting::new(&game));}let routes=routing.as_ref();let mut observation=vec![0u8;TF_FULL_OBS_SIZE];let mut action_mask=vec![0u8;TF_FULL_ACTION_SIZE];let mut plan_mask=[0u8;TF_FULL_PLAN_SIZE];let staged:Vec<StagedAction>=Vec::new();fill_observation(&game,seat,-1,0,0,false,&staged,routes,&mut observation).unwrap();for plane in 59..72{observation[plane*TF_FULL_CELLS..(plane+1)*TF_FULL_CELLS].fill(0);}observation[98*TF_FULL_CELLS..99*TF_FULL_CELLS].fill(0);legal_plan_mask(&game,seat,&mut plan_mask);actor.forward(&observation,0);let plan=masked_argmax(&actor.plan_logits(&observation),&plan_mask);let mut staged=Vec::new();let mut first=true;for unit in own_units(&game,seat){fill_observation(&game,seat,unit.id,1,plan,false,&staged,routes,&mut observation).unwrap();legal_action_mask(&game,seat,unit.id,&staged,routes,&mut action_mask).unwrap();actor.forward(&observation,if first{1}else{2});first=false;let action=masked_argmax(&actor.work.action,&action_mask);staged.push(StagedAction{troll_id:unit.id,action_index:action as i32});}let mut commands:Vec<String>=staged.iter().map(|action|decode_action_text(action.action_index as usize,action.troll_id,seat,game.width,game.height).unwrap()).collect();if train_succeeds_local(&game,seat,plan,&staged,routes){let spec=decode_plan(plan).unwrap();commands.insert(0,format!("TRAIN {} {} {} {}",spec.0,spec.1,spec.2,spec.3));}writeln!(output,"{}",commands.join(";")).unwrap();output.flush().unwrap();turn+=1;}}
 '''
 
@@ -337,6 +353,7 @@ const NULL_OFFSET:usize={null_offset};
 """
     source = prefix + lifted + RUNTIME
     compacted = compact_submission(source)
+    compacted_size = source_size_counts(compacted)
     accounting: dict[str, Any] = {
         "generator_variant": "full-game-v400-int8-refined-u20-k1",
         "compaction": "compact_rust_source lexer plus deterministic generated-symbol shortening",
@@ -345,10 +362,14 @@ const NULL_OFFSET:usize={null_offset};
         "lifted_runtime_bytes": len(lifted.encode()),
         "readable_source_bytes": len(source.encode()),
         "readable_source_sha256": sha256_bytes(source.encode()),
-        "compacted_source_bytes": len(compacted.encode()),
-        "compacted_source_characters": len(compacted),
+        "compacted_source_bytes": compacted_size["utf8_bytes"],
+        "compacted_source_characters": compacted_size["unicode_code_points"],
+        "compacted_source_code_points": compacted_size["unicode_code_points"],
+        "compacted_source_utf16_code_units": compacted_size["utf16_code_units"],
+        "compacted_source_utf8_bytes": compacted_size["utf8_bytes"],
         "compacted_source_sha256": sha256_bytes(compacted.encode()),
-        "under_100000_characters": len(compacted) < 100_000,
+        "under_100000_characters": compacted_size["utf16_code_units"] < 100_000,
+        "under_100000_utf16_code_units": compacted_size["utf16_code_units"] < 100_000,
         **source_hashes,
     }
     return source, accounting

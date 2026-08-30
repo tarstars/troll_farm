@@ -48,15 +48,70 @@ def percentile(values: list[float], fraction: float) -> float:
     return sorted(values)[max(0, math.ceil(len(values) * fraction) - 1)]
 
 
-def compile_rust(source: Path, binary: Path, rustc: str, *, cfg: str | None = None) -> None:
+def source_size_counts(source: str) -> dict[str, int]:
+    return {
+        "unicode_code_points": len(source),
+        "utf16_code_units": len(source.encode("utf-16-le")) // 2,
+        "utf8_bytes": len(source.encode()),
+    }
+
+
+def summarize_timing(first_ms: list[float], warm_ms: list[float]) -> dict[str, float]:
+    return {
+        "first_turn_max_ms": round(max(first_ms), 3),
+        "first_turn_median_ms": round(percentile(first_ms, 0.5), 3),
+        "warm_turn_max_ms": round(max(warm_ms), 3),
+        "warm_turn_p99_ms": round(percentile(warm_ms, 0.99), 3),
+        "warm_turn_median_ms": round(percentile(warm_ms, 0.5), 3),
+    }
+
+
+def certify_timing(runs: list[dict[str, float]], context: str) -> dict[str, Any]:
+    if len(runs) != 3:
+        raise ValueError(f"the frozen timing rule requires exactly three runs, got {len(runs)}")
+    p99_values = [float(run["warm_turn_p99_ms"]) for run in runs]
+    first_values = [float(run["first_turn_max_ms"]) for run in runs]
+    median_p99 = percentile(p99_values, 0.5)
+    numerical_pass = median_p99 <= 15.0 and max(p99_values) <= 20.0
+    is_host_record = context == "host-of-record-quiet"
+    return {
+        "context": context,
+        "required_context": "host-of-record-quiet, with no training run active",
+        "runs": runs,
+        "warm_turn_p99_values_ms": p99_values,
+        "first_turn_max_values_ms": first_values,
+        "median_warm_turn_p99_ms": median_p99,
+        "every_warm_turn_p99_at_most_20_ms": max(p99_values) <= 20.0,
+        "median_warm_turn_p99_at_most_15_ms": median_p99 <= 15.0,
+        "numerical_pass": numerical_pass,
+        "certified": numerical_pass if is_host_record else None,
+    }
+
+
+def compile_rust(
+    source: Path,
+    binary: Path,
+    rustc: str,
+    *,
+    cfg: str | tuple[str, ...] | None = None,
+) -> None:
     command = [rustc, "--edition=2021", "-O", "-Awarnings"]
-    if cfg is not None:
-        command.extend(["--cfg", cfg])
+    cfgs = (cfg,) if isinstance(cfg, str) else (() if cfg is None else cfg)
+    for value in cfgs:
+        command.extend(["--cfg", value])
     command.extend([str(source), "-o", str(binary)])
     subprocess.run(
         command,
         check=True,
     )
+
+
+def read_runtime_path(binary: Path) -> str:
+    completed = subprocess.run([str(binary)], text=True, capture_output=True, check=True)
+    path = completed.stdout.strip()
+    if path not in {"avx2", "baseline_fallback"}:
+        raise RuntimeError(f"unexpected generated runtime path {path!r}")
+    return path
 
 
 def check_turn1_seat_corpus(path: Path) -> dict[str, Any]:
@@ -340,6 +395,12 @@ def main() -> int:
     parser.add_argument("--out", type=Path, default=REPORT)
     parser.add_argument("--rustc", default=None)
     parser.add_argument(
+        "--timing-context",
+        choices=("information", "host-of-record-quiet"),
+        default="information",
+        help="only host-of-record-quiet turns the frozen three-run timing rule into a gate",
+    )
+    parser.add_argument(
         "--seat-corpus",
         type=Path,
         default=None,
@@ -368,37 +429,69 @@ def main() -> int:
     seat_corpus = check_turn1_seat_corpus(corpus_path)
 
     source = args.candidate.read_text()
+    candidate_size = source_size_counts(source)
     with tempfile.TemporaryDirectory(prefix="full-bot-bed-") as directory:
         work = Path(directory)
         candidate_binary = work / "candidate"
+        fallback_binary = work / "candidate-fallback"
         champion_binary = work / "champion"
         probe_binary = work / "candidate-parity-probe"
+        path_probe_binary = work / "candidate-path-probe"
+        fallback_path_probe_binary = work / "candidate-fallback-path-probe"
         compile_rust(args.candidate, candidate_binary, rustc)
+        compile_rust(args.candidate, fallback_binary, rustc, cfg="tf_nn_force_fallback")
         compile_rust(args.champion, champion_binary, rustc)
         compile_rust(args.candidate, probe_binary, rustc, cfg="tf_full_parity_probe")
+        compile_rust(args.candidate, path_probe_binary, rustc, cfg="tf_nn_path_probe")
+        compile_rust(
+            args.candidate,
+            fallback_path_probe_binary,
+            rustc,
+            cfg=("tf_nn_path_probe", "tf_nn_force_fallback"),
+        )
+        runtime_path = read_runtime_path(path_probe_binary)
+        forced_runtime_path = read_runtime_path(fallback_path_probe_binary)
+        if forced_runtime_path != "baseline_fallback":
+            raise RuntimeError(f"forced fallback selected {forced_runtime_path!r}")
         direct_parity = run_direct_seat_parity(
             maps[0], probe_binary, nr.PlaneBuilder(nr.DEFAULT_LIBRARY)
         )
-        compiled_identical, compiled_commands, first_ms, warm_ms, compiled_differences = (
-            run_compiled_bed(maps, reference, candidate_binary, champion_binary)
-        )
+        normal_runs = [run_compiled_bed(maps, reference, candidate_binary, champion_binary)]
+        fallback_run = run_compiled_bed(maps, reference, fallback_binary, champion_binary)
+        for _ in range(2):
+            normal_runs.append(
+                run_compiled_bed(maps, reference, candidate_binary, champion_binary)
+            )
 
-    timing = {
-        "first_turn_max_ms": round(max(first_ms), 3),
-        "first_turn_median_ms": round(percentile(first_ms, 0.5), 3),
-        "warm_turn_max_ms": round(max(warm_ms), 3),
-        "warm_turn_p99_ms": round(percentile(warm_ms, 0.99), 3),
-        "warm_turn_median_ms": round(percentile(warm_ms, 0.5), 3),
-    }
+    compiled_identical, compiled_commands, first_ms, warm_ms, compiled_differences = normal_runs[0]
+    (
+        fallback_identical,
+        fallback_commands,
+        fallback_first_ms,
+        fallback_warm_ms,
+        fallback_differences,
+    ) = fallback_run
+    timing_runs = [summarize_timing(run[2], run[3]) for run in normal_runs]
+    timing = timing_runs[0]
+    fallback_timing = summarize_timing(fallback_first_ms, fallback_warm_ms)
+    timing_certification = certify_timing(timing_runs, args.timing_context)
     gates = {
         "python_clone_games_identical": python_identical == 48,
-        "compiled_games_identical": compiled_identical == 48,
-        "first_turn_at_most_500_ms": timing["first_turn_max_ms"] <= 500.0,
-        "warm_turn_p99_at_most_15_ms": timing["warm_turn_p99_ms"] <= 15.0,
-        "source_under_100000_characters": len(source) < 100_000,
+        "runtime_dispatch_games_identical": compiled_identical == 48,
+        "forced_fallback_games_identical": fallback_identical == 48,
+        "three_timing_runs_command_identical": all(run[0] == 48 for run in normal_runs),
+        "runtime_dispatch_first_turn_at_most_500_ms": timing["first_turn_max_ms"] <= 500.0,
+        "forced_fallback_first_turn_at_most_500_ms": fallback_timing["first_turn_max_ms"]
+        <= 500.0,
+        "forced_fallback_warm_p99_at_most_50_ms": fallback_timing["warm_turn_p99_ms"]
+        <= 50.0,
+        "source_under_100000_utf16_code_units": candidate_size["utf16_code_units"]
+        < 100_000,
         "direct_seat_parity": bool(direct_parity["valid"]),
         "turn1_id_corpus_valid": bool(seat_corpus["valid"]),
     }
+    if args.timing_context == "host-of-record-quiet":
+        gates["three_run_timing_certified"] = bool(timing_certification["certified"])
     report = {
         "what": "full-game generated neural clone bed against the committed Python-clone/champion stream",
         "maps": str(args.maps),
@@ -408,7 +501,8 @@ def main() -> int:
         "quantized_replays_sha256": sha256(args.quantized_replays),
         "candidate": str(args.candidate),
         "candidate_sha256": sha256(args.candidate),
-        "candidate_characters": len(source),
+        "candidate_characters": candidate_size["unicode_code_points"],
+        "candidate_size": candidate_size,
         "champion": str(args.champion),
         "champion_sha256": sha256(args.champion),
         "games": 48,
@@ -416,6 +510,25 @@ def main() -> int:
         "python_turns_compared": python_commands,
         "compiled_games_identical": compiled_identical,
         "compiled_turns_compared": compiled_commands,
+        "runtime_paths": {
+            "runtime_dispatch": {
+                "selected_path": runtime_path,
+                "forced": False,
+                "games_identical": compiled_identical,
+                "turns_compared": compiled_commands,
+                "timing": timing,
+                "differences": compiled_differences,
+            },
+            "forced_fallback": {
+                "selected_path": forced_runtime_path,
+                "forced": True,
+                "forcing_mechanism": "rustc --cfg tf_nn_force_fallback",
+                "games_identical": fallback_identical,
+                "turns_compared": fallback_commands,
+                "timing": fallback_timing,
+                "differences": fallback_differences,
+            },
+        },
         "direct_seat_parity": direct_parity,
         "turn1_id_corpus": seat_corpus,
         "turn1_id_corpus_authoritative_card_result": {
@@ -424,6 +537,7 @@ def main() -> int:
             "exceptions": 0,
         },
         "timing": timing,
+        "timing_certification": timing_certification,
         "gates": gates,
         "python_differences": python_differences,
         "compiled_differences": compiled_differences,
@@ -431,15 +545,26 @@ def main() -> int:
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(
-        f"parity {compiled_identical}/48 compiled games; Python export {python_identical}/48; "
-        f"commands {compiled_commands}/{python_commands}"
+        f"parity runtime {runtime_path} {compiled_identical}/48; forced fallback "
+        f"{fallback_identical}/48; Python export {python_identical}/48; commands "
+        f"{compiled_commands}/{fallback_commands}/{python_commands}"
     )
     print(
-        f"timing first max {timing['first_turn_max_ms']:.3f} ms; warm median "
-        f"{timing['warm_turn_median_ms']:.3f} ms, p99 {timing['warm_turn_p99_ms']:.3f} ms, "
-        f"max {timing['warm_turn_max_ms']:.3f} ms"
+        "timing p99 runs "
+        + ", ".join(f"{run['warm_turn_p99_ms']:.3f}" for run in timing_runs)
+        + f" ms; median {timing_certification['median_warm_turn_p99_ms']:.3f} ms; "
+        f"context {args.timing_context}"
     )
-    print(f"size {len(source)} characters; report -> {args.out}")
+    print(
+        f"fallback first max {fallback_timing['first_turn_max_ms']:.3f} ms; warm median "
+        f"{fallback_timing['warm_turn_median_ms']:.3f} ms, p99 "
+        f"{fallback_timing['warm_turn_p99_ms']:.3f} ms"
+    )
+    print(
+        f"size {candidate_size['unicode_code_points']} code points; "
+        f"{candidate_size['utf16_code_units']} UTF-16 code units; "
+        f"{candidate_size['utf8_bytes']} UTF-8 bytes; report -> {args.out}"
+    )
     return 0 if all(gates.values()) else 1
 
 

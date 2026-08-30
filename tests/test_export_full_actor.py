@@ -3,6 +3,8 @@ from __future__ import annotations
 import gzip
 import importlib.util
 import json
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 
@@ -62,6 +64,16 @@ def test_unicode20_payload_encoding_round_trips_every_byte_value() -> None:
     assert bytes(decoded[: len(payload)]) == payload
     assert len(encoded) == 2 * ((len(payload) + 4) // 5)
     assert all(0x10000 <= ord(value) <= 0x10FFFF for value in encoded)
+
+
+def test_source_size_counts_code_points_utf16_units_and_utf8_bytes() -> None:
+    text = "a\U00010000"
+    assert GENERATOR.source_size_counts(text) == {
+        "unicode_code_points": 2,
+        "utf16_code_units": 3,
+        "utf8_bytes": 5,
+    }
+    assert BED.source_size_counts(text) == GENERATOR.source_size_counts(text)
 
 
 def test_quantization_has_int8_base_packed_refinement_and_nearest_even() -> None:
@@ -137,6 +149,70 @@ def test_generated_runtime_recovers_and_caches_exact_turn1_seat() -> None:
     assert "read_turn(&mut reader,&map,turn,absolute_seat)" in GENERATOR.RUNTIME
     assert "absolute_seat=Some(seat)" in GENERATOR.RUNTIME
     assert "cfg(tf_full_parity_probe)" in GENERATOR.RUNTIME
+
+
+def test_generated_runtime_dispatch_and_forced_baseline_fallback(tmp_path: Path) -> None:
+    assert 'is_x86_feature_detected!("avx2")' in GENERATOR.RUNTIME
+    assert "cfg!(tf_nn_force_fallback)" in GENERATOR.RUNTIME
+    assert GENERATOR.RUNTIME.count('#[target_feature(enable="avx2")]') == 1
+    fallback = GENERATOR.RUNTIME.split("unsafe fn convolution_range_fallback", 1)[1].split(
+        "unsafe fn convolution_range(", 1
+    )[0]
+    assert "_mm_mul_ps" in fallback and "_mm_add_ps" in fallback
+    assert "_mm256" not in fallback and "target_feature" not in fallback
+
+    rustc = shutil.which("rustc")
+    if rustc is None:
+        stable = (
+            Path.home()
+            / ".rustup"
+            / "toolchains"
+            / "stable-x86_64-unknown-linux-gnu"
+            / "bin"
+            / "rustc"
+        )
+        rustc = str(stable) if stable.is_file() else None
+    if rustc is None:
+        pytest.skip("rustc is required for the forced-fallback probe")
+    candidate = ROOT / "cgauto" / "submissions" / "candidate-nn-clone.rs"
+    binary = tmp_path / "forced-fallback-probe"
+    subprocess.run(
+        [
+            rustc,
+            "--edition=2021",
+            "-O",
+            "-Awarnings",
+            "--cfg",
+            "tf_nn_path_probe",
+            "--cfg",
+            "tf_nn_force_fallback",
+            str(candidate),
+            "-o",
+            str(binary),
+        ],
+        check=True,
+    )
+    completed = subprocess.run([str(binary)], text=True, capture_output=True, check=True)
+    assert completed.stdout.strip() == "baseline_fallback"
+
+
+def test_three_run_timing_rule_is_frozen_and_context_sensitive() -> None:
+    runs = [
+        {"first_turn_max_ms": 10.0, "warm_turn_p99_ms": 14.0},
+        {"first_turn_max_ms": 11.0, "warm_turn_p99_ms": 16.0},
+        {"first_turn_max_ms": 12.0, "warm_turn_p99_ms": 14.5},
+    ]
+    information = BED.certify_timing(runs, "information")
+    assert information["numerical_pass"]
+    assert information["median_warm_turn_p99_ms"] == 14.5
+    assert information["certified"] is None
+    host = BED.certify_timing(runs, "host-of-record-quiet")
+    assert host["certified"] is True
+    too_slow = [dict(run) for run in runs]
+    too_slow[1]["warm_turn_p99_ms"] = 20.001
+    assert not BED.certify_timing(too_slow, "host-of-record-quiet")["numerical_pass"]
+    with pytest.raises(ValueError, match="exactly three"):
+        BED.certify_timing(runs[:2], "information")
 
 
 def test_turn1_seat_corpus_checker_accepts_exact_ids_and_names_failures(tmp_path: Path) -> None:
