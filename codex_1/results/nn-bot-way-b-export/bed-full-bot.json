@@ -1,7 +1,12 @@
 {
   "candidate": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-nn-clone.rs",
-  "candidate_characters": 52854,
-  "candidate_sha256": "36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff",
+  "candidate_characters": 54218,
+  "candidate_sha256": "4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06",
+  "candidate_size": {
+    "unicode_code_points": 54218,
+    "utf16_code_units": 83282,
+    "utf8_bytes": 141410
+  },
   "champion": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
   "champion_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
   "compiled_differences": [],
@@ -49,13 +54,16 @@
   },
   "games": 48,
   "gates": {
-    "compiled_games_identical": true,
     "direct_seat_parity": true,
-    "first_turn_at_most_500_ms": true,
+    "forced_fallback_first_turn_at_most_500_ms": true,
+    "forced_fallback_games_identical": true,
+    "forced_fallback_warm_p99_at_most_50_ms": true,
     "python_clone_games_identical": true,
-    "source_under_100000_characters": true,
-    "turn1_id_corpus_valid": true,
-    "warm_turn_p99_at_most_15_ms": true
+    "runtime_dispatch_first_turn_at_most_500_ms": true,
+    "runtime_dispatch_games_identical": true,
+    "source_under_100000_utf16_code_units": true,
+    "three_timing_runs_command_identical": true,
+    "turn1_id_corpus_valid": true
   },
   "maps": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/third-troll/smoke-maps-seed0.jsonl",
   "python_clone_games_identical": 48,
@@ -65,16 +73,89 @@
   "quantized_replays_sha256": "03a1ef8ba5becef06c19020c96da50b94f813b1d9c8f18fa06815f8543b5c717",
   "reference_replays": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/results/clone-2026-08-30-a/bench-argmax-replays.jsonl",
   "reference_replays_sha256": "6eceb8caf5b07cf188bc8d085f28fc2a1c9fa87e891a33f7a70a4d81f031205c",
+  "runtime_paths": {
+    "forced_fallback": {
+      "differences": [],
+      "forced": true,
+      "forcing_mechanism": "rustc --cfg tf_nn_force_fallback",
+      "games_identical": 48,
+      "selected_path": "baseline_fallback",
+      "timing": {
+        "first_turn_max_ms": 14.277,
+        "first_turn_median_ms": 11.205,
+        "warm_turn_max_ms": 20.36,
+        "warm_turn_median_ms": 8.776,
+        "warm_turn_p99_ms": 12.529
+      },
+      "turns_compared": 13206
+    },
+    "runtime_dispatch": {
+      "differences": [],
+      "forced": false,
+      "games_identical": 48,
+      "selected_path": "avx2",
+      "timing": {
+        "first_turn_max_ms": 28.313,
+        "first_turn_median_ms": 9.727,
+        "warm_turn_max_ms": 18.833,
+        "warm_turn_median_ms": 6.657,
+        "warm_turn_p99_ms": 15.731
+      },
+      "turns_compared": 13206
+    }
+  },
   "timing": {
-    "first_turn_max_ms": 14.781,
-    "first_turn_median_ms": 9.818,
-    "warm_turn_max_ms": 15.095,
-    "warm_turn_median_ms": 6.505,
-    "warm_turn_p99_ms": 9.718
+    "first_turn_max_ms": 28.313,
+    "first_turn_median_ms": 9.727,
+    "warm_turn_max_ms": 18.833,
+    "warm_turn_median_ms": 6.657,
+    "warm_turn_p99_ms": 15.731
+  },
+  "timing_certification": {
+    "certified": null,
+    "context": "information",
+    "every_warm_turn_p99_at_most_20_ms": true,
+    "first_turn_max_values_ms": [
+      28.313,
+      31.516,
+      28.387
+    ],
+    "median_warm_turn_p99_at_most_15_ms": false,
+    "median_warm_turn_p99_ms": 15.026,
+    "numerical_pass": false,
+    "required_context": "host-of-record-quiet, with no training run active",
+    "runs": [
+      {
+        "first_turn_max_ms": 28.313,
+        "first_turn_median_ms": 9.727,
+        "warm_turn_max_ms": 18.833,
+        "warm_turn_median_ms": 6.657,
+        "warm_turn_p99_ms": 15.731
+      },
+      {
+        "first_turn_max_ms": 31.516,
+        "first_turn_median_ms": 10.161,
+        "warm_turn_max_ms": 26.459,
+        "warm_turn_median_ms": 6.605,
+        "warm_turn_p99_ms": 13.363
+      },
+      {
+        "first_turn_max_ms": 28.387,
+        "first_turn_median_ms": 9.997,
+        "warm_turn_max_ms": 25.663,
+        "warm_turn_median_ms": 6.581,
+        "warm_turn_p99_ms": 15.026
+      }
+    ],
+    "warm_turn_p99_values_ms": [
+      15.731,
+      13.363,
+      15.026
+    ]
   },
   "turn1_id_corpus": {
     "exceptions": [],
-    "path": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/results/pilot/states-pilot.jsonl.gz",
+    "path": "local_claude_1/nn-bot/results/pilot/states-pilot.jsonl.gz",
     "seat0_turn1_games": 6,
     "sha256": "848716557e1ce3b1487b48f4de7007a12c9a863bea4e05dd1e050b138b8c5c5e",
     "valid": true

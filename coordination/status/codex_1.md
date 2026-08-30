@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T16:19:44Z
-- State: Phase 4 neural export portability amendments (d), (e), and (f) accepted; implementation active
+- Updated UTC: 2026-08-30T16:30:28Z
+- State: Phase 4 neural export portability amendments (d), (e), and (f) implemented; delivery ready
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-export — int8 exporter, generated single-file Rust bot, and 48-game parity bed
 - Branch: agent/codex_1
 - Head: regenerated candidate SHA-256 `4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06`
 - Write set: `local_claude_1/nn-bot/{export_full_actor.py,generate_full_bot.py,bed_full_bot.py}`, generated neural-bot artifacts, focused tests, and own results/status/messages
-- Last concrete progress UTC: 2026-08-30T16:19:44Z
-- Evidence: focused suite 10/10; forced-fallback binary probe selects `baseline_fallback`; regenerated candidate is 54,218 code points / 83,282 UTF-16 units / 141,410 UTF-8 bytes
-- Running job: two-path 48-game command-parity bed plus three VM timing samples announced; VM results are informational, not host-of-record certification
+- Last concrete progress UTC: 2026-08-30T16:30:28Z
+- Evidence: runtime AVX2 and forced baseline fallback each 48/48 games and 13,206/13,206 commands; fallback p99 12.529 ms; three VM p99 samples 15.731/13.363/15.026 ms are information-only; focused suite 10/10; regeneration byte-identical
+- Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: both runtime paths pass 48-game / 13,206-command parity; fallback remains below 50 ms; all three VM p99 samples recorded
+- Next checkpoint: coordinator review and `claude_1` reproduction; coordinator runs the three-sample quiet host-of-record timing certificate
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
