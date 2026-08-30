@@ -348,6 +348,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   after launch — at updates 4,204 / 3,725 / 4,275 (≈ 17 million decisions each), practice win rates 27 % / 26 % / 17 % (c's
   champion-heavy pool is the harder one); `ppo-yt-d` since ~15:55Z at 1,064 updates (29 %); `ppo-yt-e`/`f` running but not
   yet reporting. a/b/c finish ~00:35Z, d ~04:00Z; e/f later. The report's next edition carries the correction. — coordinator
+- 2026-08-30 17:3xZ: **`ppo-f2`'s update-1,500 snapshot vs the champion's file: 2 wins of 48 (both on seat 0), 94.8 points to 163.7;
+  32 games ended early (29 with no trees left), 1 loop game, 0 illegal; a purchase in 42 of 48 games; per game chop 81 /
+  harvest 23 / plant 14 / drop 42 / move 266 (the clone 94 / 38 / 25 / 66 / 253).** The update-1,000 climb did not hold: 5 → 7 → 2
+  wins, 124 → 132 → 95 points. The purchases stayed (the plan head is fine); the *collecting* collapsed — harvest, plant, drop all
+  down by a third to a half — so the champion clears the trees while the network's trolls walk. Under both remedies the erosion
+  still comes, only later (run D was at 82 points by update 1,000). Meanwhile the run's own practice numbers keep *improving*
+  (win rate 19 % → 25 %, margin −77 → −67 by update 1,327, sampled play against the pool). One hypothesis fits that divergence:
+  the bench plays the argmax command while training plays sampled commands — a policy trained by sampling can have a mode
+  that is not its typical play. Test now: the same snapshot benched with sampled commands. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
