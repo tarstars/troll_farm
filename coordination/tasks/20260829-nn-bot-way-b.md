@@ -466,6 +466,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   full-parameter runs — the practice metric now tracks the bench. Anchor agreement 0.988, entropy 0.90. Points slightly
   under the clone's 133.9 (within one bench's noise); **whether the plan head climbs above the clone is the update-1,000
   question (~00:25Z)**. — coordinator
+- 2026-08-30 23:4xZ: **`ppo-i` at update 1,000: 10 wins of 48 (4 on seat 0, 6 on seat 1), 131.0 points to 184.2 — above the
+  clone's 9 for the first time in the programme.** A purchase in 44 of 48; the profile intact (chop 90 / harvest 39 / plant 24);
+  2 loop games; practice win rate 19.5 % (up from 17.7 % at update 500), margin −49. One win above the bar is inside one
+  48-game bench's noise (±2), but the direction and the practice curve agree, and erosion is impossible by construction.
+  **Update 1,500 (~00:40Z) is the confirmation reading: at or above 10 again, `ppo-i` becomes the run of record** and the
+  card's next step is a wider confirmation (the 400-game protocol on the target's terms) plus the joint fine-tune question
+  (the winner's stage 5) for a later day. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
