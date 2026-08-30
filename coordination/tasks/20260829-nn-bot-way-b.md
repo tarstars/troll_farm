@@ -448,6 +448,16 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   long-horizon control that says whether 44 million decisions ever climb back. The morning's decision tree: if the staged
   run beats the clone, it is the way; if the instrument convicts the value-gradient path, a separate value trunk is the
   next trainer change; if a cluster snapshot recovered, full-parameter PPO gets a second look at scale. — coordinator
+- 2026-08-30 22:5xZ: **codex_1 delivered the staged-trainer repair in under an hour** (`6432e54a`, 21:37Z): TROLL rows execute
+  the frozen policy's masked argmax without consuming a random draw (bench-equal by test); PLAN rows sample, with PLAN-only
+  advantage normalization, loss, entropy and anchor (invariant to duplicated TROLL rows, by test); the value loss over all
+  rows (a no-PLAN minibatch finite, by test); the pre-clip plan/critic norms and the joint clip multiplier logged; and the
+  `all` scope proven byte-exact against the parent by a matched-seed two-update run (29/29 tensors, 29/29 optimizer entries).
+  Verified here from a clean checkout — 51 tests pass — and **merged (`3220629a`)**. **`ppo-i` runs on the host since 22:5xZ**
+  (plan-critic scope, champion-only, γ 0.999, warm-up 300, actor lr ×0.3, the leash 0.1 → 0.05, 8 threads, seed 11); its
+  update-500 bench ~00:10Z; with the movement frozen the floor is the clone's own play, so whatever moves is the plan head's
+  doing. Cluster note: `ppo-yt-b` was preempted and restarted from scratch ~22:08Z (the entrypoint has no resume) — its
+  result comes last; a/c finish ~00:35Z, d ~03:15Z, e/f ~05:50Z. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
