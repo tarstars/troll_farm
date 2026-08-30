@@ -49,17 +49,54 @@ from cgauto.train_level1_ppo import (  # noqa: E402
 # --------------------------------------------------------------------------- 1. the GAE returns
 
 
+@pytest.mark.parametrize("prefix", [0, 1, 4, 12])
+@pytest.mark.parametrize("lam", [0.5, 0.95])
+def test_every_mini_step_of_a_turn_carries_that_turn_s_reward_whole(prefix, lam) -> None:
+    """One turn, one reward, any number of mini-steps before it: everyone gets R.
+
+    Zero values everywhere and a reward R on the mini-step that executed the turn, with `prefix`
+    zero-reward mini-steps of the same turn in front of it. Whatever lambda is, the plan row and
+    every troll row must come out with advantage R and return R -- otherwise a plan row would be
+    paid `lambda^k` of its own turn's reward, and the credit would shrink as the roster grows.
+    """
+
+    reward_value = 3.0
+    steps = prefix + 1
+    rewards = np.zeros((steps, 1), dtype=np.float32)
+    rewards[-1, 0] = reward_value
+    values = np.zeros((steps, 1), dtype=np.float32)
+    dones = np.zeros((steps, 1), dtype=np.float32)
+    boundary = np.zeros((steps, 1), dtype=np.uint8)
+    boundary[-1, 0] = 1
+    bootstrap = np.zeros(1, dtype=np.float32)
+
+    advantages, returns = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, 0.99, lam
+    )
+    assert advantages[:, 0].tolist() == pytest.approx([reward_value] * steps, rel=1e-6)
+    assert returns[:, 0].tolist() == pytest.approx([reward_value] * steps, rel=1e-6)
+
+
 def test_gae_uses_discount_one_inside_a_turn_and_gamma_across_turns() -> None:
     """A hand-built buffer of two turns: turn A is one mini-step, turn B is two.
 
     Layout, one environment, three stored mini-steps:
 
-        t=0  turn A, executes the turn   -> turn_boundary 1, reward rA
+        t=0  turn A, executes the turn   -> turn_boundary 1, reward 2
         t=1  turn B, the plan mini-step  -> turn_boundary 0, reward 0
-        t=2  turn B, executes the turn   -> turn_boundary 1, reward rB
+        t=2  turn B, executes the turn   -> turn_boundary 1, reward 5
 
-    So the discount from t=0 to t=1 is gamma (a turn ended), from t=1 to t=2 is exactly 1 (the
-    same turn continues), and from t=2 to the bootstrap is gamma again.
+    Inside a turn the discount is 1 AND the trace factor is 1; across a turn boundary they are
+    gamma and gamma*lambda. By hand, with gamma 0.9, lambda 0.8, values 1 / 3 / -2 and a
+    bootstrap of 7:
+
+        delta2 = 5 + 0.9*7 - (-2)      = 13.3   advantage2 = 13.3
+        delta1 = 0 + 1*(-2) - 3        = -5.0   advantage1 = -5.0 + 1*13.3        =  8.3
+        delta0 = 2 + 0.9*3 - 1         =  3.7   advantage0 =  3.7 + 0.9*0.8*8.3   =  9.676
+
+    NOTE: these expected numbers changed. The earlier version of this test multiplied the trace by
+    lambda inside the turn as well (advantage1 was 5.64 and advantage0 7.7608); that recurrence
+    was the bug the two-factor form fixes.
     """
 
     gamma, lam = 0.9, 0.8
@@ -73,19 +110,11 @@ def test_gae_uses_discount_one_inside_a_turn_and_gamma_across_turns() -> None:
         rewards, values, dones, boundary, bootstrap, gamma, lam
     )
 
-    delta2 = rewards[2, 0] + gamma * bootstrap[0] - values[2, 0]
-    advantage2 = delta2
-    delta1 = rewards[1, 0] + 1.0 * values[2, 0] - values[1, 0]
-    advantage1 = delta1 + 1.0 * lam * advantage2
-    delta0 = rewards[0, 0] + gamma * values[1, 0] - values[0, 0]
-    advantage0 = delta0 + gamma * lam * advantage1
-
-    assert advantages[:, 0] == pytest.approx(
-        [advantage0, advantage1, advantage2], rel=1e-6
-    )
-    assert returns[:, 0] == pytest.approx(
-        [advantage0 + 1.0, advantage1 + 3.0, advantage2 - 2.0], rel=1e-6
-    )
+    assert advantages[:, 0].tolist() == pytest.approx([9.676, 8.3, 13.3], rel=1e-6)
+    assert returns[:, 0].tolist() == pytest.approx([10.676, 11.3, 11.3], rel=1e-6)
+    # gamma*lambda is still applied across the turn boundary, and only there.
+    assert advantages[0, 0] == pytest.approx(3.7 + gamma * lam * advantages[1, 0], rel=1e-6)
+    assert advantages[1, 0] == pytest.approx(-5.0 + advantages[2, 0], rel=1e-6)
 
 
 def test_gae_cuts_the_trace_at_an_episode_end() -> None:
@@ -198,6 +227,14 @@ def _crafted_observation(
     obs[0, 0, :height, :width] = 255
     if iron:
         obs[0, 4, height // 2, width // 2] = 255       # plane 4: one iron cell on the map
+    if target is not None:
+        # Planes 64-71: the target's four costs and four deficits, as the environment writes them.
+        for offset, (talent, bank) in enumerate(zip(target, banks)):
+            if offset == 3 and not iron:
+                continue
+            cost = trolls + talent * talent
+            obs[0, 64 + offset, :height, :width] = fake.quantize(cost, 48.0)
+            obs[0, 68 + offset, :height, :width] = fake.quantize(max(cost - bank, 0), 48.0)
     for offset, amount in enumerate(banks):
         obs[0, PLAN_BANK_PLANES[offset], :height, :width] = fake.quantize(amount, 64.0)
     obs[0, 57, :height, :width] = fake.quantize(trolls, 12.0)
@@ -399,6 +436,80 @@ def test_the_plan_head_reacts_to_the_bank_it_reads() -> None:
     assert not torch.allclose(poor, rich)
     # entry 0 is a bare learned bias, so the bank cannot move it
     assert float(poor[0, 0].detach()) == pytest.approx(float(rich[0, 0].detach()))
+
+
+# ------------------------- no standing target at a plan decision (plan_target_memory off-v1)
+
+#: The pilot clone the first Phase 3 run starts from.
+CLONE_CHECKPOINT = Path("/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt")
+
+
+def _plan_pair(target=(2, 4, 1, 2)):
+    """Two observations identical except for planes 59-71."""
+
+    banks, trolls = (10, 10, 10, 10), 2
+    absent = _crafted_observation(banks, trolls, None)
+    present = _crafted_observation(banks, trolls, target)
+    assert not np.array_equal(absent, present)
+    assert np.array_equal(absent[:, :59], present[:, :59])
+    assert np.array_equal(absent[:, 72:], present[:, 72:])
+    assert present[:, 59:72].sum() > 0 and absent[:, 59:72].sum() == 0
+    return torch.from_numpy(absent), torch.from_numpy(present)
+
+
+@pytest.mark.skipif(
+    not CLONE_CHECKPOINT.exists(), reason=f"{CLONE_CHECKPOINT} is not on this host"
+)
+def test_the_clone_scores_a_plan_the_same_with_or_without_a_standing_target() -> None:
+    """The invariant the clone -> PPO handoff needs, on the real pilot clone.
+
+    The clone was taught with planes 59-71 zero on every plan row. The trunk is shared, so a
+    standing target would move the plan logits through it even though the scorer's match column
+    starts at zero. The trainer zeroes those thirteen planes on PLAN rows, so the two must give
+    byte-identical logits.
+    """
+
+    model, _ = tpf.load_policy(str(CLONE_CHECKPOINT), torch.device("cpu"))
+    absent, present = _plan_pair()
+    phase = torch.tensor([tpf.PHASE_PLAN], dtype=torch.int64)
+
+    absent_logits, absent_value = tpf.combined_logits(model, absent, phase)
+    present_logits, present_value = tpf.combined_logits(model, present, phase)
+
+    assert torch.equal(absent_logits[:, :PLAN_ACTION_SIZE], present_logits[:, :PLAN_ACTION_SIZE])
+    assert torch.equal(absent_logits, present_logits)
+    assert torch.equal(absent_value, present_value)
+
+    # Without the masking the two would part company -- the invariant is not vacuous.
+    unmasked_absent = model.forward_with_plan(absent)[1]
+    unmasked_present = model.forward_with_plan(present)[1]
+    assert not torch.equal(unmasked_absent, unmasked_present)
+
+
+def test_a_troll_observation_keeps_its_target_planes() -> None:
+    """Troll mini-steps saw those planes during cloning, so they are left alone."""
+
+    _, present = _plan_pair()
+    troll = torch.tensor([tpf.PHASE_TROLL], dtype=torch.int64)
+    assert torch.equal(tpf.mask_plan_target_planes(present, troll), present)
+
+    # A mixed batch: only the PLAN row is touched, and only planes 59-71 of it.
+    batch = torch.cat([present, present], dim=0)
+    mixed = torch.tensor([tpf.PHASE_PLAN, tpf.PHASE_TROLL], dtype=torch.int64)
+    masked = tpf.mask_plan_target_planes(batch, mixed)
+    assert int(masked[0, 59:72].sum()) == 0
+    assert torch.equal(masked[1], present[0])
+    assert torch.equal(masked[0, :59], present[0, :59])
+    assert torch.equal(masked[0, 72:], present[0, 72:])
+    assert torch.equal(batch, torch.cat([present, present], dim=0))  # the input is not mutated
+
+
+def test_the_run_records_the_plan_target_memory_flag(tmp_path) -> None:
+    tpf.main(_fake_run_argv(tmp_path))
+    checkpoint = torch.load(
+        tmp_path / "smoke-update000002.pt", map_location="cpu", weights_only=False
+    )
+    assert checkpoint["config"]["plan_target_memory"] == "off-v1"
 
 
 # --------------------------------------------------------------------------- 2. the two heads
