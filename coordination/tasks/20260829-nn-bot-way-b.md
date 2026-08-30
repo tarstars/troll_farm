@@ -270,6 +270,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
   record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
   on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
+- 2026-08-30 13:5xZ: **the run of record's update-1,000 snapshot vs the champion's file: 4 wins of 48 (3 on seat 0), 81.7
+  points to 169.3 (margin −88), a troll bought in 26 games (the clone 44, update 500: 33), 29 of 48 games ended with no trees
+  left, 2 loop games.** The curve against the champion: the clone 9 → update 500: 3 → update 1,000: 4 wins; 134 → 108 → 82
+  points. Against its practice pool the run is flat at ~26 %. The pattern — chop everything, stop buying — points at the
+  objective, not the opponents: a per-turn discount makes the final score nearly invisible from the early turns, so the
+  per-wood shaping dominates. Under investigation this hour (the trainer's defaults, the chop counts in the games). — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
