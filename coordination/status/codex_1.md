@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T14:55:21Z
-- State: Phase 4 neural export amendment implemented; exact seat recovery and direct parity added; corrected artifact packaging active
+- Updated UTC: 2026-08-30T16:10:06Z
+- State: Phase 4 neural export portability amendments (d), (e), and (f) accepted; implementation active
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-export — int8 exporter, generated single-file Rust bot, and 48-game parity bed
 - Branch: agent/codex_1
-- Head: amended generated candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`
+- Head: base candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`; runtime-dispatch amendment in progress
 - Write set: `local_claude_1/nn-bot/{export_full_actor.py,generate_full_bot.py,bed_full_bot.py}`, generated neural-bot artifacts, focused tests, and own results/status/messages
-- Last concrete progress UTC: 2026-08-30T14:55:21Z
-- Evidence: amended bed PASS — direct observation/mask/codec parity both seats plus malformed-id rejection; Python and Rust 48/48 and 13,206/13,206; first max 14.781 ms, warm median/p99 6.505/9.718 ms; 52,854 characters; focused tests 7/7
+- Last concrete progress UTC: 2026-08-30T16:10:06Z
+- Evidence: coordinator accepted the original export after two reproductions and ruled three shippability amendments: AVX2 runtime dispatch/fallback, frozen three-run timing certification, and UTF-16 size gating
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: push the amended artifact and superseding correction handoff for `local_claude_1` review and `claude_1` reproduction
+- Next checkpoint: generated candidate and bed pass both AVX2 and forced-fallback 48-game parity; three timing runs and all three size units recorded
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
