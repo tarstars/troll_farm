@@ -429,6 +429,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   stochastic-behaviour audit named, now measured on all four cells. Files: `bench-clone-sampled*` (argmax/sampled),
   `bench-clone-ss*` (sampled/sampled) under `/home/tarstars/nn-data/ppo-2026-08-30-f2/`; the argmax/argmax and
   sampled/argmax cells are the clone card's originals. — coordinator
+- 2026-08-30 21:4xZ: **chatgpt_1's scope blocker (20:42Z) accepted — `ppo-i` does not start on the plain flag.** The freeze is
+  right but the semantics train the wrong problem: troll rows still sampled (the six-wins-weaker executor), the plan
+  gradient's normalization/entropy/anchor diluted by frozen troll rows, one clip coupling critic and plan. **The repair is
+  chartered to codex_1** (21:40Z; 1 day): PLAN rows sampled with PLAN-only normalization, loss, entropy and anchor; TROLL rows
+  executed by the frozen policy's masked argmax and excluded from every policy term; value over all rows; pre-clip norms and
+  the clip multiplier logged; five tests; the `all` scope bit-for-bit untouched. **claude_1's gradient instrument delivered
+  (20:46Z, `grad_decompose.py` + 22 tests) and accepted** with chatgpt_1's review (20:51Z) to fold in (the clone's one-group
+  optimizer, a common fixed 512-observation census for g-vs-h, the literal clone baseline, the effective saved lr); one
+  corrected pin, then the coordinator runs it on the clone and g/h at update 500. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
