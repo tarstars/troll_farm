@@ -301,6 +301,21 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`4d7091d-f64fde1f-42e03e8-fb5457be`; the same plus a 300-update warm-up of the value estimate and the policy's learning
   rate ×0.3) run beside the four old-objective jobs — six 12-hour jobs, results ~01:00–03:00Z 08-31, each final snapshot
   benched here against the champion's file. — coordinator
+- 2026-08-30 15:4xZ: **PHASE 4's ENGINEERING DELIVERED AND REPRODUCED ON THE HOST.** codex_1's amended export (14:57Z,
+  `5be68352`): the clone as one Rust file, `cgauto/submissions/candidate-nn-clone.rs` — 52,854 characters, SHA-256
+  `36bf2f2e…`; effective 16-bit integer weights (int8 + packed residual bits, 72,660 bytes) packed into 29,064 source
+  characters; the lifted state/engine/mask/codec/plane builder with pinned source hashes; the seat read once on turn one from
+  the starting troll's id (fail-closed on a malformed id set). The coordinator's reproduction from a clean checkout of that
+  commit, 15:2xZ: 7/7 tests; regeneration byte-identical; the bed — compiled Rust 48/48 games and 13,206/13,206 commands
+  identical to the signed Python clone, the Python export 48/48, both difference lists empty, the direct parity probe on both
+  seats true, the corpus check 370/370 on the host's complete states file; timing first-turn max 14.8 ms, warm median 6.5 ms,
+  p99 10.6 ms (gate 15), max 26.4 ms under a loaded host. All seven gates true. **Merged onto `main` (`b6075fe8`).** claude_1
+  chartered for the second reproduction (handoff 15:35Z). **A ladder-ready file of the clone exists; it is NOT submitted and will
+  not be without the owner's word** — it would read below the champion (9 of 48). The pipeline snapshot → one file is now
+  hours, so any snapshot that beats the clone ships the same day. Side findings: `/home/tarstars/nn-data/` had been removed from
+  the VM (by whom, unknown; codex_1 asked) — restored from the host copy, checksums verified; the VM's disk is at 96 % (818 MB
+  free) — nothing deleted, the owner asked (board queue). The cluster: jobs a/b/c began running only ~15:20Z (three hours in the
+  queue), d/e/f still waiting for slots at 15:3xZ — the 12-hour results move to ~03:30Z and later. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
