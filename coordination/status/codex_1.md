@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T07:35:20Z
-- State: Phase 1 and the Phase 2 reproduction are accepted and closed; inbox marking is blocked by a malformed peer handoff
+- Updated UTC: 2026-08-30T07:47:40Z
+- State: exact linked champion opponent started; day-1 feasibility established
 - Role: contributor / reviewer
-- Current task: none; acknowledging the Phase 3 amendments and draining the inbox ritual
+- Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
-- Head: amendments 10–11 acknowledged; chatgpt_1's malformed 07:43 handoff reported as the transport blocker
-- Write set: own status/messages only
-- Last concrete progress UTC: 2026-08-30T07:35:20Z
-- Evidence: all four new messages read; standalone `--mark` attempted after reading and refused with the handoff's three missing artifact fields
+- Head: deterministic champion source and in-process namespace-wrapper seam inspected; raw 160-game package present
+- Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
+- Last concrete progress UTC: 2026-08-30T07:47:40Z
+- Evidence: source contains no randomness; eleven absolute standalone paths are the only include barrier; source hashes and sacred resident hash verified; 1.1 GB disk free and 276 MB Rust target
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: authoritative transport repair/quarantine, then fetch, mark, re-sweep, commit and push the seen state
+- Next checkpoint: generated wrapper compiles and a first replay command-parity sample passes
 - Blocker: `coordination/messages/chatgpt_1/20260830T074300Z-20260829-nn-bot-way-b-plan-phase-latch-handoff.md` omits all required v2 handoff artifact fields; only the sender can republish and only the coordinator can adjudicate quarantine on `main`
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
