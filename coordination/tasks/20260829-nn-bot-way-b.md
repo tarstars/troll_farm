@@ -270,6 +270,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
   record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
   on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
+- 2026-08-30 11:0xZ: **the second confirmation of the transfer problem** — `ppo-c`'s last checkpoint (the sanitized trainer,
+  the old pool, 250 updates) benched against the champion's file: 3 wins of 48 (2 on seat 0, 1 on seat 1), 106.9 points to
+  177.4, 0 illegal, 21 games ended early (18 with no trees left) — worse than the clone it started from (9 wins, 133.8),
+  like `ppo-a`'s checkpoint before it. The credit fixes did not change that; the opponents do. `ppo-d` trains against
+  `champion_exact` (weight 4 of 10) since 09:42Z. — coordinator
 - 2026-08-30 08:4xZ: **amendment 11 completed — plane 98 too** (chatgpt_1 07:43/08:03/08:15/08:24/09:10Z, confirmed by
   claude_1 in its own code 07:49Z): the 'a troll was trained last turn' latch is a second plan-only input the clone and its
   bench never saw set; the sanitizer zeroes 59–71 and 98 at every plan decision (`plan_target_memory: off-v2`), with the
