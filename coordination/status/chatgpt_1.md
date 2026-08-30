@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T19:27:00Z
+- Updated UTC: 2026-08-30T20:27:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -8,46 +8,53 @@
 
 ## Phase 3 — live diagnosis
 
-The training validity corrections are integrated: within-turn credit does not decay across artificial mini-steps; PLAN calls zero planes 59–71 and 98 (`off-v2`); the exact linked champion is accepted after independent 200-game / 49,945-turn reproduction.
+Five self-play lines have shown the same erosion pattern: fruit-chain execution decays before immediate chopping. `ppo-g`, even against the exact champion only, fell from 5/48 at update 500 to 4/48 at update 1,000. `ppo-h` changed gamma to `1.0`; its update-500 checkpoint scored 3/48 and 112.8 points, with explained variance about 0.25.
 
-Five self-play attempts have now shown the same erosion pattern. `ppo-g`, with only the exact champion as opponent, preserved the clone at update 500 but fell to 4/48 by update 1,000. The coordinator stopped it and started `ppo-h` with gamma `1.0` as the next one-variable test.
+### Open binding blocker
 
-`chatgpt_1/nn-way-b/ppo-h-gamma-lambda-audit-2026-08-30.md`, pinned at `agent/chatgpt_1@5a8f718cb30de3f21f6ffe9ab0c31fcfed84527a`, records a validity limitation:
+`coordination/messages/chatgpt_1/20260830T200200Z-20260829-nn-bot-way-b-ppo-h-credit-blocker.md`
 
-- `compute_gae` uses `trace_factor = gamma * gae_lambda` at each turn boundary;
-- `gae_lambda` remains `0.95`;
-- the effective trace changes only `0.94905 -> 0.95` when gamma changes `.999 -> 1.0`;
-- at 50 turns the direct terminal coefficient changes `0.07319 -> 0.07694`, and at 100 turns `0.00536 -> 0.00592`;
-- advantages are then normalized per minibatch.
+The card's “discount swept/acquitted” conclusion is not supported while `gae_lambda` remains `.95`. At every turn boundary `compute_gae` uses `trace_factor = gamma * gae_lambda`, so `ppo-h` changes the trace only `0.94905 -> 0.95`. It is valid gamma-only sensitivity evidence, not an undiscounted long-horizon-credit test. The blocker requires relabelling plus an offline `(.999,.95)` / `(1,.95)` / `(1,1)` advantage comparison or a matched-seed lambda-1 confirmation before that causal axis is closed.
 
-Therefore `ppo-h` may keep running, but it is a gamma-only sensitivity run, not a test of undiscounted terminal credit. The cheapest follow-up is to recompute one saved rollout under `(.999,.95)`, `(1,.95)`, and `(1,1)` before interpreting or extending it. Direct progress message:
+Pinned derivation:
 
-`coordination/messages/chatgpt_1/20260830T192500Z-20260829-nn-bot-way-b-ppo-h-credit-progress.md`
+`agent/chatgpt_1@5a8f718cb30de3f21f6ffe9ab0c31fcfed84527a`
+`chatgpt_1/nn-way-b/ppo-h-gamma-lambda-audit-2026-08-30.md`
 
-The six YT jobs remain exploratory checkpoint searches. `coordination/messages/chatgpt_1/20260830T161400Z-20260829-nn-bot-way-b-yt-six-arms-disposition-r5.md` requires preserved exact configs, one frozen checkpoint-selection rule, the repeated 48-game bench as scout only, and matched-seed one-factor follow-ups before causal claims.
+### Source-backed staging correction
+
+`chatgpt_1/nn-way-b/curriculum-source-audit-2026-08-30.md`
+
+The retained delineate source does not describe small maps, short games or an episode cap. It describes assigned build targets with resource-distance shaping, then freezing the movement/action executor while training the plan selector and value head, then joint fine-tuning. The closest bounded next step is an assigned-plan executor gate followed, if it passes, by plan-only PPO with trunk and spatial actor frozen.
+
+### Common critic-to-actor path
+
+`chatgpt_1/nn-way-b/shared-critic-trunk-audit-2026-08-30.md`
+
+After critic warm-up, ordinary PPO re-enables the shared `stem`/`tower` and includes `value_coef * value_loss`. The value loss therefore backpropagates through the same trunk that produces spatial and plan logits. Every failed run shares this unmeasured path. A post-warm-up gradient decomposition must include value loss, and one value-only counterfactual optimizer step should measure resulting logit/top-1/fruit-action changes before another all-parameter long run.
+
+The six YT arms remain exploratory checkpoint searches. Their common scout bench may rank checkpoints, but seed/treatment confounding prevents factor attribution without matched-seed confirmation.
 
 ## Phase 4 — engineering complete
 
-Codex's portable one-file export amendments (d/e/f) were accepted, integrated as `main@bb3645eaef5049b6639da0a913be7bd55b32ade8`, and independently reproduced by Claude.
+The portable one-file export is integrated and independently reproduced:
 
-Accepted evidence now includes:
-
-- runtime AVX2 detection and a baseline non-AVX fallback;
-- AVX2 and forced-fallback command parity, each 48/48 games and 13,206/13,206 turns;
-- machine-code inspection confirming the shipping fallback kernel is AVX-free;
+- runtime AVX2 dispatch plus baseline fallback;
+- both paths 48/48 games and 13,206/13,206 commands identical;
+- shipping fallback machine code verified AVX-free;
 - deterministic regeneration and direct both-seat observation/mask/codec parity;
-- full training-corpus seat check 370/370;
-- UTF-16 size accounting, 83,282 of 100,000 units for the amended clone export.
+- corpus seat check 370/370;
+- UTF-16 size 83,282 of 100,000.
 
-The coordinator corrected the owner-facing “ladder-ready” wording and quarantined the malformed 16:09Z correction while applying its content. Phase 4 is complete as engineering. A real shipping candidate still needs the three-run quiet host timing certificate and the owner's separate platform word.
+A real shipping candidate still needs the three-run quiet-host timing certificate and the owner's separate platform word. Nothing has been submitted.
 
 ## Next check
 
-- coordinator response to the gamma/lambda interpretation;
-- `ppo-h` checkpoint results, labelled as gamma-only evidence;
-- the offline three-estimator advantage diagnostic if accepted;
-- returned YT checkpoints under scout/confirmation separation;
-- any candidate that actually exceeds the clone's 9/48 scout bar.
+- coordinator acknowledgement/ruling on the gamma/lambda blocker;
+- `ppo-h` update-1,000 evidence, interpreted as gamma-only;
+- offline advantage and gradient decompositions;
+- assigned-plan executor evidence or a source-backed staged-training charter;
+- returned YT checkpoints under scout/confirmation separation.
 
 ## Boundaries
 
