@@ -60,7 +60,7 @@ PHASE_PLAN = 0
 PHASE_TROLL = 1
 PHASE_EXTERNAL_WAIT = 2
 
-#: The seven training opponents, in the fixed order of ENV-API.md's weight vector.
+#: The eight training opponents, in the fixed order of ENV-API.md's weight vector.
 OPPONENT_IDS = (
     "secure_orchard",
     "norxondor_native",
@@ -69,6 +69,7 @@ OPPONENT_IDS = (
     "script_boss",
     "mybot_boss4",
     "python_frozen",
+    "champion_exact",
 )
 PYTHON_FROZEN_ID = 6
 

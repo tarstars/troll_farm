@@ -50,7 +50,7 @@ including its counter across turns; a forced 300-turn approximation is forbidden
 
 ## Opponent pool
 
-`opponent_weights` points to seven non-negative finite `f32` values in this fixed order:
+`opponent_weights` points to eight non-negative finite `f32` values in this fixed order:
 
 | id | label | implementation |
 |---:|---|---|
@@ -61,6 +61,7 @@ including its counter across turns; a forced 300-turn approximation is forbidden
 | 4 | `script_boss` | `ScriptBoss::new()` |
 | 5 | `mybot_boss4` | `MyBot::new()` |
 | 6 | `python_frozen` | commands supplied through the external-opponent API below |
+| 7 | `champion_exact` | generated namespace wrapper around the authoritative submitted instrument `cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs` (SHA-256 `0e92f8fa…`) via its token-identical readable v6 arm (SHA-256 `32172393…`); the distinct bare-policy readable file `readable/denial-off-champion.rs` is not used |
 
 At least one weight must be positive. An episode samples once and keeps that opponent.
 
@@ -68,8 +69,9 @@ Identity correction required by the charter: `rust/src/strategies/mybot.rs` expl
 `MyBot` as a model of the Arena's **Boss 4**, not a mirror of any project champion. In particular it
 does not mirror the current denial-off champion, submission `41202036`, SHA-256 `0e92f8fa...`.
 `SecureOrchardBot` is the resident lineage with the sacred source's denial rule, so it is not that
-denial-off champion either. The actual champion and orchard 6 remain truth-bench binaries unless a
-separate exact linked strategy is added and identified by hash.
+denial-off champion either. `champion_exact` is the separate linked strategy identified by both
+source hashes and guarded by raw-command plus gameplay-command replay gates. Orchard 6 remains a
+truth-bench binary.
 
 ## Mini-step state machine
 
@@ -170,12 +172,17 @@ void *tf_full_create(
     size_t num_envs,
     uint64_t seed_base,
     const char *maps_path,
-    const float *opponent_weights_7,
+    const float *opponent_weights_8,
     float wood_shaping,
     float end_wood_value);
 
 void tf_full_destroy(void *handle);
 ```
+
+Recorded-game parity uses a separate stateful test surface around the same linked strategy:
+`tf_full_champion_create`, `tf_full_champion_commands_from_state`, and
+`tf_full_champion_destroy`. It accepts the existing reconstructed-state JSON schema and is not part
+of the trainer's step path.
 
 `wood_shaping` and `end_wood_value` are explicit constructor flags; Phase 3 defaults are 0.5 and
 3.5, and zero/4.0 produces unshaped referee scoring. Both must be finite and non-negative. This is
@@ -294,9 +301,11 @@ single function is the Rust side of the 1,000-state dataset drift test.
 ## Replay extraction for parity tests
 
 Every environment slot records its map, complete initial state (including both chop-1 starters),
-absolute seats, and both players' canonical command strings before stepping. It also records the
-terminal kind/reason and final persistent stall counter. A completed replay remains attached to the
-reset slot until read:
+absolute seats, and both players' canonical command strings before stepping. Each saved state has
+canonical cell-sorted `plants` for transition comparison and a `plant_order` list of `[x,y]` cells
+that preserves the engine vector's exact order for platform-protocol replay; a deterministic policy
+may use input order to break an otherwise equal score. It also records the terminal kind/reason and
+final persistent stall counter. A completed replay remains attached to the reset slot until read:
 
 ```c
 int64_t tf_full_take_replay(

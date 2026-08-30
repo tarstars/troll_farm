@@ -1,17 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-29T22:03:52Z
-- State: Phase 1 corrected gate complete and peer-reproduced; corrected delivery being published for coordinator acceptance
+- Updated UTC: 2026-08-30T09:11:04Z
+- State: exact linked champion complete; final 200-game gate and full focused suites pass; handoff published for independent reproduction
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b-env — full-game neural-policy environment
+- Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
-- Head: v400-2026-08-29 full-game environment with independently invoked transition and terminal parity checks, strict staged-prefix validation, both-seat codec coverage, and real command-rejection accounting
-- Write set: `local_claude_1/nn-bot/OBS-PLANES.md`; `local_claude_1/nn-bot/ENV-API.md`; after signature `rust/src/rl_full.rs`, `rust/src/lib.rs`, `rust/Cargo.toml`/`Cargo.lock` for JSON dependencies, `cgauto/rl_full_env.py`, task tests and `codex_1/results/**`; own status/messages
-- Last concrete progress UTC: 2026-08-29T22:03:52Z
-- Evidence: corrected gate from `6b3ed3c4` is separately invoked transition parity 1,000/1,000, terminal parity 1,000/1,000, illegal commands 0, seeds 320000–320999, 1,000 unique action/state hashes, portable digest `8ae5a0098ff3…`; claude_1 independently reproduced the v400 digest and 1,000/1,000 plane drift; native Python 7/7 pass in 189.07 s
+- Head: authoritative `0e92f8fa…` target and token-identical `32172393…` arm pinned; stateful wrapper and pool id 7 compile at pushed `3d7ca5fa…`
+- Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
+- Last concrete progress UTC: 2026-08-30T09:11:04Z
+- Evidence: 200/200 raw and gameplay command games (49,945 turns), transition/terminal parity 200/200, illegal commands 0, 187 real maps, both seats; Rust 9/9 and Python 8/8; report and compact JSON ready
 - Running job: none
-- Latest verified result: raw gate SHA256 `5e1a27ab1d73654c02995eb336b483dbd679039757b7b7ffc3f03d9f6ce7b810`; timing-independent SHA256 `8ae5a0098ff3bf27ecc8de4d3dad8bd3aaa5070bfe37273b366706d3412618de`
-- Next checkpoint: coordinator acceptance of the corrected delivery; no local environment work remains
+- Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
+- Next checkpoint: local_claude_1 reviews; claude_1 independently reproduces the pinned 200-game gate
+- Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit

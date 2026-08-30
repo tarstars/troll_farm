@@ -23,6 +23,7 @@ from cgauto.rl_full_env import (
     verify_terminal_parity,
     verify_transition_parity,
 )
+from codex_1.nn_bot.champion_exact_parity import protocol_header, protocol_turn
 
 
 TEST_LIBRARY = Path(os.environ.get("TF_FULL_TEST_LIBRARY", DEFAULT_LIBRARY))
@@ -132,6 +133,53 @@ def _append_empty_turn(record: dict) -> dict:
     return amended
 
 
+def test_champion_exact_pool_id_and_protocol_seat_rendering() -> None:
+    assert OPPONENTS[7] == "champion_exact"
+    game_map = {"w": 5, "h": 2, "rows": ["0.+.1", "..~.."]}
+    assert protocol_header(game_map, 0) == "5 2\n0.+.1\n..~..\n"
+    assert protocol_header(game_map, 1) == "5 2\n1.+.0\n..~..\n"
+
+    snapshot = {
+        "turn": 7,
+        "next_id": 2,
+        "inventories": [[1, 2, 3, 4, 5, 6], [7, 8, 9, 10, 11, 12]],
+        "scores": [34, 76],
+        "plants": [
+            {
+                "type": "LEMON", "x": 2, "y": 0, "size": 3,
+                "health": 10, "fruits": 2, "cooldown": 6,
+            },
+            {
+                "type": "PLUM", "x": 1, "y": 1, "size": 2,
+                "health": 8, "fruits": 0, "cooldown": 4,
+            },
+        ],
+        "plant_order": [[2, 0], [1, 1]],
+        "units": [
+            {
+                "id": 0, "player": 0, "x": 0, "y": 0,
+                "ms": 1, "cc": 2, "hp": 1, "chop": 1,
+                "carry": [1, 0, 0, 0, 0, 0],
+            },
+            {
+                "id": 1, "player": 1, "x": 4, "y": 0,
+                "ms": 2, "cc": 3, "hp": 0, "chop": 2,
+                "carry": [0, 1, 0, 0, 0, 0],
+            },
+        ],
+    }
+    assert protocol_turn(snapshot, 1).splitlines() == [
+        "7 8 9 10 11 12",
+        "1 2 3 4 5 6",
+        "2",
+        "LEMON 2 0 3 10 2 6",
+        "PLUM 1 1 2 8 0 4",
+        "2",
+        "0 1 0 0 1 2 1 1 1 0 0 0 0 0",
+        "1 0 4 0 2 3 0 2 0 1 0 0 0 0",
+    ]
+
+
 def test_shapes_phase_masks_and_atomic_invalid_action() -> None:
     with _env(4, 100, {"script_boss": 1.0}) as env:
         assert env.obs.shape == (4, 104, 11, 22)
@@ -157,7 +205,7 @@ def test_shapes_phase_masks_and_atomic_invalid_action() -> None:
 
 def test_identical_batches_are_deterministic() -> None:
     rng = np.random.default_rng(51)
-    weights = {name: 1.0 for name in OPPONENTS[:-1]}
+    weights = {name: 1.0 for name in OPPONENTS if name != "python_frozen"}
     with _env(4, 777, weights) as left, _env(4, 777, weights) as right:
         for _ in range(24):
             np.testing.assert_array_equal(left.obs, right.obs)

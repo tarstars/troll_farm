@@ -22,6 +22,7 @@ use crate::game::official_mapgen::Sha1Prng;
 use crate::game::state::{from_ascii_with_talents, Cell, GameState, Plant, Unit};
 use crate::resident_policy::bot::moisan::SecureOrchardBot;
 use crate::resident_policy::bot::Bot as ResidentBot;
+use crate::strategies::champion_exact::ChampionExact;
 use crate::resident_policy::game::{
     GameState as ResidentState, Plant as ResidentPlant, PlantKind, Stats as ResidentStats,
     Unit as ResidentUnit,
@@ -1025,6 +1026,7 @@ enum FullOpponent {
     GoldAdaptive(GoldElite),
     ScriptBoss(ScriptBoss),
     MyBot(MyBot),
+    ChampionExact(ChampionExact),
 }
 
 impl FullOpponent {
@@ -1043,6 +1045,7 @@ impl FullOpponent {
             4 => Some(Self::ScriptBoss(ScriptBoss::new())),
             5 => Some(Self::MyBot(MyBot::new())),
             6 => None,
+            7 => Some(Self::ChampionExact(ChampionExact::new())),
             _ => unreachable!("validated opponent id"),
         }
     }
@@ -1055,6 +1058,7 @@ impl FullOpponent {
             Self::GoldAdaptive(strategy) => strategy.decide(game, seat),
             Self::ScriptBoss(strategy) => strategy.decide(game, seat),
             Self::MyBot(strategy) => strategy.decide(game, seat),
+            Self::ChampionExact(strategy) => strategy.decide(game, seat),
         }
     }
 }
@@ -1089,6 +1093,7 @@ struct ReplayState {
     scores: [i32; 2],
     units: Vec<ReplayUnit>,
     plants: Vec<JsonPlant>,
+    plant_order: Vec<[i32; 2]>,
 }
 
 impl From<&GameState> for ReplayState {
@@ -1109,6 +1114,15 @@ impl From<&GameState> for ReplayState {
                 carry: unit.carry,
             })
             .collect();
+        // The canonical state comparison sorts plants by cell, but a real player receives
+        // them in the engine vector's order.  That order can affect a deterministic policy's
+        // tie-breaking and therefore belongs in the paired protocol proof even though it is
+        // irrelevant to transition-state equality.
+        let plant_order = game
+            .plants
+            .iter()
+            .map(|plant| [plant.x, plant.y])
+            .collect();
         let mut plants: Vec<_> = game.plants.iter().collect();
         plants.sort_by_key(|plant| (plant.pos(), &plant.plant_type));
         Self {
@@ -1118,6 +1132,7 @@ impl From<&GameState> for ReplayState {
             scores: game.scores,
             units,
             plants: plants.into_iter().map(JsonPlant::from).collect(),
+            plant_order,
         }
     }
 }
@@ -1646,7 +1661,7 @@ impl FullEnv {
     fn new(
         maps: &[MapRecord],
         episode_seed: u64,
-        opponent_weights: &[f32; 7],
+        opponent_weights: &[f32; 8],
         wood_shaping: f32,
         end_wood_value: f32,
     ) -> Result<Self, String> {
@@ -2082,7 +2097,7 @@ impl FullSlot {
 pub struct FullBatch {
     slots: Vec<FullSlot>,
     maps: Vec<MapRecord>,
-    opponent_weights: [f32; 7],
+    opponent_weights: [f32; 8],
     wood_shaping: f32,
     end_wood_value: f32,
     next_episode_seed: u64,
@@ -2093,7 +2108,7 @@ impl FullBatch {
         num_envs: usize,
         seed_base: u64,
         maps_path: &str,
-        opponent_weights: [f32; 7],
+        opponent_weights: [f32; 8],
         wood_shaping: f32,
         end_wood_value: f32,
     ) -> Result<Self, String> {
@@ -2259,19 +2274,19 @@ pub unsafe extern "C" fn tf_full_create(
     num_envs: usize,
     seed_base: u64,
     maps_path: *const c_char,
-    opponent_weights_7: *const f32,
+    opponent_weights_8: *const f32,
     wood_shaping: f32,
     end_wood_value: f32,
 ) -> *mut FullBatch {
-    if maps_path.is_null() || opponent_weights_7.is_null() || num_envs == 0 {
+    if maps_path.is_null() || opponent_weights_8.is_null() || num_envs == 0 {
         return std::ptr::null_mut();
     }
     let path = match CStr::from_ptr(maps_path).to_str() {
         Ok(path) if !path.is_empty() => path,
         _ => return std::ptr::null_mut(),
     };
-    let weights = std::slice::from_raw_parts(opponent_weights_7, 7);
-    let mut fixed = [0.0f32; 7];
+    let weights = std::slice::from_raw_parts(opponent_weights_8, 8);
+    let mut fixed = [0.0f32; 8];
     fixed.copy_from_slice(weights);
     match FullBatch::from_path(
         num_envs,
@@ -2291,6 +2306,52 @@ pub unsafe extern "C" fn tf_full_destroy(handle: *mut FullBatch) {
     if !handle.is_null() {
         drop(Box::from_raw(handle));
     }
+}
+
+#[no_mangle]
+pub extern "C" fn tf_full_champion_create() -> *mut ChampionExact {
+    Box::into_raw(Box::new(ChampionExact::new()))
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn tf_full_champion_destroy(handle: *mut ChampionExact) {
+    if !handle.is_null() {
+        drop(Box::from_raw(handle));
+    }
+}
+
+#[no_mangle]
+pub unsafe extern "C" fn tf_full_champion_commands_from_state(
+    handle: *mut ChampionExact,
+    json_utf8: *const u8,
+    json_length: usize,
+    seat: i32,
+    output_utf8: *mut u8,
+    output_capacity: usize,
+) -> i32 {
+    if handle.is_null() || json_utf8.is_null() || output_utf8.is_null() {
+        return -1;
+    }
+    if !(0..=1).contains(&seat) {
+        return -2;
+    }
+    let bytes = std::slice::from_raw_parts(json_utf8, json_length);
+    let parsed: JsonState = match serde_json::from_slice(bytes) {
+        Ok(parsed) => parsed,
+        Err(_) => return -3,
+    };
+    let game = match parsed.to_game() {
+        Ok(game) => game,
+        Err(_) => return -3,
+    };
+    let commands = (&*handle).decide(&game, seat as usize).join(";");
+    if output_capacity <= commands.len() {
+        return -6;
+    }
+    let output = std::slice::from_raw_parts_mut(output_utf8, output_capacity);
+    output[..commands.len()].copy_from_slice(commands.as_bytes());
+    output[commands.len()] = 0;
+    commands.len() as i32
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -3244,8 +3305,8 @@ mod tests {
     #[test]
     fn linked_and_external_opponents_complete_legal_real_map_games() {
         let maps = real_maps();
-        for opponent_id in 0..7 {
-            let mut weights = [0.0f32; 7];
+        for opponent_id in 0..8 {
+            let mut weights = [0.0f32; 8];
             weights[opponent_id] = 1.0;
             let mut env =
                 FullEnv::new(&maps, 91_000 + opponent_id as u64, &weights, 0.5, 3.5).unwrap();
