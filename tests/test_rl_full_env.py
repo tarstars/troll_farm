@@ -148,9 +148,13 @@ def test_champion_exact_pool_id_and_protocol_seat_rendering() -> None:
             {
                 "type": "LEMON", "x": 2, "y": 0, "size": 3,
                 "health": 10, "fruits": 2, "cooldown": 6,
-            }
+            },
+            {
+                "type": "PLUM", "x": 1, "y": 1, "size": 2,
+                "health": 8, "fruits": 0, "cooldown": 4,
+            },
         ],
-        "plant_order": [[2, 0]],
+        "plant_order": [[2, 0], [1, 1]],
         "units": [
             {
                 "id": 0, "player": 0, "x": 0, "y": 0,
@@ -167,8 +171,9 @@ def test_champion_exact_pool_id_and_protocol_seat_rendering() -> None:
     assert protocol_turn(snapshot, 1).splitlines() == [
         "7 8 9 10 11 12",
         "1 2 3 4 5 6",
-        "1",
+        "2",
         "LEMON 2 0 3 10 2 6",
+        "PLUM 1 1 2 8 0 4",
         "2",
         "0 1 0 0 1 2 1 1 1 0 0 0 0 0",
         "1 0 4 0 2 3 0 2 0 1 0 0 0 0",

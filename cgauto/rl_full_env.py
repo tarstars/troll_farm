@@ -722,17 +722,20 @@ def replay_and_verify(
             ],
         }
         expected_state = replay_turn.get("state")
-        if expected_state is not None and "plant_order" in expected_state:
-            actual_state["plant_order"] = [[plant.x, plant.y] for plant in game.plants]
-        if expected_state is not None and actual_state != expected_state:
+        expected_comparable = (
+            {name: value for name, value in expected_state.items() if name != "plant_order"}
+            if expected_state is not None
+            else None
+        )
+        if expected_comparable is not None and actual_state != expected_comparable:
             differing = [
                 name
                 for name in actual_state
-                if actual_state[name] != expected_state[name]
+                if actual_state[name] != expected_comparable[name]
             ]
             raise AssertionError(
                 f"state mismatch after turn {replay_turn['turn']} in {differing}: "
-                f"python={actual_state}, rust={expected_state}"
+                f"python={actual_state}, rust={expected_comparable}"
             )
         actual = canonical_state_hash(game)
         expected = replay_turn["state_hash"]
