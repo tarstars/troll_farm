@@ -20,7 +20,7 @@
 
 \title{The neural-network bot for Troll Farm\\[2pt]\large Where the project stands on 2026-08-30}
 \author{Prepared for the owner by the coordinator (\texttt{local\_claude\_1})}
-\date{2026-08-30, 06:1xZ --- everything below is on \texttt{main} unless a path says otherwise}
+\date{2026-08-30, 12:5xZ (second edition; the first was 06:1xZ) --- everything below is on \texttt{main} unless a path says otherwise}
 
 \begin{document}
 \maketitle
@@ -31,15 +31,17 @@
 
 \textbf{The target you set (2026-08-29).} A network candidate that beats the champion of record \emph{and} the ``orchard~6'' bot on our own bench --- at least 60\,\% wins over 400 games against each, three checks in a row --- exported as one Rust file under 100,000 characters at $\le 15$\,ms a turn, verified, ready for the ladder, \textbf{by 2026-10-17}. Milestone for your read: the clone playing whole games against the champion's file, aimed at 2026-09-14.
 
-\textbf{Where we are, 36 hours later.}
+\textbf{Where we are, two days later.}
 \begin{itemize}[nosep,leftmargin=1.4em]
   \item The training environment (a full copy of the game that plays 128 games at once) is built, tested and reproduced by a second agent.
   \item Every recorded game of the top four players has been turned into a training set: \textbf{817,811 decisions from 748 games}, 14\,MB.
   \item A first network, \textbf{the clone}, learned by copying those decisions. It plays complete, legal games and \textbf{beat the champion's own file in 9 of 48 games} (134 points to 186 on average) --- \emph{the milestone, reached two weeks early.} Its games are on file for you (Section~\ref{sec:read}).
-  \item \textbf{Self-play training started at 04:45Z today} from the clone. After the first hour its win rate against its practice opponents rose from 0\,\% to 39\,\%.
+  \item \textbf{Self-play training} started at 04:45Z today and was restarted three times before noon: twice for defects the audits found in the trainer, once because the first hours taught the most important lesson of the day --- \emph{training against our weak practice bots made the network worse against the champion}. Since 09:42Z the run of record trains against \textbf{an exact in-process copy of the champion}, built and reproduced within a day.
+  \item \textbf{The cluster is in use.} On your ``gpu'' the YT launcher ran a smoke job to completion, and \textbf{four 12-hour training jobs} now run there in parallel (a sweep over seed, anchor strength and opponent mix), while the run of record continues on this computer.
+  \item Phase 4's engineering --- the network as one Rust file, bedded move for move against the clone --- is chartered and under way, so a passing candidate ships in hours.
 \end{itemize}
 
-\textbf{What is next.} The self-play run takes about 3.5 days. Every few hours I test its latest snapshot against the champion's file; when a snapshot wins more than 55\,\% of 48 games, the card's full 400-game checks begin. Then: the export to a single Rust file, the timing and size checks, and --- on your word, when the platform is free --- one hour on the ladder.
+\textbf{What is next.} Every 500 updates the run of record's snapshot is tested against the champion's file; the four cluster jobs' final snapshots are tested the same way when they return (about 01:00Z tomorrow). The clone's 9 wins of 48 is the bar; a snapshot above 55\,\% starts the card's 400-game checks against the champion and orchard~6. Then the single-file export, the timing and size checks, and --- on your word, when the platform is free --- one hour on the ladder.
 
 \section{The plan and its status}
 
@@ -53,8 +55,8 @@ The work is one card, \fp{coordination/tasks/20260829-nn-bot-way-b.md}, in five 
 0 & the software runtime on this computer; the old (July) pipeline re-run end to end & 1--2 days & \textbf{done} 08-29 14:2xZ \\
 1 & the full-game training environment (Rust), with a Python wrapper & 6 days & \textbf{done} 08-29 21:1xZ, in one day; reproduced \\
 2 & the training set, the bench (our judge), the clone & 7 days & \textbf{tools done and reproduced} 08-30 03:2xZ; \textbf{the clone's games on file} 04:5xZ --- the milestone \\
-3 & self-play training from the clone, with checks every few days & 2--4 weeks & \textbf{running} since 08-30 04:45Z \\
-4 & export to one Rust file, the timing and size checks, one ladder hour & 3 days + 1 hour & not started; waits for a candidate and for the platform \\
+3 & self-play training from the clone, with checks every few hours & 2--4 weeks & \textbf{running}: the run of record since 08-30 09:42Z against the exact champion; four 12-hour cluster jobs since 12:3xZ \\
+4 & export to one Rust file, the timing and size checks, one ladder hour & 3 days + 1 hour & \textbf{engineering chartered} 08-30 11:1xZ (built against the clone); the ladder hour waits for a candidate and for the platform \\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -70,8 +72,22 @@ I read what the repository already knew: the \#1 player's own description of his
 \subsection*{2026-08-29/30 --- the training set, the bench, the clone (Phase 2)}
 \emph{claude\_1} built the three tools; \emph{codex\_1} reproduced them; I ran the training set on this computer (1 minute 42 seconds) and trained the clone (4 passes over the data, 2 hours). The bench --- the clone against the champion's actual submitted file, on 24 real ladder maps, once on each side --- gave the milestone numbers. Figures~\ref{fig:clone}--\ref{fig:bench}.
 
-\subsection*{2026-08-30 --- self-play (Phase 3)}
-Started at 04:45Z on this computer from the clone: the network plays 128 games at once against six of our hand-written bots and against frozen copies of itself, on all 24,973 real ladder maps, and is nudged toward what wins, while a leash (``the anchor'') keeps it close to the clone at first. Figure~\ref{fig:ppo} is the run as of this report.
+\subsection*{2026-08-30 --- self-play (Phase 3), and what the first day of it taught}
+Self-play works like this: the network plays 128 games at once on real ladder maps, is nudged toward what wins, and a leash (``the anchor'') keeps it close to the clone at first. Four runs were started today; three are exploratory, one is the run of record.
+
+\begin{itemize}[nosep,leftmargin=1.4em]
+  \item \textbf{04:45Z, run A} --- against six of our hand-written bots and frozen copies of itself. Its win rate against that mix rose from 0 to 42\,\% in three hours. \emph{But its snapshot lost to the champion's file worse than the clone it started from}: 2 wins of 48 against the clone's 9, 87 points against 134. Meanwhile the audits found two defects in the trainer: the reward of a turn was still being discounted once per troll inside the turn, and the ``which troll am I saving for'' planes shifted the network's plan decision at the hand-over from copying to self-play. Both fixed.
+  \item \textbf{07:40Z, run B} and \textbf{08:39Z, run C} --- restarted from the clone with the fixes (run C once a third such plane was found). Run C's snapshot, still trained against the old practice mix, again lost to the champion worse than the clone: 3 wins of 48. The lesson was now certain: \emph{what the network trains against matters more than how fast it trains}; our practice bots teach habits that do not transfer.
+  \item \textbf{09:42Z, run D --- the run of record.} codex\_1 was chartered at 07:45Z to build an exact in-process copy of the champion as a training opponent; it delivered at 09:12Z --- the copy matches the champion's submitted file on 200 of 200 games and every one of their 49,945 turns --- and claude\_1 reproduced the proof by 10:02Z. Run D trains against that copy (weighted highest in its pool) from the clone, with all fixes. Its win rate against a pool the champion dominates is a harder number than run A's; the test that matters is its snapshot against the champion's file, every 500 updates. \textbf{Its first snapshot (update 500, 2 million decisions) won 3 of 48} --- the same early dip as the exploratory runs. So the first hours of self-play cost the network some of the clone's competence before it learns to win, whatever it trains against; whether run D climbs back past the clone's 9 is the question the next snapshots answer, and the four cluster jobs (one with a stronger leash to the clone) are the other half of that experiment.
+\end{itemize}
+
+\textbf{The cluster (YT).} You said one run of 3.5 days is a job for the cluster. July's launcher was adapted to the new trainer (CPU-only, 15 tests, a 2.8\,MB payload; PyTorch reused from the 8.5\,GB July put in Cypress). The CPU tree's pools refuse immediate operations; on your ``gpu'' the jobs run in July's GPU tree with one card reserved and unused. The smoke job ran to completion at 899 decisions a second on 16 cores (this computer: about 640 on 14 threads). \textbf{Four 12-hour jobs} run there now, 32 cores each, 60 million decisions each, all from the clone against the exact champion: the run-of-record recipe (A), a stronger anchor (B), a champion-heavy pool (C), a self-play-heavy pool (D). Their final snapshots return about 01:00Z and are tested here.
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{transfer.png}
+\caption{The lesson of the day. Each bar: a network snapshot's wins in 48 games against the champion's own file. The clone (copying only) won 9. Every early self-play snapshot so far won fewer --- the runs against our weak practice bots, and the first snapshot of the run of record (D) against the exact champion alike. The early hours of self-play cost competence before they buy any; the question is whether the later snapshots climb past the clone.}
+\label{fig:transfer}
+\end{figure}
 
 \begin{figure}[h]\centering
 \includegraphics[width=\textwidth]{clone-epochs.png}
@@ -93,7 +109,7 @@ Started at 04:45Z on this computer from the clone: the network plays 128 games a
 
 \begin{figure}[h]\centering
 \includegraphics[width=\textwidth]{ppo-progress.png}
-\caption{Self-play training so far (Phase 3), against the practice opponents (six hand-written bots and frozen copies of itself --- a harder mix than the champion alone). Both curves are over the last 1,000 finished games.}
+\caption{The run of record (run D) so far: trained against a pool the exact champion dominates, so its practice win rate is a harder number than run A's was. Both curves are over the last 1,000 finished games; the test that counts is Figure~\ref{fig:transfer}.}
 \label{fig:ppo}
 \end{figure}
 
@@ -124,6 +140,9 @@ path & what it is \\
 \fp{local_claude_1/nn-bot/bench.py} & the judge: a network against a compiled bot on real maps; prints any game turn by turn \\
 \fp{local_claude_1/nn-bot/fake_full_env.py} & a stand-in environment for tests \\
 \fp{local_claude_1/nn-bot/results/clone-2026-08-30-a/} & \textbf{the clone, its 48 games, the reports, a README for your read} \\
+\fp{rust/src/strategies/champion_exact.rs} & the exact in-process copy of the champion (a training opponent), generated from the champion's own source; its proof in \fp{codex_1/results/nn-bot-way-b-champion/} \\
+\fp{local_claude_1/nn-bot/yt_ppo_launcher.py}, \fp{yt_ppo_entrypoint.py} & the cluster launcher (prepare / start / monitor / retrieve) and what runs inside a job \\
+\fp{coordination/tasks/20260829-nn-bot-way-b-champion.md}, \fp{...-export.md} & the champion-opponent contract (done) and Phase 4's engineering contract (in progress) \\
 \fp{local_claude_1/reconstructions/fits/reconstruct.py} & the exact rebuild of a recorded game, turn by turn \\
 \fp{tests/test_rl_full_env.py}, \fp{tests/test_train_ppo_full.py} & the tests (7 and 42) \\
 \fp{docs/reports/2026-08-30-neural-network-line-progress.pdf} & this document \\
@@ -139,7 +158,10 @@ path & what it is \\
 \midrule
 \fp{dataset-v400-2026-08-30/} & the training set: 817,811 decisions, 14\,MB, with checksums \\
 \fp{clone-2026-08-30-a/} & the clone (\fp{clone-pilot.pt}), its training log, both bench reports and the 48 games (also copied into the repository) \\
-\fp{ppo-2026-08-30-a/} & the self-play run: \fp{train.log} (one line per update), a snapshot every 250 updates \\
+\fp{ppo-2026-08-30-a/}, \fp{-b/}, \fp{-c/} & the three exploratory self-play runs (their logs, snapshots and benches kept for diagnosis) \\
+\fp{ppo-2026-08-30-d/} & \textbf{the run of record}: \fp{train.log} (one line per update), a snapshot every 250 updates, its benches \\
+\fp{/home/tarstars/prj/troll_farm-local_claude_1/yt_work/ppo/} & the cluster payloads and retrieved outputs (staging, not in git) \\
+\fp{//home/delivery_ml/research/tarstars/troll_farm/runs/} & on the cluster (Cypress): one directory per job --- inputs, outputs, logs \\
 \fp{/home/tarstars/nn-venv/} & the Python used for all of this (3.11, PyTorch 2.13 for CPU) \\
 \fp{/home/tarstars/prj/troll_farm/data/raw/games/} & the 24,973 recorded ladder games (7.1\,GB), the raw material \\
 \bottomrule
@@ -218,7 +240,11 @@ The environment's check & 1,000 self-play games replayed through an independent 
 The training set & 817,811 decisions (224,400 plan + 593,411 command) from 748 games; 0 labels outside the vocabulary; built in 1\,min\,42\,s \\
 The clone, 4 passes & agreement with the teachers 74\,\% (which troll) and 65\,\% (what it does); Figure~\ref{fig:verbs} per move \\
 The clone on the bench & 9 wins of 48 vs the champion's file (4 on seat 0, 5 on seat 1); 134 vs 186 points; 0 illegal commands, 0 timeouts; buys a troll at turn 1 in 44 games --- the teachers' harvest-carrying trolls, not the champion's chopper \\
-Self-play, first hour & 615 updates, 2.5 million decisions; wins vs the practice mix 0 $\rightarrow$ 39\,\%; margin $-116 \rightarrow -41$; $\sim$670 decisions/s \\
+Self-play, run A (exploratory) & 1,300 updates, 5.3 million decisions against the old practice mix; wins there 0 $\rightarrow$ 42\,\%; \textbf{its snapshot vs the champion's file: 2 wins of 48, 87 points to 183} --- worse than the clone \\
+Self-play, run C (exploratory) & the fixed trainer, the old mix, 250 updates: \textbf{3 wins of 48, 107 to 177} --- the same lesson \\
+Self-play, run D (the run of record) & from the clone against the exact champion since 09:42Z; \textbf{its update-500 snapshot vs the champion's file: 3 wins of 48, 108 to 184} --- the same early dip; a troll bought in 33 games (the clone: 44), no loops \\
+The exact champion opponent & matches the champion's submitted file on 200/200 games and 49,945/49,945 turns, raw and gameplay commands; reproduced; 1,058 turns/s \\
+The cluster & the smoke job: 899 decisions/s on 16 cores (this host: $\sim$640 on 14 threads); four 12-hour jobs running, 32 cores each \\
 This computer & 20 cores, no GPU: the network answers 17,000 boards/s in batches; the bottleneck is building the planes and running the opponents \\
 \bottomrule
 \end{tabular}
@@ -240,7 +266,7 @@ What I saw reading them: the second troll works like a teacher's --- walks to tr
 
 \begin{itemize}[nosep,leftmargin=1.4em]
   \item \emph{Self-play finds a hole in our copy of the game rather than a strategy.} Guard: samples of its games are replayed through the independent rules copy at every check.
-  \item \emph{The practice opponents are not the ladder.} The bench uses the champion's real file; the target adds orchard~6; the ladder hour is the truth.
+  \item \emph{What the network trains against decides what it learns} --- observed today, not feared: three runs against our weak practice bots got worse against the champion. The run of record trains against an exact copy of the champion; the bench uses the champion's real file; the target adds orchard~6; the ladder hour is the truth. The next opponent to add is orchard~6 itself.
   \item \emph{Speed on the platform.} Our export kernel of July ran a 35,000-weight network in 7\,ms a turn; the limit is 50\,ms; the network stays small until measured.
   \item \emph{Dead conditions on the card:} no gain over the clone after 200 million decisions; or a hole in the engine --- then the run stops and the card says so.
 \end{itemize}
