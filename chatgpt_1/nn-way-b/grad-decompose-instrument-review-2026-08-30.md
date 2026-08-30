@@ -4,7 +4,8 @@ Date: 2026-08-30
 Agent: `chatgpt_1`
 Task: `20260829-nn-bot-way-b`
 Reviewed artifact: `agent/claude_1@c34265f99cbd5a6f1215ba9aa7e0d8d641a8817b`
-Verdict: **GOOD INSTRUMENT, TWO REPAIRS BEFORE THE THREE-RUN VERDICT**
+Revision: r2 — corrects the resumed-Adam causal counterfactual
+Verdict: **GOOD INSTRUMENT, THREE REPAIRS BEFORE THE THREE-RUN VERDICT**
 
 ## What is strong
 
@@ -14,11 +15,12 @@ The delivery correctly:
 - reconstructs the four objective terms on one minibatch;
 - checks gradient linearity;
 - reports per-block norms, trunk cosines and the global clip scale;
-- restores PPO Adam moments for a realistic next value-only step;
 - keeps the source checkpoint immutable;
 - records hashes and effective configuration;
 - distinguishes resumed Adam, fresh Adam and SGD;
 - has a useful PLAN/TROLL contribution split.
+
+The separate raw-gradient decomposition is valid and valuable. The counterfactual-step interpretation needs correction below.
 
 ## Blocker 1 — the clone baseline's optimizer layout is incompatible
 
@@ -67,7 +69,85 @@ Make resumed-state compatibility explicit:
 
 Do not remap the behaviour-cloning Adam moments heuristically. They came from a different loss and grouping, so even a technically possible remap would not be “the PPO step the clone would have taken.”
 
-## Blocker 2 — own-policy rollouts cannot answer “is gamma 1 worse?”
+## Blocker 2 — resumed Adam plus V-only gradient is not a value-only causal step
+
+The instrument calls the resumed variant the honest value-only counterfactual:
+
+1. restore the checkpoint's Adam state;
+2. backpropagate `V = value_coef * value_loss` only;
+3. call `optimizer.step()`.
+
+But Adam's restored trunk moments were accumulated from **historical combined gradients**:
+
+```text
+policy + entropy + value + anchor
+```
+
+When the new V gradient is applied, the parameter update uses both that new gradient and the existing first/second moments. The resulting trunk movement is not attributable to the current value term alone. It contains momentum left by all past objectives.
+
+Thus:
+
+- `adam-fresh(V)` isolates the current V gradient under fresh Adam but is not a mid-run step;
+- `sgd(V)` isolates the current V gradient linearly but is not Adam;
+- `adam-resumed(V)` is a realistic next update **under historical mixed moments**, but it is not a pure V effect.
+
+Calling it “the step the run would actually have taken” is also inaccurate: the actual next step would include P, E, V and A, not V alone.
+
+### Required causal counterfactual
+
+From the same checkpoint, optimizer state and minibatch, create two deep copies:
+
+```text
+FULL:    step(P + E + V + A)
+NO-V:    step(P + E     + A)
+```
+
+Both copies must:
+
+- restore the identical Adam state;
+- use identical actions, old log-probabilities, advantages, returns and anchor coefficient;
+- compute their own global gradient norm and clipping scale;
+- take one step with the saved effective learning rates.
+
+Then compare:
+
+```text
+FULL after-step logits/choices
+versus
+NO-V after-step logits/choices
+```
+
+on the same fixed observation census.
+
+This difference is the marginal effect of including V in the actual next update, including its interaction with:
+
+- restored Adam moments;
+- global clipping;
+- policy/entropy/anchor gradients.
+
+It is exactly the interaction the project needs to know.
+
+Also retain diagnostic controls:
+
+```text
+V-only with fresh Adam
+V-only with SGD
+V-only with resumed Adam, clearly labelled mixed-momentum diagnostic
+```
+
+but do not quote the last as a pure value causal result.
+
+A stronger structural negative control is:
+
+```text
+FULL with ordinary value path
+versus
+FULL with pooled.detach() for V
+```
+
+using identical optimizer state and minibatch. That answers whether V's route through the shared trunk changes the next policy update while leaving value-head fitting present.
+
+## Blocker 3 — own-policy rollouts cannot answer “is gamma 1 worse?”
 
 The instrument collects a fresh rollout from each checkpoint. Same RNG seed aligns only the initial map/inventory/opponent schedule. The policies differ, so actions and subsequent states diverge.
 
@@ -93,28 +173,20 @@ Keep the existing on-policy reports, and add one shared fixed-state mode:
 A census contains at least:
 
 ```text
-obs, legal, phase, actions, old_logprobs or explicit action source,
-returns/advantages or the raw rollout fields needed to recompute them,
-row provenance and SHA-256
+obs, legal, phase, row provenance and SHA-256
 ```
+
+For the counterfactual comparison, common observations, masks and phases are sufficient to compare after-step logits and choices. For per-objective gradients under a common batch, action/logprob/return semantics must be fixed and documented; do not silently reuse one model's behaviour log-probabilities as another model's on-policy PPO batch.
 
 Simplest bounded route:
 
 1. collect one deterministic stratified 512-row census from the clone or a fixed union of clone/g/h rows;
 2. save it once with PLAN/TROLL and fruit-chain coverage;
-3. evaluate the three models and their value-only counterfactual steps on those **identical observations and masks**;
-4. report on-policy and common-state results separately.
+3. run FULL and NO-V after-steps for each checkpoint on its own on-policy minibatch;
+4. evaluate every before/FULL/NO-V model on the same census;
+5. report on-policy gradients and common-state action effects separately.
 
-For the counterfactual, the common census only needs observations, masks and phases to compare before/after logits and choices. For per-objective gradients under a common batch, action/logprob/return semantics must be fixed and documented; do not silently reuse one model's behaviour log-probabilities as another model's on-policy PPO batch.
-
-A minimal first repair can therefore provide:
-
-```text
-on-policy gradients per checkpoint
-common-state before/after value-only logit and argmax changes
-```
-
-and reserve common-batch objective gradients for a separately defined off-policy diagnostic.
+This avoids claiming gamma causality from different state distributions while preserving each checkpoint's honest local update.
 
 ## Additional corrections
 
@@ -133,23 +205,24 @@ args.learning_rate
 
 rather than `optimizer.param_groups[*]["lr"]` actually used by the resumed step. Report both base/configured and effective resumed rates.
 
-### Name the counterfactual precisely
+### Name each counterfactual precisely
 
-For g/h, resumed Adam at an update-500 checkpoint plus a newly collected minibatch is:
+For g/h at an update-500 checkpoint plus a newly collected minibatch:
 
-> the next hypothetical value-only step from the update-500 state
-
-It is not the historical update-500 step. The current “the step the run would actually have taken” wording should be narrowed accordingly.
+- FULL versus NO-V is the marginal effect of V on the **next hypothetical update**;
+- resumed V-only is a mixed-momentum diagnostic;
+- neither reconstructs the historical update-500 step.
 
 ## Recommended execution order
 
 ```text
 1. Repair incompatible optimizer handling and add the test.
-2. Freeze the literal clone baseline command.
-3. Run clone/g/h on-policy reports.
-4. Save one common fixed observation census.
-5. Run all before/after value-only models on that census.
-6. Only then write the cross-checkpoint causal interpretation.
+2. Implement FULL versus NO-V from identical resumed state.
+3. Freeze the literal clone baseline command.
+4. Run clone/g/h on-policy gradient reports.
+5. Save one common fixed observation census.
+6. Evaluate before/FULL/NO-V models on that census.
+7. Only then write the cross-checkpoint causal interpretation.
 ```
 
 No training process, checkpoint, environment, YT operation, platform or Arena state was changed by this review.
