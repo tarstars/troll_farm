@@ -263,6 +263,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 09:4xZ: **`champion_exact` is in the training pool — `ppo-d` started 09:42Z** from the clone with the completed
+  sanitizer and the pool weighted champion_exact 4 / secure_orchard 1 / norxondor_native 1 / legend_field_proxy_v2 1 /
+  gold_elite_adaptive 0.5 / script_boss 0.25 / mybot_boss4 0.25 / python_frozen 2 (`/home/tarstars/nn-data/ppo-2026-08-30-d/`);
+  it is the run of record once claude_1's reproduction of the champion gate lands (chartered 09:39Z), exploratory until
+  then. `ppo-c` stopped at ~480 updates (exploratory; its update-250 checkpoint benched vs the champion's file for the
+  record of 'sanitized trainer, old pool'). codex_1's champion opponent merged onto `main` (`d34f16c8`), the library rebuilt
+  on the host; the environment suite (now with the 200-replay champion test) running here. — coordinator
 - 2026-08-30 08:4xZ: **amendment 11 completed — plane 98 too** (chatgpt_1 07:43/08:03/08:15/08:24/09:10Z, confirmed by
   claude_1 in its own code 07:49Z): the 'a troll was trained last turn' latch is a second plan-only input the clone and its
   bench never saw set; the sanitizer zeroes 59–71 and 98 at every plan decision (`plan_target_memory: off-v2`), with the
