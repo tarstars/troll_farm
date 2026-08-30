@@ -92,6 +92,7 @@ import numpy as np
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parent.parent
+sys.path.insert(0, str(HERE))                                   # nn_runtime
 sys.path.insert(0, str(REPO))                                   # sim.engine, sim.state
 sys.path.insert(0, str(REPO / "local_claude_1" / "reconstructions" / "fits"))
 
@@ -301,7 +302,11 @@ def rows_for_game(game_id, replay_dir, teacher_seat, census):
 
     meta = dict(game=game_id, turns=r.n_turns, w=w, h=h, seat=teacher_seat,
                 mismatch=dict(r.mismatch), trains=len(trains),
-                train_turns=turns_with_train[:8])
+                train_turns=turns_with_train[:8],
+                # the game's map, kept out of the per-turn states because one map serves every
+                # turn; `write_shard` puts it in `maps-<name>.json`, which is what the load-time
+                # plane builder needs and what the day-4 shard was missing (day 6).
+                map=dict(w=w, h=h, rows=list(r.map["rows"])))
     # the compact per-turn state the planes are built from at load time (ruling 1): the state
     # every row of turn `t` observes, i.e. the pre-turn snapshot, keyed by (game, turn).
     turn_states = [dict(game=game_id, turn=t, seat=teacher_seat, state=states[t - 1])
@@ -376,8 +381,24 @@ def read_shard(out_dir, name):
     return arrays, meta
 
 
-def write_shard(rows, turn_states, out_dir, name):
-    """Labels, compact states and metadata -- never planes (the coordinator's ruling 1)."""
+def read_maps(out_dir, name):
+    """`{game id (str) -> {w, h, rows}}` for a shard, or a refusal naming the repair.
+
+    The planes are built at load time from the compact state and its map (`nn_runtime`), so a
+    shard without its maps cannot be trained on.  Shards built before 2026-08-30 have no maps
+    file; rebuilding them costs the two minutes the coordinator offered.
+    """
+    path = Path(out_dir) / f"maps-{name}.json"
+    if not path.exists():
+        raise FileNotFoundError(
+            f"{path} is missing: this shard predates the maps file (2026-08-30) and the "
+            f"load-time plane builder cannot place a state without its map -- rebuild the "
+            f"shard with this builder")
+    return json.loads(path.read_text())
+
+
+def write_shard(rows, turn_states, out_dir, name, maps=None):
+    """Labels, compact states, the maps and metadata -- never planes (the coordinator's ruling 1)."""
     out_dir.mkdir(parents=True, exist_ok=True)
     labels = out_dir / f"labels-{name}.npz"
     arrays = {f: np.array([r[f] for r in rows], dtype=np.int32) for f in FIELDS}
@@ -386,7 +407,9 @@ def write_shard(rows, turn_states, out_dir, name):
     with gzip.open(states, "wt", compresslevel=9) as fh:
         for entry in turn_states:
             fh.write(json.dumps(entry, separators=(",", ":")) + "\n")
-    return labels.stat().st_size, states.stat().st_size
+    maps_path = out_dir / f"maps-{name}.json"
+    maps_path.write_text(json.dumps(maps or {}, separators=(",", ":"), sort_keys=True))
+    return labels.stat().st_size, states.stat().st_size, maps_path.stat().st_size
 
 
 # --- the total-label guard over the whole teacher set ---------------------------------------
@@ -497,7 +520,7 @@ def self_test():
         tmp = Path(tmp)
         rows = [dict(game=1, turn=1, seat=0, kind=KIND_PLAN, troll=TROLL_PLAN, verb=-1,
                      label=147, standing_plan=STANDING_PLAN_NONE, split=0)]
-        write_shard(rows, [], tmp, "t")
+        write_shard(rows, [], tmp, "t", maps={"1": {"w": 20, "h": 10, "rows": ["." * 20] * 10}})
         meta = dict(plan_action_size=PLAN_ACTION_SIZE, plan_vocab_version=PLAN_VOCAB_VERSION)
         (tmp / "labels-t-meta.json").write_text(json.dumps(meta))
         arrays, _ = read_shard(tmp, "t")
@@ -516,6 +539,109 @@ def self_test():
           f"a foreign-generation shard refuses to load")
 
 
+def codec_test(out_dir, name, library, limit=0):
+    """**The builder's slice test against the amended codec** (the card's day-6/7 item 3).
+
+    Every label this builder writes is put back through the compiled runtime the environment and
+    the trainer use, on the shard's own rows:
+
+    1. a command row's label decodes to a command (`tf_full_decode_action`) and that command text
+       encodes back to the same index (`tf_full_encode_command`) -- the amended helpers take the
+       absolute seat and rotate inside the real board, so this is the seat-1 rotation tested on
+       real seat-1 games, not argued for;
+    2. the decoded verb is the plane the builder recorded;
+    3. a plan row's label decodes to the same talents the builder's own Python codec gives
+       (`tf_full_decode_plan` against `plan_talents`);
+    4. **the label is legal under the mask the environment would show at that row** -- the
+       spatial mask for a command row, the plan mask for a plan row, with the earlier trolls of
+       the turn staged exactly as the environment stages them.  This is the check that would
+       catch a builder and an environment that had drifted apart: a label the mask forbids is a
+       row the clone can never be trained on.
+
+    A refusal is a failure with the row printed, never a repair.
+    """
+    import nn_runtime as nr                                        # noqa: PLC0415
+
+    out_dir = Path(out_dir)
+    arrays, meta = read_shard(out_dir, name)
+    maps = read_maps(out_dir, name)
+    states = {}
+    with gzip.open(out_dir / f"states-{name}.jsonl.gz", "rt") as fh:
+        for line in fh:
+            entry = json.loads(line)
+            states[(entry["game"], entry["turn"], entry["seat"])] = entry["state"]
+    builder = nr.PlaneBuilder(library)
+
+    failures, checked, seen = [], Counter(), 0
+    for context in nr.shard_contexts(arrays, states, maps):
+        if limit and seen >= limit:
+            break
+        seen += 1
+        label, seat, w, h = context["label"], context["seat"], context["w"], context["h"]
+        if context["kind"] == KIND_PLAN:
+            checked["plan"] += 1
+            _, _, plan_mask = builder.observe(
+                context["state"], seat, -1, nr.PHASE_PLAN, 0,
+                want_mask=False, want_plan_mask=True)
+            if label == OOV:                       # censused, never labelled: nothing to check
+                checked["plan_unsupported"] += 1
+                continue
+            if label == PLAN_NOTHING:
+                # `ENV-API.md`: "Plan 0 decodes to four zeros" -- index 0 is repurposed as
+                # "train nothing", so the arithmetic tuple (1,1,0,0) is deliberately not what
+                # the runtime returns, and the builder never labels a real purchase 0.
+                if tuple(builder.decode_plan(0)) != (0, 0, 0, 0):
+                    failures.append(f"the runtime decodes plan 0 as {builder.decode_plan(0)}, "
+                                    f"not the four zeros ENV-API.md specifies")
+                checked["plan_nothing"] += 1
+            elif tuple(builder.decode_plan(label)) != tuple(plan_talents(label)):
+                failures.append(f"plan row {context['index']}: the runtime decodes {label} as "
+                                f"{builder.decode_plan(label)}, the builder as "
+                                f"{plan_talents(label)}")
+            if not plan_mask[label]:
+                failures.append(f"plan row {context['index']} (game {context['game']} turn "
+                                f"{context['turn']}): the plan mask forbids label {label}")
+            continue
+
+        checked["command"] += 1
+        unit = next(u for u in context["state"]["units"] if u["id"] == context["active_troll"])
+        text = builder.decode_action(label, context["active_troll"], seat, w, h)
+        back = builder.encode_command(text, context["active_troll"], seat, w, h,
+                                      unit["x"], unit["y"])
+        if back != label:
+            failures.append(f"command row {context['index']}: {label} decodes to {text!r} which "
+                            f"encodes back to {back}")
+        plane, _, _ = unflat(label)
+        if plane != context["verb"]:
+            failures.append(f"command row {context['index']}: label plane {plane} "
+                            f"({VERBS[plane]}) but the builder recorded verb {context['verb']}")
+        _, mask, _ = builder.observe(
+            context["state"], seat, context["active_troll"], nr.PHASE_TROLL,
+            context["plan_index"], want_mask=True, want_plan_mask=False)
+        if not mask[label]:
+            failures.append(f"command row {context['index']} (game {context['game']} turn "
+                            f"{context['turn']} troll {context['active_troll']}): the mask "
+                            f"forbids label {label} = {text!r}")
+        checked[VERBS[plane]] += 1
+
+    print(f"codec test on shard {name!r} ({meta.get('plan_vocab_version')}, library "
+          f"{builder.plan_version}): {checked['plan']} plan rows, {checked['command']} command "
+          f"rows")
+    for verb in VERBS:
+        if checked[verb]:
+            print(f"  {verb:14s} {checked[verb]:6d}")
+    if checked["plan_nothing"]:
+        print(f"  plan rows labelled \"train nothing\" (index 0, four zeros): "
+              f"{checked['plan_nothing']}")
+    if checked["plan_unsupported"]:
+        print(f"  plan rows labelled unsupported (no label to check): "
+              f"{checked['plan_unsupported']}")
+    for line in failures[:20]:
+        print("  FAIL " + line)
+    print(f"codec test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
+    return 0 if not failures else 1
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--replays", default=None)
@@ -529,11 +655,20 @@ def main():
     ap.add_argument("--census-tables", default=None,
                     help="run the vocabulary guard over the teacher set's exact tables and exit")
     ap.add_argument("--self-test", action="store_true", help="check the codec and exit")
+    ap.add_argument("--codec-test", default=None,
+                    help="a shard directory: put every label back through the compiled codec "
+                         "and the environment's own mask, and exit")
+    ap.add_argument("--library", default=None,
+                    help="libtroll_farm.so for --codec-test (default: the release build)")
+    ap.add_argument("--limit", type=int, default=0, help="with --codec-test: stop after N rows")
     a = ap.parse_args()
 
     if a.self_test:
         self_test()
         return
+    if a.codec_test:
+        import nn_runtime as nr                                    # noqa: PLC0415
+        sys.exit(codec_test(a.codec_test, a.name, a.library or nr.DEFAULT_LIBRARY, a.limit))
     if a.census_tables:
         sys.exit(0 if census_tables(a.census_tables) == 0 else 1)
     if not a.replays:
@@ -546,7 +681,7 @@ def main():
 
     census = dict(verbs=Counter(), unsupported=Counter(), unparsed=Counter(),
                   masked_label=Counter(), standing_unsupported=0)
-    all_rows, all_states, metas = [], [], []
+    all_rows, all_states, metas, all_maps = [], [], [], {}
     for gid in games:
         rows, meta, turn_states = rows_for_game(gid, replay_dir, int(index[gid]["seat"]), census)
         split = held_out(gid, a.holdout)
@@ -557,6 +692,7 @@ def main():
         meta["split"] = split
         all_rows.extend(rows)
         all_states.extend(turn_states)
+        all_maps[str(gid)] = meta.pop("map")
         metas.append(meta)
         print(f"game {gid} ({meta['player']}, seat {meta['seat']}): {len(rows)} rows, "
               f"{meta['turns']} turns, {meta['w']}x{meta['h']}, {meta['trains']} TRAINs, "
@@ -578,9 +714,10 @@ def main():
                 print(f"  troll {r['troll']} game {r['game']} turn {r['turn']} seat {r['seat']} "
                       f"label {r['label']} -> {VERBS[plane]} at ({x},{y})")
 
-    label_bytes = state_bytes = None
+    label_bytes = state_bytes = map_bytes = None
     if a.out:
-        label_bytes, state_bytes = write_shard(all_rows, all_states, Path(a.out), a.name)
+        label_bytes, state_bytes, map_bytes = write_shard(
+            all_rows, all_states, Path(a.out), a.name, maps=all_maps)
         (Path(a.out) / f"labels-{a.name}-meta.json").write_text(json.dumps(
             dict(plan_action_size=PLAN_ACTION_SIZE,
                  plan_vocab_version=PLAN_VOCAB_VERSION,
@@ -593,7 +730,7 @@ def main():
                  masked_label=dict(census["masked_label"]),
                  unparsed=dict(census["unparsed"]), rows=len(all_rows),
                  turn_states=len(all_states), label_bytes=label_bytes,
-                 state_bytes=state_bytes,
+                 state_bytes=state_bytes, map_bytes=map_bytes, maps=len(all_maps),
                  holdout_percent=a.holdout), indent=1))
 
     if a.report:
@@ -632,6 +769,9 @@ def main():
         if census["unparsed"]:
             print("unparsed commands:", dict(census["unparsed"]))
         if label_bytes:
+            print(f"maps: {len(all_maps)} games, {map_bytes} bytes "
+                  f"(maps-{a.name}.json -- the load-time plane builder places a state on its "
+                  f"own map)")
             print(f"shard: labels {label_bytes} bytes for {n} rows = "
                   f"{1000*label_bytes/max(1,n):.0f} bytes per 1,000 label rows; "
                   f"states {state_bytes} bytes for {len(all_states)} turns = "
