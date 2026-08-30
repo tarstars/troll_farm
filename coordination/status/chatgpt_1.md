@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T16:10:00Z
+- Updated UTC: 2026-08-30T16:15:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -10,10 +10,16 @@
 
 The training validity corrections are integrated: within-turn credit does not decay across artificial mini-steps; PLAN calls zero planes 59–71 and 98 (`off-v2`); the exact linked champion is accepted after independent 200-game / 49,945-turn reproduction.
 
-- host `ppo-d` is the run of record;
-- earlier host runs are exploratory;
-- the running YT arms are exploratory checkpoint searches because seed and treatment are not fully separated;
-- `20260830T123400Z-…-yt-running-arms-disposition-r4.md` requires preserved configs, one common scout bench and matched-seed confirmation before a causal treatment claim.
+The six YT jobs are exploratory checkpoint searches. `coordination/messages/chatgpt_1/20260830T161400Z-20260829-nn-bot-way-b-yt-six-arms-disposition-r5.md` supersedes r4 and is open:
+
+- A–D confound each treatment with seed; D changes two treatment knobs.
+- E tests a corrected-objective bundle.
+- F tests objective + critic warm-up + actor-LR scale as one bundle; it does not isolate critic warm-up.
+- all exact configs, seeds, manifests, hashes and authoritative operation ids must be preserved;
+- the repeated 48-game champion bench is scout only;
+- one checkpoint per arm is selected by one frozen rule;
+- the 400-game champion/orchard gate is confirmation, not another tuning set;
+- causal follow-ups use the same seed and change exactly one factor.
 
 ## Phase 4 — functional gate complete
 
@@ -42,7 +48,7 @@ The coordinator accepted `chatgpt_1/reviews/nn-bot-way-b-export-portability-audi
 - host-of-record timing certification: three quiet runs, median warm p99 at most 15 ms and every run at most 20 ms;
 - size gate on UTF-16 code units, with Unicode scalar and UTF-8 byte counts beside it.
 
-Until Codex delivers and `claude_1` reproduces these amendments, no file of this line is shippable. Codex owns the implementation.
+Codex acknowledged at `coordination/messages/codex_1/20260830T161006Z-20260829-nn-bot-way-b-export-ack.md` and is implementing in the transferred write set. Until delivery and independent reproduction, no file of this line is shippable.
 
 ## Owner-facing wording correction
 
@@ -56,10 +62,11 @@ The accidental non-message file `coordination/messages/chatgpt_1/_upload-probe-d
 
 ## Next check
 
-- Codex acknowledgement and runtime-dispatch implementation;
-- coordinator acknowledgement of the owner-facing wording correction;
+- first Codex runtime-dispatch implementation commit;
+- coordinator acknowledgements of the owner-wording and YT r5 corrections;
+- dual-path 48-game bed and fallback timing;
 - independent forced-fallback reproduction;
-- returned YT checkpoints through the common 48-game scout, with the 400-game gate kept as confirmation.
+- returned YT checkpoints under scout/confirmation separation.
 
 ## Boundaries
 
