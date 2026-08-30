@@ -334,6 +334,111 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
 - 2026-08-30 16:3xZ: chatgpt_1's wording correction (16:09Z) accepted: the board and the report called the file "ladder-ready"
   while the ruling says "not shippable until (d)" — both now say "generated and functionally reproduced; not ladder-ready
   until the CPU fallback and the timing certification pass"; the phrase returns once (d)–(f) pass and are reproduced. — coordinator
+- 2026-08-30 16:4xZ: **`ppo-f2`'s update-1,000 snapshot vs the champion's file: 7 wins of 48 (3 on seat 0, 4 on seat 1), 132.2 points
+  to 193.7; 14 games ended early (update 500: 19; run D at 1,000: 31), 2 loop games, 0 illegal; a purchase in 39 of 48 games
+  (the clone 44, run D at 1,000: 26); per game chop 103 / harvest 33 / plant 27 / move 226 (the clone 94 / 38 / 25 / 253).**
+  The first snapshot of any run that climbed from its predecessor (5 → 7 wins, 124 → 132 points) and the activity came back
+  (chops 75 → 103, plantings 21 → 27) — the drift toward inaction is not happening under the remedies. Still below the clone
+  (9, 134); the champion's own score rose with it (178 → 194: the games last longer, 34 of 48 to the turn limit), so the
+  margin (−61) is no better than at update 500 (−54). One 48-game bench is ±2 wins; update 1,500 (~17:25Z) is the next
+  reading; a snapshot at or above the clone's 9 with a better margin would make `ppo-f2` the run of record. — coordinator
+- 2026-08-30 17:0xZ: **a correction of my own cluster reading.** At 15:3xZ I read the jobs' *first* heartbeat lines as their current
+  state and logged "a/b/c began running only ~15:20Z after three hours in the queue" (also in the report's fourth edition).
+  Wrong: at 17:06Z the monitor's last heartbeats show `ppo-yt-a/b/c` at 270 minutes elapsed — running since ~12:35Z, right
+  after launch — at updates 4,204 / 3,725 / 4,275 (≈ 17 million decisions each), practice win rates 27 % / 26 % / 17 % (c's
+  champion-heavy pool is the harder one); `ppo-yt-d` since ~15:55Z at 1,064 updates (29 %); `ppo-yt-e`/`f` running but not
+  yet reporting. a/b/c finish ~00:35Z, d ~04:00Z; e/f later. The report's next edition carries the correction. — coordinator
+- 2026-08-30 17:3xZ: **`ppo-f2`'s update-1,500 snapshot vs the champion's file: 2 wins of 48 (both on seat 0), 94.8 points to 163.7;
+  32 games ended early (29 with no trees left), 1 loop game, 0 illegal; a purchase in 42 of 48 games; per game chop 81 /
+  harvest 23 / plant 14 / drop 42 / move 266 (the clone 94 / 38 / 25 / 66 / 253).** The update-1,000 climb did not hold: 5 → 7 → 2
+  wins, 124 → 132 → 95 points. The purchases stayed (the plan head is fine); the *collecting* collapsed — harvest, plant, drop all
+  down by a third to a half — so the champion clears the trees while the network's trolls walk. Under both remedies the erosion
+  still comes, only later (run D was at 82 points by update 1,000). Meanwhile the run's own practice numbers keep *improving*
+  (win rate 19 % → 25 %, margin −77 → −67 by update 1,327, sampled play against the pool). One hypothesis fits that divergence:
+  the bench plays the argmax command while training plays sampled commands — a policy trained by sampling can have a mode
+  that is not its typical play. Test now: the same snapshot benched with sampled commands. — coordinator
+- 2026-08-30 17:4xZ: **the decoding hypothesis is refuted — and the sampled-play control taught more than the test.** `bench.py`
+  gained `--command-decoding {argmax,sample}` (self-test check 8; `2481680e`). With sampled commands: **the clone 3 of 48,
+  109 to 207** (argmax: 9, 134 to 186) — its trolls wander (329 moves a game against 253), harvest more (47) and chop less
+  (73); **`ppo-f2` at update 1,500: 0 of 48, 82 to 196** (argmax: 2, 95). So (1) the argmax bench is the right measure and the
+  shipped bot's decoding; (2) the trainer's rollouts start from a sampled behaviour worth 109 points, not the 134 we measure —
+  the policy is soft (entropy 1.19 nats over the legal moves); and (3) **sampled play against the champion also got worse with
+  training** — the rising practice win rate (19 → 25 %) came from the 60 % of games against the weaker linked bots and the frozen
+  copies of itself. The morning's transfer finding in a milder form: the pool still teaches what does not transfer. Decision:
+  **`ppo-f2` stops now** (three points, 5 → 7 → 2, its trend established; its update-2,000 would add little) and **`ppo-g` starts:
+  the champion only** (`champion_exact` weight 1, no other bot, no frozen self), the remedies kept (γ 0.999, no wood shaping,
+  end-wood 4.0, warm-up 300, actor lr ×0.3, the leash 0.1 → 0.05), 8 threads at the lowest priority; benched at updates 500,
+  1,000, 1,500. The cluster's job `ppo-yt-c` (champion-heavy pool, old objective) is the overnight control of the same idea.
+  For later: the trainer logs no per-opponent win rate — worth adding, so the practice numbers can be read. — coordinator
+- 2026-08-30 18:3xZ: **`ppo-g` (the champion as the only opponent; started 17:45Z, `/home/tarstars/nn-data/ppo-2026-08-30-g/`) at
+  update 500 — 200 policy updates after its warm-up — vs the champion's file: 5 wins of 48 (2 on seat 0, 3 on seat 1), 133.8
+  points to 185.3; 18 games ended early, 2 loop games, 0 illegal; a purchase in 43 of 48 games; per game chop 112 / harvest
+  37 / plant 25 / drop 62 / move 244 (the clone 94 / 38 / 25 / 66 / 253).** The points are the clone's own (134 vs 186) and the
+  collecting is intact — the first snapshot of any run without erosion at this age (`ppo-f2` at 500: 124 points; run D: 108);
+  the wins (5) are below the clone's 9 but within one bench's noise. Its practice numbers against the champion alone are the
+  honest baseline: 3 % wins, margin −116 in sampled play (update 474). Not a gain yet; `ppo-f2` fell at update 1,500, so the
+  readings at 1,000 (~19:15Z) and 1,500 (~20:05Z) decide whether the champion-only pool holds the line. — coordinator
+- 2026-08-30 19:1xZ: **Phase 4's engineering is COMPLETE** — codex_1 delivered amendments (d)(e)(f) within the hour
+  (`c4355caa`: runtime AVX2 dispatch + baseline fallback, both paths bedded 48/48 and 13,206/13,206; the three-sample timing
+  machinery gated to the host context; the UTF-16 size gate — 83,282 of 100,000) and claude_1 reproduced them at 16:49Z,
+  adding the static proof the bed cannot give: the disassembly of the shipping binary shows an SSE-only kernel (zero `%ymm`)
+  beside one dispatched AVX2 symbol, no fused multiply-add. Merged (`bb3645ea`). Open: the host's three-quiet-run timing
+  certificate, taken when a shipping candidate exists (the host trains now; the clone is not submitted). Details on the
+  export sub-card. — coordinator
+- 2026-08-30 19:2xZ: **`ppo-g` at update 1,000: 4 wins of 48, 107.0 points to 179.3** (update 500: 5, 133.8); a purchase in 38 of
+  48 games (was 43); per game chop 96 / harvest 23.5 / plant 22 / drop 51 (was 112 / 37 / 25 / 62); 4 loop games; practice vs the
+  champion 1.6 % wins, margin −122. **The champion-only pool did not hold the line — the erosion arrived between updates 500
+  and 1,000, exactly as in every other run.** Five runs (A, C, D, F2, G) now show one replicated shape across pools, objectives,
+  warm-up and learning rates: the clone's multi-step fruit economy (harvest → carry → drop, plant) decays first while the
+  immediate chopping survives — long-chain credit erodes, dense credit stays. The one cheap untested lever on that axis: the
+  discount itself — γ 0.999 over ~600 mini-steps still discounts the final score to ~0.55 from the early game. **`ppo-g`
+  stopped at update 1,073; `ppo-h` starts: γ = 1.0 exactly** (the end score undiscounted; GAE λ 0.95 unchanged), everything
+  else as `ppo-g` (champion only, warm-up 300, actor lr ×0.3, no shaping, end-wood 4.0, the leash 0.1 → 0.05), 8 threads,
+  seed 9, `/home/tarstars/nn-data/ppo-2026-08-30-h/`; benches at 500 / 1,000 / 1,500. If the same shape appears, the next
+  lever is delineate's curriculum (short games, small maps first) — a design change, to be spec'd on this card. The six
+  cluster jobs (44 M decisions each) remain the long-horizon test tonight (~00:35Z–04:00Z). — coordinator
+- 2026-08-30 20:0xZ: **`ppo-h` (γ = 1.0) at update 500: 3 wins of 48, 112.8 points to 181.8** — the worst of the three runs at this
+  age (`ppo-g` 5 / 133.8; `ppo-f2` 5 / 123.5); harvests held (38) but plantings 18, picks 17, moves up to 317, 3 loop games;
+  purchases 44 of 48; **the value estimate collapsed (explained variance 0.25** — the undiscounted end margin is far harder to
+  predict than the γ-0.999 return's 0.6–0.97). [Corrected 20:4xZ, chatgpt_1's audit: this run is a **γ-only sensitivity at λ 0.95** — the turn-boundary credit trace is γ·λ, so it moved 0.94905 → 0.95, and the terminal signal still reaches a move 50 turns earlier at weight ~0.077; the Bellman value target did become undiscounted (hence the critic's collapse), but long-horizon *policy* credit was not tried, and the discount axis is NOT closed. A true test is (γ, λ) = (1, 1) or the offline advantage recomputation.] γ 0.999 with the warm-up remains the best-behaved setting. `ppo-h` runs to update 1,000 (~20:55Z) for the
+  curve's second point, then the host waits for the cluster.
+- 2026-08-30 20:5xZ: **chatgpt_1's five evening audits ruled** (its 20:02Z blocker accepted; pins `5a8f718c`, `ad699fab`,
+  `a66a09ad`, `18b56832`, `32d6d97e`): (1) the γ/λ wording corrected above and on the board — ppo-h is a γ-only sensitivity;
+  (2) the delineate attribution corrected — his real stage 4 is the frozen movement net with plan+value trained on the end
+  score; (3) **the shared-trunk value-gradient mechanism**: after the warm-up, `value_coef · value_loss` backpropagates through
+  the shared stem/tower into both policy heads at the actor's learning rate — unmeasured, common to every eroding run, worst
+  where the value target is hardest (γ 1.0). **Chartered to claude_1: the falsifier** — per-objective gradient norms and trunk
+  cosines on one minibatch, plus a value-only counterfactual step on a checkpoint copy measuring argmax command changes on
+  fixed observations (runs g/h u500). **The next host run after ppo-h's update-1,000: `ppo-i`, delineate's stage 4 —
+  the trunk and the spatial actor frozen bit for bit, only the plan head and the critic train on the real end score** (γ 0.999,
+  λ 0.95, champion-only, no shaping): movement erosion becomes impossible by construction, the bench floor is the clone's own
+  play, and the plan head learns purchases from outcomes — the trainer grows a `--train-scope plan-critic` flag tonight.
+  (4) the sampled/argmax factorial on the clone (AA 9/48 and the two half-cells are on file; the SS cell runs after the next
+  bench). — coordinator
+- 2026-08-30 20:5xZ: **`ppo-h` at update 1,000: 8 wins of 48 (4 and 4 by seat), 132.9 points to 191.4** — up from 3 / 112.8 at
+  update 500, one win below the clone; the collecting came back (harvest 35, plant 25, drop 70 per game; a purchase in 40 of
+  48; 2 loop games). The second-best snapshot of the day (f2's update 1,000: 7 / 132.2). Both f2 and h dip at 500 and recover
+  at 1,000; f2 then collapsed at 1,500 — **h's update 1,500 (~21:45Z) is the exact discriminator**, so h runs on and `ppo-i`
+  (the staged `--train-scope plan-critic`, now on `main` at `213ee7f5` with its test) starts only if h falls. The clone's
+  missing sampled-play cell (plan and commands both sampled) is being benched for the factorial chatgpt_1 asked to see
+  complete. — coordinator
+- 2026-08-30 21:1xZ: **the clone's decoding factorial is complete** (plan × command, 48 games each vs the champion's file):
+  argmax/argmax **9 / 133.9**, sampled/argmax **8 / 133.5**, argmax/sampled **3 / 109.2**, sampled/sampled **4 / 103.4**.
+  The command decoding carries the whole gap (about six wins and thirty points); the plan decoding costs nothing. So the
+  trainer's rollouts (sampled commands) play a genuinely weaker game than the argmax bot we ship — the gap chatgpt_1's
+  stochastic-behaviour audit named, now measured on all four cells. Files: `bench-clone-sampled*` (argmax/sampled),
+  `bench-clone-ss*` (sampled/sampled) under `/home/tarstars/nn-data/ppo-2026-08-30-f2/`; the argmax/argmax and
+  sampled/argmax cells are the clone card's originals. — coordinator
+- 2026-08-30 21:4xZ: **chatgpt_1's scope blocker (20:42Z) accepted — `ppo-i` does not start on the plain flag.** The freeze is
+  right but the semantics train the wrong problem: troll rows still sampled (the six-wins-weaker executor), the plan
+  gradient's normalization/entropy/anchor diluted by frozen troll rows, one clip coupling critic and plan. **The repair is
+  chartered to codex_1** (21:40Z; 1 day): PLAN rows sampled with PLAN-only normalization, loss, entropy and anchor; TROLL rows
+  executed by the frozen policy's masked argmax and excluded from every policy term; value over all rows; pre-clip norms and
+  the clip multiplier logged; five tests; the `all` scope bit-for-bit untouched. **claude_1's gradient instrument delivered
+  (20:46Z, `grad_decompose.py` + 22 tests) and accepted** with chatgpt_1's review (20:51Z) to fold in (the clone's one-group
+  optimizer, a common fixed 512-observation census for g-vs-h, the literal clone baseline, the effective saved lr); one
+  corrected pin, then the coordinator runs it on the clone and g/h at update 500. — coordinator
+ **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,

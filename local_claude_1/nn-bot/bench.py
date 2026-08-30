@@ -268,20 +268,26 @@ class NetworkPolicy:
 
     The **plan** head is decoded either by masked argmax or by a masked sample at a temperature
     (`--plan-decoding`): a clone fits a distribution, and its argmax can be a plan the teachers
-    took a minority of the time even where they bought often.  Commands are always argmax -- only
-    the plan call was in question.  Sampling draws from a generator reseeded per game, so a run
-    at one `--seed` reproduces.
+    took a minority of the time even where they bought often.  Commands are argmax by default;
+    `--command-decoding sample` draws them from the masked soft-max at the same temperature, the
+    way the PPO trainer plays them (a policy trained by sampling can have a mode that is not its
+    typical play -- the coordinator's question of 2026-08-30 17:3xZ).  Sampling draws from a
+    generator reseeded per game, so a run at one `--seed` reproduces.
     """
 
     def __init__(self, checkpoint: Path, deterministic: bool = True,
-                 plan_decoding: str = "argmax", temperature: float = 1.0, seed: int = 0):
+                 plan_decoding: str = "argmax", temperature: float = 1.0, seed: int = 0,
+                 command_decoding: str = "argmax"):
         import numpy as np                                        # noqa: PLC0415
 
         if plan_decoding not in ("argmax", "sample"):
             raise SystemExit(f"unknown --plan-decoding {plan_decoding!r}")
+        if command_decoding not in ("argmax", "sample"):
+            raise SystemExit(f"unknown --command-decoding {command_decoding!r}")
         if temperature <= 0:
             raise SystemExit("--plan-temperature must be positive")
         self.plan_decoding, self.temperature = plan_decoding, temperature
+        self.command_decoding = command_decoding
         self.rng = np.random.default_rng(seed)
         import importlib.util                                     # noqa: PLC0415
 
@@ -294,7 +300,8 @@ class NetworkPolicy:
         self.torch = torch
         self.model, _ = module.load_policy(str(checkpoint), torch.device("cpu"))
         self.model.eval()
-        self.name = f"network:{Path(checkpoint).name}:{self.plan_decoding}"
+        self.name = (f"network:{Path(checkpoint).name}:{self.plan_decoding}"
+                     + (":commands-sampled" if command_decoding == "sample" else ""))
         self.deterministic = deterministic
 
     def _forward(self, obs: bytes):
@@ -344,6 +351,8 @@ class NetworkPolicy:
 
     def action_index(self, obs: bytes, mask: bytes) -> int:
         action_logits, _, _ = self._forward(obs)
+        if self.command_decoding == "sample":
+            return self._sample(action_logits, mask)
         return self._argmax(action_logits, mask)
 
 
@@ -745,6 +754,42 @@ def self_test(library) -> int:
     check("--plan-decoding sample stays inside the mask and repeats at one seed",
           sampled_plan_obeys_the_mask)
 
+    # 8 -- --command-decoding: argmax by default, a masked draw when asked; the same
+    #      generator and mask rules as the plan draw.
+    def command_decoding_switch():
+        import numpy as np                                        # noqa: PLC0415
+
+        class Logits:
+            def __init__(self, values):
+                self.values = np.asarray(values, dtype=np.float64)
+
+            def detach(self):
+                return self
+
+            def numpy(self):
+                return self.values
+
+        values = np.array([0.0, 1.0, 50.0, 2.0, 0.5])
+        mask = bytes([1, 1, 0, 1, 0])
+        policy = object.__new__(NetworkPolicy)
+        policy.temperature = 1.0
+        policy._forward = lambda obs: (Logits(values), None, None)
+        policy._argmax = lambda logits, m: int(np.flatnonzero(np.frombuffer(m, dtype=np.uint8))[
+            np.argmax(logits.numpy()[np.frombuffer(m, dtype=np.uint8).astype(bool)])])
+        policy.command_decoding = "argmax"
+        assert {policy.action_index(b"", mask) for _ in range(20)} == {3}, \
+            "argmax decoding must always return the best legal index"
+        policy.command_decoding = "sample"
+        policy.rng = np.random.default_rng(0)
+        drawn = [policy.action_index(b"", mask) for _ in range(300)]
+        assert set(drawn) <= {0, 1, 3}, f"the command sample left the mask: {sorted(set(drawn))}"
+        assert len(set(drawn)) > 1, "a command sample that never varies is an argmax"
+        policy.rng = np.random.default_rng(0)
+        assert drawn == [policy.action_index(b"", mask) for _ in range(300)], \
+            "the same seed drew a different run of commands"
+    check("--command-decoding sample draws inside the mask, argmax stays argmax",
+          command_decoding_switch)
+
     print(f"self-test: {'PASS' if not failures else 'FAIL'} ({len(failures)} failures)")
     return 0 if not failures else 1
 
@@ -782,7 +827,10 @@ def main() -> int:
     ap.add_argument("--plan-decoding", default="argmax", choices=("argmax", "sample"),
                     help="how --policy network reads its plan head; commands stay argmax")
     ap.add_argument("--plan-temperature", type=float, default=1.0,
-                    help="the temperature of --plan-decoding sample")
+                    help="the temperature of --plan-decoding sample (and of --command-decoding sample)")
+    ap.add_argument("--command-decoding", default="argmax", choices=("argmax", "sample"),
+                    help="commands by masked argmax (default) or sampled at --plan-temperature, "
+                         "as the PPO trainer plays them")
     ap.add_argument("--library", type=Path, default=Path(nr.DEFAULT_LIBRARY),
                     help="libtroll_farm.so: the planes and both masks come from it")
     ap.add_argument("--both-seats", action="store_true",
@@ -833,7 +881,8 @@ def main() -> int:
         if args.policy == "network" and args.checkpoint is None:
             raise SystemExit("--policy network needs --checkpoint")
         network = (NetworkPolicy(args.checkpoint, plan_decoding=args.plan_decoding,
-                                 temperature=args.plan_temperature, seed=args.seed)
+                                 temperature=args.plan_temperature, seed=args.seed,
+                                 command_decoding=args.command_decoding)
                    if args.policy == "network" else None)
         for i, (rec, draw, seat) in enumerate(schedule):
             if args.policy == "random-legal":
@@ -871,6 +920,7 @@ def main() -> int:
         "policy": args.policy, "seed": args.seed, "train_p": args.train_p,
         "checkpoint": rel(args.checkpoint) if args.checkpoint else None,
         "plan_decoding": args.plan_decoding if args.policy == "network" else None,
+        "command_decoding": args.command_decoding if args.policy == "network" else None,
         "plan_temperature": (args.plan_temperature
                              if args.policy == "network" and args.plan_decoding == "sample"
                              else None),
