@@ -378,6 +378,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the wins (5) are below the clone's 9 but within one bench's noise. Its practice numbers against the champion alone are the
   honest baseline: 3 % wins, margin −116 in sampled play (update 474). Not a gain yet; `ppo-f2` fell at update 1,500, so the
   readings at 1,000 (~19:15Z) and 1,500 (~20:05Z) decide whether the champion-only pool holds the line. — coordinator
+- 2026-08-30 19:1xZ: **Phase 4's engineering is COMPLETE** — codex_1 delivered amendments (d)(e)(f) within the hour
+  (`c4355caa`: runtime AVX2 dispatch + baseline fallback, both paths bedded 48/48 and 13,206/13,206; the three-sample timing
+  machinery gated to the host context; the UTF-16 size gate — 83,282 of 100,000) and claude_1 reproduced them at 16:49Z,
+  adding the static proof the bed cannot give: the disassembly of the shipping binary shows an SSE-only kernel (zero `%ymm`)
+  beside one dispatched AVX2 symbol, no fused multiply-add. Merged (`bb3645ea`). Open: the host's three-quiet-run timing
+  certificate, taken when a shipping candidate exists (the host trains now; the clone is not submitted). Details on the
+  export sub-card. — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
   retrieved at the end): `ppo-yt-a` (`3ff60034-9cbb9033-42e03e8-8f52e2fa`; seed 11; the run-of-record recipe: anchor 0.1→0,
