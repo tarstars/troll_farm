@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import copy
+import gzip
 import hashlib
 import json
 import math
@@ -30,6 +32,8 @@ QUANTIZED = ROOT / "codex_1" / "results" / "nn-bot-way-b-export" / "bench-quanti
 CANDIDATE = ROOT / "cgauto" / "submissions" / "candidate-nn-clone.rs"
 CHAMPION = ROOT / "cgauto" / "submissions" / "candidate-champion-denial-off-v6-instrument.rs"
 REPORT = ROOT / "codex_1" / "results" / "nn-bot-way-b-export" / "bed-full-bot.json"
+FULL_SEAT_CORPUS = Path("/home/tarstars/nn-data/dataset-v400-2026-08-30/states-pilot.jsonl.gz")
+PILOT_SEAT_CORPUS = HERE / "results" / "pilot" / "states-pilot.jsonl.gz"
 
 
 def sha256(path: Path) -> str:
@@ -44,11 +48,184 @@ def percentile(values: list[float], fraction: float) -> float:
     return sorted(values)[max(0, math.ceil(len(values) * fraction) - 1)]
 
 
-def compile_rust(source: Path, binary: Path, rustc: str) -> None:
+def compile_rust(source: Path, binary: Path, rustc: str, *, cfg: str | None = None) -> None:
+    command = [rustc, "--edition=2021", "-O", "-Awarnings"]
+    if cfg is not None:
+        command.extend(["--cfg", cfg])
+    command.extend([str(source), "-o", str(binary)])
     subprocess.run(
-        [rustc, "--edition=2021", "-O", "-Awarnings", str(source), "-o", str(binary)],
+        command,
         check=True,
     )
+
+
+def check_turn1_seat_corpus(path: Path) -> dict[str, Any]:
+    """Check the signed id rule on every seat-0 turn-one state in a compact shard."""
+
+    games: set[int] = set()
+    exceptions: list[dict[str, Any]] = []
+    with gzip.open(path, "rt") as handle:
+        for line_number, line in enumerate(handle, 1):
+            row = json.loads(line)
+            if int(row.get("turn", -1)) != 1 or int(row.get("seat", -1)) != 0:
+                continue
+            game = int(row["game"])
+            if game in games:
+                continue
+            games.add(game)
+            units = row["state"]["units"]
+            ids = sorted(int(unit["id"]) for unit in units)
+            owners = {
+                player: sorted(int(unit["id"]) for unit in units if int(unit["player"]) == player)
+                for player in (0, 1)
+            }
+            if ids != [0, 1] or owners != {0: [0], 1: [1]}:
+                exceptions.append(
+                    {"game": game, "line": line_number, "ids": ids, "owners": owners}
+                )
+    return {
+        "path": str(path),
+        "sha256": sha256(path),
+        "seat0_turn1_games": len(games),
+        "exceptions": exceptions,
+        "valid": bool(games) and not exceptions,
+    }
+
+
+def _view_cell(ref: Any, seat: int, cell: tuple[int, int]) -> tuple[int, int]:
+    if seat == 0:
+        return cell
+    return len(ref.rows[0]) - 1 - cell[0], len(ref.rows) - 1 - cell[1]
+
+
+def _free_near_shack(ref: Any, seat: int) -> tuple[int, int]:
+    shack = tuple(ref.shacks[seat])
+    occupied = {tuple(unit["cell"]) for unit in ref.units.values()}
+    choices = [
+        cell
+        for cell in sorted(ref.walk)
+        if cell not in occupied and abs(cell[0] - shack[0]) + abs(cell[1] - shack[1]) <= 1
+    ]
+    if not choices:
+        raise RuntimeError(f"no unoccupied shack-adjacent cell for seat {seat}")
+    return choices[0]
+
+
+def _probe(binary: Path, text: str) -> dict[str, str]:
+    completed = subprocess.run(
+        [str(binary)], input=text, text=True, capture_output=True, check=True
+    )
+    result: dict[str, str] = {}
+    for line in completed.stdout.splitlines():
+        key, value = line.split(" ", 1)
+        result[key] = value
+    return result
+
+
+def run_direct_seat_parity(
+    item: dict[str, Any], probe_binary: Path, builder: nr.PlaneBuilder
+) -> dict[str, Any]:
+    """Compare the exact standalone parser/builder/codec against the signed shared library."""
+
+    cases: list[dict[str, Any]] = []
+    for seat in (0, 1):
+        initial = bench.make_referee(item["rec"], item["draw"])
+        later = copy.deepcopy(initial)
+        later.units[2] = {
+            "player": 0,
+            "cell": _free_near_shack(later, 0),
+            "speed": 2,
+            "cap": 2,
+            "harvest": 1,
+            "chop": 1,
+            "carry": [1, 0, 0, 0, 0, 0],
+        }
+        later.units[3] = {
+            "player": 1,
+            "cell": _free_near_shack(later, 1),
+            "speed": 2,
+            "cap": 2,
+            "harvest": 1,
+            "chop": 1,
+            "carry": [1, 0, 0, 0, 0, 0],
+        }
+        first_troll, active_troll = (0, 2) if seat == 0 else (1, 3)
+        later.units[first_troll]["carry"] = [1, 0, 0, 0, 0, 0]
+        first_view = _view_cell(later, seat, tuple(later.units[first_troll]["cell"]))
+        active_view = _view_cell(later, seat, tuple(later.units[active_troll]["cell"]))
+        staged_action = nr.flat(3, *first_view)
+        decoded_action = nr.flat(3, *active_view)
+        staged = [(first_troll, staged_action)]
+        plan_index = 1
+        state = nr.state_json_from_referee(later, 2, staged=staged)
+        expected_obs, expected_action, _ = builder.observe(
+            state,
+            seat,
+            active_troll,
+            nr.PHASE_TROLL,
+            plan_index,
+            want_mask=True,
+            want_plan_mask=False,
+        )
+        _, _, expected_plan = builder.observe(
+            nr.state_json_from_referee(later, 2),
+            seat,
+            -1,
+            nr.PHASE_PLAN,
+            0,
+            want_mask=False,
+            want_plan_mask=True,
+        )
+        if expected_action[decoded_action] != 1:
+            raise AssertionError("the non-MOVE direct-parity decode action is not legal")
+        expected_command = builder.decode_action(
+            decoded_action, active_troll, seat, len(later.rows[0]), len(later.rows)
+        )
+        rendering = nr.SeatRendering(seat)
+        protocol = (
+            rendering.map_header(initial)
+            + rendering.turn_text(initial)
+            + rendering.turn_text(later)
+            + f"1 {plan_index} {active_troll} 0 {active_troll} {decoded_action}\n"
+            + f"{len(staged)}\n"
+            + "".join(f"{troll} {action}\n" for troll, action in staged)
+        )
+        actual = _probe(probe_binary, protocol)
+        comparisons = {
+            "seat": actual.get("SEAT") == str(seat),
+            "observation": actual.get("OBS") == expected_obs.hex(),
+            "spatial_mask": actual.get("ACTION") == expected_action.hex(),
+            "plan_mask": actual.get("PLAN") == expected_plan.hex(),
+            "decoded_command": actual.get("COMMAND") == expected_command,
+        }
+        if not all(comparisons.values()):
+            raise AssertionError(f"direct standalone parity failed for seat {seat}: {comparisons}")
+        cases.append(
+            {
+                "seat": seat,
+                "active_troll": active_troll,
+                "staged_non_move_action": staged_action,
+                "decoded_non_move_action": decoded_action,
+                "decoded_command": expected_command,
+                "observation_sha256": hashlib.sha256(expected_obs).hexdigest(),
+                "spatial_mask_sha256": hashlib.sha256(expected_action).hexdigest(),
+                "plan_mask_sha256": hashlib.sha256(expected_plan).hexdigest(),
+                "comparisons": comparisons,
+            }
+        )
+
+    invalid = bench.make_referee(item["rec"], item["draw"])
+    invalid.units[2] = invalid.units.pop(1)
+    rendering = nr.SeatRendering(0)
+    malformed = (
+        rendering.map_header(invalid)
+        + rendering.turn_text(invalid)
+        + rendering.turn_text(invalid)
+    )
+    rejected = _probe(probe_binary, malformed) == {}
+    if not rejected:
+        raise AssertionError("standalone accepted a turn-one id set other than {0,1}")
+    return {"cases": cases, "turn1_invalid_id_set_rejected": rejected, "valid": True}
 
 
 def compare_python_replays(
@@ -162,6 +339,12 @@ def main() -> int:
     parser.add_argument("--champion", type=Path, default=CHAMPION)
     parser.add_argument("--out", type=Path, default=REPORT)
     parser.add_argument("--rustc", default=None)
+    parser.add_argument(
+        "--seat-corpus",
+        type=Path,
+        default=None,
+        help="compact state shard for the turn-one id-rule check",
+    )
     args = parser.parse_args()
 
     rustc = args.rustc or shutil.which("rustc")
@@ -179,13 +362,23 @@ def main() -> int:
     python_identical, python_commands, python_differences = compare_python_replays(
         reference, quantized
     )
+    corpus_path = args.seat_corpus
+    if corpus_path is None:
+        corpus_path = FULL_SEAT_CORPUS if FULL_SEAT_CORPUS.is_file() else PILOT_SEAT_CORPUS
+    seat_corpus = check_turn1_seat_corpus(corpus_path)
 
     source = args.candidate.read_text()
     with tempfile.TemporaryDirectory(prefix="full-bot-bed-") as directory:
         work = Path(directory)
-        candidate_binary, champion_binary = work / "candidate", work / "champion"
+        candidate_binary = work / "candidate"
+        champion_binary = work / "champion"
+        probe_binary = work / "candidate-parity-probe"
         compile_rust(args.candidate, candidate_binary, rustc)
         compile_rust(args.champion, champion_binary, rustc)
+        compile_rust(args.candidate, probe_binary, rustc, cfg="tf_full_parity_probe")
+        direct_parity = run_direct_seat_parity(
+            maps[0], probe_binary, nr.PlaneBuilder(nr.DEFAULT_LIBRARY)
+        )
         compiled_identical, compiled_commands, first_ms, warm_ms, compiled_differences = (
             run_compiled_bed(maps, reference, candidate_binary, champion_binary)
         )
@@ -203,6 +396,8 @@ def main() -> int:
         "first_turn_at_most_500_ms": timing["first_turn_max_ms"] <= 500.0,
         "warm_turn_p99_at_most_15_ms": timing["warm_turn_p99_ms"] <= 15.0,
         "source_under_100000_characters": len(source) < 100_000,
+        "direct_seat_parity": bool(direct_parity["valid"]),
+        "turn1_id_corpus_valid": bool(seat_corpus["valid"]),
     }
     report = {
         "what": "full-game generated neural clone bed against the committed Python-clone/champion stream",
@@ -221,6 +416,13 @@ def main() -> int:
         "python_turns_compared": python_commands,
         "compiled_games_identical": compiled_identical,
         "compiled_turns_compared": compiled_commands,
+        "direct_seat_parity": direct_parity,
+        "turn1_id_corpus": seat_corpus,
+        "turn1_id_corpus_authoritative_card_result": {
+            "source": "coordination/messages/local_claude_1/20260830T125730Z-20260829-nn-bot-way-b-export-handoff.md",
+            "seat0_turn1_games": 370,
+            "exceptions": 0,
+        },
         "timing": timing,
         "gates": gates,
         "python_differences": python_differences,

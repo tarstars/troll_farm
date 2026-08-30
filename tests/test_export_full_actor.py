@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import gzip
 import importlib.util
+import json
 import sys
 from pathlib import Path
 
@@ -23,6 +25,12 @@ assert GENERATOR_SPEC and GENERATOR_SPEC.loader
 GENERATOR = importlib.util.module_from_spec(GENERATOR_SPEC)
 sys.modules[GENERATOR_SPEC.name] = GENERATOR
 GENERATOR_SPEC.loader.exec_module(GENERATOR)
+BED_PATH = ROOT / "local_claude_1" / "nn-bot" / "bed_full_bot.py"
+BED_SPEC = importlib.util.spec_from_file_location("bed_full_bot", BED_PATH)
+assert BED_SPEC and BED_SPEC.loader
+BED = importlib.util.module_from_spec(BED_SPEC)
+sys.modules[BED_SPEC.name] = BED
+BED_SPEC.loader.exec_module(BED)
 
 from cgauto.train_level1_ppo import PLAN_VOCAB_VERSION, SpatialActorCritic  # noqa: E402
 
@@ -122,3 +130,43 @@ def test_manifest_pins_sanitizer_and_argmax(tmp_path: Path) -> None:
     assert result["decoding"] == {"plan": "masked_argmax", "command": "masked_argmax", "beam": False}
     assert result["shipping_parameter_count"] == 34_799
     assert result["critic_parameter_count_omitted"] == 1_153
+
+
+def test_generated_runtime_recovers_and_caches_exact_turn1_seat() -> None:
+    assert "ids!=[0,1]" in GENERATOR.RUNTIME
+    assert "read_turn(&mut reader,&map,turn,absolute_seat)" in GENERATOR.RUNTIME
+    assert "absolute_seat=Some(seat)" in GENERATOR.RUNTIME
+    assert "cfg(tf_full_parity_probe)" in GENERATOR.RUNTIME
+
+
+def test_turn1_seat_corpus_checker_accepts_exact_ids_and_names_failures(tmp_path: Path) -> None:
+    path = tmp_path / "states.jsonl.gz"
+    rows = [
+        {
+            "game": 1,
+            "turn": 1,
+            "seat": 0,
+            "state": {"units": [{"id": 0, "player": 0}, {"id": 1, "player": 1}]},
+        },
+        {
+            "game": 2,
+            "turn": 1,
+            "seat": 0,
+            "state": {"units": [{"id": 0, "player": 1}, {"id": 1, "player": 0}]},
+        },
+        {
+            "game": 3,
+            "turn": 1,
+            "seat": 1,
+            "state": {"units": [{"id": 0, "player": 0}, {"id": 1, "player": 1}]},
+        },
+    ]
+    with gzip.open(path, "wt") as handle:
+        for row in rows:
+            handle.write(json.dumps(row) + "\n")
+    result = BED.check_turn1_seat_corpus(path)
+    assert result["seat0_turn1_games"] == 2
+    assert not result["valid"]
+    assert result["exceptions"] == [
+        {"game": 2, "line": 2, "ids": [0, 1], "owners": {0: [1], 1: [0]}}
+    ]

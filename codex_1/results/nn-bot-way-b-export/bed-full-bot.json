@@ -1,18 +1,60 @@
 {
   "candidate": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-nn-clone.rs",
-  "candidate_characters": 50780,
-  "candidate_sha256": "915ed88ba9a7ce0109090a835bb95b78d19c66c48232802c864d80256ba63dcd",
+  "candidate_characters": 52854,
+  "candidate_sha256": "36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff",
   "champion": "/home/tarstars/prj/troll_farm-codex_1/cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
   "champion_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
   "compiled_differences": [],
   "compiled_games_identical": 48,
   "compiled_turns_compared": 13206,
+  "direct_seat_parity": {
+    "cases": [
+      {
+        "active_troll": 2,
+        "comparisons": {
+          "decoded_command": true,
+          "observation": true,
+          "plan_mask": true,
+          "seat": true,
+          "spatial_mask": true
+        },
+        "decoded_command": "DROP 2",
+        "decoded_non_move_action": 773,
+        "observation_sha256": "8f14ff89ca0457b0abe3fce50f595ff236343666528b209205b58780771818c7",
+        "plan_mask_sha256": "afb6cecb558a0858d1ae9afeff0650dbfe2c109a2e6ee8a4d71e94e88bc43015",
+        "seat": 0,
+        "spatial_mask_sha256": "89ee9475655052122612627fae3e9524266727be061a95860103217a7d09c0db",
+        "staged_non_move_action": 795
+      },
+      {
+        "active_troll": 3,
+        "comparisons": {
+          "decoded_command": true,
+          "observation": true,
+          "plan_mask": true,
+          "seat": true,
+          "spatial_mask": true
+        },
+        "decoded_command": "DROP 3",
+        "decoded_non_move_action": 796,
+        "observation_sha256": "6a7a4d60ca2b121c9218b23ed804a8596f87044010d15c564554dad3b225d0ed",
+        "plan_mask_sha256": "afb6cecb558a0858d1ae9afeff0650dbfe2c109a2e6ee8a4d71e94e88bc43015",
+        "seat": 1,
+        "spatial_mask_sha256": "d3f762165dd834ae453fbb07774147696b10573937def6876ff0b29dd1500d83",
+        "staged_non_move_action": 795
+      }
+    ],
+    "turn1_invalid_id_set_rejected": true,
+    "valid": true
+  },
   "games": 48,
   "gates": {
     "compiled_games_identical": true,
+    "direct_seat_parity": true,
     "first_turn_at_most_500_ms": true,
     "python_clone_games_identical": true,
     "source_under_100000_characters": true,
+    "turn1_id_corpus_valid": true,
     "warm_turn_p99_at_most_15_ms": true
   },
   "maps": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/third-troll/smoke-maps-seed0.jsonl",
@@ -24,11 +66,23 @@
   "reference_replays": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/results/clone-2026-08-30-a/bench-argmax-replays.jsonl",
   "reference_replays_sha256": "6eceb8caf5b07cf188bc8d085f28fc2a1c9fa87e891a33f7a70a4d81f031205c",
   "timing": {
-    "first_turn_max_ms": 13.407,
-    "first_turn_median_ms": 9.563,
-    "warm_turn_max_ms": 17.477,
-    "warm_turn_median_ms": 6.492,
-    "warm_turn_p99_ms": 12.919
+    "first_turn_max_ms": 14.781,
+    "first_turn_median_ms": 9.818,
+    "warm_turn_max_ms": 15.095,
+    "warm_turn_median_ms": 6.505,
+    "warm_turn_p99_ms": 9.718
+  },
+  "turn1_id_corpus": {
+    "exceptions": [],
+    "path": "/home/tarstars/prj/troll_farm-codex_1/local_claude_1/nn-bot/results/pilot/states-pilot.jsonl.gz",
+    "seat0_turn1_games": 6,
+    "sha256": "848716557e1ce3b1487b48f4de7007a12c9a863bea4e05dd1e050b138b8c5c5e",
+    "valid": true
+  },
+  "turn1_id_corpus_authoritative_card_result": {
+    "exceptions": 0,
+    "seat0_turn1_games": 370,
+    "source": "coordination/messages/local_claude_1/20260830T125730Z-20260829-nn-bot-way-b-export-handoff.md"
   },
   "what": "full-game generated neural clone bed against the committed Python-clone/champion stream"
 }
