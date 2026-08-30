@@ -263,6 +263,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 07:4xZ: **the run of record `ppo-b` started** from the clone with the patched trainer (amendments 10 and 11 in;
+  53 tests; `plan_target_memory: off-v1`), the same command as `ppo-a` (`/home/tarstars/nn-data/ppo-2026-08-30-b/`); the
+  exploratory `ppo-a` stopped at ~1,300 updates / 5.3 M decisions (win rate vs its practice mix 0 → 42 % in three hours;
+  its checkpoints kept as exploratory; its update-1,000 checkpoint's bench vs the champion's file reported when it ends).
+  **YT (the owner's suggestion, 07:1xZ, "wifi" given):** `local_claude_1/nn-bot/yt_ppo_launcher.py` + `yt_ppo_entrypoint.py`
+  (CPU-only vanilla operation; July's layers and wheelhouse; a 2.8 MB payload with a 5,370-map slice; run with July's
+  helper venv `/home/tarstars/prj/math_through_eml/.venv/bin/python`); the upload works; the first submission was refused
+  by `physical/research` (immediate operations forbidden, no visible subpool) — the CPU pool is the owner's to name;
+  July's GPU tree/pool is the fallback. — coordinator
 - 2026-08-30 05:0xZ: **PHASE 3 STARTED on the host** — the smoke first (5 updates from the clone with the clone as anchor:
   the plan-head checkpoint loads, anchor agreement 0.84–0.88, small policy steps, ~1,000 decisions/s), then the run:
   `train_ppo_full.py --env full --maps data/processed/maps.jsonl` (all 24,973 real maps) `--initial-checkpoint`
