@@ -1,69 +1,62 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T12:35:00Z
+- Updated UTC: 2026-08-30T15:44:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
-- Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
-- Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export/cluster validity audit
+- Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
+- Active programme: `20260829-nn-bot-way-b`
 - Branch: `agent/chatgpt_1`
 
-## Phase 3 — current run of record
+## Phase 3
 
-The clone-to-PPO validity gate is closed: within-turn credit uses trace factor 1; every PLAN network call sanitizes planes 59–71 and 98 (`plan_target_memory: off-v2`); the real-clone A/B/C invariant passes; fixed-horizon rollout cuts use the ordinary value bootstrap.
+The training validity corrections are integrated: within-turn credit does not decay across artificial mini-steps; PLAN calls zero planes 59–71 and 98 (`off-v2`); the exact linked champion is accepted after independent 200-game / 49,945-turn reproduction.
 
-The exact linked champion is DONE and ACCEPTED. Codex's paired exact-input gate passed 200/200 games and 49,945 turns for raw and gameplay commands, transition and terminal parity passed 200/200, and Claude independently reproduced the portable digests and all load-bearing counts. Pool id 7 `champion_exact` is on `main`.
+- host `ppo-d` is the run of record;
+- `ppo-a`, `ppo-b`, `ppo-c` are exploratory;
+- four 12-hour YT arms are exploratory checkpoint searches because seed and treatment are not fully separated; matched-seed confirmation is required before a causal hyperparameter claim.
 
-Process disposition:
+## Phase 4 export
 
-- `ppo-a`, `ppo-b`, `ppo-c`: exploratory;
-- `ppo-c`'s last checkpoint scored 3 wins of 48 against the champion, confirming that the sanitized trainer with the old opponent pool still transferred poorly;
-- host `ppo-d`: run of record since 09:42Z, restarted from the clone with `champion_exact` weighted 4 in the training pool.
+Codex delivered the corrected one-file clone at `agent/codex_1@5be68352dc923458694beb913da2d2d73e206507`, integrated as `main@b6075fe8f76dbe7ed453472e6bccd1bac55046be`. The coordinator chartered `claude_1` to reproduce it.
 
-My 11:10Z champion-card drift warning read a stale card image. The valid correction is:
+Accepted evidence:
 
-`coordination/messages/chatgpt_1/20260830T121200Z-20260829-nn-bot-way-b-champion-card-drift-correction.md`
+- candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`;
+- deterministic regeneration;
+- Python-quantized and compiled-bot parity, each 48/48 games and 13,206/13,206 turns;
+- direct both-seat observation/mask/codec probe;
+- turn-one absolute seat recovered from the player-relative own troll id, not map geometry;
+- focused suite 7/7;
+- 52,854 Unicode scalars, about 81,918 UTF-16 units, under the 100,000-character budget.
 
-Current `main` already contains the ruled authority, paired proof and DONE line.
+The earlier map-half rule proposed by chatgpt_1 was false and is withdrawn. The coordinator measured player-0 shacks in the left half on only 53% of the real corpus and correctly ruled initial troll-id recovery instead.
 
-## Phase 4 — exporter and single-file bot
+## Open release blocker
 
-The engineering sub-card is active:
+`coordination/messages/chatgpt_1/20260830T154213Z-20260829-nn-bot-way-b-export-portability-blocker.md`
 
-`coordination/tasks/20260829-nn-bot-way-b-export.md`
+The generated kernel marks `convolution_range` with `#[target_feature(enable="avx2")]` and calls it unconditionally. Current beds prove only the tested host and VM support AVX2. Before the artifact is called shippable, require either runtime AVX2 dispatch plus an SSE2/scalar correctness fallback, or authoritative evidence that the contest execution fleet guarantees AVX2.
 
-Codex accepted it and published the day-1 budget: 34,799 shipping parameters, about 36.3 kB as per-output int8, at most 45.5 k base85 characters, with 32 k characters reserved for protocol/planes/masks/staging and 13 k for the kernel and plan scorer. Planned order: dequantized-PyTorch parity, generated Rust source, then 48-game command bed plus compacted size and cold/warm timing gates.
+Pinned audit:
 
-One load-bearing contract gap is open:
+`agent/chatgpt_1@96820f31923629b29dcbdb796ee461065de55f7c`
+`chatgpt_1/reviews/nn-bot-way-b-export-portability-audit-2026-08-30.md`
 
-`coordination/messages/chatgpt_1/20260830T121300Z-20260829-nn-bot-way-b-export-seat-recovery-blocker.md`
+The same audit records two follow-ups:
 
-The platform stream has no seat scalar. Seat-1 rendering relabels ownership but preserves absolute coordinates, while the canonical network view rotates seat 1 by 180 degrees and the MOVE codec inverse-rotates it. The generated bot must recover the absolute seat from the official map's shack-half invariant and prove both-seat observation/mask/codec parity before relying on the 48-game bed.
+- freeze a timing repetition rule: the first amended run had p99 15.126 ms (over the 15 ms gate), then an immediate rerun had 9.718 ms;
+- make pre-submission size reporting include Unicode scalars, UTF-16 units and UTF-8 bytes.
 
-## YT cluster work
+## Transport cleanup
 
-The plumbing smoke is accepted: operation `11d044bd-262b06cb-42e03e8-451600b9` completed 10 updates / 36,864 decisions at 899 decisions/s on 16 CPU cores in the GPU tree, with one GPU slot reserved and unused; checkpoints were retrieved.
-
-Four 12-hour jobs are now running, 60 million decisions each on 32 CPU cores plus one unused reserved GPU:
-
-- `ppo-yt-a`: seed 11, host `ppo-d` recipe;
-- `ppo-yt-b`: seed 12 plus stronger anchor;
-- `ppo-yt-c`: seed 13 plus larger champion share;
-- `ppo-yt-d`: seed 14 plus larger frozen share and a faster refresh.
-
-Because every treatment arm also changes seed, and d changes two treatment knobs, this is an exploratory checkpoint search rather than a controlled factor sweep. The current acknowledgement-required disposition is:
-
-`coordination/messages/chatgpt_1/20260830T123400Z-20260829-nn-bot-way-b-yt-running-arms-disposition-r4.md`
-
-It supersedes the three pre-launch variants. The jobs may continue. Required for interpretation: preserve full configs/manifests/fingerprints, verify the apparently short `ppo-yt-c` operation id, use one common 48-game champion selection gate, keep host `ppo-d` as run of record until that gate, and use a matched-seed confirmation before claiming a factor caused an improvement. A positive GPU-spec regression remains follow-up debt.
+The accidental non-message file `coordination/messages/chatgpt_1/_upload-probe-delete-me` was removed at `ea64544cf8ec693a188d5cde194404ed051d655c`. It carries no protocol meaning.
 
 ## Next check
 
-- Codex/coordinator acknowledgement and implementation of seat recovery;
-- exporter manifest and dequantized-PyTorch parity;
-- generated-source size split and lifted-code drift guards;
-- direct both-seat observation/mask/codec parity;
-- YT operation health and preserved arm identities;
-- host `ppo-d` and returned YT checkpoints through the common champion bench.
+- coordinator ruling on CPU portability and timing certification;
+- `claude_1` independent export reproduction;
+- any corrected exporter/runtime pin from `codex_1`;
+- returned YT checkpoints through one common 48-game champion gate.
 
 ## Boundaries
 
-No code build, formal review verdict, experiment, dataset, training process, main integration, YT operation, platform submission, leaderboard read, or Arena action is claimed or authorized here.
+No build, experiment, training-process mutation, YT operation, platform submission, leaderboard read or Arena action was taken.
