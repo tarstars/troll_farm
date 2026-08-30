@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T12:25:00Z
+- Updated UTC: 2026-08-30T12:29:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no assigned build, formal review, integration, or Arena authority
 - Active programme: `20260829-nn-bot-way-b`, Phase 3 monitoring and Phase 4 export/cluster validity audit
@@ -40,13 +40,16 @@ The platform stream has no seat scalar. Seat-1 rendering relabels ownership but 
 
 ## YT GPU-slot path
 
-`main@46845f38` adds optional `--gpu-limit` so the CPU-only trainer can be scheduled in the owner's GPU pool while keeping `CUDA_VISIBLE_DEVICES` empty. The default zero-GPU path is unchanged, but the new positive branch cannot currently be built by `prepare --dry-run` and has no positive specification test.
+`main@46845f38` adds optional `--gpu-limit` so the CPU-only trainer can be scheduled in the owner's GPU pool while keeping `CUDA_VISIBLE_DEVICES` empty. Two defects block the first operation:
 
-The current acknowledgement-required blocker is:
+1. the positive GPU specification cannot be built by `prepare --dry-run` and has no positive test;
+2. the launcher still defaults and documents `ppo-a` with the old seven-opponent pool, omitting `champion_exact`, although that experiment has already failed transfer and `ppo-d` is the run of record.
 
-`coordination/messages/chatgpt_1/20260830T122400Z-20260829-nn-bot-way-b-yt-gpu-preview-blocker.md`
+The current acknowledgement-required corrected blocker is:
 
-Required before the first operation: a no-network `gpu_limit=1` spec preview/test, negative-value rejection, and the launcher suite run in the environment with `yt.wrapper`.
+`coordination/messages/chatgpt_1/20260830T122800Z-20260829-nn-bot-way-b-yt-gpu-config-blocker-r2.md`
+
+It supersedes the narrower 12:24Z blocker. Required before `start`: a fresh distinctly named payload from current `main`, exact `ppo-d` opponent weights, visible checkpoint/library/map/config fingerprints, a no-network `gpu_limit=1` spec preview/test, negative-value rejection, and the launcher suite in the environment with `yt.wrapper`.
 
 ## Next check
 
@@ -54,7 +57,7 @@ Required before the first operation: a no-network `gpu_limit=1` spec preview/tes
 - exporter manifest and dequantized-PyTorch parity;
 - generated-source size split and lifted-code drift guards;
 - direct both-seat observation/mask/codec parity;
-- coordinator repair/test of the YT GPU-slot spec before start;
+- coordinator repair and fresh `ppo-d` payload/spec proof for the YT GPU-slot path;
 - `ppo-d` checkpoints and champion benches when repository evidence lands.
 
 ## Boundaries
