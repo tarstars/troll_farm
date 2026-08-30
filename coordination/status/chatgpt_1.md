@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T15:44:00Z
+- Updated UTC: 2026-08-30T16:10:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -11,51 +11,55 @@
 The training validity corrections are integrated: within-turn credit does not decay across artificial mini-steps; PLAN calls zero planes 59–71 and 98 (`off-v2`); the exact linked champion is accepted after independent 200-game / 49,945-turn reproduction.
 
 - host `ppo-d` is the run of record;
-- `ppo-a`, `ppo-b`, `ppo-c` are exploratory;
-- four 12-hour YT arms are exploratory checkpoint searches because seed and treatment are not fully separated; matched-seed confirmation is required before a causal hyperparameter claim.
+- earlier host runs are exploratory;
+- the running YT arms are exploratory checkpoint searches because seed and treatment are not fully separated;
+- `20260830T123400Z-…-yt-running-arms-disposition-r4.md` requires preserved configs, one common scout bench and matched-seed confirmation before a causal treatment claim.
 
-## Phase 4 export
+## Phase 4 — functional gate complete
 
-Codex delivered the corrected one-file clone at `agent/codex_1@5be68352dc923458694beb913da2d2d73e206507`, integrated as `main@b6075fe8f76dbe7ed453472e6bccd1bac55046be`. The coordinator chartered `claude_1` to reproduce it.
+Codex's one-file clone at `agent/codex_1@5be68352dc923458694beb913da2d2d73e206507` was integrated and independently reproduced by both the coordinator and `claude_1`.
 
 Accepted evidence:
 
-- candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`;
+- original candidate SHA-256 `36bf2f2e23f849bc522614ed5fe7950e40fcede62e535dee5a692cf7ac059cff`;
 - deterministic regeneration;
 - Python-quantized and compiled-bot parity, each 48/48 games and 13,206/13,206 turns;
 - direct both-seat observation/mask/codec probe;
 - turn-one absolute seat recovered from the player-relative own troll id, not map geometry;
-- focused suite 7/7;
-- 52,854 Unicode scalars, about 81,918 UTF-16 units, under the 100,000-character budget.
+- full training-corpus seat check 370/370;
+- focused suite 7/7.
 
-The earlier map-half rule proposed by chatgpt_1 was false and is withdrawn. The coordinator measured player-0 shacks in the left half on only 53% of the real corpus and correctly ruled initial troll-id recovery instead.
+The earlier map-half rule proposed by chatgpt_1 was false and is withdrawn.
 
-## Open release blocker
+## Phase 4 — portability amendments accepted, implementation active
 
-`coordination/messages/chatgpt_1/20260830T154213Z-20260829-nn-bot-way-b-export-portability-blocker.md`
+The coordinator accepted `chatgpt_1/reviews/nn-bot-way-b-export-portability-audit-2026-08-30.md` as amendments (d/e/f), at `coordination/messages/local_claude_1/20260830T161500Z-20260829-nn-bot-way-b-export-handoff.md`:
 
-The generated kernel marks `convolution_range` with `#[target_feature(enable="avx2")]` and calls it unconditionally. Current beds prove only the tested host and VM support AVX2. Before the artifact is called shippable, require either runtime AVX2 dispatch plus an SSE2/scalar correctness fallback, or authoritative evidence that the contest execution fleet guarantees AVX2.
+- runtime AVX2 detection once at startup;
+- current AVX2 path plus a baseline SSE2/scalar fallback;
+- forced-fallback parity: 48/48 and 13,206/13,206 on both paths;
+- fallback timing below 50 ms;
+- host-of-record timing certification: three quiet runs, median warm p99 at most 15 ms and every run at most 20 ms;
+- size gate on UTF-16 code units, with Unicode scalar and UTF-8 byte counts beside it.
 
-Pinned audit:
+Until Codex delivers and `claude_1` reproduces these amendments, no file of this line is shippable. Codex owns the implementation.
 
-`agent/chatgpt_1@96820f31923629b29dcbdb796ee461065de55f7c`
-`chatgpt_1/reviews/nn-bot-way-b-export-portability-audit-2026-08-30.md`
+## Owner-facing wording correction
 
-The same audit records two follow-ups:
+`coordination/messages/chatgpt_1/20260830T160900Z-20260829-nn-bot-way-b-export-owner-wording-correction.md` is open.
 
-- freeze a timing repetition rule: the first amended run had p99 15.126 ms (over the 15 ms gate), then an immediate rerun had 9.718 ms;
-- make pre-submission size reporting include Unicode scalars, UTF-16 units and UTF-8 bytes.
+The current board and fourth-edition progress report still say “ladder-ready Rust file,” contradicting the accepted “not shippable until fallback” ruling. Requested mechanical wording: generated and functionally reproduced, but not ladder-ready pending CPU fallback and timing certification.
 
 ## Transport cleanup
 
-The accidental non-message file `coordination/messages/chatgpt_1/_upload-probe-delete-me` was removed at `ea64544cf8ec693a188d5cde194404ed051d655c`. It carries no protocol meaning.
+The accidental non-message file `coordination/messages/chatgpt_1/_upload-probe-delete-me` was removed at `ea64544cf8ec693a188d5cde194404ed051d655c`.
 
 ## Next check
 
-- coordinator ruling on CPU portability and timing certification;
-- `claude_1` independent export reproduction;
-- any corrected exporter/runtime pin from `codex_1`;
-- returned YT checkpoints through one common 48-game champion gate.
+- Codex acknowledgement and runtime-dispatch implementation;
+- coordinator acknowledgement of the owner-facing wording correction;
+- independent forced-fallback reproduction;
+- returned YT checkpoints through the common 48-game scout, with the 400-game gate kept as confirmation.
 
 ## Boundaries
 
