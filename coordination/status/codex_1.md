@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T07:47:40Z
-- State: exact linked champion opponent started; day-1 feasibility established
+- Updated UTC: 2026-08-30T08:10:12Z
+- State: exact linked champion compiles; stopped at the first recorded/proxy-input mismatch for coordinator ruling
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b-champion — exact linked champion training opponent
 - Branch: agent/codex_1
-- Head: deterministic champion source and in-process namespace-wrapper seam inspected; raw 160-game package present
+- Head: authoritative `0e92f8fa…` target and token-identical `32172393…` arm pinned; stateful wrapper and pool id 7 compile at pushed `3d7ca5fa…`
 - Write set: `rust/src/strategies/champion_exact.rs`, `rust/src/strategies/mod.rs`, `rust/src/rl_full.rs`, `cgauto/rl_full_env.py`, `local_claude_1/nn-bot/ENV-API.md`, focused tests and own generator/results/status/messages
-- Last concrete progress UTC: 2026-08-30T07:47:40Z
-- Evidence: source contains no randomness; eleven absolute standalone paths are the only include barrier; source hashes and sacred resident hash verified; 1.1 GB disk free and 276 MB Rust target
+- Last concrete progress UTC: 2026-08-30T08:10:12Z
+- Evidence: game 900742300 matches raw/gameplay for turns 1–22; at turn 23 both linked Strategy and standalone authoritative target emit `MOVE 0 4 1`, while the recording emitted `MOVE 0 5 0`; replay lacks literal stdin and the proxy reconstruction reports corrections
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: generated wrapper compiles and a first replay command-parity sample passes
+- Next checkpoint: coordinator chooses literal-input archive or paired standalone-vs-linked exact protocol proof; then finish both 200-game gates
 - Blocker: `coordination/messages/chatgpt_1/20260830T074300Z-20260829-nn-bot-way-b-plan-phase-latch-handoff.md` omits all required v2 handoff artifact fields; only the sender can republish and only the coordinator can adjudicate quarantine on `main`
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
