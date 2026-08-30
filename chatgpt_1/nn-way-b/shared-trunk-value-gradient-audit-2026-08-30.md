@@ -3,8 +3,8 @@
 Date: 2026-08-30
 Agent: `chatgpt_1`
 Programme: `20260829-nn-bot-way-b`
-Reviewed main: `e02e88c8afadc31dc16109ed85eb3c547913943e`
-Revision: r2 — adds the single global gradient-clipping coupling
+Reviewed main: `8300905cb65e5f5974c5277189f389ce97ed93f8`
+Revision: r3 — pins optimizer-state and cross-checkpoint comparison semantics
 
 ## Verdict
 
@@ -92,9 +92,35 @@ The following are consistent with, but do not prove, value-gradient/clipping dam
 - fruit-chain commands decay while other behaviours remain, which is compatible with a shared feature representation moving;
 - no run reports whether the combined gradient was clipped or which term dominated it.
 
+## Instrument identity requirements
+
+The committed checkpoints carry all four keys:
+
+```text
+model
+optimizer
+config
+evaluation
+```
+
+Therefore the instrument must not approximate the live update.
+
+For each checkpoint:
+
+1. load `model` exactly;
+2. rebuild the two optimizer groups from the checkpoint config;
+3. load the checkpoint's `optimizer` state dict, including Adam moments and per-group learning rates;
+4. load the original clone anchor named by the config and use the coefficient at the checkpoint's recorded `turn_steps`;
+5. use the checkpoint's exact gamma, lambda, value coefficient, entropy coefficient, clip coefficient, max-grad norm, actor LR scale, plan-target-memory mode, opponent and seed configuration;
+6. record all input SHA-256 hashes and the complete effective config in the output.
+
+A fresh Adam optimizer is a different experiment: its first step lacks the live run's moments and bias-correction state. Such a result must be labelled `fresh_optimizer_control`, never the run's counterfactual.
+
+The current training log stores policy/value/entropy/anchor scalars from the **last minibatch**, not an update average. The instrument's per-term measurements are therefore the source of truth for its chosen minibatch; do not try to match the printed scalar as if it represented the full update.
+
 ## Decisive offline gradient decomposition
 
-Use one exact saved post-warm-up minibatch and identical copies of the same checkpoint. For each loss term separately, compute gradients without stepping:
+Use one exact post-warm-up minibatch and identical copies of the same checkpoint. For each loss term separately, compute gradients without stepping:
 
 ```text
 P: clipped PPO policy loss
@@ -123,23 +149,43 @@ Also report:
 
 Split P and V by PLAN versus TROLL rows and by fruit-chain versus other TROLL actions where applicable.
 
+## Same-state and on-policy views
+
+The clone, `ppo-g` update 500 and `ppo-h` update 500 naturally induce different trajectories. Both views are needed:
+
+### On-policy view
+
+Collect one rollout under each checkpoint's own temperature-1 behaviour with the same map/inventory seed schedule. This measures the gradient context that checkpoint actually creates, while explicitly labelling the state-distribution difference.
+
+### Fixed-state view
+
+Build one common 512-observation census, preferably a deterministic stratified union of clone/g/h rollout rows, with PLAN/TROLL and fruit-chain coverage. Evaluate all three checkpoints and all value-only counterfactual steps on exactly this same census.
+
+Without the fixed-state view, a larger g-versus-h logit shift can be caused by different states rather than a different gradient mechanism.
+
 ## Value-only counterfactual step
 
-On another clone of the checkpoint:
+On a copy of each checkpoint:
 
-1. apply exactly one optimiser step from `value_coef * value_loss` only;
-2. run a fixed observation census before and after;
-3. report:
+1. restore the live Adam optimizer state;
+2. zero gradients;
+3. backward `value_coef * value_loss` only on the selected minibatch;
+4. record pre-clip norms and the global clip multiplier;
+5. apply exactly one optimizer step using the live learning rates and moments;
+6. run the common fixed observation census before and after;
+7. report:
    - parameter deltas by block;
    - spatial and plan logit KL;
    - argmax agreement;
    - agreement on fruit-chain rows;
-   - change in clone-anchor KL;
-   - pre-clip norm and clip multiplier.
+   - change in clone-anchor KL.
 
-This directly answers whether the value objective alone can move deployed actions at the observed learning rate.
+This directly answers whether the value objective alone can move deployed actions at the actual update-500 optimizer state.
 
-Negative control: repeat with `pooled.detach()` for the value branch. Only `critic.*` may receive V gradients and policy logits must be byte-identical before an optimiser step that contains V alone.
+Negative controls:
+
+- repeat with `pooled.detach()` for the value branch; only `critic.*` may receive V gradients and policy logits must remain byte-identical under a V-only step;
+- repeat the original path with a fresh optimizer, labelled separately, to show how much Adam state matters.
 
 ## Narrow matched-seed training controls
 
@@ -159,7 +205,7 @@ For `gradient-clipping=per-group`, clip the policy-side and critic-side paramete
 
 Required tests:
 
-- value-only backward gives nonzero `critic.*` gradients and zero trunk/head gradients when detach is off;
+- value-only backward gives nonzero `critic.*` gradients and zero trunk/head gradients when detach is on;
 - policy and anchor gradients still reach their intended parameters;
 - each checkpoint records both flags;
 - old behavior is byte-identical under `on/joint`;
@@ -175,10 +221,11 @@ The winner's Level 4 froze the movement executor while training the plan selecto
 
 ```text
 MEASURE per-term and pre-clip gradient norms before another explanatory long run.
-TEST a value-only step on fixed observations.
+RESTORE the live Adam state for the value-only step.
+USE both on-policy and fixed-state comparisons.
 IF material, run a matched-seed critic-trunk-gradient OFF control.
 MEASURE joint clipping; test per-group clipping only as a separate follow-up.
 DO NOT assume the critic affects the actor only through advantages; the current code couples them directly and through clipping.
 ```
 
-No trainer, checkpoint, environment, dataset, YT operation, platform, or Arena state was changed by this audit.
+No trainer, checkpoint, environment, dataset, YT operation, platform or Arena state was changed by this audit.
