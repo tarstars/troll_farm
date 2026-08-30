@@ -33,6 +33,7 @@ def _load(name: str, filename: str):
 
 tpf = _load("train_ppo_full_under_test", "train_ppo_full.py")
 fake = _load("fake_full_env_under_test", "fake_full_env.py")
+bench = _load("bench_under_test", "bench.py")
 
 from cgauto.train_level1_ppo import (  # noqa: E402
     PLAN_ACTION_SIZE,
@@ -806,7 +807,9 @@ def test_the_critic_warmup_moves_the_value_head_and_nothing_else(tmp_path, capsy
         assert row["anchor_loss"] is None
 
 
-def test_train_scope_plan_critic_freezes_the_trunk_and_the_per_cell_head(tmp_path) -> None:
+def test_train_scope_plan_critic_freezes_the_trunk_and_the_per_cell_head(
+    tmp_path, capsys
+) -> None:
     """`--train-scope plan-critic` past the warm-up: stem/tower/actor byte for byte, plan moved.
 
     Three updates with a warm-up of 1: updates 2 and 3 run the ordinary PPO loss, so under scope
@@ -842,6 +845,152 @@ def test_train_scope_plan_critic_freezes_the_trunk_and_the_per_cell_head(tmp_pat
     critic_names = [n for n in initial if tpf.is_critic_parameter(n)]
     assert any(not torch.equal(trained[n], initial[n]) for n in plan_names)
     assert any(not torch.equal(trained[n], initial[n]) for n in critic_names)
+    updates = [
+        row
+        for row in (
+            json.loads(line)
+            for line in capsys.readouterr().out.splitlines()
+            if line.startswith("{")
+        )
+        if row.get("event") == "update"
+    ]
+    assert len(updates) == 3
+    for row in updates:
+        assert row["plan_grad_norm_pre_clip"] >= 0.0
+        assert row["critic_grad_norm_pre_clip"] > 0.0
+        assert 0.0 < row["joint_grad_clip_multiplier"] <= 1.0
+
+
+def test_plan_critic_troll_actions_do_not_depend_on_the_rng_seed() -> None:
+    """The frozen executor is deterministic: only PLAN rows consume a random draw."""
+
+    logits = torch.tensor(
+        [[0.0, 5.0, -1.0, 3.0], [7.0, 2.0, 4.0, -3.0]], dtype=torch.float32
+    )
+    phase = torch.full((2,), tpf.PHASE_TROLL, dtype=torch.int64)
+    torch.manual_seed(1)
+    first, _ = tpf.rollout_actions(logits, phase, "plan-critic")
+    torch.manual_seed(999_999)
+    second, _ = tpf.rollout_actions(logits, phase, "plan-critic")
+
+    assert torch.equal(first, second)
+    assert torch.equal(first, logits.argmax(dim=-1))
+
+
+def test_plan_critic_troll_actions_match_the_bench_masked_argmax() -> None:
+    """The scoped rollout and `bench.NetworkPolicy._argmax` choose the same legal command."""
+
+    logits = torch.tensor([[9.0, 8.0, -2.0, 7.0, 6.0]], dtype=torch.float32)
+    mask_np = np.array([0, 1, 1, 0, 1], dtype=np.uint8)
+    legal = torch.from_numpy(mask_np).bool().unsqueeze(0)
+    policy_masked = tpf.masked_logits(logits, legal)
+    action, _ = tpf.rollout_actions(
+        policy_masked, torch.tensor([tpf.PHASE_TROLL]), "plan-critic"
+    )
+
+    bench_policy = object.__new__(bench.NetworkPolicy)
+    bench_policy.torch = torch
+    bench_action = bench_policy._argmax(logits, mask_np.tobytes())
+    assert int(action.item()) == bench_action == 1
+
+
+def test_plan_policy_gradient_is_invariant_to_duplicated_troll_rows() -> None:
+    """TROLL advantages and entropy cannot rescale the PLAN policy gradient."""
+
+    def plan_gradient(troll_copies: int) -> tuple[torch.Tensor, float, float]:
+        plan_logits = torch.tensor(
+            [[1.0, -0.5, 0.25], [-0.3, 0.8, 0.1]], requires_grad=True
+        )
+        troll_logits = torch.tensor([[8.0, -4.0, 0.0]]).repeat(troll_copies, 1)
+        logits = torch.cat((plan_logits, troll_logits), dim=0)
+        phase = torch.tensor(
+            [tpf.PHASE_PLAN, tpf.PHASE_PLAN]
+            + [tpf.PHASE_TROLL] * troll_copies
+        )
+        actions = torch.tensor([0, 1] + [0] * troll_copies)
+        distribution = Categorical(logits=logits)
+        new_logprob = distribution.log_prob(actions)
+        old_logprob = new_logprob.detach() + torch.tensor(
+            [0.10, -0.15] + [2.0] * troll_copies
+        )
+        advantages = torch.tensor([3.0, -1.0] + [1000.0] * troll_copies)
+        policy_loss, entropy, _, _ = tpf.plan_critic_policy_terms(
+            new_logprob,
+            old_logprob,
+            distribution.entropy(),
+            advantages,
+            phase,
+            0.2,
+        )
+        objective = policy_loss - 0.01 * entropy
+        gradient = torch.autograd.grad(objective, plan_logits)[0]
+        return gradient, float(policy_loss.detach()), float(entropy.detach())
+
+    once = plan_gradient(1)
+    repeated = plan_gradient(17)
+    assert torch.equal(once[0], repeated[0])
+    assert once[1:] == pytest.approx(repeated[1:])
+
+
+def test_plan_anchor_is_invariant_to_duplicated_troll_rows() -> None:
+    """In the staged scope the clone anchor is a PLAN-only policy term."""
+
+    def anchor_gradient(troll_copies: int) -> tuple[torch.Tensor, float]:
+        plan_logits = torch.tensor(
+            [[1.0, -0.5, 0.25], [-0.3, 0.8, 0.1]], requires_grad=True
+        )
+        policy = torch.cat(
+            (plan_logits, torch.tensor([[9.0, -3.0, 1.0]]).repeat(troll_copies, 1))
+        )
+        anchor_logits = torch.cat(
+            (
+                torch.tensor([[0.3, 0.2, -0.4], [0.5, -0.1, 0.7]]),
+                torch.tensor([[-8.0, 4.0, 2.0]]).repeat(troll_copies, 1),
+            )
+        )
+        phase = torch.tensor(
+            [tpf.PHASE_PLAN, tpf.PHASE_PLAN]
+            + [tpf.PHASE_TROLL] * troll_copies
+        )
+        keep = tpf.anchor_rows(phase, "plan-critic", anchor_has_plan=True)
+        legal = torch.ones_like(policy, dtype=torch.bool)
+        kl, _ = tpf.anchor_kl(policy[keep], anchor_logits[keep], legal[keep])
+        gradient = torch.autograd.grad(kl, plan_logits)[0]
+        return gradient, float(kl.detach())
+
+    once = anchor_gradient(1)
+    repeated = anchor_gradient(23)
+    assert torch.equal(once[0], repeated[0])
+    assert once[1] == pytest.approx(repeated[1])
+
+
+def test_plan_critic_minibatch_without_plan_rows_applies_only_value_loss() -> None:
+    """No PLAN row is a valid minibatch: no division by zero and no policy gradient."""
+
+    logits = torch.tensor([[0.2, 0.8], [1.0, -0.4]], requires_grad=True)
+    distribution = Categorical(logits=logits)
+    actions = torch.tensor([1, 0])
+    new_logprob = distribution.log_prob(actions)
+    phase = torch.full((2,), tpf.PHASE_TROLL, dtype=torch.int64)
+    policy_loss, entropy, approx_kl, clip_fraction = tpf.plan_critic_policy_terms(
+        new_logprob,
+        new_logprob.detach(),
+        distribution.entropy(),
+        torch.tensor([10.0, -10.0]),
+        phase,
+        0.2,
+    )
+    values = torch.tensor([1.0, -2.0], requires_grad=True)
+    value_loss = 0.5 * values.pow(2).mean()
+    loss = policy_loss - 0.01 * entropy + 0.5 * value_loss
+    loss.backward()
+
+    assert float(policy_loss.detach()) == 0.0
+    assert float(entropy.detach()) == 0.0
+    assert approx_kl == 0.0 and clip_fraction is None
+    assert torch.equal(logits.grad, torch.zeros_like(logits))
+    assert values.grad is not None and bool((values.grad != 0).all())
+    assert not bool(tpf.anchor_rows(phase, "plan-critic", True).any())
 
 
 def test_the_first_update_after_the_warmup_moves_the_actor(tmp_path, capsys) -> None:
