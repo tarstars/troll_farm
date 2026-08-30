@@ -251,6 +251,16 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (88 %), the morning read's "34 GB" was stale; the "USB archive" is a read-only cloud bucket mounted
   by geesefs (`troll-farm-data:archive` at `/media/tarstars/medium_data/database/troll_farm`, 9.8 GB of
   artifacts incl. July's checkpoints); nothing needs to move for this card. — coordinator
+- 2026-08-30 05:0xZ: **PHASE 3 STARTED on the host** — the smoke first (5 updates from the clone with the clone as anchor:
+  the plan-head checkpoint loads, anchor agreement 0.84–0.88, small policy steps, ~1,000 decisions/s), then the run:
+  `train_ppo_full.py --env full --maps data/processed/maps.jsonl` (all 24,973 real maps) `--initial-checkpoint`
+  `--anchor-checkpoint` = the clone, `--anchor-coef 0.1 → 0 over 1×10⁸ decisions`, `--frozen-checkpoint` = the clone
+  refreshed every 100 updates, opponents secure_orchard 2 / norxondor_native 2 / legend_field_proxy_v2 1 /
+  gold_elite_adaptive 1 / script_boss 0.5 / mybot_boss4 0.5 / python_frozen 3, 128 games in parallel, 32-step rollouts,
+  2 epochs, minibatch 1,024, 14 threads at `nice 10`, a checkpoint every 250 updates (~17 min), no in-line gates —
+  the coordinator benches the latest checkpoint every few hours (48 games vs the champion's file), and runs the
+  card's 400-game gates when a bench passes 55 %; budget 2×10⁸ decisions (≈ 2.3 days); output
+  `/home/tarstars/nn-data/ppo-2026-08-30-a/` (`train.log`, checkpoints). — coordinator
 - 2026-08-30 04:5xZ: **PHASE 2's MILESTONE REACHED — the clone's games are on file for the owner's read**
   (`local_claude_1/nn-bot/results/clone-2026-08-30-a/README.md`). The bench, argmax decoding, 24 maps × both seats vs
   the champion's file: **9 wins of 48 (4 seat 0, 5 seat 1), 133.8 vs 186.2, 0 illegal, 0 timeouts**; 31 games to turn
