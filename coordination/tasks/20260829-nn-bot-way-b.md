@@ -485,6 +485,17 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   either the low edge of one bench's noise (±2) or a slow plan-head drift under the decaying leash. **Update 2,500 (~02:00Z)
   decides: a second read at or under 6 stops the run**; back at 9+ and it continues. The cluster's a and c are past their
   12-hour mark (725 min) and wrapping up — retrieval next. — coordinator
+- 2026-08-31 01:1xZ: **`ppo-i` at update 2,500: 5 of 48 (121.5 points) — the second consecutive read below the bar; stopped at
+  update ~2,650 by the pre-stated rule.** The staged scope's verdict in one line: **it prevents the collapse — the only run to
+  survive update 1,500 — but the plan head alone drifts slowly below the clone instead of beating it** (9 → 10 → 9 → 6 → 5;
+  the plan entropy rose 0.90 → 1.35 as the leash decayed — the distribution softens and its argmax walks away from the
+  clone's plans). The day's full map, five full-parameter runs and one staged: full-parameter dips at 500, partially recovers
+  at 1,000, collapses by 1,500, whatever the pool, discount or warm-up; staged holds 1,500 and drifts by 2,500. Nothing beats
+  the clone yet; the best artefacts are the clone itself (9) and ppo-i's update-1,000 snapshot (10, within noise). **In flight
+  and next**: the six cluster snapshots (a/c past 12.5 h, the pack not yet uploaded; retry ~01:45Z), claude_1's corrected
+  gradient instrument (the WHY), then the morning's levers in order of evidence: a fixed (non-decaying) plan anchor or a
+  lower plan learning rate for a second staged run; the winner's stage-5 joint fine-tune at a tiny rate from ppo-i's
+  update-1,000 snapshot; the value-trunk separation if the instrument convicts it. The host is quiet again. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
