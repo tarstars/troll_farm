@@ -649,3 +649,16 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   stated (stages 2–3 spec-first; the cluster arms exploratory); the target-KL aggregation repair queued as a trainer change.
   Next: Gate 0's charters (the corrected instrument on fixed observations; the rollout telemetry; the independent critic
   calibration), then the entropy-zero same-seed staged arm on the host. — coordinator
+- 2026-08-31 07:4xZ: **protocol work landed and a first exploratory peek.** (1) **The locked confirmation panel** —
+  `local_claude_1/nn-bot/locked-panel-seed1.jsonl` (`ac9787ac`): 72 corpus maps (widths 16/18/20/22: 20/15/18/19), seed 1,
+  disjoint from the 24-map scout panel by map hash, smoke.py's draw rule, checksummed; 144 games both seats — the adopted
+  protocol's confirmation tier. (2) **i2's mid-run salvage benched** (exploratory; the salvage upload works —
+  `mid-run-latest.pt` at update 1,583 fetched by `yt read-file`): **7 of 48, 129.6 to 188.5**, purchases 42 of 48, the
+  clone's profile intact (chop 88 / harvest 38 / plant 25), 2 loop games — in the clone's band at an age where every
+  full-parameter run had collapsed; within scout noise of run I's same-age readings, as the review predicted for two nearly
+  identical anchors (0.100 vs ~0.097). Its long run (~14,600 updates) is the staged line's real overnight answer.
+  (3) A transport repair candidate for the card: teach `scripts/inbox_sweep.py` that a superseded message is discharged when
+  its successor is acked — the one remaining ack-chain leak (today it cost one formality ack); to be chartered with both
+  bots' reproduction, not patched quietly. Also noted: `ppo-yt-a2` was preempted ~05:55Z and restarted from scratch (no
+  resume); its 17-hour limit means it dies at ~19:55Z around 50 M decisions — the salvage copy will carry its last
+  checkpoint. — coordinator
