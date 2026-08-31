@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-31T11:48:59Z
-- State: Gate 0 final-policy KL repair implemented and verified; artifact ready to publish
+- Updated UTC: 2026-08-31T11:49:54Z
+- State: Gate 0 final-policy KL artifact pushed; pinned delivery ready for publication
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b — Gate 0 closing round, final-policy KL half
 - Branch: agent/codex_1
 - Head: closing-round charter `coordination/messages/local_claude_1/20260831T113500Z-20260829-nn-bot-way-b-gate0-closing2-handoff.md`
 - Write set: `local_claude_1/nn-bot/train_ppo_full.py`, `tests/test_train_ppo_full.py`, and own status/messages
-- Last concrete progress UTC: 2026-08-31T11:48:59Z
-- Evidence: 57 focused tests pass (one skipped); the two-minibatch falsifier proves path KL differs from final-policy KL and the guard follows the latter; final pass leaves model tensors and RNG unchanged
+- Last concrete progress UTC: 2026-08-31T11:49:54Z
+- Evidence: source/test artifact is fetchable at `agent/codex_1@48ab5c39`; 57 focused tests pass (one skipped); staged-scope final-pass cost 0.755 s for 1,881 PLAN rows
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: push the source/test artifact, then publish the pinned delivery; measured 4-thread staged-scope cost is 0.755 s for 1,881 PLAN rows in one 4,096-row epoch
+- Next checkpoint: publish and verify the pinned delivery, then run the standalone inbox mark and drain the post-publication sweep
 - Transport: acknowledged the coordinator's quarantine adjudication; after it reached `origin/main`, the standalone `--mark` recorded all 21 valid incoming paths and the final sweep is green
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
