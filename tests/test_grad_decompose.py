@@ -856,7 +856,9 @@ def test_every_comparison_carries_a_decision_margin(report: dict) -> None:
             for row_class in margin.values():
                 if row_class is None:
                     continue
-                assert row_class["median_margin_before"] >= 0.0
+                assert row_class["median_margin_before"] > 0.0
+                assert row_class["tied_baseline_rows"] >= 0
+                assert row_class["rows"] >= 1
                 for field in (
                     "fraction_margin_shrank_10_percent",
                     "fraction_margin_shrank_25_percent",
@@ -983,6 +985,65 @@ def test_a_row_that_grew_more_confident_shrank_by_nothing() -> None:
     assert got["fraction_margin_crossed"] == 0.0
     assert got["fraction_margin_shrank_10_percent"] == 0.0
     assert got["mean_margin_change"] == pytest.approx(1.0)
+
+
+def test_an_unchanged_baseline_tie_is_not_a_crossing() -> None:
+    """chatgpt_1's 10:04Z no-op falsifier. Row A [2, 1] -> [2, 1] and row B [1, 1] -> [1, 1]:
+    nothing moved and no argmax changed hands, yet row B's signed end margin is 0, so the
+    pre-repair statistic counted it under `end <= 0` and reported half the rows crossed. Row B was
+    on the boundary before the update; it is now excluded from the population and counted as a
+    baseline tie."""
+
+    got = _margin_case(
+        [[2.0, 1.0], [1.0, 1.0]],
+        [[2.0, 1.0], [1.0, 1.0]],
+        [[True, True], [True, True]],
+    )
+    assert got["rows"] == 1
+    assert got["tied_baseline_rows"] == 1
+    assert got["argmax_changed_rows"] == 0
+    assert got["fraction_margin_crossed"] == 0.0
+    assert got["mean_margin_change"] == 0.0
+    assert got["fraction_margin_shrank_10_percent"] == 0.0
+
+
+def test_a_population_of_only_baseline_ties_has_no_margin_to_report() -> None:
+    """The other end of the same repair: with every row already on its boundary there is no
+    starting margin to measure a shrink against, and the measure says so rather than dividing by
+    zero or reporting every row as crossed."""
+
+    assert _margin_case([[1.0, 1.0]], [[0.0, 3.0]], [[True, True]]) is None
+
+
+def test_a_baseline_tie_does_not_dilute_the_rows_that_did_move() -> None:
+    """The denominator, not just the flag: one real crossing beside one unchanged tie must read as
+    one row of one crossed, not one of two. The tie stays visible in its own count."""
+
+    got = _margin_case(
+        [[2.0, 1.0], [1.0, 1.0]],
+        [[0.0, 3.0], [1.0, 1.0]],
+        [[True, True], [True, True]],
+    )
+    assert got["rows"] == 1
+    assert got["tied_baseline_rows"] == 1
+    assert got["argmax_changed_rows"] == 1
+    assert got["fraction_margin_crossed"] == 1.0
+
+
+def test_a_flipped_baseline_tie_is_still_cross_checked_against_the_flip_count() -> None:
+    """Excluding a row from the statistic is not a reason to stop checking it. A tie row that
+    changed hands is dropped from the population but still passes through the flip assertion, so
+    the two ways of seeing a flip cannot silently disagree on it."""
+
+    got = _margin_case(
+        [[2.0, 1.0], [1.0, 1.0]],
+        [[3.0, 1.0], [0.0, 5.0]],
+        [[True, True], [True, True]],
+    )
+    assert got["rows"] == 1
+    assert got["tied_baseline_rows"] == 1
+    assert got["argmax_changed_rows"] == 0
+    assert got["fraction_margin_crossed"] == 0.0
 
 
 def test_a_row_with_one_legal_action_has_no_margin_and_is_excluded() -> None:

@@ -135,22 +135,35 @@ on the shared trunk, against the move objective's:
 
 | checkpoint | critic's push on the trunk | as a share of the policy's | its direction vs the policy's |
 |---|---:|---:|---:|
-| the clone | 0.2307 | **12.3 %** | −0.126 |
+| the clone, *hypothetical no-warm-up first update* | 0.2307 | **12.3 %** | −0.126 |
 | g @ 500 | 0.00423 | 0.21 % | −0.058 |
 | h @ 500 | 0.00268 | 0.24 % | −0.074 |
 
-**chatgpt_1's path is real, it points against the policy, and it is largest exactly where it was
-suspected to matter — at the clone→PPO handoff.** At the clone, the never-trained critic supplies
-about an eighth of the force on the shared trunk and pulls the other way. By update 500 it has
-fallen to a fiftieth of that. So it can plausibly contribute to the damage done in the first
-updates.
+**chatgpt_1's path is real and it points against the policy.** At the clone, the never-trained
+critic supplies about an eighth of the force on the shared trunk and pulls the other way. By
+update 500 it has fallen to a fiftieth of that.
 
-Two limits on that last sentence, the second of them chatgpt_1's (08:40Z) and accepted. This is a
+**What the clone row is not** (chatgpt_1's 10:13Z blocker, upheld 11:30Z; this replaces an earlier
+sentence here that read "largest exactly where it was suspected to matter — at the clone→PPO
+handoff"). Run G's recorded configuration sets `--critic-warmup-updates 300`: for its first 300
+updates every policy-side tensor including the shared trunk is bit-frozen and only the critic head
+moves. **G's actual first update therefore has no critic-to-policy trunk path at all, by
+construction**, and the policy first unfreezes at update 301 — after the critic head, the optimizer
+moments, the environment population and the value predictions have changed for 300 updates. The
+clone row above was measured with the parser's default warm-up of 0, so it is a *hypothetical
+no-warm-up first update*: **path-existence evidence**, and nothing more. Its 12.3 % is not the
+force at G's or H's clone→PPO handoff and is not offered as an explanation of their early damage.
+The nearest measurable state, added to runbook revision 4 as run 4, is **G at update 250 —
+`ppo-g-250-warmup-tail`, still inside the warm-up, policy tensors bit-frozen, critic 250 updates
+trained**, read as "50 updates before the unfreeze". G saved no update-300 checkpoint.
+
+Two limits on that reading, the second of them chatgpt_1's (08:40Z) and accepted. This is a
 *local* reading: three checkpoints, one minibatch each. A push worth 0.2 % of the policy's, pointing
 consistently the same way, is not nothing over five hundred updates — a small force applied for a
 long time is still a force. And erosion is a property of the trajectory the run wanders into, which
 no derivative at a single checkpoint can settle. So the honest form is: **no material local effect
-at g@500 and h@500, a large one at the clone — not a historical acquittal.** What would settle it
+at g@500 and h@500, a large one in the hypothetical no-warm-up update at the clone — and neither a
+historical acquittal nor a historical indictment.** What would settle it
 is a second minibatch seed at each checkpoint and a margin measure (how far each decision sits from
 flipping, and how much the critic's term moves it), neither of which this instrument reports yet.
 
@@ -222,15 +235,35 @@ resting on the logged figure is resting on the critic agreeing with itself.
 
 ## 5. What this closes and what it does not
 
+### The two scope limits this verdict is read under
+
+Both come from chatgpt_1's blockers of 2026-08-31 and were upheld by the coordinator at 11:30Z.
+They are conditions on every number above, not caveats appended to it.
+
+* **`EARLY_GAME_LOCAL_ONLY` (the 09:52Z blocker).** Every row here is measured on a *fresh-game*
+  population: the instrument builds its own environment, so all 128 games start at turn 0 together
+  and the window is 32 mini-steps — about 13 turns of a 300-turn game. The trainer's own
+  environments are long-running and staggered. These are therefore early-game local
+  counterfactuals, and they decide **nothing** about the historical mid-training trajectory G and
+  H actually walked. Measuring a staggered/burned-in population is real environment-and-instrument
+  work and is deferred to the post-Gate-0 bundle, not claimed here.
+* **The clone row is a hypothetical no-warm-up first update (the 10:13Z blocker).** As set out in
+  §2: path-existence evidence, not G's handoff. Run 4 (`ppo-g-250-warmup-tail`) is read as "50
+  updates before the unfreeze".
+
 Closed: the anomaly is answered; the calibration is delivered and readable; the critic's quality is
 measured against reality for the first time; chatgpt_1's shared-trunk path is quantified where the
-estimator is valid, and the answer is "real, front-loaded at the handoff, small by update 500".
+estimator is valid, and the answer is "the path exists and points against the policy — 12.3 % of
+the policy's trunk force in a hypothetical no-warm-up update at the clone, a fiftieth of that at
+g@500 and h@500 — under both scope limits above."
 
-Open, and mine: re-running the three gradient reports with the repaired instrument (the
-`adam-resumed` half of the present ones is void); a margin measure and a
-second minibatch seed, so §2's local reading can be pushed toward a real answer; the matched
-episode population in the calibration collector; and the one remaining step on the 222 — a replay
-from the offending episode would settle whether it is cross-seat move collision. All small.
+Open, and mine: re-running the gradient reports with the repaired instrument, now four runs rather
+than three (the `adam-resumed` half of the present ones is void, and so is every revision-3
+`fraction_margin_crossed` — §7); the matched episode population in the calibration collector; and
+the one remaining step on the 222 — a replay from the offending episode would settle whether it is
+cross-seat move collision. All small. The margin measure and the second minibatch seed that §2
+asked for are delivered (r3, repaired in r4 and r5); the staggered/burned-in population that would
+lift `EARLY_GAME_LOCAL_ONLY` is deferred post-Gate-0 work and is not mine to claim here.
 
 Reproduce the control in §1 from a clean checkout:
 
@@ -242,8 +275,8 @@ r=run_random_smoke(episodes=240, num_envs=12, seed_base=91000, random_seed=11,
 print(r['illegal_commands'])"
 ```
 
-Tests: `pytest tests/test_grad_decompose.py tests/test_critic_calibration.py` — 38 and 17, all green
-on this machine with torch 2.13.0+cpu.
+Tests: `pytest tests/test_grad_decompose.py tests/test_critic_calibration.py` — 50 and 22 as of
+r5, all green on this machine with torch 2.13.0+cpu.
 
 ---
 
@@ -282,4 +315,42 @@ the cost is one more set of arms.
 
 **The geometry.** Runs G and H trained at `--num-envs 128 --rollout-steps 32`; the clone was
 measured at `32 × 128`. Both runbooks are at revision 3 and the clone's census is re-written as
-`census-clone-512-v2.npz`, which runs 2 and 3 then read.
+`census-clone-512-v2.npz`, which runs 2 and 3 then read. (The gradient runbook is at revision 4
+since r5; see §7 and its run 4.)
+
+
+---
+
+## 7. Instruments r4 and r5 — the margin statistic, twice repaired
+
+r3's margin measure had two defects, both found by chatgpt_1 in closed form, both now falsifiers in
+the suite. The instrument is `local_claude_1/nn-bot/grad_decompose.py`; the tests are
+`tests/test_grad_decompose.py`, 50 passing.
+
+**r4 — the crossing falsifier (the 09:41Z blocker).** The post-update margin was computed by
+re-sorting the new logits and taking `top1 − top2`. That measures the confidence of whoever won
+*afterwards*, which is non-negative by construction: it can never register a crossing, and a flip
+to a confident new winner reads as the margin *growing*. `[2, 1] → [0, 3]` — a decision changing
+hands — was reported as +3. The margin is now held against the row's **original** winner, so it is
+signed and goes negative exactly when the decision changes hands; that case now reads −3. A
+cross-check assertion makes the two views unable to disagree silently: if any row's argmax changed
+while its signed margin stayed positive, the instrument **stops** rather than reporting a number.
+Four hand-built cases fix the arithmetic.
+
+**r5 — the tie denominator (the 10:04Z blocker).** With the signed margin in place, a row whose
+baseline margin was exactly **zero** satisfied `end <= 0` for free: it was already on the boundary
+before the update, and counting it made an unchanged tie look like an update-caused crossing.
+chatgpt_1's no-op falsifier, now a test: rows `[2,1] → [2,1]` and `[1,1] → [1,1]`, nothing moved,
+no argmax changed — and r4 reported `fraction_margin_crossed = 0.5`. The margin analysis population
+is now `rows & (start > 0)`, shared by `rows`, `argmax_changed_rows`, the mean and median starting
+margins, the three shrink fractions and the crossing fraction alike, with the discarded rows kept
+visible as **`tied_baseline_rows`** beside them. A class of nothing but ties still returns `null`.
+The flip cross-check deliberately keeps running over *every* row with a margin, ties included:
+dropping a row from a statistic is no reason to stop checking that the two ways of seeing a flip
+agree. Three of the four new tests fail against the r4 code and pass against r5; the fourth (the
+all-tied `null`) is a regression guard that already held.
+
+**Consequence for the numbers.** Every `fraction_margin_crossed` printed by a revision-3 output is
+void, which is why runbook revision 4 repeats the three runs — the same rollout geometry, the same
+census file, no new training, minutes of host time. The gradient decomposition, the trunk shares
+and the cosines in §2 are untouched by both repairs.
