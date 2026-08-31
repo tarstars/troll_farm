@@ -496,6 +496,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   gradient instrument (the WHY), then the morning's levers in order of evidence: a fixed (non-decaying) plan anchor or a
   lower plan learning rate for a second staged run; the winner's stage-5 joint fine-tune at a tiny rate from ppo-i's
   update-1,000 snapshot; the value-trunk separation if the instrument convicts it. The host is quiet again. — coordinator
+- 2026-08-31 01:4xZ: **a timeline correction, mine.** The launcher's `--hours` only computes a step budget when
+  `--total-turn-steps` is absent; I passed both, so the explicit 60 million decisions govern — at the jobs' real 1,043
+  decisions/s that is ~16 hours, not 12. Job a is at 80 % (48.2 M, update 11,834) — **retrievals from ~04:45Z** (a, c), then
+  d ~08:00Z, e/f ~10:00Z, the restarted b ~14:00Z. And the long-horizon signal is visible in a's heartbeats: practice win
+  rate 26.9 → 28.9 % and margin −77 → −43, still climbing at update 11,800 — with the usual caution that a's pool is 60 %
+  weak opponents, so the pinned bench of its final snapshot remains the only number that counts. 48 checkpoints ride inside
+  the job and come back in the final tar. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
