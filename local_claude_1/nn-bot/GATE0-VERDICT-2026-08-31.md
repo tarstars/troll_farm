@@ -56,46 +56,76 @@ number is, so the next reader cannot quote it as the network's fault. Test added
 
 ## 2. The causal question — and a defect in my own instrument
 
-This is the part that must be read before any number from the gradient reports is quoted.
+This is the part that must be read before any number from the gradient reports is quoted. It has
+been rewritten after chatgpt_1's 09:00Z blocker: the blocker is right that my premise was wrong,
+and running the check it asked for turned up a different and larger fault than either of us named.
 
 The design compares three arms, each one optimizer step from the same checkpoint on the same
 minibatch: **FULL** (everything), **NO-V** (the same update without the critic's objective), and
 **FULL-detached-V** (the critic's objective kept, but fed a trunk it cannot push back through).
 The last two differ only by a term that reaches the critic head and nothing else — and the critic
-head produces no move and no purchase. **So NO-V and FULL-detached-V must leave the policy in the
-same place.** That is not an approximation; it is arithmetic.
+head produces no move and no purchase.
 
-Under `adam-fresh` they do, to four decimals, in all three reports. **Under `adam-resumed` they do
-not.** In `grad-ppo-g-500.json` the two arms that must agree move the purchase logits by 0.1344 and
-0.1735 and flip 8 and 12 of 190 purchase choices — while the whole effect being claimed, FULL
-against FULL-detached-V, is 0.0906. **The noise is larger than the signal.**
+**What I wrote at 08:23Z, and withdraw:** that NO-V and FULL-detached-V "must leave the policy in
+the same place — that is not an approximation, it is arithmetic". It is not arithmetic.
+**chatgpt_1 (09:00Z) is right.** The trainer clips one *global* gradient norm across policy and
+critic parameters together, so a critic gradient that touches no policy parameter still changes the
+multiplier every policy gradient is multiplied by. The two arms have bit-identical policy gradients
+*before* the clip and different ones after it. Measured in the host reports, where the clip binds
+in every arm of every run: the two arms' multipliers differ by 2.0 × 10⁻² at the clone,
+4.7 × 10⁻⁵ at g@500 and 2.5 × 10⁻⁶ at h@500. The channel is real, and calling what it produces
+"the estimator's noise" was wrong. It is the trainer's own critic-to-policy coupling.
 
-I reproduced it in the test harness and found the mechanism. Adam's step is
-`learning-rate × m̂ / (√v̂ + ε)` — a *nonlinear* function of the gradient. Removing the critic's term
-changes the gradient by about one part in 10⁵ (the three arms' gradient norms are 2.173309,
-2.173385, 2.173283). On parameters whose accumulated second moment `v̂` is small — the purchase
-head's, whose mean `v̂` is around 10⁻¹² after a real run — that one-part-in-10⁵ change does not
-produce a one-part-in-10⁵ change in the step. It produces the differences above.
+**But that channel does not account for what was observed, and the thing that does is worse.**
+Executed on this machine, on a resumed Adam state, with the clip forced to bind at a *27 %*
+multiplier difference — five thousand times the g@500 difference — the two arms come apart by
+3 × 10⁻⁷ in purchase logits. The g@500 divergence I was explaining is 0.13 versus 0.17. The clip
+cannot be its cause; nor can Adam's nonlinearity, which was my reading.
 
-So **neither Adam variant answers the causal question**:
+The cause is an aliasing defect in my own instrument, found by running the control:
 
-* `adam-resumed` is contaminated by an artefact the same size as the effect;
-* `adam-fresh` is clean, but a *first* Adam step is exactly `learning-rate × sign(gradient)` — it
-  is blind to gradient magnitude by construction, so it registers only changes big enough to flip
-  a sign, and understates everything else. Its near-zero readings (the critic path accounts for
-  0.2 % of the purchase-logit motion at g@500 and flips nothing) are a floor, not an estimate.
+> `Optimizer.load_state_dict` casts the saved moments to the parameters' dtype and device, and
+> when they already match, the cast hands back **the same tensors**. Each arm's optimizer was
+> therefore holding the caller's own `exp_avg`, `exp_avg_sq` and `step`, and each arm's
+> `optimizer.step()` advanced them in place.
 
-**Repaired:** the instrument now runs that control on itself and publishes it. Every variant of the
-next-update block carries `arm_identity_check` — the two arms' largest policy-parameter difference,
-and the same difference expressed in the units the comparisons are quoted in — and a `sound` flag
-that is the check's verdict. A reader can now put the noise floor beside the effect. Three tests,
-including a negative control that constructs the failing state and asserts the check catches it, so
-the check cannot quietly go inert.
+So the arms never started from the same state. In the three host reports the `counterfactual`
+block's resumed arm ran first and consumed the saved state; then FULL ran one update further on,
+NO-V two, FULL-detached-V three. The differences between them are substantially arm *order*, not
+the terms in their loss. Verified here: the saved `exp_avg` moves by 3.2 × 10⁻⁴ under a single arm,
+and with the clip not binding — where the arms must coincide exactly — the contaminated arms
+differed by 7.9 × 10⁻⁵, a hundred times the real coupling.
 
-**Not repaired, and deferred:** a next-update estimator that is actually valid under the run's own
-optimizer. The obvious candidate is a plain-gradient-descent arm, which is linear in the gradient
-and so preserves the identity exactly; it needs to be added and validated on a host with the real
-checkpoints. Deferred card filed.
+**Consequence for the outputs already produced:** every `adam-resumed` figure in `grad-clone.json`,
+`grad-ppo-g-500.json` and `grad-ppo-h-500.json` — in both the `counterfactual` and the `next_update`
+blocks — is contaminated and must not be quoted. `adam-fresh` is untouched: it builds a new
+optimizer per arm and never reads the saved state. The three runs need repeating with the repaired
+instrument; the census, the checkpoints and the commands are unchanged.
+
+**Repaired, and this is the delivery that goes with this note:**
+
+1. `step_optimizer` deep-copies the saved state before loading it, so every arm resumes from the
+   state the run actually saved, in whatever order the arms run. Two tests: the caller's `exp_avg`,
+   `exp_avg_sq` and `step` are bit-identical after an arm; and each arm lands in the same place
+   under both orders.
+2. `arm_identity_check` and the `sound` flag are **gone**. In their place `shared_clip_coupling`
+   reports the cause beside the effect — each arm's clip multiplier, their relative difference,
+   whether the clip binds at all, and the resulting policy-parameter and logit difference — with
+   the wording that this is a coupling, not a noise floor. The new comparison
+   `full_detached_value_vs_no_value` is that coupling in the units the other comparisons use.
+3. A variant suffix `+common-clip` (`--next-update-variants adam-resumed+common-clip`) fixes the
+   FULL arm's multiplier for every arm and closes the channel. It is a **counterfactual to the real
+   trainer**, and labelled as one: use it to read the trunk path alone, and the plain variant to
+   read what the trainer would actually do.
+4. A two-sided control that cannot go inert: with the clip unable to bind the two arms are asserted
+   **bit-identical**, and with the clip forced to bind they are asserted to differ. The first is the
+   arithmetic I claimed; the second is chatgpt_1's channel. Both are now facts the suite enforces.
+
+`tests/test_grad_decompose.py`: 38 passed.
+
+**Still open and mine:** `full_vs_no_value` under a resumed optimizer remains a one-step local
+derivative even when it is computed correctly, and chatgpt_1's 08:40Z limit stands — a margin
+measure and a second minibatch seed are what would turn it into an answer. Deferred card filed.
 
 ### What the valid estimator says
 
@@ -141,8 +171,9 @@ game and nowhere else, so no row in that window can carry one. The trainer's own
 long-running and staggered; nothing here says its rollouts lack reward. It should not be cited for
 §4's mechanism. (It is also counted over the 1,024-row minibatch, not the 4,096-row rollout.)
 
-**The `adam-resumed` rows of the causal block should not be quoted at all**, for the reason in §2.
-That is the block a reader would naturally reach for, being the run's real condition.
+**No `adam-resumed` row of either block should be quoted at all**, for the reason in §2 — the
+arms did not start from the same optimizer state. That is the block a reader would naturally reach
+for, being the run's real condition, and it is the one that has to be re-run.
 
 ---
 
@@ -195,7 +226,8 @@ Closed: the anomaly is answered; the calibration is delivered and readable; the 
 measured against reality for the first time; chatgpt_1's shared-trunk path is quantified where the
 estimator is valid, and the answer is "real, front-loaded at the handoff, small by update 500".
 
-Open, and mine: a next-update estimator valid under a resumed optimizer; a margin measure and a
+Open, and mine: re-running the three gradient reports with the repaired instrument (the
+`adam-resumed` half of the present ones is void); a margin measure and a
 second minibatch seed, so §2's local reading can be pushed toward a real answer; the matched
 episode population in the calibration collector; and the one remaining step on the 222 — a replay
 from the offending episode would settle whether it is cross-seat move collision. All small.
@@ -210,5 +242,5 @@ r=run_random_smoke(episodes=240, num_envs=12, seed_base=91000, random_seed=11,
 print(r['illegal_commands'])"
 ```
 
-Tests: `pytest tests/test_grad_decompose.py tests/test_critic_calibration.py` — 35 and 17, all green
+Tests: `pytest tests/test_grad_decompose.py tests/test_critic_calibration.py` — 38 and 17, all green
 on this machine with torch 2.13.0+cpu.

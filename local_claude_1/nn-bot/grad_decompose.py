@@ -55,10 +55,21 @@ built into the names here:
   same checkpoint with the same restored Adam moments, the same rows, the same anchor coefficient;
   one takes the whole update, the other takes it without `value_coef * value_loss`. Everything
   that differs afterwards is the value term's doing.
-* `next_update.<variant>.comparisons.full_vs_full_detached_value` -- the structural control: the
+* `next_update.<variant>.comparisons.full_vs_full_detached_value` -- the structural contrast: the
   same full update, but with the value term's route into the shared trunk cut
-  (`pooled.detach()`), so the value head still learns and the trunk no longer hears it. It
-  separates "V changes the policy through the trunk" from "V changes the policy at all".
+  (`pooled.detach()`), so the value head still learns and the trunk no longer hears it. Read it
+  with the caution below: it does **not** isolate the trunk path on its own.
+* `next_update.<variant>.comparisons.full_detached_value_vs_no_value` -- **the shared-clip
+  coupling** (chatgpt_1, 2026-08-31 09:00Z). The trainer clips one *global* gradient norm across
+  policy and critic parameters together, so a critic gradient that touches no policy parameter
+  still changes the clip multiplier that every policy gradient is multiplied by. These two arms'
+  policy gradients are identical before the clip and different after it. They are therefore not
+  an identity under this trainer, and their difference is a real effect of the trainer's own
+  coupling, not the estimator's noise.
+* a variant named `<base>+common-clip` (for example `adam-resumed+common-clip`) runs every arm
+  with one fixed clip multiplier -- the FULL arm's own -- which closes that channel and makes the
+  two arms above coincide exactly. It is a **counterfactual to the real trainer**: use it to read
+  the trunk path alone, and the plain variant to read what the trainer actually does.
 * `counterfactual.adam-fresh` / `.sgd` -- the value gradient in isolation, upper and lower
   readings. Fresh Adam is scale-free (its first step is about `lr * sign(gradient)` whatever the
   gradient's size) and overstates a mid-run step; SGD is proportional to the gradient and
@@ -273,6 +284,47 @@ def effective_learning_rates(optimizer) -> dict:
     return rates
 
 
+def parse_next_update_variant(variant: str) -> tuple[str, bool]:
+    """`"adam-resumed+common-clip"` -> `("adam-resumed", True)`; a plain name -> `(name, False)`.
+
+    The suffix asks for every arm to be scaled by one fixed clip multiplier instead of its own, so
+    that the arms differ only by the terms in their loss. It is spelled out rather than inferred,
+    and an unknown suffix is an error rather than a silently ignored word.
+    """
+
+    base, sep, suffix = variant.partition("+")
+    if not sep:
+        return variant, False
+    if suffix != "common-clip":
+        raise ValueError(
+            f"unknown next-update variant suffix {suffix!r} in {variant!r}; "
+            "the only suffix is '+common-clip'"
+        )
+    return base, True
+
+
+def clip_in_place(copy_model, args, common_clip_scale: float | None) -> tuple[float, float, float]:
+    """Apply the update's gradient clip; `(norm before the clip, the scale used, its own scale)`.
+
+    With `common_clip_scale` `None` this is exactly what the trainer does: one global norm over
+    policy and critic parameters together, and `max_grad_norm / norm` applied to all of them when
+    that is below one. With a scale supplied, the norm is only *measured* (`clip_grad_norm_` with
+    an infinite limit scales by one) and the supplied factor is applied instead -- which is what
+    removes the critic term's route into the policy step through the shared clip.
+    """
+
+    if common_clip_scale is None:
+        applied = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+        own = clip_scale(applied, float(args.max_grad_norm))
+        return applied, own, own
+    measured = float(nn.utils.clip_grad_norm_(copy_model.parameters(), float("inf")))
+    own = clip_scale(measured, float(args.max_grad_norm))
+    for parameter in copy_model.parameters():
+        if parameter.grad is not None:
+            parameter.grad.mul_(float(common_clip_scale))
+    return measured, float(common_clip_scale), own
+
+
 def step_optimizer(copy_model, args, variant: str, optimizer_state: dict | None):
     """`(optimizer, how it was built)` for one counterfactual variant; `(None, ...)` if it cannot be.
 
@@ -300,7 +352,13 @@ def step_optimizer(copy_model, args, variant: str, optimizer_state: dict | None)
     compatibility = resumed_compatibility(optimizer, optimizer_state)
     if not compatibility["compatible"]:
         return None, {"resumed": False, "compatibility": compatibility}
-    optimizer.load_state_dict(optimizer_state)
+    # `Optimizer.load_state_dict` casts the saved moments to the parameters' dtype and device, and
+    # when both already match, the cast returns the *same tensor*. The optimizer would then hold
+    # the caller's own `exp_avg`, `exp_avg_sq` and `step`, and this arm's `optimizer.step()` would
+    # advance them in place -- so the next arm would resume from a state one update further on and
+    # the arms would stop being counterfactuals of the same checkpoint. The copy is what keeps
+    # every arm starting from the state the run actually saved, whatever order they run in.
+    optimizer.load_state_dict(copy.deepcopy(optimizer_state))
     return optimizer, {"resumed": True, "compatibility": compatibility}
 
 
@@ -876,14 +934,21 @@ def stepped_copy(
     variant: str,
     optimizer_state: dict | None,
     arm: str,
+    common_clip_scale: float | None = None,
 ):
     """One arm: a deep copy of the checkpoint, one optimizer step, `(model, what it did)`.
 
     The copy is what is stepped; the caller's model is never touched, and the checkpoint file is
-    never written to. Every arm restores the *identical* optimizer state, sees the identical rows,
-    actions, old log-probabilities, advantages, returns and anchor coefficient, and computes its
-    own gradient norm and its own clip scale before stepping -- so the only difference between two
-    arms is which terms are in their loss.
+    never written to. Every arm restores the *identical* optimizer state and sees the identical
+    rows, actions, old log-probabilities, advantages, returns and anchor coefficient, so the only
+    difference between two arms is which terms are in their loss.
+
+    That difference does not stay inside the loss. The trainer clips one **global** gradient norm
+    over policy and critic parameters together, so an arm whose critic gradient differs gets a
+    different clip multiplier -- and that multiplier is applied to its policy gradients too. Two
+    arms with identical policy gradients therefore take different policy steps whenever the clip
+    is active. `common_clip_scale` closes that channel by giving every arm the same multiplier;
+    the report says which of the two was used.
     """
 
     recipe = NEXT_UPDATE_ARMS[arm]
@@ -902,7 +967,7 @@ def stepped_copy(
 
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
-    applied_norm = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+    applied_norm, scale_used, scale_own = clip_in_place(copy_model, args, common_clip_scale)
     rates = effective_learning_rates(optimizer)
     optimizer.step()
 
@@ -914,7 +979,9 @@ def stepped_copy(
         "value_path": recipe["value_path"],
         "resumed_optimizer_state": bool(info["resumed"]),
         "grad_norm_before_clip": applied_norm,
-        "clip_scale_applied": clip_scale(applied_norm, float(args.max_grad_norm)),
+        "clip_scale_applied": scale_used,
+        "clip_scale_of_this_arm": scale_own,
+        "clip_scale_is_common": common_clip_scale is not None,
         "effective_learning_rates": rates,
         "configured_actor_learning_rate": float(args.learning_rate) * float(args.actor_lr_scale),
         "configured_critic_learning_rate": float(args.learning_rate),
@@ -922,26 +989,30 @@ def stepped_copy(
     }
 
 
-def arm_identity_check(models: dict, read: dict, fixed: dict) -> dict:
-    """The control that tells the reader whether this variant's contrast can be believed.
+def shared_clip_coupling(models: dict, read: dict, fixed: dict, arms: dict) -> dict:
+    """What `no_value` and `full_detached_value` do differently, and the only channel that lets them.
 
-    `no_value` drops the value term; `full_detached_value` keeps it but feeds the value head a
-    detached trunk, so its gradient reaches `critic.*` and nothing else -- and `critic.*` produces
-    no action logit. The two arms must therefore leave the policy parameters in the *same* place.
-    Anything they do not share is the estimator's own noise, and it has to be reported next to the
-    effect the estimator claims to measure, because the two are the same size under a resumed Adam
-    state: Adam's step is a nonlinear function of the gradient, so removing a term that changes the
-    gradient by one part in 10^5 does not change the step by one part in 10^5 on parameters whose
-    accumulated second moment is small.
+    `full_detached_value` keeps the critic's objective but feeds the value head a detached trunk,
+    so its gradient reaches `critic.*` and nothing else -- and `critic.*` produces no action
+    logit. Before the clip the two arms' policy gradients are therefore *identical*.
 
-    `policy_max_abs_parameter_difference` is that noise floor in parameter units;
-    `plan_logit_noise` and `spatial_logit_noise` are it in the units the comparisons are quoted in,
-    so a reader can put them beside `mean_abs_logit_shift_plan` and see what is signal.
+    They are still not the same update. The trainer clips one global norm across policy and
+    critic parameters together (chatgpt_1, 2026-08-31 09:00Z), so the critic gradient changes the
+    multiplier applied to the policy gradients. Whenever the clip is active the two arms come
+    apart, and what they do differently is the trainer's own critic-to-policy coupling -- a real
+    effect, not the estimator's noise. Under a resumed Adam state the coupling is amplified far
+    beyond its size in the gradient, because Adam's step is a nonlinear function of the gradient
+    and is most sensitive where the accumulated second moment is small.
+
+    `clip_scale_relative_difference` is the size of the cause; the parameter and logit fields are
+    the size of the effect. When a common clip multiplier was fixed for every arm the channel is
+    closed, `clip_channel_closed` is true, and the two arms must then coincide exactly -- which is
+    the only condition under which `arms_coincide` being false is an instrument defect.
     """
 
     pair = ("no_value", "full_detached_value")
     if not all(arm in models for arm in pair):
-        return {"available": False, "passed": None, "arms": list(pair)}
+        return {"available": False, "arms": list(pair)}
 
     left, right = (models[arm] for arm in pair)
     names = [
@@ -956,18 +1027,34 @@ def arm_identity_check(models: dict, read: dict, fixed: dict) -> dict:
         if name in names
     )
     logits = difference(read[pair[0]], read[pair[1]], fixed)
+    scales = {arm: arms[arm].get("clip_scale_applied") for arm in pair}
+    common = all(bool(arms[arm].get("clip_scale_is_common")) for arm in pair)
+    reference = scales[pair[0]]
+    relative = (
+        abs(scales[pair[0]] - scales[pair[1]]) / reference
+        if reference not in (None, 0.0) and scales[pair[1]] is not None
+        else None
+    )
     return {
         "available": True,
         "arms": list(pair),
         "policy_max_abs_parameter_difference": gap,
-        "plan_logit_noise": logits["mean_abs_logit_shift_plan"],
-        "spatial_logit_noise": logits["mean_abs_logit_shift_spatial"],
-        "plan_argmax_noise": logits["plan_argmax_changed"],
-        "spatial_argmax_noise": logits["spatial_argmax_changed"],
-        "passed": gap == 0.0,
+        "plan_logit_shift": logits["mean_abs_logit_shift_plan"],
+        "spatial_logit_shift": logits["mean_abs_logit_shift_spatial"],
+        "plan_argmax_changed": logits["plan_argmax_changed"],
+        "spatial_argmax_changed": logits["spatial_argmax_changed"],
+        "clip_scale_applied": scales,
+        "clip_scale_relative_difference": relative,
+        "clip_active": bool(
+            all(scale is not None and scale < 1.0 for scale in scales.values())
+        ),
+        "clip_channel_closed": bool(common or relative == 0.0),
+        "arms_coincide": gap == 0.0,
         "why": (
-            "these two arms differ by a term that cannot reach a policy parameter, so every "
-            "number here should be zero; what is not zero is this variant's own noise floor"
+            "these two arms have identical policy gradients before the clip and different clip "
+            "multipliers after it, because the trainer clips one global norm over policy and "
+            "critic parameters together; what they do differently is that coupling, and it is "
+            "only expected to vanish when a common clip multiplier is fixed"
         ),
     }
 
@@ -990,15 +1077,34 @@ def counterfactual_next_update(
     effect of including `value_coef * value_loss` in that update -- the interaction with the
     restored Adam moments, with the global clip and with the other three terms included, which is
     exactly the interaction the project needs to know.
+
+    Two of the arms differ only by a term that reaches `critic.*`. That still changes the policy
+    step, because the clip multiplier is computed over one global norm; `full_detached_value_vs_no_value`
+    is that coupling and `shared_clip_coupling` reports its cause beside its size. A variant named
+    `<base>+common-clip` fixes the FULL arm's multiplier for every arm and closes the channel, at
+    the price of no longer being the update the trainer would take.
     """
 
+    base_variant, common_clip = parse_next_update_variant(variant)
     before = read_out(model, fixed)
     arms: dict[str, dict] = {}
     models: dict[str, object] = {}
+
+    common_clip_scale = None
+    if common_clip:
+        probe, probe_info = stepped_copy(
+            model, anchor, anchor_has_plan, batch, args, anchor_coef,
+            base_variant, optimizer_state, "full",
+        )
+        if probe is None:
+            return {"available": False, "variant": variant, **probe_info}
+        common_clip_scale = float(probe_info["clip_scale_applied"])
+        del probe
+
     for arm in NEXT_UPDATE_ARMS:
         stepped, info = stepped_copy(
             model, anchor, anchor_has_plan, batch, args, anchor_coef,
-            variant, optimizer_state, arm,
+            base_variant, optimizer_state, arm, common_clip_scale,
         )
         arms[arm] = info
         if stepped is not None:
@@ -1008,11 +1114,12 @@ def counterfactual_next_update(
         return {"available": False, "variant": variant, **arms["full"]}
 
     read = {arm: read_out(stepped, fixed) for arm, stepped in models.items()}
-    identity = arm_identity_check(models, read, fixed)
+    coupling = shared_clip_coupling(models, read, fixed, arms)
     comparisons = {}
     for left, right in (
         ("full", "no_value"),
         ("full", "full_detached_value"),
+        ("full_detached_value", "no_value"),
     ):
         if left in read and right in read:
             comparisons[f"{left}_vs_{right}"] = difference(read[right], read[left], fixed)
@@ -1022,8 +1129,9 @@ def counterfactual_next_update(
     return {
         "available": True,
         "variant": variant,
-        "sound": bool(identity["passed"]),
-        "arm_identity_check": identity,
+        "optimizer_variant": base_variant,
+        "common_clip_scale": common_clip_scale,
+        "shared_clip_coupling": coupling,
         "arms": arms,
         "comparisons": comparisons,
         "census": {
