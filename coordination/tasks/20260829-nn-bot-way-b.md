@@ -662,3 +662,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   bots' reproduction, not patched quietly. Also noted: `ppo-yt-a2` was preempted ~05:55Z and restarted from scratch (no
   resume); its 17-hour limit means it dies at ~19:55Z around 50 M decisions — the salvage copy will carry its last
   checkpoint. — coordinator
+- 2026-08-31 08:1xZ: **Gate 0's measurement half delivered by claude_1 in 40 minutes and merged (`8451e144`; 47 tests
+  verified here).** The instrument's r2 redesign (its reviewer's blockers folded): the causal contrast is **FULL vs NO-V** on
+  identical restored moments, with a FULL-detached-V structural control; every before/after network judged on **one common
+  512-position census** (content-hashed); the clone's one-group optimizer detected and reported, not crashed on. The critic
+  calibration scores predictions against **realized** return-to-go from complete games, sliced by turn bucket / map size /
+  seat / row class, nulls where a statistic has no meaning. **The three instrument runs are on the host now** (the clone under
+  G's recipe writing the census — every field checked against G's own start record — then g@500 and h@500 on that census; one
+  correction: the absolute maps path). The calibration runs (the clone, I@1000; argmax + the scope pass) follow. **The VM disk
+  incident ruled**: the volume hit 0 bytes free during the work; claude_1's declared reclamations (its cache, its month-old
+  scratch, and the truncation of codex_1's 258 MB runaway launcher capture, tail saved) are accepted as emergency response;
+  the dataset is intact (its own follow-up); **the open repair — rotation for the launcher captures — goes to the owner's
+  queue** (their launcher). codex_1's telemetry half is still pending; the entropy-zero arm waits on it. — coordinator
