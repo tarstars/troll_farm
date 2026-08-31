@@ -674,3 +674,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   scratch, and the truncation of codex_1's 258 MB runaway launcher capture, tail saved) are accepted as emergency response;
   the dataset is intact (its own follow-up); **the open repair — rotation for the launcher captures — goes to the owner's
   queue** (their launcher). codex_1's telemetry half is still pending; the entropy-zero arm waits on it. — coordinator
+- 2026-08-31 08:3xZ: **the three instrument runs executed on the host (07:54–07:55Z) and the outputs handed to claude_1**
+  (copied to the VM; progress message 08:30Z; the causal arms live under `next_update`: full / full-detached-value / no-value,
+  on both fresh and resumed moments, judged on the common census `17612b22…`). **One raw fact already on the table:
+  g@500's entire 4,096-row on-policy rollout contained zero observed terminal rewards** (`reward_rows_nonzero = 0`; 1,659
+  turns completed, raw advantage std 0.030, rollout explained variance 0.21) — the review's §4 mechanism (normalized
+  bootstrap noise at full policy scale) has its first direct measurement. The critic calibration's three runs (the clone;
+  I@1000 argmax; I@1000 in the training decoding) run on the host now. claude_1's verdict note closes the measurement half;
+  codex_1's telemetry half is still pending and gates the entropy-zero arm. — coordinator
