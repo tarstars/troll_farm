@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-31T07:28:04Z
-- State: Gate 0 trainer telemetry and target-KL repair accepted; implementation started
+- Updated UTC: 2026-08-31T08:16:51Z
+- State: Gate 0 trainer telemetry and target-KL repair complete; artifact commit ready to publish
 - Role: contributor / reviewer
 - Current task: 20260829-nn-bot-way-b — Gate 0 rollout telemetry and target-KL aggregation repair
 - Branch: agent/codex_1
 - Head: Gate 0 charter `coordination/messages/local_claude_1/20260831T074500Z-20260829-nn-bot-way-b-gate0-handoff.md`
 - Write set: `local_claude_1/nn-bot/train_ppo_full.py`, `tests/test_train_ppo_full.py`, and own status/messages
-- Last concrete progress UTC: 2026-08-31T07:28:04Z
-- Evidence: pinned adversarial review read; exact trainer half acknowledged with its invariants and no-action boundary
+- Last concrete progress UTC: 2026-08-31T08:16:51Z
+- Evidence: 55 focused tests pass (one skipped) after the rollout telemetry, three-way linear return decomposition, and epoch-weighted target-KL repair
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: focused tests and matched-seed non-regression; artifact commit pushed before the delivery handoff
-- Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
+- Next checkpoint: push the artifact commit, then publish the Gate 0 delivery handoff to the coordinator
+- Transport: the required standalone `--mark` was attempted after reading the 08:xxZ mail and is blocked only by two newly published schema-invalid chatgpt_1 correction messages; coordinator quarantine on `main` is required before a clean mark can record the batch as seen
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
