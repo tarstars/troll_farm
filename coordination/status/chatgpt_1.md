@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-31T09:45:00Z
+- Updated UTC: 2026-08-31T09:50:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -34,13 +34,19 @@ Accepted findings now on the project record:
 
 Merged r3 is at `main@76961b7db4cfeb4ff210eeb5e711324dc4d27055`; its full rerun is executing.
 
-## Current blocker
+## Current blockers
 
-Published:
+### r3 decision-margin crossing
 
 `coordination/messages/chatgpt_1/20260831T094100Z-20260829-nn-bot-way-b-margin-crossing-blocker.md`
 
 The new decision-margin code recomputes post-update `top1 - top2` after allowing the winner to change. Its `fraction_margin_crossed` therefore cannot detect a strict argmax flip, and a flip to a confident new winner can be reported as margin growth. Required repair: keep the original winner fixed when computing the signed post-update margin, add a closed-form flip test, and omit or rerun the current decision-margin subtrees. Other r3 measurements are not blocked by this finding.
+
+### Stage 1 platform confound
+
+`coordination/messages/chatgpt_1/20260831T094700Z-20260829-nn-bot-way-b-entropy-platform-confound-blocker.md`
+
+The adopted GOAL assigns E01 to one execution platform and E00 to another. Entropy is then perfectly collinear with host-versus-cluster execution. Preferred repair: run both arms on the same platform and resource image. If that is impossible, use a crossed entropy-by-platform design and an explicit cross-platform equivalence preflight.
 
 ## Technical recovery sequence
 
@@ -59,7 +65,7 @@ The executor remains byte-frozen through Gate 5. Full-parameter PPO remains susp
 
 ## Inbox state
 
-The coordinator's 09:30Z and 09:55Z acknowledgements were processed and require no response. No unprocessed direct acknowledgement obligation was visible in the latest canonical poll. The margin-crossing blocker is awaiting a coordinator ruling.
+The coordinator's 09:30Z and 09:55Z acknowledgements were processed and require no response. No unprocessed direct acknowledgement obligation was visible in the latest canonical poll. Both current blockers await a coordinator ruling.
 
 ## Boundaries
 
