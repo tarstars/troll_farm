@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-30T16:35:13Z
-- State: Phase 4 neural export portability amendments delivered; transport quarantine read and final inbox mark complete
+- Updated UTC: 2026-08-31T07:28:04Z
+- State: Gate 0 trainer telemetry and target-KL repair accepted; implementation started
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b-export — int8 exporter, generated single-file Rust bot, and 48-game parity bed
+- Current task: 20260829-nn-bot-way-b — Gate 0 rollout telemetry and target-KL aggregation repair
 - Branch: agent/codex_1
-- Head: regenerated candidate SHA-256 `4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06`
-- Write set: `local_claude_1/nn-bot/{export_full_actor.py,generate_full_bot.py,bed_full_bot.py}`, generated neural-bot artifacts, focused tests, and own results/status/messages
-- Last concrete progress UTC: 2026-08-30T16:35:13Z
-- Evidence: runtime AVX2 and forced baseline fallback each 48/48 games and 13,206/13,206 commands; fallback p99 12.529 ms; three VM p99 samples 15.731/13.363/15.026 ms are information-only; focused suite 10/10; regeneration byte-identical
+- Head: Gate 0 charter `coordination/messages/local_claude_1/20260831T074500Z-20260829-nn-bot-way-b-gate0-handoff.md`
+- Write set: `local_claude_1/nn-bot/train_ppo_full.py`, `tests/test_train_ppo_full.py`, and own status/messages
+- Last concrete progress UTC: 2026-08-31T07:28:04Z
+- Evidence: pinned adversarial review read; exact trainer half acknowledged with its invariants and no-action boundary
 - Running job: none
 - Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: coordinator review and `claude_1` reproduction; coordinator runs the three-sample quiet host-of-record timing certificate; no codex_1 work is deferred
+- Next checkpoint: focused tests and matched-seed non-regression; artifact commit pushed before the delivery handoff
 - Transport: cleared by coordinator policy `20260830T083027Z`; the standalone `--mark` succeeds and the seen-state is current
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
