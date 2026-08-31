@@ -686,9 +686,9 @@ def rollout_credit_telemetry(
         reconstructed_magnitude = float(np.abs(reconstruction[keep]).sum())
         result[label] = {
             "rows": int(keep.sum()),
-            # A zero-margin terminal still counts: its real observed terminal reward is 0.
-            "terminal_rows": int((keep & (dones > 0)).sum()),
-            "reward_rows_nonzero": int(np.count_nonzero(rewards[keep])),
+            # An event can have zero margin; shaping can reward a nonterminal row.
+            "terminal_event_rows": int((keep & (dones > 0)).sum()),
+            "observed_nonzero_reward_rows": int(np.count_nonzero(rewards[keep])),
             "terminal_traced_fraction": (
                 float(reaches[keep].mean()) if raw.size else None
             ),

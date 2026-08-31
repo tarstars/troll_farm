@@ -245,10 +245,10 @@ def test_terminal_trace_census_walks_turns_and_the_rollout_cut() -> None:
 
     assert reaches[:, 0].tolist() == [True, True, True, True, True]
     assert distance[:, 0].tolist() == pytest.approx([1.0, 1.0, 0.0, 0.0, 0.0])
-    assert telemetry["plan"]["terminal_rows"] == 0
-    assert telemetry["troll"]["terminal_rows"] == 1
-    assert telemetry["plan"]["reward_rows_nonzero"] == 0
-    assert telemetry["troll"]["reward_rows_nonzero"] == 1
+    assert telemetry["plan"]["terminal_event_rows"] == 0
+    assert telemetry["troll"]["terminal_event_rows"] == 1
+    assert telemetry["plan"]["observed_nonzero_reward_rows"] == 0
+    assert telemetry["troll"]["observed_nonzero_reward_rows"] == 1
     assert telemetry["plan"]["terminal_traced_fraction"] == 1.0
     assert telemetry["troll"]["terminal_traced_fraction"] == 1.0
     assert telemetry["plan"]["terminal_distance_turns"] == pytest.approx(0.5)
@@ -265,6 +265,36 @@ def test_terminal_trace_census_walks_turns_and_the_rollout_cut() -> None:
     )
     assert not bool(cut_reaches.any())
     assert bool(np.isnan(cut_distance).all())
+
+
+def test_rollout_credit_keeps_terminal_events_and_observed_rewards_separate() -> None:
+    """A zero-margin terminal is still an event; shaping can reward a live row."""
+
+    rewards = np.array([[0.25], [0.0]], dtype=np.float32)
+    values = np.zeros((2, 1), dtype=np.float32)
+    dones = np.array([[0.0], [1.0]], dtype=np.float32)
+    boundary = np.ones((2, 1), dtype=np.uint8)
+    phase = np.array([[tpf.PHASE_PLAN], [tpf.PHASE_TROLL]], dtype=np.int64)
+    bootstrap = np.zeros(1, dtype=np.float32)
+    advantages, _ = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, 0.99, 0.95
+    )
+    telemetry = tpf.rollout_credit_telemetry(
+        rewards,
+        values,
+        dones,
+        boundary,
+        bootstrap,
+        phase,
+        advantages,
+        0.99,
+        0.95,
+    )
+
+    assert telemetry["plan"]["terminal_event_rows"] == 0
+    assert telemetry["plan"]["observed_nonzero_reward_rows"] == 1
+    assert telemetry["troll"]["terminal_event_rows"] == 1
+    assert telemetry["troll"]["observed_nonzero_reward_rows"] == 0
 
 
 def test_epoch_kl_is_row_weighted_and_the_guard_ignores_the_last_batch_alone() -> None:
@@ -863,8 +893,8 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
         for row_class in ("plan", "troll"):
             assert set(row["rollout_credit"][row_class]) == {
                 "rows",
-                "terminal_rows",
-                "reward_rows_nonzero",
+                "terminal_event_rows",
+                "observed_nonzero_reward_rows",
                 "terminal_traced_fraction",
                 "terminal_distance_turns",
                 "raw_advantage_mean",
