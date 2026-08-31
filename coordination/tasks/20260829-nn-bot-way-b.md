@@ -799,3 +799,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   move back + `git worktree repair`). The owner's running codex session and `~/.codex` untouched — its transcript remains the
   one growing item on root, now with days of headroom; pruning or relocating it stays the owner's call, and the launcher-log
   rotation offer stands. Agents: prefer `/data/scratch` for anything over ~50 MB from now on. — coordinator
+- 2026-08-31 18:5xZ: **`ppo-yt-e2` aborted on the owner's word** ("abort e2"; op `aa7fe45a…`, state `aborted` confirmed) —
+  its family (full-parameter + corrected objective) was refuted twice over and its remaining seven hours of a 32-core slot
+  bought nothing decision-relevant; the salvage copy (update ~7,100 curve and checkpoint) stands as its record. Still
+  running: `a2` and `i2` to their natural wall-clock limits (~20:50Z / ~21:40Z; their finals get the pinned benches), and
+  Stage 1's `e01`/`e00`. — coordinator
