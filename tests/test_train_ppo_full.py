@@ -146,6 +146,185 @@ def test_gae_with_discount_one_everywhere_is_the_undiscounted_sum() -> None:
     assert returns[:, 0] == pytest.approx([6.0, 5.0, 3.0], rel=1e-6)
 
 
+def test_return_target_decomposition_matches_gae_closed_form() -> None:
+    """Three linear counterfactuals reconstruct the exact hand-worked GAE target."""
+
+    gamma, lam = 0.9, 0.8
+    rewards = np.array([[2.0], [0.0], [5.0]], dtype=np.float32)
+    values = np.array([[1.0], [3.0], [-2.0]], dtype=np.float32)
+    dones = np.zeros((3, 1), dtype=np.float32)
+    boundary = np.array([[1], [0], [1]], dtype=np.uint8)
+    bootstrap = np.array([7.0], dtype=np.float32)
+    _, returns = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, gamma, lam
+    )
+    observed, edge_bootstrap, intermediate_value = tpf.decompose_return_targets(
+        rewards, values, dones, boundary, bootstrap, gamma, lam
+    )
+
+    assert observed[:, 0] == pytest.approx([5.6, 5.0, 5.0], rel=1e-6)
+    assert edge_bootstrap[:, 0] == pytest.approx([4.536, 6.3, 6.3], rel=1e-6)
+    assert intermediate_value[:, 0] == pytest.approx([0.54, 0.0, 0.0], rel=1e-6)
+    assert observed + edge_bootstrap + intermediate_value == pytest.approx(
+        returns, rel=1e-6
+    )
+
+
+def test_return_target_decomposition_reports_cancellation_and_every_critic_path() -> None:
+    """A lambda-shortened trace has an intermediate critic term, not just an edge value."""
+
+    gamma, lam = 0.9, 0.5
+    rewards = np.array([[-3.0], [1.0]], dtype=np.float32)
+    values = np.array([[0.0], [-2.0]], dtype=np.float32)
+    dones = np.zeros((2, 1), dtype=np.float32)
+    boundary = np.ones((2, 1), dtype=np.uint8)
+    bootstrap = np.array([4.0], dtype=np.float32)
+    phase = np.array([[tpf.PHASE_PLAN], [tpf.PHASE_TROLL]], dtype=np.int64)
+    advantages, returns = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, gamma, lam
+    )
+    reward, edge, intermediate = tpf.decompose_return_targets(
+        rewards, values, dones, boundary, bootstrap, gamma, lam
+    )
+    telemetry = tpf.rollout_credit_telemetry(
+        rewards,
+        values,
+        dones,
+        boundary,
+        bootstrap,
+        phase,
+        advantages,
+        gamma,
+        lam,
+    )
+
+    assert reward + edge + intermediate == pytest.approx(returns, rel=1e-6)
+    assert edge[:, 0] == pytest.approx([1.62, 3.6], rel=1e-6)
+    assert intermediate[:, 0] == pytest.approx([-0.9, 0.0], rel=1e-6)
+    assert telemetry["plan"]["intermediate_value_component_abs_sum"] == pytest.approx(
+        0.9
+    )
+    assert telemetry["plan"]["edge_bootstrap_component_abs_sum"] == pytest.approx(1.62)
+    assert telemetry["plan"]["component_cancellation_fraction"] > 0.0
+    assert telemetry["plan"]["linearity_max_abs_error"] == pytest.approx(0.0, abs=1e-6)
+
+
+def test_terminal_trace_census_walks_turns_and_the_rollout_cut() -> None:
+    """Closed-form Gate-0 walker: terminal reach and distance are per episode and buffer."""
+
+    rewards = np.array([[0.0], [0.0], [0.0], [0.0], [6.0]], dtype=np.float32)
+    values = np.zeros((5, 1), dtype=np.float32)
+    dones = np.array([[0.0], [0.0], [0.0], [0.0], [1.0]], dtype=np.float32)
+    boundary = np.array([[0], [1], [0], [0], [1]], dtype=np.uint8)
+    phase = np.array(
+        [
+            [tpf.PHASE_PLAN],
+            [tpf.PHASE_TROLL],
+            [tpf.PHASE_PLAN],
+            [tpf.PHASE_TROLL],
+            [tpf.PHASE_TROLL],
+        ],
+        dtype=np.int64,
+    )
+    bootstrap = np.array([123.0], dtype=np.float32)  # terminal cuts this completely
+    advantages, _ = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, 0.9, 0.5
+    )
+    reaches, distance = tpf.terminal_trace_census(dones, boundary, 0.9, 0.5)
+    telemetry = tpf.rollout_credit_telemetry(
+        rewards,
+        values,
+        dones,
+        boundary,
+        bootstrap,
+        phase,
+        advantages,
+        0.9,
+        0.5,
+    )
+
+    assert reaches[:, 0].tolist() == [True, True, True, True, True]
+    assert distance[:, 0].tolist() == pytest.approx([1.0, 1.0, 0.0, 0.0, 0.0])
+    assert telemetry["plan"]["terminal_event_rows"] == 0
+    assert telemetry["troll"]["terminal_event_rows"] == 1
+    assert telemetry["plan"]["observed_nonzero_reward_rows"] == 0
+    assert telemetry["troll"]["observed_nonzero_reward_rows"] == 1
+    assert telemetry["plan"]["terminal_traced_fraction"] == 1.0
+    assert telemetry["troll"]["terminal_traced_fraction"] == 1.0
+    assert telemetry["plan"]["terminal_distance_turns"] == pytest.approx(0.5)
+    assert telemetry["troll"]["terminal_distance_turns"] == pytest.approx(1.0 / 3.0)
+    assert telemetry["plan"]["bootstrap_share"] == 0.0
+    assert telemetry["troll"]["bootstrap_share"] == 0.0
+
+    # With no terminal in the stored rows, the rollout edge is an absolute cut.
+    cut_reaches, cut_distance = tpf.terminal_trace_census(
+        np.zeros((3, 1), dtype=np.float32),
+        np.ones((3, 1), dtype=np.uint8),
+        1.0,
+        1.0,
+    )
+    assert not bool(cut_reaches.any())
+    assert bool(np.isnan(cut_distance).all())
+
+
+def test_rollout_credit_keeps_terminal_events_and_observed_rewards_separate() -> None:
+    """A zero-margin terminal is still an event; shaping can reward a live row."""
+
+    rewards = np.array([[0.25], [0.0]], dtype=np.float32)
+    values = np.zeros((2, 1), dtype=np.float32)
+    dones = np.array([[0.0], [1.0]], dtype=np.float32)
+    boundary = np.ones((2, 1), dtype=np.uint8)
+    phase = np.array([[tpf.PHASE_PLAN], [tpf.PHASE_TROLL]], dtype=np.int64)
+    bootstrap = np.zeros(1, dtype=np.float32)
+    advantages, _ = tpf.compute_gae(
+        rewards, values, dones, boundary, bootstrap, 0.99, 0.95
+    )
+    telemetry = tpf.rollout_credit_telemetry(
+        rewards,
+        values,
+        dones,
+        boundary,
+        bootstrap,
+        phase,
+        advantages,
+        0.99,
+        0.95,
+    )
+
+    assert telemetry["plan"]["terminal_event_rows"] == 0
+    assert telemetry["plan"]["observed_nonzero_reward_rows"] == 1
+    assert telemetry["troll"]["terminal_event_rows"] == 1
+    assert telemetry["troll"]["observed_nonzero_reward_rows"] == 0
+
+
+def test_epoch_kl_is_row_weighted_and_the_guard_ignores_the_last_batch_alone() -> None:
+    """One small hot last minibatch cannot replace the aggregate epoch reading."""
+
+    epoch = tpf.EpochKlAccumulator()
+    epoch.add(torch.full((99,), 0.01))
+    epoch.add(torch.tensor([0.9]))
+    assert epoch.count == 100
+    assert epoch.mean == pytest.approx(0.0189)
+    assert epoch.maximum == pytest.approx(0.9)
+    assert not tpf.target_kl_exceeded(0.03, epoch)
+
+    epoch.add(torch.full((100,), 0.1))
+    assert tpf.target_kl_exceeded(0.03, epoch)
+
+
+def test_plan_critic_kl_samples_exclude_troll_rows() -> None:
+    old = torch.zeros(4)
+    new = torch.tensor([0.1, 0.2, 1.0, 2.0])
+    phase = torch.tensor(
+        [tpf.PHASE_PLAN, tpf.PHASE_TROLL, tpf.PHASE_PLAN, tpf.PHASE_TROLL]
+    )
+    staged = tpf.policy_kl_samples(new, old, phase, "plan-critic")
+    full = tpf.policy_kl_samples(new, old, phase, "all")
+    expected = (new.exp() - 1.0) - new
+    assert torch.equal(staged, expected[[0, 2]])
+    assert torch.equal(full, expected)
+
+
 # ------------------------------------------------- the 400-plan vocabulary (card amendment 8)
 
 
@@ -698,6 +877,8 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
             "value_loss",
             "entropy",
             "approx_kl",
+            "approx_kl_mean",
+            "approx_kl_max",
             "mean_episode_return",
             "mean_referee_margin",
             "win_rate",
@@ -706,6 +887,29 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
         ):
             assert key in row
         assert row["turn_steps_per_second"] > 0
+        assert row["approx_kl"] == row["approx_kl_mean"]
+        assert row["approx_kl_max"] >= row["approx_kl_mean"] >= 0.0
+        assert set(row["rollout_credit"]) == {"plan", "troll"}
+        for row_class in ("plan", "troll"):
+            assert set(row["rollout_credit"][row_class]) == {
+                "rows",
+                "terminal_event_rows",
+                "observed_nonzero_reward_rows",
+                "terminal_traced_fraction",
+                "terminal_distance_turns",
+                "raw_advantage_mean",
+                "raw_advantage_std",
+                "raw_advantage_p10",
+                "raw_advantage_p90",
+                "reward_component_abs_sum",
+                "edge_bootstrap_component_abs_sum",
+                "intermediate_value_component_abs_sum",
+                "critic_component_abs_sum",
+                "critic_component_fraction",
+                "bootstrap_share",
+                "component_cancellation_fraction",
+                "linearity_max_abs_error",
+            }
 
     checkpoint_path = tmp_path / "smoke-update000002.pt"
     assert checkpoint_path.exists()

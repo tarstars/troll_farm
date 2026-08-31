@@ -115,6 +115,26 @@ the value loss. The log exposes the plan-head and critic pre-clip gradient norms
 clip multiplier, because the shared clip is the remaining coupling between those two trainable
 heads.
 
+Gate-0 credit and trust-region telemetry
+----------------------------------------
+Every update logs one `rollout_credit` object split into `plan` and `troll` rows. The raw
+advantages are measured before minibatch normalization. A reverse per-environment walk marks a
+row only when the actual GAE recurrence can still reach a terminal row inside this rollout, and
+counts the intervening completed game turns. The return target is also decomposed exactly under
+the same recurrence into three linear counterfactuals: observed reward, the final buffer-edge
+bootstrap, and intermediate stored critic values. `bootstrap_share` (also named
+`critic_component_fraction`) is
+`sum(abs(edge_bootstrap + intermediate_value)) / (that + sum(abs(observed_reward)))` over the
+named row class. This magnitude ratio stays in `[0, 1]` even when the signed components cancel;
+the log retains each magnitude and the cancellation fraction so the aggregate cannot hide where
+the critic contribution came from.
+
+The target-KL guard is an epoch statistic, not a reading of whichever minibatch happened to run
+last. The code accumulates the approximate policy KL for every contributing row in the epoch,
+PLAN rows only under `--train-scope plan-critic`, logs the row-weighted mean and the largest row,
+and applies `--target-kl` to that aggregate mean. The legacy `approx_kl` field remains and emits
+that same mean.
+
 The plan vocabulary carries one generation id, `PLAN_VOCAB_VERSION` (amendment 8). It is written
 into every checkpoint's config, checked against the environment's `plan_version()` at start, and
 checked when a checkpoint or an anchor is loaded -- a mismatch raises, because the same plan index
@@ -522,6 +542,228 @@ def compute_gae(
         last = delta + trace_factor * nonterminal * last
         advantages[index] = last
     return advantages, advantages + values
+
+
+def decompose_return_targets(
+    rewards: np.ndarray,
+    values: np.ndarray,
+    dones: np.ndarray,
+    turn_boundary: np.ndarray,
+    next_value: np.ndarray,
+    gamma: float,
+    gae_lambda: float,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Linearly split a GAE target into reward, edge-bootstrap, and critic-value terms.
+
+    `compute_gae` is linear in `rewards`, stored `values`, and the final `next_value`. Keeping
+    the three direct counterfactual passes instead of an algebraic shortcut makes that fact
+    executable and distinguishes critic dependence at *every* temporal-difference step from the
+    final buffer-edge bootstrap. The three returned target arrays sum to the regular GAE return
+    to float32 tolerance:
+
+    * ``reward_component``: actual rewards, with all critic inputs set to zero;
+    * ``edge_bootstrap_component``: only ``next_value`` at the rollout boundary;
+    * ``intermediate_value_component``: only stored critic values in the buffer.
+
+    At an episode end the normal GAE recurrence cuts all three future paths. This is a diagnostic
+    only: it never changes the advantages or targets used for training.
+    """
+
+    zero_rewards = np.zeros_like(rewards, dtype=np.float32)
+    zero_values = np.zeros_like(values, dtype=np.float32)
+    zero_next_value = np.zeros_like(next_value, dtype=np.float32)
+    _, reward_component = compute_gae(
+        rewards,
+        zero_values,
+        dones,
+        turn_boundary,
+        zero_next_value,
+        gamma,
+        gae_lambda,
+    )
+    _, edge_bootstrap_component = compute_gae(
+        zero_rewards,
+        zero_values,
+        dones,
+        turn_boundary,
+        next_value,
+        gamma,
+        gae_lambda,
+    )
+    _, intermediate_value_component = compute_gae(
+        zero_rewards,
+        values,
+        dones,
+        turn_boundary,
+        zero_next_value,
+        gamma,
+        gae_lambda,
+    )
+    return reward_component, edge_bootstrap_component, intermediate_value_component
+
+
+def terminal_trace_census(
+    dones: np.ndarray,
+    turn_boundary: np.ndarray,
+    gamma: float,
+    gae_lambda: float,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Return `(reaches_terminal, distance_in_game_turns)` for every rollout row.
+
+    The reverse walk is per environment. It stops at the rollout edge, at an episode boundary,
+    or wherever the actual GAE trace factor is zero. Rows in the terminal turn have distance
+    zero; crossing an executing mini-step into the next turn adds one.
+    """
+
+    steps, envs = dones.shape
+    reaches = np.zeros((steps, envs), dtype=bool)
+    distance = np.full((steps, envs), np.nan, dtype=np.float32)
+    turn_trace = np.float32(gamma) * np.float32(gae_lambda)
+    for env_index in range(envs):
+        for index in reversed(range(steps)):
+            if dones[index, env_index] > 0:
+                reaches[index, env_index] = True
+                distance[index, env_index] = 0.0
+                continue
+            if index == steps - 1 or not reaches[index + 1, env_index]:
+                continue
+            crossing = turn_boundary[index, env_index] > 0
+            trace_factor = turn_trace if crossing else np.float32(1.0)
+            if trace_factor == 0:
+                continue
+            reaches[index, env_index] = True
+            distance[index, env_index] = distance[index + 1, env_index] + float(crossing)
+    return reaches, distance
+
+
+def rollout_credit_telemetry(
+    rewards: np.ndarray,
+    values: np.ndarray,
+    dones: np.ndarray,
+    turn_boundary: np.ndarray,
+    next_value: np.ndarray,
+    phase: np.ndarray,
+    advantages: np.ndarray,
+    gamma: float,
+    gae_lambda: float,
+) -> dict[str, dict[str, float | int | None]]:
+    """Gate-0 rollout measurements, separately for PLAN and TROLL policy rows."""
+
+    (
+        reward_component,
+        edge_bootstrap_component,
+        intermediate_value_component,
+    ) = decompose_return_targets(
+        rewards,
+        values,
+        dones,
+        turn_boundary,
+        next_value,
+        gamma,
+        gae_lambda,
+    )
+    critic_component = edge_bootstrap_component + intermediate_value_component
+    full_return = advantages + values
+    reconstruction = reward_component + critic_component
+    reaches, terminal_distance = terminal_trace_census(
+        dones, turn_boundary, gamma, gae_lambda
+    )
+    result: dict[str, dict[str, float | int | None]] = {}
+    for label, phase_id in (("plan", PHASE_PLAN), ("troll", PHASE_TROLL)):
+        keep = phase == phase_id
+        raw = advantages[keep]
+        traced = keep & reaches
+        edge_bootstrap_magnitude = float(np.abs(edge_bootstrap_component[keep]).sum())
+        intermediate_value_magnitude = float(
+            np.abs(intermediate_value_component[keep]).sum()
+        )
+        critic_magnitude = float(np.abs(critic_component[keep]).sum())
+        reward_magnitude = float(np.abs(reward_component[keep]).sum())
+        source_magnitude = critic_magnitude + reward_magnitude
+        component_magnitude = (
+            reward_magnitude + edge_bootstrap_magnitude + intermediate_value_magnitude
+        )
+        reconstructed_magnitude = float(np.abs(reconstruction[keep]).sum())
+        result[label] = {
+            "rows": int(keep.sum()),
+            # An event can have zero margin; shaping can reward a nonterminal row.
+            "terminal_event_rows": int((keep & (dones > 0)).sum()),
+            "observed_nonzero_reward_rows": int(np.count_nonzero(rewards[keep])),
+            "terminal_traced_fraction": (
+                float(reaches[keep].mean()) if raw.size else None
+            ),
+            "terminal_distance_turns": (
+                float(terminal_distance[traced].mean()) if bool(traced.any()) else None
+            ),
+            "raw_advantage_mean": float(raw.mean()) if raw.size else None,
+            "raw_advantage_std": float(raw.std()) if raw.size else None,
+            "raw_advantage_p10": float(np.quantile(raw, 0.10)) if raw.size else None,
+            "raw_advantage_p90": float(np.quantile(raw, 0.90)) if raw.size else None,
+            "reward_component_abs_sum": reward_magnitude,
+            "edge_bootstrap_component_abs_sum": edge_bootstrap_magnitude,
+            "intermediate_value_component_abs_sum": intermediate_value_magnitude,
+            "critic_component_abs_sum": critic_magnitude,
+            "critic_component_fraction": (
+                critic_magnitude / source_magnitude if source_magnitude > 0 else None
+            ),
+            # Kept for Gate 0's chartered field name; this is the total critic contribution.
+            "bootstrap_share": (
+                critic_magnitude / source_magnitude if source_magnitude > 0 else None
+            ),
+            "component_cancellation_fraction": (
+                max(0.0, 1.0 - reconstructed_magnitude / component_magnitude)
+                if component_magnitude > 0
+                else None
+            ),
+            "linearity_max_abs_error": (
+                float(np.abs(full_return[keep] - reconstruction[keep]).max())
+                if raw.size
+                else None
+            ),
+        }
+    return result
+
+
+def policy_kl_samples(
+    new_logprob: torch.Tensor,
+    old_logprob: torch.Tensor,
+    phase: torch.Tensor,
+    train_scope: str,
+) -> torch.Tensor:
+    """Per-contributing-row approximate KL samples for the epoch trust-region guard."""
+
+    keep = phase == PHASE_PLAN if train_scope == "plan-critic" else torch.ones_like(
+        phase, dtype=torch.bool
+    )
+    log_ratio = new_logprob[keep] - old_logprob[keep]
+    return (log_ratio.exp() - 1.0) - log_ratio
+
+
+class EpochKlAccumulator:
+    """Row-weighted mean and row maximum of minibatch approximate-KL samples."""
+
+    def __init__(self) -> None:
+        self.count = 0
+        self.total = 0.0
+        self.maximum = 0.0
+
+    def add(self, samples: torch.Tensor) -> None:
+        if samples.numel() == 0:
+            return
+        detached = samples.detach()
+        self.count += detached.numel()
+        self.total += float(detached.double().sum())
+        self.maximum = max(self.maximum, float(detached.max()))
+
+    @property
+    def mean(self) -> float:
+        return self.total / self.count if self.count else 0.0
+
+
+def target_kl_exceeded(target_kl: float, epoch_kl: EpochKlAccumulator) -> bool:
+    """Whether the row-weighted epoch mean, not the last minibatch, crosses the guard."""
+
+    return target_kl > 0 and epoch_kl.mean > target_kl
 
 
 # --------------------------------------------------------------------------- self-play opponent
@@ -1203,12 +1445,24 @@ def train(args) -> dict:
                     torch.from_numpy(np.ascontiguousarray(env.obs)).to(device),
                     torch.from_numpy(phase_np.astype(np.int64)).to(device),
                 )
+            bootstrap_np = bootstrap.cpu().numpy()
             advantages, returns = compute_gae(
                 buffer.rewards,
                 buffer.values,
                 buffer.dones,
                 buffer.turn_boundary,
-                bootstrap.cpu().numpy(),
+                bootstrap_np,
+                args.gamma,
+                args.gae_lambda,
+            )
+            credit_telemetry = rollout_credit_telemetry(
+                buffer.rewards,
+                buffer.values,
+                buffer.dones,
+                buffer.turn_boundary,
+                bootstrap_np,
+                buffer.phase,
+                advantages,
                 args.gamma,
                 args.gae_lambda,
             )
@@ -1222,7 +1476,8 @@ def train(args) -> dict:
 
             indices = np.arange(buffer.size)
             clip_fractions: list[float] = []
-            approx_kl = 0.0
+            approx_kl_mean = 0.0
+            approx_kl_max = 0.0
             policy_loss_value = value_loss_value = entropy_value = 0.0
             anchor_loss_value = anchor_agreement_value = None
             plan_grad_norms: list[float] = []
@@ -1230,6 +1485,7 @@ def train(args) -> dict:
             joint_clip_multipliers: list[float] = []
             epochs_run = 0
             for epoch in range(args.update_epochs):
+                epoch_kl = EpochKlAccumulator()
                 rng.shuffle(indices)
                 for start in range(0, buffer.size, args.minibatch_size):
                     rows = indices[start : start + args.minibatch_size]
@@ -1250,7 +1506,7 @@ def train(args) -> dict:
                         (
                             policy_loss,
                             entropy_loss,
-                            approx_kl,
+                            _minibatch_kl_mean,
                             clip_fraction,
                         ) = plan_critic_policy_terms(
                             new_logprob,
@@ -1269,7 +1525,9 @@ def train(args) -> dict:
                         log_ratio = new_logprob - mb_old_logprobs
                         ratio = log_ratio.exp()
                         with torch.no_grad():
-                            approx_kl = float(((ratio - 1.0) - log_ratio).mean())
+                            _minibatch_kl_mean = float(
+                                ((ratio - 1.0) - log_ratio).mean()
+                            )
                             clip_fractions.append(
                                 float(
                                     ((ratio - 1.0).abs() > args.clip_coef).float().mean()
@@ -1284,6 +1542,15 @@ def train(args) -> dict:
                             * ratio.clamp(1.0 - args.clip_coef, 1.0 + args.clip_coef),
                         ).mean()
                         entropy_loss = entropy.mean()
+                    with torch.no_grad():
+                        epoch_kl.add(
+                            policy_kl_samples(
+                                new_logprob,
+                                mb_old_logprobs,
+                                mb_phase,
+                                args.train_scope,
+                            )
+                        )
                     value_loss = 0.5 * (
                         new_value - torch.from_numpy(flat_returns[rows]).to(device)
                     ).pow(2).mean()
@@ -1337,7 +1604,9 @@ def train(args) -> dict:
                     value_loss_value = float(value_loss.detach())
                     entropy_value = float(entropy_loss.detach())
                 epochs_run = epoch + 1
-                if args.target_kl > 0 and approx_kl > args.target_kl:
+                approx_kl_mean = epoch_kl.mean
+                approx_kl_max = epoch_kl.maximum
+                if target_kl_exceeded(args.target_kl, epoch_kl):
                     break
 
             if args.anneal_lr:
@@ -1365,7 +1634,9 @@ def train(args) -> dict:
                 "anchor_coef": coefficient,
                 "anchor_loss": anchor_loss_value,
                 "anchor_agreement": anchor_agreement_value,
-                "approx_kl": approx_kl,
+                "approx_kl": approx_kl_mean,
+                "approx_kl_mean": approx_kl_mean,
+                "approx_kl_max": approx_kl_max,
                 "clip_fraction": float(np.mean(clip_fractions)) if clip_fractions else None,
                 "explained_variance": explained_variance(
                     flat["values"], flat_returns
@@ -1387,6 +1658,7 @@ def train(args) -> dict:
                     float(np.mean([row["turns"] for row in recent])) if recent else None
                 ),
                 "rollout_mid_turn_cut_fraction": mid_turn_cut_fraction,
+                "rollout_credit": credit_telemetry,
                 "plan_step_fraction": float(
                     (buffer.phase == PHASE_PLAN).mean()
                 ),
