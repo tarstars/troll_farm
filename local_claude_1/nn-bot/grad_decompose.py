@@ -982,26 +982,39 @@ def decision_margin_move(
     stayed on the same side of its margin by a hair. The shrink fractions say how close it came,
     and the crossing fraction says how often it went over -- the two agree by construction, since
     the signed margin is non-positive on exactly the rows whose argmax changed.
+
+    chatgpt_1's 10:04Z blocker: a row whose baseline margin is exactly zero was *already* on the
+    boundary before the update, so its non-positive end margin is not evidence that the update
+    pushed it over. Those rows are excluded from the whole analysis population -- `rows`,
+    `argmax_changed_rows`, the mean/median margins, the shrink fractions and the crossing
+    fraction all speak about `start > 0` rows only -- and counted separately as
+    `tied_baseline_rows` so the discarded cases stay visible. The flip cross-check above runs on
+    every row with a margin at all, ties included: excluding a row from the statistic is no
+    reason to stop checking that the two ways of seeing a flip agree.
     """
 
     enough_legal = fixed["legal"].sum(dim=-1) >= 2
     rows = rows_mask & enough_legal
     if not bool(rows.any()):
         return None
-    start = decision_margins(before, fixed)[rows]
-    end = signed_margin_after(before, after)[rows]
-    flipped = (before["choice"] != after["choice"])[rows]
-    if bool(flipped.any()) and not bool((end[flipped] <= 0).all()):
+    start_all = decision_margins(before, fixed)[rows]
+    end_all = signed_margin_after(before, after)[rows]
+    flipped_all = (before["choice"] != after["choice"])[rows]
+    if bool(flipped_all.any()) and not bool((end_all[flipped_all] <= 0).all()):
         raise AssertionError(
             "a row whose argmax changed kept a positive signed margin; the margin statistic and "
             "the flip count disagree, which cannot happen if both are computed correctly"
         )
-    positive = start > 0
-    if not bool(positive.any()):
+    analysed = start_all > 0
+    tied_baseline_rows = int((~analysed).sum())
+    if not bool(analysed.any()):
         return None
-    shrink = ((start - end) / start)[positive]
+    start, end = start_all[analysed], end_all[analysed]
+    flipped = flipped_all[analysed]
+    shrink = (start - end) / start
     return {
-        "rows": int(rows.sum()),
+        "rows": int(analysed.sum()),
+        "tied_baseline_rows": tied_baseline_rows,
         "argmax_changed_rows": int(flipped.sum()),
         "median_margin_before": float(start.median()),
         "mean_margin_before": float(start.mean()),
