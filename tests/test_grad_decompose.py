@@ -838,3 +838,89 @@ def test_an_unknown_variant_suffix_is_an_error() -> None:
     assert gd.parse_next_update_variant("adam-resumed+common-clip") == ("adam-resumed", True)
     with pytest.raises(ValueError):
         gd.parse_next_update_variant("adam-resumed+no-clip")
+
+
+# ---------------------------------------- the decision-margin measure and the minibatch replication
+
+
+def test_every_comparison_carries_a_decision_margin(report: dict) -> None:
+    """An argmax flip sees nothing until a decision changes hands; the margin is the continuous
+    version, and chatgpt_1's 08:40Z point is that a verdict must not rest on flips alone."""
+
+    for block in report["next_update"].values():
+        if not block.get("available"):
+            continue
+        for name, comparison in block["comparisons"].items():
+            margin = comparison["decision_margin"]
+            assert set(margin) == {"plan", "spatial"}, name
+            for row_class in margin.values():
+                if row_class is None:
+                    continue
+                assert row_class["median_margin_before"] >= 0.0
+                for field in (
+                    "fraction_margin_shrank_10_percent",
+                    "fraction_margin_shrank_25_percent",
+                    "fraction_margin_shrank_50_percent",
+                    "fraction_margin_crossed",
+                ):
+                    assert 0.0 <= row_class[field] <= 1.0
+                assert (
+                    row_class["fraction_margin_shrank_50_percent"]
+                    <= row_class["fraction_margin_shrank_25_percent"]
+                    <= row_class["fraction_margin_shrank_10_percent"]
+                )
+
+
+def test_a_network_compared_with_itself_has_moved_no_margin() -> None:
+    """The measure's zero: nothing changed, so nothing came closer to flipping."""
+
+    args = gd.build_parser().parse_args(_argv())
+    device = torch.device("cpu")
+    model, _ = tpf.load_policy(None, device)
+    model.train()
+    rng = __import__("numpy").random.default_rng(args.seed)
+    collected = gd.collect_minibatch(args, model, device, rng)
+    census = gd.build_census(collected["rollout"], int(args.counterfactual_observations), {})
+    fixed = gd.census_tensors(census, device)
+    read = gd.read_out(model, fixed)
+
+    margin = gd.difference(read, read, fixed)["decision_margin"]
+    for row_class in margin.values():
+        if row_class is None:
+            continue
+        assert row_class["mean_margin_change"] == 0.0
+        assert row_class["fraction_margin_shrank_10_percent"] == 0.0
+        assert row_class["fraction_margin_crossed"] == 0.0
+
+
+def test_a_second_minibatch_seed_is_a_different_draw_of_the_same_rollout() -> None:
+    """The replication: same update, other rows. A conclusion that holds only for the rows this
+    update happened to draw is not a conclusion."""
+
+    report = _measure(["--minibatch-seeds", "2", "--next-update-variants", "adam-fresh"])
+    assert report["minibatch"]["minibatch_seeds"] == 2
+    selections = report["minibatch"]["selections"]
+    assert [s["minibatch_index"] for s in selections] == [0, 1]
+    assert report["minibatch"]["rollout_rows"] == report["config"]["num_envs"] * report["config"][
+        "rollout_steps"
+    ]
+
+    replications = report["next_update_replications"]
+    assert len(replications) == 1
+    assert replications[0]["minibatch_index"] == 1
+    replicated = replications[0]["variants"]["adam-fresh"]
+    primary = report["next_update"]["adam-fresh"]
+    assert set(replicated["comparisons"]) == set(primary["comparisons"])
+    # a different draw of the same rollout: the same shape, its own numbers
+    assert replicated["census"]["sha256"] == primary["census"]["sha256"]
+
+
+def test_one_minibatch_seed_leaves_the_report_as_it_was(report: dict) -> None:
+    """The default is unchanged: one selection, no replications, the old fields in place."""
+
+    assert report["minibatch"]["minibatch_seeds"] == 1
+    assert report["next_update_replications"] == []
+    assert report["minibatch"]["minibatch_rows"] > 0
+    assert report["minibatch"]["selections"][0]["minibatch_rows"] == report["minibatch"][
+        "minibatch_rows"
+    ]

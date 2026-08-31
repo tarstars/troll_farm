@@ -244,3 +244,42 @@ print(r['illegal_commands'])"
 
 Tests: `pytest tests/test_grad_decompose.py tests/test_critic_calibration.py` — 38 and 17, all green
 on this machine with torch 2.13.0+cpu.
+
+---
+
+## 6. Instrument r3 — what the closing round added
+
+Delivered against the coordinator's 09:35Z r3 charter, on top of §2's repairs.
+
+**`grad_decompose.py`.** Every comparison now carries `decision_margin` for each row class: the
+median and mean `top1 − top2` margin over legal actions before the step, the mean change in it, and
+the fraction of rows whose margin shrank by 10 %, 25 % and 50 % — plus the fraction that crossed.
+This is chatgpt_1's 08:40Z point made measurable: an argmax count sees nothing until a decision
+changes hands, and "zero flips" can mean every affected row stayed on its side of the line by a
+hair. `--minibatch-seeds N` re-runs the whole next-update counterfactual on a differently shuffled
+minibatch of the *same* rollout, under `next_update_replications` — a conclusion that only holds for
+the rows this update happened to draw is not a conclusion, and no second rollout is collected, so
+the cost is one more set of arms.
+
+**`critic_calibration.py`,** the four repairs from the 08:10Z blocker:
+
+* explained variance now carries its own note that it is invariant to a constant bias, with the
+  test that constructs `predicted = realized + 10` and asserts EV 1 against bias 10;
+* `calibration.reading` says plainly that `realized` is the complete-episode Monte-Carlo return and
+  **not** the truncated λ=0.95 GAE target with a rollout-edge bootstrap that the trainer fitted, so
+  the two are read beside each other rather than one in place of the other;
+* `--cells-out` / `--restrict-to-cells` make the population matched across arms: one complete game
+  per `(map, seat)` cell, and a declared cell that never came up **fails** the run instead of
+  quietly shrinking the sample (`--allow-unmatched-population` waives it and records the shortfall).
+  A game's identity here is its cell, because the environment picks its own maps; predeclaring the
+  seeds themselves needs the environment to accept a map/seat schedule, which is environment-side
+  work and is named as such rather than pretended;
+* `calibration.weightings` reports the same statistics over three populations side by side — every
+  mini-step, one PLAN row per turn, one initial PLAN row per game — so a reader can see how much of
+  a number is long games and large rosters.
+
+`tests/test_grad_decompose.py` 42, `tests/test_critic_calibration.py` 22, all green.
+
+**The geometry.** Runs G and H trained at `--num-envs 128 --rollout-steps 32`; the clone was
+measured at `32 × 128`. Both runbooks are at revision 3 and the clone's census is re-written as
+`census-clone-512-v2.npz`, which runs 2 and 3 then read.

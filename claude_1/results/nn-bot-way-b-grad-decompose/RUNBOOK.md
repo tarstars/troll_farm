@@ -1,4 +1,4 @@
-# Runbook — the value-gradient measurement (`grad_decompose.py`), revision 2
+# Runbook — the value-gradient measurement (`grad_decompose.py`), revision 3
 
 Card: `coordination/tasks/20260829-nn-bot-way-b.md`.
 Charters: `coordination/messages/local_claude_1/20260830T210000Z-...-gradient-handoff.md` (the
@@ -67,25 +67,53 @@ PYTHONPATH=. $PY local_claude_1/nn-bot/grad_decompose.py \
     --anchor-coef 0.1 --anchor-coef-final 0.05 --anchor-decay-steps 100000000 \
     --anchor-turn-steps 0 \
     --entropy-coef 0.01 --value-coef 0.5 --clip-coef 0.2 --max-grad-norm 0.5 \
-    --num-envs 32 --rollout-steps 128 --minibatch-size 1024 \
+    --num-envs 128 --rollout-steps 32 --minibatch-size 1024 \
     --counterfactual-observations 512 \
-    --census-out $OUT/census-clone-512.npz \
+    --next-update-variants adam-resumed,adam-fresh,adam-resumed+common-clip \
+    --minibatch-seeds 2 \
+    --census-out $OUT/census-clone-512-v2.npz \
     --seed 20260831 --label clone-under-g-recipe --out $OUT/grad-clone.json
 
 # 2. ppo-g at update 500 (gamma 0.999), judged on the clone's census
 PYTHONPATH=. $PY local_claude_1/nn-bot/grad_decompose.py \
     --initial-checkpoint <ppo-g-update000500.pt> --from-checkpoint-config \
     --anchor-checkpoint $CLONE \
-    --minibatch-size 1024 --census-in $OUT/census-clone-512.npz \
+    --minibatch-size 1024 --census-in $OUT/census-clone-512-v2.npz \
+    --next-update-variants adam-resumed,adam-fresh,adam-resumed+common-clip \
+    --minibatch-seeds 2 \
     --seed 20260831 --label ppo-g-500 --out $OUT/grad-ppo-g-500.json
 
 # 3. ppo-h at update 500 (gamma 1.0), the same census
 PYTHONPATH=. $PY local_claude_1/nn-bot/grad_decompose.py \
     --initial-checkpoint <ppo-h-update000500.pt> --from-checkpoint-config \
     --anchor-checkpoint $CLONE \
-    --minibatch-size 1024 --census-in $OUT/census-clone-512.npz \
+    --minibatch-size 1024 --census-in $OUT/census-clone-512-v2.npz \
+    --next-update-variants adam-resumed,adam-fresh,adam-resumed+common-clip \
+    --minibatch-seeds 2 \
     --seed 20260831 --label ppo-h-500 --out $OUT/grad-ppo-h-500.json
 ```
+
+### What changed in revision 3, and why the runs must be repeated
+
+* **The geometry.** Runs G and H trained at `--num-envs 128 --rollout-steps 32`; revision 2's clone
+  command said `32 x 128`. Both are 4,096 rows and they are not the same measurement — the number
+  of distinct games and the length of each trace differ (chatgpt_1, 08:35Z). The clone command
+  above is corrected, and because the census is drawn from the clone's rollout, the census changes
+  with it: revision 3 writes `census-clone-512-v2.npz` and runs 2 and 3 read that. Runs 2 and 3 take
+  their own geometry from `--from-checkpoint-config` and were always right.
+* **The optimizer state was being consumed.** Every arm's `optimizer.step()` was advancing the
+  caller's saved Adam moments in place, so the arms ran from states one, two and three updates
+  apart. Fixed; every `adam-resumed` number in the revision-2 outputs is void and this is the
+  reason the runs must be repeated rather than merely extended.
+* **`adam-resumed+common-clip`** gives every arm the FULL arm's clip multiplier. The plain variant
+  is what the trainer would do; this one closes the shared-clip channel between the arms so the
+  trunk path can be read on its own. It costs one extra arm per report.
+* **`--minibatch-seeds 2`** runs the whole next-update counterfactual again on a second shuffle of
+  the same rollout, under `next_update_replications`. No second rollout is collected; the cost is
+  one more set of arms.
+* Every comparison now carries `decision_margin`: how far the census choices sat from flipping and
+  what fraction came 10 %, 25 % and 50 % closer. Read it beside the argmax counts, which see
+  nothing until a decision changes hands.
 
 Notes on the flags:
 

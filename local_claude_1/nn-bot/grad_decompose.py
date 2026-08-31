@@ -502,36 +502,66 @@ def collect_minibatch(args, model, device, rng) -> dict:
     flat_advantages = advantages.reshape(buffer.size)
     flat_returns = returns.reshape(buffer.size)
 
-    indices = np.arange(buffer.size)
-    rng.shuffle(indices)
-    rows = indices[: min(args.minibatch_size, buffer.size)]
+    def select(selection_rng, index: int) -> tuple[dict, dict]:
+        """One shuffled minibatch of this rollout, and what it contains.
 
-    mb_advantages = torch.from_numpy(flat_advantages[rows]).to(device)
-    normalised = (mb_advantages - mb_advantages.mean()) / (mb_advantages.std() + 1e-8)
-    batch = {
-        "obs": torch.from_numpy(flat["obs"][rows]).to(device),
-        "legal": torch.from_numpy(flat["legal"][rows]).to(device).bool(),
-        "phase": torch.from_numpy(flat["phase"][rows]).to(device),
-        "actions": torch.from_numpy(flat["actions"][rows]).to(device),
-        "old_logprobs": torch.from_numpy(flat["logprobs"][rows]).to(device),
-        "advantages": normalised,
-        "returns": torch.from_numpy(flat_returns[rows]).to(device),
-    }
+        The rollout is expensive and the *selection* is what a second seed is meant to vary, so
+        replications draw a different shuffle of the same update rather than a different update.
+        That is the question chatgpt_1's 08:40Z point asks: would this conclusion survive if the
+        update had happened to draw other rows?
+        """
+
+        indices = np.arange(buffer.size)
+        selection_rng.shuffle(indices)
+        rows = indices[: min(args.minibatch_size, buffer.size)]
+        mb_advantages = torch.from_numpy(flat_advantages[rows]).to(device)
+        normalised = (mb_advantages - mb_advantages.mean()) / (mb_advantages.std() + 1e-8)
+        batch = {
+            "obs": torch.from_numpy(flat["obs"][rows]).to(device),
+            "legal": torch.from_numpy(flat["legal"][rows]).to(device).bool(),
+            "phase": torch.from_numpy(flat["phase"][rows]).to(device),
+            "actions": torch.from_numpy(flat["actions"][rows]).to(device),
+            "old_logprobs": torch.from_numpy(flat["logprobs"][rows]).to(device),
+            "advantages": normalised,
+            "returns": torch.from_numpy(flat_returns[rows]).to(device),
+        }
+        return batch, {
+            "minibatch_index": index,
+            "minibatch_rows": int(len(rows)),
+            "plan_rows": int((batch["phase"] == PHASE_PLAN).sum()),
+            "troll_rows": int((batch["phase"] == PHASE_TROLL).sum()),
+            "turn_boundary_rows": int(buffer.turn_boundary.reshape(buffer.size)[rows].sum()),
+            "reward_rows_nonzero": int((buffer.rewards.reshape(buffer.size)[rows] != 0).sum()),
+            "advantage_mean_raw": float(mb_advantages.mean()),
+            "advantage_std_raw": float(mb_advantages.std()),
+            "return_mean": float(batch["returns"].mean()),
+            "return_std": float(batch["returns"].std()),
+            "value_mean": float(torch.from_numpy(flat["values"][rows]).mean()),
+        }
+
+    batches, selections = [], []
+    for index in range(max(1, int(getattr(args, "minibatch_seeds", 1)))):
+        # The first selection uses the caller's own generator, so a one-minibatch run is exactly
+        # what it was before this replication argument existed.
+        selection_rng = rng if index == 0 else np.random.default_rng(int(args.seed) + 1_000 * index)
+        selected_batch, selected_summary = select(selection_rng, index)
+        batches.append(selected_batch)
+        selections.append(selected_summary)
+
+    batch = batches[0]
+    rows = None  # every per-selection field now lives in `selections`
     summary = {
+        **selections[0],
         "rollout_steps": int(args.rollout_steps),
         "num_envs": int(args.num_envs),
         "rollout_rows": int(buffer.size),
-        "minibatch_rows": int(len(rows)),
-        "plan_rows": int((batch["phase"] == PHASE_PLAN).sum()),
-        "troll_rows": int((batch["phase"] == PHASE_TROLL).sum()),
         "turns_completed": turns_completed,
-        "turn_boundary_rows": int(buffer.turn_boundary.reshape(buffer.size)[rows].sum()),
-        "reward_rows_nonzero": int((buffer.rewards.reshape(buffer.size)[rows] != 0).sum()),
-        "advantage_mean_raw": float(mb_advantages.mean()),
-        "advantage_std_raw": float(mb_advantages.std()),
-        "return_mean": float(batch["returns"].mean()),
-        "return_std": float(batch["returns"].std()),
-        "value_mean": float(torch.from_numpy(flat["values"][rows]).mean()),
+        "minibatch_seeds": len(batches),
+        # `minibatch_rows`, `reward_rows_nonzero` and the advantage/return fields above describe
+        # the *selected minibatch*, not the whole rollout (chatgpt_1, 08:55Z); `rollout_rows` and
+        # `turns_completed` describe the rollout. `selections` carries the same fields for every
+        # replication.
+        "selections": selections,
         "explained_variance_rollout": explained_variance(flat["values"], flat_returns),
     }
     # The whole rollout is handed back as well, not only the minibatch: a census is drawn from
@@ -545,7 +575,7 @@ def collect_minibatch(args, model, device, rng) -> dict:
         "steps": int(buffer.steps),
         "envs": int(buffer.envs),
     }
-    return {"batch": batch, "summary": summary, "rollout": rollout}
+    return {"batch": batch, "batches": batches, "summary": summary, "rollout": rollout}
 
 
 # --------------------------------------------------------------------------- the four objectives
@@ -905,6 +935,55 @@ def difference(before: dict, after: dict, fixed: dict) -> dict:
         "mean_abs_logit_shift_plan": mean_shift(plan_rows, slice(0, PLAN_SIZE)),
         "mean_abs_value_shift": float((after["value"] - before["value"]).abs().mean()),
         "max_abs_logit_shift": float(shift.max()),
+        "decision_margin": {
+            "plan": decision_margin_move(before, after, fixed, plan_rows),
+            "spatial": decision_margin_move(before, after, fixed, troll_rows),
+        },
+    }
+
+
+def decision_margins(read: dict, fixed: dict) -> torch.Tensor:
+    """Each row's `top1 - top2` over its **legal** actions: how far its choice is from flipping.
+
+    An argmax flip is the coarsest possible sensitivity measure -- it sees nothing until a decision
+    changes hands. The margin is the continuous version: a change that moves a row's logits by less
+    than its margin changed nothing, and one that moves them by more than most rows' margins would
+    have changed a great deal had it pointed the other way. Rows with fewer than two legal actions
+    have no margin and are excluded by the caller through `enough_legal`.
+    """
+
+    top2 = read["masked"].topk(2, dim=-1).values
+    return top2[:, 0] - top2[:, 1]
+
+
+def decision_margin_move(
+    before: dict, after: dict, fixed: dict, rows_mask: torch.Tensor
+) -> dict | None:
+    """How far one row class's decisions moved *toward flipping*, in units of their own margin.
+
+    chatgpt_1's 08:40Z point, made measurable: "zero argmax flips" can mean every affected row
+    stayed on the same side of its margin by a hair. The shrink fractions say how close it came.
+    """
+
+    enough_legal = fixed["legal"].sum(dim=-1) >= 2
+    rows = rows_mask & enough_legal
+    if not bool(rows.any()):
+        return None
+    start = decision_margins(before, fixed)[rows]
+    end = decision_margins(after, fixed)[rows]
+    positive = start > 0
+    if not bool(positive.any()):
+        return None
+    shrink = ((start - end) / start)[positive]
+    return {
+        "rows": int(rows.sum()),
+        "median_margin_before": float(start.median()),
+        "mean_margin_before": float(start.mean()),
+        "mean_margin_change": float((end - start).mean()),
+        "fraction_margin_shrank_10_percent": float((shrink >= 0.10).sum() / shrink.numel()),
+        "fraction_margin_shrank_25_percent": float((shrink >= 0.25).sum() / shrink.numel()),
+        "fraction_margin_shrank_50_percent": float((shrink >= 0.50).sum() / shrink.numel()),
+        "fraction_margin_crossed": float((end <= 0).sum() / end.numel()),
     }
 
 
@@ -1237,7 +1316,18 @@ def build_parser() -> argparse.ArgumentParser:
     group.add_argument(
         "--next-update-variants",
         default="adam-resumed,adam-fresh",
-        help="comma-separated variants of the causal FULL-vs-NO-V counterfactual; empty to skip it",
+        help="comma-separated variants of the causal FULL-vs-NO-V counterfactual; empty to skip "
+        "it. A '+common-clip' suffix (e.g. 'adam-resumed+common-clip') gives every arm the FULL "
+        "arm's clip multiplier, which closes the shared-clip channel between the arms and is a "
+        "counterfactual to the real trainer",
+    )
+    group.add_argument(
+        "--minibatch-seeds",
+        type=int,
+        default=1,
+        help="how many differently shuffled minibatches of the same rollout to run the "
+        "next-update counterfactual on; above 1 the extra ones are reported under "
+        "'next_update_replications'",
     )
     group.add_argument(
         "--census-in",
@@ -1286,6 +1376,7 @@ NOT_FROM_CONFIG = frozenset(
         "counterfactual_observations",
         "counterfactual_variants",
         "next_update_variants",
+        "minibatch_seeds",
         "census_in",
         "census_out",
         "anchor_turn_steps",
@@ -1435,6 +1526,19 @@ def measure(args) -> dict:
             model, batch, args, variant, optimizer_state, fixed
         )
 
+    # The replications: the same variants on a differently shuffled minibatch of the same
+    # rollout. A one-step conclusion that only holds for the rows this update happened to draw is
+    # not a conclusion (chatgpt_1, 08:40Z), and this is what lets a reader see which it is.
+    next_update_replications = []
+    for index, replicated in enumerate(collected["batches"][1:], start=1):
+        block = {}
+        for variant in [v.strip() for v in args.next_update_variants.split(",") if v.strip()]:
+            block[variant] = counterfactual_next_update(
+                model, anchor, anchor_has_plan, replicated, args, anchor_coef,
+                variant, optimizer_state, fixed,
+            )
+        next_update_replications.append({"minibatch_index": index, "variants": block})
+
     next_update = {}
     for variant in [v.strip() for v in args.next_update_variants.split(",") if v.strip()]:
         next_update[variant] = counterfactual_next_update(
@@ -1478,6 +1582,7 @@ def measure(args) -> dict:
         "by_row_class": by_row_class,
         "census": census["meta"],
         "next_update": next_update,
+        "next_update_replications": next_update_replications,
         "counterfactual": counterfactual,
         "timing": {
             "collect_seconds": collect_seconds,
