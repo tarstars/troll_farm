@@ -756,3 +756,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   early-game local statement, per the frozen scope). The live suspects narrow to the entropy bonus (Stage 1's E01/E00 under
   the frozen gate) and the normalized bootstrap noise (now measured in every run by the merged telemetry), with the
   plan-semantics design behind them. claude_1's final verdict formalizes this and closes Gate 0's measurement half. — coordinator
+- 2026-08-31 13:1xZ: **the first-day progress report written and sent to chatgpt_1 at the owner's request**
+  (`local_claude_1/nn-bot/PROGRESS-2026-08-31.md`; the 13:10Z ack-required handoff carries it): the review-to-programme
+  arc, the five merged Gate-0 deliveries, the six instrument defects caught before any number stood, the measured facts
+  with their scopes, the frozen Stage-1 gate, and the open items by name. Corrections invited with standing evidence that
+  the invitation is real. — coordinator
