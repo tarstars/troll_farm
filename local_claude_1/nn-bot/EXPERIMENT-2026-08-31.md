@@ -127,8 +127,16 @@ passes — the same rule in training, in the bench and in the shipped file.
   per minibatch (mean/std).
 - The audited subtlety (found 08-30 20:02Z): with λ = 0.95 the per-turn *policy credit* trace is
   `γ·λ` ≈ 0.95 for every γ we tried, so the γ sweep (0.997/0.999/1.0) changed the **value target's**
-  horizon, not the policy's credit horizon. At 50 turns the terminal signal reaches a move with
-  weight ≈ 0.077. A true undiscounted-credit run — (γ, λ) = (1, 1) — has not been run.
+  horizon, not the policy's credit horizon.
+- **ERRATUM (08-31, from chatgpt_1's review, verified):** the trace arithmetic above describes an
+  *uninterrupted* recurrence, but `compute_gae` runs once per 32-mini-step rollout buffer with a
+  single value bootstrap at the cut and no trace carried across buffers. One turn costs 1 + (own
+  trolls) mini-steps, so **the direct credit horizon is ~8–16 game turns**, shrinking as the roster
+  grows; anything longer reaches a decision only through the critic's bootstrap chain across
+  updates. The "weight ≈ 0.077 at 50 turns" sentence is therefore wrong for this implementation,
+  and **a (γ, λ) = (1, 1) run under the same 32-step buffer is *not* a long-horizon credit test** —
+  a real one needs longer or episode-complete rollouts, a trace carried across chunks, or an
+  auxiliary terminal-return target.
 
 ## 7. The trainer (`train_ppo_full.py`; the full config of the last run, from its own start record)
 
@@ -159,8 +167,12 @@ the pre-change trainer by a matched-seed run (29/29 tensors, 29/29 optimizer ent
 games; plan and commands decoded by **masked argmax** (the shipped decoding); every game checked
 for illegal commands (always 0), timeouts (0), loops, end reasons; all 48 games saved turn by
 turn. The clone's baseline: **9 wins of 48, 133.8 : 186.2** (4 on seat 0, 5 on seat 1). A
-random-legal policy scores 13.5 points on this bench. One bench's noise: ±2 wins (binomial,
-p≈0.19, n=48 → σ≈2.7 points of score).
+random-legal policy scores 13.5 points on this bench.
+**ERRATUM (08-31, from the review, verified):** the original "±2 wins" here was too optimistic —
+the binomial SD at p = 9/48 is **2.70 wins** (not points), a 95 % half-width ≈ **±5.3 wins** —
+so the 48-game panel is a *scout*, not a selector; single-read differences of a few wins (run I's
+"10") prove nothing. Adopted protocol: paired per-cell comparisons on the fixed map/seat panel; a
+locked ≥ 144-game panel for confirmation; the 400-game gates for promotion.
 
 **The decoding factorial** (the clone, same maps/seeds): plan×command argmax/argmax **9 / 133.9**;
 sampled/argmax **8 / 133.5**; argmax/sampled **3 / 109.2**; sampled/sampled **4 / 103.4**. The
@@ -195,9 +207,18 @@ The per-game activity counts (the collapse's signature; the clone's row for cont
 
 Run I's practice telemetry, uniquely, tracked its bench (win rate 17.7→20.9 % vs the bench's
 19–21 %; margin −48 to −50) because its executor is the shipped argmax and its opponent the
-champion alone. Its plan entropy rose 0.90 → 1.35 as the anchor decayed, and the drift below the
-bar (6, 5) came exactly then. H's value fit collapsed under the undiscounted target (explained
-variance 0.25 vs 0.6–0.97 elsewhere).
+champion alone. Its plan entropy rose 0.90 → 1.35 while the drift below the bar (6, 5) developed.
+H's value fit collapsed under the undiscounted target (explained variance 0.25 vs 0.6–0.97
+elsewhere; the review also notes this explained-variance number is measured against the trainer's
+own bootstrapped returns, not an independent realized return — an independent critic calibration
+is Gate 0 work).
+**ERRATUM (08-31, from the review, verified):** "as the anchor decayed" was wrong — run I's
+anchor went **0.0990 → 0.0946** over its whole life (the 0.1 → 0.05 schedule spans 100 M
+decisions; run I used 10.9 M). The drift happened under a nearly constant leash; the supportable
+statement is *"a ~0.1 on-policy KL anchor is insufficient to stop slow plan drift"*, and the
+entropy bonus (nonzero flattening gradient at the exact clone, over 400 candidates of which the
+teachers used 106) becomes the best-fitting driver — the entropy-zero same-seed arm is the
+falsifier. The overnight i2 arm is accordingly read as "0.100 vs ~0.095", not a fade test.
 
 **In flight** (the cluster, results ~19:00–20:00Z 08-31): a2 = run-D recipe at 60 M decisions
 (the long-horizon answer; its killed first attempt's telemetry reached practice 29 % / margin −43
@@ -233,15 +254,23 @@ claude_1, 22 tests) separates the four objectives' gradients per network part an
 value-only counterfactual step; one reviewer correction is pending, then it runs on the clone and
 on G/H @500.
 
-**(b) The anchor is the only thing holding the clone's behaviour, and it fades.** Wins are ~2 %
-of champion games, so the clone's habits are never reinforced by return — only held by the KL
-penalty, which measures the *sampled* distribution (argmax choices can walk within a small KL).
-Consistent with: run I holding the bar exactly while its leash was ≥ ~0.09 and drifting as it
-approached 0.05; the plan entropy rising in step. Directly tested by i2 (leash pinned at 0.1)
-tonight.
+**(b) The anchor holds the sampled distribution, not the argmax choices — and something steadily
+softens the plan head.** ~~"…and it fades"~~ — **corrected 08-31 (the review, verified):** run
+I's leash never fell below 0.0946 (the 0.1 → 0.05 schedule spans 100 M decisions; run I used
+10.9 M — see §9's erratum), so the fade story is unsupported; and "wins are ~2 %" was wrong for
+run I, whose champion-only telemetry ran 18–21 % with a graded margin reward, not a binary win.
+What the evidence supports: the KL anchor binds the *sampled* distribution while argmax choices
+walk within it; run I's plan entropy rose 0.90 → 1.35 under a nearly constant anchor; at the
+exact clone the anchor's gradient is zero while the entropy bonus's is not, over a 400-way plan
+space with teacher support on only 106 targets, and the plan head samples a fresh target every
+turn without seeing the previous one. **The prime suspect is the entropy bonus (fresh-target
+resampling as its accomplice); the falsifier is the same-seed staged arm with `entropy_coef = 0`**
+— the review's and the coordinator's independently converged next experiment.
 
-These two are not exclusive; the staged scope + a non-fading leash addresses both at once, which
-is what i2 is.
+These two are not exclusive. The overnight i2 arm is read as "anchor 0.100 vs ~0.095", nearly
+constant on both sides — not a fade test; the review adds two further candidates now carried on
+the card: per-minibatch advantage normalization giving bootstrap noise full policy scale, and the
+32-step rollout truncation itself (§6's erratum).
 
 ## 12. The questions for the reviewer
 
