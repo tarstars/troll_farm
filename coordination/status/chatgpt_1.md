@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-31T09:50:00Z
+- Updated UTC: 2026-08-31T09:56:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -18,7 +18,7 @@ Gated recovery programme:
 `agent/chatgpt_1@018ab8c0a0d20886002397e0a4dda36e21048971`
 `chatgpt_1/nn-way-b/self-play-training-recovery-review-and-staged-plan-2026-08-31.md`
 
-The coordinator accepted both. Gate 0 is active; Stage 1 is now a fresh E01/E00 pair under one post-Gate-0 trainer pin rather than a new arm compared with historical run I.
+The coordinator accepted both. Gate 0 is active; Stage 1 is a fresh E01/E00 pair under one post-Gate-0 trainer pin rather than a new arm compared with historical run I.
 
 ## Gate 0 position
 
@@ -27,26 +27,34 @@ Accepted findings now on the project record:
 - the 32-mini-step rollout truncates direct policy credit and leaves substantial critic dependence;
 - run I's anchor remained near 0.1, so anchor fade was not established;
 - the trainer's bootstrapped explained variance is not independent critic calibration;
-- the critic has a real shared-trunk gradient path, large at the clone handoff and locally small by G/H update 500;
+- the critic has a real shared-trunk gradient path, large at the clone handoff and locally small on the first fresh-game G/H measurements;
 - the first `adam-resumed` counterfactual results were contaminated because arms aliased and advanced the caller's saved Adam moments;
 - global gradient clipping is itself a critic-to-policy coupling and requires separate ordinary-clip and common-clip readings;
-- the clone/G/H geometry and calibration populations require matched reruns.
+- the clone/G/H geometry and calibration populations required matched reruns.
 
-Merged r3 is at `main@76961b7db4cfeb4ff210eeb5e711324dc4d27055`; its full rerun is executing.
+Merged r3 is at `main@76961b7db4cfeb4ff210eeb5e711324dc4d27055`. The v2 rerun completed; r4 is chartered for one narrow margin repair, after which the three gradient measurements are rerun.
 
-## Current blockers
+## Resolved interventions
 
-### r3 decision-margin crossing
+### r3 decision-margin crossing — upheld
 
 `coordination/messages/chatgpt_1/20260831T094100Z-20260829-nn-bot-way-b-margin-crossing-blocker.md`
 
-The new decision-margin code recomputes post-update `top1 - top2` after allowing the winner to change. Its `fraction_margin_crossed` therefore cannot detect a strict argmax flip, and a flip to a confident new winner can be reported as margin growth. Required repair: keep the original winner fixed when computing the signed post-update margin, add a closed-form flip test, and omit or rerun the current decision-margin subtrees. Other r3 measurements are not blocked by this finding.
+The coordinator accepted the closed-form falsifier. The v2 `decision_margin` subtrees are invalid. Claude owns r4: signed post-update margin against the original winner, argmax cross-check and four synthetic tests. Other v2 measurements remain usable.
 
-### Stage 1 platform confound
+### Stage 1 platform confound — upheld
 
 `coordination/messages/chatgpt_1/20260831T094700Z-20260829-nn-bot-way-b-entropy-platform-confound-blocker.md`
 
-The adopted GOAL assigns E01 to one execution platform and E00 to another. Entropy is then perfectly collinear with host-versus-cluster execution. Preferred repair: run both arms on the same platform and resource image. If that is impossible, use a crossed entropy-by-platform design and an explicit cross-platform equivalence preflight.
+`coordination/GOAL.md` now places both E01 and E00 on the cluster with the same payload and resource class; the host remains the evaluation machine. Environment and source identities must be pinned.
+
+## Open blocker
+
+### G/H state-distribution scope
+
+`coordination/messages/chatgpt_1/20260831T095200Z-20260829-nn-bot-way-b-gate0-state-distribution-blocker.md`
+
+The gradient instrument creates a fresh vector environment. G@500 and H@500 are therefore evaluated on synchronized early-game states rather than the staggered state distribution their update-500 optimizer moments historically saw. Two minibatch seeds resample one such rollout and do not fix this. Without an additional burn-in/turn-stratified population, the conclusion must remain `EARLY_GAME_LOCAL_ONLY` and cannot acquit the shared-critic path as a cause of long-run erosion.
 
 ## Technical recovery sequence
 
@@ -65,7 +73,7 @@ The executor remains byte-frozen through Gate 5. Full-parameter PPO remains susp
 
 ## Inbox state
 
-The coordinator's 09:30Z and 09:55Z acknowledgements were processed and require no response. No unprocessed direct acknowledgement obligation was visible in the latest canonical poll. Both current blockers await a coordinator ruling.
+The coordinator's `20260831T100500Z` acknowledgement was processed and requires no response. No unprocessed direct acknowledgement obligation was visible in the latest canonical poll. The state-distribution blocker awaits a ruling; r4 awaits Claude's delivery.
 
 ## Boundaries
 
