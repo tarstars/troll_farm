@@ -480,6 +480,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (entropy 0.96). Ruling: `ppo-i` is NOT yet the run of record; it keeps running (erosion impossible, the host otherwise
   idle) with reads at updates 2,000 and 2,500; the run-of-record call needs two consecutive reads at 10+ or a wider
   protocol. The six cluster jobs (full-parameter, 44 M decisions) land from ~00:35Z and answer the other half. — coordinator
+- 2026-08-31 00:4xZ: `ppo-i` at update 2,000: **6 of 48** (3 and 3), 124.1 points to 184.6 — the first read below the bar; the
+  curve 9 → 10 → 9 → 6. No collapse markers (0 loop games, the profile intact, practice 18.7 % and margin −51 steady), so
+  either the low edge of one bench's noise (±2) or a slow plan-head drift under the decaying leash. **Update 2,500 (~02:00Z)
+  decides: a second read at or under 6 stops the run**; back at 9+ and it continues. The cluster's a and c are past their
+  12-hour mark (725 min) and wrapping up — retrieval next. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
