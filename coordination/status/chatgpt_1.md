@@ -1,101 +1,59 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-30T20:46:00Z
+- Updated UTC: 2026-08-31T05:57:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
-- Role: fresh-eyes architecture and validity contributor; no build, formal-review, integration, YT, platform or Arena authority
+- Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
 - Branch: `agent/chatgpt_1`
 
-## Phase 3 — accepted diagnosis and live blocker
+## Review request completed
 
-The coordinator accepted the evening validity audits at:
+Reviewed the self-contained experiment dossier:
 
-`coordination/messages/local_claude_1/20260830T205500Z-20260829-nn-bot-way-b-ack.md`
+`main@f9595b53066903cce8f1104bc915420b3650b484`
+`local_claude_1/nn-bot/EXPERIMENT-2026-08-31.md`
 
-Accepted corrections include:
+Full second opinion:
 
-- `ppo-h` is gamma-only sensitivity at lambda `0.95`, not an undiscounted-credit test;
-- delineate's recorded curriculum uses assigned targets and later a frozen movement executor while training plan/value, not a short-game or small-map episode cap;
-- value loss has a direct gradient path through the shared actor trunk after warm-up;
-- the clone decoding factorial is AA `9/48`, SA `8/48`, AS `3/48`, with SS still missing.
+`agent/chatgpt_1@b750ed7dfdfab623e2ebaca430e71e3b7b2f6982`
+`chatgpt_1/nn-way-b/experiment-second-opinion-2026-08-31.md`
 
-Claude is chartered to build the per-objective gradient falsifier:
+Ack-required handoff:
 
-`coordination/messages/local_claude_1/20260830T210000Z-20260829-nn-bot-way-b-gradient-handoff.md`
+`coordination/messages/chatgpt_1/20260831T055700Z-20260829-nn-bot-way-b-experiment-review-handoff.md`
 
-The latest audit specification requires restoring the checkpoint's Adam state and exact config, reporting global clipping, and using both on-policy minibatches and a common fixed observation census:
+## Two open load-bearing corrections
 
-`agent/chatgpt_1@14a1bdd665e807f49f06188198774a2ddaa24797`
-`chatgpt_1/nn-way-b/shared-trunk-value-gradient-audit-2026-08-30.md`
+1. **Rollout truncation dominates the credit interpretation.** GAE is cut after 32 learner mini-steps, roughly 6-16 game turns depending on roster, and bootstraps through the critic. Lambda 1 with the same buffer is not a 300-turn undiscounted-credit experiment.
+2. **Run I's anchor did not approach 0.05.** Its actual coefficient was about 0.09898 at update 500 and 0.09488 at update 2,500. The evidence supports "anchor near 0.1 is insufficient", not "anchor decay caused the drift".
 
-### Binding blocker on `ppo-i`
+## Missing mechanisms and requested diagnostics
 
-The coordinator integrated the first `--train-scope plan-critic` patch at:
+- per-minibatch normalization can inflate bootstrap/TD noise to full policy scale;
+- PLAN entropy is a persistent flattening force while anchor KL starts at zero;
+- PLAN samples in training but uses argmax in deployment;
+- every turn can overwrite the target while PLAN sanitization hides the previous target;
+- only 106 of 400 plan targets have teacher support;
+- logged explained variance is against GAE returns containing the same values/bootstrap, not independent realized return-to-go;
+- target-KL stopping uses only the final minibatch's KL;
+- the 48-game scout has binomial SD about 2.70 wins, not +/-2-win 95% precision; checkpoint comparisons should use paired cell-level statistics and a locked confirmation panel.
 
-`main@213ee7f586a6a0fc6fda22bee9571159a3efdf0f`
+Requested next causal arm: same-seed staged `entropy_coef=0`, every other run-I flag unchanged. A true long-horizon test also needs a materially longer or episode-complete rollout, not lambda 1 alone.
 
-It correctly freezes `stem.*`, `tower.*`, and `actor.*`, but changes only parameter gradients. The rollout still samples TROLL commands, and the loss still mixes frozen TROLL rows into PLAN advantage normalization, policy loss, entropy, anchor KL, `approx_kl`, `clip_fraction`, and the `target_kl` stopping rule.
+## Existing work still relevant
 
-Binding blocker:
-
-`coordination/messages/chatgpt_1/20260830T204230Z-20260829-nn-bot-way-b-plan-critic-scope-blocker.md`
-
-Latest pinned review:
-
-`agent/chatgpt_1@fb3d0c897c27397880d577130531d354fdcd91b3`
-`chatgpt_1/nn-way-b/plan-critic-scope-review-2026-08-30.md`
-
-Minimum clean Level-4-like semantics before launch:
-
-```text
-PLAN rows: sampled; PLAN-only advantage normalization, PPO loss, entropy, anchor KL, approx_kl, clip_fraction and target_kl
-TROLL rows: frozen masked argmax; executed in the environment but excluded from PPO policy terms
-value loss: all rows
-```
-
-Required tests cover TROLL RNG-independence and bench parity, PLAN gradient/anchor/KL invariance to duplicated TROLL rows, no-PLAN minibatches, frozen parameter identity, and checkpoint recording of the scope and executor decoding.
-
-`ppo-i` must not start from `main@213ee7f5`; that code would train a plan selector on the measured `3/48` sampled command executor and gate it using the `9/48` argmax executor.
-
-## Credit-horizon correction
-
-Latest pin:
-
-`agent/chatgpt_1@96373d590939b2f6a0439facf5091d8535c46ad2`
-`chatgpt_1/nn-way-b/ppo-h-gamma-lambda-audit-2026-08-30.md`
-
-The live recipe uses 32 mini-steps per rollout, only about 5–16 real turns depending on troll count. Even gamma `1`, lambda `1` would remove decay only inside that buffer; earlier decisions depend on critic bootstrap. The next honest credit test is a within-buffer estimator comparison plus a full-episode critic audit against realised return-to-go and a census of rows that actually share a buffer with terminal reward.
-
-## Stochastic behaviour mismatch
-
-Latest corrected factorial audit:
-
-`agent/chatgpt_1@aa4d456934c22bd8ce2bf1589528150b34138926`
-`chatgpt_1/nn-way-b/stochastic-behavior-mismatch-audit-2026-08-30.md`
-
-Command sampling, not plan sampling, carries the measured deployment gap. The spatial head samples one categorical distribution over up to 3,146 entries, with many legal MOVE destinations. Future diagnostics should measure MOVE probability mass, legal-action multiplicity, entropy, and forward anchor gradients; plan and command temperatures must be separate if a matched-seed temperature control is later justified.
-
-## Phase 4 — engineering complete
-
-The portable one-file export is integrated and independently reproduced:
-
-- runtime AVX2 dispatch plus baseline fallback;
-- both paths 48/48 games and 13,206/13,206 commands identical;
-- shipping fallback machine code verified AVX-free;
-- deterministic regeneration and direct both-seat observation/mask/codec parity;
-- corpus seat check 370/370;
-- UTF-16 size 83,282 of 100,000.
-
-A real shipping candidate still needs the quiet-host timing certificate and the owner's separate platform word. Nothing has been submitted.
+- repaired `plan-critic` semantics are structurally sound for the frozen executor, but plan sample/argmax and target-persistence differences remain;
+- Claude's fixed-state gradient/value-only instrument should be read before any joint fine-tune;
+- Phase 4 portability engineering remains complete; no candidate has platform authorization.
 
 ## Next check
 
-- coordinator ruling and corrected implementation for the `plan-critic` blocker;
-- Claude's gradient-instrument claim, code, host outputs, and analysis;
-- `ppo-h` update-1,000 evidence, interpreted only under the actual lambda and rollout horizon;
-- returned YT checkpoints under scout/confirmation separation;
-- any candidate that exceeds the clone's 9/48 scout bar.
+- coordinator acknowledgement and rulings on the dossier amendments;
+- corrected gradient-instrument outputs;
+- `i2` interpreted as constant versus nearly constant anchor, not a clean fade test;
+- raw advantage, terminal-bearing-row and bootstrap-share census;
+- entropy-zero staged control and a properly designed long-horizon pilot.
 
 ## Boundaries
 
-No build, experiment, training-process mutation, YT operation, platform submission, leaderboard read or Arena action was taken.
+No trainer, environment, checkpoint, dataset, YT operation, platform submission, leaderboard read or Arena action was changed.
