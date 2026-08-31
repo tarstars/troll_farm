@@ -328,6 +328,7 @@ def trainer_args(
     end_wood: float,
     critic_warmup_updates: int,
     actor_lr_scale: float,
+    train_scope: str,
     output_dir: str,
     seed: int,
 ) -> list[str]:
@@ -370,6 +371,8 @@ def trainer_args(
         str(critic_warmup_updates),
         "--actor-lr-scale",
         str(actor_lr_scale),
+        "--train-scope",
+        train_scope,
         "--opponent-weights",
         opponent_weights,
         "--num-envs",
@@ -549,6 +552,7 @@ def prepare_payload(args) -> dict[str, Any]:
         end_wood=args.end_wood,
         critic_warmup_updates=args.critic_warmup_updates,
         actor_lr_scale=args.actor_lr_scale,
+        train_scope=args.train_scope,
         output_dir=OUTPUT_DIR_ARG,
         seed=args.seed,
     )
@@ -1093,6 +1097,7 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--end-wood", type=float, default=3.5)
     prepare.add_argument("--critic-warmup-updates", type=int, default=0)
     prepare.add_argument("--actor-lr-scale", type=float, default=1.0)
+    prepare.add_argument("--train-scope", choices=("all", "plan-critic"), default="all")
     prepare.add_argument("--opponent-weights", default=DEFAULT_OPPONENT_WEIGHTS)
     prepare.add_argument("--checkpoint-every", type=int, default=250)
     prepare.add_argument("--gate-every", type=int, default=0)

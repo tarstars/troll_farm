@@ -102,6 +102,19 @@ head learns at `S x --learning-rate` while the value head keeps the full rate, s
 keep catching up while the policy edges forward slowly. It is two parameter groups in the
 optimizer, and the linear anneal scales both from their own base rates.
 
+The winner's staged plan training (`--train-scope plan-critic`)
+----------------------------------------------------------------
+This scope keeps the shared trunk and the spatial command head frozen, but that weight freeze is
+not enough by itself. The bot shipped to the bench executes troll commands by masked argmax, while
+ordinary PPO samples them. In this scope TROLL rows therefore execute the frozen policy's masked
+argmax and consume no random draw. PLAN rows keep sampling because the plan head is the policy being
+trained. PPO advantage normalization, clipping, entropy and the clone anchor are all computed on
+PLAN rows only; TROLL rows remain in the rollout solely so the environment can execute the game and
+the value head can learn from every state. A minibatch with no PLAN row consequently applies only
+the value loss. The log exposes the plan-head and critic pre-clip gradient norms plus the one joint
+clip multiplier, because the shared clip is the remaining coupling between those two trainable
+heads.
+
 The plan vocabulary carries one generation id, `PLAN_VOCAB_VERSION` (amendment 8). It is written
 into every checkpoint's config, checked against the environment's `plan_version()` at start, and
 checked when a checkpoint or an anchor is loaded -- a mismatch raises, because the same plan index
@@ -336,6 +349,97 @@ def masked_logits(logits: torch.Tensor, legal: torch.Tensor) -> torch.Tensor:
     """July's masking: illegal actions get the finite minimum, never `-inf`."""
 
     return logits.masked_fill(~legal, torch.finfo(logits.dtype).min)
+
+
+def rollout_actions(
+    policy_masked: torch.Tensor, phase: torch.Tensor, train_scope: str
+) -> tuple[torch.Tensor, torch.Tensor]:
+    """Choose rollout actions and return their log probabilities.
+
+    The default scope is deliberately the old one-line categorical sample. In `plan-critic`, only
+    PLAN rows draw from the categorical distribution; TROLL rows use the same masked argmax as the
+    deployment bench. Not drawing and then overwriting TROLL samples matters: otherwise adding a
+    troll would advance the generator and change later plan exploration under the same seed.
+    """
+
+    distribution = Categorical(logits=policy_masked)
+    if train_scope == "all":
+        actions = distribution.sample()
+    elif train_scope == "plan-critic":
+        actions = policy_masked.argmax(dim=-1)
+        plan_rows = phase == PHASE_PLAN
+        if bool(plan_rows.any()):
+            actions = actions.clone()
+            actions[plan_rows] = Categorical(logits=policy_masked[plan_rows]).sample()
+    else:  # parser choices make this a programming error, not a user-input path.
+        raise ValueError(f"unknown train scope {train_scope!r}")
+    return actions, distribution.log_prob(actions)
+
+
+def plan_critic_policy_terms(
+    new_logprob: torch.Tensor,
+    old_logprob: torch.Tensor,
+    entropy: torch.Tensor,
+    advantages: torch.Tensor,
+    phase: torch.Tensor,
+    clip_coef: float,
+) -> tuple[torch.Tensor, torch.Tensor, float, float | None]:
+    """PLAN-only PPO loss, entropy, approximate KL and clip fraction.
+
+    TROLL rows cannot change any returned policy term. With no PLAN row the two differentiable
+    terms are exact graph-connected zeros, allowing the caller to apply the value loss alone
+    without a special backward path. Population standard deviation keeps a one-PLAN-row minibatch
+    finite (its normalized advantage is zero).
+    """
+
+    plan_rows = phase == PHASE_PLAN
+    zero = new_logprob.sum() * 0.0
+    if not bool(plan_rows.any()):
+        return zero, zero, 0.0, None
+
+    log_ratio = new_logprob[plan_rows] - old_logprob[plan_rows]
+    ratio = log_ratio.exp()
+    selected_advantages = advantages[plan_rows]
+    selected_advantages = (selected_advantages - selected_advantages.mean()) / (
+        selected_advantages.std(unbiased=False) + 1e-8
+    )
+    policy_loss = torch.maximum(
+        -selected_advantages * ratio,
+        -selected_advantages * ratio.clamp(1.0 - clip_coef, 1.0 + clip_coef),
+    ).mean()
+    entropy_loss = entropy[plan_rows].mean()
+    with torch.no_grad():
+        approx_kl = float(((ratio - 1.0) - log_ratio).mean())
+        clip_fraction = float(((ratio - 1.0).abs() > clip_coef).float().mean())
+    return policy_loss, entropy_loss, approx_kl, clip_fraction
+
+
+def anchor_rows(
+    phase: torch.Tensor, train_scope: str, anchor_has_plan: bool
+) -> torch.Tensor:
+    """Rows on which the clone anchor is part of the policy objective."""
+
+    if train_scope == "plan-critic":
+        return (
+            (phase == PHASE_PLAN)
+            if anchor_has_plan
+            else torch.zeros_like(phase, dtype=torch.bool)
+        )
+    return (
+        torch.ones_like(phase, dtype=torch.bool)
+        if anchor_has_plan
+        else (phase == PHASE_TROLL)
+    )
+
+
+def gradient_l2_norm(parameters: list[nn.Parameter]) -> float:
+    """L2 norm of the present gradients, before clipping; missing gradients count as zero."""
+
+    total = 0.0
+    for parameter in parameters:
+        if parameter.grad is not None:
+            total += float(parameter.grad.detach().float().pow(2).sum())
+    return total**0.5
 
 
 def anchor_kl(
@@ -764,6 +868,15 @@ def build_parser() -> argparse.ArgumentParser:
         help="multiply the learning rate by this for everything that is not the value head "
         "(the trunk, the per-cell head, the plan head); the value head keeps --learning-rate",
     )
+    parser.add_argument(
+        "--train-scope",
+        choices=("all", "plan-critic"),
+        default="all",
+        help="'all' trains every parameter after the warm-up; 'plan-critic' is the winner's "
+        "staged recipe -- the trunk (stem.*, tower.*) and the per-cell head (actor.*) stay "
+        "byte for byte the starting checkpoint for the whole run, and only the plan head and "
+        "the value head learn, so the trolls' movement cannot erode by construction",
+    )
     parser.add_argument("--gamma", type=float, default=0.997)
     parser.add_argument("--gae-lambda", type=float, default=0.95)
     parser.add_argument("--clip-coef", type=float, default=0.2)
@@ -938,6 +1051,28 @@ def train(args) -> dict:
     model, initial_sha = load_policy(args.initial_checkpoint, device)
     optimizer = build_optimizer(model, args.learning_rate, args.actor_lr_scale)
     _, policy_parameters = split_parameters(model)
+    plan_parameters = [
+        parameter for name, parameter in model.named_parameters() if name.startswith("plan.")
+    ]
+    critic_parameters = [
+        parameter for name, parameter in model.named_parameters() if is_critic_parameter(name)
+    ]
+    if args.train_scope == "plan-critic":
+        # The winner's staged recipe: the trunk and the per-cell head are frozen for the whole
+        # run -- requires_grad stays False, Adam skips a parameter whose grad is None, so those
+        # tensors remain byte for byte the starting checkpoint. Only the plan head keeps
+        # toggling with the warm-up below; the value head trains as always.
+        togglable: list[nn.Parameter] = []
+        for name, parameter in model.named_parameters():
+            if is_critic_parameter(name):
+                continue
+            if name.startswith("plan."):
+                togglable.append(parameter)
+            else:
+                parameter.requires_grad_(False)
+        policy_parameters = togglable
+        if not policy_parameters:
+            raise SystemExit("--train-scope plan-critic needs a checkpoint with a plan head")
     warmup_updates = max(0, int(args.critic_warmup_updates))
 
     anchor = anchor_sha = None
@@ -1012,9 +1147,9 @@ def train(args) -> dict:
                 legal_t = torch.from_numpy(legal_np).to(device).bool()
                 with torch.no_grad():
                     logits, values = combined_logits(model, observations, phase_t)
-                    distribution = Categorical(logits=masked_logits(logits, legal_t))
-                    actions = distribution.sample()
-                    logprobs = distribution.log_prob(actions)
+                    actions, logprobs = rollout_actions(
+                        masked_logits(logits, legal_t), phase_t, args.train_scope
+                    )
 
                 actions_np = actions.cpu().numpy().astype(np.int64)
                 buffer.actions[step_index] = actions_np
@@ -1090,6 +1225,9 @@ def train(args) -> dict:
             approx_kl = 0.0
             policy_loss_value = value_loss_value = entropy_value = 0.0
             anchor_loss_value = anchor_agreement_value = None
+            plan_grad_norms: list[float] = []
+            critic_grad_norms: list[float] = []
+            joint_clip_multipliers: list[float] = []
             epochs_run = 0
             for epoch in range(args.update_epochs):
                 rng.shuffle(indices)
@@ -1107,27 +1245,48 @@ def train(args) -> dict:
                     new_logprob = distribution.log_prob(mb_actions)
                     entropy = distribution.entropy()
 
-                    log_ratio = new_logprob - mb_old_logprobs
-                    ratio = log_ratio.exp()
-                    with torch.no_grad():
-                        approx_kl = float(((ratio - 1.0) - log_ratio).mean())
-                        clip_fractions.append(
-                            float(((ratio - 1.0).abs() > args.clip_coef).float().mean())
-                        )
-
                     mb_advantages = torch.from_numpy(flat_advantages[rows]).to(device)
-                    mb_advantages = (mb_advantages - mb_advantages.mean()) / (
-                        mb_advantages.std() + 1e-8
-                    )
-                    policy_loss = torch.maximum(
-                        -mb_advantages * ratio,
-                        -mb_advantages
-                        * ratio.clamp(1.0 - args.clip_coef, 1.0 + args.clip_coef),
-                    ).mean()
+                    if args.train_scope == "plan-critic":
+                        (
+                            policy_loss,
+                            entropy_loss,
+                            approx_kl,
+                            clip_fraction,
+                        ) = plan_critic_policy_terms(
+                            new_logprob,
+                            mb_old_logprobs,
+                            entropy,
+                            mb_advantages,
+                            mb_phase,
+                            args.clip_coef,
+                        )
+                        if clip_fraction is not None:
+                            clip_fractions.append(clip_fraction)
+                    else:
+                        # Keep the default training path byte-for-byte in behaviour: its ratios,
+                        # diagnostics and sample-standard-deviation normalization are the exact
+                        # operations used before `plan-critic` acquired staged semantics.
+                        log_ratio = new_logprob - mb_old_logprobs
+                        ratio = log_ratio.exp()
+                        with torch.no_grad():
+                            approx_kl = float(((ratio - 1.0) - log_ratio).mean())
+                            clip_fractions.append(
+                                float(
+                                    ((ratio - 1.0).abs() > args.clip_coef).float().mean()
+                                )
+                            )
+                        mb_advantages = (mb_advantages - mb_advantages.mean()) / (
+                            mb_advantages.std() + 1e-8
+                        )
+                        policy_loss = torch.maximum(
+                            -mb_advantages * ratio,
+                            -mb_advantages
+                            * ratio.clamp(1.0 - args.clip_coef, 1.0 + args.clip_coef),
+                        ).mean()
+                        entropy_loss = entropy.mean()
                     value_loss = 0.5 * (
                         new_value - torch.from_numpy(flat_returns[rows]).to(device)
                     ).pow(2).mean()
-                    entropy_loss = entropy.mean()
                     # In the warm-up only the value term is optimised; the policy loss and the
                     # entropy above are still computed, but only as diagnostics for the log.
                     loss = (
@@ -1141,11 +1300,7 @@ def train(args) -> dict:
                     )
 
                     if anchor is not None and coefficient != 0.0:
-                        keep = (
-                            torch.ones_like(mb_phase, dtype=torch.bool)
-                            if anchor_has_plan
-                            else (mb_phase == PHASE_TROLL)
-                        )
+                        keep = anchor_rows(mb_phase, args.train_scope, anchor_has_plan)
                         if bool(keep.any()):
                             with torch.no_grad():
                                 anchor_logits, _ = combined_logits(
@@ -1163,7 +1318,20 @@ def train(args) -> dict:
 
                     optimizer.zero_grad(set_to_none=True)
                     loss.backward()
-                    nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+                    if args.train_scope == "plan-critic":
+                        plan_grad_norms.append(gradient_l2_norm(plan_parameters))
+                        critic_grad_norms.append(gradient_l2_norm(critic_parameters))
+                    total_grad_norm = nn.utils.clip_grad_norm_(
+                        model.parameters(), args.max_grad_norm
+                    )
+                    if args.train_scope == "plan-critic":
+                        total_grad_norm_value = float(total_grad_norm)
+                        joint_clip_multipliers.append(
+                            min(
+                                1.0,
+                                args.max_grad_norm / (total_grad_norm_value + 1e-6),
+                            )
+                        )
                     optimizer.step()
                     policy_loss_value = float(policy_loss.detach())
                     value_loss_value = float(value_loss.detach())
@@ -1227,6 +1395,16 @@ def train(args) -> dict:
                 "overall_turn_steps_per_second": turn_steps / max(wall, 1e-9),
                 "wall_seconds": wall,
             }
+            if args.train_scope == "plan-critic":
+                log.update(
+                    {
+                        "plan_grad_norm_pre_clip": float(np.mean(plan_grad_norms)),
+                        "critic_grad_norm_pre_clip": float(np.mean(critic_grad_norms)),
+                        "joint_grad_clip_multiplier": float(
+                            np.mean(joint_clip_multipliers)
+                        ),
+                    }
+                )
             logs.append(log)
             print(json.dumps(log, sort_keys=True), flush=True)
 
