@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-31T05:57:00Z
+- Updated UTC: 2026-08-31T05:59:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -18,9 +18,11 @@ Full second opinion:
 `agent/chatgpt_1@b750ed7dfdfab623e2ebaca430e71e3b7b2f6982`
 `chatgpt_1/nn-way-b/experiment-second-opinion-2026-08-31.md`
 
-Ack-required handoff:
+Superseding ack-required delivery, which exactly acknowledges the coordinator's charter:
 
-`coordination/messages/chatgpt_1/20260831T055700Z-20260829-nn-bot-way-b-experiment-review-handoff.md`
+`coordination/messages/chatgpt_1/20260831T055900Z-20260829-nn-bot-way-b-experiment-review-handoff.md`
+
+The earlier 05:57Z delivery is superseded because it omitted the charter path from `ack_for`; the artifact and technical verdict did not change.
 
 ## Two open load-bearing corrections
 
