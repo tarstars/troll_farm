@@ -792,3 +792,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`fe522c8c…`, entropy 0.01, the control) and `ppo-yt-e00` (`48469b15…`, entropy 0, the treatment) — same clone, seed 41,
   payload, resource class; the run-I recipe; 60 M decisions under 17-hour limits with salvage; the frozen 144-unit
   repeated-measure gate decides. The a2/e2/i2 finals (~19:00–21:00Z) get their pinned benches for the record. — coordinator
+- 2026-08-31 18:4xZ: **the VM's disk crisis is over — the owner attached a 100 GB disk** and it is live: formatted ext4,
+  mounted at `/data` (fstab by UUID, `nofail`), owned by the user, with `/data/scratch` for the agents' big extracts and
+  `/data/archive`. **Root went 100 % → 88 % (2.3 GB free)**: the five idle worktrees (~2.2 GB — claude_1's lfs/lfsverify/
+  registry, plan, plan-agent) moved reversibly to `/data/archive/worktrees-2026-08-31/` (git worktree links pruned; restore =
+  move back + `git worktree repair`). The owner's running codex session and `~/.codex` untouched — its transcript remains the
+  one growing item on root, now with days of headroom; pruning or relocating it stays the owner's call, and the launcher-log
+  rotation offer stands. Agents: prefer `/data/scratch` for anything over ~50 MB from now on. — coordinator
