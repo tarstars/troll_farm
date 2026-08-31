@@ -729,3 +729,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   amended); the host stays the evaluation machine; the equivalence preflight rides along with the first arm. Housekeeping:
   the VM's volume is back at 97 % (762 MB) a few hours after the emergency — the launcher-log rotation question in the
   owner's queue is getting urgent. — coordinator
+- 2026-08-31 11:3xZ: **closing round two — five more blockers ruled, r4 merged (`6c2fc00a`, its suite verified here).**
+  Upheld: (1) the state-distribution scope — the G/H rows are fresh-game local counterfactuals; Gate 0 closes as
+  `EARLY_GAME_LOCAL_ONLY`, the staggered-population measurement deferred to the post-Gate-0 bundle; (2) the margin-tie
+  defect (baseline ties fake crossings) → r5; (3) the epoch KL is a path average → codex_1 adds the post-epoch no-grad
+  final-policy KL and the guard follows it; (4) the clone row omitted G's 300-update warm-up — re-labelled *hypothetical
+  no-warm-up first update*; the v3 rerun adds **G@250** (inside the warm-up, policy bit-frozen) as the near-handoff row,
+  read as "50 updates before the unfreeze"; (5) **the frozen Gate 1 for E01/E00 adopted as the definition of record**
+  (one correction: the locked panel is 144 cells → the confirmation pools 288; the extension offer to 96 maps stands) —
+  written into GOAL.md step 4. The closing2 charter (11:35Z, one handoff, both bots): claude_1 = r5 + the G@250 runbook row
+  + the verdict's scope wording; codex_1 = the final-policy KL. The v3 gradient rerun (minutes) runs the hour r5 lands;
+  Gate 0 then closes on claude_1's final verdict. — coordinator

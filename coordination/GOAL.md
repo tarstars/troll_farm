@@ -52,9 +52,16 @@ the best-fitting explanation of the staged drift. The full dossier:
    reviewer's 09:47Z platform-confound blocker, upheld: one-arm-per-platform would make entropy
    collinear with the machine), the host staying the evaluation machine; every arm's environment,
    source hashes and exact command pinned in the card; benched at the same fixed updates on the
-   scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired cells. *Done when:* both curves are on the card. **The read:** if E00 − E01 removes the drift,
-   the entropy bonus is convicted; if not, the remaining suspects (normalized bootstrap noise;
-   the fresh-target-every-turn semantics) move up.
+   scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired cells.
+   *Done when:* both curves are on the card **and the frozen Gate 1 verdict is computed.** The
+   gate of record is the reviewer's 10:36Z definition (its pinned amendment; adopted 11:30Z with
+   one correction — the locked panel is 144 cells, so the confirmation pools 288): scouts at
+   updates 500–2,500 on the 48 cells; both arms confirmed at 1,500 and 2,500 on the locked panel;
+   the primary statistic is the paired per-cell margin delta E00 − E01 with a paired-bootstrap
+   interval; `ENTROPY_CONFIRMED` needs the pooled interval above zero *and* E00 non-inferior to
+   the clone (interval, net cells, plan entropy, clone plan agreement, activity and legality as
+   frozen); `ENTROPY_PARTIAL` and the failure reading as frozen. No arm launches before Gate 0
+   closes.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever
