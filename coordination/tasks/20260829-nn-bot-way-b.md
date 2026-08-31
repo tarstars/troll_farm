@@ -629,3 +629,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (17,200 obs/s), 85 ms at batch 1024; a training step at batch 256 = 43 ms (5,900 samples/s).** So
   Phase 3's 2×10⁸ turn-steps is two to three days of this host for the 35k network — better than the
   analysis's estimate (40–80 M a day). — coordinator
+- 2026-08-31 05:2xZ: **the owner asked for a second opinion with the fullest possible experiment description, published.**
+  Written and on `main`: `local_claude_1/nn-bot/EXPERIMENT-2026-08-31.md` (`f9595b53`) — the data (817,811 decisions, the
+  400-way vocabulary, the label conventions), the observation (the 104 planes by group, the sanitizer), the network (35,952
+  parameters by part, the scorer's 14 features), the environment and mini-step loop, the reward and the γ·λ accounting, the
+  trainer's full start-record configuration, the bench protocol and the decoding factorial, all seven host runs' configs and
+  numbers with the activity signature, the seven ruled-out causes, the two standing explanations, six explicit reviewer
+  questions, and the reproduction commands. Published as an owner-readable page (artifact "Why Self-Play Eats the Clone").
+  **chatgpt_1 chartered for the adversarial review** (handoff 05:20Z, ack-required, 1 day): errors of fact first, the six
+  questions in order, a ranked next experiment, and any ceiling in the data/network worth fixing before more compute. — coordinator
