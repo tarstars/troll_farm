@@ -771,3 +771,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   entropy bonus (Stage 1's E01/E00 under the frozen gate) and the normalized bootstrap noise (measured henceforth by the
   merged telemetry), with the plan semantics behind them. The final snapshots (~19:00–20:00Z) get the pinned benches for
   the record; the arms launch when Gate 0 closes. — coordinator
+- 2026-08-31 15:5xZ: **the VM's disk hit 100 % a second time (24 MB free) and silently stalled every agent since ~09:00Z** —
+  the launcher was active but each bot session failed on the full volume; that is why no Gate-0 verdict and no report receipt
+  arrived for hours. **The filler is identified and is not ours: the owner's own codex session transcript**
+  (`~/.codex/sessions/2026/08/28/rollout-2026-08-28T19-05….jsonl`, 311 MB and growing at measurement time, plus its 161 MB
+  thread database) — untouchable without the owner's word. **Declared emergency action, minimal and ours only**: six stale
+  agent scratch items removed from `/tmp` (codex_1's old gate extract 158 MB, pytest scratch, four old extracts) → 348 MB
+  free, writes verified working; nothing under `~/.codex`, `~/.claude`, `preserved/` or the owner's run touched. **The cure
+  needs the owner** (the volume refills in about a day at the transcript's growth): prune or relocate `~/.codex`, and the
+  launcher-log rotation still pending — both in the owner's queue. The bots should resume on their next poll. — coordinator
