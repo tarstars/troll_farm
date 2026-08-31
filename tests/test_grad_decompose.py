@@ -924,3 +924,77 @@ def test_one_minibatch_seed_leaves_the_report_as_it_was(report: dict) -> None:
     assert report["minibatch"]["selections"][0]["minibatch_rows"] == report["minibatch"][
         "minibatch_rows"
     ]
+
+
+# ------------------------------------------ the signed margin: chatgpt_1's 09:41Z crossing falsifier
+
+
+def _margin_case(before_logits, after_logits, legal) -> dict | None:
+    """One hand-built comparison: two networks' logits on the same synthetic rows.
+
+    Small enough to read the answer off by hand, which is the point -- the defect this guards
+    against was invisible to every bounds-and-ordering test the subtree already had.
+    """
+
+    legal = torch.tensor(legal, dtype=torch.bool)
+    fixed = {
+        "legal": legal,
+        "phase": torch.zeros(legal.shape[0], dtype=torch.long),
+    }
+
+    def read(rows) -> dict:
+        logits = torch.tensor(rows, dtype=torch.float32)
+        masked = tpf.masked_logits(logits, legal)
+        return {"logits": logits, "masked": masked, "choice": masked.argmax(dim=-1)}
+
+    rows_mask = torch.ones(legal.shape[0], dtype=torch.bool)
+    return gd.decision_margin_move(read(before_logits), read(after_logits), fixed, rows_mask)
+
+
+def test_an_argmax_flip_reads_as_a_crossing_not_as_growth() -> None:
+    """chatgpt_1's closed-form falsifier, 09:41Z. Logits [2, 1] -> [0, 3]: the decision changed
+    hands. The old statistic re-sorted the winner and reported margin +3, growth, no crossing.
+    Held against the original winner the margin is 0 - 3 = -3: crossed, and shrunk by 4 of its
+    own starting margin of 1."""
+
+    got = _margin_case([[2.0, 1.0]], [[0.0, 3.0]], [[True, True]])
+    assert got["argmax_changed_rows"] == 1
+    assert got["median_margin_before"] == pytest.approx(1.0)
+    assert got["mean_margin_change"] == pytest.approx(-4.0)
+    assert got["fraction_margin_crossed"] == 1.0
+    assert got["fraction_margin_shrank_50_percent"] == 1.0
+
+
+def test_a_row_that_only_came_closer_shrank_without_crossing() -> None:
+    """The ordinary case the measure exists for: same winner, half the margin gone."""
+
+    got = _margin_case([[2.0, 1.0]], [[2.0, 1.5]], [[True, True]])
+    assert got["argmax_changed_rows"] == 0
+    assert got["fraction_margin_crossed"] == 0.0
+    assert got["fraction_margin_shrank_50_percent"] == 1.0
+    assert got["mean_margin_change"] == pytest.approx(-0.5)
+
+
+def test_a_row_that_grew_more_confident_shrank_by_nothing() -> None:
+    """The other sign: the winner pulled away. Nothing shrank and nothing crossed."""
+
+    got = _margin_case([[2.0, 1.0]], [[3.0, 1.0]], [[True, True]])
+    assert got["argmax_changed_rows"] == 0
+    assert got["fraction_margin_crossed"] == 0.0
+    assert got["fraction_margin_shrank_10_percent"] == 0.0
+    assert got["mean_margin_change"] == pytest.approx(1.0)
+
+
+def test_a_row_with_one_legal_action_has_no_margin_and_is_excluded() -> None:
+    """A row with a single legal action cannot flip and has no margin; counting it would put an
+    infinity into the mean. Two rows in, one row measured."""
+
+    got = _margin_case(
+        [[2.0, 1.0], [5.0, 0.0]],
+        [[0.0, 3.0], [9.0, 0.0]],
+        [[True, True], [True, False]],
+    )
+    assert got["rows"] == 1
+    assert got["argmax_changed_rows"] == 1
+    assert got["fraction_margin_crossed"] == 1.0
+    assert got["mean_margin_change"] == pytest.approx(-4.0)

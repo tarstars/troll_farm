@@ -956,13 +956,32 @@ def decision_margins(read: dict, fixed: dict) -> torch.Tensor:
     return top2[:, 0] - top2[:, 1]
 
 
+def signed_margin_after(before: dict, after: dict) -> torch.Tensor:
+    """The post-update margin of the row's **original** winner against its best legal rival.
+
+    chatgpt_1's 09:41Z blocker: re-sorting the post-update logits and taking `top1 - top2` measures
+    the confidence of whoever won *afterwards*, which is non-negative by construction. It can never
+    register a crossing, and a flip to a confident new winner is reported as the margin growing.
+    Holding the original winner fixed makes the quantity signed: it goes negative exactly when the
+    decision changed hands, and `[2, 1] -> [0, 3]` reads as -3, not as +3.
+    """
+
+    original = before["choice"].unsqueeze(-1)
+    masked = after["masked"]
+    mine = masked.gather(-1, original).squeeze(-1)
+    rivals = masked.scatter(-1, original, torch.finfo(masked.dtype).min)
+    return mine - rivals.max(dim=-1).values
+
+
 def decision_margin_move(
     before: dict, after: dict, fixed: dict, rows_mask: torch.Tensor
 ) -> dict | None:
     """How far one row class's decisions moved *toward flipping*, in units of their own margin.
 
     chatgpt_1's 08:40Z point, made measurable: "zero argmax flips" can mean every affected row
-    stayed on the same side of its margin by a hair. The shrink fractions say how close it came.
+    stayed on the same side of its margin by a hair. The shrink fractions say how close it came,
+    and the crossing fraction says how often it went over -- the two agree by construction, since
+    the signed margin is non-positive on exactly the rows whose argmax changed.
     """
 
     enough_legal = fixed["legal"].sum(dim=-1) >= 2
@@ -970,13 +989,20 @@ def decision_margin_move(
     if not bool(rows.any()):
         return None
     start = decision_margins(before, fixed)[rows]
-    end = decision_margins(after, fixed)[rows]
+    end = signed_margin_after(before, after)[rows]
+    flipped = (before["choice"] != after["choice"])[rows]
+    if bool(flipped.any()) and not bool((end[flipped] <= 0).all()):
+        raise AssertionError(
+            "a row whose argmax changed kept a positive signed margin; the margin statistic and "
+            "the flip count disagree, which cannot happen if both are computed correctly"
+        )
     positive = start > 0
     if not bool(positive.any()):
         return None
     shrink = ((start - end) / start)[positive]
     return {
         "rows": int(rows.sum()),
+        "argmax_changed_rows": int(flipped.sum()),
         "median_margin_before": float(start.median()),
         "mean_margin_before": float(start.mean()),
         "mean_margin_change": float((end - start).mean()),
