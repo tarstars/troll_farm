@@ -238,7 +238,7 @@ def yt_client():
 
 
 def upload_file(local_path: Path, remote_path: str) -> None:
-    """The one and only write into the cluster's file tree, at the very end of the job."""
+    """A write into the cluster: the final bundle, and the heartbeat's mid-run salvage copies."""
 
     client = yt_client()
     if client.exists(remote_path):
@@ -347,12 +347,23 @@ def _tail_update(path: Path, window: int = 200_000) -> dict | None:
 def heartbeat_loop(stop: threading.Event, minutes: float, started: float) -> None:
     """Every `minutes`, one line on the job's error stream: how far the training has got.
 
-    Deliberately local-only. It reads `outputs/` and prints; it never writes into the cluster's
-    file tree, so a job that is training happily cannot be disturbed by a flaky upload.
+    The printing is local-only. Every sixth beat (about half an hour at the default period) the
+    loop also uploads a **mid-run salvage copy** — the newest checkpoint and the training log —
+    next to the job's final output path, as `mid-run-latest.pt` and `mid-run-train.log`. That is
+    what survives when the operation is killed from outside (a wall-clock limit, a preemption
+    with no restart): the 2026-08-31 01:29Z deaths of ppo-yt-a and ppo-yt-c lost thirteen hours
+    of checkpoints each for want of exactly this. The salvage upload runs in its own try/except:
+    a flaky upload must never disturb a job that is training happily.
+
+    Read a salvage copy without the launcher:
+    `yt --proxy <proxy> read-file <runs>/<name>/outputs/mid-run-latest.pt > local.pt`.
     """
 
     period = max(30.0, minutes * 60.0)
+    beat = 0
     while not stop.wait(period):
+        beat += 1
+        latest = None
         try:
             checkpoints = sorted(OUTPUTS.glob("*.pt"), key=lambda p: p.stat().st_mtime)
             latest = checkpoints[-1] if checkpoints else None
@@ -375,6 +386,18 @@ def heartbeat_loop(stop: threading.Event, minutes: float, started: float) -> Non
             )
         except Exception as error:  # pragma: no cover - a heartbeat must never kill the run
             print(f"[troll-farm-yt] heartbeat failed: {error!r}", file=sys.stderr, flush=True)
+        if beat % 6 != 0:
+            continue
+        try:
+            final_output = os.environ.get("TROLL_FARM_YT_OUTPUT_FILE")
+            if final_output and latest is not None:
+                remote_dir = final_output.rsplit("/", 1)[0]
+                upload_file(latest, f"{remote_dir}/mid-run-latest.pt")
+                if TRAIN_LOG.exists():
+                    upload_file(TRAIN_LOG, f"{remote_dir}/mid-run-train.log")
+        except Exception as error:  # pragma: no cover - salvage must never kill the run
+            print(f"[troll-farm-yt] mid-run salvage failed: {error!r}", file=sys.stderr,
+                  flush=True)
 
 
 def bundle_outputs(config: dict, metadata: dict) -> Path:
