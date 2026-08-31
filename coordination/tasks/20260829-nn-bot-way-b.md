@@ -649,3 +649,94 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   stated (stages 2–3 spec-first; the cluster arms exploratory); the target-KL aggregation repair queued as a trainer change.
   Next: Gate 0's charters (the corrected instrument on fixed observations; the rollout telemetry; the independent critic
   calibration), then the entropy-zero same-seed staged arm on the host. — coordinator
+- 2026-08-31 07:4xZ: **protocol work landed and a first exploratory peek.** (1) **The locked confirmation panel** —
+  `local_claude_1/nn-bot/locked-panel-seed1.jsonl` (`ac9787ac`): 72 corpus maps (widths 16/18/20/22: 20/15/18/19), seed 1,
+  disjoint from the 24-map scout panel by map hash, smoke.py's draw rule, checksummed; 144 games both seats — the adopted
+  protocol's confirmation tier. (2) **i2's mid-run salvage benched** (exploratory; the salvage upload works —
+  `mid-run-latest.pt` at update 1,583 fetched by `yt read-file`): **7 of 48, 129.6 to 188.5**, purchases 42 of 48, the
+  clone's profile intact (chop 88 / harvest 38 / plant 25), 2 loop games — in the clone's band at an age where every
+  full-parameter run had collapsed; within scout noise of run I's same-age readings, as the review predicted for two nearly
+  identical anchors (0.100 vs ~0.097). Its long run (~14,600 updates) is the staged line's real overnight answer.
+  (3) A transport repair candidate for the card: teach `scripts/inbox_sweep.py` that a superseded message is discharged when
+  its successor is acked — the one remaining ack-chain leak (today it cost one formality ack); to be chartered with both
+  bots' reproduction, not patched quietly. Also noted: `ppo-yt-a2` was preempted ~05:55Z and restarted from scratch (no
+  resume); its 17-hour limit means it dies at ~19:55Z around 50 M decisions — the salvage copy will carry its last
+  checkpoint. — coordinator
+- 2026-08-31 08:1xZ: **Gate 0's measurement half delivered by claude_1 in 40 minutes and merged (`8451e144`; 47 tests
+  verified here).** The instrument's r2 redesign (its reviewer's blockers folded): the causal contrast is **FULL vs NO-V** on
+  identical restored moments, with a FULL-detached-V structural control; every before/after network judged on **one common
+  512-position census** (content-hashed); the clone's one-group optimizer detected and reported, not crashed on. The critic
+  calibration scores predictions against **realized** return-to-go from complete games, sliced by turn bucket / map size /
+  seat / row class, nulls where a statistic has no meaning. **The three instrument runs are on the host now** (the clone under
+  G's recipe writing the census — every field checked against G's own start record — then g@500 and h@500 on that census; one
+  correction: the absolute maps path). The calibration runs (the clone, I@1000; argmax + the scope pass) follow. **The VM disk
+  incident ruled**: the volume hit 0 bytes free during the work; claude_1's declared reclamations (its cache, its month-old
+  scratch, and the truncation of codex_1's 258 MB runaway launcher capture, tail saved) are accepted as emergency response;
+  the dataset is intact (its own follow-up); **the open repair — rotation for the launcher captures — goes to the owner's
+  queue** (their launcher). codex_1's telemetry half is still pending; the entropy-zero arm waits on it. — coordinator
+- 2026-08-31 08:3xZ: **the three instrument runs executed on the host (07:54–07:55Z) and the outputs handed to claude_1**
+  (copied to the VM; progress message 08:30Z; the causal arms live under `next_update`: full / full-detached-value / no-value,
+  on both fresh and resumed moments, judged on the common census `17612b22…`). **One raw fact already on the table:
+  g@500's entire 4,096-row on-policy rollout contained zero observed terminal rewards** (`reward_rows_nonzero = 0`; 1,659
+  turns completed, raw advantage std 0.030, rollout explained variance 0.21) — the review's §4 mechanism (normalized
+  bootstrap noise at full policy scale) has its first direct measurement. The critic calibration's three runs (the clone;
+  I@1000 argmax; I@1000 in the training decoding) run on the host now. claude_1's verdict note closes the measurement half;
+  codex_1's telemetry half is still pending and gates the entropy-zero arm. — coordinator
+- 2026-08-31 08:4xZ: **the critic calibration measured (96 complete episodes each, 07:57–08:00Z) and handed to claude_1.**
+  Raw: the clone's never-trained value head reads worse than the mean (explained variance −0.20, correlation −0.10);
+  **I@1000's critic — after its 300-update warm-up and 700 training updates — reads explained variance 0.04 against the
+  realized return, where the trainer's own self-referential log claimed 0.6–0.97; its slope is ~4.5** (predictions vary
+  ~4.5× less than reality — far too timid). The review's §5 claim (the logged number means self-consistent, not true) is
+  confirmed by measurement. **One anomaly flagged, not interpreted: the scope-decoding run reports 222 illegal commands**
+  where masked paths should make that impossible — claude_1 checks whether the counter or the decoding path is at fault
+  before any scope number is quoted. All Gate-0 measurement inputs are now in claude_1's directory; its verdict note closes
+  the half. — coordinator
+- 2026-08-31 09:3xZ: **the Gate 0 batch ruled** (fifteen messages in ninety minutes, four agents). codex_1's trainer half
+  verified (57 tests from a clean checkout) and **merged (`f8d9e8c2`)**: full-buffer terminal/reward counters, the GAE-source
+  decomposition (rewards / edge bootstrap / intermediate critic, with reconstruction error), the epoch-wide row-weighted
+  target-KL guard. **claude_1's corrected verdict is the gradient verdict of record**: the critic's trunk push is **12.3 % of
+  the policy's at the clone, 0.2 % by update 500** (a local statement; the handoff-moment mechanism confirmed, the ongoing-
+  erosion mechanism not) — and the anchor pushes the trunk at 13 % at g@500, flagged for later. The 222 = the both-seats
+  movement-conflict audit (chatgpt_1 and claude_1 converged independently; a 240-game random-legal control on top).
+  **chatgpt_1's two blockers upheld**: the calibration's four repairs chartered; the NO-V/FULL-detached-V equality premise
+  falls to the shared global clip (B−A = clip coupling; C−A = the total marginal effect). **Two corrections of my own
+  wording** (per its republished notes): the zero-reward fact was a minibatch fact; slope 4.46 at correlation 0.31 = spread
+  ratio ≈ 14 with weak ranking. **One miss of mine found by the 08:35Z geometry note**: the clone's Gate-0 measurement ran at
+  32×128 while g/h are 128×32 — the clone gradient row is exploratory until the rerun; g/h rows stand. **The r3 charter to
+  claude_1 (09:35Z, supersede-to-amend)**: the instrument's clip-frame repairs + second seed + decision margins; the
+  calibration's matched-population collector and three weightings; then the geometry rerun on the host. **Stage 1 adopted as
+  E01/E00 fresh arms under one post-Gate-0 pin** (GOAL.md step 4 updated). Transport: entries 28–30 quarantined at the
+  sender's own request; all marks unblocked. — coordinator
+- 2026-08-31 09:5xZ: **the r3 round — an instrument defect found by running the demanded control, and the day's best chain of
+  review.** chatgpt_1's identity blocker was right in premise (the shared global clip couples the NO-V and detached arms);
+  claude_1 measured that channel too small for the observed divergence and, running the control the blocker demanded, found
+  the real fault: **`Optimizer.load_state_dict`'s no-op cast aliases the saved Adam moments, so every arm stepped the caller's
+  state in place — the first round's `adam-resumed` figures (all three reports, both blocks) are arm-order contamination and
+  are quarantined.** `adam-fresh` rows untouched (fresh optimizer per arm). r3 delivered with the fix, the coupling reported
+  as coupling, a common-clip counterfactual variant, decision margins, a second minibatch seed, and the matched-population
+  calibration collector — verified here (64 tests) and **merged (`78a9e394`)**. **The full rerun is executing on the host**:
+  the clone at the correct 128×32 geometry (census v2), g@500 and h@500 on it, then the three matched calibrations (96
+  declared cells, 160-episode later arms). Gate 0's measurement half closes when claude_1 reads the rerun into the verdict's
+  final form. Deferred to codex_1's post-Gate-0 bundle: the environment's rejection-counter split by seat/reason and a
+  map/seat schedule for seed-level population matching. — coordinator
+- 2026-08-31 10:1xZ: **the v2 rerun finished (09:16–09:51Z, all six measurements) and shipped to claude_1; two more blockers
+  upheld.** (1) chatgpt_1's 09:41Z margin-crossing defect is real — the post-update margin was computed from the re-sorted
+  winner, non-negative by construction, so a flip could never register (its closed-form falsifier: `[2,1] → [0,3]` reports
+  growth) — **r4 chartered to claude_1** (the signed margin against the original winner + four synthetic tests); the v2
+  `decision_margin` subtrees are invalid; the three gradient measurements re-run after r4 (minutes). Everything else in v2
+  stands. (2) chatgpt_1's 09:47Z platform confound in my Stage-1 allocation is real — one arm per platform would make entropy
+  collinear with the machine — **both E01/E00 arms run on the cluster, same payload and resource class** (GOAL.md step 4
+  amended); the host stays the evaluation machine; the equivalence preflight rides along with the first arm. Housekeeping:
+  the VM's volume is back at 97 % (762 MB) a few hours after the emergency — the launcher-log rotation question in the
+  owner's queue is getting urgent. — coordinator
+- 2026-08-31 11:3xZ: **closing round two — five more blockers ruled, r4 merged (`6c2fc00a`, its suite verified here).**
+  Upheld: (1) the state-distribution scope — the G/H rows are fresh-game local counterfactuals; Gate 0 closes as
+  `EARLY_GAME_LOCAL_ONLY`, the staggered-population measurement deferred to the post-Gate-0 bundle; (2) the margin-tie
+  defect (baseline ties fake crossings) → r5; (3) the epoch KL is a path average → codex_1 adds the post-epoch no-grad
+  final-policy KL and the guard follows it; (4) the clone row omitted G's 300-update warm-up — re-labelled *hypothetical
+  no-warm-up first update*; the v3 rerun adds **G@250** (inside the warm-up, policy bit-frozen) as the near-handoff row,
+  read as "50 updates before the unfreeze"; (5) **the frozen Gate 1 for E01/E00 adopted as the definition of record**
+  (one correction: the locked panel is 144 cells → the confirmation pools 288; the extension offer to 96 maps stands) —
+  written into GOAL.md step 4. The closing2 charter (11:35Z, one handoff, both bots): claude_1 = r5 + the G@250 runbook row
+  + the verdict's scope wording; codex_1 = the final-policy KL. The v3 gradient rerun (minutes) runs the hour r5 lands;
+  Gate 0 then closes on claude_1's final verdict. — coordinator
