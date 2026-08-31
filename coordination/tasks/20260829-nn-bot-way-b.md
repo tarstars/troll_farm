@@ -638,3 +638,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   questions, and the reproduction commands. Published as an owner-readable page (artifact "Why Self-Play Eats the Clone").
   **chatgpt_1 chartered for the adversarial review** (handoff 05:20Z, ack-required, 1 day): errors of fact first, the six
   questions in order, a ranked next experiment, and any ceiling in the data/network worth fixing before more compute. — coordinator
+- 2026-08-31 07:2xZ: **the recovery programme is the goal (the owner: "write down your 'What I'll do now' as goal file and
+  set it in action")** — `coordination/GOAL.md` rewritten (`fdccdbc0`): five ordered steps (errata → protocol adoptions and the
+  target-KL repair → Gate 0 measurement → the entropy-zero falsifier → the cluster reads and the evidence-ranked next lever),
+  the standing target and authorizations unchanged, the pre-freeze ladder work parked in one line. **Step 1 done**: four errata
+  marked in the dossier (`fe91e93e`) and the published page republished — the rollout-truncated credit horizon (~8–16 turns,
+  not 300), the anchor that never faded (0.0990 → 0.0946 over run I), ±5.3 not ±2 for a 48-game read, the wrong "wins ~2 %"
+  sentence; hypothesis (b) rewritten with the entropy bonus as the prime suspect. **Step 2 half-done**: both review handoffs
+  acked (07:20Z) with the paired-bench protocol adopted (scout 48 / locked ≥144 confirm / 400+400 promote) and two scopings
+  stated (stages 2–3 spec-first; the cluster arms exploratory); the target-KL aggregation repair queued as a trainer change.
+  Next: Gate 0's charters (the corrected instrument on fixed observations; the rollout telemetry; the independent critic
+  calibration), then the entropy-zero same-seed staged arm on the host. — coordinator
