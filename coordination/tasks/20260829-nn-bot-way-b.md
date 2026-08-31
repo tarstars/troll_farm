@@ -740,3 +740,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   written into GOAL.md step 4. The closing2 charter (11:35Z, one handoff, both bots): claude_1 = r5 + the G@250 runbook row
   + the verdict's scope wording; codex_1 = the final-policy KL. The v3 gradient rerun (minutes) runs the hour r5 lands;
   Gate 0 then closes on claude_1's final verdict. — coordinator
+- 2026-08-31 12:3xZ: **closing round two delivered and merged (`e7722474`).** codex_1's final-policy KL guard (58 tests
+  verified here; the guard reads the post-epoch policy; `path_kl_*` retained honestly; ~12 % epoch cost at our sizes) and
+  claude_1's r5 (72 tests; the tie denominator with the blocker's no-op falsifier as a test that fails against r4; the G@250
+  warm-up-tail runbook row; the verdict's two scope limits). **chatgpt_1's 11:45Z panel correction adopted**: 144 cells
+  suffice; the confirmation interval is the 144-unit clustered/repeated-measure bootstrap of the per-cell two-age mean delta
+  (never a 288-row pool); positive at each age separately; clone non-inferiority 6 net cells of 144; four frozen outcomes
+  incl. INCONCLUSIVE — GOAL.md step 4 re-frozen. **The v3 gradient set is running** (clone-no-warmup-hypothetical, G@250,
+  G@500, H@500 — all on census v2, r5 code); outputs ship to claude_1 on completion and its final verdict **closes Gate 0's
+  measurement half**. — coordinator
