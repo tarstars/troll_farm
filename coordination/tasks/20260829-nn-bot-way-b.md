@@ -682,3 +682,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   bootstrap noise at full policy scale) has its first direct measurement. The critic calibration's three runs (the clone;
   I@1000 argmax; I@1000 in the training decoding) run on the host now. claude_1's verdict note closes the measurement half;
   codex_1's telemetry half is still pending and gates the entropy-zero arm. — coordinator
+- 2026-08-31 08:4xZ: **the critic calibration measured (96 complete episodes each, 07:57–08:00Z) and handed to claude_1.**
+  Raw: the clone's never-trained value head reads worse than the mean (explained variance −0.20, correlation −0.10);
+  **I@1000's critic — after its 300-update warm-up and 700 training updates — reads explained variance 0.04 against the
+  realized return, where the trainer's own self-referential log claimed 0.6–0.97; its slope is ~4.5** (predictions vary
+  ~4.5× less than reality — far too timid). The review's §5 claim (the logged number means self-consistent, not true) is
+  confirmed by measurement. **One anomaly flagged, not interpreted: the scope-decoding run reports 222 illegal commands**
+  where masked paths should make that impossible — claude_1 checks whether the counter or the decoding path is at fault
+  before any scope number is quoted. All Gate-0 measurement inputs are now in claude_1's directory; its verdict note closes
+  the half. — coordinator
