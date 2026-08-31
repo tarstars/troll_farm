@@ -804,3 +804,9 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   bought nothing decision-relevant; the salvage copy (update ~7,100 curve and checkpoint) stands as its record. Still
   running: `a2` and `i2` to their natural wall-clock limits (~20:50Z / ~21:40Z; their finals get the pinned benches), and
   Stage 1's `e01`/`e00`. — coordinator
+- 2026-08-31 21:3xZ: **a pool-wide preemption at ~20:10Z restarted i2, e01 and e00 from scratch** (no resume by design; the
+  salvage of i2's deep run was overwritten by its restart — the benched u5,414 peek remains its deep record). Consequences:
+  **the E01/E00 pair restarted together, so the paired design holds** — both arms at ~7.9 M steps, the Gate-1 confirmations
+  land at their fixed updates and the verdict shifts to ~11:00Z 09-01; i2's rerun counts as a fresh staged seed. **a2 was
+  not preempted and completes its full 60 M budget ~21:50Z** — the first job to reach its budget; its final gets the pinned
+  bench tonight. — coordinator
