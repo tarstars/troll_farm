@@ -247,6 +247,7 @@ def test_the_five_new_trainer_flags_round_trip_with_non_default_values(tmp_path:
         "--critic-warmup-updates", "50",
         "--actor-lr-scale", "0.25",
         "--train-scope", "plan-critic",
+        "--entropy-coef", "0.0",
     )
     config = json.loads((payload_dir / "yt_run_config.json").read_text())
     for flag in (
@@ -256,6 +257,7 @@ def test_the_five_new_trainer_flags_round_trip_with_non_default_values(tmp_path:
         "--critic-warmup-updates",
         "--actor-lr-scale",
         "--train-scope",
+        "--entropy-coef",
     ):
         assert flag in config["trainer_args"]
 
@@ -266,6 +268,7 @@ def test_the_five_new_trainer_flags_round_trip_with_non_default_values(tmp_path:
     assert parsed.critic_warmup_updates == 50
     assert parsed.actor_lr_scale == pytest.approx(0.25)
     assert parsed.train_scope == "plan-critic"
+    assert parsed.entropy_coef == pytest.approx(0.0)
 
 
 @pytest.mark.skipif(not LIBRARY.is_file(), reason="the Rust library has not been built here")
