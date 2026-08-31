@@ -1,6 +1,6 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-08-31T09:56:00Z
+- Updated UTC: 2026-08-31T10:16:00Z
 - Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
 - Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform or Arena authority
 - Active programme: `20260829-nn-bot-way-b`
@@ -20,27 +20,20 @@ Gated recovery programme:
 
 The coordinator accepted both. Gate 0 is active; Stage 1 is a fresh E01/E00 pair under one post-Gate-0 trainer pin rather than a new arm compared with historical run I.
 
-## Gate 0 position
-
-Accepted findings now on the project record:
-
-- the 32-mini-step rollout truncates direct policy credit and leaves substantial critic dependence;
-- run I's anchor remained near 0.1, so anchor fade was not established;
-- the trainer's bootstrapped explained variance is not independent critic calibration;
-- the critic has a real shared-trunk gradient path, large at the clone handoff and locally small on the first fresh-game G/H measurements;
-- the first `adam-resumed` counterfactual results were contaminated because arms aliased and advanced the caller's saved Adam moments;
-- global gradient clipping is itself a critic-to-policy coupling and requires separate ordinary-clip and common-clip readings;
-- the clone/G/H geometry and calibration populations required matched reruns.
-
-Merged r3 is at `main@76961b7db4cfeb4ff210eeb5e711324dc4d27055`. The v2 rerun completed; r4 is chartered for one narrow margin repair, after which the three gradient measurements are rerun.
-
 ## Resolved interventions
 
-### r3 decision-margin crossing — upheld
+### r3 decision-margin crossing — upheld and r4 delivered
+
+Original blocker:
 
 `coordination/messages/chatgpt_1/20260831T094100Z-20260829-nn-bot-way-b-margin-crossing-blocker.md`
 
-The coordinator accepted the closed-form falsifier. The v2 `decision_margin` subtrees are invalid. Claude owns r4: signed post-update margin against the original winner, argmax cross-check and four synthetic tests. Other v2 measurements remain usable.
+The coordinator invalidated the v2 margin subtrees. Claude delivered r4 at:
+
+`agent/claude_1@a2b3adb407e9c97a91d882c34d1822a5e5678d51`
+`coordination/messages/claude_1/20260831T104500Z-20260829-nn-bot-way-b-gate0-r4-handoff.md`
+
+The original-winner signed-margin implementation and the four chartered synthetic cases are correct. One baseline-tie denominator defect remains open below.
 
 ### Stage 1 platform confound — upheld
 
@@ -48,13 +41,31 @@ The coordinator accepted the closed-form falsifier. The v2 `decision_margin` sub
 
 `coordination/GOAL.md` now places both E01 and E00 on the cluster with the same payload and resource class; the host remains the evaluation machine. Environment and source identities must be pinned.
 
-## Open blocker
+## Open validity blockers
 
 ### G/H state-distribution scope
 
 `coordination/messages/chatgpt_1/20260831T095200Z-20260829-nn-bot-way-b-gate0-state-distribution-blocker.md`
 
-The gradient instrument creates a fresh vector environment. G@500 and H@500 are therefore evaluated on synchronized early-game states rather than the staggered state distribution their update-500 optimizer moments historically saw. Two minibatch seeds resample one such rollout and do not fix this. Without an additional burn-in/turn-stratified population, the conclusion must remain `EARLY_GAME_LOCAL_ONLY` and cannot acquit the shared-critic path as a cause of long-run erosion.
+The gradient instrument creates a fresh vector environment. G@500 and H@500 therefore see synchronized early-game states rather than their historical staggered update-500 population. Without an additional burned-in/turn-stratified population, the result must remain `EARLY_GAME_LOCAL_ONLY`.
+
+### r4 baseline ties
+
+`coordination/messages/chatgpt_1/20260831T100400Z-20260829-nn-bot-way-b-margin-tie-blocker.md`
+
+Rows with `start_margin == 0` are excluded from shrink fractions but retained in row counts, means and `fraction_margin_crossed`. An unchanged tie can therefore create a false crossing. Use one `start > 0` population for every margin statistic and report baseline ties separately.
+
+### final-policy target KL
+
+`coordination/messages/chatgpt_1/20260831T101000Z-20260829-nn-bot-way-b-final-policy-kl-blocker.md`
+
+The merged KL accumulator averages minibatches along the sequence of optimizer steps. It does not re-evaluate all rows under the final policy produced by the epoch, so it is a path average and can understate the policy retained after the epoch. Stage 1 should guard on a post-epoch full-batch final-policy KL or explicitly abandon the trust-region interpretation.
+
+### clone/warm-up context
+
+`coordination/messages/chatgpt_1/20260831T101300Z-20260829-nn-bot-way-b-clone-warmup-context-blocker.md`
+
+The runbook's “clone under G's recipe” command omits G's 300-update critic warm-up. Its full-PPO clone gradient is not G's first update and not the update-301 policy-unfreeze handoff. Measure the exact update-300 checkpoint for that claim, or retain the clone row only as hypothetical no-warm-up path-existence evidence.
 
 ## Technical recovery sequence
 
@@ -73,7 +84,7 @@ The executor remains byte-frozen through Gate 5. Full-parameter PPO remains susp
 
 ## Inbox state
 
-The coordinator's `20260831T100500Z` acknowledgement was processed and requires no response. No unprocessed direct acknowledgement obligation was visible in the latest canonical poll. The state-distribution blocker awaits a ruling; r4 awaits Claude's delivery.
+The coordinator's `20260831T100500Z` acknowledgement was processed and requires no response. Claude's r4 handoff is CC-only and creates no acknowledgement obligation for chatgpt_1. The four open blockers above await coordinator rulings or a superseding implementation.
 
 ## Boundaries
 
