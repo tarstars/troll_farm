@@ -429,3 +429,216 @@ def test_the_checkpoint_s_own_settings_can_be_taken_as_defaults(tmp_path) -> Non
 def test_from_checkpoint_config_refuses_without_a_checkpoint() -> None:
     with pytest.raises(SystemExit):
         gd.parse_args(_argv(["--from-checkpoint-config"]))
+
+
+# ----------------------------------------- 7. chatgpt_1's review of 2026-08-30: the three repairs
+
+
+def _clone_style_checkpoint(tmp_path: Path) -> Path:
+    """A checkpoint saved the way `train_clone.py` saves one: Adam over `model.parameters()`.
+
+    That is **one** parameter group. The PPO optimizer has two (actor and critic at different
+    learning rates), which is why the clone has no resumable PPO step -- blocker 1 of the review.
+    """
+
+    from cgauto.train_level1_ppo import SpatialActorCritic  # noqa: PLC0415
+
+    model = SpatialActorCritic(plan_head=True)
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+    loss = sum(p.square().sum() for p in model.parameters())
+    optimizer.zero_grad(set_to_none=True)
+    loss.backward()
+    optimizer.step()  # so the saved state carries real moments, not an empty dict
+
+    path = tmp_path / "clone.pt"
+    torch.save(
+        {
+            "model": model.state_dict(),
+            "optimizer": optimizer.state_dict(),
+            "config": {"plan_vocab_version": tpf.PLAN_VOCAB_VERSION},
+            "global_step": 1,
+        },
+        path,
+    )
+    return path
+
+
+def test_a_one_group_clone_optimizer_is_refused_and_the_measurement_survives(tmp_path) -> None:
+    """Blocker 1: the clone's optimizer state cannot be loaded, and must not end the run.
+
+    Before the repair, `load_state_dict` raised on the layout mismatch and the whole clone
+    measurement died before writing any JSON. Now the mismatch is a structured result and the
+    variants that do not need the saved state are measured as usual.
+    """
+
+    checkpoint = _clone_style_checkpoint(tmp_path)
+    report = _measure(
+        ["--initial-checkpoint", str(checkpoint), "--anchor-turn-steps", "0"]
+    )
+
+    assert report["optimizer_state_available"] is True  # it has one; it just does not fit
+    compatibility = report["resumed_optimizer"]
+    assert compatibility["compatible"] is False
+    assert "incompatible" in compatibility["reason"]
+    assert compatibility["checkpoint_groups"] == [len(list(_parameters(checkpoint)))]
+    assert len(compatibility["ppo_groups"]) == 2
+
+    for section in ("counterfactual", "next_update"):
+        assert report[section]["adam-resumed"]["available"] is False
+        assert "incompatible" in report[section]["adam-resumed"]["reason"]
+    # everything that does not need the saved moments still produced a number
+    assert report["counterfactual"]["adam-fresh"]["available"] is True
+    assert report["counterfactual"]["sgd"]["available"] is True
+    assert report["next_update"]["adam-fresh"]["available"] is True
+
+
+def _parameters(checkpoint: Path):
+    saved = torch.load(checkpoint, map_location="cpu", weights_only=False)
+    return saved["optimizer"]["param_groups"][0]["params"]
+
+
+def test_the_reported_learning_rates_are_the_optimizer_s_own(tmp_path) -> None:
+    """The review's fourth correction: a resumed step uses the *saved* (annealed) rates."""
+
+    checkpoint = _smoke_checkpoint(tmp_path)
+    saved = torch.load(checkpoint, map_location="cpu", weights_only=False)
+    for group in saved["optimizer"]["param_groups"]:
+        group["lr"] = 3.0e-7  # as if a long linear anneal had brought it down here
+    torch.save(saved, checkpoint)
+
+    report = _measure(
+        [
+            "--initial-checkpoint",
+            str(checkpoint),
+            "--anchor-turn-steps",
+            "0",
+            "--learning-rate",
+            "0.00025",
+        ]
+    )
+    resumed = report["next_update"]["adam-resumed"]["arms"]["full"]
+    assert resumed["effective_learning_rates"]["actor"] == pytest.approx(3.0e-7)
+    assert resumed["effective_learning_rates"]["critic"] == pytest.approx(3.0e-7)
+    assert resumed["configured_critic_learning_rate"] == pytest.approx(0.00025)
+    # the fresh-Adam arm was never given saved rates, so it uses the configured ones
+    fresh = report["next_update"]["adam-fresh"]["arms"]["full"]
+    assert fresh["effective_learning_rates"]["critic"] == pytest.approx(0.00025)
+
+
+def test_full_and_no_value_differ_only_by_the_value_term(report: dict) -> None:
+    """Blocker 2: the causal counterfactual is FULL against the same update without V."""
+
+    arms = report["next_update"]["adam-fresh"]["arms"]
+    assert arms["full"]["terms_included"] == ["policy", "entropy", "value"]
+    assert arms["no_value"]["terms_included"] == ["policy", "entropy"]
+    assert arms["full"]["value_path"] == "shared"
+    assert arms["full_detached_value"]["value_path"] == "detached"
+    # both arms saw the identical rows and the identical loss values for the shared terms
+    for key in ("policy", "entropy"):
+        assert arms["full"]["loss_terms"][key] == arms["no_value"]["loss_terms"][key]
+    comparison = report["next_update"]["adam-fresh"]["comparisons"]["full_vs_no_value"]
+    assert comparison["observations"] == report["census"]["rows"]
+    assert comparison["max_abs_logit_shift"] > 0
+
+
+def test_with_no_value_coefficient_full_and_no_value_are_the_same_step() -> None:
+    """The closed-form case: delete the value term's weight and the two arms must coincide.
+
+    If `full_vs_no_value` reported movement here, it would be measuring something other than the
+    value term -- a different shuffle, a different seed, an accumulated gradient.
+    """
+
+    report = _measure(["--value-coef", "0", "--next-update-variants", "adam-fresh"])
+    comparison = report["next_update"]["adam-fresh"]["comparisons"]["full_vs_no_value"]
+    assert comparison["spatial_argmax_changed"] == 0
+    assert comparison["plan_argmax_changed"] == 0
+    assert comparison["max_abs_logit_shift"] == pytest.approx(0.0, abs=1e-9)
+    assert comparison["mean_abs_value_shift"] == pytest.approx(0.0, abs=1e-9)
+
+
+def test_the_detached_value_path_keeps_the_value_gradient_out_of_the_trunk() -> None:
+    """The structural control: with `pooled.detach()` the value loss reaches `critic.*` only."""
+
+    args = gd.build_parser().parse_args(_argv())
+    device = torch.device("cpu")
+    model, _ = tpf.load_policy(None, device)
+    model.train()
+    rng = __import__("numpy").random.default_rng(args.seed)
+    batch = gd.collect_minibatch(args, model, device, rng)["batch"]
+
+    for path, expect_trunk in (("shared", True), ("detached", False)):
+        terms = gd.objective_losses(model, None, False, batch, args, 0.0, value_path=path)
+        gradients = gd.gradients_of(model, terms["terms"]["value"][0])
+        trunk = gd.flat_vector(
+            gradients,
+            [n for n, p in model.named_parameters() if gd.group_of(n) in gd.TRUNK_GROUPS],
+        )
+        critic = gd.flat_vector(
+            gradients, [n for n, _ in model.named_parameters() if n.startswith("critic.")]
+        )
+        assert float(critic.norm()) > 0
+        assert (float(trunk.norm()) > 0) is expect_trunk
+
+
+def test_the_census_is_deterministic_and_covers_both_row_classes(report: dict) -> None:
+    """Blocker 3: one fixed set of positions, drawn the same way every time."""
+
+    census = report["census"]
+    assert census["census_version"] == gd.CENSUS_VERSION
+    assert census["rows"] == census["plan_rows"] + census["troll_rows"]
+    assert census["plan_rows"] > 0 and census["troll_rows"] > 0
+    assert census["distinct_environments"] == 8
+    assert census["distinct_rollout_steps"] == 16
+    again = _measure()
+    assert again["census"]["sha256"] == census["sha256"]
+
+
+def test_a_saved_census_is_the_one_that_is_used(tmp_path) -> None:
+    """`--census-out` then `--census-in`: the second run judges on the first run's positions."""
+
+    path = tmp_path / "census.npz"
+    first = _measure(["--census-out", str(path)])
+    assert path.exists()
+
+    # a different seed collects a different rollout, so its own census would differ ...
+    own = _measure(["--seed", "9"])
+    assert own["census"]["sha256"] != first["census"]["sha256"]
+    # ... but with the file it is judged on the first run's positions
+    borrowed = _measure(["--seed", "9", "--census-in", str(path)])
+    assert borrowed["census"]["sha256"] == first["census"]["sha256"]
+    assert borrowed["census"]["loaded_from"] == str(path)
+    assert borrowed["next_update"]["adam-fresh"]["census"]["sha256"] == first["census"]["sha256"]
+    assert borrowed["counterfactual"]["sgd"]["census_sha256"] == first["census"]["sha256"]
+    # the minibatch the step is taken on is still this run's own, on-policy
+    assert borrowed["minibatch"]["advantage_mean_raw"] != first["minibatch"]["advantage_mean_raw"]
+
+
+def test_an_edited_census_is_refused(tmp_path) -> None:
+    """A census that no longer matches its digest is not silently measured on."""
+
+    import numpy as np  # noqa: PLC0415
+
+    path = tmp_path / "census.npz"
+    _measure(["--census-out", str(path)])
+    with np.load(path, allow_pickle=False) as data:
+        arrays = {key: data[key] for key in data.files}
+    arrays["phase"] = arrays["phase"][::-1].copy()
+    np.savez_compressed(path, **arrays)
+
+    with pytest.raises(SystemExit, match="does not match its recorded sha256"):
+        gd.load_census(str(path))
+
+
+def test_the_census_split_follows_the_rollout_s_own_proportions() -> None:
+    """`stratified_rows` is proportional, deterministic and never asks for more than it has."""
+
+    import numpy as np  # noqa: PLC0415
+
+    phase = np.array([tpf.PHASE_PLAN] * 20 + [tpf.PHASE_TROLL] * 80, dtype=np.int64)
+    rows = gd.stratified_rows(phase, 50)
+    assert len(rows) == 50
+    assert list(rows) == sorted(set(rows.tolist()))
+    assert int((phase[rows] == tpf.PHASE_PLAN).sum()) == 10
+    assert list(gd.stratified_rows(phase, 50)) == list(rows)
+    assert len(gd.stratified_rows(phase, 1000)) == 100
+    assert len(gd.stratified_rows(phase, 0)) == 0

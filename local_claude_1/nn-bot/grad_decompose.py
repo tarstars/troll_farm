@@ -33,31 +33,52 @@ advantage estimator), then:
    0 means "unrelated", a negative number means "pulling against it";
 2. reports the global-clip scale the combined gradient would receive (PPO shrinks the whole
    gradient when it is longer than `--max-grad-norm`), so a norm can be read as a real step size;
-3. runs the counterfactual: takes a **copy** of the checkpoint, applies one optimizer step of the
-   value objective **alone** at the run's actor learning rate, and counts, on a fixed set of
-   observations from the same minibatch, how many commands and how many plan choices the network
-   would now decide differently, and by how much its logits moved.
+3. runs **the causal counterfactual** (`next_update` in the report): from one checkpoint, one
+   optimizer state and one minibatch it makes two copies, steps one with the full update
+   (policy + entropy + value + anchor) and the other with the same update minus the value term,
+   and then asks both -- on the same fixed set of observations -- what they would command. The
+   difference between them is the marginal effect of including the value term in that update,
+   interaction with Adam's moments and the shared gradient clip included;
+4. keeps the older value-only step as a **diagnostic** (`counterfactual` in the report): one step
+   of the value objective alone, under fresh Adam, under plain SGD, and under the checkpoint's own
+   restored moments.
 
 Nothing here trains, submits, or touches the platform, and the checkpoint on disk is never
 written to.
 
-What "one optimizer step" means (read this before quoting number 3)
--------------------------------------------------------------------
-Adam's step size does not scale with the gradient: with fresh moment estimates a first step is
-about `lr * sign(gradient)` for every weight, however small the gradient is. That overstates a
-mid-run step. The run's real step uses the moments Adam had accumulated over hundreds of updates,
-and those are saved inside the checkpoint (`"optimizer"`). So the counterfactual is reported in up
-to three variants and the honest one is named first:
+Which number answers which question (read this before quoting any of them)
+--------------------------------------------------------------------------
+chatgpt_1's instrument review of 2026-08-30 corrected the reading of part 3, and the correction is
+built into the names here:
 
-* `adam-resumed` -- Adam restored from the checkpoint's own optimizer state. This is the step the
-  run would actually have taken. Reported whenever the checkpoint carries optimizer state.
-* `adam-fresh` -- Adam from zero moments: the scale-free upper reading.
-* `sgd` -- plain `lr * gradient`: the lower reading, and the one that is proportional to the
-  gradient norms in part 1.
+* `next_update.<variant>.comparisons.full_vs_no_value` -- **the causal number.** Two copies of the
+  same checkpoint with the same restored Adam moments, the same rows, the same anchor coefficient;
+  one takes the whole update, the other takes it without `value_coef * value_loss`. Everything
+  that differs afterwards is the value term's doing.
+* `next_update.<variant>.comparisons.full_vs_full_detached_value` -- the structural control: the
+  same full update, but with the value term's route into the shared trunk cut
+  (`pooled.detach()`), so the value head still learns and the trunk no longer hears it. It
+  separates "V changes the policy through the trunk" from "V changes the policy at all".
+* `counterfactual.adam-fresh` / `.sgd` -- the value gradient in isolation, upper and lower
+  readings. Fresh Adam is scale-free (its first step is about `lr * sign(gradient)` whatever the
+  gradient's size) and overstates a mid-run step; SGD is proportional to the gradient and
+  understates it.
+* `counterfactual.adam-resumed` -- a **mixed-momentum diagnostic, not a pure value effect**: the
+  restored moments were accumulated from the historical *combined* gradient, so a value-only
+  gradient applied through them still carries momentum left by the policy, entropy and anchor
+  terms. It is also not the update-500 step the run took, which included all four terms.
 
-All three use the actor group's learning rate `--learning-rate * --actor-lr-scale` for everything
-that is not `critic.*`, exactly as `build_optimizer` does in the trainer, and all three clip the
-value-only gradient with `--max-grad-norm` first, as the update does.
+None of these reconstructs a historical update. They are all "what would the next step do", from a
+saved checkpoint and a freshly collected minibatch.
+
+Comparing two checkpoints (why the census file exists)
+------------------------------------------------------
+Two different checkpoints play differently, so their own rollouts visit different positions. Read
+side by side without care, "ppo-h moved more commands than ppo-g" could be a fact about the two
+policies' *states* rather than about the value gradient. So each checkpoint still takes its honest
+local step on its own on-policy minibatch, and every before/after network is then judged on **one
+common census**: a fixed file of observations, masks and phases collected once (`--census-out`)
+and reused (`--census-in`). Both halves are reported, and only the census half compares policies.
 
 Flags
 -----
@@ -180,6 +201,107 @@ def clip_scale(total_norm: float, max_norm: float) -> float:
     if max_norm <= 0:
         return 1.0
     return float(min(1.0, max_norm / (total_norm + 1e-6)))
+
+
+# ------------------------------------------------- the optimizer a counterfactual step is taken with
+
+
+def optimizer_layout(optimizer) -> list[int]:
+    """How many parameter tensors sit in each of the optimizer's groups, in order."""
+
+    return [len(group["params"]) for group in optimizer.param_groups]
+
+
+def saved_layout(state: dict | None) -> list[int] | None:
+    """The same shape, read out of a checkpoint's saved optimizer state."""
+
+    if not isinstance(state, dict):
+        return None
+    groups = state.get("param_groups")
+    if not isinstance(groups, list):
+        return None
+    return [len(group.get("params", [])) for group in groups]
+
+
+def resumed_compatibility(optimizer, state: dict | None) -> dict:
+    """Can this checkpoint's saved optimizer state be loaded into the PPO optimizer at all?
+
+    The behaviour-cloning trainer saves `Adam(model.parameters())`, which is **one** parameter
+    group. The PPO trainer's `build_optimizer` builds **two** -- actor and critic, at different
+    learning rates. `load_state_dict` across that mismatch raises, and would end the whole
+    measurement before it wrote a line of JSON: chatgpt_1's review of 2026-08-30, blocker 1. So
+    the layouts are compared first and a mismatch becomes a structured "unavailable" result while
+    the other variants carry on.
+
+    The moments are never remapped from one layout to the other. They were accumulated under a
+    different loss and a different grouping, so a remap would not be "the PPO step this checkpoint
+    would have taken" -- it would be a number with no referent.
+    """
+
+    if state is None:
+        return {"compatible": False, "reason": "the checkpoint carries no optimizer state"}
+    have = saved_layout(state)
+    want = optimizer_layout(optimizer)
+    if have is None:
+        return {
+            "compatible": False,
+            "reason": "the saved optimizer state carries no parameter groups",
+        }
+    if have != want:
+        return {
+            "compatible": False,
+            "reason": (
+                f"optimizer layout incompatible: checkpoint={len(have)} group(s) {have}, "
+                f"PPO={len(want)} group(s) {want}"
+            ),
+            "checkpoint_groups": have,
+            "ppo_groups": want,
+        }
+    return {"compatible": True, "reason": None, "checkpoint_groups": have, "ppo_groups": want}
+
+
+def effective_learning_rates(optimizer) -> dict:
+    """The learning rates the step will actually use, read off the optimizer's own groups.
+
+    After `load_state_dict` these are the checkpoint's *saved* rates, which a linear anneal may
+    have moved a long way from the configured ones. The report carries both.
+    """
+
+    rates = {}
+    for index, group in enumerate(optimizer.param_groups):
+        rates[str(group.get("name", index))] = float(group["lr"])
+    return rates
+
+
+def step_optimizer(copy_model, args, variant: str, optimizer_state: dict | None):
+    """`(optimizer, how it was built)` for one counterfactual variant; `(None, ...)` if it cannot be.
+
+    `sgd` and `adam-fresh` always can. `adam-resumed` can only when the saved state's parameter
+    groups match the PPO optimizer's, which is checked rather than attempted.
+    """
+
+    if variant == "sgd":
+        critic_parameters, policy_parameters = tpf.split_parameters(copy_model)
+        optimizer = torch.optim.SGD(
+            [
+                {
+                    "params": policy_parameters,
+                    "lr": float(args.learning_rate) * float(args.actor_lr_scale),
+                    "name": "actor",
+                },
+                {"params": critic_parameters, "lr": float(args.learning_rate), "name": "critic"},
+            ]
+        )
+        return optimizer, {"resumed": False, "compatibility": None}
+
+    optimizer = build_optimizer(copy_model, args.learning_rate, args.actor_lr_scale)
+    if variant != "adam-resumed":
+        return optimizer, {"resumed": False, "compatibility": None}
+    compatibility = resumed_compatibility(optimizer, optimizer_state)
+    if not compatibility["compatible"]:
+        return None, {"resumed": False, "compatibility": compatibility}
+    optimizer.load_state_dict(optimizer_state)
+    return optimizer, {"resumed": True, "compatibility": compatibility}
 
 
 def gradients_of(model: nn.Module, loss: torch.Tensor) -> dict[str, torch.Tensor]:
@@ -354,22 +476,57 @@ def collect_minibatch(args, model, device, rng) -> dict:
         "value_mean": float(torch.from_numpy(flat["values"][rows]).mean()),
         "explained_variance_rollout": explained_variance(flat["values"], flat_returns),
     }
-    return {"batch": batch, "summary": summary}
+    # The whole rollout is handed back as well, not only the minibatch: a census is drawn from
+    # all of it (see `build_census`), so that the fixed observations both checkpoints are judged
+    # on cover the update's steps and environments rather than one shuffled slice of them.
+    rollout = {
+        "obs": flat["obs"],
+        "legal": flat["legal"],
+        "phase": flat["phase"],
+        "turn_boundary": buffer.turn_boundary.reshape(buffer.size),
+        "steps": int(buffer.steps),
+        "envs": int(buffer.envs),
+    }
+    return {"batch": batch, "summary": summary, "rollout": rollout}
 
 
 # --------------------------------------------------------------------------- the four objectives
 
 
-def objective_losses(model, anchor, anchor_has_plan, batch, args, anchor_coef) -> dict:
+def detached_value(model, observations: torch.Tensor, phase: torch.Tensor) -> torch.Tensor:
+    """The value head's prediction with its route into the shared trunk cut.
+
+    The same trunk, the same masked pooling, the same two linear layers -- but the pooled features
+    are `detach()`ed on the way into the value head, so a gradient of the value loss reaches
+    `critic.*` and stops there. This is the structural control chatgpt_1's review asks for: the
+    value head goes on being fitted, and the trunk (and through it both action heads) no longer
+    hears about it.
+    """
+
+    observations = mask_plan_target_planes(observations, phase)
+    _, pooled, _, _ = model._trunk(observations)
+    return model.critic(pooled.detach()).squeeze(-1)
+
+
+def objective_losses(
+    model, anchor, anchor_has_plan, batch, args, anchor_coef, value_path: str = "shared"
+) -> dict:
     """The four terms of the update's loss, each with its coefficient already applied.
 
     One forward pass feeds all four, exactly as the update's single `loss.backward()` does, so
     the four gradients measured here are the four pieces that combined gradient is made of --
     `linearity_check` in the report proves it, by comparing their sum with the gradient of the
     sum.
+
+    `value_path="detached"` swaps the value term for the detached-trunk one above; everything else
+    is untouched. It is only ever used by the structural control arm.
     """
 
     logits, new_value = combined_logits(model, batch["obs"], batch["phase"])
+    if value_path == "detached":
+        new_value = detached_value(model, batch["obs"], batch["phase"])
+    elif value_path != "shared":
+        raise ValueError(f"unknown value path {value_path!r}")
     policy_masked = masked_logits(logits, batch["legal"])
     distribution = Categorical(logits=policy_masked)
     new_logprob = distribution.log_prob(batch["actions"])
@@ -507,76 +664,161 @@ def decompose_by_row_class(model, anchor, anchor_has_plan, batch, args, anchor_c
     return out
 
 
-# --------------------------------------------------------------------------- the counterfactual
+# --------------------------------------------------------------- the common observation census
 
 
-def counterfactual_value_step(
-    model, batch, args, variant: str, optimizer_state: dict | None, rows: int
-) -> dict:
-    """Part 3: one optimizer step of the value objective alone, on a copy of the network.
+#: A census is a fixed set of positions -- observations, legal-action masks and phases -- that any
+#: number of networks can be asked the same question on. It exists because two checkpoints play
+#: differently and therefore visit different positions, so "h changed more commands than g" read
+#: off each one's own rollout mixes the mechanism with the state distribution (chatgpt_1's review
+#: of 2026-08-30, blocker 3).
+CENSUS_VERSION = 1
 
-    The copy is what is stepped; the caller's model is never touched. The step is the trainer's:
-    two parameter groups from `build_optimizer`, so everything that is not `critic.*` moves at
-    `--learning-rate * --actor-lr-scale`, and the gradient is clipped with `--max-grad-norm`
-    first. Then, on `rows` fixed observations taken from the head of the same minibatch, we ask
-    the before and after networks what they would do.
 
-    What is counted:
+def census_digest(obs: np.ndarray, legal: np.ndarray, phase: np.ndarray) -> str:
+    """A content fingerprint of a census: the three arrays' bytes, in order.
 
-    * `spatial_argmax_changed` -- TROLL rows whose chosen command changed. This is the number the
-      audit is about: a value-only step, and the bot gives a different order.
-    * `plan_argmax_changed` -- PLAN rows whose chosen training recipe changed.
-    * `mean_abs_logit_shift` -- the average size of the move in the head's logits over the legal
-      actions only, per head. Illegal entries are masked to a constant and cannot move.
+    Deliberately not the file's own SHA-256: `np.savez_compressed` writes a zip, and a zip records
+    the moment it was written, so two identical censuses saved a second apart have different file
+    hashes. This digest is a fact about the positions.
     """
 
-    copy_model = copy.deepcopy(model)
-    optimizer = build_optimizer(copy_model, args.learning_rate, args.actor_lr_scale)
-    if variant == "sgd":
-        critic_parameters, policy_parameters = tpf.split_parameters(copy_model)
-        optimizer = torch.optim.SGD(
-            [
-                {
-                    "params": policy_parameters,
-                    "lr": float(args.learning_rate) * float(args.actor_lr_scale),
-                },
-                {"params": critic_parameters, "lr": float(args.learning_rate)},
-            ]
-        )
-    elif variant == "adam-resumed":
-        if optimizer_state is None:
-            return {"available": False, "reason": "the checkpoint carries no optimizer state"}
-        optimizer.load_state_dict(optimizer_state)
+    import hashlib
 
-    fixed = {key: value[:rows] for key, value in batch.items()}
+    digest = hashlib.sha256()
+    for array in (np.ascontiguousarray(obs), np.ascontiguousarray(legal), np.ascontiguousarray(phase)):
+        digest.update(str(array.dtype).encode())
+        digest.update(str(array.shape).encode())
+        digest.update(array.tobytes())
+    return digest.hexdigest()
 
-    with torch.no_grad():
-        before_logits, before_value = combined_logits(
-            copy_model, fixed["obs"], fixed["phase"]
-        )
-        before_masked = masked_logits(before_logits, fixed["legal"])
-        before_choice = before_masked.argmax(dim=-1)
 
-    _, new_value = combined_logits(copy_model, batch["obs"], batch["phase"])
-    loss = args.value_coef * 0.5 * (new_value - batch["returns"]).pow(2).mean()
-    optimizer.zero_grad(set_to_none=True)
-    loss.backward()
-    applied_norm = float(
-        nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm)
+def stratified_rows(phase: np.ndarray, wanted: int) -> np.ndarray:
+    """`wanted` row indices, split between PLAN and TROLL rows in the rollout's own proportion.
+
+    Deterministic: within each class the picks are evenly spaced over the class's rows in rollout
+    order, so consecutive steps and every environment are represented rather than one lucky
+    window. No random number is drawn, so the same rollout always yields the same census.
+    """
+
+    plan = np.flatnonzero(phase == PHASE_PLAN)
+    troll = np.flatnonzero(phase == PHASE_TROLL)
+    total = len(plan) + len(troll)
+    wanted = int(min(wanted, total))
+    if wanted <= 0:
+        return np.zeros(0, dtype=np.int64)
+
+    take_plan = int(round(wanted * (len(plan) / total))) if total else 0
+    take_plan = min(take_plan, len(plan))
+    take_troll = min(wanted - take_plan, len(troll))
+    take_plan = min(len(plan), wanted - take_troll)
+
+    def spread(pool: np.ndarray, count: int) -> np.ndarray:
+        if count <= 0 or len(pool) == 0:
+            return np.zeros(0, dtype=np.int64)
+        if count >= len(pool):
+            return pool.astype(np.int64)
+        picks = np.linspace(0, len(pool) - 1, count).round().astype(np.int64)
+        return pool[np.unique(picks)].astype(np.int64)
+
+    rows = np.concatenate([spread(plan, take_plan), spread(troll, take_troll)])
+    return np.sort(np.unique(rows))
+
+
+def build_census(rollout: dict, wanted: int, provenance: dict) -> dict:
+    """Draw a census from one collected rollout and record where every row came from."""
+
+    rows = stratified_rows(rollout["phase"], wanted)
+    obs = np.ascontiguousarray(rollout["obs"][rows])
+    legal = np.ascontiguousarray(rollout["legal"][rows])
+    phase = np.ascontiguousarray(rollout["phase"][rows])
+    envs = rollout["envs"]
+    meta = {
+        "census_version": CENSUS_VERSION,
+        "rows": int(len(rows)),
+        "plan_rows": int((phase == PHASE_PLAN).sum()),
+        "troll_rows": int((phase == PHASE_TROLL).sum()),
+        "turn_boundary_rows": int(rollout["turn_boundary"][rows].sum()),
+        "distinct_environments": int(len(np.unique(rows % envs))) if envs else 0,
+        "distinct_rollout_steps": int(len(np.unique(rows // envs))) if envs else 0,
+        "rollout_rows": int(len(rollout["phase"])),
+        "source": provenance,
+        "sha256": census_digest(obs, legal, phase),
+    }
+    return {"obs": obs, "legal": legal, "phase": phase, "row_index": rows, "meta": meta}
+
+
+def save_census(census: dict, path: str) -> None:
+    """Write the census where `--census-in` can pick it up again."""
+
+    out = Path(path)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    np.savez_compressed(
+        out,
+        obs=census["obs"],
+        legal=census["legal"],
+        phase=census["phase"],
+        row_index=census["row_index"],
+        meta=np.array(json.dumps(census["meta"], sort_keys=True)),
     )
-    optimizer.step()
+
+
+def load_census(path: str) -> dict:
+    """Read a census back and refuse it if its contents no longer match its recorded digest."""
+
+    with np.load(Path(path), allow_pickle=False) as data:
+        obs = data["obs"]
+        legal = data["legal"]
+        phase = data["phase"]
+        row_index = data["row_index"]
+        meta = json.loads(str(data["meta"]))
+    digest = census_digest(obs, legal, phase)
+    if digest != meta.get("sha256"):
+        raise SystemExit(
+            f"census {path} does not match its recorded sha256 "
+            f"({digest} != {meta.get('sha256')}); it has been edited or truncated"
+        )
+    meta = dict(meta)
+    meta["loaded_from"] = str(path)
+    return {"obs": obs, "legal": legal, "phase": phase, "row_index": row_index, "meta": meta}
+
+
+def census_tensors(census: dict, device) -> dict:
+    """The census as the tensors a forward pass wants."""
+
+    return {
+        "obs": torch.from_numpy(np.ascontiguousarray(census["obs"])).to(device),
+        "legal": torch.from_numpy(np.ascontiguousarray(census["legal"])).to(device).bool(),
+        "phase": torch.from_numpy(np.ascontiguousarray(census["phase"])).to(device),
+    }
+
+
+def read_out(model, fixed: dict) -> dict:
+    """What one network says about the census: raw logits, masked logits, choices, values."""
 
     with torch.no_grad():
-        after_logits, after_value = combined_logits(
-            copy_model, fixed["obs"], fixed["phase"]
-        )
-        after_masked = masked_logits(after_logits, fixed["legal"])
-        after_choice = after_masked.argmax(dim=-1)
+        logits, value = combined_logits(model, fixed["obs"], fixed["phase"])
+        masked = masked_logits(logits, fixed["legal"])
+        return {
+            "logits": logits,
+            "masked": masked,
+            "choice": masked.argmax(dim=-1),
+            "value": value,
+        }
 
-    changed = before_choice != after_choice
+
+def difference(before: dict, after: dict, fixed: dict) -> dict:
+    """How two networks differ on the same positions.
+
+    `spatial_argmax_changed` is the number the audit is about: same position, different order.
+    Logit shifts are averaged over the **legal** entries only, since illegal ones are masked to a
+    constant and cannot move.
+    """
+
+    changed = before["choice"] != after["choice"]
     plan_rows = fixed["phase"] == PHASE_PLAN
     troll_rows = fixed["phase"] == PHASE_TROLL
-    shift = (after_logits - before_logits).abs()
+    shift = (after["logits"] - before["logits"]).abs()
     legal = fixed["legal"]
 
     def mean_shift(rows_mask: torch.Tensor, columns: slice) -> float | None:
@@ -588,34 +830,213 @@ def counterfactual_value_step(
             return None
         return float(window[window_legal].mean())
 
+    def fraction(mask: torch.Tensor, rows_mask: torch.Tensor) -> float | None:
+        if not bool(rows_mask.any()):
+            return None
+        return float((mask & rows_mask).sum() / rows_mask.sum())
+
+    return {
+        "observations": int(fixed["obs"].shape[0]),
+        "spatial_rows": int(troll_rows.sum()),
+        "spatial_argmax_changed": int((changed & troll_rows).sum()),
+        "spatial_argmax_changed_fraction": fraction(changed, troll_rows),
+        "plan_rows": int(plan_rows.sum()),
+        "plan_argmax_changed": int((changed & plan_rows).sum()),
+        "plan_argmax_changed_fraction": fraction(changed, plan_rows),
+        "mean_abs_logit_shift_spatial": mean_shift(troll_rows, slice(None)),
+        "mean_abs_logit_shift_plan": mean_shift(plan_rows, slice(0, PLAN_SIZE)),
+        "mean_abs_value_shift": float((after["value"] - before["value"]).abs().mean()),
+        "max_abs_logit_shift": float(shift.max()),
+    }
+
+
+# ------------------------------------------------------ the causal counterfactual: FULL vs NO-V
+
+
+#: The arms of one hypothetical next update. FULL is the update the trainer would take; NO-V is
+#: the same update with the value term deleted; DETACHED is the same update with the value term
+#: kept but its route through the shared trunk cut.
+NEXT_UPDATE_ARMS = {
+    "full": {"terms": ("policy", "entropy", "value", "anchor"), "value_path": "shared"},
+    "no_value": {"terms": ("policy", "entropy", "anchor"), "value_path": "shared"},
+    "full_detached_value": {
+        "terms": ("policy", "entropy", "value", "anchor"),
+        "value_path": "detached",
+    },
+}
+
+
+def stepped_copy(
+    model,
+    anchor,
+    anchor_has_plan,
+    batch,
+    args,
+    anchor_coef,
+    variant: str,
+    optimizer_state: dict | None,
+    arm: str,
+):
+    """One arm: a deep copy of the checkpoint, one optimizer step, `(model, what it did)`.
+
+    The copy is what is stepped; the caller's model is never touched, and the checkpoint file is
+    never written to. Every arm restores the *identical* optimizer state, sees the identical rows,
+    actions, old log-probabilities, advantages, returns and anchor coefficient, and computes its
+    own gradient norm and its own clip scale before stepping -- so the only difference between two
+    arms is which terms are in their loss.
+    """
+
+    recipe = NEXT_UPDATE_ARMS[arm]
+    copy_model = copy.deepcopy(model)
+    optimizer, info = step_optimizer(copy_model, args, variant, optimizer_state)
+    if optimizer is None:
+        return None, {"available": False, **info["compatibility"]}
+
+    computed = objective_losses(
+        copy_model, anchor, anchor_has_plan, batch, args, anchor_coef,
+        value_path=recipe["value_path"],
+    )
+    terms = computed["terms"]
+    included = [key for key in recipe["terms"] if key in terms]
+    loss = sum(terms[key][0] for key in included)
+
+    optimizer.zero_grad(set_to_none=True)
+    loss.backward()
+    applied_norm = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+    rates = effective_learning_rates(optimizer)
+    optimizer.step()
+
+    return copy_model, {
+        "available": True,
+        "arm": arm,
+        "terms_included": included,
+        "terms_available": sorted(terms),
+        "value_path": recipe["value_path"],
+        "resumed_optimizer_state": bool(info["resumed"]),
+        "grad_norm_before_clip": applied_norm,
+        "clip_scale_applied": clip_scale(applied_norm, float(args.max_grad_norm)),
+        "effective_learning_rates": rates,
+        "configured_actor_learning_rate": float(args.learning_rate) * float(args.actor_lr_scale),
+        "configured_critic_learning_rate": float(args.learning_rate),
+        "loss_terms": {key: terms[key][2] for key in terms},
+    }
+
+
+def counterfactual_next_update(
+    model,
+    anchor,
+    anchor_has_plan,
+    batch,
+    args,
+    anchor_coef,
+    variant: str,
+    optimizer_state: dict | None,
+    fixed: dict,
+) -> dict:
+    """The causal counterfactual: FULL against NO-V (and against the detached-trunk control).
+
+    All arms start from the same checkpoint, the same optimizer state and the same minibatch, and
+    all of them are judged on the same census `fixed`. `full_vs_no_value` is then the marginal
+    effect of including `value_coef * value_loss` in that update -- the interaction with the
+    restored Adam moments, with the global clip and with the other three terms included, which is
+    exactly the interaction the project needs to know.
+    """
+
+    before = read_out(model, fixed)
+    arms: dict[str, dict] = {}
+    models: dict[str, object] = {}
+    for arm in NEXT_UPDATE_ARMS:
+        stepped, info = stepped_copy(
+            model, anchor, anchor_has_plan, batch, args, anchor_coef,
+            variant, optimizer_state, arm,
+        )
+        arms[arm] = info
+        if stepped is not None:
+            models[arm] = stepped
+
+    if not models:
+        return {"available": False, "variant": variant, **arms["full"]}
+
+    read = {arm: read_out(stepped, fixed) for arm, stepped in models.items()}
+    comparisons = {}
+    for left, right in (
+        ("full", "no_value"),
+        ("full", "full_detached_value"),
+    ):
+        if left in read and right in read:
+            comparisons[f"{left}_vs_{right}"] = difference(read[right], read[left], fixed)
+    for arm in read:
+        comparisons[f"{arm}_vs_before"] = difference(before, read[arm], fixed)
+
     return {
         "available": True,
         "variant": variant,
-        "observations": int(fixed["obs"].shape[0]),
+        "arms": arms,
+        "comparisons": comparisons,
+        "census": {
+            "sha256": fixed["sha256"],
+            "rows": int(fixed["obs"].shape[0]),
+            "source": fixed["source"],
+        },
+    }
+
+
+# ------------------------------------------------- the value-only step (a diagnostic, not causal)
+
+
+def counterfactual_value_step(
+    model, batch, args, variant: str, optimizer_state: dict | None, fixed: dict
+) -> dict:
+    """One optimizer step of the value objective **alone**, on a copy of the network.
+
+    Kept from the first delivery as a diagnostic and read as one. Under `adam-fresh` and `sgd` it
+    isolates the current value gradient; under `adam-resumed` it applies that gradient through
+    moments accumulated from the historical *combined* gradient, so what moves is not the value
+    term's doing alone. The causal question is answered by `counterfactual_next_update` above.
+
+    The copy is what is stepped; the caller's model is never touched. The step is the trainer's:
+    two parameter groups from `build_optimizer`, so everything that is not `critic.*` moves at the
+    actor rate, and the gradient is clipped with `--max-grad-norm` first. Before and after are
+    then asked what they would do on the common census.
+    """
+
+    copy_model = copy.deepcopy(model)
+    optimizer, info = step_optimizer(copy_model, args, variant, optimizer_state)
+    if optimizer is None:
+        return {"available": False, **info["compatibility"]}
+
+    before = read_out(copy_model, fixed)
+
+    _, new_value = combined_logits(copy_model, batch["obs"], batch["phase"])
+    loss = args.value_coef * 0.5 * (new_value - batch["returns"]).pow(2).mean()
+    optimizer.zero_grad(set_to_none=True)
+    loss.backward()
+    applied_norm = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+    rates = effective_learning_rates(optimizer)
+    optimizer.step()
+
+    after = read_out(copy_model, fixed)
+    report = {
+        "available": True,
+        "variant": variant,
+        "reading": (
+            "mixed-momentum diagnostic: the restored moments carry the historical policy, "
+            "entropy and anchor gradients, so this is not a pure value effect"
+            if variant == "adam-resumed"
+            else "the value gradient in isolation"
+        ),
         "value_loss_before_step": float(loss.detach()) / max(float(args.value_coef), 1e-12),
         "grad_norm_before_clip": applied_norm,
         "clip_scale_applied": clip_scale(applied_norm, float(args.max_grad_norm)),
+        "effective_learning_rates": rates,
         "actor_learning_rate": float(args.learning_rate) * float(args.actor_lr_scale),
         "critic_learning_rate": float(args.learning_rate),
-        "spatial_rows": int(troll_rows.sum()),
-        "spatial_argmax_changed": int((changed & troll_rows).sum()),
-        "spatial_argmax_changed_fraction": (
-            float((changed & troll_rows).sum() / troll_rows.sum())
-            if bool(troll_rows.any())
-            else None
-        ),
-        "plan_rows": int(plan_rows.sum()),
-        "plan_argmax_changed": int((changed & plan_rows).sum()),
-        "plan_argmax_changed_fraction": (
-            float((changed & plan_rows).sum() / plan_rows.sum())
-            if bool(plan_rows.any())
-            else None
-        ),
-        "mean_abs_logit_shift_spatial": mean_shift(troll_rows, slice(None)),
-        "mean_abs_logit_shift_plan": mean_shift(plan_rows, slice(0, PLAN_SIZE)),
-        "mean_abs_value_shift": float((after_value - before_value).abs().mean()),
-        "max_abs_logit_shift": float(shift.max()),
+        "resumed_optimizer_state": bool(info["resumed"]),
+        "census_sha256": fixed["sha256"],
+        "census_source": fixed["source"],
     }
+    report.update(difference(before, after, fixed))
+    return report
 
 
 # --------------------------------------------------------------------------- the run
@@ -643,12 +1064,30 @@ def build_parser() -> argparse.ArgumentParser:
         "--counterfactual-observations",
         type=int,
         default=512,
-        help="how many rows from the head of the minibatch the value-only step is judged on",
+        help="how many positions the census holds when this run builds one (ignored with "
+        "--census-in, which brings its own rows)",
     )
     group.add_argument(
         "--counterfactual-variants",
         default="adam-resumed,adam-fresh,sgd",
-        help="comma-separated; 'adam-resumed' uses the checkpoint's own optimizer moments",
+        help="comma-separated variants of the value-only diagnostic step; 'adam-resumed' uses "
+        "the checkpoint's own optimizer moments and is a mixed-momentum reading, not a causal one",
+    )
+    group.add_argument(
+        "--next-update-variants",
+        default="adam-resumed,adam-fresh",
+        help="comma-separated variants of the causal FULL-vs-NO-V counterfactual; empty to skip it",
+    )
+    group.add_argument(
+        "--census-in",
+        default=None,
+        help="judge every before/after network on this saved census of positions, so two "
+        "checkpoints are compared as policies rather than as trajectories",
+    )
+    group.add_argument(
+        "--census-out",
+        default=None,
+        help="write the census this run drew from its own rollout here, for --census-in later",
     )
     group.add_argument(
         "--anchor-turn-steps",
@@ -685,6 +1124,9 @@ NOT_FROM_CONFIG = frozenset(
         "out",
         "counterfactual_observations",
         "counterfactual_variants",
+        "next_update_variants",
+        "census_in",
+        "census_out",
         "anchor_turn_steps",
         "row_class_split",
         "device",
@@ -795,11 +1237,48 @@ def measure(args) -> dict:
         else None
     )
 
-    rows = min(int(args.counterfactual_observations), int(batch["obs"].shape[0]))
+    # The positions every before/after network is judged on. With --census-in they are somebody
+    # else's fixed rows -- the whole point: the same positions for the clone, for g and for h.
+    if args.census_in:
+        census = load_census(args.census_in)
+    else:
+        census = build_census(
+            collected["rollout"],
+            int(args.counterfactual_observations),
+            {
+                "label": args.label,
+                "checkpoint": args.initial_checkpoint,
+                "checkpoint_sha256": initial_sha,
+                "seed": int(args.seed),
+                "env": args.env,
+                "num_envs": int(args.num_envs),
+                "rollout_steps": int(args.rollout_steps),
+            },
+        )
+        if args.census_out:
+            save_census(census, args.census_out)
+    fixed = census_tensors(census, device)
+    fixed["sha256"] = census["meta"]["sha256"]
+    fixed["source"] = census["meta"].get("loaded_from", "this run's own rollout")
+
+    # Whether this checkpoint's saved optimizer state can be resumed into the PPO optimizer at
+    # all. The clone's cannot (one parameter group against PPO's two), and saying so once here
+    # keeps every variant's "unavailable" from reading like a bug.
+    resumed = resumed_compatibility(
+        build_optimizer(model, args.learning_rate, args.actor_lr_scale), optimizer_state
+    )
+
     counterfactual = {}
     for variant in [v.strip() for v in args.counterfactual_variants.split(",") if v.strip()]:
         counterfactual[variant] = counterfactual_value_step(
-            model, batch, args, variant, optimizer_state, rows
+            model, batch, args, variant, optimizer_state, fixed
+        )
+
+    next_update = {}
+    for variant in [v.strip() for v in args.next_update_variants.split(",") if v.strip()]:
+        next_update[variant] = counterfactual_next_update(
+            model, anchor, anchor_has_plan, batch, args, anchor_coef,
+            variant, optimizer_state, fixed,
         )
 
     report = {
@@ -813,6 +1292,7 @@ def measure(args) -> dict:
         "anchor_coefficient": anchor_coef,
         "anchor_turn_steps": turn_steps,
         "optimizer_state_available": optimizer_state is not None,
+        "resumed_optimizer": resumed,
         "config_source": getattr(args, "config_source", "command line"),
         "config_taken_from_checkpoint": getattr(args, "config_taken_from_checkpoint", []),
         "instrument": {
@@ -835,6 +1315,8 @@ def measure(args) -> dict:
         "combined": parts["combined"],
         "linearity_check": parts["linearity_check"],
         "by_row_class": by_row_class,
+        "census": census["meta"],
+        "next_update": next_update,
         "counterfactual": counterfactual,
         "timing": {
             "collect_seconds": collect_seconds,
