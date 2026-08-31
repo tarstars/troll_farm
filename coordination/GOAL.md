@@ -44,13 +44,15 @@ the best-fitting explanation of the staged drift. The full dossier:
    and one independent critic calibration (a frozen checkpoint, complete held-out episodes,
    realized return-to-go vs the value head). *Done when:* the three reports are on `main` and say
    whether the value-gradient path and the bootstrap-noise mechanism are convicted or acquitted.
-4. **The entropy-zero falsifier** (the host, ≤ 8 threads, lowest priority): the same-seed staged
-   arm with `entropy_coef = 0` and every other run-I flag unchanged — the single cheapest decisive
-   experiment; both the coordinator and the reviewer converged on it independently. Benched at
-   updates 500 / 1,000 / 1,500 / 2,000 / 2,500 on the scout panel with the paired protocol.
-   *Done when:* its curve is on the card next to run I's. **The read:** if the drift disappears,
-   the entropy bonus is convicted and the staged line continues without it; if it remains, the
-   remaining suspects (normalized bootstrap noise; the fresh-target-every-turn semantics) move up.
+4. **The entropy falsifier — two fresh arms under one post-Gate-0 pin** (the reviewer's 08:57Z
+   amendment, adopted: comparing a new arm against *historical* run I would be confounded by
+   Gate 0's own trainer repairs): from the same clone, same seed, same everything on the merged
+   post-Gate-0 trainer — **E01** (control, `entropy_coef = 0.01`) and **E00** (treatment,
+   `entropy_coef = 0`); one on the host, one on the cluster; benched at the same fixed updates on
+   the scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired
+   cells. *Done when:* both curves are on the card. **The read:** if E00 − E01 removes the drift,
+   the entropy bonus is convicted; if not, the remaining suspects (normalized bootstrap noise;
+   the fresh-target-every-turn semantics) move up.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever
