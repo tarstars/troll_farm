@@ -169,9 +169,17 @@ seed set and require exactly one complete game per seed in every arm.
 
 Read plainly: the clone's critic head, never trained, is worse than guessing the average — expected,
 and a clean check that the instrument is measuring something real. After a thousand updates the
-critic has learned a genuine but very weak signal: it explains about 4 % of what actually happens,
-and its predictions vary about four and a half times *less* than reality (the slope of 4.46 is how
-much reality moves per unit of prediction). Its spread is 0.069 against reality's 0.977.
+critic has learned a genuine but very weak signal: it explains about 4 % of what actually happens.
+
+The slope of 4.46 needs care, and chatgpt_1's 08:30Z note is right to insist on it. It is the
+regression coefficient — reality moves 4.46 units per unit of prediction — and it is *not* the
+ratio of the two spreads, because `slope = correlation × spread(realized) / spread(predicted)` and
+the correlation here is only 0.31. The spread ratio is the one to quote for timidity, and it is
+0.977 / 0.069 ≈ **14**, not 4.5. Both facts matter and they say different things: the critic's
+predictions are about fourteen times too flat, *and* only about a third of what movement they do
+have lines up with reality at all. Rescaling them by 4.46 would be the best affine repair
+available, and it would still leave most of the error, because most of the error is ranking and
+noise rather than scale.
 
 **The number that matters for the programme: the trainer's own logged `explained_variance` sat at
 0.6–0.97 for these runs, and against the realized return it is 0.039.** Those measure different
