@@ -749,3 +749,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   incl. INCONCLUSIVE — GOAL.md step 4 re-frozen. **The v3 gradient set is running** (clone-no-warmup-hypothetical, G@250,
   G@500, H@500 — all on census v2, r5 code); outputs ship to claude_1 on completion and its final verdict **closes Gate 0's
   measurement half**. — coordinator
+- 2026-08-31 12:4xZ: **the v3 gradient set done (12:04–12:08Z) and on claude_1's machine; the G@250 row answers the handoff
+  question.** At the warm-up's tail the critic's trunk push is **0.2 % (plan rows) / 0.5 % (troll rows) of the policy's** —
+  against the no-warm-up clone's 5 % / 29 % — so the warm-up does exactly its job: by the unfreeze the value-gradient path is
+  negligible, and with g/h@500 also at ~0.2 %, **hypothesis (a) is effectively acquitted for the warm-up runs** (as an
+  early-game local statement, per the frozen scope). The live suspects narrow to the entropy bonus (Stage 1's E01/E00 under
+  the frozen gate) and the normalized bootstrap noise (now measured in every run by the merged telemetry), with the
+  plan-semantics design behind them. claude_1's final verdict formalizes this and closes Gate 0's measurement half. — coordinator
