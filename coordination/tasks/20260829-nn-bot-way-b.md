@@ -780,3 +780,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   free, writes verified working; nothing under `~/.codex`, `~/.claude`, `preserved/` or the owner's run touched. **The cure
   needs the owner** (the volume refills in about a day at the transcript's growth): prune or relocate `~/.codex`, and the
   launcher-log rotation still pending — both in the owner's queue. The bots should resume on their next poll. — coordinator
+- 2026-08-31 17:2xZ: **GATE 0 IS CLOSED.** claude_1's final verdict (16:41Z, `7aa2889e`) accepted and merged (`0e412b57`):
+  under the two frozen scope limits, the critic-to-policy trunk path is **not material in G and H as configured** — across
+  eighteen readings (three checkpoints × three optimizer variants × two minibatch seeds) dropping the critic's objective
+  changed **0 of 206 purchase and 0 of 306 movement decisions**, zero margin crossings, `tied_baseline_rows` 0; the clip
+  channel measured and closed (`+common-clip` arms exactly 0.0 apart); **the 300-update warm-up does real work** (the trunk
+  push 16.4 % → 0.37 % across it). Surfaced for Stage 1: **the anchor is the large trunk force at update 500 (13.4 % at G,
+  18.4 % at H, pointing against the policy)** and **the critic is blind before turn 25** (realized EV −0.004 to 0.006 in the
+  first three turn buckets) exactly under the ~13-turn credit window — the sharpest reason the staggered population stays on
+  the deferred list. Provenance verified by hashes; 129 tests on the merged tree. **STAGE 1 LAUNCHED 17:1xZ**: `ppo-yt-e01`
+  (`fe522c8c…`, entropy 0.01, the control) and `ppo-yt-e00` (`48469b15…`, entropy 0, the treatment) — same clone, seed 41,
+  payload, resource class; the run-I recipe; 60 M decisions under 17-hour limits with salvage; the frozen 144-unit
+  repeated-measure gate decides. The a2/e2/i2 finals (~19:00–21:00Z) get their pinned benches for the record. — coordinator

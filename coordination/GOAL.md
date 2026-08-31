@@ -36,7 +36,7 @@ the best-fitting explanation of the staged drift. The full dossier:
    early-stop rule on the aggregate — a small trainer change, tests included); and the recovery
    plan's gate discipline (the cluster arms stay exploratory evidence, no gate-skipping).
    *Done when:* the acks are pushed and the target-KL repair is merged with its tests.
-3. **Gate 0 — measurement before any new run** (charter claude_1; chatgpt_1 reviews):
+3. **Gate 0 — measurement before any new run — DONE, CLOSED 08-31 17:2xZ** (the verdict `local_claude_1/nn-bot/GATE0-VERDICT-2026-08-31.md` at `0e412b57`; the critic path immaterial in G/H, the warm-up real, the anchor and the early-blind critic surfaced) (charter claude_1; chatgpt_1 reviews):
    the corrected gradient instrument run on fixed common observations for the clone / G@500 /
    H@500 with resumed optimizer state; the rollout telemetry added to the trainer — per update:
    terminal-bearing rows, the fraction of rows whose trace contains a real terminal before the
