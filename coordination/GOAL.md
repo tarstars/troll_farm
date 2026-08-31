@@ -48,9 +48,11 @@ the best-fitting explanation of the staged drift. The full dossier:
    amendment, adopted: comparing a new arm against *historical* run I would be confounded by
    Gate 0's own trainer repairs): from the same clone, same seed, same everything on the merged
    post-Gate-0 trainer — **E01** (control, `entropy_coef = 0.01`) and **E00** (treatment,
-   `entropy_coef = 0`); one on the host, one on the cluster; benched at the same fixed updates on
-   the scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired
-   cells. *Done when:* both curves are on the card. **The read:** if E00 − E01 removes the drift,
+   `entropy_coef = 0`); **both arms on the cluster, same payload, same resource class** (the
+   reviewer's 09:47Z platform-confound blocker, upheld: one-arm-per-platform would make entropy
+   collinear with the machine), the host staying the evaluation machine; every arm's environment,
+   source hashes and exact command pinned in the card; benched at the same fixed updates on the
+   scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired cells. *Done when:* both curves are on the card. **The read:** if E00 − E01 removes the drift,
    the entropy bonus is convicted; if not, the remaining suspects (normalized bootstrap noise;
    the fresh-target-every-turn semantics) move up.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final

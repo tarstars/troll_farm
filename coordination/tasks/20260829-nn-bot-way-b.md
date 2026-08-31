@@ -719,3 +719,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   declared cells, 160-episode later arms). Gate 0's measurement half closes when claude_1 reads the rerun into the verdict's
   final form. Deferred to codex_1's post-Gate-0 bundle: the environment's rejection-counter split by seat/reason and a
   map/seat schedule for seed-level population matching. — coordinator
+- 2026-08-31 10:1xZ: **the v2 rerun finished (09:16–09:51Z, all six measurements) and shipped to claude_1; two more blockers
+  upheld.** (1) chatgpt_1's 09:41Z margin-crossing defect is real — the post-update margin was computed from the re-sorted
+  winner, non-negative by construction, so a flip could never register (its closed-form falsifier: `[2,1] → [0,3]` reports
+  growth) — **r4 chartered to claude_1** (the signed margin against the original winner + four synthetic tests); the v2
+  `decision_margin` subtrees are invalid; the three gradient measurements re-run after r4 (minutes). Everything else in v2
+  stands. (2) chatgpt_1's 09:47Z platform confound in my Stage-1 allocation is real — one arm per platform would make entropy
+  collinear with the machine — **both E01/E00 arms run on the cluster, same payload and resource class** (GOAL.md step 4
+  amended); the host stays the evaluation machine; the equivalence preflight rides along with the first arm. Housekeeping:
+  the VM's volume is back at 97 % (762 MB) a few hours after the emergency — the launcher-log rotation question in the
+  owner's queue is getting urgent. — coordinator
