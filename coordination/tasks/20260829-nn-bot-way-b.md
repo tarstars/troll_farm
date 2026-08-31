@@ -691,3 +691,41 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   where masked paths should make that impossible — claude_1 checks whether the counter or the decoding path is at fault
   before any scope number is quoted. All Gate-0 measurement inputs are now in claude_1's directory; its verdict note closes
   the half. — coordinator
+- 2026-08-31 09:3xZ: **the Gate 0 batch ruled** (fifteen messages in ninety minutes, four agents). codex_1's trainer half
+  verified (57 tests from a clean checkout) and **merged (`f8d9e8c2`)**: full-buffer terminal/reward counters, the GAE-source
+  decomposition (rewards / edge bootstrap / intermediate critic, with reconstruction error), the epoch-wide row-weighted
+  target-KL guard. **claude_1's corrected verdict is the gradient verdict of record**: the critic's trunk push is **12.3 % of
+  the policy's at the clone, 0.2 % by update 500** (a local statement; the handoff-moment mechanism confirmed, the ongoing-
+  erosion mechanism not) — and the anchor pushes the trunk at 13 % at g@500, flagged for later. The 222 = the both-seats
+  movement-conflict audit (chatgpt_1 and claude_1 converged independently; a 240-game random-legal control on top).
+  **chatgpt_1's two blockers upheld**: the calibration's four repairs chartered; the NO-V/FULL-detached-V equality premise
+  falls to the shared global clip (B−A = clip coupling; C−A = the total marginal effect). **Two corrections of my own
+  wording** (per its republished notes): the zero-reward fact was a minibatch fact; slope 4.46 at correlation 0.31 = spread
+  ratio ≈ 14 with weak ranking. **One miss of mine found by the 08:35Z geometry note**: the clone's Gate-0 measurement ran at
+  32×128 while g/h are 128×32 — the clone gradient row is exploratory until the rerun; g/h rows stand. **The r3 charter to
+  claude_1 (09:35Z, supersede-to-amend)**: the instrument's clip-frame repairs + second seed + decision margins; the
+  calibration's matched-population collector and three weightings; then the geometry rerun on the host. **Stage 1 adopted as
+  E01/E00 fresh arms under one post-Gate-0 pin** (GOAL.md step 4 updated). Transport: entries 28–30 quarantined at the
+  sender's own request; all marks unblocked. — coordinator
+- 2026-08-31 09:5xZ: **the r3 round — an instrument defect found by running the demanded control, and the day's best chain of
+  review.** chatgpt_1's identity blocker was right in premise (the shared global clip couples the NO-V and detached arms);
+  claude_1 measured that channel too small for the observed divergence and, running the control the blocker demanded, found
+  the real fault: **`Optimizer.load_state_dict`'s no-op cast aliases the saved Adam moments, so every arm stepped the caller's
+  state in place — the first round's `adam-resumed` figures (all three reports, both blocks) are arm-order contamination and
+  are quarantined.** `adam-fresh` rows untouched (fresh optimizer per arm). r3 delivered with the fix, the coupling reported
+  as coupling, a common-clip counterfactual variant, decision margins, a second minibatch seed, and the matched-population
+  calibration collector — verified here (64 tests) and **merged (`78a9e394`)**. **The full rerun is executing on the host**:
+  the clone at the correct 128×32 geometry (census v2), g@500 and h@500 on it, then the three matched calibrations (96
+  declared cells, 160-episode later arms). Gate 0's measurement half closes when claude_1 reads the rerun into the verdict's
+  final form. Deferred to codex_1's post-Gate-0 bundle: the environment's rejection-counter split by seat/reason and a
+  map/seat schedule for seed-level population matching. — coordinator
+- 2026-08-31 10:1xZ: **the v2 rerun finished (09:16–09:51Z, all six measurements) and shipped to claude_1; two more blockers
+  upheld.** (1) chatgpt_1's 09:41Z margin-crossing defect is real — the post-update margin was computed from the re-sorted
+  winner, non-negative by construction, so a flip could never register (its closed-form falsifier: `[2,1] → [0,3]` reports
+  growth) — **r4 chartered to claude_1** (the signed margin against the original winner + four synthetic tests); the v2
+  `decision_margin` subtrees are invalid; the three gradient measurements re-run after r4 (minutes). Everything else in v2
+  stands. (2) chatgpt_1's 09:47Z platform confound in my Stage-1 allocation is real — one arm per platform would make entropy
+  collinear with the machine — **both E01/E00 arms run on the cluster, same payload and resource class** (GOAL.md step 4
+  amended); the host stays the evaluation machine; the equivalence preflight rides along with the first arm. Housekeeping:
+  the VM's volume is back at 97 % (762 MB) a few hours after the emergency — the launcher-log rotation question in the
+  owner's queue is getting urgent. — coordinator
