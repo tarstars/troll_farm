@@ -268,3 +268,102 @@ def test_main_writes_the_report_where_it_is_told(tmp_path, capsys) -> None:
     assert written["calibration"]["overall"]["rows"] == report["collection"]["rows"]
     printed = json.loads(capsys.readouterr().out.strip().splitlines()[-1])
     assert printed["event"] == "critic-calibration"
+
+
+def test_the_rejection_count_is_named_for_what_the_environment_counts(report: dict) -> None:
+    """The 08-31 anomaly: 222 "illegal_commands" in one scope-decoded game.
+
+    The environment's counter adds up referee rejections from *both* seats, and against a linked
+    opponent it charges a MOVE whose unit did not reach the predicted cell -- a cross-seat
+    collision does that with neither side doing anything illegal. The learned side cannot emit an
+    unmasked command at all. So the report must not offer a field called `illegal_commands` for a
+    reader to quote as this network's fault.
+    """
+
+    collection = report["collection"]
+    assert "illegal_commands" not in collection
+    assert collection["referee_rejections_either_seat"] == 0
+    assert collection["episodes_with_referee_rejections"] == 0
+    assert "both seats" in collection["referee_rejections_note"]
+    assert collection["referee_rejections_either_seat"] == sum(
+        episode["illegal"] for episode in report["episodes"]
+    )
+
+
+# ------------------------------------- the four repairs from chatgpt_1's 08:10Z calibration blocker
+
+
+def test_explained_variance_is_blind_to_a_constant_bias() -> None:
+    """The wording defect, made a test: a uniformly wrong prediction still scores a perfect 1."""
+
+    realized = np.array([0.0, 1.0, 2.0, 3.0, 4.0])
+    stats = cc.calibration(realized + 10.0, realized)
+    assert stats["explained_variance"] == pytest.approx(1.0)
+    assert stats["bias_predicted_minus_realized"] == pytest.approx(10.0)
+    assert stats["root_mean_square_error"] == pytest.approx(10.0)
+    assert "invariant to a constant bias" in stats["explained_variance_note"]
+
+
+def test_the_slope_is_not_the_spread_ratio() -> None:
+    """`slope = correlation x std(realized) / std(predicted)`; both spreads are reported."""
+
+    rng = np.random.default_rng(5)
+    predicted = rng.normal(size=4096)
+    realized = 3.0 * predicted + rng.normal(size=4096) * 6.0
+    stats = cc.calibration(predicted, realized)
+    ratio = stats["realized_std"] / stats["predicted_std"]
+    assert stats["slope"] == pytest.approx(stats["correlation"] * ratio, rel=1e-6)
+    assert stats["slope"] < ratio  # the correlation is well below one, so they differ
+
+
+def test_the_three_weightings_are_reported_separately(report: dict) -> None:
+    """Mini-steps let long games and big rosters dominate; the other two do not."""
+
+    weightings = report["calibration"]["weightings"]
+    assert set(weightings) == {
+        "mini_step",
+        "plan_row_per_turn",
+        "initial_plan_row_per_episode",
+    }
+    assert weightings["mini_step"]["rows"] >= weightings["plan_row_per_turn"]["rows"]
+    assert weightings["plan_row_per_turn"]["rows"] >= weightings[
+        "initial_plan_row_per_episode"
+    ]["rows"]
+    assert weightings["initial_plan_row_per_episode"]["rows"] == report["collection"][
+        "episodes_completed"
+    ]
+    assert "not the truncated lambda-0.95 GAE target" in report["calibration"]["reading"]
+
+
+def test_the_population_is_named_and_can_be_matched_across_arms(tmp_path) -> None:
+    """Two arms are comparable only over the games they both played, and it has to be enforced."""
+
+    cells_file = tmp_path / "cells.json"
+    first = _measure(["--cells-out", str(cells_file)])
+    population = first["collection"]["population"]
+    assert population["cells_completed"]
+    assert population["matched"] is True
+    assert json.loads(cells_file.read_text())["cells"] == population["cells_completed"]
+
+    second = _measure(["--restrict-to-cells", str(cells_file)])
+    assert second["collection"]["population"]["matched"] is True
+    assert second["collection"]["population"]["missing_cells"] == []
+    assert second["collection"]["population"]["cells_completed"] == population[
+        "cells_completed"
+    ]
+
+
+def test_an_uncovered_declared_population_fails_rather_than_shrinking(tmp_path) -> None:
+    """A cell that never came up is a failure, not a smaller sample -- unless it is waived."""
+
+    cells_file = tmp_path / "cells.json"
+    cells_file.write_text(json.dumps({"cells": ["999999:0", "999998:1"]}))
+    with pytest.raises(SystemExit) as raised:
+        _measure(["--restrict-to-cells", str(cells_file)])
+    assert "declared population is not covered" in str(raised.value)
+
+    waived = _measure(
+        ["--restrict-to-cells", str(cells_file), "--allow-unmatched-population"]
+    )
+    assert waived["collection"]["population"]["matched"] is False
+    assert waived["collection"]["population"]["missing_cells"] == ["999998:1", "999999:0"]

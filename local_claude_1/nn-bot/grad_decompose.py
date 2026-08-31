@@ -55,10 +55,21 @@ built into the names here:
   same checkpoint with the same restored Adam moments, the same rows, the same anchor coefficient;
   one takes the whole update, the other takes it without `value_coef * value_loss`. Everything
   that differs afterwards is the value term's doing.
-* `next_update.<variant>.comparisons.full_vs_full_detached_value` -- the structural control: the
+* `next_update.<variant>.comparisons.full_vs_full_detached_value` -- the structural contrast: the
   same full update, but with the value term's route into the shared trunk cut
-  (`pooled.detach()`), so the value head still learns and the trunk no longer hears it. It
-  separates "V changes the policy through the trunk" from "V changes the policy at all".
+  (`pooled.detach()`), so the value head still learns and the trunk no longer hears it. Read it
+  with the caution below: it does **not** isolate the trunk path on its own.
+* `next_update.<variant>.comparisons.full_detached_value_vs_no_value` -- **the shared-clip
+  coupling** (chatgpt_1, 2026-08-31 09:00Z). The trainer clips one *global* gradient norm across
+  policy and critic parameters together, so a critic gradient that touches no policy parameter
+  still changes the clip multiplier that every policy gradient is multiplied by. These two arms'
+  policy gradients are identical before the clip and different after it. They are therefore not
+  an identity under this trainer, and their difference is a real effect of the trainer's own
+  coupling, not the estimator's noise.
+* a variant named `<base>+common-clip` (for example `adam-resumed+common-clip`) runs every arm
+  with one fixed clip multiplier -- the FULL arm's own -- which closes that channel and makes the
+  two arms above coincide exactly. It is a **counterfactual to the real trainer**: use it to read
+  the trunk path alone, and the plain variant to read what the trainer actually does.
 * `counterfactual.adam-fresh` / `.sgd` -- the value gradient in isolation, upper and lower
   readings. Fresh Adam is scale-free (its first step is about `lr * sign(gradient)` whatever the
   gradient's size) and overstates a mid-run step; SGD is proportional to the gradient and
@@ -273,6 +284,47 @@ def effective_learning_rates(optimizer) -> dict:
     return rates
 
 
+def parse_next_update_variant(variant: str) -> tuple[str, bool]:
+    """`"adam-resumed+common-clip"` -> `("adam-resumed", True)`; a plain name -> `(name, False)`.
+
+    The suffix asks for every arm to be scaled by one fixed clip multiplier instead of its own, so
+    that the arms differ only by the terms in their loss. It is spelled out rather than inferred,
+    and an unknown suffix is an error rather than a silently ignored word.
+    """
+
+    base, sep, suffix = variant.partition("+")
+    if not sep:
+        return variant, False
+    if suffix != "common-clip":
+        raise ValueError(
+            f"unknown next-update variant suffix {suffix!r} in {variant!r}; "
+            "the only suffix is '+common-clip'"
+        )
+    return base, True
+
+
+def clip_in_place(copy_model, args, common_clip_scale: float | None) -> tuple[float, float, float]:
+    """Apply the update's gradient clip; `(norm before the clip, the scale used, its own scale)`.
+
+    With `common_clip_scale` `None` this is exactly what the trainer does: one global norm over
+    policy and critic parameters together, and `max_grad_norm / norm` applied to all of them when
+    that is below one. With a scale supplied, the norm is only *measured* (`clip_grad_norm_` with
+    an infinite limit scales by one) and the supplied factor is applied instead -- which is what
+    removes the critic term's route into the policy step through the shared clip.
+    """
+
+    if common_clip_scale is None:
+        applied = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+        own = clip_scale(applied, float(args.max_grad_norm))
+        return applied, own, own
+    measured = float(nn.utils.clip_grad_norm_(copy_model.parameters(), float("inf")))
+    own = clip_scale(measured, float(args.max_grad_norm))
+    for parameter in copy_model.parameters():
+        if parameter.grad is not None:
+            parameter.grad.mul_(float(common_clip_scale))
+    return measured, float(common_clip_scale), own
+
+
 def step_optimizer(copy_model, args, variant: str, optimizer_state: dict | None):
     """`(optimizer, how it was built)` for one counterfactual variant; `(None, ...)` if it cannot be.
 
@@ -300,7 +352,13 @@ def step_optimizer(copy_model, args, variant: str, optimizer_state: dict | None)
     compatibility = resumed_compatibility(optimizer, optimizer_state)
     if not compatibility["compatible"]:
         return None, {"resumed": False, "compatibility": compatibility}
-    optimizer.load_state_dict(optimizer_state)
+    # `Optimizer.load_state_dict` casts the saved moments to the parameters' dtype and device, and
+    # when both already match, the cast returns the *same tensor*. The optimizer would then hold
+    # the caller's own `exp_avg`, `exp_avg_sq` and `step`, and this arm's `optimizer.step()` would
+    # advance them in place -- so the next arm would resume from a state one update further on and
+    # the arms would stop being counterfactuals of the same checkpoint. The copy is what keeps
+    # every arm starting from the state the run actually saved, whatever order they run in.
+    optimizer.load_state_dict(copy.deepcopy(optimizer_state))
     return optimizer, {"resumed": True, "compatibility": compatibility}
 
 
@@ -444,36 +502,66 @@ def collect_minibatch(args, model, device, rng) -> dict:
     flat_advantages = advantages.reshape(buffer.size)
     flat_returns = returns.reshape(buffer.size)
 
-    indices = np.arange(buffer.size)
-    rng.shuffle(indices)
-    rows = indices[: min(args.minibatch_size, buffer.size)]
+    def select(selection_rng, index: int) -> tuple[dict, dict]:
+        """One shuffled minibatch of this rollout, and what it contains.
 
-    mb_advantages = torch.from_numpy(flat_advantages[rows]).to(device)
-    normalised = (mb_advantages - mb_advantages.mean()) / (mb_advantages.std() + 1e-8)
-    batch = {
-        "obs": torch.from_numpy(flat["obs"][rows]).to(device),
-        "legal": torch.from_numpy(flat["legal"][rows]).to(device).bool(),
-        "phase": torch.from_numpy(flat["phase"][rows]).to(device),
-        "actions": torch.from_numpy(flat["actions"][rows]).to(device),
-        "old_logprobs": torch.from_numpy(flat["logprobs"][rows]).to(device),
-        "advantages": normalised,
-        "returns": torch.from_numpy(flat_returns[rows]).to(device),
-    }
+        The rollout is expensive and the *selection* is what a second seed is meant to vary, so
+        replications draw a different shuffle of the same update rather than a different update.
+        That is the question chatgpt_1's 08:40Z point asks: would this conclusion survive if the
+        update had happened to draw other rows?
+        """
+
+        indices = np.arange(buffer.size)
+        selection_rng.shuffle(indices)
+        rows = indices[: min(args.minibatch_size, buffer.size)]
+        mb_advantages = torch.from_numpy(flat_advantages[rows]).to(device)
+        normalised = (mb_advantages - mb_advantages.mean()) / (mb_advantages.std() + 1e-8)
+        batch = {
+            "obs": torch.from_numpy(flat["obs"][rows]).to(device),
+            "legal": torch.from_numpy(flat["legal"][rows]).to(device).bool(),
+            "phase": torch.from_numpy(flat["phase"][rows]).to(device),
+            "actions": torch.from_numpy(flat["actions"][rows]).to(device),
+            "old_logprobs": torch.from_numpy(flat["logprobs"][rows]).to(device),
+            "advantages": normalised,
+            "returns": torch.from_numpy(flat_returns[rows]).to(device),
+        }
+        return batch, {
+            "minibatch_index": index,
+            "minibatch_rows": int(len(rows)),
+            "plan_rows": int((batch["phase"] == PHASE_PLAN).sum()),
+            "troll_rows": int((batch["phase"] == PHASE_TROLL).sum()),
+            "turn_boundary_rows": int(buffer.turn_boundary.reshape(buffer.size)[rows].sum()),
+            "reward_rows_nonzero": int((buffer.rewards.reshape(buffer.size)[rows] != 0).sum()),
+            "advantage_mean_raw": float(mb_advantages.mean()),
+            "advantage_std_raw": float(mb_advantages.std()),
+            "return_mean": float(batch["returns"].mean()),
+            "return_std": float(batch["returns"].std()),
+            "value_mean": float(torch.from_numpy(flat["values"][rows]).mean()),
+        }
+
+    batches, selections = [], []
+    for index in range(max(1, int(getattr(args, "minibatch_seeds", 1)))):
+        # The first selection uses the caller's own generator, so a one-minibatch run is exactly
+        # what it was before this replication argument existed.
+        selection_rng = rng if index == 0 else np.random.default_rng(int(args.seed) + 1_000 * index)
+        selected_batch, selected_summary = select(selection_rng, index)
+        batches.append(selected_batch)
+        selections.append(selected_summary)
+
+    batch = batches[0]
+    rows = None  # every per-selection field now lives in `selections`
     summary = {
+        **selections[0],
         "rollout_steps": int(args.rollout_steps),
         "num_envs": int(args.num_envs),
         "rollout_rows": int(buffer.size),
-        "minibatch_rows": int(len(rows)),
-        "plan_rows": int((batch["phase"] == PHASE_PLAN).sum()),
-        "troll_rows": int((batch["phase"] == PHASE_TROLL).sum()),
         "turns_completed": turns_completed,
-        "turn_boundary_rows": int(buffer.turn_boundary.reshape(buffer.size)[rows].sum()),
-        "reward_rows_nonzero": int((buffer.rewards.reshape(buffer.size)[rows] != 0).sum()),
-        "advantage_mean_raw": float(mb_advantages.mean()),
-        "advantage_std_raw": float(mb_advantages.std()),
-        "return_mean": float(batch["returns"].mean()),
-        "return_std": float(batch["returns"].std()),
-        "value_mean": float(torch.from_numpy(flat["values"][rows]).mean()),
+        "minibatch_seeds": len(batches),
+        # `minibatch_rows`, `reward_rows_nonzero` and the advantage/return fields above describe
+        # the *selected minibatch*, not the whole rollout (chatgpt_1, 08:55Z); `rollout_rows` and
+        # `turns_completed` describe the rollout. `selections` carries the same fields for every
+        # replication.
+        "selections": selections,
         "explained_variance_rollout": explained_variance(flat["values"], flat_returns),
     }
     # The whole rollout is handed back as well, not only the minibatch: a census is drawn from
@@ -487,7 +575,7 @@ def collect_minibatch(args, model, device, rng) -> dict:
         "steps": int(buffer.steps),
         "envs": int(buffer.envs),
     }
-    return {"batch": batch, "summary": summary, "rollout": rollout}
+    return {"batch": batch, "batches": batches, "summary": summary, "rollout": rollout}
 
 
 # --------------------------------------------------------------------------- the four objectives
@@ -847,6 +935,55 @@ def difference(before: dict, after: dict, fixed: dict) -> dict:
         "mean_abs_logit_shift_plan": mean_shift(plan_rows, slice(0, PLAN_SIZE)),
         "mean_abs_value_shift": float((after["value"] - before["value"]).abs().mean()),
         "max_abs_logit_shift": float(shift.max()),
+        "decision_margin": {
+            "plan": decision_margin_move(before, after, fixed, plan_rows),
+            "spatial": decision_margin_move(before, after, fixed, troll_rows),
+        },
+    }
+
+
+def decision_margins(read: dict, fixed: dict) -> torch.Tensor:
+    """Each row's `top1 - top2` over its **legal** actions: how far its choice is from flipping.
+
+    An argmax flip is the coarsest possible sensitivity measure -- it sees nothing until a decision
+    changes hands. The margin is the continuous version: a change that moves a row's logits by less
+    than its margin changed nothing, and one that moves them by more than most rows' margins would
+    have changed a great deal had it pointed the other way. Rows with fewer than two legal actions
+    have no margin and are excluded by the caller through `enough_legal`.
+    """
+
+    top2 = read["masked"].topk(2, dim=-1).values
+    return top2[:, 0] - top2[:, 1]
+
+
+def decision_margin_move(
+    before: dict, after: dict, fixed: dict, rows_mask: torch.Tensor
+) -> dict | None:
+    """How far one row class's decisions moved *toward flipping*, in units of their own margin.
+
+    chatgpt_1's 08:40Z point, made measurable: "zero argmax flips" can mean every affected row
+    stayed on the same side of its margin by a hair. The shrink fractions say how close it came.
+    """
+
+    enough_legal = fixed["legal"].sum(dim=-1) >= 2
+    rows = rows_mask & enough_legal
+    if not bool(rows.any()):
+        return None
+    start = decision_margins(before, fixed)[rows]
+    end = decision_margins(after, fixed)[rows]
+    positive = start > 0
+    if not bool(positive.any()):
+        return None
+    shrink = ((start - end) / start)[positive]
+    return {
+        "rows": int(rows.sum()),
+        "median_margin_before": float(start.median()),
+        "mean_margin_before": float(start.mean()),
+        "mean_margin_change": float((end - start).mean()),
+        "fraction_margin_shrank_10_percent": float((shrink >= 0.10).sum() / shrink.numel()),
+        "fraction_margin_shrank_25_percent": float((shrink >= 0.25).sum() / shrink.numel()),
+        "fraction_margin_shrank_50_percent": float((shrink >= 0.50).sum() / shrink.numel()),
+        "fraction_margin_crossed": float((end <= 0).sum() / end.numel()),
     }
 
 
@@ -876,14 +1013,21 @@ def stepped_copy(
     variant: str,
     optimizer_state: dict | None,
     arm: str,
+    common_clip_scale: float | None = None,
 ):
     """One arm: a deep copy of the checkpoint, one optimizer step, `(model, what it did)`.
 
     The copy is what is stepped; the caller's model is never touched, and the checkpoint file is
-    never written to. Every arm restores the *identical* optimizer state, sees the identical rows,
-    actions, old log-probabilities, advantages, returns and anchor coefficient, and computes its
-    own gradient norm and its own clip scale before stepping -- so the only difference between two
-    arms is which terms are in their loss.
+    never written to. Every arm restores the *identical* optimizer state and sees the identical
+    rows, actions, old log-probabilities, advantages, returns and anchor coefficient, so the only
+    difference between two arms is which terms are in their loss.
+
+    That difference does not stay inside the loss. The trainer clips one **global** gradient norm
+    over policy and critic parameters together, so an arm whose critic gradient differs gets a
+    different clip multiplier -- and that multiplier is applied to its policy gradients too. Two
+    arms with identical policy gradients therefore take different policy steps whenever the clip
+    is active. `common_clip_scale` closes that channel by giving every arm the same multiplier;
+    the report says which of the two was used.
     """
 
     recipe = NEXT_UPDATE_ARMS[arm]
@@ -902,7 +1046,7 @@ def stepped_copy(
 
     optimizer.zero_grad(set_to_none=True)
     loss.backward()
-    applied_norm = float(nn.utils.clip_grad_norm_(copy_model.parameters(), args.max_grad_norm))
+    applied_norm, scale_used, scale_own = clip_in_place(copy_model, args, common_clip_scale)
     rates = effective_learning_rates(optimizer)
     optimizer.step()
 
@@ -914,11 +1058,83 @@ def stepped_copy(
         "value_path": recipe["value_path"],
         "resumed_optimizer_state": bool(info["resumed"]),
         "grad_norm_before_clip": applied_norm,
-        "clip_scale_applied": clip_scale(applied_norm, float(args.max_grad_norm)),
+        "clip_scale_applied": scale_used,
+        "clip_scale_of_this_arm": scale_own,
+        "clip_scale_is_common": common_clip_scale is not None,
         "effective_learning_rates": rates,
         "configured_actor_learning_rate": float(args.learning_rate) * float(args.actor_lr_scale),
         "configured_critic_learning_rate": float(args.learning_rate),
         "loss_terms": {key: terms[key][2] for key in terms},
+    }
+
+
+def shared_clip_coupling(models: dict, read: dict, fixed: dict, arms: dict) -> dict:
+    """What `no_value` and `full_detached_value` do differently, and the only channel that lets them.
+
+    `full_detached_value` keeps the critic's objective but feeds the value head a detached trunk,
+    so its gradient reaches `critic.*` and nothing else -- and `critic.*` produces no action
+    logit. Before the clip the two arms' policy gradients are therefore *identical*.
+
+    They are still not the same update. The trainer clips one global norm across policy and
+    critic parameters together (chatgpt_1, 2026-08-31 09:00Z), so the critic gradient changes the
+    multiplier applied to the policy gradients. Whenever the clip is active the two arms come
+    apart, and what they do differently is the trainer's own critic-to-policy coupling -- a real
+    effect, not the estimator's noise. Under a resumed Adam state the coupling is amplified far
+    beyond its size in the gradient, because Adam's step is a nonlinear function of the gradient
+    and is most sensitive where the accumulated second moment is small.
+
+    `clip_scale_relative_difference` is the size of the cause; the parameter and logit fields are
+    the size of the effect. When a common clip multiplier was fixed for every arm the channel is
+    closed, `clip_channel_closed` is true, and the two arms must then coincide exactly -- which is
+    the only condition under which `arms_coincide` being false is an instrument defect.
+    """
+
+    pair = ("no_value", "full_detached_value")
+    if not all(arm in models for arm in pair):
+        return {"available": False, "arms": list(pair)}
+
+    left, right = (models[arm] for arm in pair)
+    names = [
+        name
+        for name, _ in left.named_parameters()
+        if group_of(name) in TRUNK_GROUPS or name.startswith(("actor.", "plan."))
+    ]
+    right_parameters = dict(right.named_parameters())
+    gap = max(
+        float((parameter.detach() - right_parameters[name].detach()).abs().max())
+        for name, parameter in left.named_parameters()
+        if name in names
+    )
+    logits = difference(read[pair[0]], read[pair[1]], fixed)
+    scales = {arm: arms[arm].get("clip_scale_applied") for arm in pair}
+    common = all(bool(arms[arm].get("clip_scale_is_common")) for arm in pair)
+    reference = scales[pair[0]]
+    relative = (
+        abs(scales[pair[0]] - scales[pair[1]]) / reference
+        if reference not in (None, 0.0) and scales[pair[1]] is not None
+        else None
+    )
+    return {
+        "available": True,
+        "arms": list(pair),
+        "policy_max_abs_parameter_difference": gap,
+        "plan_logit_shift": logits["mean_abs_logit_shift_plan"],
+        "spatial_logit_shift": logits["mean_abs_logit_shift_spatial"],
+        "plan_argmax_changed": logits["plan_argmax_changed"],
+        "spatial_argmax_changed": logits["spatial_argmax_changed"],
+        "clip_scale_applied": scales,
+        "clip_scale_relative_difference": relative,
+        "clip_active": bool(
+            all(scale is not None and scale < 1.0 for scale in scales.values())
+        ),
+        "clip_channel_closed": bool(common or relative == 0.0),
+        "arms_coincide": gap == 0.0,
+        "why": (
+            "these two arms have identical policy gradients before the clip and different clip "
+            "multipliers after it, because the trainer clips one global norm over policy and "
+            "critic parameters together; what they do differently is that coupling, and it is "
+            "only expected to vanish when a common clip multiplier is fixed"
+        ),
     }
 
 
@@ -940,15 +1156,34 @@ def counterfactual_next_update(
     effect of including `value_coef * value_loss` in that update -- the interaction with the
     restored Adam moments, with the global clip and with the other three terms included, which is
     exactly the interaction the project needs to know.
+
+    Two of the arms differ only by a term that reaches `critic.*`. That still changes the policy
+    step, because the clip multiplier is computed over one global norm; `full_detached_value_vs_no_value`
+    is that coupling and `shared_clip_coupling` reports its cause beside its size. A variant named
+    `<base>+common-clip` fixes the FULL arm's multiplier for every arm and closes the channel, at
+    the price of no longer being the update the trainer would take.
     """
 
+    base_variant, common_clip = parse_next_update_variant(variant)
     before = read_out(model, fixed)
     arms: dict[str, dict] = {}
     models: dict[str, object] = {}
+
+    common_clip_scale = None
+    if common_clip:
+        probe, probe_info = stepped_copy(
+            model, anchor, anchor_has_plan, batch, args, anchor_coef,
+            base_variant, optimizer_state, "full",
+        )
+        if probe is None:
+            return {"available": False, "variant": variant, **probe_info}
+        common_clip_scale = float(probe_info["clip_scale_applied"])
+        del probe
+
     for arm in NEXT_UPDATE_ARMS:
         stepped, info = stepped_copy(
             model, anchor, anchor_has_plan, batch, args, anchor_coef,
-            variant, optimizer_state, arm,
+            base_variant, optimizer_state, arm, common_clip_scale,
         )
         arms[arm] = info
         if stepped is not None:
@@ -958,10 +1193,12 @@ def counterfactual_next_update(
         return {"available": False, "variant": variant, **arms["full"]}
 
     read = {arm: read_out(stepped, fixed) for arm, stepped in models.items()}
+    coupling = shared_clip_coupling(models, read, fixed, arms)
     comparisons = {}
     for left, right in (
         ("full", "no_value"),
         ("full", "full_detached_value"),
+        ("full_detached_value", "no_value"),
     ):
         if left in read and right in read:
             comparisons[f"{left}_vs_{right}"] = difference(read[right], read[left], fixed)
@@ -971,6 +1208,9 @@ def counterfactual_next_update(
     return {
         "available": True,
         "variant": variant,
+        "optimizer_variant": base_variant,
+        "common_clip_scale": common_clip_scale,
+        "shared_clip_coupling": coupling,
         "arms": arms,
         "comparisons": comparisons,
         "census": {
@@ -1076,7 +1316,18 @@ def build_parser() -> argparse.ArgumentParser:
     group.add_argument(
         "--next-update-variants",
         default="adam-resumed,adam-fresh",
-        help="comma-separated variants of the causal FULL-vs-NO-V counterfactual; empty to skip it",
+        help="comma-separated variants of the causal FULL-vs-NO-V counterfactual; empty to skip "
+        "it. A '+common-clip' suffix (e.g. 'adam-resumed+common-clip') gives every arm the FULL "
+        "arm's clip multiplier, which closes the shared-clip channel between the arms and is a "
+        "counterfactual to the real trainer",
+    )
+    group.add_argument(
+        "--minibatch-seeds",
+        type=int,
+        default=1,
+        help="how many differently shuffled minibatches of the same rollout to run the "
+        "next-update counterfactual on; above 1 the extra ones are reported under "
+        "'next_update_replications'",
     )
     group.add_argument(
         "--census-in",
@@ -1125,6 +1376,7 @@ NOT_FROM_CONFIG = frozenset(
         "counterfactual_observations",
         "counterfactual_variants",
         "next_update_variants",
+        "minibatch_seeds",
         "census_in",
         "census_out",
         "anchor_turn_steps",
@@ -1274,6 +1526,19 @@ def measure(args) -> dict:
             model, batch, args, variant, optimizer_state, fixed
         )
 
+    # The replications: the same variants on a differently shuffled minibatch of the same
+    # rollout. A one-step conclusion that only holds for the rows this update happened to draw is
+    # not a conclusion (chatgpt_1, 08:40Z), and this is what lets a reader see which it is.
+    next_update_replications = []
+    for index, replicated in enumerate(collected["batches"][1:], start=1):
+        block = {}
+        for variant in [v.strip() for v in args.next_update_variants.split(",") if v.strip()]:
+            block[variant] = counterfactual_next_update(
+                model, anchor, anchor_has_plan, replicated, args, anchor_coef,
+                variant, optimizer_state, fixed,
+            )
+        next_update_replications.append({"minibatch_index": index, "variants": block})
+
     next_update = {}
     for variant in [v.strip() for v in args.next_update_variants.split(",") if v.strip()]:
         next_update[variant] = counterfactual_next_update(
@@ -1317,6 +1582,7 @@ def measure(args) -> dict:
         "by_row_class": by_row_class,
         "census": census["meta"],
         "next_update": next_update,
+        "next_update_replications": next_update_replications,
         "counterfactual": counterfactual,
         "timing": {
             "collect_seconds": collect_seconds,

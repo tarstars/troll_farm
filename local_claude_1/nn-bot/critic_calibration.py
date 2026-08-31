@@ -142,6 +142,12 @@ def returns_to_go(
 def calibration(predicted: np.ndarray, realized: np.ndarray) -> dict:
     """Slope, intercept, correlation, explained variance and bias -- or `null` where undefined.
 
+    Two readings that must not be collapsed into one (chatgpt_1, 08:10Z and 08:56Z). Explained
+    variance punishes *scatter*, not offset: a prediction that is uniformly ten too high scores a
+    perfect 1. And the slope is `correlation x std(realized) / std(predicted)`, so it is not the
+    ratio of the two spreads unless the correlation is 1 -- the spread ratio is
+    `predicted_std` against `realized_std`, both of which are reported here.
+
     `null` rather than 0.0 wherever a statistic has no meaning: a slope needs the predictions to
     vary, a correlation needs both to vary, an explained variance needs the outcome to vary. A
     zero printed in those places would read as a finding.
@@ -169,8 +175,15 @@ def calibration(predicted: np.ndarray, realized: np.ndarray) -> dict:
         "slope": slope,
         "intercept": intercept,
         "correlation": correlation,
+        # Blind to a constant offset: `predicted = realized + 10` has explained variance 1 and a
+        # bias of 10 (chatgpt_1, 08:10Z, point 1). It is never to be read on its own -- bias, RMSE,
+        # slope and intercept are all in this dict for that reason.
         "explained_variance": (
             float(1.0 - residual.var() / realized_var) if realized_var > 0 else None
+        ),
+        "explained_variance_note": (
+            "1 - Var(realized - predicted) / Var(realized): invariant to a constant bias, so read "
+            "it with bias_predicted_minus_realized, root_mean_square_error, slope and correlation"
         ),
         "bias_predicted_minus_realized": float(predicted.mean() - realized.mean()),
         "root_mean_square_error": float(np.sqrt((residual**2).mean())),
@@ -403,6 +416,23 @@ def build_parser() -> argparse.ArgumentParser:
         help="comma-separated game-turn edges for the by-turn slice",
     )
     group.add_argument(
+        "--cells-out",
+        default=None,
+        help="write the (map, seat) cells this run completed here, so another arm can be "
+        "restricted to the same games",
+    )
+    group.add_argument(
+        "--restrict-to-cells",
+        default=None,
+        help="a --cells-out file: keep exactly one complete game per declared cell and fail if a "
+        "cell never came up, so two arms are compared over the same games",
+    )
+    group.add_argument(
+        "--allow-unmatched-population",
+        action="store_true",
+        help="with --restrict-to-cells, report the shortfall instead of failing on it",
+    )
+    group.add_argument(
         "--per-episode",
         action="store_true",
         default=False,
@@ -411,8 +441,108 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def weighting_rows(rows: dict) -> dict:
+    """The three populations the same numbers can be quoted over (chatgpt_1, 08:10Z, point 4).
+
+    A mini-step weighting lets long games and big rosters dominate, and repeats each turn's one
+    common target once per troll. So the same statistics are computed over three explicit
+    populations and reported side by side:
+
+    * `mini_step` -- every row, the natural weighting of the training loss;
+    * `plan_row_per_turn` -- one PLAN row per turn, so each turn counts once;
+    * `initial_plan_row_per_episode` -- the first PLAN row of each game, so each game counts once.
+
+    Each is a boolean mask over the collected rows.
+    """
+
+    plan = rows["phase"] == PHASE_PLAN
+    first_of_episode = np.zeros(rows["phase"].shape, dtype=bool)
+    for episode in np.unique(rows["episode"]):
+        candidates = np.flatnonzero(plan & (rows["episode"] == episode))
+        if candidates.size:
+            first_of_episode[candidates[0]] = True
+    return {
+        "mini_step": np.ones(rows["phase"].shape, dtype=bool),
+        "plan_row_per_turn": plan,
+        "initial_plan_row_per_episode": first_of_episode,
+    }
+
+
+def episode_cell(episode: dict) -> str:
+    """What identifies the game one episode played: its map and the seat the learner sat in.
+
+    The environment chooses maps itself, so there is no seed to predeclare from here -- the cell
+    is the identity available at this level, and it is the one the arms have to share. Predeclaring
+    the seeds themselves needs the environment to accept a map/seat schedule; that is
+    environment-side work and is not pretended to be done here.
+    """
+
+    return f"{int(episode['map_index'])}:{int(episode['seat'])}"
+
+
+def restrict_population(collected: dict, declared: list[str] | None, allow_unmatched: bool) -> dict:
+    """Cut the collection down to one complete game per declared cell, or say why it cannot be.
+
+    The collector keeps the first `--episodes` games to finish and drops the slots still in
+    flight, so two arms are not guaranteed the same games (chatgpt_1, 08:10Z, point 3). With a
+    declared cell list every arm is reduced to exactly the same games -- the first completed game
+    of each declared cell -- and a cell that never came up is a **failure**, not a smaller sample,
+    unless `--allow-unmatched-population` is given.
+    """
+
+    episodes = collected["episodes"]
+    cells = [episode_cell(episode) for episode in episodes]
+    for episode, cell in zip(episodes, cells):
+        episode["cell"] = cell
+
+    seen: dict[str, int] = {}
+    duplicates: list[str] = []
+    for index, cell in enumerate(cells):
+        if cell in seen:
+            duplicates.append(cell)
+        else:
+            seen[cell] = index
+
+    population = {
+        "cells_completed": sorted(seen),
+        "duplicate_cells": sorted(set(duplicates)),
+        "declared_cells": None if declared is None else sorted(set(declared)),
+        "missing_cells": [],
+        "dropped_episodes": 0,
+        "matched": declared is None,
+        "note": (
+            "one complete game per (map, seat) cell; the arms are comparable only over cells they "
+            "all have"
+        ),
+    }
+    if declared is None:
+        return {**collected, "population": population}
+
+    wanted = sorted(set(declared))
+    missing = [cell for cell in wanted if cell not in seen]
+    population["missing_cells"] = missing
+    population["matched"] = not missing
+    if missing and not allow_unmatched:
+        raise SystemExit(
+            f"the declared population is not covered: {len(missing)} of {len(wanted)} cells never "
+            f"completed here (first missing: {missing[:5]}). Collect more episodes, or pass "
+            "--allow-unmatched-population to compare unequal populations knowingly."
+        )
+
+    keep_index = {seen[cell] for cell in wanted if cell in seen}
+    population["dropped_episodes"] = len(episodes) - len(keep_index)
+    rows = collected["rows"]
+    mask = np.isin(rows["episode"], np.array(sorted(keep_index), dtype=rows["episode"].dtype))
+    return {
+        **collected,
+        "rows": {key: value[mask] for key, value in rows.items()},
+        "episodes": [episodes[index] for index in sorted(keep_index)],
+        "population": population,
+    }
+
+
 def report_for(args, collected: dict) -> dict:
-    """The statistics: overall, by turn bucket, by map size, by seat, by row class."""
+    """The statistics: overall, by weighting, by turn bucket, by map size, by seat, by row class."""
 
     rows = collected["rows"]
     edges = [int(edge) for edge in str(args.turn_buckets).split(",") if edge.strip()]
@@ -424,6 +554,17 @@ def report_for(args, collected: dict) -> dict:
     return {
         "overall": calibration(rows["predicted"], rows["realized"]),
         "overall_undiscounted": calibration(rows["predicted"], rows["realized_undiscounted"]),
+        "reading": (
+            "`realized` is the complete-episode Monte-Carlo return under the run's own discount, "
+            "not the truncated lambda-0.95 GAE target with a rollout-edge bootstrap that the "
+            "trainer actually fitted (chatgpt_1, 08:10Z, point 2). This is an independent "
+            "calibration against what happened, and it is to be read beside the trainer's "
+            "own target telemetry, not in place of it"
+        ),
+        "weightings": {
+            name: calibration(rows["predicted"][mask], rows["realized"][mask])
+            for name, mask in weighting_rows(rows).items()
+        },
         "slices": {
             "game_turn": sliced(rows, "game_turn", turn_labels),
             "map_size_valid_cells": sliced(rows, "map_size_valid_cells", rows["valid_cells"]),
@@ -454,6 +595,16 @@ def measure(args) -> dict:
         frozen_model, frozen_sha = tpf.load_policy(args.frozen_checkpoint, device)
 
     collected = play(args, model, device, frozen_model)
+    declared = None
+    if args.restrict_to_cells:
+        declared = list(json.loads(Path(args.restrict_to_cells).read_text())["cells"])
+    collected = restrict_population(collected, declared, bool(args.allow_unmatched_population))
+    if args.cells_out:
+        cells_path = Path(args.cells_out)
+        cells_path.parent.mkdir(parents=True, exist_ok=True)
+        cells_path.write_text(
+            json.dumps({"cells": collected["population"]["cells_completed"]}, indent=2) + "\n"
+        )
     statistics = report_for(args, collected)
     episodes = collected["episodes"]
 
@@ -483,6 +634,7 @@ def measure(args) -> dict:
             "rows": int(collected["rows"]["predicted"].size),
             "mini_steps": collected["mini_steps"],
             "unfinished_rows_discarded": collected["unfinished_rows_discarded"],
+            "population": collected["population"],
             "hit_mini_step_cap": collected["hit_mini_step_cap"],
             "decoding": args.decoding,
             "train_scope": args.train_scope,
@@ -498,7 +650,23 @@ def measure(args) -> dict:
             "mean_turns": (
                 float(np.mean([row["turns"] for row in episodes])) if episodes else None
             ),
-            "illegal_commands": int(sum(row["illegal"] for row in episodes)),
+            # NOT "commands this network emitted illegally". The environment's counter adds up
+            # referee rejections from BOTH seats (card 20260829-nn-bot-way-b, amendment 6), and
+            # against a linked opponent it also charges a MOVE whose unit did not reach the cell
+            # the pathing predicted -- which a collision with the opponent's troll causes on its
+            # own, with neither side doing anything illegal. The learned side cannot emit an
+            # unmasked command: its spatial commands pass the strict mask and the canonical codec,
+            # and its TRAIN is gated by `train_succeeds` before it is ever written. So a nonzero
+            # count here is a fact about the game, not a fault in the decoding, and the name says
+            # so. See GATE0-VERDICT-2026-08-31.md.
+            "referee_rejections_either_seat": int(sum(row["illegal"] for row in episodes)),
+            "referee_rejections_note": (
+                "both seats' rejections, and cross-seat move collisions; not this network's "
+                "illegal commands, which the mask and the codec make impossible"
+            ),
+            "episodes_with_referee_rejections": int(
+                sum(1 for row in episodes if row["illegal"])
+            ),
         },
         "calibration": statistics,
         "timing": {"total_seconds": time.perf_counter() - started},

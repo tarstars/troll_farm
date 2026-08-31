@@ -30,6 +30,7 @@ PYTHONPATH=. $PY local_claude_1/nn-bot/critic_calibration.py \
     --opponent-weights '{"champion_exact":1}' \
     --gamma 0.999 --wood-shaping 0.0 --end-wood 4.0 \
     --num-envs 32 --episodes 96 --decoding argmax --per-episode \
+    --cells-out $OUT/cells.json \
     --seed 20260831 --label clone --out $OUT/calibration-clone.json
 
 # 2. run I at update 1000 — the run whose bench read 10 wins and then drifted
@@ -38,7 +39,8 @@ PYTHONPATH=. $PY local_claude_1/nn-bot/critic_calibration.py \
     --env full --maps data/processed/maps.jsonl \
     --opponent-weights '{"champion_exact":1}' \
     --gamma 0.999 --wood-shaping 0.0 --end-wood 4.0 --train-scope plan-critic \
-    --num-envs 32 --episodes 96 --decoding argmax --per-episode \
+    --num-envs 32 --episodes 160 --decoding argmax --per-episode \
+    --restrict-to-cells $OUT/cells.json \
     --seed 20260831 --label ppo-i-1000 --out $OUT/calibration-ppo-i-1000.json
 ```
 
@@ -92,3 +94,31 @@ Notes on the flags:
 
 A negative result is a result: if the clone's and run I's calibrations are both decent and alike,
 the critic is not the weak link and the note will say so.
+
+
+## Revision 3 — the matched population, and the three weightings
+
+Every arm must be scored over **the same games**, or a difference between arms can be a difference
+in which games each one happened to finish (chatgpt_1, 08:10Z, point 3). The collector keeps the
+first `--episodes` games to finish and drops the slots still in flight, so it does not give that
+for free.
+
+* The **first** arm writes the games it played with `--cells-out`. A game is identified by its
+  `(map index, seat)` cell — the environment chooses its own maps, so there is no seed to
+  predeclare from here; predeclaring the seeds themselves needs the environment to accept a
+  map/seat schedule, which is environment-side work and is not pretended to be done here.
+* Every **later** arm passes `--restrict-to-cells` and is cut to exactly one complete game per
+  declared cell. A declared cell that never came up is a **failure** — the run stops and names the
+  missing cells — not a quietly smaller sample. `--allow-unmatched-population` waives that
+  knowingly and records the shortfall in `collection.population`.
+* Give the later arms **more** `--episodes` than the first (160 against 96 above): they need to
+  keep playing until every declared cell has come up, and the surplus games are dropped.
+* The scope arm, if it is run, takes the same `--restrict-to-cells` as the argmax arm.
+
+`calibration.weightings` now reports the same statistics over three populations side by side —
+every mini-step, one PLAN row per turn, and one initial PLAN row per game — because a mini-step
+weighting lets long games and large rosters dominate and repeats each turn's single common target
+once per troll. `calibration.reading` states plainly that `realized` is the complete-episode
+Monte-Carlo return and **not** the truncated lambda-0.95 GAE target the trainer fitted, so the two
+are read side by side rather than one in place of the other. And `explained_variance` now carries
+its own note: it is blind to a constant bias, so it is never quoted without bias, RMSE and slope.

@@ -642,3 +642,285 @@ def test_the_census_split_follows_the_rollout_s_own_proportions() -> None:
     assert list(gd.stratified_rows(phase, 50)) == list(rows)
     assert len(gd.stratified_rows(phase, 1000)) == 100
     assert len(gd.stratified_rows(phase, 0)) == 0
+
+# ------------------------------- the shared-clip coupling between the two policy-identical arms
+
+
+def test_the_two_arms_with_identical_policy_gradients_are_compared(report: dict) -> None:
+    """`no_value` and `full_detached_value` differ by a term that reaches `critic.*` only.
+
+    Their policy gradients are identical before the clip. The trainer clips one global norm over
+    policy and critic parameters together, so they are not identical after it -- and the report
+    has to name that channel and put its size next to the effect it produces.
+    """
+
+    for variant, block in report["next_update"].items():
+        if not block.get("available"):
+            continue
+        coupling = block["shared_clip_coupling"]
+        assert set(coupling["arms"]) == {"no_value", "full_detached_value"}
+        assert "sound" not in block, "an equality verdict on these two arms is not a soundness flag"
+        if not coupling["available"]:
+            continue
+        assert set(coupling["clip_scale_applied"]) == {"no_value", "full_detached_value"}
+        assert coupling["arms_coincide"] is (
+            coupling["policy_max_abs_parameter_difference"] == 0.0
+        )
+        assert "full_detached_value_vs_no_value" in block["comparisons"]
+
+
+def test_the_coupling_travels_only_through_the_clip_multiplier(tmp_path) -> None:
+    """The claim, executed: fix one clip multiplier for every arm and the two arms coincide.
+
+    This is the proof that the shared global clip is the whole channel between `no_value` and
+    `full_detached_value`. With each arm clipped by its own multiplier they may come apart; with
+    the FULL arm's multiplier fixed for all of them the difference is exactly zero, because no
+    other route from the critic's objective to a policy parameter exists in this arm pair.
+    """
+
+    checkpoint = _smoke_checkpoint(tmp_path)
+    report = _measure(
+        [
+            "--initial-checkpoint",
+            str(checkpoint),
+            "--anchor-turn-steps",
+            "0",
+            "--next-update-variants",
+            "adam-resumed,adam-resumed+common-clip",
+        ]
+    )
+    resumed = report["next_update"]["adam-resumed"]
+    fixed = report["next_update"]["adam-resumed+common-clip"]
+    if not resumed.get("available") or not fixed.get("available"):
+        pytest.skip("this checkpoint's optimizer state does not resume")
+
+    assert fixed["optimizer_variant"] == "adam-resumed"
+    assert fixed["common_clip_scale"] is not None
+    closed = fixed["shared_clip_coupling"]
+    assert closed["clip_channel_closed"] is True
+    assert closed["policy_max_abs_parameter_difference"] == 0.0
+    assert closed["arms_coincide"] is True
+    assert closed["plan_argmax_changed"] == 0
+    assert closed["spatial_argmax_changed"] == 0
+
+    open_channel = resumed["shared_clip_coupling"]
+    assert open_channel["clip_channel_closed"] is False or (
+        open_channel["clip_scale_relative_difference"] == 0.0
+    )
+    # whatever its size, it is on the record as a coupling rather than as noise
+    assert isinstance(open_channel["policy_max_abs_parameter_difference"], float)
+    assert isinstance(open_channel["clip_scale_relative_difference"], float)
+
+
+def _resumed_state(args):
+    """A model and a genuinely accumulated Adam state, three real updates in."""
+
+    device = torch.device("cpu")
+    model, _ = tpf.load_policy(None, device)
+    model.train()
+    rng = __import__("numpy").random.default_rng(args.seed)
+    collected = gd.collect_minibatch(args, model, device, rng)
+    batch = collected["batch"]
+    census = gd.build_census(collected["rollout"], int(args.counterfactual_observations), {})
+    fixed = gd.census_tensors(census, device)
+    fixed["sha256"] = census["meta"]["sha256"]
+    fixed["source"] = "this test's own rollout"
+
+    optimizer = tpf.build_optimizer(model, args.learning_rate, args.actor_lr_scale)
+    for _ in range(3):
+        terms = gd.objective_losses(model, None, False, batch, args, 0.0, value_path="shared")
+        loss = sum(terms["terms"][key][0] for key in ("policy", "entropy", "value"))
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+        optimizer.step()
+    return model, batch, fixed, optimizer.state_dict()
+
+
+def _two_arms(model, batch, args, fixed, state):
+    models, read, arms = {}, {}, {}
+    for arm in ("no_value", "full_detached_value"):
+        stepped, info = gd.stepped_copy(
+            model, None, False, batch, args, 0.0, "adam-resumed", state, arm
+        )
+        assert info["available"] and info["resumed_optimizer_state"]
+        models[arm], read[arm], arms[arm] = stepped, gd.read_out(stepped, fixed), info
+    return gd.shared_clip_coupling(models, read, fixed, arms)
+
+
+def test_an_arm_does_not_consume_the_optimizer_state_the_next_arm_needs() -> None:
+    """The defect this instrument had: every arm must resume from the state the run saved.
+
+    `Optimizer.load_state_dict` casts the saved moments to the parameters' dtype and device, and
+    when they already match, the cast hands back the *same tensors*. One arm's step then advances
+    the caller's `exp_avg`, `exp_avg_sq` and `step` in place, and the arms that follow resume from
+    a state one and two updates further on -- so they are no longer counterfactuals of the same
+    checkpoint, and the difference between them is arm order, not the terms in their loss.
+    """
+
+    args = gd.build_parser().parse_args(_argv())
+    model, batch, fixed, state = _resumed_state(args)
+    key = sorted(state["state"])[0]
+    before = {
+        field: state["state"][key][field].clone()
+        for field in ("exp_avg", "exp_avg_sq", "step")
+    }
+
+    gd.stepped_copy(model, None, False, batch, args, 0.0, "adam-resumed", state, "no_value")
+
+    for field, saved in before.items():
+        assert torch.equal(saved, state["state"][key][field]), f"an arm advanced the saved {field}"
+
+
+def test_the_arms_do_not_depend_on_the_order_they_are_run_in() -> None:
+    """The consequence of the fix, stated as the property a reader cares about."""
+
+    args = gd.build_parser().parse_args(_argv())
+    model, batch, fixed, state = _resumed_state(args)
+
+    stepped: dict[str, dict] = {}
+    for order in (("no_value", "full_detached_value"), ("full_detached_value", "no_value")):
+        for arm in order:
+            model_after, _ = gd.stepped_copy(
+                model, None, False, batch, args, 0.0, "adam-resumed", state, arm
+            )
+            parameters = {name: p.detach().clone() for name, p in model_after.named_parameters()}
+            if arm in stepped:
+                assert all(
+                    torch.equal(stepped[arm][name], value) for name, value in parameters.items()
+                ), f"{arm} moved when only the order around it changed"
+            stepped[arm] = parameters
+
+
+def test_the_two_arms_coincide_exactly_when_the_clip_does_not_bind() -> None:
+    """With no clip multiplier to differ, nothing connects the critic term to a policy parameter.
+
+    This is the arithmetic that the shared global clip -- and only the shared global clip -- takes
+    away: `full_detached_value`'s gradient reaches `critic.*`, `critic.*` produces no action
+    logit, so with both arms scaled the same the policy parameters must land bit for bit together.
+    """
+
+    args = gd.build_parser().parse_args(_argv())
+    model, batch, fixed, state = _resumed_state(args)
+    args.max_grad_norm = 1e9  # far above any gradient here: the clip cannot bind
+    coupling = _two_arms(model, batch, args, fixed, state)
+    assert coupling["clip_active"] is False
+    assert coupling["clip_scale_relative_difference"] == 0.0
+    assert coupling["policy_max_abs_parameter_difference"] == 0.0
+    assert coupling["plan_argmax_changed"] == 0
+    assert coupling["spatial_argmax_changed"] == 0
+
+
+def test_the_coupling_measure_is_not_inert() -> None:
+    """The negative control: make the clip bind, and the two arms have to come apart.
+
+    The critic gradient enters the one global norm, so the two arms are scaled by different
+    multipliers, and that difference reaches every policy parameter. If this test ever stops
+    seeing a difference, the measure has stopped measuring the coupling it is named for.
+    """
+
+    args = gd.build_parser().parse_args(_argv())
+    model, batch, fixed, state = _resumed_state(args)
+    args.max_grad_norm = 1e-3  # far below the gradient here: the clip binds in both arms
+    coupling = _two_arms(model, batch, args, fixed, state)
+    assert coupling["available"] is True
+    assert coupling["clip_active"] is True
+    assert coupling["clip_scale_relative_difference"] > 0.0
+    assert coupling["policy_max_abs_parameter_difference"] > 0.0
+    assert coupling["arms_coincide"] is False
+    assert coupling["clip_channel_closed"] is False
+
+
+def test_an_unknown_variant_suffix_is_an_error() -> None:
+    """`+common-clip` is the only suffix; anything else is refused rather than ignored."""
+
+    assert gd.parse_next_update_variant("adam-resumed") == ("adam-resumed", False)
+    assert gd.parse_next_update_variant("adam-resumed+common-clip") == ("adam-resumed", True)
+    with pytest.raises(ValueError):
+        gd.parse_next_update_variant("adam-resumed+no-clip")
+
+
+# ---------------------------------------- the decision-margin measure and the minibatch replication
+
+
+def test_every_comparison_carries_a_decision_margin(report: dict) -> None:
+    """An argmax flip sees nothing until a decision changes hands; the margin is the continuous
+    version, and chatgpt_1's 08:40Z point is that a verdict must not rest on flips alone."""
+
+    for block in report["next_update"].values():
+        if not block.get("available"):
+            continue
+        for name, comparison in block["comparisons"].items():
+            margin = comparison["decision_margin"]
+            assert set(margin) == {"plan", "spatial"}, name
+            for row_class in margin.values():
+                if row_class is None:
+                    continue
+                assert row_class["median_margin_before"] >= 0.0
+                for field in (
+                    "fraction_margin_shrank_10_percent",
+                    "fraction_margin_shrank_25_percent",
+                    "fraction_margin_shrank_50_percent",
+                    "fraction_margin_crossed",
+                ):
+                    assert 0.0 <= row_class[field] <= 1.0
+                assert (
+                    row_class["fraction_margin_shrank_50_percent"]
+                    <= row_class["fraction_margin_shrank_25_percent"]
+                    <= row_class["fraction_margin_shrank_10_percent"]
+                )
+
+
+def test_a_network_compared_with_itself_has_moved_no_margin() -> None:
+    """The measure's zero: nothing changed, so nothing came closer to flipping."""
+
+    args = gd.build_parser().parse_args(_argv())
+    device = torch.device("cpu")
+    model, _ = tpf.load_policy(None, device)
+    model.train()
+    rng = __import__("numpy").random.default_rng(args.seed)
+    collected = gd.collect_minibatch(args, model, device, rng)
+    census = gd.build_census(collected["rollout"], int(args.counterfactual_observations), {})
+    fixed = gd.census_tensors(census, device)
+    read = gd.read_out(model, fixed)
+
+    margin = gd.difference(read, read, fixed)["decision_margin"]
+    for row_class in margin.values():
+        if row_class is None:
+            continue
+        assert row_class["mean_margin_change"] == 0.0
+        assert row_class["fraction_margin_shrank_10_percent"] == 0.0
+        assert row_class["fraction_margin_crossed"] == 0.0
+
+
+def test_a_second_minibatch_seed_is_a_different_draw_of_the_same_rollout() -> None:
+    """The replication: same update, other rows. A conclusion that holds only for the rows this
+    update happened to draw is not a conclusion."""
+
+    report = _measure(["--minibatch-seeds", "2", "--next-update-variants", "adam-fresh"])
+    assert report["minibatch"]["minibatch_seeds"] == 2
+    selections = report["minibatch"]["selections"]
+    assert [s["minibatch_index"] for s in selections] == [0, 1]
+    assert report["minibatch"]["rollout_rows"] == report["config"]["num_envs"] * report["config"][
+        "rollout_steps"
+    ]
+
+    replications = report["next_update_replications"]
+    assert len(replications) == 1
+    assert replications[0]["minibatch_index"] == 1
+    replicated = replications[0]["variants"]["adam-fresh"]
+    primary = report["next_update"]["adam-fresh"]
+    assert set(replicated["comparisons"]) == set(primary["comparisons"])
+    # a different draw of the same rollout: the same shape, its own numbers
+    assert replicated["census"]["sha256"] == primary["census"]["sha256"]
+
+
+def test_one_minibatch_seed_leaves_the_report_as_it_was(report: dict) -> None:
+    """The default is unchanged: one selection, no replications, the old fields in place."""
+
+    assert report["minibatch"]["minibatch_seeds"] == 1
+    assert report["next_update_replications"] == []
+    assert report["minibatch"]["minibatch_rows"] > 0
+    assert report["minibatch"]["selections"][0]["minibatch_rows"] == report["minibatch"][
+        "minibatch_rows"
+    ]
