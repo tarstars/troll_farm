@@ -922,6 +922,56 @@ def stepped_copy(
     }
 
 
+def arm_identity_check(models: dict, read: dict, fixed: dict) -> dict:
+    """The control that tells the reader whether this variant's contrast can be believed.
+
+    `no_value` drops the value term; `full_detached_value` keeps it but feeds the value head a
+    detached trunk, so its gradient reaches `critic.*` and nothing else -- and `critic.*` produces
+    no action logit. The two arms must therefore leave the policy parameters in the *same* place.
+    Anything they do not share is the estimator's own noise, and it has to be reported next to the
+    effect the estimator claims to measure, because the two are the same size under a resumed Adam
+    state: Adam's step is a nonlinear function of the gradient, so removing a term that changes the
+    gradient by one part in 10^5 does not change the step by one part in 10^5 on parameters whose
+    accumulated second moment is small.
+
+    `policy_max_abs_parameter_difference` is that noise floor in parameter units;
+    `plan_logit_noise` and `spatial_logit_noise` are it in the units the comparisons are quoted in,
+    so a reader can put them beside `mean_abs_logit_shift_plan` and see what is signal.
+    """
+
+    pair = ("no_value", "full_detached_value")
+    if not all(arm in models for arm in pair):
+        return {"available": False, "passed": None, "arms": list(pair)}
+
+    left, right = (models[arm] for arm in pair)
+    names = [
+        name
+        for name, _ in left.named_parameters()
+        if group_of(name) in TRUNK_GROUPS or name.startswith(("actor.", "plan."))
+    ]
+    right_parameters = dict(right.named_parameters())
+    gap = max(
+        float((parameter.detach() - right_parameters[name].detach()).abs().max())
+        for name, parameter in left.named_parameters()
+        if name in names
+    )
+    logits = difference(read[pair[0]], read[pair[1]], fixed)
+    return {
+        "available": True,
+        "arms": list(pair),
+        "policy_max_abs_parameter_difference": gap,
+        "plan_logit_noise": logits["mean_abs_logit_shift_plan"],
+        "spatial_logit_noise": logits["mean_abs_logit_shift_spatial"],
+        "plan_argmax_noise": logits["plan_argmax_changed"],
+        "spatial_argmax_noise": logits["spatial_argmax_changed"],
+        "passed": gap == 0.0,
+        "why": (
+            "these two arms differ by a term that cannot reach a policy parameter, so every "
+            "number here should be zero; what is not zero is this variant's own noise floor"
+        ),
+    }
+
+
 def counterfactual_next_update(
     model,
     anchor,
@@ -958,6 +1008,7 @@ def counterfactual_next_update(
         return {"available": False, "variant": variant, **arms["full"]}
 
     read = {arm: read_out(stepped, fixed) for arm, stepped in models.items()}
+    identity = arm_identity_check(models, read, fixed)
     comparisons = {}
     for left, right in (
         ("full", "no_value"),
@@ -971,6 +1022,8 @@ def counterfactual_next_update(
     return {
         "available": True,
         "variant": variant,
+        "sound": bool(identity["passed"]),
+        "arm_identity_check": identity,
         "arms": arms,
         "comparisons": comparisons,
         "census": {

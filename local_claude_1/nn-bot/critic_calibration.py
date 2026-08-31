@@ -498,7 +498,23 @@ def measure(args) -> dict:
             "mean_turns": (
                 float(np.mean([row["turns"] for row in episodes])) if episodes else None
             ),
-            "illegal_commands": int(sum(row["illegal"] for row in episodes)),
+            # NOT "commands this network emitted illegally". The environment's counter adds up
+            # referee rejections from BOTH seats (card 20260829-nn-bot-way-b, amendment 6), and
+            # against a linked opponent it also charges a MOVE whose unit did not reach the cell
+            # the pathing predicted -- which a collision with the opponent's troll causes on its
+            # own, with neither side doing anything illegal. The learned side cannot emit an
+            # unmasked command: its spatial commands pass the strict mask and the canonical codec,
+            # and its TRAIN is gated by `train_succeeds` before it is ever written. So a nonzero
+            # count here is a fact about the game, not a fault in the decoding, and the name says
+            # so. See GATE0-VERDICT-2026-08-31.md.
+            "referee_rejections_either_seat": int(sum(row["illegal"] for row in episodes)),
+            "referee_rejections_note": (
+                "both seats' rejections, and cross-seat move collisions; not this network's "
+                "illegal commands, which the mask and the codec make impossible"
+            ),
+            "episodes_with_referee_rejections": int(
+                sum(1 for row in episodes if row["illegal"])
+            ),
         },
         "calibration": statistics,
         "timing": {"total_seconds": time.perf_counter() - started},

@@ -268,3 +268,23 @@ def test_main_writes_the_report_where_it_is_told(tmp_path, capsys) -> None:
     assert written["calibration"]["overall"]["rows"] == report["collection"]["rows"]
     printed = json.loads(capsys.readouterr().out.strip().splitlines()[-1])
     assert printed["event"] == "critic-calibration"
+
+
+def test_the_rejection_count_is_named_for_what_the_environment_counts(report: dict) -> None:
+    """The 08-31 anomaly: 222 "illegal_commands" in one scope-decoded game.
+
+    The environment's counter adds up referee rejections from *both* seats, and against a linked
+    opponent it charges a MOVE whose unit did not reach the predicted cell -- a cross-seat
+    collision does that with neither side doing anything illegal. The learned side cannot emit an
+    unmasked command at all. So the report must not offer a field called `illegal_commands` for a
+    reader to quote as this network's fault.
+    """
+
+    collection = report["collection"]
+    assert "illegal_commands" not in collection
+    assert collection["referee_rejections_either_seat"] == 0
+    assert collection["episodes_with_referee_rejections"] == 0
+    assert "both seats" in collection["referee_rejections_note"]
+    assert collection["referee_rejections_either_seat"] == sum(
+        episode["illegal"] for episode in report["episodes"]
+    )

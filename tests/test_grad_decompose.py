@@ -642,3 +642,118 @@ def test_the_census_split_follows_the_rollout_s_own_proportions() -> None:
     assert list(gd.stratified_rows(phase, 50)) == list(rows)
     assert len(gd.stratified_rows(phase, 1000)) == 100
     assert len(gd.stratified_rows(phase, 0)) == 0
+
+# ------------------------------------- the arm-identity control on the next-update counterfactual
+
+
+def test_the_two_arms_that_cannot_differ_are_checked_against_each_other(report: dict) -> None:
+    """`no_value` and `full_detached_value` differ by a term that reaches `critic.*` only.
+
+    `critic.*` produces no action logit, so the two arms must leave every policy parameter in the
+    same place. The report has to say whether they did -- otherwise a reader cannot tell a real
+    effect from the estimator's own noise.
+    """
+
+    for variant, block in report["next_update"].items():
+        if not block.get("available"):
+            continue
+        check = block["arm_identity_check"]
+        assert set(check["arms"]) == {"no_value", "full_detached_value"}
+        if not check["available"]:
+            continue
+        assert "sound" in block
+        assert block["sound"] is check["passed"]
+        assert check["passed"] is (check["policy_max_abs_parameter_difference"] == 0.0)
+
+
+def test_a_fresh_adam_step_leaves_those_two_arms_identical() -> None:
+    """The control passes where theory says it must: one step of a fresh Adam."""
+
+    report = _measure(["--next-update-variants", "adam-fresh"])
+    check = report["next_update"]["adam-fresh"]["arm_identity_check"]
+    assert check["available"] is True
+    assert check["policy_max_abs_parameter_difference"] == 0.0
+    assert check["plan_argmax_noise"] == 0
+    assert check["spatial_argmax_noise"] == 0
+    assert check["passed"] is True
+    assert report["next_update"]["adam-fresh"]["sound"] is True
+
+
+def test_the_control_catches_a_resumed_state_that_amplifies_the_difference(tmp_path) -> None:
+    """The defect this control exists for, on a real checkpoint with real Adam moments.
+
+    Adam's step is a nonlinear function of the gradient. Under a resumed state the value term's
+    absence changes the step on parameters whose second moment is small by far more than it
+    changes the gradient, so the two arms come apart -- and the report has to say so rather than
+    let the contrast be quoted as the value path's doing.
+    """
+
+    checkpoint = _smoke_checkpoint(tmp_path)
+    report = _measure(
+        [
+            "--initial-checkpoint",
+            str(checkpoint),
+            "--anchor-turn-steps",
+            "0",
+            "--next-update-variants",
+            "adam-resumed,adam-fresh",
+        ]
+    )
+    resumed = report["next_update"]["adam-resumed"]
+    fresh = report["next_update"]["adam-fresh"]
+    if not resumed.get("available"):
+        pytest.skip("this checkpoint's optimizer state does not resume")
+    assert fresh["arm_identity_check"]["passed"] is True
+    check = resumed["arm_identity_check"]
+    assert check["available"] is True
+    # Not an assertion that it fails -- an assertion that whether it failed is on the record, and
+    # that a failure is reported as unsound rather than as an effect.
+    assert isinstance(check["policy_max_abs_parameter_difference"], float)
+    assert resumed["sound"] is check["passed"]
+    if not check["passed"]:
+        assert check["policy_max_abs_parameter_difference"] > 0.0
+
+
+def test_the_arm_identity_control_is_not_inert() -> None:
+    """The negative control: a state that makes the two arms come apart, and the check says so.
+
+    Adam divides by the square root of the accumulated second moment. Set that moment small on
+    the policy side -- which is what a parameter that has seen little gradient looks like after a
+    real run -- and dropping a term that changes the gradient by a part in 10^5 moves the step by
+    far more. If this test ever stops failing the check, the check has stopped measuring.
+    """
+
+    args = gd.build_parser().parse_args(_argv())
+    device = torch.device("cpu")
+    model, _ = tpf.load_policy(None, device)
+    model.train()
+    rng = __import__("numpy").random.default_rng(args.seed)
+    collected = gd.collect_minibatch(args, model, device, rng)
+    batch = collected["batch"]
+    census = gd.build_census(collected["rollout"], int(args.counterfactual_observations), {})
+    fixed = gd.census_tensors(census, device)
+    fixed["sha256"] = census["meta"]["sha256"]
+    fixed["source"] = "this test's own rollout"
+
+    optimizer = tpf.build_optimizer(model, args.learning_rate, args.actor_lr_scale)
+    for _ in range(3):
+        terms = gd.objective_losses(model, None, False, batch, args, 0.0, value_path="shared")
+        loss = sum(terms["terms"][key][0] for key in ("policy", "entropy", "value"))
+        optimizer.zero_grad(set_to_none=True)
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), args.max_grad_norm)
+        optimizer.step()
+    state = optimizer.state_dict()
+
+    models, read = {}, {}
+    for arm in ("no_value", "full_detached_value"):
+        stepped, info = gd.stepped_copy(
+            model, None, False, batch, args, 0.0, "adam-resumed", state, arm
+        )
+        assert info["available"] and info["resumed_optimizer_state"]
+        models[arm], read[arm] = stepped, gd.read_out(stepped, fixed)
+
+    check = gd.arm_identity_check(models, read, fixed)
+    assert check["available"] is True
+    assert check["policy_max_abs_parameter_difference"] > 0.0
+    assert check["passed"] is False
