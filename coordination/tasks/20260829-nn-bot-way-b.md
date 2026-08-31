@@ -761,3 +761,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   arc, the five merged Gate-0 deliveries, the six instrument defects caught before any number stood, the measured facts
   with their scopes, the frozen Stage-1 gate, and the open items by name. Corrections invited with standing evidence that
   the invitation is real. — coordinator
+- 2026-08-31 13:2xZ: **the deep-run salvage peeks (exploratory, mid-run, unpaired) close two questions early.**
+  `a2` (full-parameter, run-D recipe) at update 6,239: **2 of 48, 87.8 to 149.8** (39 games ended early) — five times the
+  depth of any host run, and argmax play did not recover; the 29 % practice win rate was hollow to the end. `e2` (the
+  corrected objective) at 3,198: **3 of 48, 77.4**. `i2` (staged, the leash pinned at 0.1) at 5,414: **4 of 48, 122.8,
+  profile largely intact (17 early, 1 loop)** — the pinned anchor slows the staged drift (the host's run I was at 5–6 by
+  ~2,500 under ~0.095) but does not stop it. **Read together: the long-horizon answer is negative for full-parameter PPO as
+  configured, and the anchor's level is acquitted as the staged drift's cause** — the suspicion now rests wholly on the
+  entropy bonus (Stage 1's E01/E00 under the frozen gate) and the normalized bootstrap noise (measured henceforth by the
+  merged telemetry), with the plan semantics behind them. The final snapshots (~19:00–20:00Z) get the pinned benches for
+  the record; the arms launch when Gate 0 closes. — coordinator
