@@ -54,14 +54,15 @@ the best-fitting explanation of the staged drift. The full dossier:
    source hashes and exact command pinned in the card; benched at the same fixed updates on the
    scout panel with the paired protocol, the treatment effect read as E00 − E01 on paired cells.
    *Done when:* both curves are on the card **and the frozen Gate 1 verdict is computed.** The
-   gate of record is the reviewer's 10:36Z definition (its pinned amendment; adopted 11:30Z with
-   one correction — the locked panel is 144 cells, so the confirmation pools 288): scouts at
-   updates 500–2,500 on the 48 cells; both arms confirmed at 1,500 and 2,500 on the locked panel;
-   the primary statistic is the paired per-cell margin delta E00 − E01 with a paired-bootstrap
-   interval; `ENTROPY_CONFIRMED` needs the pooled interval above zero *and* E00 non-inferior to
-   the clone (interval, net cells, plan entropy, clone plan agreement, activity and legality as
-   frozen); `ENTROPY_PARTIAL` and the failure reading as frozen. No arm launches before Gate 0
-   closes.
+   gate of record is the reviewer's 10:36Z definition as corrected by its 11:45Z panel note
+   (adopted): 144 cells are sufficient — the two confirmed ages are *repeated measures of the
+   same 144 map-seat units*, so the interval is the 144-unit clustered/repeated-measure bootstrap
+   of the per-cell two-age mean delta, never a 288-row pool; the mean effect must also be
+   positive at each age separately; the clone non-inferiority allows at most 6 net cells lost (of
+   144). Scouts at updates 500–2,500 on the 48 cells; the four frozen outcomes:
+   `ENTROPY_CONFIRMED` / `ENTROPY_PARTIAL` / `ENTROPY_NOT_CONFIRMED` / `INCONCLUSIVE` (the gate
+   returns INCONCLUSIVE on incomplete identity, population, execution or evaluation evidence —
+   underpowered is a verdict, not a license). No arm launches before Gate 0 closes.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

@@ -740,3 +740,43 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   written into GOAL.md step 4. The closing2 charter (11:35Z, one handoff, both bots): claude_1 = r5 + the G@250 runbook row
   + the verdict's scope wording; codex_1 = the final-policy KL. The v3 gradient rerun (minutes) runs the hour r5 lands;
   Gate 0 then closes on claude_1's final verdict. — coordinator
+- 2026-08-31 12:3xZ: **closing round two delivered and merged (`e7722474`).** codex_1's final-policy KL guard (58 tests
+  verified here; the guard reads the post-epoch policy; `path_kl_*` retained honestly; ~12 % epoch cost at our sizes) and
+  claude_1's r5 (72 tests; the tie denominator with the blocker's no-op falsifier as a test that fails against r4; the G@250
+  warm-up-tail runbook row; the verdict's two scope limits). **chatgpt_1's 11:45Z panel correction adopted**: 144 cells
+  suffice; the confirmation interval is the 144-unit clustered/repeated-measure bootstrap of the per-cell two-age mean delta
+  (never a 288-row pool); positive at each age separately; clone non-inferiority 6 net cells of 144; four frozen outcomes
+  incl. INCONCLUSIVE — GOAL.md step 4 re-frozen. **The v3 gradient set is running** (clone-no-warmup-hypothetical, G@250,
+  G@500, H@500 — all on census v2, r5 code); outputs ship to claude_1 on completion and its final verdict **closes Gate 0's
+  measurement half**. — coordinator
+- 2026-08-31 12:4xZ: **the v3 gradient set done (12:04–12:08Z) and on claude_1's machine; the G@250 row answers the handoff
+  question.** At the warm-up's tail the critic's trunk push is **0.2 % (plan rows) / 0.5 % (troll rows) of the policy's** —
+  against the no-warm-up clone's 5 % / 29 % — so the warm-up does exactly its job: by the unfreeze the value-gradient path is
+  negligible, and with g/h@500 also at ~0.2 %, **hypothesis (a) is effectively acquitted for the warm-up runs** (as an
+  early-game local statement, per the frozen scope). The live suspects narrow to the entropy bonus (Stage 1's E01/E00 under
+  the frozen gate) and the normalized bootstrap noise (now measured in every run by the merged telemetry), with the
+  plan-semantics design behind them. claude_1's final verdict formalizes this and closes Gate 0's measurement half. — coordinator
+- 2026-08-31 13:1xZ: **the first-day progress report written and sent to chatgpt_1 at the owner's request**
+  (`local_claude_1/nn-bot/PROGRESS-2026-08-31.md`; the 13:10Z ack-required handoff carries it): the review-to-programme
+  arc, the five merged Gate-0 deliveries, the six instrument defects caught before any number stood, the measured facts
+  with their scopes, the frozen Stage-1 gate, and the open items by name. Corrections invited with standing evidence that
+  the invitation is real. — coordinator
+- 2026-08-31 13:2xZ: **the deep-run salvage peeks (exploratory, mid-run, unpaired) close two questions early.**
+  `a2` (full-parameter, run-D recipe) at update 6,239: **2 of 48, 87.8 to 149.8** (39 games ended early) — five times the
+  depth of any host run, and argmax play did not recover; the 29 % practice win rate was hollow to the end. `e2` (the
+  corrected objective) at 3,198: **3 of 48, 77.4**. `i2` (staged, the leash pinned at 0.1) at 5,414: **4 of 48, 122.8,
+  profile largely intact (17 early, 1 loop)** — the pinned anchor slows the staged drift (the host's run I was at 5–6 by
+  ~2,500 under ~0.095) but does not stop it. **Read together: the long-horizon answer is negative for full-parameter PPO as
+  configured, and the anchor's level is acquitted as the staged drift's cause** — the suspicion now rests wholly on the
+  entropy bonus (Stage 1's E01/E00 under the frozen gate) and the normalized bootstrap noise (measured henceforth by the
+  merged telemetry), with the plan semantics behind them. The final snapshots (~19:00–20:00Z) get the pinned benches for
+  the record; the arms launch when Gate 0 closes. — coordinator
+- 2026-08-31 15:5xZ: **the VM's disk hit 100 % a second time (24 MB free) and silently stalled every agent since ~09:00Z** —
+  the launcher was active but each bot session failed on the full volume; that is why no Gate-0 verdict and no report receipt
+  arrived for hours. **The filler is identified and is not ours: the owner's own codex session transcript**
+  (`~/.codex/sessions/2026/08/28/rollout-2026-08-28T19-05….jsonl`, 311 MB and growing at measurement time, plus its 161 MB
+  thread database) — untouchable without the owner's word. **Declared emergency action, minimal and ours only**: six stale
+  agent scratch items removed from `/tmp` (codex_1's old gate extract 158 MB, pytest scratch, four old extracts) → 348 MB
+  free, writes verified working; nothing under `~/.codex`, `~/.claude`, `preserved/` or the owner's run touched. **The cure
+  needs the owner** (the volume refills in about a day at the transcript's growth): prune or relocate `~/.codex`, and the
+  launcher-log rotation still pending — both in the owner's queue. The bots should resume on their next poll. — coordinator

@@ -297,8 +297,8 @@ def test_rollout_credit_keeps_terminal_events_and_observed_rewards_separate() ->
     assert telemetry["troll"]["observed_nonzero_reward_rows"] == 0
 
 
-def test_epoch_kl_is_row_weighted_and_the_guard_ignores_the_last_batch_alone() -> None:
-    """One small hot last minibatch cannot replace the aggregate epoch reading."""
+def test_kl_accumulator_is_row_weighted_and_the_guard_uses_the_whole_reading() -> None:
+    """One small hot row cannot replace the aggregate reading."""
 
     epoch = tpf.EpochKlAccumulator()
     epoch.add(torch.full((99,), 0.01))
@@ -323,6 +323,81 @@ def test_plan_critic_kl_samples_exclude_troll_rows() -> None:
     expected = (new.exp() - 1.0) - new
     assert torch.equal(staged, expected[[0, 2]])
     assert torch.equal(full, expected)
+
+
+def test_final_policy_kl_rechecks_earlier_minibatches_and_drives_the_guard(
+    monkeypatch,
+) -> None:
+    """Two steps move the first rows after their path sample; the kept policy is the guard.
+
+    The first minibatch is read at KL zero and then updates the model. The second is read after
+    one step and then updates the same logits again. A path average therefore understates the
+    post-epoch distance of all four fixed rows. The no-grad final pass must neither mutate the
+    model nor advance PyTorch's random generator.
+    """
+
+    class TinyPolicy(torch.nn.Module):
+        def __init__(self) -> None:
+            super().__init__()
+            self.logits = torch.nn.Parameter(torch.zeros(2))
+
+        def forward(self, observations: torch.Tensor) -> torch.Tensor:
+            return self.logits.expand(observations.shape[0], -1)
+
+    def tiny_combined(model, observations, phase):
+        del phase
+        return model(observations), torch.zeros(observations.shape[0])
+
+    monkeypatch.setattr(tpf, "combined_logits", tiny_combined)
+    model = TinyPolicy()
+    optimizer = torch.optim.SGD(model.parameters(), lr=0.5)
+    observations = np.ones((4, 1), dtype=np.float32)
+    legal = np.ones((4, 2), dtype=np.uint8)
+    phase = np.full(4, tpf.PHASE_PLAN, dtype=np.int64)
+    actions = np.zeros(4, dtype=np.int64)
+    with torch.no_grad():
+        initial = Categorical(logits=model(torch.from_numpy(observations)))
+        old_logprobs = initial.log_prob(torch.from_numpy(actions)).numpy()
+    flat = {
+        "obs": observations,
+        "legal": legal,
+        "phase": phase,
+        "actions": actions,
+        "logprobs": old_logprobs,
+    }
+
+    path = tpf.EpochKlAccumulator()
+    for start in (0, 2):
+        rows = slice(start, start + 2)
+        logits = model(torch.from_numpy(observations[rows]))
+        new_logprobs = Categorical(logits=logits).log_prob(
+            torch.from_numpy(actions[rows])
+        )
+        path.add(
+            tpf.policy_kl_samples(
+                new_logprobs,
+                torch.from_numpy(old_logprobs[rows]),
+                torch.from_numpy(phase[rows]),
+                "all",
+            )
+        )
+        optimizer.zero_grad(set_to_none=True)
+        (-new_logprobs.mean()).backward()
+        optimizer.step()
+
+    tensors_before = {name: value.clone() for name, value in model.state_dict().items()}
+    rng_before = torch.random.get_rng_state().clone()
+    final = tpf.final_policy_kl(model, flat, torch.device("cpu"), "all", batch_size=2)
+
+    assert final.count == 4
+    assert final.mean > path.mean > 0.0
+    assert final.maximum == pytest.approx(final.mean)
+    threshold = (path.mean + final.mean) / 2.0
+    assert not tpf.target_kl_exceeded(threshold, path)
+    assert tpf.target_kl_exceeded(threshold, final)
+    assert torch.equal(torch.random.get_rng_state(), rng_before)
+    for name, value in model.state_dict().items():
+        assert torch.equal(value, tensors_before[name]), name
 
 
 # ------------------------------------------------- the 400-plan vocabulary (card amendment 8)
@@ -879,6 +954,11 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
             "approx_kl",
             "approx_kl_mean",
             "approx_kl_max",
+            "path_kl_mean",
+            "path_kl_max",
+            "final_policy_kl_mean",
+            "final_policy_kl_max",
+            "final_policy_kl_eval_seconds",
             "mean_episode_return",
             "mean_referee_margin",
             "win_rate",
@@ -888,7 +968,11 @@ def test_two_update_smoke_run_writes_a_four_key_checkpoint(tmp_path, capsys) -> 
             assert key in row
         assert row["turn_steps_per_second"] > 0
         assert row["approx_kl"] == row["approx_kl_mean"]
+        assert row["approx_kl_mean"] == row["final_policy_kl_mean"]
+        assert row["approx_kl_max"] == row["final_policy_kl_max"]
         assert row["approx_kl_max"] >= row["approx_kl_mean"] >= 0.0
+        assert row["path_kl_max"] >= row["path_kl_mean"] >= 0.0
+        assert row["final_policy_kl_eval_seconds"] > 0.0
         assert set(row["rollout_credit"]) == {"plan", "troll"}
         for row_class in ("plan", "troll"):
             assert set(row["rollout_credit"][row_class]) == {
