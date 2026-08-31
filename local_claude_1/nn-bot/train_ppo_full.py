@@ -129,11 +129,12 @@ named row class. This magnitude ratio stays in `[0, 1]` even when the signed com
 the log retains each magnitude and the cancellation fraction so the aggregate cannot hide where
 the critic contribution came from.
 
-The target-KL guard is an epoch statistic, not a reading of whichever minibatch happened to run
-last. The code accumulates the approximate policy KL for every contributing row in the epoch,
-PLAN rows only under `--train-scope plan-critic`, logs the row-weighted mean and the largest row,
-and applies `--target-kl` to that aggregate mean. The legacy `approx_kl` field remains and emits
-that same mean.
+The target-KL guard reads the policy that survives the epoch, not the path taken through its
+minibatches. After every epoch, one no-grad pass re-evaluates every contributing rollout row under
+the post-epoch model against that row's fixed old log-probability. PLAN rows alone contribute under
+`--train-scope plan-critic`. `final_policy_kl_mean` and `final_policy_kl_max` describe that kept
+policy, and `--target-kl` follows the final-policy mean. The sequential readings remain visible as
+`path_kl_mean` and `path_kl_max`; the legacy `approx_kl*` fields alias the final-policy reading.
 
 The plan vocabulary carries one generation id, `PLAN_VOCAB_VERSION` (amendment 8). It is written
 into every checkpoint's config, checked against the environment's `plan_version()` at start, and
@@ -740,7 +741,7 @@ def policy_kl_samples(
 
 
 class EpochKlAccumulator:
-    """Row-weighted mean and row maximum of minibatch approximate-KL samples."""
+    """Row-weighted mean and row maximum of approximate-KL samples."""
 
     def __init__(self) -> None:
         self.count = 0
@@ -760,10 +761,48 @@ class EpochKlAccumulator:
         return self.total / self.count if self.count else 0.0
 
 
-def target_kl_exceeded(target_kl: float, epoch_kl: EpochKlAccumulator) -> bool:
-    """Whether the row-weighted epoch mean, not the last minibatch, crosses the guard."""
+def final_policy_kl(
+    model: SpatialActorCritic,
+    flat: dict[str, np.ndarray],
+    device: torch.device,
+    train_scope: str,
+    batch_size: int,
+) -> EpochKlAccumulator:
+    """KL of the post-epoch policy against fixed rollout log-probabilities.
 
-    return target_kl > 0 and epoch_kl.mean > target_kl
+    This pass deliberately happens after every optimiser step in the epoch. It reads only the
+    policy rows that can contribute under the selected training scope, never samples an action,
+    and neither changes module mode nor advances an RNG. Batching bounds the extra memory at the
+    same size as one training minibatch.
+    """
+
+    if train_scope == "plan-critic":
+        rows = np.flatnonzero(flat["phase"] == PHASE_PLAN)
+    elif train_scope == "all":
+        rows = np.arange(len(flat["phase"]), dtype=np.int64)
+    else:
+        raise ValueError(f"unknown train scope {train_scope!r}")
+
+    result = EpochKlAccumulator()
+    with torch.no_grad():
+        for start in range(0, len(rows), batch_size):
+            selected = rows[start : start + batch_size]
+            observations = torch.from_numpy(flat["obs"][selected]).to(device)
+            legal = torch.from_numpy(flat["legal"][selected]).to(device).bool()
+            phase = torch.from_numpy(flat["phase"][selected]).to(device)
+            actions = torch.from_numpy(flat["actions"][selected]).to(device)
+            old_logprob = torch.from_numpy(flat["logprobs"][selected]).to(device)
+
+            logits, _ = combined_logits(model, observations, phase)
+            new_logprob = Categorical(logits=masked_logits(logits, legal)).log_prob(actions)
+            result.add(policy_kl_samples(new_logprob, old_logprob, phase, train_scope))
+    return result
+
+
+def target_kl_exceeded(target_kl: float, final_kl: EpochKlAccumulator) -> bool:
+    """Whether the post-epoch policy's row-weighted mean crosses the guard."""
+
+    return target_kl > 0 and final_kl.mean > target_kl
 
 
 # --------------------------------------------------------------------------- self-play opponent
@@ -1476,8 +1515,11 @@ def train(args) -> dict:
 
             indices = np.arange(buffer.size)
             clip_fractions: list[float] = []
-            approx_kl_mean = 0.0
-            approx_kl_max = 0.0
+            path_kl_mean = 0.0
+            path_kl_max = 0.0
+            final_policy_kl_mean = 0.0
+            final_policy_kl_max = 0.0
+            final_policy_kl_eval_seconds = 0.0
             policy_loss_value = value_loss_value = entropy_value = 0.0
             anchor_loss_value = anchor_agreement_value = None
             plan_grad_norms: list[float] = []
@@ -1485,7 +1527,7 @@ def train(args) -> dict:
             joint_clip_multipliers: list[float] = []
             epochs_run = 0
             for epoch in range(args.update_epochs):
-                epoch_kl = EpochKlAccumulator()
+                path_kl = EpochKlAccumulator()
                 rng.shuffle(indices)
                 for start in range(0, buffer.size, args.minibatch_size):
                     rows = indices[start : start + args.minibatch_size]
@@ -1543,7 +1585,7 @@ def train(args) -> dict:
                         ).mean()
                         entropy_loss = entropy.mean()
                     with torch.no_grad():
-                        epoch_kl.add(
+                        path_kl.add(
                             policy_kl_samples(
                                 new_logprob,
                                 mb_old_logprobs,
@@ -1604,9 +1646,20 @@ def train(args) -> dict:
                     value_loss_value = float(value_loss.detach())
                     entropy_value = float(entropy_loss.detach())
                 epochs_run = epoch + 1
-                approx_kl_mean = epoch_kl.mean
-                approx_kl_max = epoch_kl.maximum
-                if target_kl_exceeded(args.target_kl, epoch_kl):
+                path_kl_mean = path_kl.mean
+                path_kl_max = path_kl.maximum
+                final_kl_started = time.perf_counter()
+                final_kl = final_policy_kl(
+                    model,
+                    flat,
+                    device,
+                    args.train_scope,
+                    args.minibatch_size,
+                )
+                final_policy_kl_eval_seconds += time.perf_counter() - final_kl_started
+                final_policy_kl_mean = final_kl.mean
+                final_policy_kl_max = final_kl.maximum
+                if target_kl_exceeded(args.target_kl, final_kl):
                     break
 
             if args.anneal_lr:
@@ -1634,9 +1687,15 @@ def train(args) -> dict:
                 "anchor_coef": coefficient,
                 "anchor_loss": anchor_loss_value,
                 "anchor_agreement": anchor_agreement_value,
-                "approx_kl": approx_kl_mean,
-                "approx_kl_mean": approx_kl_mean,
-                "approx_kl_max": approx_kl_max,
+                # Backward-compatible aliases now describe the kept, post-epoch policy.
+                "approx_kl": final_policy_kl_mean,
+                "approx_kl_mean": final_policy_kl_mean,
+                "approx_kl_max": final_policy_kl_max,
+                "path_kl_mean": path_kl_mean,
+                "path_kl_max": path_kl_max,
+                "final_policy_kl_mean": final_policy_kl_mean,
+                "final_policy_kl_max": final_policy_kl_max,
+                "final_policy_kl_eval_seconds": final_policy_kl_eval_seconds,
                 "clip_fraction": float(np.mean(clip_fractions)) if clip_fractions else None,
                 "explained_variance": explained_variance(
                     flat["values"], flat_returns
