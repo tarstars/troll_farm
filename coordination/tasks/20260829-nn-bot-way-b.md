@@ -810,3 +810,9 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   land at their fixed updates and the verdict shifts to ~11:00Z 09-01; i2's rerun counts as a fresh staged seed. **a2 was
   not preempted and completes its full 60 M budget ~21:50Z** — the first job to reach its budget; its final gets the pinned
   bench tonight. — coordinator
+- 2026-09-01 00:4xZ: **the full-parameter family's record point, at complete budget: `a2` finished its 60 million decisions
+  (update 14,649) and its final benched 0 of 48, 50.9 points to 134.4, with 42 of 48 games ended early and 4 loop games.**
+  The curve of that family now reads: the clone's 9 → 3–5 by update 500 → 2 by ~6,000 → **0 at 14,649**. Full-parameter PPO
+  from the clone, as configured, is monotonically destructive at every measured depth — the family is closed as evidence,
+  not just suspended. What remains live: the staged line (i2's fresh seed grinding), and Stage 1's E01/E00 pair (~11:00Z
+  verdict under the frozen gate). — coordinator
