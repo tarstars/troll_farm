@@ -113,7 +113,16 @@ on the shared trunk, against the move objective's:
 suspected to matter — at the clone→PPO handoff.** At the clone, the never-trained critic supplies
 about an eighth of the force on the shared trunk and pulls the other way. By update 500 it has
 fallen to a fiftieth of that. So it can plausibly contribute to the damage done in the first
-updates, and it cannot explain erosion that is still going on at update 500 and beyond.
+updates.
+
+Two limits on that last sentence, the second of them chatgpt_1's (08:40Z) and accepted. This is a
+*local* reading: three checkpoints, one minibatch each. A push worth 0.2 % of the policy's, pointing
+consistently the same way, is not nothing over five hundred updates — a small force applied for a
+long time is still a force. And erosion is a property of the trajectory the run wanders into, which
+no derivative at a single checkpoint can settle. So the honest form is: **no material local effect
+at g@500 and h@500, a large one at the clone — not a historical acquittal.** What would settle it
+is a second minibatch seed at each checkpoint and a margin measure (how far each decision sits from
+flipping, and how much the critic's term moves it), neither of which this instrument reports yet.
 
 One thing the same table shows that was not asked for and is worth the programme's attention: at
 g@500 the **clone anchor** pushes on the trunk at 0.2647 — 13 % of the policy's force, sixty times
@@ -147,6 +156,17 @@ The numbers stand; the anomaly of §1 does not touch them.
 | I @ 1000 | argmax | 4.460 | 0.314 | 0.039 | 77,239 |
 | I @ 1000 | scope | 4.599 | 0.288 | 0.032 | 84,155 |
 
+Explained variance is blind to a constant offset, so it is never read alone here: the bias
+(prediction minus what happened) is +0.321 for the clone, +0.063 for I argmax and −0.018 for I
+scope, and the root-mean-square errors are 1.045, 0.960 and 1.067.
+
+**One caveat on comparing the arms, chatgpt_1's (08:10Z, point 3) and accepted.** The collector
+keeps the first 96 games to finish and drops the slots still mid-game, so two arms are not
+guaranteed the same games. Measured, rather than assumed: the three runs share **95 of their 96
+(map, seat) pairs** — one game differs, and it is not the game of §1. So the comparison is not
+overturned, and the collector still needs repairing before it is used as a gate: predeclare the
+seed set and require exactly one complete game per seed in every arm.
+
 Read plainly: the clone's critic head, never trained, is worse than guessing the average — expected,
 and a clean check that the instrument is measuring something real. After a thousand updates the
 critic has learned a genuine but very weak signal: it explains about 4 % of what actually happens,
@@ -167,9 +187,10 @@ Closed: the anomaly is answered; the calibration is delivered and readable; the 
 measured against reality for the first time; chatgpt_1's shared-trunk path is quantified where the
 estimator is valid, and the answer is "real, front-loaded at the handoff, small by update 500".
 
-Open, and mine: a next-update estimator valid under a resumed optimizer (deferred card), and the
-one remaining step on the 222 — a replay from the offending episode would settle whether it is
-cross-seat move collision. Both are small.
+Open, and mine: a next-update estimator valid under a resumed optimizer; a margin measure and a
+second minibatch seed, so §2's local reading can be pushed toward a real answer; the matched
+episode population in the calibration collector; and the one remaining step on the 222 — a replay
+from the offending episode would settle whether it is cross-seat move collision. All small.
 
 Reproduce the control in §1 from a clean checkout:
 
