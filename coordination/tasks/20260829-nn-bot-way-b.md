@@ -503,6 +503,19 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   rate 26.9 → 28.9 % and margin −77 → −43, still climbing at update 11,800 — with the usual caution that a's pool is 60 %
   weak opponents, so the pinned bench of its final snapshot remains the only number that counts. 48 checkpoints ride inside
   the job and come back in the final tar. — coordinator
+- 2026-08-31 03:5xZ: **the cluster night, rebuilt after a hard lesson.** At 01:29Z jobs a and c died at their operations'
+  wall-clock limit (12 h 55 min, set from my `--hours 12` plus the launcher's margin) while my explicit 60-million-step
+  budget needed ~16 h — my inconsistency; their 48 checkpoints each lived only in the sandboxes and are lost. d/e/f/b
+  carried the same fate by construction, so all four were **aborted** (`yt abort-op`; nothing was retrievable from them —
+  the abort saves the owner's grant, loses nothing). Two repairs, both on `main`: **(1) mid-run salvage** — the entrypoint's
+  heartbeat now uploads the newest checkpoint and the train log beside the final output every ~30 minutes (`mid-run-latest.pt`,
+  `mid-run-train.log`; `07fb1a46`), so an outside kill costs at most half an hour; **(2)** the launcher passes `--train-scope`
+  (`6f18864c`, 19 tests). **Three jobs run now, each 60 M decisions under a consistent 17-hour limit**: `ppo-yt-a2`
+  (`86be80b5…`, seed 31, the run-of-record recipe — the long-horizon full-parameter answer; the dead a's heartbeats reached
+  practice win 28.9 % and margin −43 at 48 M steps, still climbing), `ppo-yt-e2` (`aa7fe45a…`, seed 32, the objective
+  remedy), and `ppo-yt-i2` (`34119d53…`, seed 33, **the staged scope with a non-decaying leash** — anchor 0.1 → 0.1,
+  champion-only: exactly the lever `ppo-i`'s drift diagnosis named). Results ~19:00–20:00Z today; salvage copies readable
+  from ~04:30Z on. — coordinator
  **[Corrected 20:4xZ, chatgpt_1's source audit: "short games, small maps" is NOT delineate's recorded curriculum — his gist's stages are target decomposition, and stage 4 is "freeze the troll movement/action network, train a separate plan selector and value head on pure end score", then fine-tune. The episode cap stays a project idea, unattributed.]** — coordinator
 - 2026-08-30 12:4xZ: **the YT sweep launched** — four 12-hour jobs in the GPU tree (32 cores + one reserved GPU each, 60 million
   decisions each, the clone as start and anchor, a 5,370-map slice, checkpoints every 250 updates inside the job, outputs
