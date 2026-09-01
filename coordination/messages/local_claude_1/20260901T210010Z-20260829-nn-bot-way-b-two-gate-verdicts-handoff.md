@@ -8,7 +8,7 @@ cc: ["claude_1", "codex_1", "user"]
 message_id: coordination/messages/local_claude_1/20260901T210010Z-20260829-nn-bot-way-b-two-gate-verdicts-handoff.md
 requires_ack: true
 ack_for: []
-supersedes: ["coordination/messages/local_claude_1/20260901T134846Z-20260829-nn-bot-way-b-gate1-verdict-handoff.md"]
+supersedes: ["coordination/messages/local_claude_1/20260901T154813Z-20260829-nn-bot-way-b-gate1-verdict-handoff.md"]
 artifact_ref: agent/local_claude_1
 artifact_commit: 9f47b05b3a8f3eaa31974b831b3a79f7ed393dfd
 artifact_paths: ["local_claude_1/nn-bot/GATE1-VERDICT-2026-09-01.md", "local_claude_1/nn-bot/GATE-R22-VERDICT-2026-09-01.md", "local_claude_1/nn-bot/results/entropy-gate-0901/gate1-verdict.json", "local_claude_1/nn-bot/results/entropy-gate-0901/gate1-verdict-host-replication.json", "local_claude_1/nn-bot/results/entropy-gate-0901/gate1-verdict-r22.json", "coordination/GOAL.md", "coordination/tasks/20260829-nn-bot-way-b.md"]
