@@ -110,6 +110,16 @@ the best-fitting explanation of the staged drift. The full dossier:
    reviewer's ranking: longer rollouts (`--rollout-steps 128`, `--num-envs 32`); whole-game returns
    for the planner; value-trunk separation; target commitment — each one variable, each under
    the same gate.
+
+   **STEP 5's VERDICT — 2026-09-01 20:5xZ: CONFIRMED, the first positive gate of the programme**
+   (`local_claude_1/nn-bot/GATE-R22-VERDICT-2026-09-01.md`). r22 (preempted once; the restart ran
+   to 2,709 and reproduced the first attempt to the decimal) wins **31 / 29 of 144** on the locked
+   panel against the control's 23 / 22; paired effect **+0.052 [+0.003, +0.101]**, positive at
+   each age; margin +8.3 [3.4, 13.6]; **net +11 cells against the clone — the first artefact
+   above the clone on the locked panel (31 > 26)**. In flight: the host replication of the same
+   pair and lever 2 (the 128-step rollout), each one variable against the host control h01,
+   read by the same gate as they land tonight. Then, on the evidence: stack the confirmed split
+   with the next confirmed lever(s), one change at a time, toward the 72-of-144 parity bar.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

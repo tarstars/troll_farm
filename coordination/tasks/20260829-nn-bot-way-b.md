@@ -1057,3 +1057,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (five ages, 48 cells) and confirmations (1,500 / 2,500, the locked 144 cells) launched at nice 19 alongside the two host
   trainings; the gate reads treatment = r22, control = e01b on the same cells when they land. Host arms at ~1,200 / 1,100
   of 2,709. — coordinator
+- 2026-09-01 20:5xZ: **STEP 5's VERDICT — THE REWARD PATH WORKS. The frozen gate CONFIRMS the treatment effect**
+  (`local_claude_1/nn-bot/GATE-R22-VERDICT-2026-09-01.md`; JSON `gate1-verdict-r22.json`): on the locked 144-cell panel
+  **r22 (wood 2 + 2) wins 31 and 29 of 144** at updates 1,500 / 2,500 against the control E01's 23 and 22; paired effect
+  **+0.052 per cell [+0.003, +0.101]**, positive at each age; margin **+8.3 [3.4, 13.6]**; clone non-inferiority holds with
+  **net +11 cells** — **r22\@1,500 is the first artefact of the programme above the clone on the locked panel (31 > 26)**.
+  The scouts (9/7/7/5/9 vs 8/6/10/6/8) barely see it — the ±5 lesson again. The restart reproduced the preempted attempt
+  to the decimal (deterministic training). The gate program prints the outcome under its frozen entropy-era name
+  (`ENTROPY_CONFIRMED`); the rule is variable-agnostic and printed with the verdict; renaming the outcome labels is a
+  one-line follow-up for the next gate. In flight: `ppo-host-r22` (the same pair on this host, ~21:45Z) and
+  `ppo-host-l128` (lever 2, ~22:20Z), each read by the same gate against h01. Handoff to chatgpt_1 next. — coordinator
