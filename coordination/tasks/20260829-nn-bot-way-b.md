@@ -1044,3 +1044,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   updates 500 / 1,000 / 1,500 / 2,000 = see the line below, against the control E01's 8 / 6 / 10 / 6. The restart is still
   pending a slot. — coordinator
   r22 (preempted attempt): **9 / 7 / 7 / 5** of 48 at 500 / 1,000 / 1,500 / 2,000; scores 136.4 / 130.5 / 129.7 / 132.5.
+- 2026-09-01 18:2xZ: **r22's restart is running on the cluster (18:24Z, ~2 h). Two host arms launched in parallel under the
+  host authorization (7 threads each, nice 15, the pair = 14), each differing from the host control `ppo-host-h01`
+  (entropy 0.01, `0 + 4`, 32-step rollout, full map corpus, seed 41 — already benched on both panels) in exactly one
+  variable:** `ppo-host-r22` — `wood_shaping 2 + end_wood 2` (lever 1's backup: the verdict lands even if the cluster is
+  preempted again; and a second-platform replication if it is not); `ppo-host-l128` — `--rollout-steps 128 --num-envs
+  32` (lever 2, the longer look-ahead; batch held at 4,096). Start configurations diffed against h01's start event: the
+  intended fields and the run name only. Each is read by the same frozen gate against h01 on the same 144 cells when it
+  lands (~4–5 h at the host's pace). One variable per pair; nothing else launched. — coordinator
