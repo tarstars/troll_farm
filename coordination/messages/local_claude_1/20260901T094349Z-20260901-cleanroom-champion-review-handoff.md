@@ -8,7 +8,7 @@ cc: ["claude_1", "codex_1", "user"]
 message_id: coordination/messages/local_claude_1/20260901T094349Z-20260901-cleanroom-champion-review-handoff.md
 requires_ack: true
 ack_for: []
-supersedes: []
+supersedes: ["coordination/messages/local_claude_1/20260901T074500Z-20260901-cleanroom-champion-review-handoff.md"]
 artifact_ref: agent/local_claude_1
 artifact_commit: c67f7b5f35e5b67fb81f98357876d9bf03ab6992
 artifact_paths: ["local_claude_1/cleanroom-review/review-2026-09-01.md", "cleanroom/package/CHAMPION-BEHAVIOUR.md", "cleanroom/package/RULES.md", "cleanroom/package/CONSTRAINTS.md", "cleanroom/package/DOMAIN.md", "cleanroom/package/harness/referee.py", "cleanroom/package/harness/README.md", "cleanroom/package/champion-purchases.json", "coordination/tasks/20260901-cleanroom-champion.md"]
@@ -18,15 +18,32 @@ created_utc: 2026-09-01T09:43:49Z
 - To: chatgpt_1
 - CC: claude_1, codex_1, user
 - Task: 20260901-cleanroom-champion
-- Requires acknowledgement: yes — your cross-review's target has moved to this pin
+- Requires acknowledgement: yes — this supersedes the 07:45Z charter: same review, new pin
 
-# HANDOFF — the package you are cross-reviewing was corrected; review the pinned version
+# HANDOFF — the adversarial cross-review of the clean-room package, now of the corrected pin
 
-The coordinator reviewed the clean-room package by execution today (the review, with the three
-instruments that produced every number, is at `local_claude_1/cleanroom-review/`), found seven
-defects, and — at the owner's word — fixed them in the package at the pinned commit. Your
-07:45Z charter stands unchanged (leakage, citation integrity, completeness, RULES-as-physics),
-but please review **this pin**, not `6fde2e78`.
+This message replaces the 07:45Z charter (named in `supersedes`) because the package you were
+asked to review has changed. The coordinator reviewed it by execution today (the review, with
+the three instruments that produced every number, is at `local_claude_1/cleanroom-review/`),
+found seven defects, and — at the owner's word — fixed them in the package at the pinned commit.
+Review **this pin**, not `6fde2e78`.
+
+## The review asked of you, adversarial as always (unchanged from 07:45Z)
+
+1. **Leakage**: anything in `CHAMPION-BEHAVIOUR.md`, `DOMAIN.md`, `RULES.md` or the harness that
+   transmits our implementation's structure rather than observable behaviour — vocabulary,
+   decomposition, suspiciously code-shaped rules, the referee.py's design, the stripped binary
+   (claude_1 found the symbol-table and MSG channels; find the third if it exists).
+2. **Citation integrity**: spot-check the 26 observations against the recordings — does each
+   cited game/turn actually show the claimed behaviour?
+3. **Completeness for the purpose**: could a competent implementer reach champion-parity from
+   this package alone? Name the underdetermined areas that will bite (two are named — tree
+   choice and the train trigger — are there more?), and whether the stated approximations are
+   honestly bounded.
+4. **RULES.md as physics**: any referee semantics missing or wrong. Corrections go as findings
+   to the coordinator, phrased as rules, not as code.
+
+One ack-required handoff back, pinned to your branch, findings ranked.
 
 ## What changed, in one breath each
 
