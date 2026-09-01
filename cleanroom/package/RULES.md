@@ -148,8 +148,8 @@ from match recordings (ten independent observations, exact fit) and confirmed ag
 referee's constants.
 
 **At the start of the match** the trees on the map are randomly "aged" — each has been ticked a
-random number of times between 1 and `base_cooldown x 7` — so they begin at assorted sizes,
-fruit counts and cooldowns.
+random number of times between 1 and 7 x its cooldown (the shortened one if it stands next to
+water) — so they begin at assorted sizes, fruit counts and cooldowns.
 
 ---
 
@@ -195,7 +195,10 @@ planted and no seed is spent**.
 ## 8. Buying trolls, and iron
 
 `TRAIN ms cc hp chop` buys one new troll with those talents. You do not name it; the referee
-assigns the next free id.
+assigns the next free id. The talents must lie in the referee's legal ranges — **speed 1 or
+more, carry 0 or more, harvest 0..3, chop 0..20** (speed is further capped at the map's cell
+count and carry at 1,000, which no one approaches); a bundle outside them is refused without
+harm to you. In 160 recorded matches nobody bought beyond speed 3, carry 4, harvest 3, chop 4.
 
 With `n` trolls of yours already alive, the cost is:
 
@@ -215,14 +218,17 @@ print it:
 - you must still be able to afford it after everything earlier in the turn order (§10) has
   happened — in particular after PICK, which spends shack inventory, and before DROP, which
   refills it. **A DROP in the same turn does not pay for a TRAIN in that turn.**
-- **your shack cell must be empty of trolls** — a troll standing on it (only possible on turn 1,
-  before it has left) blocks training.
+- **your shack cell must be empty of trolls** — a troll standing on it blocks training. That is
+  the case on turn 1 before your first troll has stepped off, and **after every purchase until
+  the new troll has stepped off**, which it can only do on a later turn.
 
 The new troll appears **on your shack cell** and may act from the next turn.
 
-TRAIN is the one command that does not name a troll id, so **more than one TRAIN in a turn is
-possible**; they are applied one after another, and each re-checks affordability and the empty
-shack against the state the previous one left. In practice the second is rarely affordable.
+TRAIN is the one command that does not name a troll id, so you may print several in one turn;
+they are applied one after another, each re-checking affordability and the empty shack against
+the state the previous one left. Because a successful purchase puts the new troll on the shack,
+**at most one TRAIN can succeed per turn** — a later one can succeed only if every earlier one
+was refused.
 
 `MINE id` — a troll with chopPower > 0 and free capacity, standing on a GRASS cell
 **orthogonally adjacent to an IRON cell**, gains `min(chopPower, free capacity)` iron. Iron is
@@ -249,6 +255,13 @@ arguments.
 **One command per troll per turn.** The referee keeps the **first** command that names a given
 troll id and ignores the rest. `MSG` may not contain a `;` — the separator wins.
 
+`TYPE` is one of the names above. The platform also accepts the item's number — `0` PLUM,
+`1` LEMON, `2` APPLE, `3` BANANA, `4` IRON, `5` WOOD — and some opponents print it that way
+(recovered from match recordings: `PICK 0 1` took a lemon). Verbs are accepted in lower case
+too. Print the names, in upper case; the harness accepts both forms. `PICK` may name any of the
+six items; **`PLANT` may name only the four fruits** — `PLANT` of iron or wood is refused
+without harm, like any other impossible action (§12).
+
 Commands naming a troll you do not own, or a troll id that does not exist, are non-fatal errors:
 that command is skipped and the turn goes on. An **unrecognised verb is fatal** — you lose.
 
@@ -268,8 +281,9 @@ Read that order carefully; several rules of the world follow from it alone:
 
 - **HARVEST happens after MOVE**, so a troll cannot move onto a tree and harvest it in the same
   turn — but it does not need to: it arrives, and harvests next turn.
-- **PLANT happens before CHOP**, so a seed planted on a cell this turn cannot be chopped this
-  turn.
+- **CHOP acts only on trees that stood before this turn's PLANTs**, so a seed planted this turn
+  cannot be chopped this turn — not even by a troll already standing on that cell (recovered
+  from match recordings: a sapling planted under an opponent's chopper came through untouched).
 - **PICK happens before TRAIN, and DROP after it.** Money you bank this turn is not available
   to this turn's TRAIN; money you PICK out of the shack this turn is gone before TRAIN checks.
 - **MINE happens last**, after DROP: iron mined this turn is on the troll, not in the shack.
@@ -299,8 +313,10 @@ the score it has then. Games in real play end at every length from about 80 turn
 ## 12. Time and legality
 
 - **First turn: 1000 ms.** Every other turn: **50 ms.**
-- The referee tolerates three overruns of at most 50 ms each; a single overrun of more than
-  50 ms over the limit, or a fourth small one, loses the match.
+- A turn over the limit is a **strike**, and **the third strike loses the match**. Recovered
+  from match recordings, in the referee's own words: turns of 85 ms, 56 ms and 60 ms were the
+  1st, 2nd and 3rd strike and the third ended the match; single turns of 97 ms and 51 ms drew
+  one strike each and nothing more. Whether one very long turn loses at once is not known.
 - An unrecognised command loses the match. Every other error (a troll that is not yours, a
   DROP too far from the shack, a TRAIN you cannot afford, a PLANT on an occupied cell) is
   non-fatal: the action simply does not happen and the match continues.

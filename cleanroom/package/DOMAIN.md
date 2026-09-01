@@ -38,14 +38,17 @@ Fruit is a currency (for training and for seeds), not a score.
 ### 1.2 Every strong player buys the same second worker — CORPUS
 
 Of the strong two-worker players, the second worker bought is
-**speed 2, carry 2, harvest 0, chop 2** — and **never weaker than that**. One player was 5 %
-below it; six were at 0 %. Bigger workers appear only far down the ranks and carry less wood.
-Harvest power on a second worker appears only in the middle of the ladder.
+**speed 2, carry 2, harvest 0, chop 2**, and they almost never go below it: six of the seven
+measured leaders bought a weaker worker in 0 % of their matches, the seventh in 5 %. Bigger
+workers appear only far down the ranks and carry less wood. Harvest power on a second worker
+appears only in the middle of the ladder.
 
-The reference bot fields a **weaker** worker than 2/2/0/2 in 37–45 % of its matches (it buys the
-best it can afford early rather than waiting). In one collected batch, the matches where it
-fielded a weaker worker were won 34 % of the time against 66 % for the matches where it did not,
-at the same training turn.
+The reference bot fields a **weaker** worker than 2/2/0/2 in 37–45 % of its matches: when it
+finally buys, it takes the best bundle affordable at that moment, and by its deadline it often
+accepts one below 2/2/0/2 (`CHAMPION-BEHAVIOUR.md` A3 — it also often waits with a weaker bundle
+already affordable, for reasons the recordings do not show). In one collected batch, the matches
+where it fielded a weaker worker were won 34 % of the time against 66 % for the matches where it
+did not, at the same training turn.
 
 **But making it wait for that worker was tested on the ladder and lost** — see §2.
 
@@ -80,11 +83,12 @@ size 1, for one wood, and almost never harvests what it planted.
 Two attempts at closing it are in §2; both failed for reasons that are recorded, and neither
 attempt was the loop above.
 
-### 1.4 The strong players do not win by suppressing the opponent — CORPUS
+### 1.4 The strong players do not win by chopping the opponent's plantings — CORPUS
 
 CHOP commands issued at a coordinate the *opponent* had planted, per match: the strong players
 0.53–2.46; the reference bot **8.73**. Whatever the leaders' advantage is, it is not that they
-interfere with the opponent more. It is production persistence.
+destroy the opponent's plantings more. Other ways of interfering — racing to trees, blocking,
+harvesting or standing on the opponent's trees — were not measured here.
 
 Removing the reference bot's one rule that singled out the opponent — it preferred chopping the
 opponent's plums and lemons near their shack early — changed its ladder reading by less than the
@@ -98,7 +102,7 @@ the simpler bot became the reference. **LADDER.**
 Each line: the behavioural idea, then its ladder reading. The reference bot's own readings, for
 scale, are **21.8, 21.6, 22.1** and, after that opponent-targeting rule was removed, **21.2**.
 The field
-drifts: the same bot re-read **18.2** three days later without changing. **Compare readings only
+drifts: the same bot re-read **18.2** the next day without changing. **Compare readings only
 against readings taken the same day.**
 
 | idea (behaviour only) | ladder reading |
@@ -108,7 +112,7 @@ against readings taken the same day.**
 | **A third worker, and nobody chops until it is trained or is unreachable** | **11.7, 12.0** — the third worker came in 89 % of matches at median turn 113, and the funding still lost. |
 | **Plant four lemons and two plums together at the entrance farthest from the enemy, to feed the third worker** | **14.7, 13.5** (an earlier form), **18.8** (a later form), **16.7, 16.6** (a further form). The best of these is still below the reference. |
 | **Plant a persistent banana crop in a ring around one's own shack** | **10.8** at rank 172 of 176. It planted 16 bananas a match and harvested 4.8 from them; the opponent walked onto the ring and ate the crop in 35 of 50 newly-blocked matches. **A crop next to your own door does not protect itself — the opponent will pay the walk.** |
-| **An apple-focused farm** | **17.6** |
+| **An apple-focused farm** (the starting troll plants an apple near its shack on its first turns, then plays as the reference does) | **19.8, 19.8, 18.6, 19.9** on the day the reference read 21.2, then **17.6** the next day when the reference re-read 18.2 — about 1.5 below the reference on both days, at the edge of the noise band. |
 | **Remove the reference bot's early opponent-targeting rule** | **21.2** vs the previous 21.8/21.6/22.1 — inside the noise band. Simpler and no worse; this became the reference bot. |
 
 **The single strongest pattern in that table:** every attempt to buy more workers, or to spend

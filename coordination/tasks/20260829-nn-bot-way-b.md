@@ -825,3 +825,172 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`local_claude_1/nn-bot/PROGRESS-2026-09-01.md`; the 03:45Z ack-required handoff): Gate 0's close with the verdict's
   numbers, the full-parameter family closed at complete budget, Stage 1 under the frozen gate with the preemption weather
   (verdict ~18:00Z), the disk resolution, and the eliminated-vs-standing diagnosis table. — coordinator
+- 2026-09-01 08:0x–11:0xZ: **the cluster arms died, their salvage was rescued, and it carries the entropy answer on the
+  training side — plus a depth result that reframes step 5.** What happened: e00 and e01 both lost their jobs in the same
+  minute (06:03Z, a cluster-wide preemption wave) and sat pending 1.5 h. Attempt durations tell the story of the whole
+  cluster experiment: e00 0.28 h then 9.86 h; e01 0.73 h, 5.90 h (aborted by the controller agent), 3.93 h. **Every
+  preemption restarts from scratch**, and the half-hourly salvage keeps only the newest checkpoint, so five attempts and
+  ~20 job-hours produced no age-matched scout series at all.
+  - **Rescued before the pending attempts could overwrite it** (`/home/tarstars/nn-data/ppo-yt-e0{0,1}-midrun-0901/`):
+    e00's checkpoint at **u12,250** (50.2 M turn-steps) and e01's at **u3,250** (13.3 M), plus both complete training logs
+    from update 1 (12,352 and 3,417 updates).
+  - **The entropy read, training side** (`entropy_log_read.py`, new; paired per-250-update blocks over the shared range
+    u1–u3,417, same seed 41, bootstrap over blocks because neighbouring updates share a rolling 1,000-episode window):
+    the knob does what it says — entropy 0.934 → 1.007, delta +0.073, interval [0.056, 0.089] — **and buys nothing.**
+    Win rate delta −0.0013, interval [−0.0063, +0.0041], crosses zero. Referee margin delta −0.70,
+    interval [−1.15, −0.17]: marginally *worse* with entropy. Explained variance, approximate KL, clip fraction and value
+    loss all cross zero. Anchor agreement 0.978 → 0.975 (more exploration, slightly less clone-like), as expected.
+  - **The depth result.** e00 (entropy off) ran to u12,250 — 50 M turn-steps, 9.5 hours — and its **training win rate is
+    flat**: 0.180 at u500, 0.182 at u12,000. The referee margin got *worse* over that span (−51.1 → −53.4). The only
+    quantity that climbs is explained variance (0.21 → 0.48): the critic learns to predict returns while the policy does
+    not improve.
+  - **Both salvaged checkpoints benched** (48-game scout, argmax both seats, champion `0e92f8fa`):
+    e00 @ u12,250 → **2/48**, score 117.3 vs 185.8; e01 @ u3,250 → **9/48**, score 128.6 vs 183.2. Not age-matched, so
+    this is *not* an entropy read — it is another point on the depth curve, and it lands exactly where the curve predicts.
+  - **The instrument fact worth keeping**: both checkpoints logged an identical training win rate of 0.185 while benching
+    2/48 (4 %) and 9/48 (19 %). **Training win rate does not track bench win rate** — it cannot be used as a proxy for the
+    gate, which is what the frozen protocol already assumed and now has direct evidence for.
+  - **The depth curve, everything ever benched, one place** (48-game scout, wins of 48): f2 5/7/2 at u500/1000/1500;
+    g 5/4; h 3/8/2; i 9/10/9/6/5 at u500…u2500; e01 9 at u3,250; i2 4 at u5,414; e00 2 at u12,250; a2 0 at u14,649.
+    The shape is unmistakable: **the bench peaks early, near the clone, and decays with training.** Nothing in any run has
+    ever exceeded 10/48 (21 %); parity needs 24/48.
+  - **Decisions taken.** (1) The two pending cluster ops were **aborted** — at 60 M steps / 17 h they were the wrong shape
+    for a gate that needs only u2,500, and would have burned another ~20 job-hours to be preempted again. (2) The paired
+    arms were **relaunched on the host**, which is idle, free and cannot be preempted, and which runs both arms on one
+    platform so the comparison stays internally valid: `ppo-host-h00` (entropy 0.0) and `ppo-host-h01` (entropy 0.01),
+    seed 41, plan-critic scope, sized to u2,709 — verified to differ in exactly three fields: `entropy_coef`,
+    `output_dir`, `run_name`. 14 cores total at nice 15, inside the owner's cap. Started 10:58Z; ~10 h at the observed
+    rate, so the scouts land this evening and the frozen Gate 1 can be computed on age-matched benched checkpoints as
+    written, rather than on the confounded pair above. — coordinator
+- 2026-09-01 11:3x–12:0xZ: **the cluster path repaired and step 4 relaunched on both platforms.** The reason five
+  attempts produced nothing was structural, not bad luck: a preempted job restarts from scratch and the salvage kept only
+  the newest checkpoint. Fixed at the source — `yt_ppo_entrypoint.py` now keeps **every** checkpoint under its own name
+  (`mid-run-<checkpoint>.pt`), uploading each exactly once, oldest first, capped per beat so no single heartbeat stalls;
+  `mid-run-latest.pt` still holds the newest for callers that want one file. A checkpoint is ~180 KB, so a whole long run's
+  series costs a few megabytes — far less than one lost run. Four tests pin it (`tests/test_yt_ppo_entrypoint.py`): every
+  checkpoint kept, none re-uploaded on a later beat, the per-beat cap with the backlog draining oldest-first, and a failing
+  upload never killing the heartbeat. The 19 launcher tests still pass.
+  **Relaunched in the gate's shape**: `ppo-yt-e00b` (`942710be…`, entropy 0.0) and `ppo-yt-e01b` (`c875f4ec…`, entropy 0.01)
+  — the e00 recipe read back from its own `yt_run_config.json` and reproduced field for field, pool `research_gpu` on
+  `gpu_starfield_24g_cloud`, 32 CPUs, but **11.1 M steps under a 6-hour limit instead of 60 M under 17 hours**. That is the
+  correction that matters: the gate reads nothing past update 2,500, so a 17-hour job was always the wrong shape — it made
+  preemption near-certain while buying updates no measurement would ever look at. At the observed cluster rate the new
+  shape needs ~2.1 h, and the budget is consistent (steps well inside the wall-clock limit).
+  **Both platforms now carry both arms**: the cluster pair as `coordination/GOAL.md` step 4 requires, and the host pair
+  (`ppo-host-h00`/`h01`) behind it as the un-preemptible guarantee. Each pair differs in exactly one field, so the
+  reviewer's platform-confound blocker holds within each; agreement across them is replication, not a substitute. One
+  platform difference to declare in the Gate-1 handoff: the cluster arms train on the launcher's default one-in-five map
+  slice, the host arms on the full 31,088-map corpus — identical within each pair, so neither comparison is affected.
+  — coordinator
+- 2026-09-01 12:2xZ: **the bootstrap-noise question is answered, and it is worse than "noisy" — the trained head never
+  sees a reward at all.** New instrument `credit_path_read.py` (4 tests) reads the `rollout_credit` telemetry the Gate-0
+  work added. Over e00's 12,352 updates and 50.6 million rows, and independently over e01's 3,417 updates and 14.0 million:
+  - **PLAN rows: 0 of 16,879,270 carried a terminal event, and 0 ever saw a non-zero reward** — 0 of 12,352 updates had
+    any. Bootstrap share of the target 0.977; the credit trace reaches a real terminal on 1.8 % of rows.
+  - **TROLL rows**: 59,215 of 33,714,522 carried a terminal event (0.176 %), reward on 0.175 %; bootstrap share 0.974.
+  - e01 reproduces every figure to the third decimal, so this is structural, not a sampling accident.
+  **Why it is structural, verified in the trainer**: `--reward-credit executing` (the default, `train_ppo_full.py:1446`)
+  keeps the turn's reward only where `turn_completed == 1` and zeroes the rest; a PLAN mini-step is never the mini-step that
+  executes the turn, so PLAN rows receive reward zero by construction. And under `--train-scope plan-critic` — the winner's
+  stage-4 recipe, the scope every recent run uses — **the plan head is the only actor being trained**: TROLL rows are
+  frozen and excluded from the policy terms. So the full chain of the policy's learning signal is:
+  *outcome → critic (through 0.17 % of rows) → plan head (through nothing else)*. The plan head is optimized entirely
+  against the critic's opinion, and the critic's own targets are 97 % bootstrap — while Gate 0 measured that critic at an
+  explained value of 0.04 against realized returns it logged as 0.6–0.97.
+  **This explains the depth result.** Training longer does not add outcome information to the plan head, because no amount
+  of training changes that its reward channel is empty; it only fits the critic's errors more closely and drifts further
+  from the clone. That is exactly the observed shape — flat training win rate over 50 M steps, bench decaying 9/48 → 2/48
+  with depth, anchor agreement the only thing holding it near the clone.
+  **For step 5 this ranks the levers on evidence rather than taste**: entropy is answered and is not it; the credit path
+  is. The reviewer's ranked item "true long-horizon credit via longer/episodic rollouts" is the one the measurement points
+  at — with the specific, testable form that the plan head needs a reward channel that is not empty (reward credited to the
+  PLAN row that owns the turn, or episodic returns, or a rollout long enough that the 32-mini-step buffer stops cutting
+  99.98 % of traces before any terminal). A bare λ=1 under the current buffer remains excluded, as the frozen text says.
+  Not proposed as a build: this goes to the reviewer with the Gate-1 verdict, and the design change is spec'd and reviewed
+  before anything is written. — coordinator
+- 2026-09-01 13:0xZ: **CORRECTION to the 12:2xZ entry, made within the hour and before anything was built on it.** I wrote
+  that "the plan head never sees a reward at all" and that its signal reaches it "through nothing else" than the critic.
+  **That was wrong, and it was my misreading of my own instrument.** `compute_gae` sets the trace factor to *exactly 1.0
+  inside a turn* (`train_ppo_full.py:501–545`, and its docstring says why: multiplying by λ per mini-step would hand the
+  plan row only λ^k of its own turn's reward, which amendment (4) forbids). So a turn's reward reaches that turn's PLAN row
+  **undiminished, through the trace** — it simply does not sit in the plan row's own reward slot, because
+  `--reward-credit executing` puts it on the mini-step that executed the turn. The zero I measured
+  (`observed_nonzero_reward_rows = 0` over 16.9 M plan rows) is a structural artefact of *where the number is stored*, and
+  carries no meaning on its own.
+  **What is true, measured on the right quantity** — the reward's share of the advantage's magnitude, from the components
+  the trainer already records by replaying the same GAE with the other inputs zeroed:
+  - **PLAN rows: observed reward supplies 2.32 % of the signal; the critic's own values supply 97.68 %.** Reward enters the
+    plan rows' advantage in 12,201 of 12,352 updates (98.8 %) — present, but small.
+  - TROLL rows: 2.58 % reward, 97.42 % critic. e01 reproduces both to two decimals (2.29 % / 2.56 %).
+  - Unchanged and still the point: bootstrap share of the target 0.977, and the credit trace reaches a real terminal on
+    only 1.8 % of rows before the 32-mini-step buffer cut.
+  **The finding survives the correction, in weaker and more accurate form**: the plan head is trained on a signal that is
+  ~98 % the critic's opinion and ~2 % observed outcome, against a critic Gate 0 measured at an explained value of 0.04. It
+  still explains the depth curve — more training fits more of the critic's error — but "the reward is absent" is not the
+  diagnosis, "the reward is 2 %" is, and the two point at different fixes.
+  The instrument and its tests were corrected in the same hour: `credit_path_read.py` now reports
+  `reward_share_of_signal_percent` as its headline, the misleading `signal_is_purely_bootstrap` flag is gone, and two new
+  tests pin that a row-slot zero must not be reported as an absent reward (6 tests). The owner was told directly.
+  — coordinator
+- 2026-09-01 08:4xZ: **flush entry written at the owner's request** —
+  `coordination/HANDOVER-2026-09-01-entropy-gate-and-credit-path.md`: the four arms in flight and their exact identities,
+  the whole remaining recipe from retrieve to verdict, the four instruments built today with what each pins, the three
+  results (entropy null / depth harmful / the credit path at 2.3 % with my correction in full), the fix menu awaiting the
+  owner's choice, Track C halted for the two reviews, and the standing constraints. — coordinator
+- 2026-09-01 11:0xZ: **step 4 — both cluster arms COMPLETE, retrieved, the training-side read done; the benches are
+  running.** `ppo-yt-e00b` (entropy 0) finished 2,709 updates in 1.90 h, `ppo-yt-e01b` (entropy 0.01) in 1.76 h — no
+  preemption this time; twelve checkpoints each (updates 250 … 2,500 and 2,709) under
+  `yt_work/ppo/ppo-yt-{e00b,e01b}-output/extracted/outputs/` (archive sha256 `175c656e…` / `f33560ba…`). **Identity
+  verified from the retrieved run configs: the two trainer argument lists differ at exactly two positions — `entropy_coef`
+  (`0.0` vs `0.01`) and the run name — same seed 41, same budget (11,100,000 turn-steps = 2,709 updates of 4,096), same
+  clone `checkpoints/clone.pt`, same map slice, same library, same 64-core class.** The clone they started from and are
+  anchored to is `/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt`, sha `970097ed…`, confirmed by hash.
+  **Training-side read (`entropy_log_read.py`, 250-update blocks, 11 blocks over the full 2,709 shared updates;
+  `/home/tarstars/nn-data/bench-0901/entropy-log-read-cluster.json`):** the bonus raises entropy by **+0.068
+  [0.051, 0.083]** — the knob works — and buys nothing: win rate on−off **+0.004 [−0.004, +0.011]**, referee margin
+  **−0.02 [−0.56, +0.52]**, both straddling zero; anchor agreement 0.985 vs 0.980. **Replicated on the host pair** at its
+  1,753 shared updates (8 blocks): entropy +0.064 [0.038, 0.094], win rate +0.0006 [−0.006, +0.007], margin +0.25
+  [−0.50, +1.03]. This is evidence, not the gate. **Benches running on this host at nice 19** (the two trainings keep
+  priority; 20 cores, load ~25): the scouts for both cluster arms at updates 500/1,000/1,500/2,000/2,500 on the 48-cell
+  panel (`bench_ages.py`, one job per arm, two threads each), and the clone on the locked 144-cell panel (one thread) for
+  the gate's non-inferiority term — none existed. First attempt of all three failed in a minute: `bench.py` was run with the
+  system Python, which has no PyTorch; relaunched with the math venv's Python (`--python`). Next: the confirmations at
+  1,500 and 2,500 on the locked panel for both arms, then `gate1.py`. — coordinator
+- 2026-09-01 12:4xZ: **step 4 — the scout curves of both cluster arms, complete (48-cell panel, both seats, argmax play,
+  same flags by construction; `local_claude_1/nn-bot/results/entropy-gate-0901/scout_table.py` prints this from the bench
+  files; 0 illegal commands, timeouts or referee errors in all ten benches):**
+
+  | update | E00 (entropy 0) wins/48 (seat 0 + 1) | E01 (entropy 0.01) wins/48 | paired E00 − E01 (won only by E00 − only by E01) | mean score E00 / E01 vs the champion's file |
+  |---|---|---|---|---|
+  | 500 | 10 (4 + 6) | 8 (3 + 5) | +2 (4 − 2) | 133.2 / 127.2 vs 186.7 / 181.6 |
+  | 1,000 | 12 (6 + 6) | 6 (2 + 4) | +6 (7 − 1) | 135.7 / 125.7 vs 185.6 / 187.6 |
+  | 1,500 | 9 (4 + 5) | 10 (5 + 5) | −1 (1 − 2) | 132.4 / 132.4 vs 186.5 / 185.3 |
+  | 2,000 | 6 (3 + 3) | 6 (3 + 3) | 0 (1 − 1) | 129.5 / 127.8 vs 188.5 / 187.7 |
+  | 2,500 | 7 (3 + 4) | 8 (3 + 5) | −1 (2 − 3) | 129.7 / 129.2 vs 186.5 / 183.0 |
+
+  Read as a scout (±5 wins): no age separates the arms; the +6 at 1,000 is the only reading outside ±5 and it is not
+  repeated. Both arms decay with depth (12 → 7 and 10 → 8 from update 1,000 to 2,500), the shape every run has shown. The
+  clone on the locked 144-cell panel, benched today for the non-inferiority term: **26 of 144** (14 + 12; 18 %), consistent
+  with its 9-of-48 bar. The confirmations at 1,500 and 2,500 on the locked panel are running (both arms, nice 19, sharing
+  the machine with the host trainings at ~85 of 144 games per arm at 12:5xZ); `gate1.py` runs the moment they land.
+  — coordinator
+- 2026-09-01 13:4xZ: **STEP 4 DONE — the frozen Gate 1 verdict: `ENTROPY_NOT_CONFIRMED`**
+  (`local_claude_1/nn-bot/GATE1-VERDICT-2026-09-01.md`; the JSON and all fifteen bench files in
+  `local_claude_1/nn-bot/results/entropy-gate-0901/`). Confirmations on the locked 144-cell panel, 0 faults: **E00 24 and
+  21 of 144, E01 23 and 22 of 144** at updates 1,500 and 2,500; paired effect E00 − E01 **0.000 per cell, 95 % interval
+  [−0.017, +0.021]** (10,000 clustered draws over the 144 units); per-age +0.007 / −0.007, so not positive at each age; clone
+  non-inferiority holds (net 0 cells of 6 allowed; the clone 26 of 144 on the same panel); margin −1.6 [−4.7, +1.2], not the
+  gate. The entropy bonus is acquitted on every reading — training side, scouts, locked panel — and both arms still decay
+  with depth. Next per THE PLAN: the handoff to chatgpt_1 for the Gate 1 review; then step 5's decision, which the credit
+  measurement points at the reward path (the fix menu with the owner). The host pair (update ~2,670 of 2,709 at 13:5xZ)
+  finishes within the hour; its benches are replication only and run at low priority afterwards. — coordinator
+- 2026-09-01 15:5xZ: **step 5 prepared, not launched — the reward-path arm is one command away from the owner's word.**
+  The entropy verdict makes E01 (entropy 0.01, `wood_shaping 0 + end_wood 4`, seed 41) the ready-made control for the
+  reward-path test, so only the treatment arm is needed: `ppo-yt-r22` = the same recipe with `--wood-shaping 2.0
+  --end-wood 2.0` (wood's value still 4, half of it paid on delivery). Dry-run prepared (`yt_work/ppo/ppo-yt-r22/`,
+  nothing submitted): its trainer arguments differ from E01's at exactly the two wood flags and the run name; the payload
+  (maps slice, clone, library, trainer) is byte-identical by manifest. The first dry run had silently changed the opponent
+  pool (a mixed default instead of `champion_exact`) and the thread count — both caught by the diff and pinned. The same
+  frozen `gate1.py` reads it as treatment = r22, control = e01b on the same 144 cells. Also running as replication only: the
+  host pair's scouts and confirmations (eight low-priority benches, ~1.5 h). Handoff to chatgpt_1 for the Gate 1 review
+  sent (pin `a7a255b8`). — coordinator

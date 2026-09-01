@@ -59,6 +59,10 @@ PAYLOAD_ROOT = WORK / "payload"
 #: trainer has no `--library` flag, so this is not a preference -- it is the only place the file
 #: can be.
 LIBRARY_RELATIVE = Path("rust/target/release/libtroll_farm.so")
+#: How many not-yet-kept checkpoints one salvage beat uploads. The cap exists so that a job
+#: which has produced a long backlog (a slow upload, a beat that failed) cannot spend an
+#: unbounded stretch of one heartbeat uploading; the backlog drains over the following beats.
+SALVAGE_PER_BEAT = 12
 
 _LOG_LOCK = threading.Lock()
 
@@ -348,19 +352,29 @@ def heartbeat_loop(stop: threading.Event, minutes: float, started: float) -> Non
     """Every `minutes`, one line on the job's error stream: how far the training has got.
 
     The printing is local-only. Every sixth beat (about half an hour at the default period) the
-    loop also uploads a **mid-run salvage copy** — the newest checkpoint and the training log —
-    next to the job's final output path, as `mid-run-latest.pt` and `mid-run-train.log`. That is
+    loop also uploads a **mid-run salvage copy** next to the job's final output path. That is
     what survives when the operation is killed from outside (a wall-clock limit, a preemption
     with no restart): the 2026-08-31 01:29Z deaths of ppo-yt-a and ppo-yt-c lost thirteen hours
     of checkpoints each for want of exactly this. The salvage upload runs in its own try/except:
     a flaky upload must never disturb a job that is training happily.
 
+    The salvage keeps **every** checkpoint, not only the newest one. Each checkpoint is uploaded
+    once, under its own name with a `mid-run-` prefix, and `mid-run-latest.pt` continues to hold
+    a copy of the newest for callers that want just one file. Keeping only the newest was itself
+    a loss: on 2026-09-01 the entropy arms e00 and e01 were preempted five times between them,
+    and because each restart begins from scratch and the salvage held one late checkpoint apiece,
+    about twenty job-hours produced no age-matched series of checkpoints at all — the very thing
+    the measurement needed. A checkpoint of this model is ~180 KB, so keeping all of them costs
+    a few megabytes over a long run: far less than one lost run.
+
     Read a salvage copy without the launcher:
-    `yt --proxy <proxy> read-file <runs>/<name>/outputs/mid-run-latest.pt > local.pt`.
+    `yt --proxy <proxy> read-file <runs>/<name>/outputs/mid-run-latest.pt > local.pt`,
+    and `yt --proxy <proxy> list <runs>/<name>/outputs` to see the whole kept series.
     """
 
     period = max(30.0, minutes * 60.0)
     beat = 0
+    salvaged: set[str] = set()
     while not stop.wait(period):
         beat += 1
         latest = None
@@ -392,6 +406,12 @@ def heartbeat_loop(stop: threading.Event, minutes: float, started: float) -> Non
             final_output = os.environ.get("TROLL_FARM_YT_OUTPUT_FILE")
             if final_output and latest is not None:
                 remote_dir = final_output.rsplit("/", 1)[0]
+                # every checkpoint not yet kept, oldest first, so an interrupted beat still
+                # advances the series; capped per beat so one beat cannot stall the heartbeat
+                pending = [path for path in checkpoints if path.name not in salvaged]
+                for path in pending[:SALVAGE_PER_BEAT]:
+                    upload_file(path, f"{remote_dir}/mid-run-{path.name}")
+                    salvaged.add(path.name)
                 upload_file(latest, f"{remote_dir}/mid-run-latest.pt")
                 if TRAIN_LOG.exists():
                     upload_file(TRAIN_LOG, f"{remote_dir}/mid-run-train.log")

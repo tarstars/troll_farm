@@ -12,23 +12,27 @@ harness artefact for a rule:
   * equal-best movement ties are broken by the lexicographically smallest cell,
     where the real referee breaks them randomly (RULES section 4);
   * the time limit is measured but, by default, not enforced as a loss --
-    `--enforce-time` turns enforcement on.
+    `--enforce-time` turns enforcement on (the third strike loses, as on the
+    platform; RULES section 12).
 
 Usage
     python3 referee.py --maps maps --p0 ./champion --p1 "python3 mybot.py"
     python3 referee.py --maps maps --p0 ./champion --p1 ./mybot --both-seats --json out.json
+    python3 referee.py --p0 ./champion --p1 ./mybot --both-seats --trace turns.jsonl
 
-Every match is played twice by default (`--both-seats`), once with each program
-in each seat, because the map is symmetric but the seats are not identical.
+Pass `--both-seats` for anything you intend to draw a conclusion from: the map is
+symmetric but the seats are not identical.
 """
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import queue
 import shlex
 import subprocess
 import sys
+import threading
 import time
 from collections import deque
 
@@ -42,11 +46,22 @@ WATER_BOOST = {"PLUM": 5, "LEMON": 5, "APPLE": 7, "BANANA": 2}
 HEALTH = {"PLUM": (4, 2), "LEMON": (4, 2), "APPLE": (8, 3), "BANANA": (2, 1)}
 NEIGHBOURS = ((0, 1), (1, 0), (0, -1), (-1, 0))
 PRIORITY = ("MOVE", "HARVEST", "PLANT", "CHOP", "PICK", "TRAIN", "DROP", "MINE")
+STRIKES_TO_LOSE = 3
 
 
 def tree_health(kind, size):
     base, slope = HEALTH[kind]
     return base + slope * size
+
+
+def item_name(token):
+    """The item an argument names: a name, or its number 0..5 as the platform accepts."""
+    token = token.upper()
+    if token in INDEX:
+        return token
+    if token.isdigit() and int(token) < len(ITEMS):
+        return ITEMS[int(token)]
+    return None
 
 
 class Illegal(Exception):
@@ -106,15 +121,15 @@ class Game:
 
     def distances(self, sources):
         dist = {s: 0 for s in sources}
-        queue = deque(sources)
-        while queue:
-            cell = queue.popleft()
+        queue_ = deque(sources)
+        while queue_:
+            cell = queue_.popleft()
             for dx, dy in NEIGHBOURS:
                 nxt = (cell[0] + dx, cell[1] + dy)
                 if nxt in dist or nxt not in self.walkable:
                     continue
                 dist[nxt] = dist[cell] + 1
-                queue.append(nxt)
+                queue_.append(nxt)
         return dist
 
     def next_cell(self, start, target, speed):
@@ -135,6 +150,13 @@ class Game:
             return start
         best = min(tdist[c] for c in reach)
         return min(c for c in reach if tdist[c] == best)
+
+    def snapshot(self):
+        """The state as both bots see it at the start of a turn (for --trace)."""
+        return {"inventories": [list(inv) for inv in self.inventories],
+                "trees": [dict(t) for t in self.trees],
+                "trolls": [{k: (list(v) if isinstance(v, list) else v) for k, v in u.items()}
+                           for u in self.units]}
 
     # -- the eight tasks, in priority order
     def apply_moves(self, intents):
@@ -236,12 +258,19 @@ class Game:
             self.trees.append({"type": kind, "x": cell[0], "y": cell[1], "size": 0,
                                "health": tree_health(kind, 0), "fruits": 0, "cooldown": 0})
 
-    def apply_chop(self, ids):
+    def apply_chop(self, ids, standing=None):
+        """CHOP acts only on trees in `standing` -- the cells that held a tree before
+        this turn's PLANTs (RULES section 10). None means every tree."""
         cells = {}
         for uid in ids:
             u = self.unit(uid)
-            if u and u["chop"] > 0 and self.tree_at((u["x"], u["y"])):
-                cells.setdefault((u["x"], u["y"]), []).append(uid)
+            if not u or u["chop"] <= 0:
+                continue
+            cell = (u["x"], u["y"])
+            if standing is not None and cell not in standing:
+                continue
+            if self.tree_at(cell):
+                cells.setdefault(cell, []).append(uid)
         for cell, uids in cells.items():
             tree = self.tree_at(cell)
             for uid in uids:
@@ -269,7 +298,15 @@ class Game:
                 self.inventories[u["player"]][idx] -= 1
                 u["carry"][idx] += 1
 
+    def talents_legal(self, talents):
+        """RULES section 8: speed 1..cells, carry 0..1000, harvest 0..3, chop 0..20."""
+        ms, cc, hp, chop = talents
+        return (1 <= ms <= self.width * self.height and 0 <= cc <= 1000
+                and 0 <= hp <= MAX_FRUITS and 0 <= chop <= 20)
+
     def apply_train(self, player, talents):
+        if not self.talents_legal(talents):
+            return                        # non-fatal: the bundle is refused
         have = sum(1 for u in self.units if u["player"] == player)
         ms, cc, hp, chop = talents
         cost = [0] * 6
@@ -327,6 +364,23 @@ class Game:
                    for wx, wy in self.water):
                 cooldown -= WATER_BOOST[tree["type"]]
             tree["cooldown"] = cooldown
+
+    def apply_turn(self, parsed):
+        """Apply both seats' parsed commands in the referee's fixed verb order
+        (RULES section 10), then tick the trees and recompute the scores."""
+        self.apply_moves({**parsed[0]["MOVE"], **parsed[1]["MOVE"]})
+        self.apply_harvest(parsed[0]["HARVEST"] + parsed[1]["HARVEST"])
+        standing = {(t["x"], t["y"]) for t in self.trees}
+        self.apply_plant(parsed[0]["PLANT"] + parsed[1]["PLANT"])
+        self.apply_chop(parsed[0]["CHOP"] + parsed[1]["CHOP"], standing)
+        self.apply_pick(parsed[0]["PICK"] + parsed[1]["PICK"])
+        for seat in (0, 1):
+            for talents in parsed[seat]["TRAIN"]:
+                self.apply_train(seat, talents)
+        self.apply_drop(parsed[0]["DROP"] + parsed[1]["DROP"])
+        self.apply_mine(parsed[0]["MINE"] + parsed[1]["MINE"])
+        self.tick_trees()
+        self.recompute()
 
     def ended(self):
         """RULES section 11. Returns (ended, why)."""
@@ -415,9 +469,12 @@ def parse(line, game, seat):
                 raise Illegal("MOVE with no target")
             moves[uid] = (int(parts[2]), int(parts[3]))
         elif verb in ("PLANT", "PICK"):
-            if len(parts) < 3 or parts[2].upper() not in INDEX:
+            kind = item_name(parts[2]) if len(parts) >= 3 else None
+            if kind is None:
                 raise Illegal("%s with a bad item %r" % (verb, parts[2:3]))
-            out[verb].append((uid, parts[2].upper()))
+            if verb == "PLANT" and kind in ("IRON", "WOOD"):
+                continue                  # non-fatal: only fruit can be planted (RULES 9)
+            out[verb].append((uid, kind))
         else:
             out[verb].append(uid)
     out["MOVE"] = moves
@@ -425,24 +482,44 @@ def parse(line, game, seat):
 
 
 class Bot:
-    def __init__(self, command, name):
-        self.name, self.command = name, command
+    """A bot as a child process. A reader thread feeds its lines through a queue so
+    that a bot which never answers costs `wall` seconds, not the whole run."""
+
+    def __init__(self, command, name, wall=5.0):
+        self.name, self.command, self.wall = name, command, wall
         self.process = subprocess.Popen(shlex.split(command), stdin=subprocess.PIPE,
                                         stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
                                         text=True, bufsize=1)
+        self.lines = queue.Queue()
+        self.reader = threading.Thread(target=self._pump, daemon=True)
+        self.reader.start()
         self.times = []
+
+    def _pump(self):
+        try:
+            while True:
+                line = self.process.stdout.readline()
+                if line == "":
+                    break
+                self.lines.put(line)
+        except (ValueError, OSError):
+            pass
+        self.lines.put(None)
 
     def ask(self, payload, limit):
         start = time.monotonic()
         try:
             self.process.stdin.write(payload)
             self.process.stdin.flush()
-            line = self.process.stdout.readline()
-        except (BrokenPipeError, ValueError):
+        except (BrokenPipeError, ValueError, OSError):
             raise Illegal("%s stopped responding" % self.name)
+        try:
+            line = self.lines.get(timeout=self.wall)
+        except queue.Empty:
+            raise Illegal("%s gave no answer within %.0f s" % (self.name, self.wall))
         elapsed = (time.monotonic() - start) * 1000.0
         self.times.append(elapsed)
-        if line == "":
+        if line is None:
             raise Illegal("%s closed its output" % self.name)
         return line.strip(), elapsed, elapsed > limit
 
@@ -457,9 +534,9 @@ class Bot:
             self.process.kill()
 
 
-def play(spec, commands, max_turns=300, enforce_time=False):
+def play(spec, commands, max_turns=300, enforce_time=False, wall=5.0, trace=None):
     game = Game(spec)
-    bots = [Bot(commands[0], "player 0"), Bot(commands[1], "player 1")]
+    bots = [Bot(commands[0], "player 0", wall), Bot(commands[1], "player 1", wall)]
     result = {"map": spec["map_id"], "turns": 0, "loser": None, "reason": None,
               "overruns": [0, 0]}
     try:
@@ -467,31 +544,31 @@ def play(spec, commands, max_turns=300, enforce_time=False):
         for turn in range(1, max_turns + 1):
             game.turn = turn
             parsed = [None, None]
+            lines = ["", ""]
+            before = game.snapshot() if trace else None
             for seat in (0, 1):
                 payload = (first[seat] if turn == 1 else "") + turn_text(game, seat)
                 limit = 1000.0 if turn == 1 else 50.0
                 try:
                     line, _, over = bots[seat].ask(payload, limit)
+                    lines[seat] = line
                     if over:
                         result["overruns"][seat] += 1
-                        if enforce_time and result["overruns"][seat] > 3:
-                            raise Illegal("player %d ran out of time" % seat)
+                        if enforce_time and result["overruns"][seat] >= STRIKES_TO_LOSE:
+                            raise Illegal("player %d ran out of time (strike %d)"
+                                          % (seat, result["overruns"][seat]))
                     parsed[seat] = parse(line, game, seat)
                 except Illegal as exc:
                     result.update(loser=seat, reason=str(exc), turns=turn)
+                    if trace:
+                        trace.write(json.dumps({"map": spec["map_id"], "turn": turn,
+                                                "state": before, "commands": lines,
+                                                "fatal": str(exc)}) + "\n")
                     return finish(game, result)
-            game.apply_moves({**parsed[0]["MOVE"], **parsed[1]["MOVE"]})
-            game.apply_harvest(parsed[0]["HARVEST"] + parsed[1]["HARVEST"])
-            game.apply_plant(parsed[0]["PLANT"] + parsed[1]["PLANT"])
-            game.apply_chop(parsed[0]["CHOP"] + parsed[1]["CHOP"])
-            game.apply_pick(parsed[0]["PICK"] + parsed[1]["PICK"])
-            for seat in (0, 1):
-                for talents in parsed[seat]["TRAIN"]:
-                    game.apply_train(seat, talents)
-            game.apply_drop(parsed[0]["DROP"] + parsed[1]["DROP"])
-            game.apply_mine(parsed[0]["MINE"] + parsed[1]["MINE"])
-            game.tick_trees()
-            game.recompute()
+            if trace:
+                trace.write(json.dumps({"map": spec["map_id"], "turn": turn,
+                                        "state": before, "commands": lines}) + "\n")
+            game.apply_turn(parsed)
             result["turns"] = turn
             over, why = game.ended()
             if over:
@@ -529,43 +606,52 @@ def main():
                     help="play every map twice, swapping the seats")
     ap.add_argument("--limit", type=int, default=0, help="use only the first N maps")
     ap.add_argument("--turns", type=int, default=300)
-    ap.add_argument("--enforce-time", action="store_true")
+    ap.add_argument("--enforce-time", action="store_true",
+                    help="the third strike loses the match, as on the platform")
+    ap.add_argument("--wall", type=float, default=5.0,
+                    help="seconds a bot may stay silent before it loses the match (default 5)")
+    ap.add_argument("--trace", help="write one JSON line per turn (state + both command lines)")
     ap.add_argument("--json", help="write every match result here")
     args = ap.parse_args()
 
     files = sorted(f for f in os.listdir(args.maps) if f.endswith(".json"))
     if args.limit:
         files = files[:args.limit]
+    trace = open(args.trace, "w") if args.trace else None
     matches, wins, illegal = [], [0, 0], 0
-    for name in files:
-        with open(os.path.join(args.maps, name)) as handle:
-            spec = json.load(handle)
-        arrangements = [(args.p0, args.p1, 0)]
-        if args.both_seats:
-            arrangements.append((args.p1, args.p0, 1))
-        for left, right, p0_seat in arrangements:
-            r = play(spec, (left, right), args.turns, args.enforce_time)
-            r["p0_is"] = "candidate" if p0_seat else "reference"
-            # normalise: seat of the FIRST command line given on the argv
-            ours = 0 if p0_seat == 0 else 1
-            r["first_program_seat"] = ours
-            r["first_program_score"] = r["scores"][ours]
-            r["second_program_score"] = r["scores"][1 - ours]
-            if r["loser"] is not None:
-                illegal += 1
-            if r["winner"] is not None:
-                wins[0 if r["winner"] == ours else 1] += 1
-            matches.append(r)
-            print("%-14s seat %d  %4d : %-4d  %-3s  %d turns  %s"
-                  % (spec["map_id"], ours, r["first_program_score"],
-                     r["second_program_score"],
-                     "win" if r["winner"] == ours else ("draw" if r["winner"] is None
-                                                        else "loss"),
-                     r["turns"], r["reason"]))
+    try:
+        for name in files:
+            with open(os.path.join(args.maps, name)) as handle:
+                spec = json.load(handle)
+            arrangements = [(args.p0, args.p1, 0)]
+            if args.both_seats:
+                arrangements.append((args.p1, args.p0, 1))
+            for left, right, p0_seat in arrangements:
+                r = play(spec, (left, right), args.turns, args.enforce_time, args.wall, trace)
+                r["p0_is"] = "candidate" if p0_seat else "reference"
+                # normalise: seat of the FIRST command line given on the argv
+                ours = 0 if p0_seat == 0 else 1
+                r["first_program_seat"] = ours
+                r["first_program_score"] = r["scores"][ours]
+                r["second_program_score"] = r["scores"][1 - ours]
+                if r["loser"] is not None:
+                    illegal += 1
+                if r["winner"] is not None:
+                    wins[0 if r["winner"] == ours else 1] += 1
+                matches.append(r)
+                print("%-14s seat %d  %4d : %-4d  %-3s  %d turns  %s"
+                      % (spec["map_id"], ours, r["first_program_score"],
+                         r["second_program_score"],
+                         "win" if r["winner"] == ours else ("draw" if r["winner"] is None
+                                                            else "loss"),
+                         r["turns"], r["reason"]))
+    finally:
+        if trace:
+            trace.close()
     total = len(matches)
     played = wins[0] + wins[1]
     print("\n%d matches, %d wins for the first program, %d for the second, "
-          "%d draws, %d ended on an illegal command or a crash"
+          "%d draws, %d ended on an illegal command, a crash or a timeout"
           % (total, wins[0], wins[1], total - played, illegal))
     if total:
         margins = [m["first_program_score"] - m["second_program_score"] for m in matches]

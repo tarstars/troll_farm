@@ -10,9 +10,15 @@ somebody build from it who cannot fall back on the original.
 
 ## Deliberately absent
 
-- **Every line of the reference bot's source code.** It is in this package only as a compiled,
-  stripped executable (`harness/reference-bot`). There is no source, no pseudocode, no module
-  list, no function names, no data structures, no parameter table, no scoring formula.
+- **Every line of the reference bot's source code, and — until your version 0 is frozen — the
+  reference bot itself.** There is no source, no pseudocode, no module list, no function names,
+  no data structures, no parameter table, no scoring formula. The bot exists as a compiled,
+  stripped executable, and you receive it only after your first complete implementation's source
+  hash is recorded (`harness/README.md`, step 1): with an executable and a runner in hand from
+  the start, a bot could be recovered from machine code or from unlimited queries instead of from
+  this description, and the experiment would measure the wrong thing. When it arrives, it may be
+  run through `referee.py` and nothing else — no `strings`, no disassembly, no debugger, no
+  patching, no byte-level comparison — for the one pre-registered refinement round.
 - **The readable rewrites and the diffs between bot versions.** This project keeps a
   human-readable copy of each bot and a line diff for every change. None of it is here.
 - **The simulator used for development.** `harness/referee.py` was written for this package from
@@ -50,13 +56,14 @@ Three things are true and are stated here rather than hidden:
    internal vocabulary, and a second agent audited them for code leakage before you saw them.
    Judge the result by whether the documents read like a bot's design or like a spectator's
    notes.
-2. **Two leakage channels were found and closed, and finding them means others may remain.**
+2. **Three leakage channels were found and closed, and finding them means others may remain.**
    The recorded matches carry the reference bot's own per-turn debug line, which names its
-   internal roles — it was stripped from the evidence. And the compiled binary, unstripped,
-   exposed the bot's entire internal structure through its symbol names — it is shipped stripped,
-   and a check confirms zero remaining internal symbols. The stripped binary was proved to play
-   identically to the original over 9,502 seat-turns on the 24 frozen maps, so nothing about its
-   play was changed to hide anything.
+   internal roles — it was stripped from the evidence. The compiled binary, unstripped, exposed
+   the bot's entire internal structure through its symbol names — it is stripped, and a check
+   confirms zero remaining internal symbols; it was proved to play identically to the original
+   over 9,502 seat-turns on the 24 frozen maps, so nothing about its play was changed to hide
+   anything. And the executable itself, with a runner, is an oracle — so it is withheld until
+   version 0 is frozen, and its use after that is limited to the one refinement round.
 3. **Containment is by instruction, not by a wall.** Nothing stops a program from reading outside
    this directory. You are asked not to, and the package is built to make it unnecessary. If you
    find yourself needing something that is not here, **say what you needed** — that is the most
