@@ -52,7 +52,12 @@ filesystem — stated, not hidden).
 ## Roles and the one open choice
 
 - claude_1: parts 1–6 assembled, the spec from replays, 2 days.
-- chatgpt_1: the leakage audit of `CHAMPION-BEHAVIOUR.md` and `DOMAIN.md`.
+- **THE STOP (owner 2026-09-01 06:4xZ): when the package is delivered, the card HALTS.** Two
+  reviews run before any implementer exists: chatgpt_1's adversarial cross-review (leakage,
+  completeness, correctness of the cited observations) and **the owner's own read of the
+  description**. The implementer is chartered only on the owner's explicit word after their
+  review; the implementer-mechanism choice lands then too.
+- chatgpt_1: the cross-review of `CHAMPION-BEHAVIOUR.md` and `DOMAIN.md` (leakage + completeness).
 - **The implementer — the owner picks the mechanism**: (my recommendation) a new launcher agent
   entry (`fresh_1`) whose cwd is the package directory and whose charter is this card's
   implementation brief; or the owner runs a fresh session themselves in that directory. 3 days,
@@ -75,3 +80,5 @@ actions; the messages per the WIP rule.
 
 - 2026-09-01 06:0xZ: born; the design discussed with the owner 05:5xZ and approved ("I like it");
   claude_1 chartered for the package (the same hour's handoff). — coordinator
+- 2026-09-01 06:4xZ: **the owner adds the review stop**: after the description is done, the card halts for the owner's own
+  read and chatgpt_1's cross-review; the implementer starts only on the owner's word after that. — owner/coordinator
