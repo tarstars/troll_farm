@@ -63,6 +63,34 @@ the best-fitting explanation of the staged drift. The full dossier:
    `ENTROPY_CONFIRMED` / `ENTROPY_PARTIAL` / `ENTROPY_NOT_CONFIRMED` / `INCONCLUSIVE` (the gate
    returns INCONCLUSIVE on incomplete identity, population, execution or evaluation evidence —
    underpowered is a verdict, not a license). No arm launches before Gate 0 closes.
+
+   **Status 2026-09-01 12:0xZ — the first cluster attempt failed, and what replaced it.** The
+   arms E00 and E01 were launched on the cluster on 08-31 at 17:1xZ and never finished: they were
+   preempted five times between them (attempts of 0.28 h, 9.86 h for E00; 0.73 h, 5.90 h, 3.93 h
+   for E01, both losing their job in the same minute at 06:03Z), **a preempted job restarts from
+   scratch**, and the half-hourly salvage kept only the newest checkpoint. So about twenty
+   job-hours produced two checkpoints at unrelated ages (updates 12,250 and 3,250) and no series
+   the gate could read. Three things were done about it, in this order:
+   - **The salvage was rescued and read.** Both training logs survive complete from update 1.
+     They already answer the question on the *training* side: the bonus does raise entropy
+     (+0.073, interval [0.056, 0.089]) and buys nothing — win-rate delta −0.001 with an interval
+     straddling zero, referee margin 0.70 *worse*. This is evidence, not the gate: the gate is
+     benched argmax play on fixed panels, and these same two checkpoints logged an identical
+     training win rate of 0.185 while benching 4 % and 19 %, which is direct proof that the
+     training number cannot stand in for the gate.
+   - **The cause was fixed.** The cluster salvage now keeps **every** checkpoint under its own
+     name, not only the newest (`yt_ppo_entrypoint.py`, four tests). A preemption can no longer
+     cost the whole series.
+   - **Both arms were relaunched, on both platforms.** On the cluster as the goal requires —
+     `ppo-yt-e00b` / `ppo-yt-e01b`, same payload, same resource class, same pool, sized to the
+     2,709 updates the gate actually needs instead of 60 M steps under a 17-hour limit, which was
+     the wrong shape for a gate that reads nothing past update 2,500. And on the host in parallel
+     — `ppo-host-h00` / `ppo-host-h01`, which cannot be preempted — as the guarantee that the
+     verdict lands. **Each platform runs both arms**, verified to differ in exactly one field
+     (`entropy_coef`), so the reviewer's platform-confound blocker is honoured on each of them
+     and neither comparison is collinear with the machine; agreement across the two is a
+     replication, not a substitute. *Step 4 closes on the cluster pair as written; the host pair
+     stands behind it if the cluster is preempted again.*
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

@@ -862,3 +862,23 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
     `output_dir`, `run_name`. 14 cores total at nice 15, inside the owner's cap. Started 10:58Z; ~10 h at the observed
     rate, so the scouts land this evening and the frozen Gate 1 can be computed on age-matched benched checkpoints as
     written, rather than on the confounded pair above. — coordinator
+- 2026-09-01 11:3x–12:0xZ: **the cluster path repaired and step 4 relaunched on both platforms.** The reason five
+  attempts produced nothing was structural, not bad luck: a preempted job restarts from scratch and the salvage kept only
+  the newest checkpoint. Fixed at the source — `yt_ppo_entrypoint.py` now keeps **every** checkpoint under its own name
+  (`mid-run-<checkpoint>.pt`), uploading each exactly once, oldest first, capped per beat so no single heartbeat stalls;
+  `mid-run-latest.pt` still holds the newest for callers that want one file. A checkpoint is ~180 KB, so a whole long run's
+  series costs a few megabytes — far less than one lost run. Four tests pin it (`tests/test_yt_ppo_entrypoint.py`): every
+  checkpoint kept, none re-uploaded on a later beat, the per-beat cap with the backlog draining oldest-first, and a failing
+  upload never killing the heartbeat. The 19 launcher tests still pass.
+  **Relaunched in the gate's shape**: `ppo-yt-e00b` (`942710be…`, entropy 0.0) and `ppo-yt-e01b` (`c875f4ec…`, entropy 0.01)
+  — the e00 recipe read back from its own `yt_run_config.json` and reproduced field for field, pool `research_gpu` on
+  `gpu_starfield_24g_cloud`, 32 CPUs, but **11.1 M steps under a 6-hour limit instead of 60 M under 17 hours**. That is the
+  correction that matters: the gate reads nothing past update 2,500, so a 17-hour job was always the wrong shape — it made
+  preemption near-certain while buying updates no measurement would ever look at. At the observed cluster rate the new
+  shape needs ~2.1 h, and the budget is consistent (steps well inside the wall-clock limit).
+  **Both platforms now carry both arms**: the cluster pair as `coordination/GOAL.md` step 4 requires, and the host pair
+  (`ppo-host-h00`/`h01`) behind it as the un-preemptible guarantee. Each pair differs in exactly one field, so the
+  reviewer's platform-confound blocker holds within each; agreement across them is replication, not a substitute. One
+  platform difference to declare in the Gate-1 handoff: the cluster arms train on the launcher's default one-in-five map
+  slice, the host arms on the full 31,088-map corpus — identical within each pair, so neither comparison is affected.
+  — coordinator
