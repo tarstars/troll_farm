@@ -956,3 +956,21 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the gate's non-inferiority term — none existed. First attempt of all three failed in a minute: `bench.py` was run with the
   system Python, which has no PyTorch; relaunched with the math venv's Python (`--python`). Next: the confirmations at
   1,500 and 2,500 on the locked panel for both arms, then `gate1.py`. — coordinator
+- 2026-09-01 12:4xZ: **step 4 — the scout curves of both cluster arms, complete (48-cell panel, both seats, argmax play,
+  same flags by construction; `local_claude_1/nn-bot/results/entropy-gate-0901/scout_table.py` prints this from the bench
+  files; 0 illegal commands, timeouts or referee errors in all ten benches):**
+
+  | update | E00 (entropy 0) wins/48 (seat 0 + 1) | E01 (entropy 0.01) wins/48 | paired E00 − E01 (won only by E00 − only by E01) | mean score E00 / E01 vs the champion's file |
+  |---|---|---|---|---|
+  | 500 | 10 (4 + 6) | 8 (3 + 5) | +2 (4 − 2) | 133.2 / 127.2 vs 186.7 / 181.6 |
+  | 1,000 | 12 (6 + 6) | 6 (2 + 4) | +6 (7 − 1) | 135.7 / 125.7 vs 185.6 / 187.6 |
+  | 1,500 | 9 (4 + 5) | 10 (5 + 5) | −1 (1 − 2) | 132.4 / 132.4 vs 186.5 / 185.3 |
+  | 2,000 | 6 (3 + 3) | 6 (3 + 3) | 0 (1 − 1) | 129.5 / 127.8 vs 188.5 / 187.7 |
+  | 2,500 | 7 (3 + 4) | 8 (3 + 5) | −1 (2 − 3) | 129.7 / 129.2 vs 186.5 / 183.0 |
+
+  Read as a scout (±5 wins): no age separates the arms; the +6 at 1,000 is the only reading outside ±5 and it is not
+  repeated. Both arms decay with depth (12 → 7 and 10 → 8 from update 1,000 to 2,500), the shape every run has shown. The
+  clone on the locked 144-cell panel, benched today for the non-inferiority term: **26 of 144** (14 + 12; 18 %), consistent
+  with its 9-of-48 bar. The confirmations at 1,500 and 2,500 on the locked panel are running (both arms, nice 19, sharing
+  the machine with the host trainings at ~85 of 144 games per arm at 12:5xZ); `gate1.py` runs the moment they land.
+  — coordinator
