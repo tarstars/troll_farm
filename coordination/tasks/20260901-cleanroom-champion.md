@@ -31,10 +31,12 @@ guaranteed by-product: a written specification of our own champion, which has ne
 4. **`DOMAIN.md`** — results, not designs, each line with its evidence level: what the top four
    players do in common; the tested-and-failed ladder list (each one line: the behavioural idea,
    the reading); the never-abandon finding; map statistics.
-5. **The harness** — the champion **as a compiled binary only, never as source**, a map slice, a
-   runner that plays the candidate against it and checks legality/completeness, and the
-   acceptance ladder: legal complete games → the 48-game scout → the 144-cell locked panel →
-   400 games.
+5. **The harness** — a map slice, a runner with boundary tests, and the acceptance ladder: legal
+   complete games *against the implementer's own bot* → **version 0 frozen (source hash on the
+   card)** → only then the champion **as a compiled binary only, never as source** (kept in
+   `cleanroom/reference/`, outside the package; chatgpt_1's P0-2, 2026-09-01) → the 48-game scout →
+   the 144-cell locked panel → 400 games. The executable may be run through the referee and
+   nothing else; the one refinement round is the whole query budget, its traces archived.
 6. **`EXCLUDED.md`** — the visible contract: every `.rs` of ours, the readable diffs, the
    simulator's source, the generator chain, and all our opinions about code structure are
    deliberately absent.
@@ -118,3 +120,28 @@ actions; the messages per the WIP rule.
   base unchanged (every count, table and citation, now an appendix for audit and the refinement loop). The seed-order table
   becomes one sort key ("cheapest sapling first"); the README now says habits are not the specification and strength is
   measured on the harness, not by resemblance. No number changed. — coordinator
+- 2026-09-01 12:5xZ: **chatgpt_1's cross-review (11:22Z, `chatgpt_1/cleanroom-champion/cross-review-2026-09-01.md` at
+  `48c343d8`): BLOCKED pending targeted corrections — five ranked findings, eight wording repairs. The owner: "check and
+  apply review" → applied by the coordinator, every finding first checked on the recordings** (`root_codex` had claimed the
+  round at 12:14Z at the owner's word and edited nothing; ruled below). **P0-1, the early-conversion trigger: half right.**
+  The reviewer's rule "≤ 4 trees AND behind in score" is refuted by the data — of the 102 early starts the reference was
+  behind in 58 and ahead in 44 (the source's `endgame()` predicate says exactly what the reviewer wrote, and the behaviour is
+  not the predicate: judge from the game state down); but the package's converse "≤ 4 trees ⇒ it starts" was an overclaim —
+  on 1,298 qualifying turns a worker was free with a tree available and it kept logging. Fixed: the window is an OBSERVED
+  INVARIANT, the turn inside it is OPEN, and `endgame-truth-table.json` (2,634 turns) ships (`spec-work/measure_extra.py`).
+  **P0-2 applied:** the executable and its baseline moved to `cleanroom/reference/`, outside the package, handed over only
+  after version 0's source hash is on the card; binary inspection forbidden in words; the one refinement round is the whole
+  query budget with traces archived (`cleanroom/reference/README.md`, harness README, EXCLUDED, README). **P1-3 applied:**
+  RULES §8 gives the legal talent ranges (the reviewer's audit; the recordings show at most 3/4/3/4), "at most one TRAIN
+  succeeds per turn" and the post-purchase occupancy; RULES §9 restricts PLANT to fruit; referee.py refuses both without
+  harm (the `PLANT IRON` KeyError crash confirmed and fixed); 16 boundary tests in `harness/test_referee.py`. **P1-4
+  measured, not left open:** tree commitment — of 1,796 map trees first chopped, the same worker chopped every turn until it
+  fell in 1,515 (84 %), the teammate finished 207, 53 lost to the opponent; worker coordination — in 39,023 two-worker
+  turns, 0 co-chops, 0 journeys to the teammate's tree, 0 moves blocked by the teammate. Both are now principles 5 and 6;
+  the one-step-move habit and the plum/lemon tie-break left the top ten as the reviewer proposed. **P1-5 applied:** the
+  labels are now evidence-shaped (SCORE MECHANISM / OBSERVED INVARIANT / LADDER-TESTED / HABIT / OPEN). **P2, all eight
+  wording repairs applied** (129 of 130 harvests; 1,621 of 1,622 plants; the cycle length depends on species and chop power;
+  plum-before-lemon is a tie-break; "no positional response detected" instead of "solitaire"; DOMAIN §1.2 both sentences;
+  DOMAIN §1.4 narrowed to chopping the opponent's plantings). **Regression proof:** 16/16 tests; all 40,458 recorded turns
+  replay with nothing left but the tie-break and one timeout; parity 9,502/0 at the new path; zero `.rs`; the vocabulary
+  grep clean. The corrected pin goes back to chatgpt_1 and to the owner, per the review's gate 7. — coordinator

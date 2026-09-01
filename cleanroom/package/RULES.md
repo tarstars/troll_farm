@@ -195,7 +195,10 @@ planted and no seed is spent**.
 ## 8. Buying trolls, and iron
 
 `TRAIN ms cc hp chop` buys one new troll with those talents. You do not name it; the referee
-assigns the next free id.
+assigns the next free id. The talents must lie in the referee's legal ranges — **speed 1 or
+more, carry 0 or more, harvest 0..3, chop 0..20** (speed is further capped at the map's cell
+count and carry at 1,000, which no one approaches); a bundle outside them is refused without
+harm to you. In 160 recorded matches nobody bought beyond speed 3, carry 4, harvest 3, chop 4.
 
 With `n` trolls of yours already alive, the cost is:
 
@@ -215,14 +218,17 @@ print it:
 - you must still be able to afford it after everything earlier in the turn order (§10) has
   happened — in particular after PICK, which spends shack inventory, and before DROP, which
   refills it. **A DROP in the same turn does not pay for a TRAIN in that turn.**
-- **your shack cell must be empty of trolls** — a troll standing on it (only possible on turn 1,
-  before it has left) blocks training.
+- **your shack cell must be empty of trolls** — a troll standing on it blocks training. That is
+  the case on turn 1 before your first troll has stepped off, and **after every purchase until
+  the new troll has stepped off**, which it can only do on a later turn.
 
 The new troll appears **on your shack cell** and may act from the next turn.
 
-TRAIN is the one command that does not name a troll id, so **more than one TRAIN in a turn is
-possible**; they are applied one after another, and each re-checks affordability and the empty
-shack against the state the previous one left. In practice the second is rarely affordable.
+TRAIN is the one command that does not name a troll id, so you may print several in one turn;
+they are applied one after another, each re-checking affordability and the empty shack against
+the state the previous one left. Because a successful purchase puts the new troll on the shack,
+**at most one TRAIN can succeed per turn** — a later one can succeed only if every earlier one
+was refused.
 
 `MINE id` — a troll with chopPower > 0 and free capacity, standing on a GRASS cell
 **orthogonally adjacent to an IRON cell**, gains `min(chopPower, free capacity)` iron. Iron is
@@ -252,7 +258,9 @@ troll id and ignores the rest. `MSG` may not contain a `;` — the separator win
 `TYPE` is one of the names above. The platform also accepts the item's number — `0` PLUM,
 `1` LEMON, `2` APPLE, `3` BANANA, `4` IRON, `5` WOOD — and some opponents print it that way
 (recovered from match recordings: `PICK 0 1` took a lemon). Verbs are accepted in lower case
-too. Print the names, in upper case; the harness accepts both forms.
+too. Print the names, in upper case; the harness accepts both forms. `PICK` may name any of the
+six items; **`PLANT` may name only the four fruits** — `PLANT` of iron or wood is refused
+without harm, like any other impossible action (§12).
 
 Commands naming a troll you do not own, or a troll id that does not exist, are non-fatal errors:
 that command is skipped and the turn goes on. An **unrecognised verb is fatal** — you lose.

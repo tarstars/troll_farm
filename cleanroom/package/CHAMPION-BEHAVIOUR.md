@@ -3,10 +3,10 @@
 This document has two parts for two uses.
 
 **Part I** is one page: the bot's play as ten principles, each with the reason behind it and a
-mark saying whether the evidence shows it *carries score* or is merely a *habit*. **Build from
-Part I.** You are not asked to copy habits; you are asked to build a bot at least as strong,
-and a leaner one if you can. Where a principle says NOT DETERMINED, your own judgement has to do
-the work and a different answer is not automatically wrong.
+label saying what kind of evidence stands behind it. **Build from Part I.** You are not asked to
+copy habits; you are asked to build a bot at least as strong, and a leaner one if you can. Where a
+principle says OPEN, your own judgement has to do the work and a different answer is not
+automatically wrong.
 
 **Part II** is the evidence: every count, table and match citation behind Part I. It exists so
 that nothing here has to be taken on trust, and for the refinement loop — when your bot
@@ -27,80 +27,92 @@ stripped from the evidence before anything was written.
 
 # Part I — The bot in ten principles
 
-**Marks.** ESSENTIAL — the evidence (here or in `DOMAIN.md`) shows this carries score; drop it
-and you have a weaker bot. HABIT — what this bot happens to do; the reason is given so you can
-decide; you are free to do otherwise. NOT DETERMINED — the recordings do not fix the rule.
+**The labels say what the evidence is, not what we think of it:**
+
+- **SCORE MECHANISM** — arithmetic or a referee rule establishes the value.
+- **OBSERVED INVARIANT** — held on the 160 recorded matches, with the count.
+- **LADDER-TESTED** — a change was made and measured on the real ladder (`DOMAIN.md` §2).
+- **HABIT** — observed; no claim that it carries strength.
+- **OPEN** — the recordings do not determine it; the choice is yours.
 
 **In one sentence:** it is a logging bot. It buys one extra worker, walks the two of them around
 the map felling the big trees, banks the wood, and at the end converts the fruit in its shack
 into wood by planting seeds at its own door and cutting them down.
 
-1. **Wood is the score; fruit is currency.** — ESSENTIAL. 98.2 % of its final score is wood
-   (mean final shack: 45 wood, about 3 fruit). Wood is worth 4 points, fruit 1 (RULES §1), and every
-   strong player on the ladder scores over 90 % in wood (`DOMAIN.md` §1.1). Fruit is spent on the
-   worker and on seeds; it is almost never gathered for its own sake (130 harvests in 160
-   matches, all in the opening). *(evidence: A1)*
+1. **Wood is the score; fruit is currency.** — SCORE MECHANISM (wood 4 points, fruit 1; RULES §1);
+   OBSERVED INVARIANT (98.2 % of its final score is wood; mean final shack 45 wood, about 3
+   fruit); and every strong player on the ladder scores over 90 % in wood (`DOMAIN.md` §1.1).
+   Fruit is spent on the worker and on seeds; 129 of its 130 harvests are in the opening.
+   *(evidence: A1, A2)*
 
-2. **One extra worker, bought once, that cannot harvest.** — ESSENTIAL (the talents); the
-   *timing* is NOT DETERMINED. In all 160 matches it buys exactly one troll, `TRAIN ms cc 0 chop`,
-   with **each talent at the largest value its own resource affords** (the price of each talent
-   is paid from its own fruit, RULES §8, so this is simply the largest affordable worker; it was
-   unique in all 160 purchases). Harvest power is always 0: the worker only chops and carries.
-   *When* it buys — median turn 9, range 1..35 — is not recoverable from the recordings: in
-   159 of 160 it bought on the first turn its bundle became affordable, but what made it wait
-   for `2/2/0/2` in one match and take `1/2/0/1` in another is invisible. The simplest rule
-   tested (buy once `ms + cc + chop >= 5`, and by turn 35 regardless) agrees with it in only 63
-   of 160 and otherwise buys about ten turns early with a weaker worker; `champion-purchases.json`
-   holds the data to fit your own. `DOMAIN.md` §1.2 and §2 bound the choice from both sides: a
-   weaker worker goes with losing, but *waiting* for `2/2/0/2` lost two points on the ladder.
-   *(evidence: A3)*
+2. **One extra worker, bought once, that cannot harvest.** — OBSERVED INVARIANT for the bundle
+   (160 of 160: `TRAIN ms cc 0 chop`, **each talent at the largest value its own resource affords**
+   — the price of each talent is paid from its own fruit, RULES §8, so this is simply the largest
+   affordable worker, unique at all 160 purchases; harvest power always 0). LADDER-TESTED in one
+   direction only: making it *wait* for a `2/2/0/2` worker read two points below it (`DOMAIN.md`
+   §2), so the value of the exact talent rule is not itself proven. **When it buys is OPEN**:
+   median turn 9, range 1..35; in 159 of 160 it bought on the first turn its bundle became
+   affordable, but what it was waiting for is invisible; the simplest rule tested agrees in only
+   63 of 160 and otherwise buys ten turns early with a weaker worker. `champion-purchases.json`
+   holds the data to fit your own. *(evidence: A3)*
 
-3. **Earn the worker's price in the opening if turn 1 cannot pay it.** — ESSENTIAL in effect,
-   HABIT in form. It mines iron (if the map has iron) or harvests fruit, only in the first
-   ~14 turns, and only until the worker is affordable. The form is free; what matters is that the
-   worker comes early (every attempt to spend the opening on something else read far below the
-   reference, `DOMAIN.md` §2). *(evidence: A2)*
+3. **Earn the worker's price in the opening if turn 1 cannot pay it.** — OBSERVED INVARIANT
+   (mining iron if the map has it, harvesting fruit otherwise, only in the first ~14 turns, only
+   until the worker is affordable); LADDER-TESTED that the worker must come early (every attempt to
+   spend the opening on something else read far below the reference, `DOMAIN.md` §2). The form is a
+   HABIT. *(evidence: A2)*
 
-4. **Fell mature trees, and take each one all the way down.** — ESSENTIAL. 94 % of its chops
-   on the map's own trees are on size-4 trees (4 wood = 16 points); it does not nibble at
-   saplings. A tree's wood is paid only when it dies, and a worker's carry caps what it can take
-   from a dying tree (`DOMAIN.md` §3). *(evidence: A4.1)*
+4. **Prefer mature trees.** — OBSERVED INVARIANT (94 % of its chops on the map's own trees are on
+   size-4 trees, 4 wood = 16 points); SCORE MECHANISM (a tree's wood is paid only when it dies, and
+   a worker's carry caps what it can take from a dying tree, `DOMAIN.md` §3). *(evidence: A4.1)*
 
-5. **Choose the next tree near-greedily.** — NOT DETERMINED. It goes to the nearest available
-   tree 44 % of the time and no more than one walking turn further 65 % of the time. The best
-   simple rule found — *fewest turns to wood*, walking turns plus chopping turns — picks its tree
-   39.7 % of the time and is within its top three 82 % of the time. No rule tested does better;
-   this is the most important open choice in the document, and it is yours. *(evidence: A4.2)*
+5. **A tree once started is finished.** — OBSERVED INVARIANT. Of 1,796 map trees the reference
+   was first to chop, the same worker chopped every turn until the tree fell in 1,515 (84 %); in
+   207 (12 %) its teammate finished it; in 18 the worker left and came back; only 53 (3 %) were
+   lost to the opponent after the first chop, and 3 were still standing at the end.
+   *(evidence: A4.5)*
 
-6. **Do your own pathfinding; step one cell at a time.** — HABIT, with a reason. Every one of
-   its 40,143 `MOVE`s names a cell reachable this turn, so the referee's random tie-break between
-   equal paths (RULES §4) never touches it and its movement is fully its own. Free to do
-   otherwise, at the cost of determinism. *(evidence: A2 of the counts, A4)*
+6. **The two workers never share a tree and never get in each other's way.** — OBSERVED
+   INVARIANT. In 39,023 turns with two workers alive, the two never chopped the same tree in the
+   same turn, a worker never set out to a tree its teammate was already standing on, and a move
+   within a worker's speed was never left undone because the teammate stood on the target cell.
+   How they divide the trees between them is part of the OPEN choice below. *(evidence: A4.6)*
 
-7. **Bank full loads.** — HABIT, with a reason. 84.5 % of its `DROP`s are at exactly full
-   capacity; the walk home is the cost of a trip, so it fills up first. *(evidence: A4.3)*
+7. **Which tree next is OPEN.** It goes to the nearest available tree 44 % of the time and no more
+   than one walking turn further 65 % of the time. The best simple rule found — *fewest turns to
+   wood*, walking turns plus chopping turns — picks its tree 39.7 % of the time and is within its
+   top three 82 % of the time. No rule tested does better. This, with principle 2's timing, is the
+   largest open choice in the document. *(evidence: A4.2)*
 
-8. **Stand still rather than make work.** — HABIT. After the opening it never harvests; when
-   nothing pays it `WAIT`s (4,513 times, two thirds after turn 200). A fruit is 1 point; a trip
-   for fruit is not worth its turns against wood at 4. *(evidence: A4.4)*
+8. **Bank full loads.** — HABIT, with a reason: 84.5 % of its `DROP`s are at exactly full
+   capacity; the walk home is the cost of a trip. *(evidence: A4.3)*
 
-9. **The endgame conversion: turn the shack's fruit into wood at the door.** — ESSENTIAL.
-   A fruit in the shack is 1 point; taken back out (`PICK`), planted on a cell next to the shack
-   (`PLANT`), felled at once (a new tree ticks to size 1 on the turn it is created, RULES §7, so
-   one `CHOP` of power ≥ 3 fells a banana sapling), and banked (`DROP`), it is 4 points:
-   **+3 per cycle per troll**. The trigger is sharp and fully determined: it starts **once at most
-   four trees are left alive on the map**, or **from turn 251 regardless** (the last fiftieth of
-   the match). Every plant is on a cell at distance 1 from the shack, because that is what makes
-   the cycle four turns long. *(evidence: A5)*
+9. **The endgame conversion: turn the shack's fruit into wood at the door.** — SCORE MECHANISM:
+   a fruit in the shack is 1 point; taken back out (`PICK`), planted on a cell next to the shack
+   (`PLANT`), felled (a new tree ticks to size 1 on the turn it is created, RULES §7) and banked
+   (`DROP`), it is 4 points — **+3 per seed**. One chop of power 3 fells a banana sapling (3
+   health), so the cycle is four commands for a strong chopper on a banana; plum and lemon (6) and
+   apple (11) saplings, or a weaker chopper, need more chop turns. OBSERVED INVARIANT on the
+   window: before turn 251 it converts **only when at most four trees are alive** (102 of 102
+   early starts), and from turn 251 it converts regardless (the other 50). It takes the seed whose
+   sapling is cheapest to fell — banana first, then plum and lemon (equal health; plum before lemon
+   is a HABIT), then apple. It plants next to its shack in 1,621 of 1,622 plants. **The exact turn
+   it starts inside that window is OPEN**: it is *not* a matter of score (58 of the 102 early starts
+   came while behind, 44 while ahead), and on 1,298 qualifying turns a worker was free with a tree
+   still available and it kept logging instead. `endgame-truth-table.json` holds every qualifying
+   turn. *(evidence: A5)*
 
-10. **Cheapest sapling first.** — HABIT, with an obvious reason. When it takes a seed out of the
-    shack it takes the one whose sapling is cheapest to fell: a size-1 banana has 3 health, a
-    plum or lemon 6, an apple 11 (RULES §6). One sort key; the observed order (banana, plum,
-    lemon, apple, 99.1 %) is what that key produces. *(evidence: A5.1)*
+10. **Nothing but wood pays.** — HABIT, with a reason. After the opening it never harvests; when
+    nothing pays it `WAIT`s (4,513 times, two thirds after turn 200). A fruit is 1 point; a trip for
+    fruit is not worth its turns against wood at 4. *(evidence: A4.4)*
 
-**And one absence:** nothing it does depends on where the opponent is. It plays a solitaire game
-of maximising its own wood, against everything on the ladder. `DOMAIN.md` §1.4 finds that the
-strongest players do not win by interfering either. — HABIT; free.
+**Two notes that are not principles.** It never asks the referee to route: every one of its
+40,143 `MOVE`s names a cell reachable this turn, so the random tie-break (RULES §4) never touches
+it — a HABIT you may keep for determinism. And **no response to the opponent's position was
+detected**: nothing measured here changed with where the opponent's trolls were (it does not race
+them, block them, or prefer trees near their shack), and its conversion start does not depend on
+the score either; whether anything else depends on the opponent was not measured. The strongest
+players do not win by destroying the opponent's plantings (`DOMAIN.md` §1.4).
 
 **The largest known gap** between this bot and the strongest players is not in this list: they
 run a renewable wood farm from turn 1 and this bot does not (`DOMAIN.md` §1.3). Two attempts to
@@ -111,8 +123,8 @@ and not forbidden to try.
 
 # Part II — The evidence
 
-Every rule in Part I, with the counts and the matches that support it. Rates are rates on this
-population of 160 matches (§A8 on what that means).
+Every principle in Part I, with the counts and the matches that support it. Rates are rates on
+this population of 160 matches (§A8 on what that means).
 
 ## A1. What it scores with
 
@@ -132,7 +144,7 @@ The whole command budget over 160 matches:
 | PLANT   |  1,622 | the seed loop (A5) |
 | TRAIN   |    160 | **exactly one per match** |
 | MINE    |    130 | opening only (A2) |
-| HARVEST |    130 | opening only (A2) |
+| HARVEST |    130 | opening only, all but one (A2) |
 
 ## A2. The opening, and how it moves — 40,143 / 40,143
 
@@ -150,7 +162,7 @@ Earning the difference when it cannot afford the worker on turn 1 takes one of t
 - game 900571119, turns 3 and 7: `MINE 1`, twice, before it can afford its worker at turn 16.
 - game 900571120, turn 7 and game 900571121, turn 8: `HARVEST 1` in the opening.
 
-The 130 HARVEST commands and 130 MINE commands in the whole corpus are, with one exception late
+The 130 HARVEST commands and 130 MINE commands in the whole corpus are, with one HARVEST late
 in one match, this opening behaviour.
 
 **It never asks the referee to find a path.** Over all 40,143 MOVE commands, the walking distance
@@ -202,12 +214,13 @@ map has iron, and what was bought on which turn.
 Between the opening and the endgame, both trolls do the same thing: walk to a tree, chop it
 until it dies, carry the wood home, drop it, walk to the next tree.
 
-### A4.1 It fells grown trees, and takes them all the way down
+### A4.1 It prefers grown trees
 
 Of 12,971 chop commands aimed at trees that were on the map when the match began,
 **12,217 (94.2 %) were on size-4 trees** — the biggest, worth 4 wood = 16 points. Sizes 1, 2 and
 3 account for 142, 285 and 327. (The self-planted trees of A5 are a different pattern, counted
-there.)
+there.) This counts the size of the tree under each chop; what happens after the first chop is
+A4.5.
 
 ### A4.2 Which tree it walks to — APPROXIMATE, best rule 39.7 %
 
@@ -262,20 +275,45 @@ walking away); in 1,436 there is not a single tree left alive anywhere on the ma
   running instead of leaving it.
 - game 900571120, turns 296-297: no tree is alive anywhere and it WAITs out the clock.
 
-## A5. The endgame conversion — fully determined
+### A4.5 A tree once started is finished — 1,515 / 1,796 by the same worker
+
+For every tree that was on the map at the start and that one of the reference's workers was the
+first to chop (1,796 trees), what happened between that first chop and the tree's death:
+
+| outcome | trees |
+|---------|------:|
+| the first worker chopped it every turn until it fell | **1,515 (84.4 %)** |
+| the teammate felled it (a hand-over) | 207 (11.5 %) |
+| the first worker left and came back to finish it | 18 (1.0 %) |
+| lost: felled by the opponent after our first chop | 53 (3.0 %) |
+| still standing at the end of the match | 3 |
+
+So 96 % of the trees it starts are felled by its own team, five in six of them without the
+worker ever leaving the cell.
+
+### A4.6 The two workers never share a tree and never block each other — 0 / 39,023
+
+Over the 39,023 turns on which the reference had two workers alive: **0** turns on which both
+chopped the same tree; **0** of its 4,079 chop journeys ended on a tree its teammate was already
+standing on; and **0** of its 40,143 within-reach moves were left undone with the teammate on the
+target cell. The division of labour is silent in the recordings — no rule for *which* worker
+takes *which* tree was recovered — but its outcome is an invariant.
+
+## A5. The endgame conversion
 
 1. a troll stands on a GRASS cell **orthogonally adjacent to its own shack**;
 2. `PICK` — it takes one fruit out of the shack;
 3. `PLANT` — next turn it plants that fruit on the cell it is standing on;
 4. `CHOP` — the sapling ticks to size 1 the turn it is created (RULES §7), so it can be felled
-   at once, for 1 wood;
-5. `DROP` — the wood goes into the shack. Net: **+3 points every few turns, per troll.**
+   at once — in one turn if the chopper's power covers the sapling's health (banana 3, plum and
+   lemon 6, apple 11), otherwise in several;
+5. `DROP` — the wood goes into the shack. Net: **+3 points per seed, per troll.**
 
 The counts that fix each step:
 
 - **1,623 PICKs and 1,622 PLANTs** — they come in pairs.
-- **Every plant is at Manhattan distance 1 from its own shack**: 1,621 of 1,622. (The single
-  exception is at distance 2.) It never plants out on the map.
+- **Almost every plant is at Manhattan distance 1 from its own shack**: 1,621 of 1,622. (The
+  single exception is at distance 2.) It does not plant out on the map.
 - **Self-planted trees are chopped as saplings**: of 6,664 chops on cells it planted itself,
   5,536 (83 %) were on a size-1 tree. Compare A4.1, where 94 % of chops on the map's own trees
   were on size-4.
@@ -288,7 +326,8 @@ The counts that fix each step:
 
 Given what is in the shack, it takes the first available in this order:
 **BANANA, then PLUM, then LEMON, then APPLE** — the order of how cheap the sapling is to fell
-(size-1 health 3, 6, 6, 11; RULES §6). Measured, by what the shack held at that moment:
+(size-1 health 3, 6, 6, 11; RULES §6), with plum before lemon at equal health as a tie-break
+the economics do not explain. Measured, by what the shack held at that moment:
 
 | shack held | took |
 |------------|------|
@@ -307,25 +346,37 @@ species down.
 - game 900571119, turns 259, 264, 265, 269, 271, 274: shack holds plums and apples and bananas
   each time, and it takes BANANA every time.
 
-### A5.2 When the loop starts — on 152 of 160 matches
+### A5.2 When the loop starts — the window is determined, the turn inside it is not
 
-The bot starts converting under **either** of two conditions, and the boundary is sharp:
+The first `PICK` of each match (152 matches have one; the other 8 ended before either bound):
 
-- **Once the map is nearly logged out.** In 102 matches the loop started before turn 251, and in
-  every one of those there were **at most 4 living trees left on the whole map** (median 2). The
-  earliest was turn 41.
-- **Or from turn 251, regardless.** In the other 50 matches the first PICK falls between turn
-  251 and turn 267 (median 8 trees still alive, up to 24).
+- **Before turn 251 it starts only when at most four trees are alive** — in all 102 early starts
+  (median 2 trees alive; the earliest start was turn 41). There is no match in which it started
+  before turn 251 with five or more trees standing.
+- **From turn 251 it starts regardless** — the other 50 first PICKs fall between turns 251 and
+  267, with a median of 8 trees still alive and up to 24.
 
-There is no match in the corpus where it started converting before turn 251 with five or more
-trees standing.
+What the recordings do **not** support is the converse, "at most four trees ⇒ it starts". The
+truth table in `endgame-truth-table.json` lists every turn before 251 on which at most four trees
+were alive, up to the first PICK — 2,634 turns:
+
+| turns before 251 with ≤ 4 trees alive | it started | it did not |
+|---|---:|---:|
+| a worker was free (carrying nothing, not on a tree) and a tree was still available to it | 91 | 1,298 |
+| a worker was free and no tree was left for it | 11 | 139 |
+| no worker was free (all on trees or carrying) | 0 | 1,095 |
+
+And the score has nothing to do with it: at the 102 early starts the reference was **behind in
+58 and ahead in 44**; the 1,298 "free worker, free tree, kept logging" turns split 1,169 ahead,
+106 behind, 23 tied. So the start is not "when the map is nearly bare" and not "when behind": on
+most qualifying turns it prefers one more tree to the first seed, and what tips it — most likely
+a comparison of the turns the next tree would cost against the turns a conversion cycle costs —
+is not visible to a spectator. **The exact start inside the window is OPEN.**
 
 - game 900571125, turn 176: only 2 trees left of the 16 the map started with — it starts.
 - game 900571119, turn 259: 24 trees alive (both sides have been planting) — it starts anyway,
   because the match is nearly over.
 - game 900571120, turn 254 and game 900571121, turn 257: 1 and 2 trees left, late.
-
-8 matches contain no PICK at all — all of them short matches that ended before either trigger.
 
 ## A6. What it does *not* do
 
@@ -333,15 +384,16 @@ Each of these is an absence measured over 160 matches, not a guess:
 
 - **It never trains a second extra worker** (160 TRAINs in 160 matches; game 900571119 buys at
   turn 16 and never again through turn 300).
-- **It never plants out on the map** — 1,621 of 1,622 plants are on its own doorstep
+- **It does not plant out on the map** — 1,621 of 1,622 plants are on its own doorstep
   (game 900571119, turns 260-275, every plant at (11,3) or (10,2) beside its shack at (11,2)).
-- **It barely harvests fruit** — 130 harvests, essentially all in the opening
+- **It barely harvests fruit** — 130 harvests, all but one in the opening
   (game 900571119: one HARVEST, at turn 14, in a 300-turn match).
 - **It never MOVEs to a cell it cannot reach this turn** — 0 of 40,143 (game 900571119,
   turns 1-2, and every other MOVE in the corpus).
-- **It shows no behaviour that depends on the opponent's position.** Nothing measured here
-  changed with where the opponent's trolls were; it does not race them to trees, block them, or
-  chop trees near their shack in preference to trees near its own.
+- **No response to the opponent's position was detected.** Nothing measured here changed with
+  where the opponent's trolls were; it does not race them to trees, block them, or chop trees near
+  their shack in preference to trees near its own. Its conversion start was tested against the
+  score and found independent of it (A5.2). Other forms of dependence were not measured.
 
 ## A7. How the numbers were made
 
@@ -349,13 +401,16 @@ The recordings show the board visually; the tool used to decode them recovers ea
 health and cooldown by simulating the rules forward. Sizes and healths quoted here (A4.1, A5)
 are therefore reconstructions — checked against the platform's next state on 40,458 recorded
 turns with two disagreements. Positions, carries, inventories and the commands themselves are
-read directly and are exact.
+read directly and are exact. The counts of A1–A5.1 are produced by `measure.py`, those of A4.5,
+A4.6 and A5.2's table by `measure_extra.py`; both are kept with the package's working files.
 
 ## A8. Sources of uncertainty
 
 1. **Target choice (A4.2) is not determined.** Stated as a measured agreement, not a rule.
 2. **The training turn (A3) is not determined.** Stated with the measured agreement of the
    simplest substitute and the data to fit your own.
-3. **160 matches, one day, one ladder.** All 160 come from a single batch against the opponents
+3. **The conversion start inside its window (A5.2) is not determined.** Stated with the truth
+   table.
+4. **160 matches, one day, one ladder.** All 160 come from a single batch against the opponents
    the ladder happened to offer that afternoon. Rules that hold 160/160 here are strong; rates
    quoted as percentages are rates on this population.

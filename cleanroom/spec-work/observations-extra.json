@@ -1,0 +1,51 @@
+{
+ "endgame_trigger": {
+  "no_start_turns_with_an_empty_shack": 0,
+  "of_which_the_conversion_started": 102,
+  "pre_251_turns_with_at_most_4_trees_before_or_at_the_first_pick": 2634,
+  "score_relation_at_the_102_early_starts": {
+   "ahead": 44,
+   "behind": 58
+  },
+  "trees_not_under_an_own_worker_at_the_early_starts": {
+   "0": 11,
+   "1": 25,
+   "2": 30,
+   "3": 13,
+   "4": 23
+  },
+  "turns_by_start_relation_and_worker_state": {
+   "no start / ahead / a free worker and a free tree": 1169,
+   "no start / ahead / a worker is free and no tree is left for it": 127,
+   "no start / ahead / no free worker": 841,
+   "no start / behind / a free worker and a free tree": 106,
+   "no start / behind / a worker is free and no tree is left for it": 8,
+   "no start / behind / no free worker": 240,
+   "no start / tied / a free worker and a free tree": 23,
+   "no start / tied / a worker is free and no tree is left for it": 4,
+   "no start / tied / no free worker": 14,
+   "start / ahead / a free worker and a free tree": 41,
+   "start / ahead / a worker is free and no tree is left for it": 3,
+   "start / behind / a free worker and a free tree": 50,
+   "start / behind / a worker is free and no tree is left for it": 8
+  }
+ },
+ "tree_commitment": {
+  "natural_trees_first_chopped_by_us": 1796,
+  "outcomes": {
+   "abandoned: felled by nobody of ours (opponent) after our first chop": 53,
+   "handed over: the teammate felled it": 207,
+   "the first worker chopped every turn until it fell": 1515,
+   "the first worker left and came back to finish it": 18,
+   "tree still standing at the end of the match": 3
+  }
+ },
+ "worker_coordination": {
+  "chop_journeys": 4079,
+  "journeys_that_ended_on_a_tree_the_teammate_was_standing_on": 0,
+  "moves_within_speed": 40143,
+  "moves_within_speed_that_did_not_happen_with_the_teammate_on_the_target_cell": 0,
+  "turns_both_workers_chopped_the_same_tree": 0,
+  "turns_with_two_workers": 39023
+ }
+}

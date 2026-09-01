@@ -298,7 +298,15 @@ class Game:
                 self.inventories[u["player"]][idx] -= 1
                 u["carry"][idx] += 1
 
+    def talents_legal(self, talents):
+        """RULES section 8: speed 1..cells, carry 0..1000, harvest 0..3, chop 0..20."""
+        ms, cc, hp, chop = talents
+        return (1 <= ms <= self.width * self.height and 0 <= cc <= 1000
+                and 0 <= hp <= MAX_FRUITS and 0 <= chop <= 20)
+
     def apply_train(self, player, talents):
+        if not self.talents_legal(talents):
+            return                        # non-fatal: the bundle is refused
         have = sum(1 for u in self.units if u["player"] == player)
         ms, cc, hp, chop = talents
         cost = [0] * 6
@@ -464,6 +472,8 @@ def parse(line, game, seat):
             kind = item_name(parts[2]) if len(parts) >= 3 else None
             if kind is None:
                 raise Illegal("%s with a bad item %r" % (verb, parts[2:3]))
+            if verb == "PLANT" and kind in ("IRON", "WOOD"):
+                continue                  # non-fatal: only fruit can be planted (RULES 9)
             out[verb].append((uid, kind))
         else:
             out[verb].append(uid)
