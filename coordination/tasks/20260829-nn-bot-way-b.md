@@ -1032,3 +1032,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   `2 + 2`** (3.7×), and — the sharper fact — reward enters **23 of 40 updates under `0 + 4` and 40 of 40 under `2 + 2`**:
   the split turns an intermittent signal into a continuous one. The critic still supplies ~90 % under `2 + 2`. This is the
   arm r22 is testing; the numbers say why it might work and cannot say whether it does. Branch merged. — coordinator
+- 2026-09-01 18:1xZ: **r22 preempted once** — the operation shows one job aborted and one pending: the cluster took the
+  slot back after update ~2,316 (last heartbeat 17:23Z) and the job restarts from scratch when a slot frees. The salvage
+  did its job this time: checkpoints 250 … 2,250 are on the cluster, but **2,500 is not**, and the frozen gate reads
+  updates 1,500 and 2,500 of one attempt — so the restart runs to completion and the gate reads the restart. Meanwhile
+  the salvaged checkpoints are downloaded (`yt_work/ppo/ppo-yt-r22-salvage/`) and scouted at 500 … 2,000 as an early,
+  exploratory look (tag `r22pre`; not the gate). Also today: the report re-issued as its sixth edition
+  (`docs/reports/2026-08-30-neural-network-line-progress.pdf`, Section 3: the entropy gate, the credit path, the first
+  lever; four new figures). — coordinator
