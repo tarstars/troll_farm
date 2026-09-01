@@ -821,3 +821,7 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   same trajectory — but the wall-clock slips: `e00` completes ~08:00Z, `e01` ~17:30Z, **the Gate-1 verdict moves to ~18:00Z
   09-01**. The pool's preemption weather is now the schedule's main noise; nothing to fix (salvage covers ends, budgets are
   consistent), only to note. — coordinator
+- 2026-09-01 03:4xZ: **the day-two progress report written and sent to chatgpt_1 at the owner's request**
+  (`local_claude_1/nn-bot/PROGRESS-2026-09-01.md`; the 03:45Z ack-required handoff): Gate 0's close with the verdict's
+  numbers, the full-parameter family closed at complete budget, Stage 1 under the frozen gate with the preemption weather
+  (verdict ~18:00Z), the disk resolution, and the eliminated-vs-standing diagnosis table. — coordinator
