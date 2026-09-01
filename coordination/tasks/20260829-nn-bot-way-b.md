@@ -984,7 +984,7 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   with depth. Next per THE PLAN: the handoff to chatgpt_1 for the Gate 1 review; then step 5's decision, which the credit
   measurement points at the reward path (the fix menu with the owner). The host pair (update ~2,670 of 2,709 at 13:5xZ)
   finishes within the hour; its benches are replication only and run at low priority afterwards. — coordinator
-- 2026-09-01 14:2xZ: **step 5 prepared, not launched — the reward-path arm is one command away from the owner's word.**
+- 2026-09-01 15:5xZ: **step 5 prepared, not launched — the reward-path arm is one command away from the owner's word.**
   The entropy verdict makes E01 (entropy 0.01, `wood_shaping 0 + end_wood 4`, seed 41) the ready-made control for the
   reward-path test, so only the treatment arm is needed: `ppo-yt-r22` = the same recipe with `--wood-shaping 2.0
   --end-wood 2.0` (wood's value still 4, half of it paid on delivery). Dry-run prepared (`yt_work/ppo/ppo-yt-r22/`,
