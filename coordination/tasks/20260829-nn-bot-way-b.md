@@ -932,3 +932,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   `reward_share_of_signal_percent` as its headline, the misleading `signal_is_purely_bootstrap` flag is gone, and two new
   tests pin that a row-slot zero must not be reported as an absent reward (6 tests). The owner was told directly.
   — coordinator
+- 2026-09-01 08:4xZ: **flush entry written at the owner's request** —
+  `coordination/HANDOVER-2026-09-01-entropy-gate-and-credit-path.md`: the four arms in flight and their exact identities,
+  the whole remaining recipe from retrieve to verdict, the four instruments built today with what each pins, the three
+  results (entropy null / depth harmful / the credit path at 2.3 % with my correction in full), the fix menu awaiting the
+  owner's choice, Track C halted for the two reviews, and the standing constraints. — coordinator
