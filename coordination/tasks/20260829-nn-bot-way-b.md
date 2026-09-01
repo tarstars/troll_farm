@@ -1082,3 +1082,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   reads replays). **The night's standing: reward path CONFIRMED (cluster) + replicated in size (host); rollout-128 alone
   not confirmed; next per the reviewer's ranking and chatgpt_1's pending answer — likely the stack (2 + 2 with rollout
   128 in one arm) or 0.5 + 3.5, one variable against the right control, after chatgpt_1's read.** — coordinator
+- 2026-09-01 23:0xZ: **two follow-up arms launched under the standing authorizations, one variable each.**
+  **`ppo-yt-s22`** (cluster, operation `2c06a-b73cd68e-42e03e8-2a03f3aa`, started 23:07Z): the STACK — wood 2 + 2 with
+  the 128-step rollout; differs from r22 (the confirmed arm, its locked benches the ready control) in
+  `rollout_steps`/`num_envs` only, verified on the prepared config. The question: does the longer trace add to the
+  confirmed split (lever 2 helped late even alone)? **`ppo-host-r0535`** (this host, 7 threads, nice 15): the MAGNITUDE
+  question — wood 0.5 + 3.5, the environment's own default; differs from the host r22 in the two wood values only
+  (verified on the start events; same coverage per claude_1's pricing, a quarter of the immediate signal). Control =
+  `ppo-host-r22`, benched tonight. Each lands in ~2–2.5 h and is read by the same frozen gate. Nothing else launched;
+  the host carries one training (7 of 20 cores) and the cluster one job. — coordinator
