@@ -1,11 +1,12 @@
 """Tests for the credit-path reader.
 
-The claim this instrument is used to make is a strong one — that under `--train-scope plan-critic`
-the only actor being trained receives no observed reward at all, and learns purely from the
-critic's bootstrap. A reader that silently mis-sums, or that reports "no reward ever arrived"
-because a field was missing rather than because it was zero, would manufacture that claim. So the
-tests pin: the sums, the percentages, the distinction between *absent* and *zero*, and the
-headline flag.
+The claim this instrument is used to make is a strong one, so the reader must not manufacture it.
+The headline is **the share of the advantage's magnitude that came from observed reward** rather
+than from the critic's own values — not "did a row hold a reward in its own slot", which for PLAN
+rows is always no for a structural reason that carries no meaning (the within-turn trace delivers
+the reward anyway). An earlier version of this file reported that structural zero as the headline
+and the coordinator misread it as "the plan head never sees a reward"; the tests below now pin the
+share, and pin that a row-slot zero does not imply an absent reward.
 """
 
 from __future__ import annotations
@@ -74,7 +75,7 @@ def test_sums_percentages_and_the_purely_bootstrap_flag(tmp_path):
     assert plan["rows"] == 2000
     assert plan["observed_nonzero_reward_rows"] == 0
     assert plan["updates_with_observed_reward"] == 0
-    assert plan["signal_is_purely_bootstrap"] is True
+    assert plan["rows_holding_reward_in_their_own_slot"] == 0
     assert plan["bootstrap_share"]["mean"] == 0.97
 
     troll = report["row_classes"]["troll"]
@@ -83,7 +84,6 @@ def test_sums_percentages_and_the_purely_bootstrap_flag(tmp_path):
     assert troll["observed_nonzero_reward_rows"] == 10
     assert troll["observed_reward_row_percent"] == 0.25
     assert troll["updates_with_observed_reward"] == 2
-    assert troll["signal_is_purely_bootstrap"] is False
 
 
 def test_one_rewarded_update_clears_the_flag(tmp_path):
@@ -101,7 +101,6 @@ def test_one_rewarded_update_clears_the_flag(tmp_path):
         ],
     )
     plan = credit_path_read.read_log(log)["row_classes"]["plan"]
-    assert plan["signal_is_purely_bootstrap"] is False
     assert plan["updates_with_observed_reward"] == 1
 
 
@@ -132,3 +131,58 @@ def test_lines_without_credit_telemetry_are_skipped(tmp_path):
     report = credit_path_read.read_log(log)
     assert report["updates_with_credit_telemetry"] == 1
     assert report["first_update"] == 2
+
+
+def test_the_headline_is_the_reward_share_not_the_row_slot(tmp_path):
+    """A row slot of zero must not be reported as an absent reward.
+
+    Both classes here hold reward in no row's own slot, yet a quarter of the advantage's
+    magnitude came from observed reward through the trace. The instrument must say 25 %.
+    """
+
+    def block_with_components(rows, reward_abs, critic_abs):
+        return {
+            "rows": rows,
+            "terminal_event_rows": 0,
+            "observed_nonzero_reward_rows": 0,
+            "reward_component_abs_sum": reward_abs,
+            "critic_component_abs_sum": critic_abs,
+            "bootstrap_share": 0.75,
+        }
+
+    log = write_log(
+        tmp_path / "train.log",
+        [
+            {
+                "update": 1,
+                "rollout_credit": {
+                    "plan": block_with_components(100, 25.0, 75.0),
+                    "troll": block_with_components(100, 25.0, 75.0),
+                },
+            }
+        ],
+    )
+    plan = credit_path_read.read_log(log)["row_classes"]["plan"]
+    assert plan["rows_holding_reward_in_their_own_slot"] == 0
+    assert plan["reward_share_of_signal_percent"] == 25.0
+    assert plan["updates_with_reward_in_advantage"] == 1
+
+
+def test_no_reward_anywhere_reports_a_zero_share(tmp_path):
+    log = write_log(
+        tmp_path / "train.log",
+        [
+            {
+                "update": 1,
+                "rollout_credit": {
+                    "plan": {"rows": 10, "reward_component_abs_sum": 0.0,
+                             "critic_component_abs_sum": 40.0},
+                    "troll": {"rows": 10, "reward_component_abs_sum": 0.0,
+                              "critic_component_abs_sum": 40.0},
+                },
+            }
+        ],
+    )
+    plan = credit_path_read.read_log(log)["row_classes"]["plan"]
+    assert plan["reward_share_of_signal_percent"] == 0.0
+    assert plan["updates_with_reward_in_advantage"] == 0

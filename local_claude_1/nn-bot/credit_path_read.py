@@ -7,12 +7,19 @@ of the return target came from the critic's bootstrap rather than from observed 
 fraction of rows had a credit trace reaching a real terminal before the 32-mini-step buffer cut.
 
 This matters because of how the card pays reward. With `--reward-credit executing` (the default)
-the turn's reward is kept only on the mini-step that executed the turn and zeroed elsewhere. A
-PLAN mini-step is never the executing one, so **PLAN rows structurally receive reward zero** and
-the plan head can only learn through the critic's value bootstrap. Under
-`--train-scope plan-critic` the plan head is the only actor being trained — so the question "how
-much of its signal is grounded in outcomes?" has a definite, measurable answer, and this script
-is what answers it.
+the turn's reward is kept only on the mini-step that executed the turn and zeroed elsewhere, and a
+PLAN mini-step is never the executing one — so a PLAN row's own reward slot is always zero.
+
+**That fact alone means nothing, and reading it as "the plan head never sees a reward" is wrong.**
+`compute_gae` uses a trace factor of exactly 1.0 *inside* a turn, precisely so that the turn's
+reward reaches every mini-step of that turn undiminished; the reward arrives at the plan row
+through the trace rather than through its own slot. The coordinator made that misreading on
+2026-09-01 and corrected it the same hour.
+
+The quantity that does matter is therefore not "did a row hold a reward" but **what share of the
+advantage's magnitude came from observed reward rather than from the critic's own values** —
+`reward_component_abs_sum` against `critic_component_abs_sum`, both of which the trainer records
+by replaying the same GAE with the other inputs zeroed. That is the headline this script reports.
 
 Usage:
     credit_path_read.py --log <train.log> [--log <train.log> ...] [--json-out out.json]
@@ -43,6 +50,9 @@ def read_log(path: pathlib.Path) -> dict[str, Any]:
             "terminal_traced_fraction": [],
             "critic_component_fraction": [],
             "raw_advantage_std": [],
+            "reward_component_abs_sum": 0.0,
+            "critic_component_abs_sum": 0.0,
+            "updates_with_reward_in_advantage": 0,
         }
         for name in ROW_CLASSES
     }
@@ -78,6 +88,13 @@ def read_log(path: pathlib.Path) -> dict[str, Any]:
                 bucket["observed_nonzero_reward_rows"] += observed
                 if observed > 0:
                     bucket["updates_with_observed_reward"] += 1
+                reward_magnitude = float(block.get("reward_component_abs_sum") or 0.0)
+                bucket["reward_component_abs_sum"] += reward_magnitude
+                bucket["critic_component_abs_sum"] += float(
+                    block.get("critic_component_abs_sum") or 0.0
+                )
+                if reward_magnitude > 0.0:
+                    bucket["updates_with_reward_in_advantage"] += 1
                 for field in (
                     "bootstrap_share",
                     "terminal_traced_fraction",
@@ -122,8 +139,21 @@ def read_log(path: pathlib.Path) -> dict[str, Any]:
                     "min": round(min(values), 6),
                     "max": round(max(values), 6),
                 }
-        # the headline: is this row class's signal grounded in outcomes at all?
-        entry["signal_is_purely_bootstrap"] = bucket["observed_nonzero_reward_rows"] == 0
+        # THE HEADLINE: how much of the learning signal is grounded in observed outcomes?
+        # Not "did a row hold a reward" -- the within-turn trace carries reward to rows whose own
+        # slot is zero -- but how much of the advantage's magnitude the reward actually supplied.
+        reward_magnitude = bucket["reward_component_abs_sum"]
+        critic_magnitude = bucket["critic_component_abs_sum"]
+        denominator = reward_magnitude + critic_magnitude
+        entry["reward_component_abs_sum"] = round(reward_magnitude, 3)
+        entry["critic_component_abs_sum"] = round(critic_magnitude, 3)
+        entry["reward_share_of_signal_percent"] = (
+            round(100.0 * reward_magnitude / denominator, 4) if denominator > 0 else None
+        )
+        entry["updates_with_reward_in_advantage"] = bucket["updates_with_reward_in_advantage"]
+        # kept for the record, but it is a structural artefact of `--reward-credit executing`
+        # for PLAN rows and must not be read as "no reward reached them"
+        entry["rows_holding_reward_in_their_own_slot"] = bucket["observed_nonzero_reward_rows"]
         report["row_classes"][name] = entry
     return report
 
@@ -169,8 +199,15 @@ def main() -> int:
                     f"      trace reaches a terminal        mean {traced['mean']} "
                     f"(max {traced['max']})"
                 )
-            if entry["signal_is_purely_bootstrap"]:
-                print("      *** no observed reward ever reached these rows ***")
+            print(
+                f"      updates where reward entered    "
+                f"{entry['updates_with_reward_in_advantage']:,} of {entry['updates']:,}"
+            )
+            print(
+                f"      REWARD SHARE OF THE SIGNAL      "
+                f"{entry['reward_share_of_signal_percent']} %   "
+                f"(the rest is the critic's own values)"
+            )
 
     if args.json_out:
         pathlib.Path(args.json_out).write_text(json.dumps(reports, indent=2) + "\n")

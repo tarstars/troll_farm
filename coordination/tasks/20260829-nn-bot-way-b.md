@@ -908,3 +908,27 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   99.98 % of traces before any terminal). A bare λ=1 under the current buffer remains excluded, as the frozen text says.
   Not proposed as a build: this goes to the reviewer with the Gate-1 verdict, and the design change is spec'd and reviewed
   before anything is written. — coordinator
+- 2026-09-01 13:0xZ: **CORRECTION to the 12:2xZ entry, made within the hour and before anything was built on it.** I wrote
+  that "the plan head never sees a reward at all" and that its signal reaches it "through nothing else" than the critic.
+  **That was wrong, and it was my misreading of my own instrument.** `compute_gae` sets the trace factor to *exactly 1.0
+  inside a turn* (`train_ppo_full.py:501–545`, and its docstring says why: multiplying by λ per mini-step would hand the
+  plan row only λ^k of its own turn's reward, which amendment (4) forbids). So a turn's reward reaches that turn's PLAN row
+  **undiminished, through the trace** — it simply does not sit in the plan row's own reward slot, because
+  `--reward-credit executing` puts it on the mini-step that executed the turn. The zero I measured
+  (`observed_nonzero_reward_rows = 0` over 16.9 M plan rows) is a structural artefact of *where the number is stored*, and
+  carries no meaning on its own.
+  **What is true, measured on the right quantity** — the reward's share of the advantage's magnitude, from the components
+  the trainer already records by replaying the same GAE with the other inputs zeroed:
+  - **PLAN rows: observed reward supplies 2.32 % of the signal; the critic's own values supply 97.68 %.** Reward enters the
+    plan rows' advantage in 12,201 of 12,352 updates (98.8 %) — present, but small.
+  - TROLL rows: 2.58 % reward, 97.42 % critic. e01 reproduces both to two decimals (2.29 % / 2.56 %).
+  - Unchanged and still the point: bootstrap share of the target 0.977, and the credit trace reaches a real terminal on
+    only 1.8 % of rows before the 32-mini-step buffer cut.
+  **The finding survives the correction, in weaker and more accurate form**: the plan head is trained on a signal that is
+  ~98 % the critic's opinion and ~2 % observed outcome, against a critic Gate 0 measured at an explained value of 0.04. It
+  still explains the depth curve — more training fits more of the critic's error — but "the reward is absent" is not the
+  diagnosis, "the reward is 2 %" is, and the two point at different fixes.
+  The instrument and its tests were corrected in the same hour: `credit_path_read.py` now reports
+  `reward_share_of_signal_percent` as its headline, the misleading `signal_is_purely_bootstrap` flag is gone, and two new
+  tests pin that a row-slot zero must not be reported as an absent reward (6 tests). The owner was told directly.
+  — coordinator
