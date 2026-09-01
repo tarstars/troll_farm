@@ -974,3 +974,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   with its 9-of-48 bar. The confirmations at 1,500 and 2,500 on the locked panel are running (both arms, nice 19, sharing
   the machine with the host trainings at ~85 of 144 games per arm at 12:5xZ); `gate1.py` runs the moment they land.
   — coordinator
+- 2026-09-01 13:4xZ: **STEP 4 DONE — the frozen Gate 1 verdict: `ENTROPY_NOT_CONFIRMED`**
+  (`local_claude_1/nn-bot/GATE1-VERDICT-2026-09-01.md`; the JSON and all fifteen bench files in
+  `local_claude_1/nn-bot/results/entropy-gate-0901/`). Confirmations on the locked 144-cell panel, 0 faults: **E00 24 and
+  21 of 144, E01 23 and 22 of 144** at updates 1,500 and 2,500; paired effect E00 − E01 **0.000 per cell, 95 % interval
+  [−0.017, +0.021]** (10,000 clustered draws over the 144 units); per-age +0.007 / −0.007, so not positive at each age; clone
+  non-inferiority holds (net 0 cells of 6 allowed; the clone 26 of 144 on the same panel); margin −1.6 [−4.7, +1.2], not the
+  gate. The entropy bonus is acquitted on every reading — training side, scouts, locked panel — and both arms still decay
+  with depth. Next per THE PLAN: the handoff to chatgpt_1 for the Gate 1 review; then step 5's decision, which the credit
+  measurement points at the reward path (the fix menu with the owner). The host pair (update ~2,670 of 2,709 at 13:5xZ)
+  finishes within the hour; its benches are replication only and run at low priority afterwards. — coordinator

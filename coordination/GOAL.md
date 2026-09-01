@@ -91,6 +91,15 @@ the best-fitting explanation of the staged drift. The full dossier:
      and neither comparison is collinear with the machine; agreement across the two is a
      replication, not a substitute. *Step 4 closes on the cluster pair as written; the host pair
      stands behind it if the cluster is preempted again.*
+
+   **STEP 4 DONE — 2026-09-01 13:4xZ. Verdict of record: `ENTROPY_NOT_CONFIRMED`**
+   (`local_claude_1/nn-bot/GATE1-VERDICT-2026-09-01.md`). The cluster pair finished without
+   preemption (2,709 updates each); on the locked 144-cell panel E00 won 24 / 21 and E01 23 / 22
+   at updates 1,500 / 2,500; the paired effect is 0.000 per cell, interval [−0.017, +0.021]; the
+   clone non-inferiority holds (net 0). Both curves are on the card. The entropy bonus is
+   acquitted on the training side, the scouts and the locked panel alike, and both arms still
+   decay with depth. The next lever is the reward path (the credit measurement of the same
+   morning: 2.3 % observed reward, 97.7 % critic) — the owner's choice from the fix menu.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever
