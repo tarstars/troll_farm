@@ -1015,3 +1015,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   Two platforms, two verdicts, one answer: the entropy bonus does not matter. Files in
   `local_claude_1/nn-bot/results/entropy-gate-0901/` (`gate1-verdict-host-replication.json`). r22 at update 616 after
   21 minutes (~1,780 updates/h; expected to land ~17:25Z). — coordinator
+- 2026-09-01 16:5xZ: **claude_1's lever pricing (16:34Z handoff, three seeds) — ACCEPTED and REPRODUCED**, its branch merged
+  into `main`. The critic-independent form of the credit finding: under the `0 + 4` split the only rows carrying observed
+  reward are the game endings — 88 of 65,536 (0.13 %), exactly, in all three seeds; shaping on puts reward on ~1,780 rows
+  (2.7 %, a factor of 20); `2 + 2` and the environment's own `0.5 + 3.5` cover the same rows to within one, differing only
+  in the per-delivery magnitude; a 128-step rollout reaches a real ending 4.3× more often (1.46 % → 6.21 %), and its 1.46 %
+  calibrates against the 1.8 % measured on real runs. The coordinator re-ran seed 909 with the same command: all 97 numeric
+  fields identical. It arrived after r22 was launched and supports the choice; its caveat is recorded — the coverage argument
+  does not by itself favour `2 + 2` over `0.5 + 3.5`; the size of the immediate signal does. If r22 moves the gate, the
+  environment's default split is the natural second arm; if it does not, the longer rollout is next (the two act on
+  different rows). — coordinator
