@@ -98,7 +98,7 @@ the simpler bot became the reference. **LADDER.**
 Each line: the behavioural idea, then its ladder reading. The reference bot's own readings, for
 scale, are **21.8, 21.6, 22.1** and, after that opponent-targeting rule was removed, **21.2**.
 The field
-drifts: the same bot re-read **18.2** three days later without changing. **Compare readings only
+drifts: the same bot re-read **18.2** the next day without changing. **Compare readings only
 against readings taken the same day.**
 
 | idea (behaviour only) | ladder reading |
@@ -108,7 +108,7 @@ against readings taken the same day.**
 | **A third worker, and nobody chops until it is trained or is unreachable** | **11.7, 12.0** — the third worker came in 89 % of matches at median turn 113, and the funding still lost. |
 | **Plant four lemons and two plums together at the entrance farthest from the enemy, to feed the third worker** | **14.7, 13.5** (an earlier form), **18.8** (a later form), **16.7, 16.6** (a further form). The best of these is still below the reference. |
 | **Plant a persistent banana crop in a ring around one's own shack** | **10.8** at rank 172 of 176. It planted 16 bananas a match and harvested 4.8 from them; the opponent walked onto the ring and ate the crop in 35 of 50 newly-blocked matches. **A crop next to your own door does not protect itself — the opponent will pay the walk.** |
-| **An apple-focused farm** | **17.6** |
+| **An apple-focused farm** (the starting troll plants an apple near its shack on its first turns, then plays as the reference does) | **19.8, 19.8, 18.6, 19.9** on the day the reference read 21.2, then **17.6** the next day when the reference re-read 18.2 — about 1.5 below the reference on both days, at the edge of the noise band. |
 | **Remove the reference bot's early opponent-targeting rule** | **21.2** vs the previous 21.8/21.6/22.1 — inside the noise band. Simpler and no worse; this became the reference bot. |
 
 **The single strongest pattern in that table:** every attempt to buy more workers, or to spend

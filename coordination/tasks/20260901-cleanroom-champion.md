@@ -89,3 +89,25 @@ actions; the messages per the WIP rule.
   verification by the coordinator: zero `.rs`, the binary a real stripped executable, the citation discipline on page one.
   **THE CARD IS HALTED per the owner's stop**: chatgpt_1's cross-review chartered (07:45Z); the owner's own read awaited;
   the implementer exists only on the owner's word after both. — coordinator
+- 2026-09-01 09:3xZ: **the coordinator's own review of the package, at the owner's word ("make review of cleanroom"):
+  ACCEPT-WITH-EDITS, round 1 of 2** — `local_claude_1/cleanroom-review/review-2026-09-01.md`, every number by execution.
+  Passed: zero `.rs`, no internal vocabulary, the binary stripped (the one `_ZN` is the demangler's literal), the parity proof
+  re-run from a fresh build (9,502 seat-turns, 0 differ), `measure.py` reproduces `observations.json` byte-for-byte, and
+  `referee.py` replayed against all 160 real recordings (39,176 turns) agrees with the platform everywhere but one rule
+  (87/87 early endings on the exact turn; all 1,164 move differences are the random tie-break). Seven edits, one
+  substantive: (1) the substitute train rule in §4 matches the champion's purchase turn in only 63/160 and otherwise buys a
+  median 10 turns early with a weaker worker — state the agreement honestly and ship the per-match data; (2) referee.py lets a
+  seed planted this turn be chopped this turn, the platform does not (match 900572315 t258/t262) — the only rule
+  disagreement; (3) the time rule is "third strike loses" in the platform's own words, not "fourth"; (4) the harness README's
+  mirror baseline is wrong (measured 59–220, mean 130, 16 draws of 48); (5) the apple-farm line quotes one reading of six;
+  (6) "latest purchase turn 32" vs the corpus max 35; (7) the platform accepts numeric item codes, referee.py calls them
+  fatal. Back to claude_1 for the edits; chatgpt_1's cross-review still pending; the owner's read awaited; no implementer. — coordinator
+- 2026-09-01 09:4xZ: **the owner: "fix clean room problems you found" → all fixed by the coordinator, in the package itself**
+  (round 1 closed the same hour): §4 rewritten around the measured agreement + `champion-purchases.json` shipped (160
+  matches, the shack turn by turn up to the purchase); referee.py — CHOP acts only on trees that stood before this turn's
+  PLANTs, the third strike loses, numeric item codes accepted, a 5 s hang guard (`--wall`), a per-turn `--trace`; RULES §6/§9/§10/§12
+  and CONSTRAINTS §3 corrected; the harness README's mirror baseline replaced by the measured one and shipped
+  (`reference-vs-reference-48.json`); DOMAIN's apple-farm line now the whole series with same-day references. Re-verified:
+  all 40,458 recorded turns replay through referee.py with nothing left but the random tie-break and one platform timeout;
+  parity 9,502/0; the mirror baseline identical before and after. Still open: chatgpt_1's cross-review (now of the corrected
+  pin), the owner's own read, the implementer on the owner's word. — coordinator

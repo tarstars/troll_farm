@@ -148,8 +148,8 @@ from match recordings (ten independent observations, exact fit) and confirmed ag
 referee's constants.
 
 **At the start of the match** the trees on the map are randomly "aged" — each has been ticked a
-random number of times between 1 and `base_cooldown x 7` — so they begin at assorted sizes,
-fruit counts and cooldowns.
+random number of times between 1 and 7 x its cooldown (the shortened one if it stands next to
+water) — so they begin at assorted sizes, fruit counts and cooldowns.
 
 ---
 
@@ -249,6 +249,11 @@ arguments.
 **One command per troll per turn.** The referee keeps the **first** command that names a given
 troll id and ignores the rest. `MSG` may not contain a `;` — the separator wins.
 
+`TYPE` is one of the names above. The platform also accepts the item's number — `0` PLUM,
+`1` LEMON, `2` APPLE, `3` BANANA, `4` IRON, `5` WOOD — and some opponents print it that way
+(recovered from match recordings: `PICK 0 1` took a lemon). Verbs are accepted in lower case
+too. Print the names, in upper case; the harness accepts both forms.
+
 Commands naming a troll you do not own, or a troll id that does not exist, are non-fatal errors:
 that command is skipped and the turn goes on. An **unrecognised verb is fatal** — you lose.
 
@@ -268,8 +273,9 @@ Read that order carefully; several rules of the world follow from it alone:
 
 - **HARVEST happens after MOVE**, so a troll cannot move onto a tree and harvest it in the same
   turn — but it does not need to: it arrives, and harvests next turn.
-- **PLANT happens before CHOP**, so a seed planted on a cell this turn cannot be chopped this
-  turn.
+- **CHOP acts only on trees that stood before this turn's PLANTs**, so a seed planted this turn
+  cannot be chopped this turn — not even by a troll already standing on that cell (recovered
+  from match recordings: a sapling planted under an opponent's chopper came through untouched).
 - **PICK happens before TRAIN, and DROP after it.** Money you bank this turn is not available
   to this turn's TRAIN; money you PICK out of the shack this turn is gone before TRAIN checks.
 - **MINE happens last**, after DROP: iron mined this turn is on the troll, not in the shack.
@@ -299,8 +305,10 @@ the score it has then. Games in real play end at every length from about 80 turn
 ## 12. Time and legality
 
 - **First turn: 1000 ms.** Every other turn: **50 ms.**
-- The referee tolerates three overruns of at most 50 ms each; a single overrun of more than
-  50 ms over the limit, or a fourth small one, loses the match.
+- A turn over the limit is a **strike**, and **the third strike loses the match**. Recovered
+  from match recordings, in the referee's own words: turns of 85 ms, 56 ms and 60 ms were the
+  1st, 2nd and 3rd strike and the third ended the match; single turns of 97 ms and 51 ms drew
+  one strike each and nothing more. Whether one very long turn loses at once is not known.
 - An unrecognised command loses the match. Every other error (a troll that is not yours, a
   DROP too far from the shack, a TRAIN you cannot afford, a PLANT on an occupied cell) is
   non-fatal: the action simply does not happen and the match continues.

@@ -34,8 +34,9 @@ near it.
 
 ## 3. Time: 1000 ms on turn 1, 50 ms on every other turn
 
-The referee tolerates three overruns of at most 50 ms each; one overrun of more than 50 ms over
-the limit loses the match on the spot.
+A turn over the limit is a strike, and the third strike loses the match (seen in real matches:
+turns of 85, 56 and 60 ms were three strikes and the third ended the match; single turns of 97 ms
+and 51 ms drew one strike each). Whether one very long turn loses at once is not known.
 
 **Budget well under the limit.** The judge machine is not your machine, it is shared, and it is
 slower than a modern desktop. A bot that measures 45 ms locally will lose matches. Treat 15 ms

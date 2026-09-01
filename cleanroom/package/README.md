@@ -8,6 +8,7 @@ Everything you need is in this directory. Read it in this order.
 | **`CONSTRAINTS.md`** | what the platform will and will not accept: one file, size, time, seats |
 | **`CHAMPION-BEHAVIOUR.md`** | what an existing strong bot is *observed* to do, measured over 160 real matches, every rule with a game observation behind it |
 | **`DOMAIN.md`** | what has been learned about this game the expensive way, with the evidence level of each line |
+| `champion-purchases.json` | data behind `CHAMPION-BEHAVIOUR.md` §4: for each of the 160 matches, the shack on every turn up to the moment the bot bought its second worker, and what it bought — for fitting your own rule where the document has none |
 | **`harness/`** | the existing bot as an executable, 24 frozen real starting positions, a referee, and the acceptance ladder |
 | **`EXCLUDED.md`** | what is deliberately not here, and why |
 

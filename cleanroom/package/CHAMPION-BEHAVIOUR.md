@@ -111,16 +111,27 @@ Written as a command (RULES §8 argument order): `TRAIN ms cc 0 chop`.
   `1/2/0/2`, which costs 2 plum, 5 lemon, 1 apple, 5 iron — and it empties the lemon and the
   iron exactly.
 - game 900571126, turn 1: shack `6/7/2/9/10`, buys `2/2/0/3` on the opening turn.
-- game 900571124, turn 32: shack `4/10/4/9/8`, buys `1/3/0/2` — the latest purchase in the
-  corpus.
+- game 900571124, turn 32: shack `4/10/4/9/8`, buys `1/3/0/2` — the latest purchase among the
+  matches cited here (the latest in the corpus is turn 35).
 
 **When it buys is not determined by the recordings.** Median turn 9, quartiles 1 and 14, range
 1..35. In 159 of the 160, the turn it bought on was the *first* turn on which the exact bundle it
 bought became affordable — so it is not saving up beyond its target. But what makes the target
 `2/2/0/3` in one match and `1/2/0/1` in another, when a cheaper worker was affordable many turns
 earlier, is not recoverable from what a spectator can see. **A reimplementation has to make its
-own rule here.** A rule that reproduces the observed distribution: wait until the best affordable
-worker has `ms + cc + chop >= 5`, then buy it; buy unconditionally by turn 35.
+own rule here.**
+
+Two facts to build on. Because each talent's price is paid from its own resource (RULES §8),
+"the largest `ms + cc + chop`" is simply "each talent at the largest value its own resource
+affords" — the best affordable bundle was unique at all 160 purchases. And the simplest rule
+tested — *wait until the best affordable worker has `ms + cc + chop >= 5`, then buy it; buy
+unconditionally by turn 35* — buys on the same turn as this bot in only **63 of 160** matches;
+in the other 97 it buys **earlier**, by a median of 10 turns and up to 27, and usually a weaker
+worker (game 900571120: this bot buys `2/2/0/2` at turn 14; the rule buys `2/1/0/2` at turn 1).
+Thresholds 4 and 6 do no better (60 and 59 of 160). So the bot waits for something a threshold
+does not capture. The material to fit your own rule is in **`champion-purchases.json`**: for each
+of the 160 matches, the shack's contents on every turn up to the purchase, whether the map has
+iron, and what was bought on which turn.
 
 ---
 

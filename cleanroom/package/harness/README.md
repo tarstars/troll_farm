@@ -23,8 +23,10 @@ for anything you intend to draw a conclusion from: the map is symmetric but the 
 interchangeable in the referee's resolution order.
 
 Useful flags: `--limit N` (first N maps only), `--turns N` (shorter matches while debugging),
-`--enforce-time` (lose on the third overrun, as the platform does; off by default so a debugger
-does not lose you the match).
+`--enforce-time` (lose on the third strike, as the platform does; off by default so a debugger
+does not lose you the match), `--trace FILE` (one JSON line per turn: the full state both bots
+saw and both command lines — the way to turn a lost match into game observations), `--wall S`
+(a bot that answers nothing for S seconds loses that match instead of hanging the run; 5 s).
 
 ## Two ways this referee differs from the platform's, on purpose
 
@@ -67,9 +69,14 @@ per-cell margin difference contains zero or better.
 
 ## What "the same strength" means here
 
-The reference bot's own scores on these maps are in the range 120–220 with a mean near 180, and
-against itself it wins about half the time. If your bot loses 48 out of 48 you have a bug, not a
-strategy problem. If it wins 30 of 48 you have something; take it to step 3 before believing it.
+Played against itself on these 24 maps in both seats (`reference-vs-reference-48.json`, shipped
+here as the step-2 baseline), the reference bot scores **59 to 220, mean 130**, in matches that
+last 198 turns on average — 16 wins, 16 losses and 16 draws, the draws because on a
+point-symmetric map a deterministic bot often mirrors itself exactly. These are lower than its
+ladder scores (`CHAMPION-BEHAVIOUR.md` §1: mean 183) because in a mirror match both sides log out
+the same map and the ending clock (RULES §11) stops the match early: 18 of the 48 end with both
+players out of fruit and trees. If your bot loses 48 out of 48 you have a bug, not a strategy
+problem. If it wins 30 of 48 you have something; take it to step 3 before believing it.
 
 ## A caution about this harness as a judge
 

@@ -6,7 +6,7 @@ this directory is how it was made, kept so the numbers in it can be re-derived.
 | file | what it does |
 |------|--------------|
 | `corpus.py` | decodes the champion's 160 recorded ladder games into per-turn board states paired with its commands. **Drops every `MSG` at the source** — the champion of record is the diagnostics build and its `MSG` line narrates its internals, which is a leak into a document written from observable play only. |
-| `measure.py` | recomputes every number cited in `cleanroom/package/CHAMPION-BEHAVIOUR.md` and writes `observations.json` with counts and (game id, turn) citations. |
+| `measure.py` | recomputes every number cited in `cleanroom/package/CHAMPION-BEHAVIOUR.md` and writes `observations.json` with counts and (game id, turn) citations; also writes `cleanroom/package/champion-purchases.json` (the per-match purchase data the implementer gets, §4 of the behaviour document). |
 | `observations.json` | the output of `measure.py`; the audit trail behind the behaviour document. |
 | `export_maps.py` | freezes 24 real starting positions into `cleanroom/package/harness/maps/`. Six per map height, by ascending match id, so the slice is not a selection. |
 | `reference_parity.py` | proves the harness's stripped, announcement-free reference binary plays identically to the champion of record. |

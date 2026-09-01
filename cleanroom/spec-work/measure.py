@@ -5,6 +5,11 @@ Writes cleanroom/spec-work/observations.json: one entry per claim, with the
 measured counts and a handful of (game id, turn) citations.  The package
 document quotes these; nothing in it may be written that is not produced here.
 
+Also writes cleanroom/package/champion-purchases.json -- for each of the 160
+matches, the shack's contents on every turn up to the purchase, whether the map
+has iron, and what was bought on which turn -- the material the implementer
+needs to fit a train rule of their own (section 4 of the behaviour document).
+
 Run:  python3 cleanroom/spec-work/measure.py
 """
 from __future__ import annotations
@@ -22,6 +27,52 @@ import corpus  # noqa: E402
 
 WORK = {"CHOP", "HARVEST", "DROP", "PLANT", "PICK", "MINE"}
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "observations.json")
+PURCHASES = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         "..", "package", "champion-purchases.json")
+
+
+def best_affordable(inventory, has_iron):
+    """(ms, cc, chop) of the best harvest-0 worker affordable with one troll alive, or
+    None. Each talent is capped by its own resource, so the best bundle is unique."""
+    best = None
+    for ms, cc, chop in itertools.product((1, 2, 3), repeat=3):
+        if (inventory[0] >= 1 + ms * ms and inventory[1] >= 1 + cc * cc and inventory[2] >= 1
+                and (not has_iron or inventory[4] >= 1 + chop * chop)):
+            key = (ms + cc + chop, ms, cc, chop)
+            if best is None or key > best:
+                best = key
+    return best
+
+
+def substitute_rule(games, threshold, deadline=35):
+    """How often 'buy the best affordable worker once ms+cc+chop >= threshold, and by
+    turn `deadline` regardless' buys on the champion's own turn; and by how many turns
+    it is early or late when it does not."""
+    same_turn = 0
+    misses = []
+    for g in games:
+        seat = g["seat"]
+        has_iron = any("+" in row for row in g["rows"])
+        actual = next((t + 1 for t, cmds in enumerate(g["commands"])
+                       if any(v == "TRAIN" for v, _ in cmds)), None)
+        rule = None
+        for t in range(g["turns"]):
+            best = best_affordable(g["states"][t]["inventories"][seat], has_iron)
+            if best and (best[0] >= threshold or t + 1 >= deadline):
+                rule = t + 1
+                break
+        if rule == actual:
+            same_turn += 1
+        else:
+            misses.append((rule or 0) - (actual or 0))
+    misses.sort()
+    return {"threshold": threshold, "deadline": deadline, "same_turn": same_turn,
+            "games": len(games),
+            "when_it_misses_rule_turn_minus_champion_turn": {
+                "median": misses[len(misses) // 2] if misses else None,
+                "min": min(misses) if misses else None, "max": max(misses) if misses else None,
+                "earlier": sum(1 for m in misses if m < 0),
+                "later": sum(1 for m in misses if m > 0)}}
 
 
 def main():
@@ -249,6 +300,27 @@ def main():
         "target_short_of_speed": move_exact[False],
         "citations": move_cites,
     }
+    unique_best = 0
+    purchases = []
+    for g in games:
+        seat = g["seat"]
+        has_iron = any("+" in row for row in g["rows"])
+        bought = next(((t + 1, list(args)) for t, cmds in enumerate(g["commands"])
+                       for v, args in cmds if v == "TRAIN"), None)
+        if bought is None:
+            continue
+        turn, talents = bought
+        inventory = g["states"][turn - 1]["inventories"][seat]
+        best = best_affordable(inventory, has_iron)
+        tied = [z for z in itertools.product((1, 2, 3), repeat=3)
+                if best and z[0] + z[1] + z[2] == best[0]
+                and inventory[0] >= 1 + z[0] ** 2 and inventory[1] >= 1 + z[1] ** 2
+                and (not has_iron or inventory[4] >= 1 + z[2] ** 2)]
+        unique_best += len(tied) == 1
+        purchases.append({"game": g["game_id"], "seat": seat, "map": "%dx%d" % (g["width"], g["height"]),
+                          "map_has_iron": has_iron, "bought": talents, "turn": turn,
+                          "shack_by_turn": [list(g["states"][t]["inventories"][seat])
+                                            for t in range(turn)]})
     obs["train"] = {
         "commands_total": len(train),
         "games": len(games),
@@ -260,9 +332,18 @@ def main():
         "harvest_talent_always_zero": all(x["talents"][2] == 0 for x in train),
         "trolls_before_always_one": all(x["trolls_before"] == 1 for x in train),
         "matches_best_affordable_rule": train_rule_ok,
+        "best_affordable_bundle_was_unique": unique_best,
         "fired_on_first_turn_its_bundle_was_affordable": train_first_affordable,
+        "substitute_rule_agreement": [substitute_rule(games, thr) for thr in (4, 5, 6)],
         "citations": train_cites,
     }
+    with open(os.path.abspath(PURCHASES), "w") as handle:
+        json.dump({"what": "for each recorded match of the reference bot: the shack's contents "
+                           "(plum, lemon, apple, banana, iron, wood) at the start of every turn "
+                           "up to and including the turn it bought its second worker, whether "
+                           "the map has iron cells (if not, the iron part of the price is waived), "
+                           "and the worker it bought as [speed, carry, harvest, chop]",
+                   "matches": purchases}, handle, indent=1)
     obs["drop"] = {
         "at_exactly_full_capacity": sum(v for (c, cap), v in drop_full.items() if c >= cap),
         "below_capacity": sum(v for (c, cap), v in drop_full.items() if c < cap),

@@ -570,6 +570,7 @@
   }
  },
  "train": {
+  "best_affordable_bundle_was_unique": 160,
   "citations": [
    {
     "game": 900571119,
@@ -721,6 +722,47 @@
   "games": 160,
   "harvest_talent_always_zero": true,
   "matches_best_affordable_rule": 160,
+  "substitute_rule_agreement": [
+   {
+    "deadline": 35,
+    "games": 160,
+    "same_turn": 60,
+    "threshold": 4,
+    "when_it_misses_rule_turn_minus_champion_turn": {
+     "earlier": 100,
+     "later": 0,
+     "max": -3,
+     "median": -11,
+     "min": -31
+    }
+   },
+   {
+    "deadline": 35,
+    "games": 160,
+    "same_turn": 63,
+    "threshold": 5,
+    "when_it_misses_rule_turn_minus_champion_turn": {
+     "earlier": 97,
+     "later": 0,
+     "max": -1,
+     "median": -10,
+     "min": -27
+    }
+   },
+   {
+    "deadline": 35,
+    "games": 160,
+    "same_turn": 59,
+    "threshold": 6,
+    "when_it_misses_rule_turn_minus_champion_turn": {
+     "earlier": 101,
+     "later": 0,
+     "max": -1,
+     "median": -9,
+     "min": -30
+    }
+   }
+  ],
   "talents": {
    "[1, 1, 0, 2]": 4,
    "[1, 2, 0, 1]": 6,

@@ -41,18 +41,7 @@ def record(spec, command, turns):
                 line, _, _ = bots[seat].ask(payload, 10 ** 9)
                 log.append((payload, line))
                 parsed[seat] = referee.parse(line, game, seat)
-            game.apply_moves({**parsed[0]["MOVE"], **parsed[1]["MOVE"]})
-            game.apply_harvest(parsed[0]["HARVEST"] + parsed[1]["HARVEST"])
-            game.apply_plant(parsed[0]["PLANT"] + parsed[1]["PLANT"])
-            game.apply_chop(parsed[0]["CHOP"] + parsed[1]["CHOP"])
-            game.apply_pick(parsed[0]["PICK"] + parsed[1]["PICK"])
-            for seat in (0, 1):
-                for talents in parsed[seat]["TRAIN"]:
-                    game.apply_train(seat, talents)
-            game.apply_drop(parsed[0]["DROP"] + parsed[1]["DROP"])
-            game.apply_mine(parsed[0]["MINE"] + parsed[1]["MINE"])
-            game.tick_trees()
-            game.recompute()
+            game.apply_turn(parsed)
             over, _ = game.ended()
             if over:
                 break
