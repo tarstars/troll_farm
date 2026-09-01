@@ -96,10 +96,28 @@ trace reach — none of them depend on what the value head happens to output.
 Getting a comparable share would need a warmed-up critic on this host, which is a training run,
 which is what the arm itself would do. That is the reason to run the arm, not a substitute for it.
 
-**Other limits.** One seed, one 64-environment sample, one opponent (`champion_exact`), and the
+**Other limits.** One 64-environment sample per seed, one opponent (`champion_exact`), and the
 clone rather than a mid-run policy — a policy that delivers wood at a different rate would move
 the 2.72 %. The burn-in staggers the environments but does not make them a uniform sample of a
 long run's episode phases.
+
+## Replication — three seeds
+
+Both headline factors were re-measured on two further seeds under identical settings
+(`lever-price-seed910.json`, `lever-price-seed911.json`). Every replay reproduced its
+collection's games exactly in all three runs.
+
+| seed | endings | reward rows `0+4` | `0.5+3.5` | `2+2` | lever 1 factor | traced w32 | traced w128 | lever 2 factor |
+|---|---|---|---|---|---|---|---|---|
+| 909 | 88 | 88 | 1,782 | 1,781 | **20.2×** | 1.46 % | 6.21 % | **4.3×** |
+| 910 | 82 | 82 | 1,671 | 1,671 | **20.4×** | 1.46 % | 5.79 % | **4.0×** |
+| 911 | 84 | 84 | 1,764 | 1,764 | **21.0×** | 1.10 % | 4.85 % | **4.4×** |
+
+Two things survive the replication exactly rather than approximately. **In every seed the number
+of reward-carrying rows under `0+4` equals the number of episode endings** (88/88, 82/82, 84/84) —
+the claim that nothing but an ending pays under that split is not an estimate. And in every seed
+`0.5+3.5` and `2+2` cover the same rows to within one. The trace-reach figure at the window of
+record (1.46 %, 1.46 %, 1.10 %) sits beside the 1.8 % of record in all three.
 
 ## What it suggests, for the owner's choice
 
