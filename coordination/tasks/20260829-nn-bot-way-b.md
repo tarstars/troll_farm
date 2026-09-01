@@ -1040,3 +1040,7 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   exploratory look (tag `r22pre`; not the gate). Also today: the report re-issued as its sixth edition
   (`docs/reports/2026-08-30-neural-network-line-progress.pdf`, Section 3: the entropy gate, the credit path, the first
   lever; four new figures). — coordinator
+- 2026-09-01 18:1xZ: **r22's preempted attempt, scouted (exploratory, not the gate; 48 cells, same flags):** wins of 48 at
+  updates 500 / 1,000 / 1,500 / 2,000 = see the line below, against the control E01's 8 / 6 / 10 / 6. The restart is still
+  pending a slot. — coordinator
+  r22 (preempted attempt): **9 / 7 / 7 / 5** of 48 at 500 / 1,000 / 1,500 / 2,000; scores 136.4 / 130.5 / 129.7 / 132.5.
