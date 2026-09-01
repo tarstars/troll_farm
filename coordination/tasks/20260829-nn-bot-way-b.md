@@ -1006,3 +1006,12 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   treatment = r22, control = e01b on the same 144 cells — the one-variable rule holds. Next wake: monitor; on landing,
   retrieve → scouts at 500…2,500 → confirmations at 1,500 / 2,500 → `gate1.py` → the card, the board, chatgpt_1. The owner
   may stop the arm at any time; nothing else was launched. — coordinator
+- 2026-09-01 16:2xZ: **step 4's replication on the host pair — the same verdict.** `ppo-host-h00` (entropy 0) /
+  `ppo-host-h01` (entropy 0.01), same design on this machine (full 31,088-map corpus instead of the cluster's slice;
+  identical within the pair), 2,709 updates each, benched with the same driver and flags after the trainings ended:
+  locked 144-cell panel **h00 18 / 20, h01 23 / 22** at updates 1,500 / 2,500, 0 faults; frozen gate:
+  **`ENTROPY_NOT_CONFIRMED`**, paired effect -0.024 [-0.056, 0.003]; margin 0.1 [-3.4, 3.3]; net cells lost 3 of 6 allowed. Scouts (48): h00 10 / 9 / 9 / 9 / 10, h01
+  7 / 9 / 8 / 6 / 6 — the 48-cell look leans the other way from the 144-cell panel, which is what ±5-win noise looks like.
+  Two platforms, two verdicts, one answer: the entropy bonus does not matter. Files in
+  `local_claude_1/nn-bot/results/entropy-gate-0901/` (`gate1-verdict-host-replication.json`). r22 at update 616 after
+  21 minutes (~1,780 updates/h; expected to land ~17:25Z). — coordinator
