@@ -82,3 +82,10 @@ actions; the messages per the WIP rule.
   claude_1 chartered for the package (the same hour's handoff). — coordinator
 - 2026-09-01 06:4xZ: **the owner adds the review stop**: after the description is done, the card halts for the owner's own
   read and chatgpt_1's cross-review; the implementer starts only on the owner's word after that. — owner/coordinator
+- 2026-09-01 07:5xZ: **the package delivered in 40 minutes and merged (`6fde2e78`)** — 33 files, ~1,000 doc lines, 26 cited
+  observations over 7 matches; the champion ships as a stripped ELF with a 9,502-seat-turn parity proof; two leakage channels
+  found and closed by the author (the NARRATE debug channel; the binary's symbol table) with full disclosure; the
+  determined-vs-undetermined split names the two things replays cannot fix (tree choice, the train trigger). Structural
+  verification by the coordinator: zero `.rs`, the binary a real stripped executable, the citation discipline on page one.
+  **THE CARD IS HALTED per the owner's stop**: chatgpt_1's cross-review chartered (07:45Z); the owner's own read awaited;
+  the implementer exists only on the owner's word after both. — coordinator
