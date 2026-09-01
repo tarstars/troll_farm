@@ -1052,3 +1052,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   32` (lever 2, the longer look-ahead; batch held at 4,096). Start configurations diffed against h01's start event: the
   intended fields and the run name only. Each is read by the same frozen gate against h01 on the same 144 cells when it
   lands (~4–5 h at the host's pace). One variable per pair; nothing else launched. — coordinator
+- 2026-09-01 20:1xZ: **r22's restart COMPLETE on the cluster (20:15Z; 2,709 updates; retrieved, archive sha256
+  `e0528d8f…`; identity re-verified on the retrieved config: the two wood flags and the run name only).** Scout benches
+  (five ages, 48 cells) and confirmations (1,500 / 2,500, the locked 144 cells) launched at nice 19 alongside the two host
+  trainings; the gate reads treatment = r22, control = e01b on the same cells when they land. Host arms at ~1,200 / 1,100
+  of 2,709. — coordinator
