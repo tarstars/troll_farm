@@ -1025,3 +1025,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   does not by itself favour `2 + 2` over `0.5 + 3.5`; the size of the immediate signal does. If r22 moves the gate, the
   environment's default split is the natural second arm; if it does not, the longer rollout is next (the two act on
   different rows). — coordinator
+- 2026-09-01 18:0xZ: **claude_1's lever pricing, third version (16:58Z) — measured in the trainer, ACCEPTED and REPRODUCED.**
+  Two 40-update critic warm-ups on matched arms (actor frozen — plan gradient 0.0 on every update; same games, 54,221 turns
+  both), differing only in the wood split: the reader of record (`credit_path_read.py`, re-run by the coordinator on the
+  pinned logs) says the observed reward's share of the planner's signal is **1.45 % under `0 + 4` and 5.34 % under
+  `2 + 2`** (3.7×), and — the sharper fact — reward enters **23 of 40 updates under `0 + 4` and 40 of 40 under `2 + 2`**:
+  the split turns an intermittent signal into a continuous one. The critic still supplies ~90 % under `2 + 2`. This is the
+  arm r22 is testing; the numbers say why it might work and cannot say whether it does. Branch merged. — coordinator
