@@ -882,3 +882,29 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   platform difference to declare in the Gate-1 handoff: the cluster arms train on the launcher's default one-in-five map
   slice, the host arms on the full 31,088-map corpus — identical within each pair, so neither comparison is affected.
   — coordinator
+- 2026-09-01 12:2xZ: **the bootstrap-noise question is answered, and it is worse than "noisy" — the trained head never
+  sees a reward at all.** New instrument `credit_path_read.py` (4 tests) reads the `rollout_credit` telemetry the Gate-0
+  work added. Over e00's 12,352 updates and 50.6 million rows, and independently over e01's 3,417 updates and 14.0 million:
+  - **PLAN rows: 0 of 16,879,270 carried a terminal event, and 0 ever saw a non-zero reward** — 0 of 12,352 updates had
+    any. Bootstrap share of the target 0.977; the credit trace reaches a real terminal on 1.8 % of rows.
+  - **TROLL rows**: 59,215 of 33,714,522 carried a terminal event (0.176 %), reward on 0.175 %; bootstrap share 0.974.
+  - e01 reproduces every figure to the third decimal, so this is structural, not a sampling accident.
+  **Why it is structural, verified in the trainer**: `--reward-credit executing` (the default, `train_ppo_full.py:1446`)
+  keeps the turn's reward only where `turn_completed == 1` and zeroes the rest; a PLAN mini-step is never the mini-step that
+  executes the turn, so PLAN rows receive reward zero by construction. And under `--train-scope plan-critic` — the winner's
+  stage-4 recipe, the scope every recent run uses — **the plan head is the only actor being trained**: TROLL rows are
+  frozen and excluded from the policy terms. So the full chain of the policy's learning signal is:
+  *outcome → critic (through 0.17 % of rows) → plan head (through nothing else)*. The plan head is optimized entirely
+  against the critic's opinion, and the critic's own targets are 97 % bootstrap — while Gate 0 measured that critic at an
+  explained value of 0.04 against realized returns it logged as 0.6–0.97.
+  **This explains the depth result.** Training longer does not add outcome information to the plan head, because no amount
+  of training changes that its reward channel is empty; it only fits the critic's errors more closely and drifts further
+  from the clone. That is exactly the observed shape — flat training win rate over 50 M steps, bench decaying 9/48 → 2/48
+  with depth, anchor agreement the only thing holding it near the clone.
+  **For step 5 this ranks the levers on evidence rather than taste**: entropy is answered and is not it; the credit path
+  is. The reviewer's ranked item "true long-horizon credit via longer/episodic rollouts" is the one the measurement points
+  at — with the specific, testable form that the plan head needs a reward channel that is not empty (reward credited to the
+  PLAN row that owns the turn, or episodic returns, or a rollout long enough that the 32-mini-step buffer stops cutting
+  99.98 % of traces before any terminal). A bare λ=1 under the current buffer remains excluded, as the frozen text says.
+  Not proposed as a build: this goes to the reviewer with the Gate-1 verdict, and the design change is spec'd and reviewed
+  before anything is written. — coordinator
