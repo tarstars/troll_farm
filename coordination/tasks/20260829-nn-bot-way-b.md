@@ -816,3 +816,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   from the clone, as configured, is monotonically destructive at every measured depth — the family is closed as evidence,
   not just suspended. What remains live: the staged line (i2's fresh seed grinding), and Stage 1's E01/E00 pair (~11:00Z
   verdict under the frozen gate). — coordinator
+- 2026-09-01 02:2xZ: **a second pool preemption (~02:00Z) restarted `e01` and `i2` from scratch while `e00` kept running**
+  (37.0 M). The paired design survives — the gate compares the arms at fixed updates, and a same-seed restart replays the
+  same trajectory — but the wall-clock slips: `e00` completes ~08:00Z, `e01` ~17:30Z, **the Gate-1 verdict moves to ~18:00Z
+  09-01**. The pool's preemption weather is now the schedule's main noise; nothing to fix (salvage covers ends, budgets are
+  consistent), only to note. — coordinator
