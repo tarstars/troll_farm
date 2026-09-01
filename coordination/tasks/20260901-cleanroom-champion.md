@@ -111,3 +111,10 @@ actions; the messages per the WIP rule.
   all 40,458 recorded turns replay through referee.py with nothing left but the random tie-break and one platform timeout;
   parity 9,502/0; the mirror baseline identical before and after. Still open: chatgpt_1's cross-review (now of the corrected
   pin), the owner's own read, the implementer on the owner's word. — coordinator
+- 2026-09-01 10:1xZ: **the owner's read of the behaviour document: "too fine details … the main idea is to reproduce the bot
+  from scratch and create a more compact and logical implementation; details like the order of seeds already make code
+  bulkier" → "do it".** `CHAMPION-BEHAVIOUR.md` restructured: Part I = one page, ten principles each with its reason and a
+  mark ESSENTIAL (carries score) / HABIT (free) / NOT DETERMINED (the implementer's judgement); Part II = the whole evidence
+  base unchanged (every count, table and citation, now an appendix for audit and the refinement loop). The seed-order table
+  becomes one sort key ("cheapest sapling first"); the README now says habits are not the specification and strength is
+  measured on the harness, not by resemblance. No number changed. — coordinator

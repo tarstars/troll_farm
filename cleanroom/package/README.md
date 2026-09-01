@@ -6,7 +6,7 @@ Everything you need is in this directory. Read it in this order.
 |------|-----------|
 | **`RULES.md`** | the game, completely — what the referee does, as physics |
 | **`CONSTRAINTS.md`** | what the platform will and will not accept: one file, size, time, seats |
-| **`CHAMPION-BEHAVIOUR.md`** | what an existing strong bot is *observed* to do, measured over 160 real matches, every rule with a game observation behind it |
+| **`CHAMPION-BEHAVIOUR.md`** | what an existing strong bot does and *why*: Part I is one page of principles, each marked essential / habit / not determined — build from that; Part II is the evidence, every count and match citation, measured over 160 real matches — check against that |
 | **`DOMAIN.md`** | what has been learned about this game the expensive way, with the evidence level of each line |
 | `champion-purchases.json` | data behind `CHAMPION-BEHAVIOUR.md` §4: for each of the 160 matches, the shack on every turn up to the moment the bot bought its second worker, and what it bought — for fitting your own rule where the document has none |
 | **`harness/`** | the existing bot as an executable, 24 frozen real starting positions, a referee, and the acceptance ladder |
@@ -24,9 +24,12 @@ until your bot plays 48 of 48 legal, complete matches.
 
 ## Two things worth knowing before you start
 
-**`CHAMPION-BEHAVIOUR.md` describes a bot, not the best bot.** `DOMAIN.md` §1.3 records the
-largest known gap between it and the strongest players on the ladder, and it is a gap the
-described bot does not close. You are not required to copy what it does.
+**`CHAMPION-BEHAVIOUR.md` describes a bot, not the best bot, and its habits are not your
+specification.** Its Part I marks what carries score and what is merely habit; copy the first,
+decide the second. A leaner bot of equal strength is the hope of this experiment, and equal
+strength is measured on the harness, not by resemblance. `DOMAIN.md` §1.3 records the largest
+known gap between it and the strongest players on the ladder, and it is a gap the described bot
+does not close.
 
 **Where a document does not know something, it says so.** Two of the described bot's rules are
 marked as *not determined by the evidence* rather than guessed at. Those are the places where
