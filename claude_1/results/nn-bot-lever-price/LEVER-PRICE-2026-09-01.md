@@ -83,10 +83,68 @@ scattered through the game. Lever 2 extends how far a trace reaches, which only 
 near an ending. Neither one subsumes the other, and running one first costs nothing that the
 other needs.
 
+## The matched in-trainer measurement — the limitation above, removed
+
+The section below was written before this one and says a comparable share needs a warmed critic,
+"which is a training run, which is what the arm itself would do". That was half right: it needs a
+critic **warm-up**, which is not the arm. The actor never moves during warm-up, so no policy is
+trained, nothing is benched and no gate is touched. Two warm-ups were run on this host at nice 19,
+identical in every argument **except the two wood flags**:
+
+```sh
+train_ppo_full.py --env full --maps local_claude_1/nn-bot/maps-slice-1000.jsonl \
+  --initial-checkpoint <clone> --anchor-checkpoint <clone> --frozen-checkpoint <clone> \
+  --opponent-weights '{"champion_exact":1}' --train-scope plan-critic \
+  --gamma 0.999 --gae-lambda 0.95 --critic-warmup-updates 300 --total-turn-steps 163840 \
+  --num-envs 128 --rollout-steps 32 --threads 14 --seed 909 \
+  --wood-shaping {0.0|2.0} --end-wood {4.0|2.0}
+```
+
+Both stayed in `phase: critic-warmup` for all 40 updates with `plan_grad_norm_pre_clip` 0.0 on
+every one — the actor is frozen, verifiably. **The two arms played the same games:** all 40 updates
+agree exactly on turns completed (54,221) and on row counts, so the reward is the only thing that
+moved. The numbers are read by `credit_path_read.py`, the reader of record.
+
+| | `0 + 4` (of record) | `2 + 2` (lever 1) | factor |
+|---|---|---|---|
+| **plan** reward share of the signal | **1.45 %** | **5.34 %** | **3.7×** |
+| updates carrying any reward | 23 of 40 | **40 of 40** | — |
+| **troll** reward share of the signal | 1.68 % | 6.23 % | 3.7× |
+| critic's bootstrap share of the target | 0.986 | 0.901 | — |
+| trace reaches a real ending | 0.0097 | 0.0097 | 1.0× (control) |
+
+The `0+4` figure of 1.45 % sits beside the **2.32 % of record**, which calibrates this run too (it
+is 40 early updates, not a whole run). The trace-reach term is identical to four decimals across
+the arms, as it must be for the same games — a control that came out right.
+
+**Per update, the difference is not a level shift but a change in kind:**
+
+| update | `0+4` | `2+2` |
+|---|---|---|
+| 1 | 0.00 % | 0.69 % |
+| 10 | 0.00 % | 2.46 % |
+| 20 | 2.28 % | 9.04 % |
+| 30 | **0.00 %** | 6.24 % |
+| 40 | **0.11 %** | **28.63 %** |
+
+Under `0+4` the observed reward **flickers**: it is exactly zero for the first eleven updates, and
+still collapses to zero at update 30 and to 0.11 % at update 40. It appears only when a game
+happens to end inside a 32-mini-step buffer and vanishes again when none does. Under `2+2` reward
+is present in **every** update and its share climbs steadily to 28.6 %. That is the finding: the
+split does not merely add signal, it makes the signal *continuous* instead of intermittent.
+
+**What this still does not say.** Whether a larger and steadier observed-reward share produces a
+better *policy* is exactly what the arm and its frozen gate decide, and nothing here substitutes
+for that. This is 40 updates of critic warm-up with the actor frozen — a measurement of the
+learning signal, not of learning. It also does not rank lever 1 against lever 2; the two act on
+different rows, and only lever 1 could be measured this way, because lever 2 changes the buffer
+geometry rather than the reward.
+
 ## What this measurement cannot say
 
-**The share-of-signal number is not comparable to the 2.32 % of record, and is not reported as a
-headline.** The reason is measured, not guessed: the clone's value head returns |V| ≈ 0.79 on
+**Priced at the cold clone, the share-of-signal number is not comparable to the 2.32 % of record**
+(the matched warm-up above is what makes it comparable; this paragraph explains why the offline
+instrument alone could not). The reason is measured, not guessed: the clone's value head returns |V| ≈ 0.79 on
 average (max 1.42) while a terminal reward is about 75. The runs of record had a critic warmed up
 for 300 updates, whose outputs are on the scale of the returns, which is exactly why its component
 dominates there. Priced at the clone the ratio inverts, and it would say nothing about a run in
