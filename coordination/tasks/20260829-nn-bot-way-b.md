@@ -937,3 +937,22 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the whole remaining recipe from retrieve to verdict, the four instruments built today with what each pins, the three
   results (entropy null / depth harmful / the credit path at 2.3 % with my correction in full), the fix menu awaiting the
   owner's choice, Track C halted for the two reviews, and the standing constraints. — coordinator
+- 2026-09-01 11:0xZ: **step 4 — both cluster arms COMPLETE, retrieved, the training-side read done; the benches are
+  running.** `ppo-yt-e00b` (entropy 0) finished 2,709 updates in 1.90 h, `ppo-yt-e01b` (entropy 0.01) in 1.76 h — no
+  preemption this time; twelve checkpoints each (updates 250 … 2,500 and 2,709) under
+  `yt_work/ppo/ppo-yt-{e00b,e01b}-output/extracted/outputs/` (archive sha256 `175c656e…` / `f33560ba…`). **Identity
+  verified from the retrieved run configs: the two trainer argument lists differ at exactly two positions — `entropy_coef`
+  (`0.0` vs `0.01`) and the run name — same seed 41, same budget (11,100,000 turn-steps = 2,709 updates of 4,096), same
+  clone `checkpoints/clone.pt`, same map slice, same library, same 64-core class.** The clone they started from and are
+  anchored to is `/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt`, sha `970097ed…`, confirmed by hash.
+  **Training-side read (`entropy_log_read.py`, 250-update blocks, 11 blocks over the full 2,709 shared updates;
+  `/home/tarstars/nn-data/bench-0901/entropy-log-read-cluster.json`):** the bonus raises entropy by **+0.068
+  [0.051, 0.083]** — the knob works — and buys nothing: win rate on−off **+0.004 [−0.004, +0.011]**, referee margin
+  **−0.02 [−0.56, +0.52]**, both straddling zero; anchor agreement 0.985 vs 0.980. **Replicated on the host pair** at its
+  1,753 shared updates (8 blocks): entropy +0.064 [0.038, 0.094], win rate +0.0006 [−0.006, +0.007], margin +0.25
+  [−0.50, +1.03]. This is evidence, not the gate. **Benches running on this host at nice 19** (the two trainings keep
+  priority; 20 cores, load ~25): the scouts for both cluster arms at updates 500/1,000/1,500/2,000/2,500 on the 48-cell
+  panel (`bench_ages.py`, one job per arm, two threads each), and the clone on the locked 144-cell panel (one thread) for
+  the gate's non-inferiority term — none existed. First attempt of all three failed in a minute: `bench.py` was run with the
+  system Python, which has no PyTorch; relaunched with the math venv's Python (`--python`). Next: the confirmations at
+  1,500 and 2,500 on the locked panel for both arms, then `gate1.py`. — coordinator
