@@ -1,0 +1,153 @@
+{
+  "argv": [
+    "--clone",
+    "local_claude_1/nn-bot/results/clone-2026-08-30-a/clone-pilot.pt",
+    "--maps",
+    "local_claude_1/nn-bot/maps-slice-1000.jsonl",
+    "--num-envs",
+    "64",
+    "--seed",
+    "911",
+    "--burn-in",
+    "896",
+    "--steps",
+    "1024",
+    "--split",
+    "0+4",
+    "--split",
+    "2+2",
+    "--split",
+    "0.5+3.5",
+    "--window",
+    "32",
+    "--window",
+    "128",
+    "--threads",
+    "8",
+    "--out",
+    "/data/separate_troll_farm-working/tmp/lever-price-seed911.json"
+  ],
+  "clone_sha256": "970097ed0842463b7ef5a4c08831d47ecc4e28397a52cadcc66d688e2a085109",
+  "collect_seconds": 128.92528358101845,
+  "episode_endings": 84,
+  "schema": "troll-farm-lever-price-v1",
+  "settings": {
+    "burn_in": 896,
+    "gae_lambda": 0.95,
+    "gamma": 0.999,
+    "num_envs": 64,
+    "opponent": "champion_exact",
+    "reward_credit": "executing",
+    "seed": 911,
+    "steps": 1024,
+    "train_scope": "plan-critic"
+  },
+  "splits": {
+    "0+4": {
+      "identical_game": true,
+      "nonzero_reward_rows": 84,
+      "reward_abs_sum": 6053.0,
+      "windows": {
+        "128": {
+          "plan": {
+            "critic_share": 0.2210075795274592,
+            "observed_reward_share": 0.7789924204725408,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.04853330853981684
+          },
+          "troll": {
+            "critic_share": 0.20245174855004328,
+            "observed_reward_share": 0.7975482514499567,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.05331061896649631
+          }
+        },
+        "32": {
+          "plan": {
+            "critic_share": 0.468997227143214,
+            "observed_reward_share": 0.531002772856786,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.01101761889265957
+          },
+          "troll": {
+            "critic_share": 0.4186290479704284,
+            "observed_reward_share": 0.5813709520295717,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.013492333901192505
+          }
+        }
+      }
+    },
+    "0.5+3.5": {
+      "identical_game": true,
+      "nonzero_reward_rows": 1764,
+      "reward_abs_sum": 6243.0,
+      "windows": {
+        "128": {
+          "plan": {
+            "critic_share": 0.20471050671604893,
+            "observed_reward_share": 0.795289493283951,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.04853330853981684
+          },
+          "troll": {
+            "critic_share": 0.18783982538032198,
+            "observed_reward_share": 0.812160174619678,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.05331061896649631
+          }
+        },
+        "32": {
+          "plan": {
+            "critic_share": 0.43912606201442117,
+            "observed_reward_share": 0.5608739379855788,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.01101761889265957
+          },
+          "troll": {
+            "critic_share": 0.3921333029126624,
+            "observed_reward_share": 0.6078666970873376,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.013492333901192505
+          }
+        }
+      }
+    },
+    "2+2": {
+      "identical_game": true,
+      "nonzero_reward_rows": 1764,
+      "reward_abs_sum": 7269.0,
+      "windows": {
+        "128": {
+          "plan": {
+            "critic_share": 0.16091839089479534,
+            "observed_reward_share": 0.8390816091052047,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.04853330853981684
+          },
+          "troll": {
+            "critic_share": 0.14813968925152546,
+            "observed_reward_share": 0.8518603107484746,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.05331061896649631
+          }
+        },
+        "32": {
+          "plan": {
+            "critic_share": 0.36136626496740376,
+            "observed_reward_share": 0.6386337350325962,
+            "rows": 21511,
+            "terminal_traced_fraction": 0.01101761889265957
+          },
+          "troll": {
+            "critic_share": 0.32168443484006104,
+            "observed_reward_share": 0.678315565159939,
+            "rows": 44025,
+            "terminal_traced_fraction": 0.013492333901192505
+          }
+        }
+      }
+    }
+  },
+  "turns_completed": 21512
+}
