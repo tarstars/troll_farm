@@ -1,0 +1,168 @@
+{
+ "height": 10,
+ "inventories": [
+  [
+   3,
+   7,
+   2,
+   5,
+   3,
+   0
+  ],
+  [
+   3,
+   7,
+   2,
+   5,
+   3,
+   0
+  ]
+ ],
+ "map_id": "m900571395",
+ "rows": [
+  "........#..~~~.#....",
+  ".............~......",
+  "..................~.",
+  "......#.........+.~.",
+  "~~..0.............~.",
+  ".~.............1..~~",
+  ".~.+.........#......",
+  ".~..................",
+  "......~.............",
+  "....#.~~~..#........"
+ ],
+ "source": "starting state of ranked match 900571395",
+ "trees": [
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 4,
+   "y": 0
+  },
+  {
+   "cooldown": 7,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 17,
+   "y": 0
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 1,
+   "y": 2
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 5,
+   "y": 2
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 15,
+   "y": 3
+  },
+  {
+   "cooldown": 4,
+   "fruits": 3,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 16,
+   "y": 4
+  },
+  {
+   "cooldown": 4,
+   "fruits": 3,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 3,
+   "y": 5
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 4,
+   "y": 6
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 14,
+   "y": 7
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 18,
+   "y": 7
+  },
+  {
+   "cooldown": 7,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 2,
+   "y": 9
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 15,
+   "y": 9
+  }
+ ],
+ "trolls": [
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 0,
+   "ms": 1,
+   "player": 0,
+   "x": 4,
+   "y": 4
+  },
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 1,
+   "ms": 1,
+   "player": 1,
+   "x": 15,
+   "y": 5
+  }
+ ],
+ "width": 20
+}

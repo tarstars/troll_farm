@@ -1,0 +1,223 @@
+{
+ "height": 11,
+ "inventories": [
+  [
+   7,
+   3,
+   3,
+   3,
+   2,
+   0
+  ],
+  [
+   7,
+   3,
+   3,
+   3,
+   2,
+   0
+  ]
+ ],
+ "map_id": "m900571749",
+ "rows": [
+  "......#......~#.......",
+  "+#..........~~~....#..",
+  "...........~~~........",
+  "..........~~~~~.......",
+  "......0.#..~..#+......",
+  ".....#..#....#..#.....",
+  "......+#..~..#.1......",
+  ".......~~~~~..........",
+  "........~~~...........",
+  "..#....~~~..........#+",
+  ".......#~......#......"
+ ],
+ "source": "starting state of ranked match 900571749",
+ "trees": [
+  {
+   "cooldown": 2,
+   "fruits": 1,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 8,
+   "y": 0
+  },
+  {
+   "cooldown": 8,
+   "fruits": 2,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 9,
+   "y": 0
+  },
+  {
+   "cooldown": 4,
+   "fruits": 0,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 15,
+   "y": 0
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 18,
+   "y": 0
+  },
+  {
+   "cooldown": 3,
+   "fruits": 0,
+   "health": 6,
+   "size": 1,
+   "type": "LEMON",
+   "x": 10,
+   "y": 2
+  },
+  {
+   "cooldown": 5,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 20,
+   "y": 3
+  },
+  {
+   "cooldown": 2,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 10,
+   "y": 4
+  },
+  {
+   "cooldown": 2,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 12,
+   "y": 4
+  },
+  {
+   "cooldown": 1,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 20,
+   "y": 4
+  },
+  {
+   "cooldown": 1,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 1,
+   "y": 6
+  },
+  {
+   "cooldown": 2,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 9,
+   "y": 6
+  },
+  {
+   "cooldown": 2,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 11,
+   "y": 6
+  },
+  {
+   "cooldown": 5,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 1,
+   "y": 7
+  },
+  {
+   "cooldown": 3,
+   "fruits": 0,
+   "health": 6,
+   "size": 1,
+   "type": "LEMON",
+   "x": 11,
+   "y": 8
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 3,
+   "y": 10
+  },
+  {
+   "cooldown": 4,
+   "fruits": 0,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 6,
+   "y": 10
+  },
+  {
+   "cooldown": 8,
+   "fruits": 2,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 12,
+   "y": 10
+  },
+  {
+   "cooldown": 2,
+   "fruits": 1,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 13,
+   "y": 10
+  }
+ ],
+ "trolls": [
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 0,
+   "ms": 1,
+   "player": 0,
+   "x": 6,
+   "y": 4
+  },
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 1,
+   "ms": 1,
+   "player": 1,
+   "x": 15,
+   "y": 6
+  }
+ ],
+ "width": 22
+}
