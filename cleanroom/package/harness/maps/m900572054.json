@@ -1,0 +1,169 @@
+{
+ "height": 11,
+ "inventories": [
+  [
+   5,
+   10,
+   5,
+   2,
+   8,
+   0
+  ],
+  [
+   5,
+   10,
+   5,
+   2,
+   8,
+   0
+  ]
+ ],
+ "map_id": "m900572054",
+ "rows": [
+  "~~~.............~~.#..",
+  "..~.............~~....",
+  "...............~~.....",
+  ".+.............~......",
+  ".....~~.0......~~.....",
+  ".....~~........~~.....",
+  ".....~~......1.~~.....",
+  "......~.............+.",
+  ".....~~...............",
+  "....~~.............~..",
+  "..#.~~.............~~~"
+ ],
+ "source": "starting state of ranked match 900572054",
+ "trees": [
+  {
+   "cooldown": 7,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 13,
+   "y": 0
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 4,
+   "y": 1
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 6,
+   "size": 1,
+   "type": "PLUM",
+   "x": 21,
+   "y": 2
+  },
+  {
+   "cooldown": 3,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 9,
+   "y": 3
+  },
+  {
+   "cooldown": 5,
+   "fruits": 0,
+   "health": 5,
+   "size": 3,
+   "type": "BANANA",
+   "x": 21,
+   "y": 3
+  },
+  {
+   "cooldown": 1,
+   "fruits": 1,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 1,
+   "y": 5
+  },
+  {
+   "cooldown": 1,
+   "fruits": 1,
+   "health": 20,
+   "size": 4,
+   "type": "APPLE",
+   "x": 20,
+   "y": 5
+  },
+  {
+   "cooldown": 5,
+   "fruits": 0,
+   "health": 5,
+   "size": 3,
+   "type": "BANANA",
+   "x": 0,
+   "y": 7
+  },
+  {
+   "cooldown": 3,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 12,
+   "y": 7
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 6,
+   "size": 1,
+   "type": "PLUM",
+   "x": 0,
+   "y": 8
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 17,
+   "y": 9
+  },
+  {
+   "cooldown": 7,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "PLUM",
+   "x": 8,
+   "y": 10
+  }
+ ],
+ "trolls": [
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 0,
+   "ms": 1,
+   "player": 0,
+   "x": 8,
+   "y": 4
+  },
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 1,
+   "ms": 1,
+   "player": 1,
+   "x": 13,
+   "y": 6
+  }
+ ],
+ "width": 22
+}

@@ -1,0 +1,823 @@
+{
+ "chop": {
+  "natural_trees_by_size": {
+   "1": 142,
+   "2": 285,
+   "3": 327,
+   "4": 12217
+  },
+  "self_planted_trees_by_size": {
+   "1": 5536,
+   "2": 636,
+   "3": 157,
+   "4": 335
+  }
+ },
+ "corpus": {
+  "games": 160,
+  "map_heights": {
+   "8": 33,
+   "9": 43,
+   "10": 45,
+   "11": 39
+  },
+  "seat_0": 77,
+  "seat_1": 83,
+  "turn_lengths": {
+   "full_300": 73,
+   "max": 300,
+   "min": 81
+  }
+ },
+ "drop": {
+  "at_exactly_full_capacity": 4371,
+  "below_capacity": 800,
+  "carry_over_capacity": {
+   "1/1": 2538,
+   "1/2": 622,
+   "1/3": 149,
+   "2/2": 1395,
+   "2/3": 29,
+   "3/3": 438
+  },
+  "citations": [
+   {
+    "capacity": 1,
+    "carrying": 1,
+    "game": 900571119,
+    "troll": 1,
+    "turn": 5
+   },
+   {
+    "capacity": 1,
+    "carrying": 1,
+    "game": 900571119,
+    "troll": 1,
+    "turn": 9
+   },
+   {
+    "capacity": 1,
+    "carrying": 1,
+    "game": 900571119,
+    "troll": 1,
+    "turn": 15
+   },
+   {
+    "capacity": 2,
+    "carrying": 2,
+    "game": 900571119,
+    "troll": 3,
+    "turn": 24
+   },
+   {
+    "capacity": 1,
+    "carrying": 1,
+    "game": 900571119,
+    "troll": 1,
+    "turn": 31
+   },
+   {
+    "capacity": 2,
+    "carrying": 2,
+    "game": 900571119,
+    "troll": 3,
+    "turn": 35
+   }
+  ]
+ },
+ "early_earning": {
+  "games_with_any_harvest": 63,
+  "games_with_any_mine": 52,
+  "games_with_both": 12,
+  "games_with_neither": 57,
+  "harvest_turn_max": 295,
+  "mine_turn_max": 14
+ },
+ "move_is_one_step": {
+  "bfs_distance_to_move_target": {
+   "1": 27735,
+   "2": 9987,
+   "3": 2421
+  },
+  "citations": [
+   {
+    "bfs_distance": 1,
+    "from": [
+     11,
+     2
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     11,
+     3
+    ],
+    "troll": 1,
+    "turn": 1
+   },
+   {
+    "bfs_distance": 1,
+    "from": [
+     11,
+     3
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     12,
+     3
+    ],
+    "troll": 1,
+    "turn": 2
+   },
+   {
+    "bfs_distance": 1,
+    "from": [
+     12,
+     3
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     12,
+     2
+    ],
+    "troll": 1,
+    "turn": 4
+   },
+   {
+    "bfs_distance": 1,
+    "from": [
+     12,
+     2
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     12,
+     3
+    ],
+    "troll": 1,
+    "turn": 6
+   },
+   {
+    "bfs_distance": 1,
+    "from": [
+     12,
+     3
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     12,
+     2
+    ],
+    "troll": 1,
+    "turn": 8
+   },
+   {
+    "bfs_distance": 1,
+    "from": [
+     12,
+     2
+    ],
+    "game": 900571119,
+    "speed": 1,
+    "to": [
+     12,
+     3
+    ],
+    "troll": 1,
+    "turn": 10
+   }
+  ],
+  "target_exactly_at_speed": 38149,
+  "target_short_of_speed": 1994
+ },
+ "outcome": {
+  "final_shack_mean": {
+   "APPLE": 2.36,
+   "BANANA": 0.55,
+   "IRON": 0.74,
+   "LEMON": 0.16,
+   "PLUM": 0.19,
+   "WOOD": 45.07
+  },
+  "score_mean": 183.5,
+  "score_median": 181.0,
+  "wood_share_of_score": 0.982
+ },
+ "pick": {
+  "choice_given_what_the_shack_held": {
+   "APPLE": {
+    "APPLE": 439
+   },
+   "APPLE+BANANA": {
+    "APPLE": 1,
+    "BANANA": 257
+   },
+   "LEMON+APPLE": {
+    "APPLE": 1,
+    "LEMON": 130
+   },
+   "LEMON+APPLE+BANANA": {
+    "BANANA": 202,
+    "LEMON": 2
+   },
+   "PLUM+APPLE": {
+    "APPLE": 2,
+    "PLUM": 68
+   },
+   "PLUM+APPLE+BANANA": {
+    "BANANA": 208,
+    "PLUM": 1
+   },
+   "PLUM+LEMON+APPLE": {
+    "LEMON": 3,
+    "PLUM": 65
+   },
+   "PLUM+LEMON+APPLE+BANANA": {
+    "BANANA": 240,
+    "PLUM": 4
+   }
+  },
+  "citations": [
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     7
+    ],
+    "took": "BANANA",
+    "turn": 259
+   },
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     6
+    ],
+    "took": "BANANA",
+    "turn": 264
+   },
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     5
+    ],
+    "took": "BANANA",
+    "turn": 265
+   },
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     4
+    ],
+    "took": "BANANA",
+    "turn": 269
+   },
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     3
+    ],
+    "took": "BANANA",
+    "turn": 271
+   },
+   {
+    "game": 900571119,
+    "shack_had": [
+     2,
+     0,
+     7,
+     2
+    ],
+    "took": "BANANA",
+    "turn": 274
+   }
+  ]
+ },
+ "plant": {
+  "citations": [
+   {
+    "cell": [
+     11,
+     3
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 3,
+    "turn": 260
+   },
+   {
+    "cell": [
+     11,
+     3
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 3,
+    "turn": 265
+   },
+   {
+    "cell": [
+     10,
+     2
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 1,
+    "turn": 266
+   },
+   {
+    "cell": [
+     11,
+     3
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 3,
+    "turn": 270
+   },
+   {
+    "cell": [
+     10,
+     2
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 1,
+    "turn": 272
+   },
+   {
+    "cell": [
+     11,
+     3
+    ],
+    "game": 900571119,
+    "shack": [
+     11,
+     2
+    ],
+    "species": "BANANA",
+    "troll": 3,
+    "turn": 275
+   }
+  ],
+  "manhattan_distance_from_own_shack": {
+   "1": 1621,
+   "2": 1
+  }
+ },
+ "seed_loop_trigger": {
+  "before_turn_251": {
+   "games": 102,
+   "trees_alive_max": 4,
+   "trees_alive_median": 2.0,
+   "turn_median": 145.5,
+   "turn_min": 41
+  },
+  "citations": [
+   {
+    "game": 900571119,
+    "trees_alive": 24,
+    "trees_at_start": 16,
+    "turn": 259
+   },
+   {
+    "game": 900571120,
+    "trees_alive": 1,
+    "trees_at_start": 14,
+    "turn": 254
+   },
+   {
+    "game": 900571121,
+    "trees_alive": 2,
+    "trees_at_start": 14,
+    "turn": 257
+   },
+   {
+    "game": 900571122,
+    "trees_alive": 6,
+    "trees_at_start": 18,
+    "turn": 253
+   },
+   {
+    "game": 900571123,
+    "trees_alive": 23,
+    "trees_at_start": 20,
+    "turn": 252
+   },
+   {
+    "game": 900571125,
+    "trees_alive": 2,
+    "trees_at_start": 16,
+    "turn": 176
+   },
+   {
+    "game": 900571126,
+    "trees_alive": 3,
+    "trees_at_start": 20,
+    "turn": 252
+   },
+   {
+    "game": 900571127,
+    "trees_alive": 7,
+    "trees_at_start": 20,
+    "turn": 267
+   }
+  ],
+  "from_turn_251": {
+   "games": 50,
+   "trees_alive_max": 24,
+   "trees_alive_median": 8.0,
+   "turn_max": 267,
+   "turn_min": 251
+  },
+  "games_with_a_pick": 152
+ },
+ "target_choice": {
+  "citations": [
+   {
+    "chop_turns": 12,
+    "chopped_turn": 57,
+    "game": 900571119,
+    "left_turn": 53,
+    "tree": [
+     7,
+     3
+    ],
+    "troll": 1,
+    "walk_turns": 4
+   },
+   {
+    "chop_turns": 6,
+    "chopped_turn": 109,
+    "game": 900571119,
+    "left_turn": 101,
+    "tree": [
+     4,
+     0
+    ],
+    "troll": 1,
+    "walk_turns": 8
+   },
+   {
+    "chop_turns": 6,
+    "chopped_turn": 251,
+    "game": 900571119,
+    "left_turn": 245,
+    "tree": [
+     6,
+     4
+    ],
+    "troll": 1,
+    "walk_turns": 6
+   },
+   {
+    "chop_turns": 6,
+    "chopped_turn": 28,
+    "game": 900571119,
+    "left_turn": 25,
+    "tree": [
+     11,
+     4
+    ],
+    "troll": 3,
+    "walk_turns": 3
+   },
+   {
+    "chop_turns": 6,
+    "chopped_turn": 51,
+    "game": 900571119,
+    "left_turn": 48,
+    "tree": [
+     9,
+     4
+    ],
+    "troll": 3,
+    "walk_turns": 3
+   },
+   {
+    "chop_turns": 6,
+    "chopped_turn": 78,
+    "game": 900571119,
+    "left_turn": 74,
+    "tree": [
+     8,
+     4
+    ],
+    "troll": 3,
+    "walk_turns": 4
+   }
+  ],
+  "extra_walking_turns_over_the_nearest_tree": {
+   "0": 1277,
+   "1": 586,
+   "2": 432,
+   "3": 208,
+   "4": 137,
+   "5": 80,
+   "6": 53,
+   "7": 27,
+   "8": 71
+  },
+  "journeys": 2871,
+  "top1_percent": {
+   "biggest tree first": 24.9,
+   "fewest turns to wood": 39.7,
+   "most wood per turn": 32.3,
+   "nearest": 32.8
+  },
+  "top3_percent": {
+   "biggest tree first": 54.8,
+   "fewest turns to wood": 82.0,
+   "most wood per turn": 66.7,
+   "nearest": 74.9
+  }
+ },
+ "train": {
+  "citations": [
+   {
+    "game": 900571119,
+    "shack": [
+     4,
+     5,
+     8,
+     7,
+     5,
+     0
+    ],
+    "talents": [
+     1,
+     2,
+     0,
+     2
+    ],
+    "turn": 16
+   },
+   {
+    "game": 900571120,
+    "shack": [
+     5,
+     5,
+     10,
+     4,
+     7,
+     0
+    ],
+    "talents": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "turn": 14
+   },
+   {
+    "game": 900571121,
+    "shack": [
+     5,
+     8,
+     7,
+     6,
+     3,
+     0
+    ],
+    "talents": [
+     2,
+     2,
+     0,
+     1
+    ],
+    "turn": 16
+   },
+   {
+    "game": 900571122,
+    "shack": [
+     2,
+     10,
+     3,
+     6,
+     3,
+     0
+    ],
+    "talents": [
+     1,
+     3,
+     0,
+     1
+    ],
+    "turn": 14
+   },
+   {
+    "game": 900571123,
+    "shack": [
+     7,
+     3,
+     5,
+     9,
+     6,
+     0
+    ],
+    "talents": [
+     2,
+     1,
+     0,
+     2
+    ],
+    "turn": 1
+   },
+   {
+    "game": 900571124,
+    "shack": [
+     4,
+     10,
+     4,
+     9,
+     8,
+     0
+    ],
+    "talents": [
+     1,
+     3,
+     0,
+     2
+    ],
+    "turn": 32
+   },
+   {
+    "game": 900571125,
+    "shack": [
+     9,
+     5,
+     9,
+     3,
+     5,
+     0
+    ],
+    "talents": [
+     2,
+     2,
+     0,
+     2
+    ],
+    "turn": 22
+   },
+   {
+    "game": 900571126,
+    "shack": [
+     6,
+     7,
+     2,
+     9,
+     10,
+     0
+    ],
+    "talents": [
+     2,
+     2,
+     0,
+     3
+    ],
+    "turn": 1
+   }
+  ],
+  "commands_total": 160,
+  "fired_on_first_turn_its_bundle_was_affordable": 159,
+  "games": 160,
+  "harvest_talent_always_zero": true,
+  "matches_best_affordable_rule": 160,
+  "talents": {
+   "[1, 1, 0, 2]": 4,
+   "[1, 2, 0, 1]": 6,
+   "[1, 2, 0, 2]": 13,
+   "[1, 2, 0, 3]": 6,
+   "[1, 3, 0, 1]": 1,
+   "[1, 3, 0, 2]": 5,
+   "[2, 1, 0, 1]": 4,
+   "[2, 1, 0, 2]": 11,
+   "[2, 1, 0, 3]": 6,
+   "[2, 2, 0, 1]": 8,
+   "[2, 2, 0, 2]": 21,
+   "[2, 2, 0, 3]": 24,
+   "[2, 3, 0, 1]": 2,
+   "[2, 3, 0, 2]": 12,
+   "[2, 3, 0, 3]": 5,
+   "[3, 2, 0, 1]": 3,
+   "[3, 2, 0, 2]": 11,
+   "[3, 2, 0, 3]": 7,
+   "[3, 3, 0, 2]": 5,
+   "[3, 3, 0, 3]": 6
+  },
+  "trolls_before_always_one": true,
+  "turn": {
+   "max": 35,
+   "median": 9.0,
+   "min": 1
+  }
+ },
+ "verbs": {
+  "CHOP": 26149,
+  "DROP": 5171,
+  "HARVEST": 130,
+  "MINE": 130,
+  "MOVE": 40143,
+  "PICK": 1623,
+  "PLANT": 1622,
+  "TRAIN": 160,
+  "WAIT": 4513
+ },
+ "verbs_by_50_turn_band": {
+  "1-50": {
+   "CHOP": 5667,
+   "DROP": 1041,
+   "HARVEST": 127,
+   "MINE": 130,
+   "MOVE": 7517,
+   "PICK": 5,
+   "PLANT": 5,
+   "TRAIN": 160,
+   "WAIT": 73
+  },
+  "101-150": {
+   "CHOP": 4445,
+   "DROP": 877,
+   "MOVE": 9043,
+   "PICK": 258,
+   "PLANT": 250,
+   "WAIT": 431
+  },
+  "151-200": {
+   "CHOP": 4090,
+   "DROP": 850,
+   "MOVE": 7172,
+   "PICK": 345,
+   "PLANT": 348,
+   "WAIT": 797
+  },
+  "201-250": {
+   "CHOP": 3214,
+   "DROP": 653,
+   "MOVE": 5560,
+   "PICK": 251,
+   "PLANT": 255,
+   "WAIT": 1193
+  },
+  "251-300": {
+   "CHOP": 3279,
+   "DROP": 883,
+   "HARVEST": 3,
+   "MOVE": 1490,
+   "PICK": 707,
+   "PLANT": 710,
+   "WAIT": 1858
+  },
+  "51-100": {
+   "CHOP": 5454,
+   "DROP": 867,
+   "MOVE": 9361,
+   "PICK": 57,
+   "PLANT": 54,
+   "WAIT": 161
+  }
+ },
+ "wait": {
+  "no trees left / not on a tree": 1436,
+  "trees remain / not on a tree": 2217,
+  "trees remain / standing on a tree": 860
+ }
+}

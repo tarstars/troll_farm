@@ -1,0 +1,32 @@
+# Build a bot for this game
+
+Everything you need is in this directory. Read it in this order.
+
+| file | what it is |
+|------|-----------|
+| **`RULES.md`** | the game, completely — what the referee does, as physics |
+| **`CONSTRAINTS.md`** | what the platform will and will not accept: one file, size, time, seats |
+| **`CHAMPION-BEHAVIOUR.md`** | what an existing strong bot is *observed* to do, measured over 160 real matches, every rule with a game observation behind it |
+| **`DOMAIN.md`** | what has been learned about this game the expensive way, with the evidence level of each line |
+| **`harness/`** | the existing bot as an executable, 24 frozen real starting positions, a referee, and the acceptance ladder |
+| **`EXCLUDED.md`** | what is deliberately not here, and why |
+
+## The job
+
+Write a bot that plays this game at least as well as `harness/reference-bot`, from this package
+alone. Do not read outside this directory; if you find yourself needing something that is not
+here, **write down what you needed** — that is the most valuable output of this experiment.
+
+Climb the acceptance ladder in `harness/README.md` in order: legal complete matches first, then
+the 48-match scout, then the locked 144-cell panel, then 400 matches. No strength number counts
+until your bot plays 48 of 48 legal, complete matches.
+
+## Two things worth knowing before you start
+
+**`CHAMPION-BEHAVIOUR.md` describes a bot, not the best bot.** `DOMAIN.md` §1.3 records the
+largest known gap between it and the strongest players on the ladder, and it is a gap the
+described bot does not close. You are not required to copy what it does.
+
+**Where a document does not know something, it says so.** Two of the described bot's rules are
+marked as *not determined by the evidence* rather than guessed at. Those are the places where
+your own judgement has to do the work, and where a different answer is not automatically wrong.
