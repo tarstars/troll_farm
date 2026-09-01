@@ -99,7 +99,17 @@ the best-fitting explanation of the staged drift. The full dossier:
    clone non-inferiority holds (net 0). Both curves are on the card. The entropy bonus is
    acquitted on the training side, the scouts and the locked panel alike, and both arms still
    decay with depth. The next lever is the reward path (the credit measurement of the same
-   morning: 2.3 % observed reward, 97.7 % critic) — the owner's choice from the fix menu.
+   morning: 2.3 % observed reward, 97.7 % critic).
+
+   **STEP 5 DECIDED — 2026-09-01 15:5xZ: the reward path, launched under the standing
+   authorization.** Treatment arm `ppo-yt-r22` (`wood_shaping 2 + end_wood 2` — wood still worth
+   4, half paid on delivery; otherwise E01's recipe exactly, verified by argument diff and
+   payload manifest), operation `907fc1d9-14f71e66-42e03e8-63f81046`, started 15:53Z; **E01 is the
+   control**, already benched. The same frozen `gate1.py` reads r22 − e01b on the same 144 cells.
+   *Done when:* the curve is on the card and the gate's verdict is computed. After it, in the
+   reviewer's ranking: longer rollouts (`--rollout-steps 128`, `--num-envs 32`); whole-game returns
+   for the planner; value-trunk separation; target commitment — each one variable, each under
+   the same gate.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

@@ -994,3 +994,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   frozen `gate1.py` reads it as treatment = r22, control = e01b on the same 144 cells. Also running as replication only: the
   host pair's scouts and confirmations (eight low-priority benches, ~1.5 h). Handoff to chatgpt_1 for the Gate 1 review
   sent (pin `a7a255b8`). — coordinator
+- 2026-09-01 15:5xZ: **STEP 5 DECIDED AND LAUNCHED — the reward path.** The decision on the evidence of steps 3–4: entropy
+  is acquitted by the frozen gate; the credit measurement says the plan head's signal is 97.7 % critic / 2.3 % observed
+  reward because wood's whole value lands on the final turn; the environment's own knob moves half of it to the turn of
+  delivery. Under the goal's standing authorization (the cluster within the pool in use, consistent budgets), the coordinator
+  launched the treatment arm **`ppo-yt-r22`** — `--wood-shaping 2.0 --end-wood 2.0`, everything else E01's recipe (entropy
+  0.01, seed 41, 2,709 updates, `champion_exact` opponent, 64 threads), verified after the real prepare to differ from E01's
+  trainer arguments at exactly the two wood flags and the run name, payload byte-identical by manifest (3.2 MB uploaded) —
+  operation `907fc1d9-14f71e66-42e03e8-63f81046`, started 15:53Z, ~1.9 h expected. **E01 is the control** (same seed,
+  same everything, `0 + 4`), already benched on the scout and locked panels, so the same frozen `gate1.py` reads
+  treatment = r22, control = e01b on the same 144 cells — the one-variable rule holds. Next wake: monitor; on landing,
+  retrieve → scouts at 500…2,500 → confirmations at 1,500 / 2,500 → `gate1.py` → the card, the board, chatgpt_1. The owner
+  may stop the arm at any time; nothing else was launched. — coordinator
