@@ -825,3 +825,40 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`local_claude_1/nn-bot/PROGRESS-2026-09-01.md`; the 03:45Z ack-required handoff): Gate 0's close with the verdict's
   numbers, the full-parameter family closed at complete budget, Stage 1 under the frozen gate with the preemption weather
   (verdict ~18:00Z), the disk resolution, and the eliminated-vs-standing diagnosis table. — coordinator
+- 2026-09-01 08:0x–11:0xZ: **the cluster arms died, their salvage was rescued, and it carries the entropy answer on the
+  training side — plus a depth result that reframes step 5.** What happened: e00 and e01 both lost their jobs in the same
+  minute (06:03Z, a cluster-wide preemption wave) and sat pending 1.5 h. Attempt durations tell the story of the whole
+  cluster experiment: e00 0.28 h then 9.86 h; e01 0.73 h, 5.90 h (aborted by the controller agent), 3.93 h. **Every
+  preemption restarts from scratch**, and the half-hourly salvage keeps only the newest checkpoint, so five attempts and
+  ~20 job-hours produced no age-matched scout series at all.
+  - **Rescued before the pending attempts could overwrite it** (`/home/tarstars/nn-data/ppo-yt-e0{0,1}-midrun-0901/`):
+    e00's checkpoint at **u12,250** (50.2 M turn-steps) and e01's at **u3,250** (13.3 M), plus both complete training logs
+    from update 1 (12,352 and 3,417 updates).
+  - **The entropy read, training side** (`entropy_log_read.py`, new; paired per-250-update blocks over the shared range
+    u1–u3,417, same seed 41, bootstrap over blocks because neighbouring updates share a rolling 1,000-episode window):
+    the knob does what it says — entropy 0.934 → 1.007, delta +0.073, interval [0.056, 0.089] — **and buys nothing.**
+    Win rate delta −0.0013, interval [−0.0063, +0.0041], crosses zero. Referee margin delta −0.70,
+    interval [−1.15, −0.17]: marginally *worse* with entropy. Explained variance, approximate KL, clip fraction and value
+    loss all cross zero. Anchor agreement 0.978 → 0.975 (more exploration, slightly less clone-like), as expected.
+  - **The depth result.** e00 (entropy off) ran to u12,250 — 50 M turn-steps, 9.5 hours — and its **training win rate is
+    flat**: 0.180 at u500, 0.182 at u12,000. The referee margin got *worse* over that span (−51.1 → −53.4). The only
+    quantity that climbs is explained variance (0.21 → 0.48): the critic learns to predict returns while the policy does
+    not improve.
+  - **Both salvaged checkpoints benched** (48-game scout, argmax both seats, champion `0e92f8fa`):
+    e00 @ u12,250 → **2/48**, score 117.3 vs 185.8; e01 @ u3,250 → **9/48**, score 128.6 vs 183.2. Not age-matched, so
+    this is *not* an entropy read — it is another point on the depth curve, and it lands exactly where the curve predicts.
+  - **The instrument fact worth keeping**: both checkpoints logged an identical training win rate of 0.185 while benching
+    2/48 (4 %) and 9/48 (19 %). **Training win rate does not track bench win rate** — it cannot be used as a proxy for the
+    gate, which is what the frozen protocol already assumed and now has direct evidence for.
+  - **The depth curve, everything ever benched, one place** (48-game scout, wins of 48): f2 5/7/2 at u500/1000/1500;
+    g 5/4; h 3/8/2; i 9/10/9/6/5 at u500…u2500; e01 9 at u3,250; i2 4 at u5,414; e00 2 at u12,250; a2 0 at u14,649.
+    The shape is unmistakable: **the bench peaks early, near the clone, and decays with training.** Nothing in any run has
+    ever exceeded 10/48 (21 %); parity needs 24/48.
+  - **Decisions taken.** (1) The two pending cluster ops were **aborted** — at 60 M steps / 17 h they were the wrong shape
+    for a gate that needs only u2,500, and would have burned another ~20 job-hours to be preempted again. (2) The paired
+    arms were **relaunched on the host**, which is idle, free and cannot be preempted, and which runs both arms on one
+    platform so the comparison stays internally valid: `ppo-host-h00` (entropy 0.0) and `ppo-host-h01` (entropy 0.01),
+    seed 41, plan-critic scope, sized to u2,709 — verified to differ in exactly three fields: `entropy_coef`,
+    `output_dir`, `run_name`. 14 cores total at nice 15, inside the owner's cap. Started 10:58Z; ~10 h at the observed
+    rate, so the scouts land this evening and the frozen Gate 1 can be computed on age-matched benched checkpoints as
+    written, rather than on the confounded pair above. — coordinator
