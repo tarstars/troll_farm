@@ -780,3 +780,48 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   free, writes verified working; nothing under `~/.codex`, `~/.claude`, `preserved/` or the owner's run touched. **The cure
   needs the owner** (the volume refills in about a day at the transcript's growth): prune or relocate `~/.codex`, and the
   launcher-log rotation still pending — both in the owner's queue. The bots should resume on their next poll. — coordinator
+- 2026-08-31 17:2xZ: **GATE 0 IS CLOSED.** claude_1's final verdict (16:41Z, `7aa2889e`) accepted and merged (`0e412b57`):
+  under the two frozen scope limits, the critic-to-policy trunk path is **not material in G and H as configured** — across
+  eighteen readings (three checkpoints × three optimizer variants × two minibatch seeds) dropping the critic's objective
+  changed **0 of 206 purchase and 0 of 306 movement decisions**, zero margin crossings, `tied_baseline_rows` 0; the clip
+  channel measured and closed (`+common-clip` arms exactly 0.0 apart); **the 300-update warm-up does real work** (the trunk
+  push 16.4 % → 0.37 % across it). Surfaced for Stage 1: **the anchor is the large trunk force at update 500 (13.4 % at G,
+  18.4 % at H, pointing against the policy)** and **the critic is blind before turn 25** (realized EV −0.004 to 0.006 in the
+  first three turn buckets) exactly under the ~13-turn credit window — the sharpest reason the staggered population stays on
+  the deferred list. Provenance verified by hashes; 129 tests on the merged tree. **STAGE 1 LAUNCHED 17:1xZ**: `ppo-yt-e01`
+  (`fe522c8c…`, entropy 0.01, the control) and `ppo-yt-e00` (`48469b15…`, entropy 0, the treatment) — same clone, seed 41,
+  payload, resource class; the run-I recipe; 60 M decisions under 17-hour limits with salvage; the frozen 144-unit
+  repeated-measure gate decides. The a2/e2/i2 finals (~19:00–21:00Z) get their pinned benches for the record. — coordinator
+- 2026-08-31 18:4xZ: **the VM's disk crisis is over — the owner attached a 100 GB disk** and it is live: formatted ext4,
+  mounted at `/data` (fstab by UUID, `nofail`), owned by the user, with `/data/scratch` for the agents' big extracts and
+  `/data/archive`. **Root went 100 % → 88 % (2.3 GB free)**: the five idle worktrees (~2.2 GB — claude_1's lfs/lfsverify/
+  registry, plan, plan-agent) moved reversibly to `/data/archive/worktrees-2026-08-31/` (git worktree links pruned; restore =
+  move back + `git worktree repair`). The owner's running codex session and `~/.codex` untouched — its transcript remains the
+  one growing item on root, now with days of headroom; pruning or relocating it stays the owner's call, and the launcher-log
+  rotation offer stands. Agents: prefer `/data/scratch` for anything over ~50 MB from now on. — coordinator
+- 2026-08-31 18:5xZ: **`ppo-yt-e2` aborted on the owner's word** ("abort e2"; op `aa7fe45a…`, state `aborted` confirmed) —
+  its family (full-parameter + corrected objective) was refuted twice over and its remaining seven hours of a 32-core slot
+  bought nothing decision-relevant; the salvage copy (update ~7,100 curve and checkpoint) stands as its record. Still
+  running: `a2` and `i2` to their natural wall-clock limits (~20:50Z / ~21:40Z; their finals get the pinned benches), and
+  Stage 1's `e01`/`e00`. — coordinator
+- 2026-08-31 21:3xZ: **a pool-wide preemption at ~20:10Z restarted i2, e01 and e00 from scratch** (no resume by design; the
+  salvage of i2's deep run was overwritten by its restart — the benched u5,414 peek remains its deep record). Consequences:
+  **the E01/E00 pair restarted together, so the paired design holds** — both arms at ~7.9 M steps, the Gate-1 confirmations
+  land at their fixed updates and the verdict shifts to ~11:00Z 09-01; i2's rerun counts as a fresh staged seed. **a2 was
+  not preempted and completes its full 60 M budget ~21:50Z** — the first job to reach its budget; its final gets the pinned
+  bench tonight. — coordinator
+- 2026-09-01 00:4xZ: **the full-parameter family's record point, at complete budget: `a2` finished its 60 million decisions
+  (update 14,649) and its final benched 0 of 48, 50.9 points to 134.4, with 42 of 48 games ended early and 4 loop games.**
+  The curve of that family now reads: the clone's 9 → 3–5 by update 500 → 2 by ~6,000 → **0 at 14,649**. Full-parameter PPO
+  from the clone, as configured, is monotonically destructive at every measured depth — the family is closed as evidence,
+  not just suspended. What remains live: the staged line (i2's fresh seed grinding), and Stage 1's E01/E00 pair (~11:00Z
+  verdict under the frozen gate). — coordinator
+- 2026-09-01 02:2xZ: **a second pool preemption (~02:00Z) restarted `e01` and `i2` from scratch while `e00` kept running**
+  (37.0 M). The paired design survives — the gate compares the arms at fixed updates, and a same-seed restart replays the
+  same trajectory — but the wall-clock slips: `e00` completes ~08:00Z, `e01` ~17:30Z, **the Gate-1 verdict moves to ~18:00Z
+  09-01**. The pool's preemption weather is now the schedule's main noise; nothing to fix (salvage covers ends, budgets are
+  consistent), only to note. — coordinator
+- 2026-09-01 03:4xZ: **the day-two progress report written and sent to chatgpt_1 at the owner's request**
+  (`local_claude_1/nn-bot/PROGRESS-2026-09-01.md`; the 03:45Z ack-required handoff): Gate 0's close with the verdict's
+  numbers, the full-parameter family closed at complete budget, Stage 1 under the frozen gate with the preemption weather
+  (verdict ~18:00Z), the disk resolution, and the eliminated-vs-standing diagnosis table. — coordinator

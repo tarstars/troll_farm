@@ -329,6 +329,7 @@ def trainer_args(
     critic_warmup_updates: int,
     actor_lr_scale: float,
     train_scope: str,
+    entropy_coef: float,
     output_dir: str,
     seed: int,
 ) -> list[str]:
@@ -373,6 +374,8 @@ def trainer_args(
         str(actor_lr_scale),
         "--train-scope",
         train_scope,
+        "--entropy-coef",
+        str(entropy_coef),
         "--opponent-weights",
         opponent_weights,
         "--num-envs",
@@ -553,6 +556,7 @@ def prepare_payload(args) -> dict[str, Any]:
         critic_warmup_updates=args.critic_warmup_updates,
         actor_lr_scale=args.actor_lr_scale,
         train_scope=args.train_scope,
+        entropy_coef=args.entropy_coef,
         output_dir=OUTPUT_DIR_ARG,
         seed=args.seed,
     )
@@ -1098,6 +1102,7 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--critic-warmup-updates", type=int, default=0)
     prepare.add_argument("--actor-lr-scale", type=float, default=1.0)
     prepare.add_argument("--train-scope", choices=("all", "plan-critic"), default="all")
+    prepare.add_argument("--entropy-coef", type=float, default=0.01)
     prepare.add_argument("--opponent-weights", default=DEFAULT_OPPONENT_WEIGHTS)
     prepare.add_argument("--checkpoint-every", type=int, default=250)
     prepare.add_argument("--gate-every", type=int, default=0)
