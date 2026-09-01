@@ -1067,3 +1067,18 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`ENTROPY_CONFIRMED`); the rule is variable-agnostic and printed with the verdict; renaming the outcome labels is a
   one-line follow-up for the next gate. In flight: `ppo-host-r22` (the same pair on this host, ~21:45Z) and
   `ppo-host-l128` (lever 2, ~22:20Z), each read by the same gate against h01. Handoff to chatgpt_1 next. — coordinator
+- 2026-09-01 23:0xZ: **the night's two host verdicts (both arms 2,709 updates, benched at 1,500 / 2,500 on the locked
+  panel against the host control h01, 0 faults; verdict JSONs in `results/entropy-gate-0901/`).**
+  **(1) The wood pair's replication (`ppo-host-r22`): the effect size replicates, the interval touches zero.** Wins
+  **28 / 31 of 144 vs h01's 23 / 22**; paired effect **+0.049 [0.0000, +0.101]** — the same size as the cluster's +0.052
+  — margin +8.5 [3.0, 14.4]; net **+8 cells over the clone**. The frozen letter (interval *wholly above* zero) reads the
+  boundary as NOT CONFIRMED; the honest sentence is: the magnitude replicates on a second platform and a different map
+  corpus, and its interval grazes zero. Cluster CONFIRMED + host boundary = the reward path stands.
+  **(2) Lever 2, the longer rollout (`ppo-host-l128`, 128 steps × 32 envs): no confirmed effect on its own.** Wins
+  **21 / 29 of 144 vs 23 / 22**; effect +0.017 [−0.004, +0.042]; margin +2.0 [−0.8, +4.8]; net +3 cells. Negative at
+  1,500, positive at 2,500 — if anything it helps late, which is what a longer credit trace would do, but the gate says
+  not confirmed as a single lever. One bench artefact of the collision note: `bench-hr22-locked-u1500-replays.jsonl` is
+  corrupt (two drivers briefly raced on it — the duplicate was killed; the JSON is complete and clean; the gate never
+  reads replays). **The night's standing: reward path CONFIRMED (cluster) + replicated in size (host); rollout-128 alone
+  not confirmed; next per the reviewer's ranking and chatgpt_1's pending answer — likely the stack (2 + 2 with rollout
+  128 in one arm) or 0.5 + 3.5, one variable against the right control, after chatgpt_1's read.** — coordinator

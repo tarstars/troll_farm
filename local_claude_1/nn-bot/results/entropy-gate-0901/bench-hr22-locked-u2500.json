@@ -1,0 +1,9636 @@
+{
+  "bot": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+  "bot_score_mean": 188.8,
+  "bot_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+  "checkpoint": "/home/tarstars/nn-data/ppo-host-r22-0901/ppo-host-r22-update002500.pt",
+  "command_decoding": "argmax",
+  "end_reasons": {
+    "grace_expired": 28,
+    "mercy_player_0": 6,
+    "mercy_player_1": 6,
+    "turn_limit": 104
+  },
+  "games": 144,
+  "games_by_seat": {
+    "0": 72,
+    "1": 72
+  },
+  "games_ended_early": 40,
+  "games_with_a_loop": 12,
+  "illegal_commands_total": 0,
+  "library": "rust/target/release/libtroll_farm.so",
+  "maps": "local_claude_1/nn-bot/locked-panel-seed1.jsonl",
+  "maps_played": 72,
+  "plan_decoding": "argmax",
+  "plan_temperature": null,
+  "plan_vocab_version": "v400-2026-08-29",
+  "plans_drawn_total": 8794,
+  "plans_refused_total": 8652,
+  "policy": "network",
+  "policy_score_mean": 135.4,
+  "policy_seconds_total": 1836.4,
+  "policy_wins": 31,
+  "policy_wins_by_seat": {
+    "0": 17,
+    "1": 14
+  },
+  "referee_errors_total": 0,
+  "replays": "/home/tarstars/nn-data/bench-0901/bench-hr22-locked-u2500-replays.jsonl",
+  "rows": [
+    {
+      "bot_score": 188,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 1
+      },
+      "map_hash": "50e6cb37503c6b8c",
+      "policy_plans_drawn": 17,
+      "policy_plans_refused": 16,
+      "policy_score": 112,
+      "policy_seat": 0,
+      "policy_seconds": 17.48,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 15
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 15
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 10,
+      "start_inventory": [
+        6,
+        3,
+        7,
+        10,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 217,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 208,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "50e6cb37503c6b8c",
+      "policy_plans_drawn": 28,
+      "policy_plans_refused": 27,
+      "policy_score": 100,
+      "policy_seat": 1,
+      "policy_seconds": 19.5,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 20
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 20
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 10,
+      "start_inventory": [
+        6,
+        3,
+        7,
+        10,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 245,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 196,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "b8e90829651f32c4",
+      "policy_plans_drawn": 13,
+      "policy_plans_refused": 12,
+      "policy_score": 239,
+      "policy_seat": 0,
+      "policy_seconds": 10.97,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 232,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 5,
+      "start_inventory": [
+        10,
+        5,
+        6,
+        6,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 248,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 224,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 3
+      },
+      "map_hash": "b8e90829651f32c4",
+      "policy_plans_drawn": 11,
+      "policy_plans_refused": 10,
+      "policy_score": 249,
+      "policy_seat": 1,
+      "policy_seconds": 13.71,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 232,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        5,
+        6,
+        6,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 228,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 2,
+        "2": 2,
+        "4": 12,
+        "5": 1
+      },
+      "map_hash": "3bd006a866ce770d",
+      "policy_plans_drawn": 143,
+      "policy_plans_refused": 140,
+      "policy_score": 249,
+      "policy_seat": 0,
+      "policy_seconds": 28.52,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            5,
+            2,
+            2
+          ],
+          "turn": 102
+        },
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "turn": 163
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 227,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 92,
+          "talents": [
+            1,
+            5,
+            2,
+            2
+          ],
+          "turn": 102
+        },
+        {
+          "plan_index": 73,
+          "talents": [
+            1,
+            4,
+            2,
+            3
+          ],
+          "turn": 163
+        }
+      ],
+      "policy_trolls": 4,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        10,
+        8,
+        2,
+        9,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 12
+    },
+    {
+      "bot_score": 245,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "3bd006a866ce770d",
+      "policy_plans_drawn": 76,
+      "policy_plans_refused": 75,
+      "policy_score": 269,
+      "policy_seat": 1,
+      "policy_seconds": 13.41,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 227,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        10,
+        8,
+        2,
+        9,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 224,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3,
+        "4": 1
+      },
+      "map_hash": "f163ae92cef93765",
+      "policy_plans_drawn": 39,
+      "policy_plans_refused": 37,
+      "policy_score": 168,
+      "policy_seat": 0,
+      "policy_seconds": 24.36,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 243,
+          "talents": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 14,
+      "start_inventory": [
+        8,
+        8,
+        4,
+        7,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 223,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 160,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 4,
+        "4": 1
+      },
+      "map_hash": "f163ae92cef93765",
+      "policy_plans_drawn": 40,
+      "policy_plans_refused": 38,
+      "policy_score": 148,
+      "policy_seat": 1,
+      "policy_seconds": 13.48,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 243,
+          "talents": [
+            3,
+            3,
+            0,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 22,
+      "start_inventory": [
+        8,
+        8,
+        4,
+        7,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 149,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 197,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 32
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 4
+      },
+      "map_hash": "14affd1203e73581",
+      "policy_plans_drawn": 82,
+      "policy_plans_refused": 81,
+      "policy_score": 127,
+      "policy_seat": 0,
+      "policy_seconds": 5.16,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            3
+          ],
+          "turn": 204
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 133,
+          "talents": [
+            2,
+            2,
+            2,
+            3
+          ],
+          "turn": 204
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        7,
+        3,
+        9,
+        10,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 193,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 32
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "14affd1203e73581",
+      "policy_plans_drawn": 129,
+      "policy_plans_refused": 129,
+      "policy_score": 105,
+      "policy_seat": 1,
+      "policy_seconds": 4.34,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        7,
+        3,
+        9,
+        10,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 231,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2,
+        "4": 89
+      },
+      "map_hash": "d4b84a05115fa4d2",
+      "policy_plans_drawn": 198,
+      "policy_plans_refused": 196,
+      "policy_score": 62,
+      "policy_seat": 0,
+      "policy_seconds": 32.91,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            4,
+            2,
+            2
+          ],
+          "turn": 198
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 372,
+          "talents": [
+            4,
+            4,
+            2,
+            2
+          ],
+          "turn": 198
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 14,
+      "start_inventory": [
+        4,
+        10,
+        8,
+        7,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 89
+    },
+    {
+      "bot_score": 237,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "d4b84a05115fa4d2",
+      "policy_plans_drawn": 142,
+      "policy_plans_refused": 141,
+      "policy_score": 203,
+      "policy_seat": 1,
+      "policy_seconds": 23.95,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        10,
+        8,
+        7,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 193,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 26
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "a922217cf0fe3922",
+      "policy_plans_drawn": 7,
+      "policy_plans_refused": 6,
+      "policy_score": 165,
+      "policy_seat": 0,
+      "policy_seconds": 20.24,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        9,
+        2,
+        6,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 181,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 6
+      },
+      "map_hash": "a922217cf0fe3922",
+      "policy_plans_drawn": 9,
+      "policy_plans_refused": 8,
+      "policy_score": 158,
+      "policy_seat": 1,
+      "policy_seconds": 17.02,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        9,
+        2,
+        6,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 154,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 1
+      },
+      "map_hash": "fce1ecaab602abae",
+      "policy_plans_drawn": 107,
+      "policy_plans_refused": 106,
+      "policy_score": 90,
+      "policy_seat": 0,
+      "policy_seconds": 10.47,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "turn": 92
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 74,
+          "talents": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "turn": 92
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        10,
+        5,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 155,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "fce1ecaab602abae",
+      "policy_plans_drawn": 116,
+      "policy_plans_refused": 115,
+      "policy_score": 88,
+      "policy_seat": 1,
+      "policy_seconds": 13.55,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "turn": 90
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 74,
+          "talents": [
+            1,
+            4,
+            2,
+            4
+          ],
+          "turn": 90
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        10,
+        5,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 293,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 1
+      },
+      "map_hash": "820b3885085f0832",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 103,
+      "policy_seat": 0,
+      "policy_seconds": 11.13,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 152,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        5,
+        10,
+        10,
+        5,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 260,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 3
+      },
+      "map_hash": "820b3885085f0832",
+      "policy_plans_drawn": 11,
+      "policy_plans_refused": 10,
+      "policy_score": 113,
+      "policy_seat": 1,
+      "policy_seconds": 10.2,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 152,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        10,
+        10,
+        5,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 283,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 214,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "0eb1ab63d95f8371",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 137,
+      "policy_seat": 0,
+      "policy_seconds": 14.64,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 232,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        7,
+        7,
+        9,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 213,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "0eb1ab63d95f8371",
+      "policy_plans_drawn": 2,
+      "policy_plans_refused": 1,
+      "policy_score": 126,
+      "policy_seat": 1,
+      "policy_seconds": 16.21,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 232,
+          "talents": [
+            3,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        7,
+        7,
+        9,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 185,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "19263b3d8929c32e",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 141,
+      "policy_seat": 0,
+      "policy_seconds": 24.53,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 211,
+          "talents": [
+            3,
+            1,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 11,
+      "start_inventory": [
+        10,
+        2,
+        8,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 174,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "19263b3d8929c32e",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 148,
+      "policy_seat": 1,
+      "policy_seconds": 25.82,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 211,
+          "talents": [
+            3,
+            1,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        2,
+        8,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 256,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 4
+      },
+      "map_hash": "2a7fa3d019e922dd",
+      "policy_plans_drawn": 39,
+      "policy_plans_refused": 38,
+      "policy_score": 225,
+      "policy_seat": 0,
+      "policy_seconds": 8.81,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 251,
+          "talents": [
+            3,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        10,
+        5,
+        8,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 296,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 230,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 38,
+        "3": 2
+      },
+      "map_hash": "2a7fa3d019e922dd",
+      "policy_plans_drawn": 17,
+      "policy_plans_refused": 16,
+      "policy_score": 149,
+      "policy_seat": 1,
+      "policy_seconds": 7.63,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 251,
+          "talents": [
+            3,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        10,
+        5,
+        8,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 243,
+      "worst_loop": 38
+    },
+    {
+      "bot_score": 216,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 9
+      },
+      "map_hash": "f9170ca0d1f2f6bf",
+      "policy_plans_drawn": 18,
+      "policy_plans_refused": 17,
+      "policy_score": 149,
+      "policy_seat": 0,
+      "policy_seconds": 24.38,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        9,
+        7,
+        10,
+        5,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 9
+    },
+    {
+      "bot_score": 208,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 10
+      },
+      "map_hash": "f9170ca0d1f2f6bf",
+      "policy_plans_drawn": 17,
+      "policy_plans_refused": 16,
+      "policy_score": 132,
+      "policy_seat": 1,
+      "policy_seconds": 19.5,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        7,
+        10,
+        5,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 289,
+      "worst_loop": 10
+    },
+    {
+      "bot_score": 234,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 32
+      },
+      "map_hash": "3af6945c17802c8e",
+      "policy_plans_drawn": 145,
+      "policy_plans_refused": 144,
+      "policy_score": 103,
+      "policy_seat": 0,
+      "policy_seconds": 30.77,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        9,
+        7,
+        8,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 32
+    },
+    {
+      "bot_score": 233,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 270
+      },
+      "map_hash": "3af6945c17802c8e",
+      "policy_plans_drawn": 137,
+      "policy_plans_refused": 136,
+      "policy_score": 84,
+      "policy_seat": 1,
+      "policy_seconds": 31.35,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        9,
+        7,
+        8,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 270
+    },
+    {
+      "bot_score": 168,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "8686a771024adadf",
+      "policy_plans_drawn": 14,
+      "policy_plans_refused": 13,
+      "policy_score": 91,
+      "policy_seat": 0,
+      "policy_seconds": 6.03,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        10,
+        10,
+        7,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 193,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 223,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "8686a771024adadf",
+      "policy_plans_drawn": 111,
+      "policy_plans_refused": 110,
+      "policy_score": 116,
+      "policy_seat": 1,
+      "policy_seconds": 11.59,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        10,
+        10,
+        7,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 216,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 4
+      },
+      "map_hash": "d8088a0872b76389",
+      "policy_plans_drawn": 49,
+      "policy_plans_refused": 48,
+      "policy_score": 204,
+      "policy_seat": 0,
+      "policy_seconds": 25.31,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 18
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 28,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 18
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        5,
+        4,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 208,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 5
+      },
+      "map_hash": "d8088a0872b76389",
+      "policy_plans_drawn": 45,
+      "policy_plans_refused": 44,
+      "policy_score": 202,
+      "policy_seat": 1,
+      "policy_seconds": 24.69,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 18
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 28,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 18
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 9,
+      "start_inventory": [
+        2,
+        5,
+        4,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 138,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "98595460f4306e97",
+      "policy_plans_drawn": 109,
+      "policy_plans_refused": 108,
+      "policy_score": 97,
+      "policy_seat": 0,
+      "policy_seconds": 21.86,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 51,
+          "talents": [
+            1,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        10,
+        6,
+        2,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 136,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 3
+      },
+      "map_hash": "98595460f4306e97",
+      "policy_plans_drawn": 115,
+      "policy_plans_refused": 114,
+      "policy_score": 93,
+      "policy_seat": 1,
+      "policy_seconds": 22.1,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 51,
+          "talents": [
+            1,
+            3,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        10,
+        6,
+        2,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 108,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 7
+      },
+      "map_hash": "6e5039d8929f19b5",
+      "policy_plans_drawn": 99,
+      "policy_plans_refused": 98,
+      "policy_score": 122,
+      "policy_seat": 0,
+      "policy_seconds": 26.52,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 33,
+          "talents": [
+            1,
+            2,
+            2,
+            3
+          ],
+          "turn": 48
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        2,
+        9,
+        2,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 7
+    },
+    {
+      "bot_score": 128,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1,
+        "4": 130
+      },
+      "map_hash": "6e5039d8929f19b5",
+      "policy_plans_drawn": 122,
+      "policy_plans_refused": 120,
+      "policy_score": 91,
+      "policy_seat": 1,
+      "policy_seconds": 45.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "turn": 28
+        },
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 130
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 12,
+          "talents": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "turn": 28
+        },
+        {
+          "plan_index": 147,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 130
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        2,
+        9,
+        2,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 130
+    },
+    {
+      "bot_score": 216,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "8035ff7a6034a332",
+      "policy_plans_drawn": 8,
+      "policy_plans_refused": 7,
+      "policy_score": 232,
+      "policy_seat": 0,
+      "policy_seconds": 15.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        6,
+        3,
+        4,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 228,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 6
+      },
+      "map_hash": "8035ff7a6034a332",
+      "policy_plans_drawn": 18,
+      "policy_plans_refused": 17,
+      "policy_score": 243,
+      "policy_seat": 1,
+      "policy_seconds": 14.85,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        5,
+        6,
+        3,
+        4,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 136,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 4
+      },
+      "map_hash": "3e428b784a57ec24",
+      "policy_plans_drawn": 11,
+      "policy_plans_refused": 10,
+      "policy_score": 50,
+      "policy_seat": 0,
+      "policy_seconds": 9.71,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 108,
+          "talents": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        6,
+        3,
+        4,
+        4,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 263,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 136,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 4
+      },
+      "map_hash": "3e428b784a57ec24",
+      "policy_plans_drawn": 11,
+      "policy_plans_refused": 10,
+      "policy_score": 54,
+      "policy_seat": 1,
+      "policy_seconds": 10.9,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 108,
+          "talents": [
+            2,
+            1,
+            1,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        6,
+        3,
+        4,
+        4,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 264,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 106,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 1
+      },
+      "map_hash": "d80117a5b566074f",
+      "policy_plans_drawn": 2,
+      "policy_plans_refused": 1,
+      "policy_score": 57,
+      "policy_seat": 0,
+      "policy_seconds": 8.13,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        4,
+        6,
+        6,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 171,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 200,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "d80117a5b566074f",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 75,
+      "policy_seat": 1,
+      "policy_seconds": 13.34,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        4,
+        6,
+        6,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 290,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 20
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "24ffcdd78dcf2291",
+      "policy_plans_drawn": 154,
+      "policy_plans_refused": 153,
+      "policy_score": 198,
+      "policy_seat": 0,
+      "policy_seconds": 17.22,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 8,
+      "start_inventory": [
+        7,
+        9,
+        9,
+        3,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 200,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 17
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 8
+      },
+      "map_hash": "24ffcdd78dcf2291",
+      "policy_plans_drawn": 120,
+      "policy_plans_refused": 119,
+      "policy_score": 205,
+      "policy_seat": 1,
+      "policy_seconds": 16.6,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        7,
+        9,
+        9,
+        3,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 280,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 9
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "eeb4eb79a00db54f",
+      "policy_plans_drawn": 93,
+      "policy_plans_refused": 92,
+      "policy_score": 152,
+      "policy_seat": 0,
+      "policy_seconds": 34.3,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        6,
+        8,
+        7,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 232,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 9
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 5
+      },
+      "map_hash": "eeb4eb79a00db54f",
+      "policy_plans_drawn": 77,
+      "policy_plans_refused": 76,
+      "policy_score": 140,
+      "policy_seat": 1,
+      "policy_seconds": 35.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 3,
+      "start_inventory": [
+        6,
+        8,
+        7,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 142,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 26
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 1
+      },
+      "map_hash": "4abf1c5cff25ef02",
+      "policy_plans_drawn": 29,
+      "policy_plans_refused": 28,
+      "policy_score": 136,
+      "policy_seat": 0,
+      "policy_seconds": 3.88,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 27
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 27
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 4,
+      "start_inventory": [
+        6,
+        3,
+        6,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 179,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 174,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 30
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "4abf1c5cff25ef02",
+      "policy_plans_drawn": 32,
+      "policy_plans_refused": 31,
+      "policy_score": 145,
+      "policy_seat": 1,
+      "policy_seconds": 4.71,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        6,
+        3,
+        6,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 230,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 160,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1
+      },
+      "map_hash": "8f8a49538ead7492",
+      "policy_plans_drawn": 9,
+      "policy_plans_refused": 9,
+      "policy_score": 44,
+      "policy_seat": 0,
+      "policy_seconds": 2.55,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        2,
+        5,
+        2,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 160,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "8f8a49538ead7492",
+      "policy_plans_drawn": 9,
+      "policy_plans_refused": 9,
+      "policy_score": 48,
+      "policy_seat": 1,
+      "policy_seconds": 2.31,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        2,
+        5,
+        2,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 156,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 3
+      },
+      "map_hash": "a776092941448ecb",
+      "policy_plans_drawn": 0,
+      "policy_plans_refused": 0,
+      "policy_score": 55,
+      "policy_seat": 0,
+      "policy_seconds": 2.52,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        2,
+        4,
+        9,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 164,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "a776092941448ecb",
+      "policy_plans_drawn": 0,
+      "policy_plans_refused": 0,
+      "policy_score": 87,
+      "policy_seat": 1,
+      "policy_seconds": 2.21,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        2,
+        4,
+        9,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 212,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "1a819bb4b0903b0f",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 108,
+      "policy_seat": 0,
+      "policy_seconds": 14.1,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 16,
+      "start_inventory": [
+        8,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 262,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 172,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "1a819bb4b0903b0f",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 100,
+      "policy_seat": 1,
+      "policy_seconds": 13.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        10,
+        5,
+        10,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 243,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 252,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 5
+      },
+      "map_hash": "a187cf5d0c7c09c5",
+      "policy_plans_drawn": 150,
+      "policy_plans_refused": 149,
+      "policy_score": 201,
+      "policy_seat": 0,
+      "policy_seconds": 6.33,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 147,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        5,
+        10,
+        2,
+        8,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 264,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 11,
+        "3": 6
+      },
+      "map_hash": "a187cf5d0c7c09c5",
+      "policy_plans_drawn": 142,
+      "policy_plans_refused": 141,
+      "policy_score": 249,
+      "policy_seat": 1,
+      "policy_seconds": 6.1,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 147,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        5,
+        10,
+        2,
+        8,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 11
+    },
+    {
+      "bot_score": 159,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 1
+      },
+      "map_hash": "59622c0408ff0215",
+      "policy_plans_drawn": 18,
+      "policy_plans_refused": 17,
+      "policy_score": 109,
+      "policy_seat": 0,
+      "policy_seconds": 8.77,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        2,
+        6,
+        4,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 164,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "59622c0408ff0215",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 145,
+      "policy_seat": 1,
+      "policy_seconds": 9.71,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        2,
+        6,
+        4,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 144,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "fe98ffeb7d698370",
+      "policy_plans_drawn": 32,
+      "policy_plans_refused": 31,
+      "policy_score": 56,
+      "policy_seat": 0,
+      "policy_seconds": 18.51,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        6,
+        3,
+        3,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 144,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 6
+      },
+      "map_hash": "fe98ffeb7d698370",
+      "policy_plans_drawn": 43,
+      "policy_plans_refused": 42,
+      "policy_score": 43,
+      "policy_seat": 1,
+      "policy_seconds": 18.95,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        6,
+        3,
+        3,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 180,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 104
+      },
+      "map_hash": "c0dc0d00e2f49aea",
+      "policy_plans_drawn": 126,
+      "policy_plans_refused": 125,
+      "policy_score": 22,
+      "policy_seat": 0,
+      "policy_seconds": 17.89,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            1,
+            1,
+            2
+          ],
+          "turn": 126
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 307,
+          "talents": [
+            4,
+            1,
+            1,
+            2
+          ],
+          "turn": 126
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        6,
+        4,
+        8,
+        6,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 104
+    },
+    {
+      "bot_score": 159,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 72
+      },
+      "map_hash": "c0dc0d00e2f49aea",
+      "policy_plans_drawn": 146,
+      "policy_plans_refused": 145,
+      "policy_score": 48,
+      "policy_seat": 1,
+      "policy_seconds": 17.34,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            1,
+            1,
+            2
+          ],
+          "turn": 146
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 307,
+          "talents": [
+            4,
+            1,
+            1,
+            2
+          ],
+          "turn": 146
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        6,
+        4,
+        8,
+        6,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 72
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 5
+      },
+      "map_hash": "6cfa058580bde4ba",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 148,
+      "policy_seat": 0,
+      "policy_seconds": 14.13,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        10,
+        2,
+        5,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 224,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 3
+      },
+      "map_hash": "6cfa058580bde4ba",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 132,
+      "policy_seat": 1,
+      "policy_seconds": 13.12,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        10,
+        2,
+        5,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 228,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "eca9594ce0936a6d",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 137,
+      "policy_seat": 0,
+      "policy_seconds": 15.94,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        10,
+        2,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 220,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 3
+      },
+      "map_hash": "eca9594ce0936a6d",
+      "policy_plans_drawn": 11,
+      "policy_plans_refused": 10,
+      "policy_score": 179,
+      "policy_seat": 1,
+      "policy_seconds": 17.01,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        10,
+        2,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 188,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 22
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 58
+      },
+      "map_hash": "897ada2fa7abef88",
+      "policy_plans_drawn": 14,
+      "policy_plans_refused": 13,
+      "policy_score": 64,
+      "policy_seat": 0,
+      "policy_seconds": 10.03,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        7,
+        3,
+        5,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 261,
+      "worst_loop": 58
+    },
+    {
+      "bot_score": 153,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 25
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 28
+      },
+      "map_hash": "897ada2fa7abef88",
+      "policy_plans_drawn": 14,
+      "policy_plans_refused": 13,
+      "policy_score": 84,
+      "policy_seat": 1,
+      "policy_seconds": 7.94,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        7,
+        3,
+        5,
+        8,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 219,
+      "worst_loop": 28
+    },
+    {
+      "bot_score": 153,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 2
+      },
+      "map_hash": "43836ac5a6c88c1a",
+      "policy_plans_drawn": 3,
+      "policy_plans_refused": 2,
+      "policy_score": 220,
+      "policy_seat": 0,
+      "policy_seconds": 17.0,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 3
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 113,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 3
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        3,
+        8,
+        6,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 144,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 11,
+        "3": 91
+      },
+      "map_hash": "43836ac5a6c88c1a",
+      "policy_plans_drawn": 3,
+      "policy_plans_refused": 2,
+      "policy_score": 136,
+      "policy_seat": 1,
+      "policy_seconds": 14.91,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 3
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 113,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 3
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        3,
+        8,
+        6,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 91
+    },
+    {
+      "bot_score": 161,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 9
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 1
+      },
+      "map_hash": "21d21933f6cb9219",
+      "policy_plans_drawn": 136,
+      "policy_plans_refused": 135,
+      "policy_score": 203,
+      "policy_seat": 0,
+      "policy_seconds": 5.74,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            1,
+            2
+          ],
+          "turn": 36
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 207,
+          "talents": [
+            3,
+            1,
+            1,
+            2
+          ],
+          "turn": 36
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        9,
+        2,
+        7,
+        8,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 145,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 9
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "21d21933f6cb9219",
+      "policy_plans_drawn": 100,
+      "policy_plans_refused": 99,
+      "policy_score": 219,
+      "policy_seat": 1,
+      "policy_seconds": 5.33,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            1,
+            2
+          ],
+          "turn": 36
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 207,
+          "talents": [
+            3,
+            1,
+            1,
+            2
+          ],
+          "turn": 36
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        9,
+        2,
+        7,
+        8,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 172,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1
+      },
+      "map_hash": "9b3f3b1b5d31f38f",
+      "policy_plans_drawn": 210,
+      "policy_plans_refused": 210,
+      "policy_score": 92,
+      "policy_seat": 0,
+      "policy_seconds": 7.49,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        4,
+        5,
+        7,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 169,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "9b3f3b1b5d31f38f",
+      "policy_plans_drawn": 182,
+      "policy_plans_refused": 182,
+      "policy_score": 84,
+      "policy_seat": 1,
+      "policy_seconds": 6.94,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        4,
+        5,
+        7,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 228,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 16
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "f0d670ac51ba80f7",
+      "policy_plans_drawn": 66,
+      "policy_plans_refused": 65,
+      "policy_score": 256,
+      "policy_seat": 0,
+      "policy_seconds": 11.29,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        7,
+        8,
+        5,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 228,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 16
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 6
+      },
+      "map_hash": "f0d670ac51ba80f7",
+      "policy_plans_drawn": 67,
+      "policy_plans_refused": 66,
+      "policy_score": 245,
+      "policy_seat": 1,
+      "policy_seconds": 11.17,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        7,
+        8,
+        5,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 262,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "ed7038f573bfc8ab",
+      "policy_plans_drawn": 127,
+      "policy_plans_refused": 126,
+      "policy_score": 146,
+      "policy_seat": 0,
+      "policy_seconds": 15.65,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        8,
+        10,
+        7,
+        10,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 264,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 6
+      },
+      "map_hash": "ed7038f573bfc8ab",
+      "policy_plans_drawn": 132,
+      "policy_plans_refused": 131,
+      "policy_score": 168,
+      "policy_seat": 1,
+      "policy_seconds": 16.47,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        8,
+        10,
+        7,
+        10,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 176,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 5
+      },
+      "map_hash": "8a8e883b5fa796a2",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 96,
+      "policy_seat": 0,
+      "policy_seconds": 12.18,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        5,
+        3,
+        2,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 176,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "8a8e883b5fa796a2",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 88,
+      "policy_seat": 1,
+      "policy_seconds": 12.15,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        5,
+        3,
+        2,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 139,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 3
+      },
+      "map_hash": "0e83c45ea8e32faf",
+      "policy_plans_drawn": 52,
+      "policy_plans_refused": 51,
+      "policy_score": 71,
+      "policy_seat": 0,
+      "policy_seconds": 17.89,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 52
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 52
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        4,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 129,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "0e83c45ea8e32faf",
+      "policy_plans_drawn": 54,
+      "policy_plans_refused": 53,
+      "policy_score": 87,
+      "policy_seat": 1,
+      "policy_seconds": 16.56,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 47,
+          "talents": [
+            1,
+            3,
+            1,
+            2
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        4,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 176,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 3,
+        "2": 6
+      },
+      "map_hash": "0a6013183edcee95",
+      "policy_plans_drawn": 66,
+      "policy_plans_refused": 65,
+      "policy_score": 235,
+      "policy_seat": 0,
+      "policy_seconds": 11.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        6,
+        7,
+        10,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 8
+      },
+      "map_hash": "0a6013183edcee95",
+      "policy_plans_drawn": 59,
+      "policy_plans_refused": 58,
+      "policy_score": 230,
+      "policy_seat": 1,
+      "policy_seconds": 10.67,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        6,
+        7,
+        10,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 260,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "dac0cd64f9fa0aab",
+      "policy_plans_drawn": 88,
+      "policy_plans_refused": 87,
+      "policy_score": 163,
+      "policy_seat": 0,
+      "policy_seconds": 16.05,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 4,
+      "start_inventory": [
+        7,
+        7,
+        3,
+        6,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 280,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 22
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 6
+      },
+      "map_hash": "dac0cd64f9fa0aab",
+      "policy_plans_drawn": 164,
+      "policy_plans_refused": 163,
+      "policy_score": 178,
+      "policy_seat": 1,
+      "policy_seconds": 16.94,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        7,
+        7,
+        3,
+        6,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            3
+          ],
+          "turn": 20
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 1
+      },
+      "map_hash": "6f73e5de02562a6c",
+      "policy_plans_drawn": 55,
+      "policy_plans_refused": 54,
+      "policy_score": 97,
+      "policy_seat": 0,
+      "policy_seconds": 5.38,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 58
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 113,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 58
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        9,
+        4,
+        10,
+        3,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 152,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            3
+          ],
+          "turn": 18
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 3
+      },
+      "map_hash": "6f73e5de02562a6c",
+      "policy_plans_drawn": 20,
+      "policy_plans_refused": 19,
+      "policy_score": 100,
+      "policy_seat": 1,
+      "policy_seconds": 4.57,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 20
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 113,
+          "talents": [
+            2,
+            1,
+            2,
+            3
+          ],
+          "turn": 20
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        4,
+        10,
+        3,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 243,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 233,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 2
+      },
+      "map_hash": "74a185474efed9a8",
+      "policy_plans_drawn": 129,
+      "policy_plans_refused": 128,
+      "policy_score": 136,
+      "policy_seat": 0,
+      "policy_seconds": 8.96,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            1
+          ],
+          "turn": 129
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 231,
+          "talents": [
+            3,
+            2,
+            2,
+            1
+          ],
+          "turn": 129
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        8,
+        3,
+        8,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 252,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "74a185474efed9a8",
+      "policy_plans_drawn": 155,
+      "policy_plans_refused": 154,
+      "policy_score": 110,
+      "policy_seat": 1,
+      "policy_seconds": 8.7,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            2,
+            1
+          ],
+          "turn": 155
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 231,
+          "talents": [
+            3,
+            2,
+            2,
+            1
+          ],
+          "turn": 155
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        8,
+        3,
+        8,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 144,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1
+      },
+      "map_hash": "0f3f361e4a8d8c42",
+      "policy_plans_drawn": 139,
+      "policy_plans_refused": 139,
+      "policy_score": 119,
+      "policy_seat": 0,
+      "policy_seconds": 7.08,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        7,
+        3,
+        8,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 154,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "0f3f361e4a8d8c42",
+      "policy_plans_drawn": 130,
+      "policy_plans_refused": 130,
+      "policy_score": 121,
+      "policy_seat": 1,
+      "policy_seconds": 6.35,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        7,
+        3,
+        8,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 149,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 4
+      },
+      "map_hash": "c3ec5e941bb0c867",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 67,
+      "policy_seat": 0,
+      "policy_seconds": 4.23,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 227,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        5,
+        3,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 231,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 149,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 3
+      },
+      "map_hash": "c3ec5e941bb0c867",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 64,
+      "policy_seat": 1,
+      "policy_seconds": 4.64,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 227,
+          "talents": [
+            3,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        5,
+        3,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 236,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 256,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "e7775f2c9fd7093a",
+      "policy_plans_drawn": 88,
+      "policy_plans_refused": 87,
+      "policy_score": 203,
+      "policy_seat": 0,
+      "policy_seconds": 7.03,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 147,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        6,
+        10,
+        3,
+        9,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 232,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 8
+      },
+      "map_hash": "e7775f2c9fd7093a",
+      "policy_plans_drawn": 79,
+      "policy_plans_refused": 78,
+      "policy_score": 242,
+      "policy_seat": 1,
+      "policy_seconds": 6.63,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 147,
+          "talents": [
+            2,
+            3,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 5,
+      "start_inventory": [
+        6,
+        10,
+        3,
+        9,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 286,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 103,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 8
+      },
+      "map_hash": "5ecaeb8e37db68da",
+      "policy_plans_drawn": 69,
+      "policy_plans_refused": 68,
+      "policy_score": 127,
+      "policy_seat": 0,
+      "policy_seconds": 6.36,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 311,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        3,
+        2,
+        6,
+        2,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 94,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "5ecaeb8e37db68da",
+      "policy_plans_drawn": 59,
+      "policy_plans_refused": 58,
+      "policy_score": 126,
+      "policy_seat": 1,
+      "policy_seconds": 6.19,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 311,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 54
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        3,
+        2,
+        6,
+        2,
+        2,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 132,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 0
+      },
+      "map_hash": "784ef64c763324ba",
+      "policy_plans_drawn": 86,
+      "policy_plans_refused": 85,
+      "policy_score": 33,
+      "policy_seat": 0,
+      "policy_seconds": 5.77,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 86
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 28,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 86
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        8,
+        3,
+        2,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 261,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 148,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 0
+      },
+      "map_hash": "784ef64c763324ba",
+      "policy_plans_drawn": 87,
+      "policy_plans_refused": 86,
+      "policy_score": 41,
+      "policy_seat": 1,
+      "policy_seconds": 6.51,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 87
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 28,
+          "talents": [
+            1,
+            2,
+            1,
+            3
+          ],
+          "turn": 87
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        8,
+        3,
+        2,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 297,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 156,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 0
+      },
+      "map_hash": "9429536b74d427d5",
+      "policy_plans_drawn": 7,
+      "policy_plans_refused": 6,
+      "policy_score": 30,
+      "policy_seat": 0,
+      "policy_seconds": 10.74,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        8,
+        4,
+        3,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 224,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 132,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 0
+      },
+      "map_hash": "9429536b74d427d5",
+      "policy_plans_drawn": 5,
+      "policy_plans_refused": 4,
+      "policy_score": 7,
+      "policy_seat": 1,
+      "policy_seconds": 9.21,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        8,
+        4,
+        3,
+        9,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 192,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 4
+      },
+      "map_hash": "877790419f657561",
+      "policy_plans_drawn": 17,
+      "policy_plans_refused": 16,
+      "policy_score": 264,
+      "policy_seat": 0,
+      "policy_seconds": 8.43,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        5,
+        4,
+        3,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 180,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "877790419f657561",
+      "policy_plans_drawn": 50,
+      "policy_plans_refused": 49,
+      "policy_score": 114,
+      "policy_seat": 1,
+      "policy_seconds": 8.49,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        5,
+        4,
+        3,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 256,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "d135c0344cc9b1c3",
+      "policy_plans_drawn": 32,
+      "policy_plans_refused": 31,
+      "policy_score": 73,
+      "policy_seat": 0,
+      "policy_seconds": 14.51,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 152,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        10,
+        6,
+        10,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 256,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 5
+      },
+      "map_hash": "d135c0344cc9b1c3",
+      "policy_plans_drawn": 19,
+      "policy_plans_refused": 18,
+      "policy_score": 84,
+      "policy_seat": 1,
+      "policy_seconds": 13.27,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 152,
+          "talents": [
+            2,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 3,
+      "start_inventory": [
+        8,
+        10,
+        6,
+        10,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 152,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 3
+      },
+      "map_hash": "eccf8523ad8f8515",
+      "policy_plans_drawn": 87,
+      "policy_plans_refused": 86,
+      "policy_score": 169,
+      "policy_seat": 0,
+      "policy_seconds": 6.07,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 5,
+      "start_inventory": [
+        9,
+        7,
+        3,
+        5,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 218,
+      "worst_loop": 3
+    },
+    {
+      "bot_score": 172,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "eccf8523ad8f8515",
+      "policy_plans_drawn": 24,
+      "policy_plans_refused": 23,
+      "policy_score": 141,
+      "policy_seat": 1,
+      "policy_seconds": 6.96,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 127,
+          "talents": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        7,
+        3,
+        5,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 299,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 96,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 6
+      },
+      "map_hash": "46fa065cc3978bc0",
+      "policy_plans_drawn": 67,
+      "policy_plans_refused": 66,
+      "policy_score": 151,
+      "policy_seat": 0,
+      "policy_seconds": 17.96,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        2,
+        2,
+        2,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 92,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 6
+      },
+      "map_hash": "46fa065cc3978bc0",
+      "policy_plans_drawn": 42,
+      "policy_plans_refused": 41,
+      "policy_score": 156,
+      "policy_seat": 1,
+      "policy_seconds": 16.84,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 28
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        2,
+        2,
+        2,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 232,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 9
+      },
+      "map_hash": "9fe9db46947a22fb",
+      "policy_plans_drawn": 137,
+      "policy_plans_refused": 136,
+      "policy_score": 143,
+      "policy_seat": 0,
+      "policy_seconds": 12.82,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        8,
+        7,
+        8,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 9
+    },
+    {
+      "bot_score": 238,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            1
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 9
+      },
+      "map_hash": "9fe9db46947a22fb",
+      "policy_plans_drawn": 148,
+      "policy_plans_refused": 147,
+      "policy_score": 137,
+      "policy_seat": 1,
+      "policy_seconds": 12.41,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 131,
+          "talents": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 12,
+      "start_inventory": [
+        9,
+        8,
+        7,
+        8,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 9
+    },
+    {
+      "bot_score": 230,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "1f0b427178e4a415",
+      "policy_plans_drawn": 79,
+      "policy_plans_refused": 78,
+      "policy_score": 124,
+      "policy_seat": 0,
+      "policy_seconds": 5.44,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        3,
+        7,
+        9,
+        3,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 217,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 7
+      },
+      "map_hash": "1f0b427178e4a415",
+      "policy_plans_drawn": 102,
+      "policy_plans_refused": 101,
+      "policy_score": 134,
+      "policy_seat": 1,
+      "policy_seconds": 4.59,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        7,
+        9,
+        3,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 7
+    },
+    {
+      "bot_score": 253,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6,
+        "4": 3
+      },
+      "map_hash": "12e158a3f6e3133a",
+      "policy_plans_drawn": 140,
+      "policy_plans_refused": 138,
+      "policy_score": 333,
+      "policy_seat": 0,
+      "policy_seconds": 19.05,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "turn": 104
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 247,
+          "talents": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "turn": 104
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        5,
+        10,
+        9,
+        7,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 252,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 8,
+        "4": 3
+      },
+      "map_hash": "12e158a3f6e3133a",
+      "policy_plans_drawn": 149,
+      "policy_plans_refused": 147,
+      "policy_score": 307,
+      "policy_seat": 1,
+      "policy_seconds": 22.48,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "turn": 92
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        },
+        {
+          "plan_index": 247,
+          "talents": [
+            3,
+            3,
+            1,
+            2
+          ],
+          "turn": 92
+        }
+      ],
+      "policy_trolls": 3,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        5,
+        10,
+        9,
+        7,
+        6,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 185,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "a46e59da0aba118a",
+      "policy_plans_drawn": 6,
+      "policy_plans_refused": 5,
+      "policy_score": 146,
+      "policy_seat": 0,
+      "policy_seconds": 7.99,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        10,
+        5,
+        6,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 212,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 190,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "a46e59da0aba118a",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 157,
+      "policy_seat": 1,
+      "policy_seconds": 6.96,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 52,
+          "talents": [
+            1,
+            3,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        4,
+        10,
+        5,
+        6,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 206,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 236,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "5d9fa5157aec03c2",
+      "policy_plans_drawn": 34,
+      "policy_plans_refused": 33,
+      "policy_score": 180,
+      "policy_seat": 0,
+      "policy_seconds": 4.97,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        7,
+        3,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 285,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 208,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 2
+      },
+      "map_hash": "5d9fa5157aec03c2",
+      "policy_plans_drawn": 44,
+      "policy_plans_refused": 43,
+      "policy_score": 157,
+      "policy_seat": 1,
+      "policy_seconds": 5.66,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 12
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        5,
+        7,
+        3,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 263,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 184,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 30
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 5,
+        "2": 1
+      },
+      "map_hash": "77108d9f998609ee",
+      "policy_plans_drawn": 87,
+      "policy_plans_refused": 86,
+      "policy_score": 144,
+      "policy_seat": 0,
+      "policy_seconds": 11.59,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 4
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 4
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        9,
+        3,
+        7,
+        5,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 5
+    },
+    {
+      "bot_score": 175,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 30
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "77108d9f998609ee",
+      "policy_plans_drawn": 102,
+      "policy_plans_refused": 101,
+      "policy_score": 122,
+      "policy_seat": 1,
+      "policy_seconds": 13.16,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 4
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 4
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 4,
+      "start_inventory": [
+        9,
+        3,
+        7,
+        5,
+        8,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 204,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 47,
+        "2": 4
+      },
+      "map_hash": "14beb3788d88ede1",
+      "policy_plans_drawn": 2,
+      "policy_plans_refused": 1,
+      "policy_score": 156,
+      "policy_seat": 0,
+      "policy_seconds": 6.1,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        6,
+        2,
+        7,
+        4,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 47
+    },
+    {
+      "bot_score": 194,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "14beb3788d88ede1",
+      "policy_plans_drawn": 3,
+      "policy_plans_refused": 2,
+      "policy_score": 148,
+      "policy_seat": 1,
+      "policy_seconds": 6.68,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        6,
+        2,
+        7,
+        4,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 160,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 6
+      },
+      "map_hash": "ed8871772172762f",
+      "policy_plans_drawn": 1,
+      "policy_plans_refused": 0,
+      "policy_score": 177,
+      "policy_seat": 0,
+      "policy_seconds": 17.03,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 5,
+      "start_inventory": [
+        6,
+        5,
+        7,
+        3,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 227,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 196,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 6
+      },
+      "map_hash": "ed8871772172762f",
+      "policy_plans_drawn": 80,
+      "policy_plans_refused": 79,
+      "policy_score": 219,
+      "policy_seat": 1,
+      "policy_seconds": 22.42,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 132,
+          "talents": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        6,
+        5,
+        7,
+        3,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 172,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "a634cda2e4dd274b",
+      "policy_plans_drawn": 64,
+      "policy_plans_refused": 63,
+      "policy_score": 45,
+      "policy_seat": 0,
+      "policy_seconds": 12.02,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 9,
+      "start_inventory": [
+        3,
+        5,
+        5,
+        2,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 176,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 12
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 6
+      },
+      "map_hash": "a634cda2e4dd274b",
+      "policy_plans_drawn": 60,
+      "policy_plans_refused": 59,
+      "policy_score": 87,
+      "policy_seat": 1,
+      "policy_seconds": 10.76,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        3,
+        5,
+        5,
+        2,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 149,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 25
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 6
+      },
+      "map_hash": "4ac1630dd6459a53",
+      "policy_plans_drawn": 26,
+      "policy_plans_refused": 25,
+      "policy_score": 80,
+      "policy_seat": 0,
+      "policy_seconds": 4.59,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 26
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 26
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        3,
+        6,
+        10,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 237,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 195,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 29
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "4ac1630dd6459a53",
+      "policy_plans_drawn": 32,
+      "policy_plans_refused": 31,
+      "policy_score": 88,
+      "policy_seat": 1,
+      "policy_seconds": 5.93,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 32
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 32
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        8,
+        3,
+        6,
+        10,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 136,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_1",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 4
+      },
+      "map_hash": "94020d2f7d402222",
+      "policy_plans_drawn": 74,
+      "policy_plans_refused": 73,
+      "policy_score": 175,
+      "policy_seat": 0,
+      "policy_seconds": 8.53,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 74
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 74
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        3,
+        2,
+        2,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 271,
+      "worst_loop": 4
+    },
+    {
+      "bot_score": 124,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            0,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "mercy_player_0",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 10
+      },
+      "map_hash": "94020d2f7d402222",
+      "policy_plans_drawn": 83,
+      "policy_plans_refused": 82,
+      "policy_score": 142,
+      "policy_seat": 1,
+      "policy_seconds": 7.4,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 81
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 27,
+          "talents": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "turn": 81
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        3,
+        2,
+        2,
+        6,
+        7,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 240,
+      "worst_loop": 10
+    },
+    {
+      "bot_score": 204,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 8
+      },
+      "map_hash": "3aec2731e56a9191",
+      "policy_plans_drawn": 6,
+      "policy_plans_refused": 5,
+      "policy_score": 89,
+      "policy_seat": 0,
+      "policy_seconds": 7.96,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 128,
+          "talents": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        9,
+        4,
+        3,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 211,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 175,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            3,
+            0,
+            3
+          ],
+          "turn": 6
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "grace_expired",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 8
+      },
+      "map_hash": "3aec2731e56a9191",
+      "policy_plans_drawn": 6,
+      "policy_plans_refused": 5,
+      "policy_score": 96,
+      "policy_seat": 1,
+      "policy_seconds": 7.94,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 128,
+          "talents": [
+            2,
+            2,
+            1,
+            3
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        9,
+        9,
+        4,
+        3,
+        10,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 188,
+      "worst_loop": 8
+    },
+    {
+      "bot_score": 172,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 22
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 1
+      },
+      "map_hash": "754d015cc988f6c4",
+      "policy_plans_drawn": 22,
+      "policy_plans_refused": 21,
+      "policy_score": 72,
+      "policy_seat": 0,
+      "policy_seconds": 18.7,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 22
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 22
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        7,
+        3,
+        10,
+        4,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 177,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 22
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 1
+      },
+      "map_hash": "754d015cc988f6c4",
+      "policy_plans_drawn": 22,
+      "policy_plans_refused": 21,
+      "policy_score": 84,
+      "policy_seat": 1,
+      "policy_seconds": 18.63,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 22
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 112,
+          "talents": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "turn": 22
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        7,
+        3,
+        10,
+        4,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 149,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "3": 52
+      },
+      "map_hash": "a23c88a13d6e9a6a",
+      "policy_plans_drawn": 138,
+      "policy_plans_refused": 137,
+      "policy_score": 83,
+      "policy_seat": 0,
+      "policy_seconds": 4.05,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 105
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 311,
+          "talents": [
+            4,
+            1,
+            2,
+            1
+          ],
+          "turn": 105
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        7,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 52
+    },
+    {
+      "bot_score": 139,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1
+      },
+      "map_hash": "a23c88a13d6e9a6a",
+      "policy_plans_drawn": 169,
+      "policy_plans_refused": 169,
+      "policy_score": 112,
+      "policy_seat": 1,
+      "policy_seconds": 3.18,
+      "policy_trains": [],
+      "policy_trains_requested": [],
+      "policy_trolls": 1,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        4,
+        7,
+        6,
+        3,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 200,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 2
+      },
+      "map_hash": "c360bdd34a66dcdf",
+      "policy_plans_drawn": 8,
+      "policy_plans_refused": 7,
+      "policy_score": 116,
+      "policy_seat": 0,
+      "policy_seconds": 5.81,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 2
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 2
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        10,
+        6,
+        4,
+        5,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 192,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            0,
+            3
+          ],
+          "turn": 14
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 2
+      },
+      "map_hash": "c360bdd34a66dcdf",
+      "policy_plans_drawn": 8,
+      "policy_plans_refused": 7,
+      "policy_score": 112,
+      "policy_seat": 1,
+      "policy_seconds": 6.41,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 2
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 226,
+          "talents": [
+            3,
+            2,
+            1,
+            1
+          ],
+          "turn": 2
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 6,
+      "start_inventory": [
+        10,
+        6,
+        4,
+        5,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 2
+    },
+    {
+      "bot_score": 174,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 58
+      },
+      "map_hash": "6a290c401f5274c0",
+      "policy_plans_drawn": 98,
+      "policy_plans_refused": 97,
+      "policy_score": 136,
+      "policy_seat": 0,
+      "policy_seconds": 7.34,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        10,
+        2,
+        7,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 58
+    },
+    {
+      "bot_score": 176,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            0,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "3": 6
+      },
+      "map_hash": "6a290c401f5274c0",
+      "policy_plans_drawn": 100,
+      "policy_plans_refused": 99,
+      "policy_score": 170,
+      "policy_seat": 1,
+      "policy_seconds": 7.71,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 212,
+          "talents": [
+            3,
+            1,
+            2,
+            2
+          ],
+          "turn": 1
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": false,
+      "referee_errors": {},
+      "stall_counter": 0,
+      "start_inventory": [
+        10,
+        2,
+        7,
+        10,
+        5,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 6
+    },
+    {
+      "bot_score": 197,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "0": 1,
+        "2": 1
+      },
+      "map_hash": "1c982fa90b75ad9e",
+      "policy_plans_drawn": 156,
+      "policy_plans_refused": 155,
+      "policy_score": 217,
+      "policy_seat": 0,
+      "policy_seconds": 6.93,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 7,
+      "start_inventory": [
+        4,
+        6,
+        8,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    },
+    {
+      "bot_score": 212,
+      "bot_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            2,
+            2,
+            0,
+            2
+          ],
+          "turn": 10
+        }
+      ],
+      "bot_trolls": 2,
+      "ended_reason": "turn_limit",
+      "illegal_commands": [],
+      "loops": {
+        "1": 1,
+        "2": 1
+      },
+      "map_hash": "1c982fa90b75ad9e",
+      "policy_plans_drawn": 161,
+      "policy_plans_refused": 160,
+      "policy_score": 216,
+      "policy_seat": 1,
+      "policy_seconds": 6.48,
+      "policy_trains": [
+        {
+          "spawned": true,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "policy_trains_requested": [
+        {
+          "plan_index": 32,
+          "talents": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "turn": 8
+        }
+      ],
+      "policy_trolls": 2,
+      "policy_won": true,
+      "referee_errors": {},
+      "stall_counter": 9,
+      "start_inventory": [
+        4,
+        6,
+        8,
+        10,
+        4,
+        0
+      ],
+      "timeouts": 0,
+      "turns": 300,
+      "worst_loop": 1
+    }
+  ],
+  "seats": [
+    0,
+    1
+  ],
+  "seed": 0,
+  "timeouts_total": 0,
+  "train_p": 0.02,
+  "turn_cap": 300,
+  "what": "bench: one seat a Python policy, one seat a compiled single-file bot, over the July Python referee (fuzz_panel.FuzzReferee.apply_two)"
+}

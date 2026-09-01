@@ -120,6 +120,15 @@ the best-fitting explanation of the staged drift. The full dossier:
    pair and lever 2 (the 128-step rollout), each one variable against the host control h01,
    read by the same gate as they land tonight. Then, on the evidence: stack the confirmed split
    with the next confirmed lever(s), one change at a time, toward the 72-of-144 parity bar.
+
+   **The night's verdicts (23:0xZ):** the wood pair's host replication reads **+0.049
+   [0.0000, +0.101]** (28 / 31 vs 23 / 22; margin +8.5; net +8 over the clone) — the cluster's
+   effect size reproduced on a second platform and the full map corpus, with the interval
+   touching zero exactly, which the frozen letter reads as not confirmed; **the reward path
+   stands on the pair of results**. Lever 2 alone (rollout 128): +0.017 [−0.004, +0.042]
+   (21 / 29 vs 23 / 22) — **not confirmed as a single lever**; negative early, positive late.
+   Next, after chatgpt_1's read of the verdicts: the stack (2 + 2 with rollout 128) or the
+   0.5 + 3.5 magnitude question, one variable against the right control.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever
