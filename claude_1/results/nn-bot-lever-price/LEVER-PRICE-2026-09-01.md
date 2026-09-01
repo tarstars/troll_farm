@@ -83,10 +83,68 @@ scattered through the game. Lever 2 extends how far a trace reaches, which only 
 near an ending. Neither one subsumes the other, and running one first costs nothing that the
 other needs.
 
+## The matched in-trainer measurement — the limitation above, removed
+
+The section below was written before this one and says a comparable share needs a warmed critic,
+"which is a training run, which is what the arm itself would do". That was half right: it needs a
+critic **warm-up**, which is not the arm. The actor never moves during warm-up, so no policy is
+trained, nothing is benched and no gate is touched. Two warm-ups were run on this host at nice 19,
+identical in every argument **except the two wood flags**:
+
+```sh
+train_ppo_full.py --env full --maps local_claude_1/nn-bot/maps-slice-1000.jsonl \
+  --initial-checkpoint <clone> --anchor-checkpoint <clone> --frozen-checkpoint <clone> \
+  --opponent-weights '{"champion_exact":1}' --train-scope plan-critic \
+  --gamma 0.999 --gae-lambda 0.95 --critic-warmup-updates 300 --total-turn-steps 163840 \
+  --num-envs 128 --rollout-steps 32 --threads 14 --seed 909 \
+  --wood-shaping {0.0|2.0} --end-wood {4.0|2.0}
+```
+
+Both stayed in `phase: critic-warmup` for all 40 updates with `plan_grad_norm_pre_clip` 0.0 on
+every one — the actor is frozen, verifiably. **The two arms played the same games:** all 40 updates
+agree exactly on turns completed (54,221) and on row counts, so the reward is the only thing that
+moved. The numbers are read by `credit_path_read.py`, the reader of record.
+
+| | `0 + 4` (of record) | `2 + 2` (lever 1) | factor |
+|---|---|---|---|
+| **plan** reward share of the signal | **1.45 %** | **5.34 %** | **3.7×** |
+| updates carrying any reward | 23 of 40 | **40 of 40** | — |
+| **troll** reward share of the signal | 1.68 % | 6.23 % | 3.7× |
+| critic's bootstrap share of the target | 0.986 | 0.901 | — |
+| trace reaches a real ending | 0.0097 | 0.0097 | 1.0× (control) |
+
+The `0+4` figure of 1.45 % sits beside the **2.32 % of record**, which calibrates this run too (it
+is 40 early updates, not a whole run). The trace-reach term is identical to four decimals across
+the arms, as it must be for the same games — a control that came out right.
+
+**Per update, the difference is not a level shift but a change in kind:**
+
+| update | `0+4` | `2+2` |
+|---|---|---|
+| 1 | 0.00 % | 0.69 % |
+| 10 | 0.00 % | 2.46 % |
+| 20 | 2.28 % | 9.04 % |
+| 30 | **0.00 %** | 6.24 % |
+| 40 | **0.11 %** | **28.63 %** |
+
+Under `0+4` the observed reward **flickers**: it is exactly zero for the first eleven updates, and
+still collapses to zero at update 30 and to 0.11 % at update 40. It appears only when a game
+happens to end inside a 32-mini-step buffer and vanishes again when none does. Under `2+2` reward
+is present in **every** update and its share climbs steadily to 28.6 %. That is the finding: the
+split does not merely add signal, it makes the signal *continuous* instead of intermittent.
+
+**What this still does not say.** Whether a larger and steadier observed-reward share produces a
+better *policy* is exactly what the arm and its frozen gate decide, and nothing here substitutes
+for that. This is 40 updates of critic warm-up with the actor frozen — a measurement of the
+learning signal, not of learning. It also does not rank lever 1 against lever 2; the two act on
+different rows, and only lever 1 could be measured this way, because lever 2 changes the buffer
+geometry rather than the reward.
+
 ## What this measurement cannot say
 
-**The share-of-signal number is not comparable to the 2.32 % of record, and is not reported as a
-headline.** The reason is measured, not guessed: the clone's value head returns |V| ≈ 0.79 on
+**Priced at the cold clone, the share-of-signal number is not comparable to the 2.32 % of record**
+(the matched warm-up above is what makes it comparable; this paragraph explains why the offline
+instrument alone could not). The reason is measured, not guessed: the clone's value head returns |V| ≈ 0.79 on
 average (max 1.42) while a terminal reward is about 75. The runs of record had a critic warmed up
 for 300 updates, whose outputs are on the scale of the returns, which is exactly why its component
 dominates there. Priced at the clone the ratio inverts, and it would say nothing about a run in
@@ -160,3 +218,29 @@ every short window would be handed the long window's information and lever 2 wou
 
 - instrument `claude_1/nn-bot/lever_price.py` sha256 `6bd6546525d7cdc8…`
 - result `claude_1/results/nn-bot-lever-price/lever-price-2026-09-01.json` sha256 `3d9de52e4805e6af…`
+
+## Addendum — lever 2 measured the same way; the two levers are comparable
+
+The section above says lever 2 "could not be measured this way at all". That was wrong for the
+same reason the earlier claim about the warm-up was wrong: a third warm-up at the other geometry
+measures it, actor still frozen. `--num-envs 32 --rollout-steps 128` holds the batch at 4,096 rows
+an update, so all three cells are the same size.
+
+| cell | reward share of signal | updates carrying reward | trace reach | plan rows |
+|---|---|---|---|---|
+| `0+4` @ 32-step (of record) | 1.45 % | 23 of 40 | 0.96 % | 54,321 |
+| `2+2` @ 32-step (**lever 1**) | 5.34 % | **40 of 40** | 0.96 % | 54,321 |
+| `0+4` @ 128-step (**lever 2**) | **5.91 %** | 34 of 40 | **6.45 %** | 53,784 |
+
+**The two levers are about the same size on the headline metric** — 3.7× and 4.1× — which the
+row-coverage framing earlier in this report (20× versus 4.3×) does not convey, because those two
+factors count different things. They differ in *mechanism*, not magnitude:
+
+- **lever 1 buys continuity**: reward in every update, trace reach unchanged;
+- **lever 2 buys reach**: trace reach 6.7× (0.96 % → 6.45 %), but 6 updates in 40 are still dry.
+
+They are therefore complementary rather than alternatives, and nothing here says which produces a
+better policy — that is the arm's gate. Caveat specific to this cell: lever 2 changes the
+environment population (32 environments rather than 128), so unlike the wood-split pair it is not
+a same-games control; the row counts are within 1 % and the comparison is between geometries by
+construction.
