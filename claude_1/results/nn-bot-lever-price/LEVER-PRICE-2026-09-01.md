@@ -218,3 +218,29 @@ every short window would be handed the long window's information and lever 2 wou
 
 - instrument `claude_1/nn-bot/lever_price.py` sha256 `6bd6546525d7cdc8…`
 - result `claude_1/results/nn-bot-lever-price/lever-price-2026-09-01.json` sha256 `3d9de52e4805e6af…`
+
+## Addendum — lever 2 measured the same way; the two levers are comparable
+
+The section above says lever 2 "could not be measured this way at all". That was wrong for the
+same reason the earlier claim about the warm-up was wrong: a third warm-up at the other geometry
+measures it, actor still frozen. `--num-envs 32 --rollout-steps 128` holds the batch at 4,096 rows
+an update, so all three cells are the same size.
+
+| cell | reward share of signal | updates carrying reward | trace reach | plan rows |
+|---|---|---|---|---|
+| `0+4` @ 32-step (of record) | 1.45 % | 23 of 40 | 0.96 % | 54,321 |
+| `2+2` @ 32-step (**lever 1**) | 5.34 % | **40 of 40** | 0.96 % | 54,321 |
+| `0+4` @ 128-step (**lever 2**) | **5.91 %** | 34 of 40 | **6.45 %** | 53,784 |
+
+**The two levers are about the same size on the headline metric** — 3.7× and 4.1× — which the
+row-coverage framing earlier in this report (20× versus 4.3×) does not convey, because those two
+factors count different things. They differ in *mechanism*, not magnitude:
+
+- **lever 1 buys continuity**: reward in every update, trace reach unchanged;
+- **lever 2 buys reach**: trace reach 6.7× (0.96 % → 6.45 %), but 6 updates in 40 are still dry.
+
+They are therefore complementary rather than alternatives, and nothing here says which produces a
+better policy — that is the arm's gate. Caveat specific to this cell: lever 2 changes the
+environment population (32 environments rather than 128), so unlike the wood-split pair it is not
+a same-games control; the row counts are within 1 % and the comparison is between geometries by
+construction.
