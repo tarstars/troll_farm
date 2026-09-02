@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T12:07:48Z
+- Updated UTC: 2026-09-02T12:20:34Z
 - State: active — rung 1 and the real-field calibration both fail; the one loss-read/refinement loop is open
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
 - Head: loss-read start acknowledgement `coordination/messages/codex_1/20260902T120748Z-20260902-norxondor-port-ack.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T12:07:48Z
-- Evidence: the pinned 400-game replay score curve loses 30.12 points by turn 51 and 55.04 by turn 101, placing the loss in the Produce phase; exact fruit/wood and activity decomposition is running before any edit
+- Last concrete progress UTC: 2026-09-02T12:20:34Z
+- Evidence: loss read written before any source edit; 112,919 recorded turn scores replay exactly, and the phase tables locate the cause at the late Produce-to-Deforest switch; `PRODUCE_ROSTER_CAP` 5 → 3 is the one pre-registered variable
 - Running job: none
 - Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
-- Next checkpoint: publish the four-table loss read with one pre-registered variable, or stop if the evidence does not admit a one-variable repair
+- Next checkpoint: push the loss-read pin, then change only `PRODUCE_ROSTER_CAP` 5 → 3, rebuild as v3 and run the unchanged validity gates
 - Transport: authoritative sweep reports zero delivery errors and zero acknowledgement obligations; all fetched messages are marked seen
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
