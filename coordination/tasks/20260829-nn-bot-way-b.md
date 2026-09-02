@@ -1137,3 +1137,9 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   owner's battery; deterministic, they restart from scratch when the machine is on mains (dirs `…-0902/` hold only the
   aborted logs; an empty `ppo-host-s22-0901/` is the trace of a launch interrupted at 06:45Z). No bench runs on battery.
   — coordinator
+- 2026-09-02 08:3xZ: the laptop is on mains again (the owner plugged it in; cores back at 3.1 GHz) — **the two host
+  arms relaunched identically** into `/home/tarstars/nn-data/ppo-host-s22-0902b/` and `ppo-host-s22L-0902b/` (7 threads
+  each, nice 15, the pinned 09-01 corpus; start events differ from hr22 in the intended fields only); pace 4.6 s an
+  update (31 updates in 150 s), so host s22 lands ≈ 12:00Z and host s22L ≈ 15:30Z. A battery guard
+  (`/home/tarstars/nn-data/battery-guard.sh`, pid file beside it) stops every host training within a minute if the
+  mains go away. Both cluster arms still pending a slot at 08:3xZ. — coordinator

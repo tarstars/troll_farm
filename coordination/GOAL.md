@@ -34,6 +34,16 @@ program: **the second-placed player's bot**. Three lines run at once, each with 
    arms restart when the laptop is on mains; no further tuning arms; the teacher change (clone the
    champion from unlimited generated positions) waits for the owner's word.
 
+**08:4xZ, after P-0's calibration (orchard 6 loses 324 of 400 to the champion head-to-head yet read
+above it on the ladder): rung 1 is a FIELD reading — candidate and champion each against the same
+four local opponents, paired — not a duel; the real-field rung decides when it straddles zero.**
+
+**The research moves without the owner (owner 09-02: "I want this research to move on without me
+pushing it"):** the coordinator paces itself with scheduled wakes on the laptop; a fallback seat on
+the VM (`local_claude_1/coordinator-fallback/`, hourly watchdog) runs one headless coordinator wake
+whenever the laptop has been silent for three hours and mail waits; the bots wake on ack-required
+mail through the VM launcher; the ladder runner syncs its queue from `main` before every tick.
+
 **The ladder is the coordinator's again** (owner 09-02): the VM queue (`local_claude_1/ladder-queue/
 queue.json`, runner by cron) holds the champion of record for a fresh baseline in today's field;
 challengers go up only after the panel, the bed and a second agent's byte-identity reproduction,

@@ -81,6 +81,40 @@ coordinator gave the owner at 07:5xZ ("two in three locally") to about even**; s
    prediction, then **A-B-B-A**: champion baseline (already queued, `champion-baseline-0902-r1`),
    the port, the port again, the champion again — one hour each, the games collected.
 
+## Ruling 2026-09-02 08:4xZ — rung 1 is a FIELD reading, not a duel (after P-0's calibration)
+
+claude_1 delivered P-0 within the hour (`claude_1/h2h-panel/`, pinned `d9eeeeae…`; 9 tests; 400 games
+a minute at four jobs). Its validity table changes rung 1: **the champion against itself is exactly
+symmetric (113–174–113, margin 0.0), but orchard 6 loses 324 of 400 to the champion at −26 a game**
+— while their ladder readings the same day were 18.8 and 18.2. A duel against our own clear-cutter
+measures *race strength on a shared map*, not strength against the ladder's field; the denial rule
+likewise reads −0.7 here and ±0 on the ladder (July's local bench had said −150). So:
+
+- **Rung 1 = the candidate and the champion of record each played against the same local field**,
+  paired by opponent, map and seat: the champion of record (`0e92f8fa…`), orchard 6 (`32384936…`),
+  the old champion with its denial rule on (`72673124…`), and the network clone
+  (`cgauto/submissions/candidate-nn-clone.rs`, a top-four imitation, if it runs inside the
+  referee's time budget) — 200 maps × 2 seats per opponent. The statistic: the paired difference
+  (candidate − champion) in win indicator and in margin per (opponent, map, seat), the interval by
+  the gates' clustered bootstrap over maps, per opponent (`gate1.py --treatment 0=… --control 0=…
+  --expected-cells 400`) and as the field mean (a small `field.py` aggregator, claude_1, before
+  09-06). **Bar to rung 2:** the field-mean difference's interval above zero; if it straddles
+  zero, rung 2 decides. **Dead** only if both rung 1's field reading and rung 2 read below with
+  intervals wholly below zero, after the one refinement loop (the dead condition above is read
+  this way).
+- **The panel's pool (claude_1's question): (b) the slice stands.** `panel-200-seed1.jsonl`, sha
+  `77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7`, 200 distinct real ladder
+  maps drawn with seed 1 from the 999-map slice on `main`; what the panel needs is a fixed file
+  whose hash is on the card, not the laptop's corpus — and the copy would be a 70 MB transfer
+  that only the owner's word may start.
+- **Fidelity note of record:** panel games between two of our clear-cutters end early (median
+  ~180 turns, 6 % reach turn 300; the champion's ladder games: 296 and 46 %) because the map is
+  exhausted and the referee's no-plants rule ends the game; the port plants, so its games will
+  run longer. Every panel row runs to the 300-turn cap.
+- **For codex_1 (from the bed's control run):** the readable port file must carry the diagnostics
+  `MSG` line itself; the source of record does not (the v6 arm adds it), and without it the bed's
+  compacted-equals-readable check fails on every situation.
+
 ## Stages and roles
 
 - **Read + design (codex_1, ≤ 1 day):** `codex_1/norxondor-port/DESIGN-2026-09-02.md` — (a) what
@@ -133,3 +167,9 @@ one ladder block of four hours. No other track's ladder hours are taken.
 - 2026-09-02 08:1xZ: card born; charters to codex_1 (design + build) and claude_1 (P-0 the panel
   instrument and the bed; then the reproduction) go out ack-required. The champion baseline
   `41230202` submitted 08:00Z by the VM runner, reading ≈ 09:02Z. — coordinator
+- 2026-09-02 08:4xZ: **P-0 delivered by claude_1 within the hour** (handoff `20260902T083010Z`, pinned
+  `d9eeeeae…`): the head-to-head driver, the panel file (sha `77556dc9…`, 200 maps, seed 1, from the 999-map
+  slice), the bed for a new bot (PASS 34/34 on the champion's own arm), 9 tests; 400 games a minute. Validity:
+  champion vs itself 113–174–113 (margin 0.0); **orchard 6 65–11–324, −26 a game** against ladder readings of
+  18.8 vs 18.2; the denial rule −0.7. Ruling above: rung 1 becomes a field reading; the slice stands as the
+  pool. codex_1 acknowledged 08:23Z (design read first, then the build). — coordinator
