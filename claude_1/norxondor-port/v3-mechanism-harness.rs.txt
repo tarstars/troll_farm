@@ -1,0 +1,69 @@
+// claude_1's mechanism harness for the port v3 (2026-09-02). Inserted verbatim as the first items of
+// `mod port_tests` in a SCRATCH copy of readable/norxondor-port-v3.rs (sha 7b067f2f...) and run with
+// `rustc --edition=2021 --test <copy> && ./<bin> c1_`. Not part of any build; the candidate is untouched.
+            // ---- claude_1's mechanism harness (scratch copy only; NOT part of the build) ----
+            #[test]
+            fn c1_cap_fires_at_roster_three_whatever_the_turn_floor_or_iron() {
+                for turn in [1, 2, 50, 74, 75, 105, 106, 143, 144, 154, 185, 186, 200, 299] {
+                    for with_iron in [true, false] {
+                        for train_now in [false, true] {
+                            for affordable in [false, true] {
+                                let mut view = test_view(3, turn, with_iron);
+                                if affordable {
+                                    if let Some(cost) = YamoBot::floor_cost(&view) { view.inventories[0] = cost; }
+                                }
+                                let mut b = bot();
+                                b.update_mode(&view, train_now);
+                                assert_eq!(b.mode, EconomyMode::Deforest, "turn {} iron {} train_now {} affordable {}", turn, with_iron, train_now, affordable);
+                            }
+                        }
+                    }
+                }
+            }
+            #[test]
+            fn c1_cap_never_fires_before_the_third_troll() {
+                // roster 1 and 2, floor affordable, no deadline reached: Produce on every turn up to LAST_TRAIN_TURN
+                for roster in [1usize, 2] {
+                    for turn in 1..=185 {
+                        let mut view = test_view(roster, turn, true);
+                        let cost = YamoBot::floor_cost(&view).unwrap();
+                        view.inventories[0] = cost;
+                        let mut b = bot();
+                        b.update_mode(&view, false);
+                        assert_eq!(b.mode, EconomyMode::Produce, "roster {} turn {}", roster, turn);
+                    }
+                }
+            }
+            #[test]
+            fn c1_roster_two_deadline_still_hard_and_roster_three_four_deadlines_unreachable() {
+                let mut view = test_view(2, 129, true);
+                let cost = YamoBot::floor_cost(&view).unwrap();
+                view.inventories[0] = cost; view.inventories[0][PLUM] -= 1;
+                let mut b = bot(); b.update_mode(&view, false);
+                assert_eq!(b.mode, EconomyMode::Deforest);
+                // rosters 3 and 4 are Deforest at turn 1 already, so their deadlines (144, 154) never decide anything
+                for roster in [3usize, 4] {
+                    let mut v = test_view(roster, 1, true);
+                    if let Some(c) = YamoBot::floor_cost(&v) { v.inventories[0] = c; }
+                    let mut b = bot(); b.update_mode(&v, false);
+                    assert_eq!(b.mode, EconomyMode::Deforest, "roster {}", roster);
+                }
+            }
+            #[test]
+            fn c1_no_train_once_three_trolls_exist_even_when_affordable() {
+                for turn in [4, 50, 106, 150] {
+                    let mut view = test_view(3, turn, true);
+                    view.units[0].cell = view.shacks[0];
+                    view.inventories[0][PLUM] = 40; view.inventories[0][LEMON] = 40;
+                    view.inventories[0][APPLE] = 40; view.inventories[0][IRON] = 40;
+                    let commands = bot().commands(&view);
+                    assert!(!commands.iter().any(|c| c.starts_with("TRAIN ")), "turn {} {:?}", turn, commands);
+                }
+                // and with two trolls the same purse still trains (the cap, not the purse, is what stops it)
+                let mut view = test_view(2, 4, true);
+                view.units[0].cell = view.shacks[0];
+                view.inventories[0][PLUM] = 40; view.inventories[0][LEMON] = 40;
+                view.inventories[0][APPLE] = 40; view.inventories[0][IRON] = 40;
+                let commands = bot().commands(&view);
+                assert!(commands.iter().any(|c| c.starts_with("TRAIN ")), "{:?}", commands);
+            }
