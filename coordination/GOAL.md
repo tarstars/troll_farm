@@ -129,6 +129,15 @@ the best-fitting explanation of the staged drift. The full dossier:
    (21 / 29 vs 23 / 22) — **not confirmed as a single lever**; negative early, positive late.
    Next, after chatgpt_1's read of the verdicts: the stack (2 + 2 with rollout 128) or the
    0.5 + 3.5 magnitude question, one variable against the right control.
+
+   **09-02 04:5xZ — both asked and answered.** The stack `s22` (vs r22): its *additional* gain is
+   not confirmed (+0.007 [−0.021, +0.035]) but it posts the programme's best absolute numbers —
+   **29 / 33 of 144**, net +9 over the clone — and is the first arm that rises with age instead
+   of decaying. The magnitude `r0535` (0.5 + 3.5 vs 2 + 2): −0.017 [−0.066, +0.031] — no
+   difference; **2 + 2 stays the recipe**. Running now: **`ppo-yt-s22L`** — the same stack at a
+   doubled step budget (5,420 updates; the one changed field, verified), the depth question the
+   rise poses; its read is pre-registered as exploratory benches at updates 3,000…5,400, and any
+   promotion claim requires a fresh frozen gate written before those numbers are seen.
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

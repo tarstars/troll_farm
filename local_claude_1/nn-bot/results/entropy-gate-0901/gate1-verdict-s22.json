@@ -1,0 +1,40 @@
+{
+  "decision_rule": "CONFIRMED = interval wholly above zero AND positive at each age AND clone non-inferiority; PARTIAL = interval wholly above zero but one secondary condition fails; NOT_CONFIRMED = interval contains or lies below zero; INCONCLUSIVE = incomplete identity, population, execution or evaluation evidence.",
+  "expected_cells": 144,
+  "non_inferiority_budget": 6,
+  "ages": [
+    1500,
+    2500
+  ],
+  "inconclusive_reasons": [],
+  "cells_used": 144,
+  "execution_faults": {},
+  "per_age_mean_effect": {
+    "1500": -0.013889,
+    "2500": 0.027778
+  },
+  "mean_effect": 0.006944,
+  "ci95": [
+    -0.020833,
+    0.034722
+  ],
+  "interval_above_zero": false,
+  "positive_at_each_age": false,
+  "bootstrap_draws": 10000,
+  "bootstrap_seed": 1,
+  "margin_effect_not_the_gate": {
+    "mean": 1.3611,
+    "ci95": [
+      -1.6215,
+      4.4931
+    ]
+  },
+  "clone_non_inferiority": {
+    "cells_lost": 2,
+    "cells_gained": 11,
+    "net_cells_lost": -9,
+    "budget": 6
+  },
+  "non_inferiority_holds": true,
+  "verdict": "ENTROPY_NOT_CONFIRMED"
+}

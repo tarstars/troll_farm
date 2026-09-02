@@ -1091,3 +1091,17 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (verified on the start events; same coverage per claude_1's pricing, a quarter of the immediate signal). Control =
   `ppo-host-r22`, benched tonight. Each lands in ~2–2.5 h and is read by the same frozen gate. Nothing else launched;
   the host carries one training (7 of 20 cores) and the cluster one job. — coordinator
+- 2026-09-02 04:5xZ: **the overnight pair of gates (both arms 2,709 updates; benches 0 faults; JSONs pinned).**
+  **The STACK `ppo-yt-s22`** (2 + 2 with the 128-step rollout; control r22): **29 / 33 of 144** at updates 1,500 / 2,500 —
+  the gate reads the *additional* effect over the split as not confirmed (+0.007 [−0.021, +0.035]; margin +1.4), **but 33
+  at update 2,500 is the programme's best number yet, net +9 cells over the clone, and s22 is the first arm that RISES
+  from 1,500 to 2,500 (29 → 33) instead of decaying** — the "helps late" signature lever 2 showed alone, now on top of
+  the split. **The MAGNITUDE `ppo-host-r0535`** (0.5 + 3.5, the environment's default; control the host r22): 27 / 27 of
+  144, effect −0.017 [−0.066, +0.031] — no measurable difference; if anything the bigger immediate signal is better;
+  **2 + 2 stays the recipe.** The campaign's locked-panel ledger (wins of 144): clone 26 · E00 24/21 · E01 23/22 ·
+  **r22 31/29** · **s22 29/33** · h00 18/20 · h01 23/22 · hr22 28/31 · hl128 21/29 · r0535 27/27; parity bar 72.
+  Next, launched under the standing authorization: (a) s22's final checkpoint (update 2,709) benched on the locked panel —
+  exploratory, does the rise continue past the gate's last age; (b) **`ppo-yt-s22L`** on the cluster — the same stack with
+  `--total-turn-steps 22200000` (5,420 updates), the one changed field, to see whether the rise holds at depth; its read is
+  pre-registered as exploratory benches at 3,000…5,400, and any promotion claim needs a fresh frozen gate written before
+  those numbers are seen. — coordinator
