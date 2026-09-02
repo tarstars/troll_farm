@@ -24,8 +24,9 @@ over all (opponent, seat) cells, then the bootstrap over maps, so a map's cells 
 opponent travel together in every draw.
 
 The bar to rung 2 as ruled: the field-mean interval above zero. Both statistics are printed; the
-margin is the one the verdict line reads (the ladder scores points, and a win indicator carries no
-size), and the win-indicator reading stands beside it so the coordinator can read either.
+**win indicator** is the one the verdict line reads (ruling 2026-09-02 09:23Z: the ladder's rating is
+computed from wins and losses, a margin is a size the ladder never sees), and the margin reading stands
+beside it on every line as the finer instrument that explains a straddle.
 Execution faults in any file are reported and make the reading `clean: false`; the verdict is then
 `INCONCLUSIVE`, as in the gates.
 
@@ -61,9 +62,10 @@ STRADDLES = "FIELD_STRADDLES_ZERO"
 INCONCLUSIVE = "INCONCLUSIVE"
 
 DECISION_RULE = (
-    "FIELD_ABOVE_ZERO = the field-mean margin difference's 95 % interval wholly above zero "
-    "(the bar to rung 2); FIELD_BELOW_ZERO = wholly below; FIELD_STRADDLES_ZERO = contains "
-    "zero (rung 2 decides); INCONCLUSIVE = a fault in any run, or an incomplete pairing."
+    "FIELD_ABOVE_ZERO = the field-mean WIN-INDICATOR difference's 95 % interval wholly above zero "
+    "(the bar to rung 2; ruling 2026-09-02 09:23Z); FIELD_BELOW_ZERO = wholly below; "
+    "FIELD_STRADDLES_ZERO = contains zero (rung 2 decides); INCONCLUSIVE = a fault in any run, or "
+    "an incomplete pairing. The margin difference is printed beside it and does not decide."
 )
 
 
@@ -178,9 +180,9 @@ def compute(pairs: list[Pair], *, draws: int = BOOTSTRAP_DRAWS, seed: int = BOOT
         problems.append(f"the champion is not one file across the opponents: {sorted(champion_shas)}")
     if problems:
         verdict = INCONCLUSIVE
-    elif field["margin_diff"]["above_zero"]:
+    elif field["win_diff"]["above_zero"]:      # the verdict reads the win indicator (ruling 09-02 09:23Z)
         verdict = ABOVE
-    elif field["margin_diff"]["below_zero"]:
+    elif field["win_diff"]["below_zero"]:
         verdict = BELOW
     else:
         verdict = STRADDLES

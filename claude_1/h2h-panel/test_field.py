@@ -70,7 +70,26 @@ def test_a_uniform_shift_is_read_exactly(tmp_path):
     o = report["per_opponent"][0]
     assert o["margin_diff"]["mean"] == 7 and o["margin_diff"]["interval_95"] == [7, 7]
     assert o["win_diff"]["mean"] == 0            # both already won every cell
+    assert report["verdict"] == field.STRADDLES  # a margin-only shift does not move the verdict (ruling 09-02 09:23Z)
+
+
+def test_the_verdict_reads_the_win_indicator_not_the_margin(tmp_path):
+    # the champion loses every cell by 10; the candidate wins every cell by 1: the win indicator is +1
+    # on every map (interval [1, 1]) while the margin moves by 11 -- ABOVE comes from the wins
+    lost = {m: {0: (90, 100), 1: (90, 100)} for m in maps(6)}
+    won = {m: {0: (101, 100), 1: (101, 100)} for m in maps(6)}
+    report = field.compute([pair(tmp_path, "a", won, lost)], draws=200)
+    f = report["field"]
+    assert f["win_diff"]["mean"] == 1 and f["win_diff"]["interval_95"] == [1, 1]
+    assert f["margin_diff"]["mean"] == 11
     assert report["verdict"] == field.ABOVE
+    # the converse: the candidate loses every cell the champion won, by a hair -- BELOW on the wins
+    # even though the margin difference is small
+    barely_lost = {m: {0: (99, 100), 1: (99, 100)} for m in maps(6)}
+    report = field.compute([pair(tmp_path, "b", barely_lost, maps(6))], draws=200)
+    assert report["field"]["win_diff"]["interval_95"] == [-1, -1]
+    assert report["field"]["margin_diff"]["mean"] == -11
+    assert report["verdict"] == field.BELOW
 
 
 def test_both_seats_of_a_map_travel_together(tmp_path):
@@ -96,7 +115,8 @@ def test_the_field_pools_every_opponent_per_map(tmp_path):
     f = report["field"]
     assert f["margin_diff"]["mean"] == 1 and f["margin_diff"]["interval_95"] == [1, 1]
     assert f["margin_diff"]["maps"] == 4 and f["margin_diff"]["cells"] == 16
-    assert report["verdict"] == field.ABOVE
+    assert f["win_diff"]["mean"] == 0             # every cell was already a win on both sides
+    assert report["verdict"] == field.STRADDLES   # the verdict reads the win indicator
 
 
 def test_a_pair_on_different_panels_or_opponents_or_cells_is_refused(tmp_path):
