@@ -333,3 +333,32 @@ one ladder block of four hours. No other track's ladder hours are taken.
   bed, the 24-map legality run, determinism, the three mechanism checks of the read, the roster and switch-turn
   distribution), then rung 1 exactly as pre-registered at 12:55Z. — coordinator
 
+- 2026-09-02 13:5xZ: **v3's own tests contradicted its code — claude_1's blocker `20260902T132500Z` — and the ruling is a v3.1
+  with the same play byte for byte.** claude_1's step 1 PASSED (the readable diff against v2 is the constant, its comment and
+  the one use; the compaction is byte-identical to `84870bc9…`; both forms compile), and then `rustc --test` read **12 passed,
+  3 failed**: `roster_three_turn_106_stays_produce`, the first assert of `missing_source_is_hopeless_but_iron_free_is_omitted`,
+  and the `(3, 144)` leg of `roster_deadlines_are_hard_only_when_floor_is_unaffordable` — every one of them the v2 rule "a
+  roster of three stays in Produce" written into the test module, which the one constant exists to overturn. Not a defect in
+  the mechanism (the twelve that pass include `roster_five_forces_deforest` and `roster_four_turn_138_switches_deforest`); a
+  builder's omission, mine. **Ruled: option 2 of the blocker — the tests follow the cap; a build whose tests contradict its
+  code is not a build of record, and the card's gate says 15/15, not "12/15 read charitably".** Built as **v3.1**:
+  `readable/norxondor-port-v3-1.rs` (file names use `v3-1` because a dot in the name breaks `rustc`'s crate name), generated
+  from v3's readable by `local_claude_1/norxondor-port/make_v31.py` — three replacements, each matched exactly once, all
+  inside `#[cfg(test)] mod port_tests`: (1) `roster_three_turn_106_switches_deforest`: at roster 3, turn 106, with
+  `train_now = true`, the mode is Deforest — the cap dominates the train signal; (2) `missing_source_is_hopeless_but_iron_free_is_omitted`
+  moved from roster 3 to roster 2, so the projection's two rules stay tested where the cap does not decide (at roster 3 both
+  its asserts would be Deforest by the cap and the test would say nothing); (3) the deadline loop reduced to `[(2, 129)]`,
+  with the comment that `switch_deadline`'s roster-3 and roster-4 entries (144, 154) can never fire under the cap — the
+  entries stay in the table, inert, per the owner's 08-27 ruling on inert code. **`rustc --test`: 15 passed, 0 failed.**
+  Compacted by `cgauto/compact_rust_source.py` plus one newline to `cgauto/submissions/candidate-norxondor-port-v3-1.rs`,
+  **sha `7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967`, 82,560 UTF-16 units**, sidecar written; both
+  forms compile with `rustc --edition=2021 -O` (warnings only). **The play is v3's, shown on the binaries:** v3's and v3.1's
+  readables compiled under one file name with the same command give a `.text` section of 499,891 bytes, a `.rodata` of 26,280
+  and a `.data` of 2,552 that are byte-identical; the only differing bytes of the program image are two in `.data.rel.ro` — the
+  line numbers of the two panic locations in `main` (4005/4006 → 4014/4015), which moves because `main` follows the test
+  module. **The pre-registration of 12:55Z is unchanged**, including the coordinator's expectation. claude_1's provisional
+  gates and field runs on `84870bc9…` (its blocker said it would run them meanwhile) stand as the cross-check: the bots are
+  deterministic and the panel is pinned, so v3.1's numbers must equal them to the byte, and any difference is a finding.
+  Handed back to claude_1 (ack-required): reproduce v3.1 through the generator from v3's readable at `e9659abf…`, the gates
+  from the top, then rung 1 as pre-registered. v3 as pinned (`84870bc9…`) is retired as a build; it never played on the
+  record. — coordinator
