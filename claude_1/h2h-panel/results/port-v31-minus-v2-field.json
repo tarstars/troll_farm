@@ -1,0 +1,195 @@
+{
+  "instrument": "field.py -- rung 1 of the port's selector: candidate minus champion against the same local field, paired by (opponent, map, seat), clustered bootstrap over maps",
+  "unit": "map (every opponent's seats of one map carried together)",
+  "panel_sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+  "candidate_sha256": "7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967",
+  "champion_sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1",
+  "per_opponent": [
+    {
+      "opponent": "champion",
+      "opponent_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "candidate_run": "claude_1/h2h-panel/results/port-v31-vs-champion.json",
+      "champion_run": "claude_1/h2h-panel/results/port-v2-vs-champion.json",
+      "candidate_sha256": "7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967",
+      "champion_sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1",
+      "candidate_wins": 10,
+      "champion_wins": 16,
+      "win_diff": {
+        "mean": -0.015,
+        "interval_95": [
+          -0.0325,
+          0.0
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "margin_diff": {
+        "mean": 4.26,
+        "interval_95": [
+          1.2725,
+          7.2675
+        ],
+        "above_zero": true,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    },
+    {
+      "opponent": "orchard6",
+      "opponent_sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
+      "candidate_run": "claude_1/h2h-panel/results/port-v31-vs-orchard6.json",
+      "champion_run": "claude_1/h2h-panel/results/port-v2-vs-orchard6.json",
+      "candidate_sha256": "7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967",
+      "champion_sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1",
+      "candidate_wins": 24,
+      "champion_wins": 29,
+      "win_diff": {
+        "mean": -0.0125,
+        "interval_95": [
+          -0.0275,
+          0.0
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "margin_diff": {
+        "mean": 14.5375,
+        "interval_95": [
+          9.5625,
+          19.6275
+        ],
+        "above_zero": true,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    },
+    {
+      "opponent": "old-denial-on",
+      "opponent_sha256": "726731247910d846242fdabd0371c6f99ceb5c12de5e47d2b750d065b2b58c82",
+      "candidate_run": "claude_1/h2h-panel/results/port-v31-vs-old-denial-on.json",
+      "champion_run": "claude_1/h2h-panel/results/port-v2-vs-old-denial-on.json",
+      "candidate_sha256": "7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967",
+      "champion_sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1",
+      "candidate_wins": 10,
+      "champion_wins": 10,
+      "win_diff": {
+        "mean": 0.0,
+        "interval_95": [
+          0.0,
+          0.0
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "margin_diff": {
+        "mean": 0.0025,
+        "interval_95": [
+          -1.3525,
+          1.3025
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 200,
+        "cells": 400
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    },
+    {
+      "opponent": "nn-clone",
+      "opponent_sha256": "4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06",
+      "candidate_run": "claude_1/h2h-panel/results/port-v31-vs-nn-clone.json",
+      "champion_run": "claude_1/h2h-panel/results/port-v2-vs-nn-clone.json",
+      "candidate_sha256": "7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967",
+      "champion_sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1",
+      "candidate_wins": 123,
+      "champion_wins": 186,
+      "win_diff": {
+        "mean": -0.1575,
+        "interval_95": [
+          -0.21,
+          -0.105
+        ],
+        "above_zero": false,
+        "below_zero": true,
+        "maps": 200,
+        "cells": 400
+      },
+      "margin_diff": {
+        "mean": -36.985,
+        "interval_95": [
+          -46.2725,
+          -28.0075
+        ],
+        "above_zero": false,
+        "below_zero": true,
+        "maps": 200,
+        "cells": 400
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    }
+  ],
+  "field": {
+    "opponents": [
+      "champion",
+      "orchard6",
+      "old-denial-on",
+      "nn-clone"
+    ],
+    "win_diff": {
+      "mean": -0.0462,
+      "interval_95": [
+        -0.0612,
+        -0.0312
+      ],
+      "above_zero": false,
+      "below_zero": true,
+      "maps": 200,
+      "cells": 1600
+    },
+    "margin_diff": {
+      "mean": -4.5462,
+      "interval_95": [
+        -7.715,
+        -1.4663
+      ],
+      "above_zero": false,
+      "below_zero": true,
+      "maps": 200,
+      "cells": 1600
+    }
+  },
+  "clean": true,
+  "problems": [],
+  "decision_rule": "FIELD_ABOVE_ZERO = the field-mean WIN-INDICATOR difference's 95 % interval wholly above zero (the bar to rung 2; ruling 2026-09-02 09:23Z); FIELD_BELOW_ZERO = wholly below; FIELD_STRADDLES_ZERO = contains zero (rung 2 decides); INCONCLUSIVE = a fault in any run, or an incomplete pairing. The margin difference is printed beside it and does not decide.",
+  "verdict": "FIELD_BELOW_ZERO",
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 1
+  }
+}
