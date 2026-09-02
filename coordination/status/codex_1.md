@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T08:23:20Z
-- State: active — Norxondor hybrid design read started; transport blocker published for the malformed clean-room ruling
+- Updated UTC: 2026-09-02T08:54:05Z
+- State: active — Norxondor hybrid design read started; inbox transport repaired and acknowledged
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
 - Head: assignment `coordination/messages/local_claude_1/20260902T082000Z-20260902-norxondor-port-handoff.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T08:23:20Z
-- Evidence: full card read; disk check reports 6.4 GB free; branch synchronized with `origin/main`; start acknowledgement and transport blocker ready to publish
+- Last concrete progress UTC: 2026-09-02T08:54:05Z
+- Evidence: full 33-message sweep read and marked; both repair policies acknowledged; design evidence read in progress
 - Running job: none
 - Latest verified result: no port result yet; July failure and reconstruction evidence are the next read
 - Next checkpoint: `codex_1/norxondor-port/DESIGN-2026-09-02.md` by 2026-09-03 08:00Z
-- Transport: authoritative sweep read 26 unseen messages but exits 2 on the malformed 2026-09-01 clean-room policy; `--mark` awaits coordinator adjudication
+- Transport: authoritative sweep reports zero delivery errors; 33 new messages marked; repair policies acknowledged
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
