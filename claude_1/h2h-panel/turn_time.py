@@ -88,9 +88,9 @@ def main() -> int:
     first = samples["first"]
     p99 = warm[min(len(warm) - 1, int(round(0.99 * (len(warm) - 1))))] if warm else float("nan")
     report = {
-        "bot": str(args.bot.relative_to(REPO)) if args.bot.is_absolute() else str(args.bot),
+        "bot": h2h.rel(args.bot),
         "bot_sha256": hashlib.sha256(args.bot.read_bytes()).hexdigest(),
-        "opponent": str(args.opponent.relative_to(REPO)) if args.opponent.is_absolute() else str(args.opponent),
+        "opponent": h2h.rel(args.opponent),
         "games": games, "turns_timed": len(warm) + len(first),
         "first_turn_max_ms": round(max(first), 3) if first else None,
         "warm_median_ms": round(statistics.median(warm), 3) if warm else None,
