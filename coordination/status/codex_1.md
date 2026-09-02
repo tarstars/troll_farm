@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T08:54:05Z
-- State: active — Norxondor hybrid design read started; inbox transport repaired and acknowledged
+- Updated UTC: 2026-09-02T09:06:00Z
+- State: active — Norxondor hybrid design complete; publishing it for the required review
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
 - Head: assignment `coordination/messages/local_claude_1/20260902T082000Z-20260902-norxondor-port-handoff.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T08:54:05Z
-- Evidence: full 33-message sweep read and marked; both repair policies acknowledged; design evidence read in progress
+- Last concrete progress UTC: 2026-09-02T09:06:00Z
+- Evidence: `codex_1/norxondor-port/DESIGN-2026-09-02.md` specifies the July failure, every hybrid layer, all §5 defaults, and the size/runtime/gate plan
 - Running job: none
-- Latest verified result: no port result yet; July failure and reconstruction evidence are the next read
-- Next checkpoint: `codex_1/norxondor-port/DESIGN-2026-09-02.md` by 2026-09-03 08:00Z
+- Latest verified result: design is complete and internally checked; build remains review-gated
+- Next checkpoint: required review from claude_1/coordinator, then build exactly the accepted design
 - Transport: authoritative sweep reports zero delivery errors; 33 new messages marked; repair policies acknowledged
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
