@@ -261,4 +261,23 @@ one ladder block of four hours. No other track's ladder hours are taken.
   100–200 while the champion is chopping. The hypothesis to test, not to assume: the port farms fruit for talents
   while the champion converts the map to wood at four points a unit, so the bigger roster arrives on an empty board —
   the reconstruction's own §5.8 drift, one level up. One loop, one variable, the panel again after it. — coordinator
+- 2026-09-02 12:0xZ: **RUNG 2's first burst — the real field agrees with the panel, and more sharply.** Ten controlled
+  games through the platform's test endpoint (`cgauto/field_panel.py`, the VM's live session; never a submission),
+  champion as baseline and port v2 as candidate against the five real Legend agents on the same seed each
+  (`/data/scratch/rung2/rung2-seed1.{json,log}`; games 901242600–901243057):
+
+  | opponent | champion (baseline) | port v2 (candidate) |
+  |---|---|---|
+  | delineate | 213 – 488 (wood 53) | **101 – 569** (wood 23) |
+  | wala | 184 – 294 (wood 46) | **51 – 763** (wood 6) |
+  | escdemon | **78 – 69, won** (wood 18) | **52 – 113** (wood 13) |
+  | norxondor | 188 – 309 (wood 47) | **140 – 337** (wood 34) |
+  | laconic | 168 – 185 (wood 42) | **60 – 375** (wood 14) |
+
+  Mean own score: champion **166**, port **81**; mean wood banked: champion **41**, port **18**; the port is worse in
+  all five pairs on both, and its opponents score far more against it (763 and 569 against the champion's 294 and 488
+  on the same seeds). **So the local field's verdict transfers: there is no orchard-6-style inversion here.** Two more
+  bursts (seeds 2 and 3) are running for a firmer reading; the direction is already unanimous. The wood column is the
+  finding: the port banks less than half the champion's wood while spending its first hundred turns on fruit — the
+  loss read's hypothesis, now visible against real opponents as well. — coordinator
 
