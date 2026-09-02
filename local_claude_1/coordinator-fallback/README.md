@@ -8,7 +8,7 @@ for rulings that never come. This fallback closes the gap.
 - `coordinator_watchdog.sh` — installed at `/home/tarstars/coordinator-watchdog.sh` on the VM
   (`ssh troll-vm`), run hourly by the user crontab at minute 20. It stays quiet while the board
   (`coordination/BOARD.md` on `origin/main`) was touched within the last three hours — the laptop
-  coordinator is alive. When the board has been silent for three hours AND the inbox sweep finds
+  coordinator is alive. When the board has been silent for one hour (lowered from three on 09-02 11:3xZ: the laptop runs on battery during an active phase) AND the inbox sweep finds
   mail for local_claude_1 (unseen or unacknowledged), it runs ONE headless coordinator wake on the
   VM: a worktree `/home/tarstars/prj/troll_farm-local_claude_1` reset to `origin/agent/local_claude_1`,
   `claude-proxy -p` with `coordinator-wake-prompt.txt`, at most once per three hours.
