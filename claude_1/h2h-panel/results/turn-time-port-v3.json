@@ -1,0 +1,18 @@
+{
+ "bot": "/tmp/claude-1000/norx-v3-fresh/candidate-norxondor-port-v3.rs",
+ "bot_sha256": "84870bc95f862b4c4e6b5e6d6f692674af2a750803a8c3735d8964d30d2c4e83",
+ "opponent": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+ "games": 6,
+ "turns_timed": 1800,
+ "first_turn_max_ms": 1.028,
+ "warm_median_ms": 0.317,
+ "warm_p99_ms": 2.594,
+ "warm_max_ms": 3.299,
+ "warm_over_50ms": 0,
+ "platform_limits_ms": {
+  "first_turn": 1000.0,
+  "turn": 50.0
+ },
+ "note": "wall time around the pipe round-trip on this host, referee included in neither figure; the clock also counts the pipe and the host's load",
+ "inside_platform_budget": true
+}
