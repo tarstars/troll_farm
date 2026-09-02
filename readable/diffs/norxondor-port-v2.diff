@@ -1,0 +1,2194 @@
+diff --git a/readable/denial-off-champion.rs b/readable/norxondor-port.rs
+index 138bdc64..0555e21d 100644
+--- a/readable/denial-off-champion.rs
++++ b/readable/norxondor-port.rs
+@@ -1,27 +1,9 @@
+-// The champion of record ("door 1"), in the canonical readable format.
++// Norxondor hybrid port v2 (complete round-one review).
+ //
+-// Source of this file: cgauto/submissions/candidate-door1-pure-deletion.rs
+-//   (75,653 bytes, SHA-256 547fa706cc1c684a1f8c2a08174792d95e553b2382facfe15884d2ef544070b0)
+-// produced by claude_1/readable-source/format_readable.py with the pinned rustfmt 1.9.0.
+-//
+-// This file is for READING. Comments and layout are free: the compactor
+-// (cgauto/compact_rust_source.py) deletes them, so they cannot change the program.
+-// Changing any *token* produces a new candidate and must pass the usual gates.
+-//
+-// How to check it is the same program (the round-trip gate, docs/readable-format.md):
+-//   python3 cgauto/compact_rust_source.py readable/door1-champion.rs a.rs
+-//   python3 cgauto/compact_rust_source.py cgauto/submissions/candidate-door1-pure-deletion.rs b.rs
+-//   sha256sum a.rs b.rs   -> both 0da12c33e07a4524a5411a624d0d0da12b2e2f815b176b75df9d6d97c5c3ca01
+-// The source file was never fully minified, so compacting this file does NOT reproduce
+-// 547fa706... byte for byte; the gate is that both compact to identical bytes
+-// (report: readable/reports/door1-champion.round-trip.json, verdict READABLE_SOURCE_ROUND_TRIP_EXACT).
+-//
+-// Lineage: cure C (cgauto/submissions/submitted-sub41153619-cure-c-quiet.rs, ad3bfefe...) minus
+-// one pure-deletion hunk (the "fictional decay" inference) = this program; owner KEEP 2026-08-21.
+-// Earlier ancestors carried an "orchard_stripped" expansion header (parent 102caecd...); that
+-// lineage line does not apply to this file and was removed on 2026-08-26.
+-//
+-// Annotated blocks: claude_1/block-index/blocks.json (block names are stable across the lineage).
++// Macro policy: reconstructed Norxondor ladder, Produce/Deforest switch, bounded near-shack
++// orchard, and plant-and-cut deposited-seed conversion. Micro policy: champion-of-record parsing,
++// pathing, targets, joint selection, and collision handling. The accepted design is
++// codex_1/norxondor-port/DESIGN-2026-09-02.md.
+
+ mod game {
+
+@@ -467,6 +449,37 @@ mod bot {
+             score: f64,
+             target: Target,
+         }
++        // The v6 per-turn census. Every field here is a REQUIRED field on the wire; the
++        // decoder `claude_1/narrate6/narrate6.py` asserts at import that no field of the grammar
++        // is without a consumer and no consumed field is off the grammar (r6 C3).
++        #[derive(Clone, Debug, Default)]
++        struct KeepMeta {
++            kp: u32,
++            kq: u32,
++            kl: u32,
++            kr: u32,
++            rd: u32,
++            rg: u32,
++            ri: u32,
++            rx: u32,
++            rf: u32,
++            rt: u32,
++            ro: u32,
++            nl: u32,
++            nl_producer: u32,
++            nl_door: u32,
++            nl_admissibility: u32,
++            nl_other: u32,
++            ka: u32,
++            kc: u32,
++            xc: u32,
++            xw: u32,
++            xn: u32,
++            xp: u32,
++            xg: u32,
++            xd: u32,
++            xj: u32,
++        }
+         struct MoisanBot;
+         #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+
+@@ -518,6 +531,31 @@ mod bot {
+             stats: Stats,
+             estimated_eta: i32,
+         }
++        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
++        enum EconomyMode {
++            Produce,
++            Deforest,
++        }
++        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
++        enum PlantPurpose {
++            Orchard,
++            Conversion,
++        }
++        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
++        enum PlantStage {
++            Acquire,
++            Carry,
++            AwaitPlant,
++            Cut,
++        }
++        #[derive(Clone, Copy, Debug, Eq, PartialEq)]
++        struct PlantJob {
++            unit_id: i32,
++            kind: PlantKind,
++            cell: Cell,
++            purpose: PlantPurpose,
++            stage: PlantStage,
++        }
+         pub struct YamoBot {
+             announced: bool,
+             announcement: &'static str,
+@@ -534,6 +572,18 @@ mod bot {
+             idle_harvest_clock_only: bool,
+             regeneration_commitments: BTreeMap<i32, PlantKind>,
+             opponent_eta_penalty: i32,
++            // Candidate 3. One remembered goal per own troll, its birth turn, and the kind of
++            // the plant that stood at a Tree goal when it was recorded (the `rt` release, F7).
++            // The one-turn snapshot is the emitted command line and the cell the unit stood on
++            // when it emitted it -- `CHOP`/`HARVEST` carry no cell of their own (`:893`, `:707`).
++            kept_goals: BTreeMap<i32, Target>,
++            kept_since: BTreeMap<i32, i32>,
++            kept_kinds: BTreeMap<i32, PlantKind>,
++            last_command: BTreeMap<i32, String>,
++            last_cell: BTreeMap<i32, Cell>,
++            mode: EconomyMode,
++            plant_job: Option<PlantJob>,
++            owned_plants: BTreeMap<Cell, PlantKind>,
+         }
+         #[derive(Clone, Copy)]
+         struct PredictedTree {
+@@ -542,6 +592,30 @@ mod bot {
+             cooldown: i32,
+         }
+         impl MoisanBot {
++            // ---------------------------------------------------------------- Candidate 3
++            // Task 20260826-candidate-3-keep-your-goal. Packet of record:
++            // claude_1/cure3/g0-candidate-3-2026-08-26-r6.md (r5 as amended by r6 C1-C5),
++            // ACCEPT-WITH-EDIT by codex_1 20260826T122017Z; the owner's bound forbids an r7.
++            //
++            // R5, in four steps run inside `commands()` and nowhere else:
++            //   (a) release  -- four world predicates, order dead / gone / impossible / done
++            //   (b) restrict -- L|g, order preserved; never adds a candidate, never scores
++            //   (c) decide   -- the champion's `select` over the restricted lists; a turn the
++            //                   restriction makes undecidable releases the YOUNGER goal
++            //   (d) record   -- goalless units only, exact string match against the pre-
++            //                   restriction list L
++            //
++            // No margin and no constant of any kind appears in the rule.
++            //
++            // `build_arms3.py` rewrites exactly the line below to make the three arms, and
++            // nothing else differs between them.
++            const KEEP_RULE_ENABLED: bool = false; const NARRATE_V6_ENABLED: bool = true;
++            // Ruled at G-0 and NOT a knob: a Tree goal is done on CHOP *or* HARVEST at the cell
++            // with the carry full (r5 F1, ruled `true` by codex_1 20260826T122017Z).
++            const DONE_ON_HARVEST: bool = true;
++            // `ERASE_WHEN_NOT_LIVE` is ruled FALSE (coordinator Ruling 2) and is therefore not a
++            // constant here: a valid goal that no candidate carries this turn is preserved and
++            // unrestricting, and the `true` arm is code nothing would ever execute.
+
+             // --------------------------------------------------------------------------
+             // Focus species selection — indexed block `focus-species-selection`
+@@ -1001,19 +1075,34 @@ mod bot {
+                     (fields[2].parse().ok()?, fields[3].parse().ok()?),
+                 ))
+             }
+-            fn resolve_move_conflicts(view: &GameState, commands: &mut [String]) {
+-                Self::resolve_move_conflicts_with_priority(view, commands, &BTreeSet::new());
++            fn resolve_move_conflicts(
++                view: &GameState,
++                commands: &mut [String],
++                branch: &mut BTreeMap<i32, char>,
++                w_collisions: &mut u32,
++            ) {
++                Self::resolve_move_conflicts_with_priority(
++                    view,
++                    commands,
++                    &BTreeSet::new(),
++                    branch,
++                    w_collisions,
++                );
+             }
+             fn resolve_move_conflicts_with_priority(
+                 view: &GameState,
+                 commands: &mut [String],
+                 priority_ids: &BTreeSet<i32>,
++                branch: &mut BTreeMap<i32, char>,
++                w_collisions: &mut u32,
+             ) {
+                 Self::resolve_move_conflicts_with_priority_and_forbidden(
+                     view,
+                     commands,
+                     priority_ids,
+                     &BTreeSet::new(),
++                    branch,
++                    w_collisions,
+                 );
+             }
+             fn resolve_move_conflicts_with_priority_and_forbidden(
+@@ -1021,7 +1110,11 @@ mod bot {
+                 commands: &mut [String],
+                 priority_ids: &BTreeSet<i32>,
+                 forbidden_for_non_priority: &BTreeSet<Cell>,
++                branch: &mut BTreeMap<i32, char>,
++                w_collisions: &mut u32,
+             ) {
++                let mut granted: BTreeSet<Cell> = BTreeSet::new();
++                let mut waiting_cells: BTreeSet<Cell> = BTreeSet::new();
+                 let command_by_id: BTreeMap<i32, usize> = commands
+                     .iter()
+                     .enumerate()
+@@ -1056,9 +1149,12 @@ mod bot {
+                     .filter(|unit| unit.player == 0 && !moving_ids.contains(&unit.id))
+                     .map(|unit| unit.cell)
+                     .collect();
+-                for (_, index, current, _, landing) in &projections {
++                for (id, index, current, _, landing) in &projections {
+                     if landing == current {
+                         commands[*index] = "WAIT".to_string();
++                        // A self-targeting MOVE resolved to WAIT is W. Its cell is reserved
++                        // already: the unit is not in `moving_ids`.
++                        branch.insert(*id, 'W');
+                     }
+                 }
+                 let mut movers: Vec<(i32, usize, Cell, Cell)> = projections
+@@ -1077,7 +1173,9 @@ mod bot {
+                         && forbidden_for_non_priority.contains(&landing);
+                     if !landing_forbidden && !reserved.contains(&landing) {
+                         reserved.insert(landing);
++                        granted.insert(landing);
+                         commands[index] = format!("MOVE {} {} {}", id, landing.0, landing.1);
++                        branch.insert(id, 'P');
+                         continue;
+                     }
+                     let toward_goal = bfs_distances(&view.walkable, &[target]);
+@@ -1098,13 +1196,31 @@ mod bot {
+                                 *cell,
+                             )
+                         });
++                    // `d_cur` uses the detour key's OWN fallback, or L and R would be decided
++                    // by comparing two different metrics.
++                    let d_cur = toward_goal
++                        .get(&unit.cell)
++                        .copied()
++                        .unwrap_or_else(|| manhattan(unit.cell, target));
+                     commands[index] = if let Some(cell) = detour {
++                        let d_detour = toward_goal
++                            .get(&cell)
++                            .copied()
++                            .unwrap_or_else(|| manhattan(cell, target));
+                         reserved.insert(cell);
++                        granted.insert(cell);
++                        branch.insert(id, if d_detour <= d_cur { 'L' } else { 'R' });
+                         format!("MOVE {} {} {}", id, cell.0, cell.1)
+                     } else {
++                        waiting_cells.insert(unit.cell);
++                        branch.insert(id, 'W');
+                         "WAIT".to_string()
+                     };
+                 }
++                *w_collisions = waiting_cells
++                    .iter()
++                    .filter(|cell| granted.contains(cell))
++                    .count() as u32;
+             }
+         }
+         impl YamoBot {
+@@ -1125,16 +1241,21 @@ mod bot {
+                     idle_harvest_clock_only: false,
+                     regeneration_commitments: BTreeMap::new(),
+                     opponent_eta_penalty: 0,
++                    kept_goals: BTreeMap::new(),
++                    kept_since: BTreeMap::new(),
++                    kept_kinds: BTreeMap::new(),
++                    last_command: BTreeMap::new(),
++                    last_cell: BTreeMap::new(),
++                    mode: EconomyMode::Produce,
++                    plant_job: None,
++                    owned_plants: BTreeMap::new(),
+                 }
+             }
+             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
+                 let mut bot = Self::with_opening_policy(YamoOpeningPolicy::TUNED_CARRY);
+-                bot.announcement = "yamo-carry-regen-transit-idle-harvest-rust";
+-                bot.idle_regeneration = true;
+-                bot.persistent_regeneration = true;
++                bot.announcement = "norxondor-port-v2";
+                 bot.door_unblocking = true;
+                 bot.partial_bank_transit = true;
+-                bot.idle_harvest = true;
+                 bot
+             }
+             fn ensure_opening(&mut self, view: &GameState) {
+@@ -1443,6 +1564,11 @@ mod bot {
+                 self.regeneration_commitments
+                     .get(&unit.id)
+                     .is_some_and(|kind| unit.carry[kind.item_index()] > 0)
++                    || self.plant_job.is_some_and(|job| {
++                        job.unit_id == unit.id
++                            && unit.carry[job.kind.item_index()] > 0
++                            && matches!(job.stage, PlantStage::Carry | PlantStage::AwaitPlant)
++                    })
+             }
+             fn planned_egress(
+                 view: &GameState,
+@@ -2060,121 +2186,1790 @@ mod bot {
+                         && score(&view.inventories[0]) < score(&view.inventories[1]))
+             }
+         }
+-        impl Bot for YamoBot {
+-            fn commands(&mut self, view: &GameState) -> Vec<String> {
+-                self.reconcile_regeneration_commitments(view);
+-                self.ensure_opening(view);
+-                self.enforce_training_deadline(view);
+-                let desired = self
+-                    .desired_second
+-                    .map(|objective| objective.stats)
+-                    .unwrap_or_else(Self::fallback_second_troll);
+-                let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
+-                let mut out = Vec::new();
+-                if !self.announced {
+-                    self.announced = true;
+-                    out.push(format!("MSG {}", self.announcement));
++        // ------------------------------------------------------------ Candidate 3 helpers
++        impl MoisanBot {
++            // The champion's two-unit joint maximisation (`select`, `:952-972`) lifted verbatim,
++            // so the restricted decision and the unrestricted reference `xj` compares it against
++            // are literally the same code. The only addition is that the winning sum comes back.
++            fn best_pair(
++                a_list: &[Candidate],
++                b_list: &[Candidate],
++                inventory: &[i32; 6],
++            ) -> Option<(String, String, f64)> {
++                let mut best_score = f64::NEG_INFINITY;
++                let mut best = None;
++                for a in a_list {
++                    for b in b_list {
++                        if !Self::compatible(a.target, b.target)
++                            || !Self::stock_compatible(a, b, inventory)
++                        {
++                            continue;
++                        }
++                        let score = a.score + b.score;
++                        if score > best_score {
++                            best_score = score;
++                            best = Some((a.command.clone(), b.command.clone(), score));
++                        }
++                    }
+                 }
+-                if train_now {
+-                    out.push(format!(
+-                        "TRAIN {} {} {} {}",
+-                        desired.movement_speed,
+-                        desired.carry_capacity,
+-                        desired.harvest_power,
+-                        desired.chop_power
+-                    ));
++                best
++            }
++            fn best_score(list: &[Candidate]) -> Option<f64> {
++                list.iter().map(|candidate| candidate.score).max_by(f64::total_cmp)
++            }
++            // Basis points given up, floored toward zero and saturating at 999_999: a saturated
++            // value is decode-visible and reads as "at least 100x", never as a measurement.
++            fn give_up_bps(free: f64, kept: f64) -> u32 {
++                if !(kept > 0.0) || !(free > kept) {
++                    return 0;
+                 }
+-                let mut my_units: Vec<&Unit> =
+-                    view.units.iter().filter(|unit| unit.player == 0).collect();
+-                my_units.sort_by_key(|unit| unit.id);
+-                let early = !self.opening_abandoned && my_units.len() < 2 && !train_now;
+-                let endgame = Self::endgame(view);
+-                let mut by_id = BTreeMap::new();
+-                for unit in my_units {
+-                    let committed_regeneration =
+-                        self.regeneration_commitments.contains_key(&unit.id);
+-                    let mut candidates = if committed_regeneration {
+-                        Self::endgame_candidates(
+-                            view,
+-                            unit,
+-                            self.type_to_cut,
+-                            self.persistent_regeneration,
+-                            self.opponent_eta_penalty,
+-                        )
+-                    } else if endgame
+-                        && self.persistent_regeneration
+-                        && Self::carried_fruit(unit).is_some()
+-                    {
+-                        Self::main_candidates(
+-                            view,
+-                            unit,
+-                            self.type_to_cut,
+-                            false,
+-                            true,
+-                            self.opponent_eta_penalty,
+-                        )
+-                    } else if endgame {
+-                        Self::endgame_candidates(
+-                            view,
+-                            unit,
+-                            self.type_to_cut,
+-                            self.persistent_regeneration,
+-                            self.opponent_eta_penalty,
+-                        )
+-                    } else if early {
+-                        MoisanBot::early_candidates(view, unit, desired)
+-                    } else {
+-                        Self::main_candidates(
+-                            view,
+-                            unit,
+-                            self.type_to_cut,
+-                            self.idle_regeneration,
+-                            self.persistent_regeneration,
+-                            self.opponent_eta_penalty,
+-                        )
++                let raw = (10_000.0 * (free - kept) / kept).floor();
++                if !raw.is_finite() || raw >= 999_999.0 {
++                    return 999_999;
++                }
++                if raw <= 0.0 {
++                    0
++                } else {
++                    raw as u32
++                }
++            }
++            // Ids are parsed exactly as `remember_selected_regeneration` (`:1702-1715`) parses
++            // them, so the two recording steps cannot disagree about whose command is whose.
++            fn command_for_unit(commands: &[String], id: i32) -> Option<String> {
++                commands
++                    .iter()
++                    .find(|command| {
++                        let fields: Vec<&str> = command.split_whitespace().collect();
++                        fields.len() >= 2 && fields[1].parse::<i32>().map_or(false, |v| v == id)
++                    })
++                    .cloned()
++            }
++            // The exact-match rule of R5(d)/§6, used for BOTH the recording and the narrator's
++            // `chosen` column so the two cannot disagree: exactly one match, or several agreeing
++            // on the target, gives that target; differing targets or no match give `None`.
++            fn matched_target(list: &[Candidate], command: &str) -> Option<Target> {
++                let targets: Vec<Target> = list
++                    .iter()
++                    .filter(|candidate| candidate.command == command)
++                    .map(|candidate| candidate.target)
++                    .collect();
++                let first = targets.first().copied()?;
++                if targets.iter().any(|target| *target != first) {
++                    return None;
++                }
++                Some(first)
++            }
++        }
++        // ------------------------------------------------------------------- Candidate 3, R5
++        impl YamoBot {
++            // ---- R5(a) release ---------------------------------------------------------------
++            // Runs immediately after `reconcile_regeneration_commitments` and BEFORE any candidate
++            // is built, so a kept goal restricts ZERO turns after its invalidating event becomes
++            // observable. Order is fixed -- dead, gone, impossible, done -- and the first to fire
++            // wins, so the census sums exactly and no turn is double-counted.
++            fn release_kept_goals(&mut self, view: &GameState, meta: &mut KeepMeta) {
++                let held: Vec<i32> = self.kept_goals.keys().copied().collect();
++                for id in held {
++                    let Some(goal) = self.kept_goals.get(&id).copied() else {
++                        continue;
+                     };
+-                    if endgame
+-                        && self.idle_harvest
+-                        && (!self.idle_harvest_clock_only || view.turn > 250)
+-                        && candidates
+-                            .iter()
+-                            .all(|candidate| candidate.target == Target::None)
+-                    {
+-                        candidates.extend(Self::idle_harvest_candidates(view, unit));
++                    let alive = view
++                        .units
++                        .iter()
++                        .find(|unit| unit.player == 0 && unit.id == id);
++                    let Some(unit) = alive else {
++                        self.forget_goal(id);
++                        meta.rx += 1;
++                        meta.kr += 1;
++                        continue;
++                    };
++                    if let Some(cause) = self.gone_cause(view, unit, goal) {
++                        match cause {
++                            'f' => meta.rf += 1,
++                            't' => meta.rt += 1,
++                            'o' => meta.ro += 1,
++                            // r6 C1: the Bank cause has NO sub-count. It is asserted structurally
++                            // unreachable and `rf + rt + ro == rg` is the falsifier for that
++                            // assertion -- strictly better than an always-zero `rw=`, which would
++                            // read as a passing check.
++                            _ => {}
++                        }
++                        self.forget_goal(id);
++                        meta.rg += 1;
++                        meta.kr += 1;
++                        continue;
+                     }
+-                    if self.persistent_regeneration && train_now {
+-                        candidates.retain(|candidate| !candidate.command.starts_with("PICK "));
++                    if Self::goal_impossible(view, unit, goal) {
++                        self.forget_goal(id);
++                        meta.ri += 1;
++                        meta.kr += 1;
++                        continue;
+                     }
+-                    if train_now
+-                        && unit.cell == view.shacks[0]
+-                        && !candidates
++                    if self.goal_done(view, unit, goal) {
++                        self.forget_goal(id);
++                        meta.rd += 1;
++                        meta.kr += 1;
++                    }
++                }
++            }
++            fn forget_goal(&mut self, id: i32) {
++                self.kept_goals.remove(&id);
++                self.kept_since.remove(&id);
++                self.kept_kinds.remove(&id);
++            }
++            fn gone_cause(&self, view: &GameState, unit: &Unit, goal: Target) -> Option<char> {
++                match goal {
++                    Target::Tree(cell) => match view.plant_at(cell) {
++                        None => Some('f'),
++                        Some(index) => {
++                            let plant = &view.plants[index];
++                            if plant.health <= 0 {
++                                Some('f')
++                            } else if self
++                                .kept_kinds
++                                .get(&unit.id)
++                                .map_or(false, |kind| *kind != plant.kind)
++                            {
++                                // F7: §3.3's `rt` row is worded against "the unit's producer this
++                                // turn", but no producer has run yet at release time. The row's own
++                                // predicate (`plant.kind != kind`, `:714`) is evaluated against the
++                                // goal's OWN kind instead -- the kind that stood at `c` when the
++                                // goal was recorded.
++                                Some('t')
++                            } else {
++                                None
++                            }
++                        }
++                    },
++                    // F3/C1: no accepts or fullness predicate exists anywhere on the DROP path
++                    // (`:596-611`), so the walkable test is the whole cause -- and it is
++                    // structurally unreachable, bank cells being
++                    // `ortho_neighbors(shacks[0]) INTERSECT walkable` by construction (`:592-594`).
++                    Target::Bank(cell) => {
++                        if view.walkable.contains(&cell) {
++                            None
++                        } else {
++                            Some('b')
++                        }
++                    }
++                    Target::Cell(cell) => {
++                        let taken = view.plant_at(cell).is_some()
++                            && !self
++                                .last_command
++                                .get(&unit.id)
++                                .map_or(false, |command| command.starts_with("PLANT "));
++                        let no_fruit = Self::carried_fruit(unit).is_none()
++                            && !self.regeneration_commitments.contains_key(&unit.id);
++                        if !view.walkable.contains(&cell) || taken || no_fruit {
++                            Some('o')
++                        } else {
++                            None
++                        }
++                    }
++                    Target::Shack | Target::None => None,
++                }
++            }
++            fn goal_impossible(view: &GameState, unit: &Unit, goal: Target) -> bool {
++                // F4: `Shack` gets NO impossible test. §3.4 names `shacks[0]` as its goal cell,
++                // but that cell is never in `view.walkable` (`parse_static_map`, `:328-355`, adds
++                // only `.` cells and the shack is `0`), so the literal test would release every
++                // `Shack` goal one turn after it is recorded; and the neighbour form fires exactly
++                // when the goal is live, since the `Shack` candidate is emitted ONLY when no bank
++                // cell is reachable (`:590-623`). `Shack` ends on `done` or `dead`, both reachable.
++                let cell = match goal {
++                    Target::Tree(cell) | Target::Bank(cell) | Target::Cell(cell) => cell,
++                    Target::Shack | Target::None => return false,
++                };
++                // The champion's own BFS walks `view.walkable`, a static map-derived set that
++                // never removes an occupied cell, so a standing teammate is never an
++                // impossibility -- it is the exchange rule's business, exactly as the charter says.
++                !bfs_distances(&view.walkable, &[unit.cell]).contains_key(&cell)
++            }
++            fn goal_done(&self, view: &GameState, unit: &Unit, goal: Target) -> bool {
++                let last = match self.last_command.get(&unit.id) {
++                    Some(command) => command.as_str(),
++                    None => "",
++                };
++                let at = self.last_cell.get(&unit.id).copied();
++                match goal {
++                    // The capacity middle. NOT the first chop: a single swing is progress toward
++                    // the goal, and releasing on it is the champion's re-pick, which is the loop's
++                    // mechanism. Done is "the goal has yielded everything this troll can take".
++                    Target::Tree(cell) => {
++                        let worked = last == format!("CHOP {}", unit.id)
++                            || (MoisanBot::DONE_ON_HARVEST
++                                && last == format!("HARVEST {}", unit.id));
++                        worked && at == Some(cell) && unit.free_capacity() <= 0
++                    }
++                    Target::Bank(cell) => last == format!("DROP {}", unit.id) && at == Some(cell),
++                    Target::Cell(cell) => {
++                        view.plant_at(cell).is_some()
++                            && last.starts_with(&format!("PLANT {} ", unit.id))
++                    }
++                    Target::Shack => unit.total_carried() == 0,
++                    Target::None => true,
++                }
++            }
++            // ---- R5(b) restrict and R5(c) decide ---------------------------------------------
++            // Returns the commands and the ids that were live-restricted on the FIRST pass -- the
++            // set `k=2` is read against. `L|g` is a subset of `L`, so the rule can never cause a
++            // command the champion did not offer this turn.
++            fn select_keeping(
++                &mut self,
++                view: &GameState,
++                by_id: &BTreeMap<i32, Vec<Candidate>>,
++                inventory: &[i32; 6],
++                door_cleared: &BTreeSet<i32>,
++                meta: &mut KeepMeta,
++            ) -> (Vec<String>, BTreeSet<i32>) {
++                let mut first_pass = true;
++                let mut restricted: BTreeSet<i32> = BTreeSet::new();
++                loop {
++                    let mut live: BTreeSet<i32> = BTreeSet::new();
++                    let mut effective: BTreeMap<i32, Vec<Candidate>> = BTreeMap::new();
++                    for (id, list) in by_id {
++                        let kept: Vec<Candidate> = match self.kept_goals.get(id) {
++                            // Order preserved: `L|g` is a filter of `L`, never a re-sort.
++                            Some(goal) => list
++                                .iter()
++                                .filter(|candidate| candidate.target == *goal)
++                                .cloned()
++                                .collect(),
++                            None => Vec::new(),
++                        };
++                        if kept.is_empty() {
++                            // Not live. The goal is NOT erased: `ERASE_WHEN_NOT_LIVE` is false.
++                            effective.insert(*id, list.clone());
++                        } else {
++                            live.insert(*id);
++                            effective.insert(*id, kept);
++                        }
++                    }
++                    if first_pass {
++                        self.census_entry(view, by_id, &effective, &live, door_cleared, meta);
++                        restricted = live.clone();
++                        first_pass = false;
++                    }
++                    // R5(c) first sentence, and the containment theorem: with nothing
++                    // live-restricted the champion's `select` runs UNMODIFIED and no step below
++                    // executes.
++                    if live.is_empty() {
++                        return (MoisanBot::select(by_id.clone(), inventory), restricted);
++                    }
++                    let ids: Vec<i32> = effective.keys().copied().collect();
++                    if ids.len() == 1 {
++                        // §4.1. `max_by` returns the LAST maximal element, so ties are decided by
++                        // list order exactly as in the champion. No contest is possible here.
++                        let best = effective[&ids[0]]
+                             .iter()
+-                            .any(|candidate| candidate.command.starts_with("MOVE "))
+-                    {
+-                        if let Some(cell) = ortho_neighbors(view.shacks[0])
+-                            .into_iter()
+-                            .find(|cell| view.walkable.contains(cell))
++                            .max_by(|a, b| a.score.total_cmp(&b.score))
++                            .expect("a live-restricted list is non-empty by construction");
++                        return (vec![best.command.clone()], restricted);
++                    }
++                    if ids.len() == 2 {
++                        let (a, b) = (ids[0], ids[1]);
++                        let both = live.contains(&a) && live.contains(&b);
++                        if let Some((first, second, sum)) =
++                            MoisanBot::best_pair(&effective[&a], &effective[&b], inventory)
+                         {
+-                            candidates.push(Candidate {
+-                                command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
+-                                score: 6_500.0,
+-                                target: Target::Cell(cell),
+-                            });
++                            if both {
++                                // §5.3. `xj` is r3's `rho` turned from a threshold into a price
++                                // tag: what the joint decision gave up against the unrestricted
++                                // maximisation of the SAME turn. F5: the `None` arm is unreachable
++                                // -- `L|g` is a subset of `L`, so a restricted pair existing
++                                // implies an unrestricted pair exists. It is not a measurement.
++                                meta.xj = match MoisanBot::best_pair(&by_id[&a], &by_id[&b], inventory)
++                                {
++                                    Some((_, _, free)) => MoisanBot::give_up_bps(free, sum),
++                                    None => 0,
++                                };
++                            }
++                            return (vec![first, second], restricted);
++                        }
++                        if both {
++                            // §4.3, the contest. The YOUNGER goal is released -- never both, never
++                            // to a score, and the elder is untouched. At most one release per
++                            // troll per turn, so this terminates.
++                            let younger = self.younger_of(a, b);
++                            self.forget_goal(younger);
++                            meta.xc += 1;
++                            meta.kr += 1;
++                            continue;
+                         }
++                        // §4.2(b). One restricted, no joint pair, and no second goal to release,
++                        // so the decision is phased -- and THE KEPT TROLL IS NEVER THE ONE THAT
++                        // WAITS. The partner's forced `wait()` is the rule's real cost, counted
++                        // `xw` and bounded by one turn: the partner holds no goal to carry.
++                        let keeper = if live.contains(&a) { a } else { b };
++                        let partner = if keeper == a { b } else { a };
++                        let chosen = effective[&keeper]
++                            .iter()
++                            .max_by(|x, y| x.score.total_cmp(&y.score))
++                            .expect("a live-restricted list is non-empty by construction")
++                            .clone();
++                        let mut partner_list = effective[&partner].clone();
++                        partner_list.sort_by(|x, y| y.score.total_cmp(&x.score));
++                        let taken = partner_list.into_iter().find(|candidate| {
++                            MoisanBot::compatible(candidate.target, chosen.target)
++                                && MoisanBot::stock_compatible(&chosen, candidate, inventory)
++                        });
++                        let partner_command = match taken {
++                            Some(candidate) => candidate.command,
++                            None => {
++                                // Counted only when the partner's FULL list held something other
++                                // than a `WAIT`, so champion-native waits and the door-clearance
++                                // `wait()` are never charged to the rule.
++                                if by_id[&partner]
++                                    .iter()
++                                    .any(|candidate| candidate.command != "WAIT")
++                                {
++                                    meta.xw += 1;
++                                }
++                                MoisanBot::wait().command
++                            }
++                        };
++                        meta.xp += 1;
++                        let commands = if keeper == a {
++                            vec![chosen.command, partner_command]
++                        } else {
++                            vec![partner_command, chosen.command]
++                        };
++                        return (commands, restricted);
+                     }
+-                    by_id.insert(unit.id, candidates);
++                    // §4.4, the `>= 3` path, two phases. Phase 2 cannot un-assign phase 1.
++                    let mut used_targets: Vec<Target> = Vec::new();
++                    let mut used_stock = [0; 6];
++                    let mut assigned: BTreeMap<i32, String> = BTreeMap::new();
++                    let mut phase1: Vec<i32> = live.iter().copied().collect();
++                    phase1.sort_by_key(|id| {
++                        (self.kept_since.get(id).copied().unwrap_or(i32::MAX), *id)
++                    });
++                    let mut collided: Vec<i32> = Vec::new();
++                    for id in phase1 {
++                        let mut list = effective[&id].clone();
++                        list.sort_by(|x, y| y.score.total_cmp(&x.score));
++                        let pick = list.into_iter().find(|candidate| {
++                            used_targets
++                                .iter()
++                                .all(|target| MoisanBot::compatible(candidate.target, *target))
++                                && MoisanBot::picked_item(&candidate.command)
++                                    .map(|item| used_stock[item] < inventory[item])
++                                    .unwrap_or(true)
++                        });
++                        match pick {
++                            Some(candidate) => {
++                                used_targets.push(candidate.target);
++                                if let Some(item) = MoisanBot::picked_item(&candidate.command) {
++                                    used_stock[item] += 1;
++                                }
++                                assigned.insert(id, candidate.command);
++                            }
++                            None => {
++                                collided.push(id);
++                                meta.xc += 1;
++                                meta.xg += 1;
++                                meta.kr += 1;
++                            }
++                        }
++                    }
++                    for id in &collided {
++                        self.forget_goal(*id);
++                    }
++                    // Phase 2 IS the champion's greedy loop -- ascending id, full lists, the same
++                    // accumulated sets -- run against what phase 1 already took.
++                    let mut commands: Vec<String> = Vec::new();
++                    for id in &ids {
++                        if let Some(command) = assigned.get(id) {
++                            commands.push(command.clone());
++                            continue;
++                        }
++                        let mut list = by_id[id].clone();
++                        list.sort_by(|x, y| y.score.total_cmp(&x.score));
++                        let pick = list.into_iter().find(|candidate| {
++                            used_targets
++                                .iter()
++                                .all(|target| MoisanBot::compatible(candidate.target, *target))
++                                && MoisanBot::picked_item(&candidate.command)
++                                    .map(|item| used_stock[item] < inventory[item])
++                                    .unwrap_or(true)
++                        });
++                        let chosen = match pick {
++                            Some(candidate) => candidate,
++                            None => {
++                                if by_id[id]
++                                    .iter()
++                                    .any(|candidate| candidate.command != "WAIT")
++                                {
++                                    meta.xw += 1;
++                                }
++                                MoisanBot::wait()
++                            }
++                        };
++                        used_targets.push(chosen.target);
++                        if let Some(item) = MoisanBot::picked_item(&chosen.command) {
++                            used_stock[item] += 1;
++                        }
++                        commands.push(chosen.command);
++                    }
++                    return (commands, restricted);
+                 }
+-                if self.door_unblocking {
+-                    self.force_unique_door_clear(view, &mut by_id);
++            }
++            fn younger_of(&self, a: i32, b: i32) -> i32 {
++                let key = |id: i32| (self.kept_since.get(&id).copied().unwrap_or(i32::MIN), id);
++                if key(a) > key(b) {
++                    a
++                } else {
++                    b
+                 }
+-                let mut selected = MoisanBot::select(by_id, &view.inventories[0]);
+-                MoisanBot::resolve_move_conflicts(view, &mut selected);
+-                self.remember_selected_regeneration(&selected);
+-                out.extend(selected);
+-                if out.is_empty() {
+-                    out.push("WAIT".to_string());
++            }
++            // ---- the census, taken on the FIRST pass -----------------------------------------
++            // A unit whose goal is released as contested was live-restricted when it entered, so
++            // it stays in `kq`; `kp == kq + kl` is exact.
++            fn census_entry(
++                &self,
++                view: &GameState,
++                by_id: &BTreeMap<i32, Vec<Candidate>>,
++                effective: &BTreeMap<i32, Vec<Candidate>>,
++                live: &BTreeSet<i32>,
++                door_cleared: &BTreeSet<i32>,
++                meta: &mut KeepMeta,
++            ) {
++                for (id, goal) in &self.kept_goals {
++                    if !by_id.contains_key(id) {
++                        continue;
++                    }
++                    meta.kp += 1;
++                    let age = view.turn - self.kept_since.get(id).copied().unwrap_or(view.turn);
++                    if age > 0 {
++                        meta.ka = meta.ka.max(age as u32);
++                    }
++                    if live.contains(id) {
++                        meta.kq += 1;
++                        // §5.3 `xd`: the per-troll price tag. Units whose kept score is not
++                        // positive are excluded and counted in `kq` only.
++                        meta.xd = meta.xd.max(MoisanBot::give_up_bps(
++                            MoisanBot::best_score(&by_id[id]).unwrap_or(0.0),
++                            MoisanBot::best_score(&effective[id]).unwrap_or(0.0),
++                        ));
++                    } else {
++                        meta.kl += 1;
++                        meta.nl += 1;
++                        match self.not_live_cause(view, *id, *goal, &by_id[id], door_cleared) {
++                            'p' => meta.nl_producer += 1,
++                            'd' => meta.nl_door += 1,
++                            'a' => meta.nl_admissibility += 1,
++                            _ => meta.nl_other += 1,
++                        }
++                    }
+                 }
+-                out
++            }
++            // The four not-live causes of §2, in a fixed priority order, each read off what the
++            // turn actually produced rather than re-derived from which branch ran. A non-zero
++            // `nl_other` is a FINDING for the packet under §9.10, not a decode error: the causes
++            // are a claim about the base and `nl_other` is how that claim is falsified.
++            fn not_live_cause(
++                &self,
++                view: &GameState,
++                id: i32,
++                goal: Target,
++                list: &[Candidate],
++                door_cleared: &BTreeSet<i32>,
++            ) -> char {
++                // Case 3. `force_unique_door_clear` REPLACES a unit's whole list, and R5(b) runs
++                // after it, so door clearance is never outvoted by a kept goal.
++                if door_cleared.contains(&id) {
++                    return 'd';
++                }
++                // Case 1, the residual walk-back's own counter. The producer chosen this turn
++                // routes a carrying unit to bank candidates only (`:1936-1939`, `:1779-1782`), so
++                // no Tree or Cell goal can be offered at all.
++                if !list.is_empty()
++                    && list
++                        .iter()
++                        .all(|candidate| matches!(candidate.target, Target::Bank(_) | Target::Shack))
++                {
++                    return 'p';
++                }
++                // Case 4. The goal's tree is alive AND reachable -- `gone` and `impossible` both
++                // ran first and did not fire -- yet no candidate carries it. `chop_candidates`
++                // filters on health, reachability and endgame admissibility only (`:859-882`), and
++                // the first two are excluded here, so admissibility is the only cause left.
++                if let Target::Tree(cell) = goal {
++                    if let Some(index) = view.plant_at(cell) {
++                        if view.plants[index].health > 0 {
++                            return 'a';
++                        }
++                    }
++                }
++                'o'
++            }
++            // `kc`: turns the rule holds a troll on a tree it is already chopping -- where it is
++            // inert, since the champion scores that same CHOP at the top of its own list.
++            fn chop_holds(&self, commands: &[String]) -> u32 {
++                self.kept_goals
++                    .iter()
++                    .filter(|(id, goal)| {
++                        matches!(goal, Target::Tree(_))
++                            && MoisanBot::command_for_unit(commands, **id)
++                                .map_or(false, |command| command == format!("CHOP {}", id))
++                    })
++                    .count() as u32
++            }
++            // ---- R5(d) record, and the one-turn snapshot the release tests read next turn -----
++            // Only units that entered the selector WITHOUT a valid kept goal -- including a unit
++            // whose goal was released as contested this turn -- take one. Erasure on ambiguity is
++            // the safe direction: a missing kept goal costs one turn of preference, a wrong one is
++            // a preference for something the troll is not doing.
++            fn record_kept_goals(
++                &mut self,
++                view: &GameState,
++                by_id: &BTreeMap<i32, Vec<Candidate>>,
++                commands: &[String],
++            ) {
++                for (id, list) in by_id {
++                    let Some(unit) = view
++                        .units
++                        .iter()
++                        .find(|unit| unit.player == 0 && unit.id == *id)
++                    else {
++                        continue;
++                    };
++                    // The snapshot and the recording read the SAME final emitted line, so `done`
++                    // and the record can never disagree about what the unit did.
++                    let emitted = MoisanBot::command_for_unit(commands, *id);
++                    match &emitted {
++                        Some(command) => {
++                            self.last_command.insert(*id, command.clone());
++                            self.last_cell.insert(*id, unit.cell);
++                        }
++                        None => {
++                            self.last_command.remove(id);
++                            self.last_cell.remove(id);
++                        }
++                    }
++                    if self.kept_goals.contains_key(id) {
++                        continue;
++                    }
++                    let Some(command) = emitted else {
++                        continue;
++                    };
++                    let Some(target) = MoisanBot::matched_target(list, &command) else {
++                        continue;
++                    };
++                    if target == Target::None {
++                        continue;
++                    }
++                    self.kept_goals.insert(*id, target);
++                    self.kept_since.insert(*id, view.turn);
++                    if let Target::Tree(cell) = target {
++                        if let Some(index) = view.plant_at(cell) {
++                            self.kept_kinds.insert(*id, view.plants[index].kind);
++                        }
++                    }
++                }
++                let alive: BTreeSet<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                self.last_command.retain(|id, _| alive.contains(id));
++                self.last_cell.retain(|id, _| alive.contains(id));
++            }
++
++            // === Norxondor hybrid macro ================================================
++            const LAST_TRAIN_TURN: i32 = 185;
++
++            fn switch_deadline(roster: i32) -> Option<i32> {
++                match roster {
++                    2 => Some(129),
++                    3 => Some(144),
++                    4 => Some(154),
++                    _ => None,
++                }
++            }
++
++            fn roster(view: &GameState) -> i32 {
++                view.units.iter().filter(|unit| unit.player == 0).count() as i32
++            }
++
++            fn floor(roster: i32) -> Option<Stats> {
++                match roster {
++                    1 => Some(Stats {
++                        movement_speed: 2,
++                        carry_capacity: 2,
++                        harvest_power: 1,
++                        chop_power: 1,
++                    }),
++                    2 => Some(Stats {
++                        movement_speed: 2,
++                        carry_capacity: 3,
++                        harvest_power: 1,
++                        chop_power: 2,
++                    }),
++                    3 => Some(Stats {
++                        movement_speed: 2,
++                        carry_capacity: 3,
++                        harvest_power: 0,
++                        chop_power: 3,
++                    }),
++                    4 => Some(Stats {
++                        movement_speed: 2,
++                        carry_capacity: 4,
++                        harvest_power: 0,
++                        chop_power: 3,
++                    }),
++                    _ => None,
++                }
++            }
++
++            fn floor_cost(view: &GameState) -> Option<[i32; 6]> {
++                Self::floor(Self::roster(view))
++                    .map(|floor| training_cost(Self::roster(view), floor.tuple()))
++            }
++
++            fn floor_affordable(view: &GameState) -> bool {
++                let Some(cost) = Self::floor_cost(view) else {
++                    return false;
++                };
++                [PLUM, LEMON, APPLE]
++                    .into_iter()
++                    .all(|item| view.inventories[0][item] >= cost[item])
++                    && (view.iron.is_empty() || view.inventories[0][IRON] >= cost[IRON])
++            }
++
++            fn max_affordable_stat(stock: i32, roster: i32, cap: i32) -> i32 {
++                (0..=cap)
++                    .rev()
++                    .find(|value| roster + value * value <= stock)
++                    .unwrap_or(0)
++            }
++
++            fn train_spec(&self, view: &GameState) -> Option<Stats> {
++                let roster = Self::roster(view);
++                if self.mode != EconomyMode::Produce
++                    || view.turn > Self::LAST_TRAIN_TURN
++                    || Self::floor(roster).is_none()
++                    || !Self::floor_affordable(view)
++                {
++                    return None;
++                }
++                Some(Stats {
++                    movement_speed: Self::max_affordable_stat(
++                        view.inventories[0][PLUM],
++                        roster,
++                        4,
++                    ),
++                    carry_capacity: Self::max_affordable_stat(
++                        view.inventories[0][LEMON],
++                        roster,
++                        5,
++                    ),
++                    harvest_power: Self::max_affordable_stat(
++                        view.inventories[0][APPLE],
++                        roster,
++                        2,
++                    ),
++                    chop_power: if view.iron.is_empty() {
++                        if roster <= 2 { 2 } else { 3 }
++                    } else {
++                        Self::max_affordable_stat(
++                            view.inventories[0][IRON],
++                            roster,
++                            if roster <= 2 { 2 } else { 3 },
++                        )
++                    },
++                })
++            }
++
++            fn ceil_positive(a: i32, b: i32) -> i32 {
++                if b <= 0 {
++                    10_000
++                } else {
++                    (a.max(0) + b - 1) / b
++                }
++            }
++
++            fn resource_eta(view: &GameState, item: usize, missing: i32) -> i32 {
++                if missing <= 0 {
++                    return 0;
++                }
++                let doors: Vec<Cell> = ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect();
++                let from_shack = bfs_distances(&view.walkable, &doors);
++                let mut best = 10_000;
++                for unit in view.units.iter().filter(|unit| unit.player == 0) {
++                    let power = if item == IRON {
++                        unit.stats.chop_power
++                    } else {
++                        unit.stats.harvest_power
++                    };
++                    if power <= 0 || unit.stats.carry_capacity <= 0 {
++                        continue;
++                    }
++                    let carry = unit.stats.carry_capacity;
++                    let trips = Self::ceil_positive(missing, carry);
++                    let dwell = Self::ceil_positive(carry.min(missing), power);
++                    if item == IRON {
++                        for iron in &view.iron {
++                            for cell in ortho_neighbors(*iron) {
++                                if let Some(distance) = from_shack.get(&cell) {
++                                    best = best.min(
++                                        trips.saturating_mul(2 * distance + dwell),
++                                    );
++                                }
++                            }
++                        }
++                    } else {
++                        let kind = match item {
++                            PLUM => PlantKind::Plum,
++                            LEMON => PlantKind::Lemon,
++                            APPLE => PlantKind::Apple,
++                            _ => continue,
++                        };
++                        for plant in view
++                            .plants
++                            .iter()
++                            .filter(|plant| plant.kind == kind && plant.health > 0)
++                        {
++                            if let Some(distance) = from_shack.get(&plant.cell) {
++                                let wait = (MoisanBot::ticks_until_fruit(view, plant) - distance)
++                                    .max(0);
++                                best = best.min(
++                                    trips
++                                        .saturating_mul(2 * distance + dwell)
++                                        .saturating_add(wait),
++                                );
++                            }
++                        }
++                    }
++                }
++                best
++            }
++
++            fn projected_floor_eta(view: &GameState) -> i32 {
++                let Some(cost) = Self::floor_cost(view) else {
++                    return 10_000;
++                };
++                let mut sum = 0i32;
++                for item in [PLUM, LEMON, APPLE] {
++                    sum = sum.saturating_add(Self::resource_eta(
++                        view,
++                        item,
++                        (cost[item] - view.inventories[0][item]).max(0),
++                    ));
++                }
++                if !view.iron.is_empty() {
++                    sum = sum.saturating_add(Self::resource_eta(
++                        view,
++                        IRON,
++                        (cost[IRON] - view.inventories[0][IRON]).max(0),
++                    ));
++                }
++                let funders = view
++                    .units
++                    .iter()
++                    .filter(|unit| {
++                        unit.player == 0
++                            && (unit.stats.harvest_power > 0 || unit.stats.chop_power > 0)
++                    })
++                    .count()
++                    .clamp(1, 2) as i32;
++                Self::ceil_positive(sum, funders)
++            }
++
++            fn update_mode(&mut self, view: &GameState, train_now: bool) {
++                if self.mode == EconomyMode::Deforest {
++                    return;
++                }
++                let roster = Self::roster(view);
++                let floor_unaffordable = !Self::floor_affordable(view);
++                let hard_switch = Self::switch_deadline(roster)
++                    .is_some_and(|deadline| view.turn >= deadline);
++                if roster >= 5
++                    || view.turn > Self::LAST_TRAIN_TURN
++                    || (!train_now
++                        && floor_unaffordable
++                        && (hard_switch
++                            || view.turn.saturating_add(Self::projected_floor_eta(view))
++                                > Self::LAST_TRAIN_TURN))
++                {
++                    self.mode = EconomyMode::Deforest;
++                    if self
++                        .plant_job
++                        .is_some_and(|job| job.purpose == PlantPurpose::Orchard)
++                    {
++                        self.plant_job = None;
++                    }
++                }
++            }
++
++            fn reconcile_port_state(&mut self, view: &GameState) {
++                self.owned_plants.retain(|cell, kind| {
++                    view.plant_at(*cell)
++                        .map(|index| {
++                            view.plants[index].kind == *kind && view.plants[index].health > 0
++                        })
++                        .unwrap_or(false)
++                });
++                let Some(mut job) = self.plant_job else {
++                    return;
++                };
++                let Some(unit) = view
++                    .units
++                    .iter()
++                    .find(|unit| unit.player == 0 && unit.id == job.unit_id)
++                else {
++                    self.plant_job = None;
++                    return;
++                };
++                if (self.mode == EconomyMode::Deforest
++                    && job.purpose == PlantPurpose::Orchard)
++                    || (self.mode == EconomyMode::Produce
++                        && job.purpose == PlantPurpose::Conversion)
++                {
++                    self.plant_job = None;
++                    return;
++                }
++                match job.stage {
++                    PlantStage::Acquire => {
++                        if view.inventories[0][job.kind.item_index()] <= 0
++                            || view.plant_at(job.cell).is_some()
++                        {
++                            self.plant_job = None;
++                        }
++                    }
++                    PlantStage::Carry => {
++                        if unit.carry[job.kind.item_index()] <= 0 {
++                            self.plant_job = None;
++                        } else if view.plant_at(job.cell).is_some() {
++                            self.plant_job = None;
++                        }
++                    }
++                    PlantStage::AwaitPlant => {
++                        let planted = view
++                            .plant_at(job.cell)
++                            .map(|index| {
++                                view.plants[index].kind == job.kind
++                                    && view.plants[index].health > 0
++                            })
++                            .unwrap_or(false);
++                        if planted {
++                            self.owned_plants.insert(job.cell, job.kind);
++                            if job.purpose == PlantPurpose::Conversion {
++                                job.stage = PlantStage::Cut;
++                                self.plant_job = Some(job);
++                            } else {
++                                self.plant_job = None;
++                            }
++                        } else {
++                            self.plant_job = None;
++                        }
++                    }
++                    PlantStage::Cut => {
++                        let alive = view
++                            .plant_at(job.cell)
++                            .map(|index| {
++                                view.plants[index].kind == job.kind
++                                    && view.plants[index].health > 0
++                            })
++                            .unwrap_or(false);
++                        if !alive {
++                            self.owned_plants.remove(&job.cell);
++                            self.plant_job = None;
++                        }
++                    }
++                }
++            }
++
++            fn orchard_target(kind: PlantKind) -> i32 {
++                match kind {
++                    PlantKind::Lemon | PlantKind::Plum => 3,
++                    PlantKind::Apple => 1,
++                    PlantKind::Banana => 0,
++                }
++            }
++
++            fn owned_count(&self, kind: PlantKind) -> i32 {
++                self.owned_plants
++                    .values()
++                    .filter(|owned| **owned == kind)
++                    .count() as i32
++            }
++
++            fn resource_deficit(view: &GameState, kind: PlantKind) -> bool {
++                let Some(cost) = Self::floor_cost(view) else {
++                    return false;
++                };
++                let item = kind.item_index();
++                view.inventories[0][item] < cost[item]
++            }
++
++            fn orchard_kind_for_pick(&self, view: &GameState) -> Option<PlantKind> {
++                let cost = Self::floor_cost(view)?;
++                [PlantKind::Lemon, PlantKind::Plum, PlantKind::Apple]
++                    .into_iter()
++                    .enumerate()
++                    .filter_map(|(priority, kind)| {
++                        let shortfall = Self::orchard_target(kind) - self.owned_count(kind);
++                        let item = kind.item_index();
++                        (shortfall > 0 && view.inventories[0][item] > cost[item])
++                            .then_some((shortfall, -(priority as i32), kind))
++                    })
++                    .max()
++                    .map(|(_, _, kind)| kind)
++            }
++
++            fn conversion_kind(view: &GameState) -> Option<PlantKind> {
++                [
++                    PlantKind::Banana,
++                    PlantKind::Plum,
++                    PlantKind::Lemon,
++                    PlantKind::Apple,
++                ]
++                .into_iter()
++                .enumerate()
++                .filter(|(_, kind)| view.inventories[0][kind.item_index()] > 0)
++                .min_by_key(|(priority, kind)| (tree_health(*kind, 1), *priority))
++                .map(|(_, kind)| kind)
++            }
++
++            fn plant_cell(view: &GameState, unit: &Unit) -> Option<Cell> {
++                let from_ours = bfs_distances(&view.walkable, &[view.shacks[0]]);
++                let from_theirs = bfs_distances(&view.walkable, &[view.shacks[1]]);
++                let from_unit = bfs_distances(&view.walkable, &[unit.cell]);
++                view.walkable
++                    .iter()
++                    .filter(|cell| view.plant_at(**cell).is_none())
++                    .filter(|cell| {
++                        !view
++                            .units
++                            .iter()
++                            .any(|other| other.id != unit.id && other.cell == **cell)
++                    })
++                    .filter(|cell| {
++                        from_ours.get(*cell).copied().unwrap_or(10_000) <= 4
++                            && from_ours.get(*cell).copied().unwrap_or(10_000)
++                                <= from_theirs.get(*cell).copied().unwrap_or(10_000)
++                            && from_unit.contains_key(*cell)
++                    })
++                    .min_by_key(|cell| {
++                        (
++                            from_ours[*cell] + from_unit[*cell],
++                            from_ours[*cell],
++                            **cell,
++                        )
++                    })
++                    .copied()
++            }
++
++            fn prepare_plant_job(&mut self, view: &GameState, train_now: bool) {
++                if self.plant_job.is_some() || train_now {
++                    return;
++                }
++                let mut units: Vec<&Unit> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .collect();
++                units.sort_by_key(|unit| unit.id);
++                if self.mode == EconomyMode::Produce {
++                    for unit in &units {
++                        for kind in [PlantKind::Lemon, PlantKind::Plum, PlantKind::Apple] {
++                            if unit.carry[kind.item_index()] > 0
++                                && !Self::resource_deficit(view, kind)
++                                && self.owned_count(kind) < Self::orchard_target(kind)
++                            {
++                                if let Some(cell) = Self::plant_cell(view, unit) {
++                                    self.plant_job = Some(PlantJob {
++                                        unit_id: unit.id,
++                                        kind,
++                                        cell,
++                                        purpose: PlantPurpose::Orchard,
++                                        stage: PlantStage::Carry,
++                                    });
++                                    return;
++                                }
++                            }
++                        }
++                    }
++                    let Some(kind) = self.orchard_kind_for_pick(view) else {
++                        return;
++                    };
++                    if let Some((unit, cell)) = units
++                        .iter()
++                        .filter(|unit| unit.total_carried() == 0)
++                        .filter_map(|unit| Self::plant_cell(view, unit).map(|cell| (*unit, cell)))
++                        .min_by_key(|(unit, cell)| {
++                            (manhattan(unit.cell, view.shacks[0]), unit.id, *cell)
++                        })
++                    {
++                        self.plant_job = Some(PlantJob {
++                            unit_id: unit.id,
++                            kind,
++                            cell,
++                            purpose: PlantPurpose::Orchard,
++                            stage: PlantStage::Acquire,
++                        });
++                    }
++                } else if Self::roster(view) >= 2 {
++                    let Some(kind) = Self::conversion_kind(view) else {
++                        return;
++                    };
++                    let choice = units
++                        .iter()
++                        .filter(|unit| {
++                            unit.total_carried() == 0 && unit.stats.chop_power > 0
++                        })
++                        .filter_map(|unit| {
++                            let cell = Self::plant_cell(view, unit)?;
++                            let travel = bfs_distances(&view.walkable, &[unit.cell])
++                                .get(&cell)
++                                .copied()
++                                .unwrap_or(10_000);
++                            let turns = travel
++                                + Self::conversion_chop_turns(
++                                    view,
++                                    cell,
++                                    kind,
++                                    unit.stats.chop_power,
++                                )
++                                + 3;
++                            (turns <= TOTAL_TURNS - view.turn + 1).then_some((
++                                -unit.stats.chop_power,
++                                travel,
++                                unit.id,
++                                *unit,
++                                cell,
++                            ))
++                        })
++                        .min_by_key(|choice| (choice.0, choice.1, choice.2));
++                    if let Some((_, _, _, unit, cell)) = choice {
++                        self.plant_job = Some(PlantJob {
++                            unit_id: unit.id,
++                            kind,
++                            cell,
++                            purpose: PlantPurpose::Conversion,
++                            stage: PlantStage::Acquire,
++                        });
++                    }
++                }
++            }
++
++            fn job_candidates(view: &GameState, unit: &Unit, job: PlantJob) -> Vec<Candidate> {
++                let mut out = vec![MoisanBot::wait()];
++                match job.stage {
++                    PlantStage::Acquire => {
++                        if is_adjacent(unit.cell, view.shacks[0]) {
++                            out.push(Candidate {
++                                command: format!("PICK {} {}", unit.id, job.kind.as_str()),
++                                score: 20_000.0,
++                                target: Target::Cell(job.cell),
++                            });
++                        } else {
++                            out.extend(
++                                Self::bank_candidates(view, unit)
++                                    .into_iter()
++                                    .filter(|candidate| candidate.command.starts_with("MOVE "))
++                                    .map(|mut candidate| {
++                                        candidate.target = Target::Cell(job.cell);
++                                        candidate
++                                    }),
++                            );
++                        }
++                    }
++                    PlantStage::Carry => {
++                        out.push(Candidate {
++                            command: if unit.cell == job.cell {
++                                format!("PLANT {} {}", unit.id, job.kind.as_str())
++                            } else {
++                                format!("MOVE {} {} {}", unit.id, job.cell.0, job.cell.1)
++                            },
++                            score: 20_000.0,
++                            target: Target::Cell(job.cell),
++                        });
++                    }
++                    PlantStage::Cut => {
++                        out.push(Candidate {
++                            command: if unit.cell == job.cell {
++                                format!("CHOP {}", unit.id)
++                            } else {
++                                format!("MOVE {} {} {}", unit.id, job.cell.0, job.cell.1)
++                            },
++                            score: 20_000.0,
++                            target: Target::Tree(job.cell),
++                        });
++                    }
++                    PlantStage::AwaitPlant => {}
++                }
++                out
++            }
++
++            fn selected_miner(view: &GameState) -> Option<i32> {
++                let cost = Self::floor_cost(view)?;
++                if view.iron.is_empty() || view.inventories[0][IRON] >= cost[IRON] {
++                    return None;
++                }
++                view.units
++                    .iter()
++                    .filter(|unit| unit.player == 0 && unit.stats.chop_power > 0)
++                    .filter(|unit| {
++                        unit.total_carried() == 0 || unit.total_carried() == unit.carry[IRON]
++                    })
++                    .min_by_key(|unit| {
++                        let distance = view
++                            .iron
++                            .iter()
++                            .flat_map(|iron| ortho_neighbors(*iron))
++                            .filter_map(|cell| {
++                                bfs_distances(&view.walkable, &[unit.cell])
++                                    .get(&cell)
++                                    .copied()
++                            })
++                            .min()
++                            .unwrap_or(10_000);
++                        (unit.carry[IRON] == 0, distance, unit.id)
++                    })
++                    .map(|unit| unit.id)
++            }
++
++            fn produce_candidates(
++                &self,
++                view: &GameState,
++                unit: &Unit,
++                miner: Option<i32>,
++            ) -> Vec<Candidate> {
++                if let Some(job) = self.plant_job.filter(|job| job.unit_id == unit.id) {
++                    return Self::job_candidates(view, unit, job);
++                }
++                if unit.free_capacity() <= 0 {
++                    return Self::bank_candidates(view, unit);
++                }
++                let mut out = vec![MoisanBot::wait()];
++                let mut productive = false;
++                for kind in [PlantKind::Plum, PlantKind::Lemon, PlantKind::Apple] {
++                    if unit.stats.harvest_power > 0
++                        && (unit.total_carried() == 0 || unit.carry[kind.item_index()] > 0)
++                    {
++                        let candidates = MoisanBot::fruit_candidates(
++                            view,
++                            unit,
++                            kind,
++                            if Self::resource_deficit(view, kind) {
++                                6_000.0
++                            } else {
++                                1_000.0
++                            },
++                        );
++                        productive |= !candidates.is_empty();
++                        out.extend(candidates);
++                    }
++                }
++                if miner == Some(unit.id)
++                    && (unit.total_carried() == 0 || unit.carry[IRON] > 0)
++                {
++                    let candidates = MoisanBot::iron_candidates(view, unit, 6_100.0);
++                    productive |= !candidates.is_empty();
++                    out.extend(candidates);
++                }
++                if unit.total_carried() == 0 && !productive {
++                    let candidates = Self::yamo_chop_candidates(
++                        view,
++                        unit,
++                        self.type_to_cut,
++                        self.opponent_eta_penalty,
++                    );
++                    productive |= !candidates.is_empty();
++                    out.extend(candidates);
++                }
++                if unit.total_carried() > 0
++                    && (is_adjacent(unit.cell, view.shacks[0]) || !productive)
++                {
++                    out.extend(Self::bank_candidates(view, unit));
++                }
++                out
++            }
++
++            fn deforest_candidates(&self, view: &GameState, unit: &Unit) -> Vec<Candidate> {
++                if let Some(job) = self.plant_job.filter(|job| job.unit_id == unit.id) {
++                    return Self::job_candidates(view, unit, job);
++                }
++                if unit.free_capacity() <= 0 {
++                    return Self::bank_candidates(view, unit);
++                }
++                if unit.carry[PLUM] + unit.carry[LEMON] + unit.carry[APPLE]
++                    + unit.carry[BANANA] + unit.carry[IRON]
++                    > 0
++                {
++                    return Self::bank_candidates(view, unit);
++                }
++                let mut out = vec![MoisanBot::wait()];
++                let chops = Self::yamo_chop_candidates(
++                    view,
++                    unit,
++                    self.type_to_cut,
++                    self.opponent_eta_penalty,
++                );
++                if chops.is_empty() && unit.total_carried() > 0 {
++                    out.extend(Self::bank_candidates(view, unit));
++                } else {
++                    out.extend(chops);
++                    if unit.total_carried() > 0 && is_adjacent(unit.cell, view.shacks[0]) {
++                        out.extend(Self::bank_candidates(view, unit));
++                    }
++                }
++                out
++            }
++
++            fn remember_port_job(&mut self, commands: &[String]) {
++                let Some(mut job) = self.plant_job else {
++                    return;
++                };
++                if let Some(command) = MoisanBot::command_for_unit(commands, job.unit_id) {
++                    if command.starts_with("PICK ") {
++                        job.stage = PlantStage::Carry;
++                    } else if command.starts_with("PLANT ") {
++                        job.stage = PlantStage::AwaitPlant;
++                    }
++                    self.plant_job = Some(job);
++                }
++            }
++
++            // ---- the v6 wire -----------------------------------------------------------------
++            // Reads only. Nothing here decides anything. v6 is v5's payload with `m=` deleted --
++            // there is no margin constant to disambiguate a wire with, which is itself the
++            // version's signature -- plus the three-valued `k=` and the keep census.
++            fn narrate_target(target: Target) -> String {
++                match target {
++                    Target::None => "NONE".to_string(),
++                    Target::Shack => "SHACK".to_string(),
++                    Target::Bank(cell) => format!("BANK({},{})", cell.0, cell.1),
++                    Target::Cell(cell) => format!("CELL({},{})", cell.0, cell.1),
++                    Target::Tree(cell) => format!("TREE({},{})", cell.0, cell.1),
++                }
++            }
++            // `k=2` restricted AND the emitted command carried the kept goal; `k=1` the unit holds
++            // a valid kept goal whose emitted command does not carry it -- the not-live case, and
++            // (F6) the case where `resolve_move_conflicts` rewrote a restricted command into
++            // something no candidate proposed; `k=0` no valid kept goal, including a goal released
++            // as contested this turn, which is why `xc` and `k` are read together and never apart.
++            fn keep_code(
++                &self,
++                id: i32,
++                goal_lists: &BTreeMap<i32, Vec<Candidate>>,
++                restricted: &BTreeSet<i32>,
++                commands: &[String],
++            ) -> char {
++                let Some(goal) = self.kept_goals.get(&id) else {
++                    return '0';
++                };
++                if restricted.contains(&id) {
++                    if let Some(command) = MoisanBot::command_for_unit(commands, id) {
++                        let carried = goal_lists
++                            .get(&id)
++                            .map_or(false, |list| {
++                                list.iter().any(|candidate| {
++                                    candidate.command == command && candidate.target == *goal
++                                })
++                            });
++                        if carried {
++                            return '2';
++                        }
++                    }
++                }
++                '1'
++            }
++            fn narrate_message(
++                &self,
++                view: &GameState,
++                by_id: &BTreeMap<i32, Vec<Candidate>>,
++                restricted: &BTreeSet<i32>,
++                commands: &[String],
++                branch: &BTreeMap<i32, char>,
++                meta: &KeepMeta,
++                w_collisions: u32,
++                banner: Option<&str>,
++            ) -> String {
++                // Every live own unit exactly once, ids ascending, roster taken from the VIEW.
++                let mut ids: Vec<i32> = view
++                    .units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .map(|unit| unit.id)
++                    .collect();
++                ids.sort();
++                let mut tokens: Vec<String> = vec![format!("NARRATE v6 t={}", view.turn)];
++                for id in ids {
++                    let chosen = MoisanBot::command_for_unit(commands, id)
++                        .and_then(|command| {
++                            by_id
++                                .get(&id)
++                                .and_then(|list| MoisanBot::matched_target(list, &command))
++                        })
++                        .unwrap_or(Target::None);
++                    let want = match by_id.get(&id) {
++                        Some(list) => match list
++                            .iter()
++                            .max_by(|a, b| a.score.total_cmp(&b.score))
++                        {
++                            Some(candidate) => Self::narrate_target(candidate.target),
++                            None => "ABSENT".to_string(),
++                        },
++                        None => "ABSENT".to_string(),
++                    };
++                    let code = branch.get(&id).copied().unwrap_or('N');
++                    // `b=` is v4's `blocked_turns`, kept in the shape for the decoder's benefit
++                    // and identically 0: Candidate 1's hold was its only writer and it is retired.
++                    tokens.push(format!(
++                        "u{}={}/{}/r={}/b=0/k={}",
++                        id,
++                        Self::narrate_target(chosen),
++                        want,
++                        code,
++                        self.keep_code(id, by_id, restricted, commands)
++                    ));
++                }
++                // `pz=1`, `sp=0` and the four exchange counters have no writer in a Candidate 3
++                // arm: R5 adds no holder and there is no exchange rule here. They are carried with
++                // v5's meanings unchanged (r6 C4) and a violation is a defect in R5.
++                tokens.push("pz=1".to_string());
++                tokens.push("sp=0".to_string());
++                tokens.push(format!("wc={}", w_collisions));
++                tokens.push("sw=0".to_string());
++                tokens.push("so=0".to_string());
++                tokens.push("sn=0".to_string());
++                tokens.push("sf=0".to_string());
++                tokens.push(format!("kp={}", meta.kp));
++                tokens.push(format!("kq={}", meta.kq));
++                tokens.push(format!("kl={}", meta.kl));
++                tokens.push(format!("kr={}", meta.kr));
++                tokens.push(format!("rd={}", meta.rd));
++                tokens.push(format!("rg={}", meta.rg));
++                tokens.push(format!("ri={}", meta.ri));
++                tokens.push(format!("rx={}", meta.rx));
++                tokens.push(format!("rf={}", meta.rf));
++                tokens.push(format!("rt={}", meta.rt));
++                tokens.push(format!("ro={}", meta.ro));
++                tokens.push(format!("nl={}", meta.nl));
++                tokens.push(format!("nl_producer={}", meta.nl_producer));
++                tokens.push(format!("nl_door={}", meta.nl_door));
++                tokens.push(format!("nl_admissibility={}", meta.nl_admissibility));
++                tokens.push(format!("nl_other={}", meta.nl_other));
++                tokens.push(format!("ka={}", meta.ka));
++                tokens.push(format!("kc={}", meta.kc));
++                tokens.push(format!("xc={}", meta.xc));
++                tokens.push(format!("xw={}", meta.xw));
++                tokens.push(format!("xn={}", meta.xn));
++                tokens.push(format!("xp={}", meta.xp));
++                tokens.push(format!("xg={}", meta.xg));
++                tokens.push(format!("xd={}", meta.xd));
++                tokens.push(format!("xj={}", meta.xj));
++                let body = tokens.join(" ");
++                match banner {
++                    Some(text) => format!("MSG {} {}", text, body),
++                    None => format!("MSG {}", body),
++                }
++            }
++        }
++        impl Bot for YamoBot {
++            fn commands(&mut self, view: &GameState) -> Vec<String> {
++                self.reconcile_port_state(view);
++                if self.type_to_cut.is_none() {
++                    self.type_to_cut = Some(MoisanBot::focus_type(view));
++                }
++                let mut train_spec = self.train_spec(view);
++                self.update_mode(view, train_spec.is_some());
++                if self.mode == EconomyMode::Deforest {
++                    train_spec = None;
++                }
++                self.prepare_plant_job(view, train_spec.is_some());
++                let miner = if self.mode == EconomyMode::Produce {
++                    Self::selected_miner(view)
++                } else {
++                    None
++                };
++                let keep_meta = KeepMeta::default();
++                let mut out = Vec::new();
++                let narrate_banner = if !self.announced {
++                    self.announced = true;
++                    Some(self.announcement)
++                } else {
++                    None
++                };
++                if let Some(spec) = train_spec {
++                    out.push(format!(
++                        "TRAIN {} {} {} {}",
++                        spec.movement_speed,
++                        spec.carry_capacity,
++                        spec.harvest_power,
++                        spec.chop_power
++                    ));
++                }
++                let mut my_units: Vec<&Unit> =
++                    view.units.iter().filter(|unit| unit.player == 0).collect();
++                my_units.sort_by_key(|unit| unit.id);
++                let mut by_id = BTreeMap::new();
++                for unit in my_units {
++                    let mut candidates = if self.mode == EconomyMode::Produce {
++                        self.produce_candidates(view, unit, miner)
++                    } else {
++                        self.deforest_candidates(view, unit)
++                    };
++                    if train_spec.is_some() {
++                        candidates.retain(|candidate| !candidate.command.starts_with("PICK "));
++                    }
++                    if train_spec.is_some()
++                        && unit.cell == view.shacks[0]
++                        && !candidates
++                            .iter()
++                            .any(|candidate| candidate.command.starts_with("MOVE "))
++                    {
++                        if let Some(cell) = ortho_neighbors(view.shacks[0])
++                            .into_iter()
++                            .find(|cell| view.walkable.contains(cell))
++                        {
++                            candidates.push(Candidate {
++                                command: format!("MOVE {} {} {}", unit.id, cell.0, cell.1),
++                                score: 6_500.0,
++                                target: Target::Cell(cell),
++                            });
++                        }
++                    }
++                    by_id.insert(unit.id, candidates);
++                }
++                let mut door_cleared: BTreeSet<i32> = BTreeSet::new();
++                if self.door_unblocking {
++                    let before: BTreeMap<i32, Vec<String>> = by_id
++                        .iter()
++                        .map(|(id, list)| {
++                            (*id, list.iter().map(|c| c.command.clone()).collect())
++                        })
++                        .collect();
++                    self.force_unique_door_clear(view, &mut by_id);
++                    for (id, list) in &by_id {
++                        let after: Vec<String> =
++                            list.iter().map(|c| c.command.clone()).collect();
++                        if before.get(id) != Some(&after) {
++                            door_cleared.insert(*id);
++                        }
++                    }
++                }
++                let restricted: BTreeSet<i32> = BTreeSet::new();
++                let mut selected = MoisanBot::select(by_id.clone(), &view.inventories[0]);
++                let mut narrate_branch: BTreeMap<i32, char> = BTreeMap::new();
++                let mut w_collisions = 0;
++                MoisanBot::resolve_move_conflicts(
++                    view,
++                    &mut selected,
++                    &mut narrate_branch,
++                    &mut w_collisions,
++                );
++                let narration = self.narrate_message(
++                    view,
++                    &by_id,
++                    &restricted,
++                    &selected,
++                    &narrate_branch,
++                    &keep_meta,
++                    w_collisions,
++                    narrate_banner,
++                );
++                self.remember_port_job(&selected);
++                out.extend(selected);
++                if out.is_empty() {
++                    out.push("WAIT".to_string());
++                }
++                out.insert(0, narration);
++                out
++            }
++        }
++
++        #[cfg(test)]
++        mod port_tests {
++            use super::*;
++            use crate::game::types::ITEM_COUNT;
++
++            fn worker(id: i32, cell: Cell) -> Unit {
++                Unit {
++                    id,
++                    player: 0,
++                    cell,
++                    stats: Stats {
++                        movement_speed: 2,
++                        carry_capacity: 3,
++                        harvest_power: 1,
++                        chop_power: 2,
++                    },
++                    carry: [0; ITEM_COUNT],
++                }
++            }
++
++            fn test_view(roster: usize, turn: i32, with_iron: bool) -> GameState {
++                let mut walkable = BTreeSet::new();
++                for x in 1..=9 {
++                    for y in 1..=5 {
++                        walkable.insert((x, y));
++                    }
++                }
++                if with_iron {
++                    walkable.remove(&(5, 3));
++                }
++                let cells = [(1, 3), (1, 2), (1, 4), (2, 3), (2, 2)];
++                let units = cells
++                    .iter()
++                    .take(roster)
++                    .enumerate()
++                    .map(|(id, cell)| worker(id as i32, *cell))
++                    .collect();
++                let plants = [
++                    (PlantKind::Plum, (4, 3)),
++                    (PlantKind::Lemon, (3, 2)),
++                    (PlantKind::Apple, (3, 4)),
++                ]
++                .into_iter()
++                .map(|(kind, cell)| Plant {
++                    kind,
++                    cell,
++                    size: 3,
++                    health: 10,
++                    fruits: 20,
++                    cooldown: 0,
++                })
++                .collect();
++                GameState {
++                    width: 11,
++                    height: 7,
++                    walkable,
++                    shacks: [(0, 3), (10, 3)],
++                    inventories: [[0; ITEM_COUNT]; 2],
++                    units,
++                    plants,
++                    scores: [0, 0],
++                    turn,
++                    next_id: roster as i32,
++                    iron: if with_iron {
++                        [(5, 3)].into_iter().collect()
++                    } else {
++                        BTreeSet::new()
++                    },
++                    water: BTreeSet::new(),
++                }
++            }
++
++            fn bot() -> YamoBot {
++                YamoBot::tuned_carry_regeneration_transit_idle_harvest()
++            }
++
++            #[test]
++            fn roster_three_turn_106_stays_produce() {
++                let view = test_view(3, 106, true);
++                let mut bot = bot();
++                bot.update_mode(&view, false);
++                assert_eq!(bot.mode, EconomyMode::Produce);
++            }
++
++            #[test]
++            fn roster_four_turn_138_switches_deforest() {
++                let view = test_view(4, 138, true);
++                let mut bot = bot();
++                bot.update_mode(&view, false);
++                assert_eq!(bot.mode, EconomyMode::Deforest);
++            }
++
++            #[test]
++            fn missing_source_is_hopeless_but_iron_free_is_omitted() {
++                let mut iron_free = test_view(3, 106, false);
++                let mut first = bot();
++                first.update_mode(&iron_free, false);
++                assert_eq!(first.mode, EconomyMode::Produce);
++
++                iron_free
++                    .plants
++                    .retain(|plant| plant.kind != PlantKind::Apple);
++                let mut second = bot();
++                second.update_mode(&iron_free, false);
++                assert_eq!(second.mode, EconomyMode::Deforest);
++            }
++
++            #[test]
++            fn partial_fruit_load_continues_harvest() {
++                let mut view = test_view(1, 50, true);
++                view.units[0].cell = (4, 3);
++                view.units[0].carry[PLUM] = 1;
++                let bot = bot();
++                let candidates = bot.produce_candidates(&view, &view.units[0], None);
++                assert!(candidates.iter().any(|candidate| candidate.command == "HARVEST 0"));
++                assert!(!candidates.iter().any(|candidate| candidate.command.starts_with("DROP ")));
++            }
++
++            #[test]
++            fn turn_one_train_clears_shack_and_suppresses_pick() {
++                let mut view = test_view(1, 1, true);
++                view.units[0].cell = view.shacks[0];
++                view.inventories[0][PLUM] = 5;
++                view.inventories[0][LEMON] = 5;
++                view.inventories[0][APPLE] = 2;
++                view.inventories[0][IRON] = 2;
++                let commands = bot().commands(&view);
++                assert!(commands.iter().any(|command| command.starts_with("TRAIN ")));
++                assert!(commands.iter().any(|command| command.starts_with("MOVE 0 ")));
++                assert!(!commands.iter().any(|command| command.starts_with("PICK ")));
++            }
++
++            #[test]
++            fn roster_five_forces_deforest() {
++                let view = test_view(5, 50, true);
++                let mut bot = bot();
++                bot.update_mode(&view, false);
++                assert_eq!(bot.mode, EconomyMode::Deforest);
++            }
++
++            #[test]
++            fn banana_waits_for_second_troll() {
++                let mut view = test_view(1, 50, true);
++                view.inventories[0][BANANA] = 1;
++                let mut bot = bot();
++                bot.mode = EconomyMode::Deforest;
++                bot.prepare_plant_job(&view, false);
++                assert!(bot.plant_job.is_none());
++            }
++
++            #[test]
++            fn orchard_has_one_stable_global_job() {
++                let mut view = test_view(2, 50, true);
++                let cost = YamoBot::floor_cost(&view).unwrap();
++                view.inventories[0] = cost;
++                view.inventories[0][LEMON] += 1;
++                let mut bot = bot();
++                bot.prepare_plant_job(&view, false);
++                let first = bot.plant_job.expect("one orchard job");
++                bot.prepare_plant_job(&view, false);
++                assert_eq!(bot.plant_job, Some(first));
++            }
++
++            #[test]
++            fn occupied_reserved_cell_cancels_job() {
++                let mut view = test_view(2, 50, true);
++                let cost = YamoBot::floor_cost(&view).unwrap();
++                view.inventories[0] = cost;
++                view.inventories[0][LEMON] += 1;
++                let mut bot = bot();
++                bot.prepare_plant_job(&view, false);
++                let job = bot.plant_job.expect("reserved job");
++                view.plants.push(Plant {
++                    kind: PlantKind::Plum,
++                    cell: job.cell,
++                    size: 1,
++                    health: 4,
++                    fruits: 0,
++                    cooldown: 1,
++                });
++                bot.reconcile_port_state(&view);
++                assert!(bot.plant_job.is_none());
++            }
++
++            #[test]
++            fn iron_miner_exists_only_for_a_deficit() {
++                let mut view = test_view(2, 50, true);
++                assert!(YamoBot::selected_miner(&view).is_some());
++                let cost = YamoBot::floor_cost(&view).unwrap();
++                view.inventories[0][IRON] = cost[IRON];
++                assert!(YamoBot::selected_miner(&view).is_none());
++            }
++
++            #[test]
++            fn banana_conversion_is_pick_plant_chop() {
++                let mut view = test_view(2, 200, true);
++                view.inventories[0][BANANA] = 1;
++                let mut bot = bot();
++                bot.mode = EconomyMode::Deforest;
++                bot.prepare_plant_job(&view, false);
++                let mut job = bot.plant_job.expect("banana conversion job");
++                assert_eq!(job.purpose, PlantPurpose::Conversion);
++                let acquire = YamoBot::job_candidates(&view, &view.units[0], job);
++                assert!(acquire.iter().any(|candidate| candidate.command == "PICK 0 BANANA"));
++
++                job.stage = PlantStage::Carry;
++                view.units[0].carry[BANANA] = 1;
++                view.units[0].cell = job.cell;
++                let carry = YamoBot::job_candidates(&view, &view.units[0], job);
++                assert!(carry.iter().any(|candidate| candidate.command == "PLANT 0 BANANA"));
++
++                job.stage = PlantStage::AwaitPlant;
++                bot.plant_job = Some(job);
++                view.plants.push(Plant {
++                    kind: PlantKind::Banana,
++                    cell: job.cell,
++                    size: 1,
++                    health: 2,
++                    fruits: 0,
++                    cooldown: 6,
++                });
++                bot.reconcile_port_state(&view);
++                let cut_job = bot.plant_job.expect("cut stage");
++                assert_eq!(cut_job.stage, PlantStage::Cut);
++                let cut = YamoBot::job_candidates(&view, &view.units[0], cut_job);
++                assert!(cut.iter().any(|candidate| candidate.command == "CHOP 0"));
++            }
++
++            #[test]
++            fn conversion_falls_back_to_cheapest_deposited_seed() {
++                let mut view = test_view(2, 200, true);
++                view.inventories[0][PLUM] = 1;
++                view.inventories[0][LEMON] = 1;
++                view.inventories[0][APPLE] = 1;
++                let mut bot = bot();
++                bot.mode = EconomyMode::Deforest;
++                bot.prepare_plant_job(&view, false);
++                let job = bot.plant_job.expect("fallback conversion job");
++                assert_eq!(job.kind, PlantKind::Plum);
++                assert_eq!(job.purpose, PlantPurpose::Conversion);
++            }
++
++            #[test]
++            fn roster_deadlines_are_hard_only_when_floor_is_unaffordable() {
++                for (roster, deadline) in [(2, 129), (3, 144), (4, 154)] {
++                    let mut view = test_view(roster, deadline - 1, true);
++                    let cost = YamoBot::floor_cost(&view).unwrap();
++                    view.inventories[0] = cost;
++                    view.inventories[0][PLUM] -= 1;
++                    let mut before = bot();
++                    before.update_mode(&view, false);
++                    assert_eq!(before.mode, EconomyMode::Produce);
++
++                    view.turn = deadline;
++                    let mut at = bot();
++                    at.update_mode(&view, false);
++                    assert_eq!(at.mode, EconomyMode::Deforest);
++
++                    view.inventories[0] = cost;
++                    let mut affordable = bot();
++                    affordable.update_mode(&view, true);
++                    assert_eq!(affordable.mode, EconomyMode::Produce);
++                }
++            }
++
++            #[test]
++            fn fresh_replays_are_deterministic() {
++                let view = test_view(3, 80, true);
++                assert_eq!(bot().commands(&view), bot().commands(&view));
++            }
++
++            #[test]
++            fn collision_resolver_repairs_duplicate_destinations() {
++                let view = test_view(2, 80, true);
++                let mut commands = vec!["MOVE 0 2 3".to_string(), "MOVE 1 2 3".to_string()];
++                let mut branches = BTreeMap::new();
++                let mut collisions = 0;
++                MoisanBot::resolve_move_conflicts(
++                    &view,
++                    &mut commands,
++                    &mut branches,
++                    &mut collisions,
++                );
++                assert!(commands.iter().filter(|command| *command == "MOVE 0 2 3" || *command == "MOVE 1 2 3").count() <= 1);
+             }
+         }
+     }
