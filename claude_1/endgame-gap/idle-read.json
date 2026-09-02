@@ -1,0 +1,1965 @@
+{
+ "examples": {
+  "fruit_only": [
+   [
+    900571127,
+    284,
+    [
+     14,
+     7
+    ],
+    2,
+    [
+     1,
+     2,
+     0,
+     1
+    ],
+    [
+     "APPLE",
+     4,
+     20,
+     3,
+     17
+    ]
+   ]
+  ],
+  "no_tree_left": [
+   [
+    900571120,
+    296,
+    [
+     7,
+     0
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    null
+   ],
+   [
+    900571126,
+    286,
+    [
+     11,
+     3
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    null
+   ],
+   [
+    900571130,
+    277,
+    [
+     8,
+     5
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    null
+   ]
+  ],
+  "opp_guarded_only": [
+   [
+    900571284,
+    266,
+    [
+     13,
+     3
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "PLUM",
+     4,
+     12,
+     3,
+     8
+    ]
+   ],
+   [
+    900571395,
+    280,
+    [
+     5,
+     4
+    ],
+    0,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     4,
+     14,
+     1,
+     15
+    ]
+   ],
+   [
+    900571451,
+    297,
+    [
+     10,
+     4
+    ],
+    2,
+    [
+     2,
+     2,
+     0,
+     1
+    ],
+    [
+     "APPLE",
+     1,
+     11,
+     0,
+     4
+    ]
+   ]
+  ],
+  "partner_chopping": [
+   [
+    900571120,
+    291,
+    [
+     7,
+     0
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     1,
+     9,
+     0,
+     2
+    ]
+   ],
+   [
+    900571121,
+    285,
+    [
+     10,
+     3
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     1,
+     10,
+     0,
+     2
+    ]
+   ],
+   [
+    900571122,
+    291,
+    [
+     4,
+     2
+    ],
+    0,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     2,
+     2,
+     0,
+     2
+    ]
+   ]
+  ],
+  "tree_reachable_free": [
+   [
+    900571119,
+    292,
+    [
+     10,
+     2
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     4,
+     20,
+     1,
+     6
+    ]
+   ],
+   [
+    900571121,
+    298,
+    [
+     10,
+     3
+    ],
+    1,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     4,
+     2,
+     3,
+     6
+    ]
+   ],
+   [
+    900571122,
+    293,
+    [
+     4,
+     2
+    ],
+    0,
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     "APPLE",
+     4,
+     20,
+     3,
+     5
+    ]
+   ]
+  ]
+ },
+ "felled_by_size": {
+  "1": 678,
+  "2": 61,
+  "3": 11,
+  "4": 67
+ },
+ "felled_partner_idle": {
+  "1": 57,
+  "2": 16,
+  "3": 4,
+  "4": 18
+ },
+ "idle_classes": {
+  "fruit_only": 1,
+  "no_tree_left": 364,
+  "opp_guarded_only": 457,
+  "partner_chopping": 418,
+  "tree_reachable_free": 618
+ },
+ "per_game": [
+  {
+   "felled_by_size": {
+    "1": 10,
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 25,
+   "gameId": 900571119,
+   "idle": {
+    "tree_reachable_free": 17
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 85,
+   "trees_end": 24
+  },
+  {
+   "felled_by_size": {
+    "1": 10,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571120,
+   "idle": {
+    "no_tree_left": 9,
+    "partner_chopping": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 9,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 9,
+   "gameId": 900571121,
+   "idle": {
+    "partner_chopping": 13,
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 12,
+   "trees_end": 3
+  },
+  {
+   "felled_by_size": {
+    "1": 6,
+    "2": 2,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 10,
+   "gameId": 900571122,
+   "idle": {
+    "partner_chopping": 2,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 18,
+   "trees_end": 5
+  },
+  {
+   "felled_by_size": {
+    "1": 13
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 53,
+   "gameId": 900571123,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 72,
+   "trees_end": 18
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "3": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571126,
+   "idle": {
+    "no_tree_left": 11,
+    "partner_chopping": 6
+   },
+   "n_turns": 298,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "4": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 18,
+   "gameId": 900571127,
+   "idle": {
+    "fruit_only": 1,
+    "tree_reachable_free": 19
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 24,
+   "trees_end": 6
+  },
+  {
+   "felled_by_size": {
+    "4": 3
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571130,
+   "idle": {
+    "no_tree_left": 16,
+    "partner_chopping": 9
+   },
+   "n_turns": 288,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "2": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 15,
+   "gameId": 900571204,
+   "idle": {
+    "tree_reachable_free": 4
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 31,
+   "trees_end": 9
+  },
+  {
+   "felled_by_size": {
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571284,
+   "idle": {
+    "no_tree_left": 14,
+    "opp_guarded_only": 20,
+    "partner_chopping": 1,
+    "tree_reachable_free": 12
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 1,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 10,
+    "2": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 34,
+   "gameId": 900571321,
+   "idle": {
+    "tree_reachable_free": 2
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 72,
+   "trees_end": 20
+  },
+  {
+   "felled_by_size": {
+    "1": 11,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 21,
+   "gameId": 900571344,
+   "idle": {
+    "partner_chopping": 1,
+    "tree_reachable_free": 13
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 28,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 9
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571395,
+   "idle": {
+    "no_tree_left": 1,
+    "opp_guarded_only": 1,
+    "partner_chopping": 5
+   },
+   "n_turns": 286,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571451,
+   "idle": {
+    "no_tree_left": 2,
+    "opp_guarded_only": 4,
+    "partner_chopping": 7,
+    "tree_reachable_free": 2
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 1,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 11
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 16,
+   "gameId": 900571603,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 19
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 29,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {
+    "4": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900571658,
+   "idle": {
+    "opp_guarded_only": 3,
+    "tree_reachable_free": 10
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 27,
+   "gameId": 900571694,
+   "idle": {
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 48,
+   "trees_end": 12
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 9,
+   "gameId": 900571749,
+   "idle": {
+    "partner_chopping": 1,
+    "tree_reachable_free": 21
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 26,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571773,
+   "idle": {
+    "opp_guarded_only": 41,
+    "partner_chopping": 13
+   },
+   "n_turns": 296,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 40,
+   "gameId": 900571792,
+   "idle": {
+    "partner_chopping": 1,
+    "tree_reachable_free": 11
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 66,
+   "trees_end": 17
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 12,
+   "gameId": 900571823,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 18,
+   "trees_end": 5
+  },
+  {
+   "felled_by_size": {
+    "1": 16
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571853,
+   "idle": {
+    "no_tree_left": 6,
+    "partner_chopping": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900571883,
+   "idle": {
+    "no_tree_left": 1,
+    "partner_chopping": 3
+   },
+   "n_turns": 260,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 15
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 6,
+   "gameId": 900571918,
+   "idle": {
+    "partner_chopping": 8,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 19,
+   "trees_end": 5
+  },
+  {
+   "felled_by_size": {
+    "1": 11,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 4,
+   "gameId": 900571939,
+   "idle": {
+    "opp_guarded_only": 2,
+    "partner_chopping": 3,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 17,
+   "gameId": 900572013,
+   "idle": {
+    "partner_chopping": 6,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 27,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 14
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572037,
+   "idle": {
+    "no_tree_left": 10,
+    "partner_chopping": 4
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 1,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 2
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572082,
+   "idle": {
+    "no_tree_left": 22,
+    "opp_guarded_only": 10,
+    "partner_chopping": 4
+   },
+   "n_turns": 286,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 2
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572219,
+   "idle": {
+    "no_tree_left": 12,
+    "opp_guarded_only": 3,
+    "partner_chopping": 2
+   },
+   "n_turns": 269,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "2": 2,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572242,
+   "idle": {
+    "opp_guarded_only": 3,
+    "partner_chopping": 1,
+    "tree_reachable_free": 30
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 2,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 6,
+    "2": 2
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572315,
+   "idle": {
+    "no_tree_left": 11,
+    "partner_chopping": 2
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 17,
+   "gameId": 900572368,
+   "idle": {
+    "partner_chopping": 4,
+    "tree_reachable_free": 1
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 37,
+   "trees_end": 11
+  },
+  {
+   "felled_by_size": {
+    "1": 11,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900572393,
+   "idle": {
+    "tree_reachable_free": 14
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 12
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 16,
+   "gameId": 900572479,
+   "idle": {
+    "partner_chopping": 1,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 29,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 39,
+   "gameId": 900572520,
+   "idle": {},
+   "n_turns": 300,
+   "tree_sizes_standing_end": 52,
+   "trees_end": 13
+  },
+  {
+   "felled_by_size": {
+    "1": 5,
+    "2": 2
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 6,
+   "gameId": 900572553,
+   "idle": {
+    "partner_chopping": 13,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 13
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 30,
+   "gameId": 900572587,
+   "idle": {
+    "partner_chopping": 7,
+    "tree_reachable_free": 12
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 47,
+   "trees_end": 12
+  },
+  {
+   "felled_by_size": {
+    "1": 13
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 12,
+   "gameId": 900572639,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 13
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 23,
+   "trees_end": 6
+  },
+  {
+   "felled_by_size": {
+    "1": 12
+   },
+   "felled_partner_idle": {
+    "1": 4
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572673,
+   "idle": {
+    "no_tree_left": 6,
+    "opp_guarded_only": 17,
+    "partner_chopping": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 3
+  },
+  {
+   "felled_by_size": {
+    "1": 2,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900572698,
+   "idle": {
+    "opp_guarded_only": 41,
+    "partner_chopping": 4
+   },
+   "n_turns": 296,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 6,
+    "2": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 12,
+   "gameId": 900572755,
+   "idle": {
+    "partner_chopping": 9,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 25,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 8
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 18,
+   "gameId": 900572867,
+   "idle": {
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 26,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 2,
+    "4": 3
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900572908,
+   "idle": {
+    "tree_reachable_free": 8
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 11
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 11,
+   "gameId": 900572941,
+   "idle": {
+    "partner_chopping": 9,
+    "tree_reachable_free": 4
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 23,
+   "trees_end": 6
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 35,
+   "gameId": 900573081,
+   "idle": {
+    "tree_reachable_free": 2
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 66,
+   "trees_end": 20
+  },
+  {
+   "felled_by_size": {
+    "1": 9,
+    "2": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 10,
+   "gameId": 900573134,
+   "idle": {
+    "tree_reachable_free": 17
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 24,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {
+    "1": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "1": 1,
+    "4": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900573195,
+   "idle": {
+    "no_tree_left": 11,
+    "partner_chopping": 4,
+    "tree_reachable_free": 10
+   },
+   "n_turns": 284,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 3
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900573235,
+   "idle": {
+    "no_tree_left": 13,
+    "partner_chopping": 5
+   },
+   "n_turns": 280,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 10,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 6,
+   "gameId": 900573269,
+   "idle": {
+    "partner_chopping": 6,
+    "tree_reachable_free": 11
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 7
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 3,
+   "gameId": 900573361,
+   "idle": {
+    "opp_guarded_only": 3,
+    "partner_chopping": 2,
+    "tree_reachable_free": 21
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 5,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 11
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 8,
+   "gameId": 900573406,
+   "idle": {
+    "partner_chopping": 8,
+    "tree_reachable_free": 16
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 12,
+   "trees_end": 3
+  },
+  {
+   "felled_by_size": {
+    "1": 10,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 6,
+   "gameId": 900573441,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 14
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 10,
+   "trees_end": 3
+  },
+  {
+   "felled_by_size": {
+    "1": 6
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 6,
+   "gameId": 900573607,
+   "idle": {
+    "partner_chopping": 12,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 10,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 8,
+   "gameId": 900573666,
+   "idle": {},
+   "n_turns": 300,
+   "tree_sizes_standing_end": 16,
+   "trees_end": 4
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900573719,
+   "idle": {
+    "no_tree_left": 8,
+    "opp_guarded_only": 6,
+    "partner_chopping": 8
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "4": 3
+   },
+   "felled_partner_idle": {
+    "4": 3
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900573776,
+   "idle": {
+    "no_tree_left": 25,
+    "partner_chopping": 32
+   },
+   "n_turns": 298,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 6
+   },
+   "felled_partner_idle": {
+    "1": 6
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900573856,
+   "idle": {
+    "no_tree_left": 19,
+    "opp_guarded_only": 20,
+    "partner_chopping": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 1,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {},
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900573896,
+   "idle": {
+    "opp_guarded_only": 100
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 1,
+   "gameId": 900574021,
+   "idle": {
+    "no_tree_left": 5,
+    "opp_guarded_only": 42,
+    "partner_chopping": 4
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 13,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "3": 1
+   },
+   "fruit_standing_end": 18,
+   "gameId": 900574103,
+   "idle": {
+    "partner_chopping": 4,
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 29,
+   "trees_end": 9
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 16,
+   "gameId": 900574154,
+   "idle": {
+    "partner_chopping": 4,
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 30,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {
+    "1": 2,
+    "2": 1,
+    "3": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 3,
+   "gameId": 900574208,
+   "idle": {
+    "opp_guarded_only": 8,
+    "partner_chopping": 7,
+    "tree_reachable_free": 24
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 2,
+    "2": 2,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 3,
+   "gameId": 900574272,
+   "idle": {
+    "opp_guarded_only": 4,
+    "partner_chopping": 7,
+    "tree_reachable_free": 19
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900574357,
+   "idle": {
+    "no_tree_left": 12,
+    "partner_chopping": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 13
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900574451,
+   "idle": {
+    "opp_guarded_only": 8,
+    "partner_chopping": 3,
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 3,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "2": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 13,
+   "gameId": 900574550,
+   "idle": {
+    "partner_chopping": 6,
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 20,
+   "trees_end": 5
+  },
+  {
+   "felled_by_size": {
+    "1": 11
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900574573,
+   "idle": {
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 12,
+   "trees_end": 3
+  },
+  {
+   "felled_by_size": {
+    "4": 3
+   },
+   "felled_partner_idle": {
+    "4": 3
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900574600,
+   "idle": {
+    "no_tree_left": 20,
+    "opp_guarded_only": 10,
+    "partner_chopping": 18
+   },
+   "n_turns": 296,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900574670,
+   "idle": {
+    "no_tree_left": 10,
+    "opp_guarded_only": 8,
+    "partner_chopping": 2
+   },
+   "n_turns": 270,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 13,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 11,
+   "gameId": 900574819,
+   "idle": {
+    "partner_chopping": 2,
+    "tree_reachable_free": 11
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 23,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {},
+   "felled_partner_idle": {},
+   "fruit_standing_end": 0,
+   "gameId": 900574877,
+   "idle": {
+    "no_tree_left": 14
+   },
+   "n_turns": 257,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 4,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 0,
+   "gameId": 900574930,
+   "idle": {
+    "no_tree_left": 16
+   },
+   "n_turns": 282,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 4,
+    "2": 2,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 13,
+   "gameId": 900574958,
+   "idle": {
+    "partner_chopping": 2,
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 24,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "1": 11,
+    "2": 1,
+    "3": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 13,
+   "gameId": 900574991,
+   "idle": {
+    "tree_reachable_free": 6
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 32,
+   "trees_end": 9
+  },
+  {
+   "felled_by_size": {
+    "1": 11,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575042,
+   "idle": {
+    "no_tree_left": 13,
+    "partner_chopping": 2
+   },
+   "n_turns": 298,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 5,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 24,
+   "gameId": 900575073,
+   "idle": {
+    "partner_chopping": 11,
+    "tree_reachable_free": 9
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 32,
+   "trees_end": 8
+  },
+  {
+   "felled_by_size": {
+    "2": 2,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575156,
+   "idle": {
+    "no_tree_left": 2,
+    "partner_chopping": 14
+   },
+   "n_turns": 269,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "1": 3
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575238,
+   "idle": {
+    "no_tree_left": 13,
+    "partner_chopping": 10
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 2,
+    "2": 2,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "2": 1,
+    "4": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575286,
+   "idle": {
+    "no_tree_left": 7,
+    "opp_guarded_only": 6,
+    "partner_chopping": 5,
+    "tree_reachable_free": 9
+   },
+   "n_turns": 296,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "3": 2
+   },
+   "felled_partner_idle": {
+    "3": 2
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575437,
+   "idle": {
+    "no_tree_left": 24,
+    "opp_guarded_only": 34,
+    "partner_chopping": 2
+   },
+   "n_turns": 298,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 3
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 0,
+   "gameId": 900575505,
+   "idle": {
+    "no_tree_left": 5
+   },
+   "n_turns": 273,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "4": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 18,
+   "gameId": 900575534,
+   "idle": {
+    "partner_chopping": 3,
+    "tree_reachable_free": 6
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 28,
+   "trees_end": 7
+  },
+  {
+   "felled_by_size": {
+    "2": 3,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 7,
+   "gameId": 900575592,
+   "idle": {
+    "tree_reachable_free": 21
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 16,
+   "trees_end": 4
+  },
+  {
+   "felled_by_size": {
+    "1": 1,
+    "2": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900575679,
+   "idle": {
+    "opp_guarded_only": 28,
+    "partner_chopping": 8,
+    "tree_reachable_free": 7
+   },
+   "n_turns": 298,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 6,
+    "2": 1,
+    "4": 2
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 5,
+   "gameId": 900575758,
+   "idle": {
+    "partner_chopping": 5,
+    "tree_reachable_free": 11
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 8,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 13,
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 6,
+   "gameId": 900575850,
+   "idle": {
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 24,
+   "trees_end": 6
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "2": 1
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 15,
+   "gameId": 900575981,
+   "idle": {
+    "partner_chopping": 10,
+    "tree_reachable_free": 3
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 35,
+   "trees_end": 10
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 2,
+    "4": 2
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900576011,
+   "idle": {
+    "opp_guarded_only": 1,
+    "partner_chopping": 6
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 2,
+   "trees_end": 2
+  },
+  {
+   "felled_by_size": {
+    "1": 7,
+    "2": 1,
+    "4": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 0,
+   "gameId": 900576045,
+   "idle": {
+    "opp_guarded_only": 20
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 12,
+    "3": 1
+   },
+   "felled_partner_idle": {
+    "1": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900576092,
+   "idle": {
+    "no_tree_left": 14,
+    "partner_chopping": 3
+   },
+   "n_turns": 299,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 13,
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 3,
+   "gameId": 900576238,
+   "idle": {
+    "tree_reachable_free": 5
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "2": 1
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 0,
+   "gameId": 900576258,
+   "idle": {
+    "no_tree_left": 9,
+    "opp_guarded_only": 8,
+    "tree_reachable_free": 9
+   },
+   "n_turns": 288,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 12
+   },
+   "felled_partner_idle": {},
+   "fruit_standing_end": 20,
+   "gameId": 900576311,
+   "idle": {
+    "tree_reachable_free": 8
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 33,
+   "trees_end": 9
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 2,
+    "4": 3
+   },
+   "felled_partner_idle": {
+    "4": 1
+   },
+   "fruit_standing_end": 3,
+   "gameId": 900576352,
+   "idle": {
+    "partner_chopping": 2,
+    "tree_reachable_free": 15
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  },
+  {
+   "felled_by_size": {
+    "1": 3,
+    "2": 4
+   },
+   "felled_partner_idle": {
+    "2": 1
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900576456,
+   "idle": {
+    "no_tree_left": 3,
+    "partner_chopping": 6
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 0,
+   "trees_end": 0
+  },
+  {
+   "felled_by_size": {
+    "1": 12
+   },
+   "felled_partner_idle": {
+    "1": 2
+   },
+   "fruit_standing_end": 0,
+   "gameId": 900576502,
+   "idle": {
+    "opp_guarded_only": 6,
+    "partner_chopping": 8,
+    "tree_reachable_free": 2
+   },
+   "n_turns": 300,
+   "tree_sizes_standing_end": 4,
+   "trees_end": 1
+  }
+ ]
+}

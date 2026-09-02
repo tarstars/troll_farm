@@ -1,0 +1,784 @@
+{
+ "buckets": [
+  132,
+  155,
+  223,
+  360,
+  988
+ ],
+ "feasibility": {
+  "chop": 289,
+  "harvest": 13,
+  "none": 1556
+ },
+ "per_game": [
+  {
+   "gameId": 900571119,
+   "idle": 17,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 2,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 28
+  },
+  {
+   "gameId": 900571120,
+   "idle": 14,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571121,
+   "idle": 18,
+   "idle_feasible": 13,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571122,
+   "idle": 17,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571123,
+   "idle": 18,
+   "idle_feasible": 5,
+   "untaken_feasible_trees": 5,
+   "untaken_fruit_bound": 14,
+   "untaken_wood_points_bound": 80
+  },
+  {
+   "gameId": 900571126,
+   "idle": 17,
+   "idle_feasible": 4,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571127,
+   "idle": 20,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571130,
+   "idle": 25,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571204,
+   "idle": 4,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571284,
+   "idle": 47,
+   "idle_feasible": 12,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571321,
+   "idle": 2,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571344,
+   "idle": 14,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571395,
+   "idle": 7,
+   "idle_feasible": 4,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571451,
+   "idle": 15,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571603,
+   "idle": 22,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571658,
+   "idle": 13,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571694,
+   "idle": 5,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571749,
+   "idle": 22,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 5,
+   "untaken_fruit_bound": 3,
+   "untaken_wood_points_bound": 72
+  },
+  {
+   "gameId": 900571773,
+   "idle": 54,
+   "idle_feasible": 13,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571792,
+   "idle": 12,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 12
+  },
+  {
+   "gameId": 900571823,
+   "idle": 10,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571853,
+   "idle": 9,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571883,
+   "idle": 4,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571918,
+   "idle": 15,
+   "idle_feasible": 4,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900571939,
+   "idle": 20,
+   "idle_feasible": 5,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 1,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572013,
+   "idle": 21,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572037,
+   "idle": 14,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572082,
+   "idle": 36,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572219,
+   "idle": 17,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572242,
+   "idle": 34,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572315,
+   "idle": 13,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572368,
+   "idle": 5,
+   "idle_feasible": 4,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572393,
+   "idle": 14,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572479,
+   "idle": 16,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 2,
+   "untaken_fruit_bound": 1,
+   "untaken_wood_points_bound": 28
+  },
+  {
+   "gameId": 900572520,
+   "idle": 0,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572553,
+   "idle": 20,
+   "idle_feasible": 13,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572587,
+   "idle": 19,
+   "idle_feasible": 7,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572639,
+   "idle": 16,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572673,
+   "idle": 30,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572698,
+   "idle": 45,
+   "idle_feasible": 4,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572755,
+   "idle": 16,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572867,
+   "idle": 5,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572908,
+   "idle": 8,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900572941,
+   "idle": 13,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573081,
+   "idle": 2,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573134,
+   "idle": 17,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 12
+  },
+  {
+   "gameId": 900573195,
+   "idle": 25,
+   "idle_feasible": 14,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573235,
+   "idle": 18,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573269,
+   "idle": 17,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573361,
+   "idle": 26,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 3,
+   "untaken_wood_points_bound": 16
+  },
+  {
+   "gameId": 900573406,
+   "idle": 24,
+   "idle_feasible": 8,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573441,
+   "idle": 17,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573607,
+   "idle": 19,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573666,
+   "idle": 0,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573719,
+   "idle": 22,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573776,
+   "idle": 57,
+   "idle_feasible": 18,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573856,
+   "idle": 54,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900573896,
+   "idle": 100,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574021,
+   "idle": 51,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574103,
+   "idle": 7,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574154,
+   "idle": 7,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574208,
+   "idle": 39,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574272,
+   "idle": 30,
+   "idle_feasible": 5,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574357,
+   "idle": 15,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574451,
+   "idle": 14,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574550,
+   "idle": 11,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 1,
+   "untaken_wood_points_bound": 16
+  },
+  {
+   "gameId": 900574573,
+   "idle": 3,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574600,
+   "idle": 48,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574670,
+   "idle": 20,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574819,
+   "idle": 13,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574877,
+   "idle": 14,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574930,
+   "idle": 16,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574958,
+   "idle": 5,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900574991,
+   "idle": 6,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 1,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 8
+  },
+  {
+   "gameId": 900575042,
+   "idle": 15,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575073,
+   "idle": 20,
+   "idle_feasible": 11,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575156,
+   "idle": 16,
+   "idle_feasible": 14,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575238,
+   "idle": 23,
+   "idle_feasible": 7,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575286,
+   "idle": 27,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575437,
+   "idle": 60,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575505,
+   "idle": 5,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575534,
+   "idle": 9,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575592,
+   "idle": 21,
+   "idle_feasible": 2,
+   "untaken_feasible_trees": 3,
+   "untaken_fruit_bound": 4,
+   "untaken_wood_points_bound": 48
+  },
+  {
+   "gameId": 900575679,
+   "idle": 43,
+   "idle_feasible": 8,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575758,
+   "idle": 16,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575850,
+   "idle": 5,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900575981,
+   "idle": 13,
+   "idle_feasible": 10,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576011,
+   "idle": 7,
+   "idle_feasible": 1,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576045,
+   "idle": 20,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576092,
+   "idle": 17,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576238,
+   "idle": 5,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576258,
+   "idle": 26,
+   "idle_feasible": 9,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576311,
+   "idle": 8,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576352,
+   "idle": 17,
+   "idle_feasible": 0,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576456,
+   "idle": 9,
+   "idle_feasible": 6,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  },
+  {
+   "gameId": 900576502,
+   "idle": 16,
+   "idle_feasible": 3,
+   "untaken_feasible_trees": 0,
+   "untaken_fruit_bound": 0,
+   "untaken_wood_points_bound": 0
+  }
+ ]
+}

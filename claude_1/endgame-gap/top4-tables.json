@@ -1,0 +1,282 @@
+{
+ "Bubaptik": {
+  "all": {
+   "final_wins": 117,
+   "n": 182,
+   "opp_gain_250_300": 85.2,
+   "own_250_mean": 216.4,
+   "own_gain_250_300": 77.7
+  },
+  "games": 182,
+  "led": {
+   "final_wins": 104,
+   "n": 108,
+   "opp_gain_250_300": 71.8,
+   "own_250_mean": 232.7,
+   "own_gain_250_300": 70.8
+  },
+  "phases": {
+   "p101_200": {
+    "MOVE_per_troll_turn": 0.5253,
+    "MOVE_per_turn": 1.466,
+    "cmds_per_turn": 2.789,
+    "fewer_cmds_than_trolls_share": 0.0019,
+    "opp_roster_per_turn": 2.542,
+    "roster_per_turn": 2.791,
+    "trees_per_turn": 23.5,
+    "trees_with_fruit_per_turn": 54.48,
+    "turns": 18200
+   },
+   "p1_100": {
+    "MOVE_per_troll_turn": 0.5169,
+    "MOVE_per_turn": 1.015,
+    "cmds_per_turn": 1.965,
+    "fewer_cmds_than_trolls_share": 0.0,
+    "opp_roster_per_turn": 1.828,
+    "roster_per_turn": 1.965,
+    "trees_per_turn": 22.4,
+    "trees_with_fruit_per_turn": 45.46,
+    "turns": 18200
+   },
+   "p201_250": {
+    "MOVE_per_troll_turn": 0.5764,
+    "MOVE_per_turn": 1.882,
+    "cmds_per_turn": 3.247,
+    "fewer_cmds_than_trolls_share": 0.0179,
+    "opp_roster_per_turn": 2.786,
+    "roster_per_turn": 3.265,
+    "trees_per_turn": 20.21,
+    "trees_with_fruit_per_turn": 43.03,
+    "turns": 9100
+   },
+   "p251_300": {
+    "MOVE_per_troll_turn": 0.6213,
+    "MOVE_per_turn": 2.049,
+    "cmds_per_turn": 3.258,
+    "fewer_cmds_than_trolls_share": 0.0384,
+    "opp_roster_per_turn": 2.815,
+    "roster_per_turn": 3.298,
+    "trees_per_turn": 15.96,
+    "trees_with_fruit_per_turn": 34.9,
+    "turns": 9100
+   }
+  },
+  "trailed": {
+   "final_wins": 13,
+   "n": 74,
+   "opp_gain_250_300": 104.8,
+   "own_250_mean": 192.6,
+   "own_gain_250_300": 87.7
+  }
+ },
+ "MSz": {
+  "all": {
+   "final_wins": 119,
+   "n": 203,
+   "opp_gain_250_300": 92.5,
+   "own_250_mean": 304.0,
+   "own_gain_250_300": 98.3
+  },
+  "games": 203,
+  "led": {
+   "final_wins": 111,
+   "n": 130,
+   "opp_gain_250_300": 106.5,
+   "own_250_mean": 362.3,
+   "own_gain_250_300": 113.0
+  },
+  "phases": {
+   "p101_200": {
+    "MOVE_per_troll_turn": 0.4662,
+    "MOVE_per_turn": 1.383,
+    "cmds_per_turn": 2.861,
+    "fewer_cmds_than_trolls_share": 0.0939,
+    "opp_roster_per_turn": 2.856,
+    "roster_per_turn": 2.965,
+    "trees_per_turn": 23.35,
+    "trees_with_fruit_per_turn": 53.62,
+    "turns": 20300
+   },
+   "p1_100": {
+    "MOVE_per_troll_turn": 0.5233,
+    "MOVE_per_turn": 1.087,
+    "cmds_per_turn": 2.045,
+    "fewer_cmds_than_trolls_share": 0.03,
+    "opp_roster_per_turn": 1.926,
+    "roster_per_turn": 2.076,
+    "trees_per_turn": 24.04,
+    "trees_with_fruit_per_turn": 48.93,
+    "turns": 20300
+   },
+   "p201_250": {
+    "MOVE_per_troll_turn": 0.4593,
+    "MOVE_per_turn": 1.464,
+    "cmds_per_turn": 3.091,
+    "fewer_cmds_than_trolls_share": 0.093,
+    "opp_roster_per_turn": 3.301,
+    "roster_per_turn": 3.187,
+    "trees_per_turn": 19.48,
+    "trees_with_fruit_per_turn": 38.23,
+    "turns": 10150
+   },
+   "p251_300": {
+    "MOVE_per_troll_turn": 0.4709,
+    "MOVE_per_turn": 1.501,
+    "cmds_per_turn": 3.03,
+    "fewer_cmds_than_trolls_share": 0.1317,
+    "opp_roster_per_turn": 3.333,
+    "roster_per_turn": 3.187,
+    "trees_per_turn": 15.5,
+    "trees_with_fruit_per_turn": 31.29,
+    "turns": 10150
+   }
+  },
+  "trailed": {
+   "final_wins": 8,
+   "n": 73,
+   "opp_gain_250_300": 67.6,
+   "own_250_mean": 200.4,
+   "own_gain_250_300": 72.1
+  }
+ },
+ "delineate": {
+  "all": {
+   "final_wins": 172,
+   "n": 215,
+   "opp_gain_250_300": 70.1,
+   "own_250_mean": 295.3,
+   "own_gain_250_300": 122.9
+  },
+  "games": 215,
+  "led": {
+   "final_wins": 167,
+   "n": 176,
+   "opp_gain_250_300": 69.7,
+   "own_250_mean": 320.7,
+   "own_gain_250_300": 133.0
+  },
+  "phases": {
+   "p101_200": {
+    "MOVE_per_troll_turn": 0.4331,
+    "MOVE_per_turn": 1.127,
+    "cmds_per_turn": 2.581,
+    "fewer_cmds_than_trolls_share": 0.0204,
+    "opp_roster_per_turn": 2.537,
+    "roster_per_turn": 2.602,
+    "trees_per_turn": 21.72,
+    "trees_with_fruit_per_turn": 46.73,
+    "turns": 21500
+   },
+   "p1_100": {
+    "MOVE_per_troll_turn": 0.4811,
+    "MOVE_per_turn": 0.892,
+    "cmds_per_turn": 1.845,
+    "fewer_cmds_than_trolls_share": 0.0076,
+    "opp_roster_per_turn": 1.914,
+    "roster_per_turn": 1.853,
+    "trees_per_turn": 19.82,
+    "trees_with_fruit_per_turn": 40.06,
+    "turns": 21500
+   },
+   "p201_250": {
+    "MOVE_per_troll_turn": 0.41,
+    "MOVE_per_turn": 1.185,
+    "cmds_per_turn": 2.861,
+    "fewer_cmds_than_trolls_share": 0.0291,
+    "opp_roster_per_turn": 2.932,
+    "roster_per_turn": 2.891,
+    "trees_per_turn": 21.54,
+    "trees_with_fruit_per_turn": 41.88,
+    "turns": 10750
+   },
+   "p251_300": {
+    "MOVE_per_troll_turn": 0.3697,
+    "MOVE_per_turn": 1.077,
+    "cmds_per_turn": 2.874,
+    "fewer_cmds_than_trolls_share": 0.0375,
+    "opp_roster_per_turn": 2.999,
+    "roster_per_turn": 2.912,
+    "trees_per_turn": 17.62,
+    "trees_with_fruit_per_turn": 36.62,
+    "turns": 10750
+   }
+  },
+  "trailed": {
+   "final_wins": 5,
+   "n": 39,
+   "opp_gain_250_300": 72.0,
+   "own_250_mean": 180.5,
+   "own_gain_250_300": 77.2
+  }
+ },
+ "norxondor": {
+  "all": {
+   "final_wins": 114,
+   "n": 184,
+   "opp_gain_250_300": 76.3,
+   "own_250_mean": 257.7,
+   "own_gain_250_300": 83.9
+  },
+  "games": 184,
+  "led": {
+   "final_wins": 109,
+   "n": 126,
+   "opp_gain_250_300": 75.7,
+   "own_250_mean": 286.0,
+   "own_gain_250_300": 86.6
+  },
+  "phases": {
+   "p101_200": {
+    "MOVE_per_troll_turn": 0.4208,
+    "MOVE_per_turn": 1.252,
+    "cmds_per_turn": 2.975,
+    "fewer_cmds_than_trolls_share": 0.0,
+    "opp_roster_per_turn": 2.711,
+    "roster_per_turn": 2.975,
+    "trees_per_turn": 23.95,
+    "trees_with_fruit_per_turn": 56.1,
+    "turns": 18400
+   },
+   "p1_100": {
+    "MOVE_per_troll_turn": 0.5806,
+    "MOVE_per_turn": 1.053,
+    "cmds_per_turn": 1.814,
+    "fewer_cmds_than_trolls_share": 0.0,
+    "opp_roster_per_turn": 1.938,
+    "roster_per_turn": 1.814,
+    "trees_per_turn": 21.78,
+    "trees_with_fruit_per_turn": 43.43,
+    "turns": 18400
+   },
+   "p201_250": {
+    "MOVE_per_troll_turn": 0.481,
+    "MOVE_per_turn": 1.628,
+    "cmds_per_turn": 3.386,
+    "fewer_cmds_than_trolls_share": 0.0,
+    "opp_roster_per_turn": 3.24,
+    "roster_per_turn": 3.386,
+    "trees_per_turn": 16.54,
+    "trees_with_fruit_per_turn": 36.13,
+    "turns": 9200
+   },
+   "p251_300": {
+    "MOVE_per_troll_turn": 0.548,
+    "MOVE_per_turn": 1.855,
+    "cmds_per_turn": 3.386,
+    "fewer_cmds_than_trolls_share": 0.0,
+    "opp_roster_per_turn": 3.293,
+    "roster_per_turn": 3.386,
+    "trees_per_turn": 10.77,
+    "trees_with_fruit_per_turn": 22.73,
+    "turns": 9200
+   }
+  },
+  "trailed": {
+   "final_wins": 5,
+   "n": 58,
+   "opp_gain_250_300": 77.5,
+   "own_250_mean": 196.1,
+   "own_gain_250_300": 78.2
+  }
+ }
+}
