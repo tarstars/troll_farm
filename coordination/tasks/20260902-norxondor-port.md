@@ -288,4 +288,35 @@ one ladder block of four hours. No other track's ladder hours are taken.
   −0.42 on 1,600 local games, **the two rungs agree in direction and in size, on two different populations.** The
   card's dead condition for rung 2 is met on its own terms; the port line stays open only for the one pre-registered
   refinement loop, and the loss read decides whether that loop has a single variable to change. — coordinator
+- 2026-09-02 12:5xZ: **THE LOSS READ IS IN and it is exact** (`codex_1/norxondor-port/LOSS-READ-2026-09-02.md`, pinned
+  `084a35c6…`, with its analyzer, its result JSON and 57 lines of tests; **112,919 recorded pre-turn scores replayed and
+  all 112,919 exact** before any decomposition was accepted). Verdict `SWITCH_LATE/MEASURED`. The tables:
+  in turns 1–50 the port banks **9.45 fruit and 0.07 wood** while the champion banks **0.70 fruit and 8.71 wood** —
+  a fruit is one point and a wood is four, so the champion is 30 points up before anything else happens, 55 by turn
+  100, 64 by turn 150. In turns 100–150 the port chops on 12.7 % of its troll-turns against the champion's 30.0 %,
+  because a three-troll roster stays in Produce until its roster-three deadline at turn 144 — **the third troll is
+  bought at median turn 74**. After the switch its machinery is fine: in turns 151–200 it out-banks the champion in
+  wood (8.90 items to 6.92) and claws back 7 points. The board is empty at the end in 360 of 400 games, and the
+  champion takes the final chop of 3.07 of the port's own planted trees before the port's wood phase begins.
+  **Layers ruled out with one line of evidence each:** the funding economy (it delivers the third troll on time and
+  chops 5.90 times in the first hundred turns against the reconstructed bot's 7.00), the conversion job (it works once
+  Deforest starts), the target choice (it converts the post-switch work). **Responsible: the Produce→Deforest switch.**
+  — coordinator
+- 2026-09-02 12:5xZ: **the loop is authorized, one variable, as pre-registered by the read** — `PRODUCE_ROSTER_CAP`
+  from 5 (implicit in `roster >= 5`) to **3**: the turn after the third troll is bought, Deforest begins; every floor,
+  purchase rule, projected-completion test and roster-indexed deadline stays for the 124 games of 400 that never reach
+  three trolls. Conditions of the build (v3): the mechanism checks the read names (the switch fires the turn after
+  worker three, never before it, no TRAIN after Deforest) plus the full gate list of the card, **and the build note
+  reports the roster distribution and switch turns over the 24-map run** — the cap also means no fourth troll (it
+  appears in 77 of 400 games today), and that cost must be visible. **The reading is pre-registered before the build:**
+  claude_1 reruns rung 1 unchanged (the port v3's four field runs against the champion's pinned four, `field.py`,
+  verdict on the win indicator); the coordinator reruns rung 2 (15 paired games, seeds 1–3) **if and only if** rung 1
+  improves on v2; and the loss read's own phase table is recomputed for v3 as a diagnostic (does the turn-100 deficit
+  shrink, and by how much) whatever the verdict. **The coordinator's expectation, written before the numbers:** this
+  narrows the gap and probably does not close it — the opening still spends about fifty turns banking one-point fruit
+  while the champion banks four-point wood, and the deficit at turn 100 is 55 points. **If v3's field reading is still
+  below zero with its interval clear of zero, the card's dead condition applies and the port line closes**; the
+  finding would then be that this economy is not viable against an opponent that converts the map from turn 1, and the
+  narrower successor to put to the owner is our champion plus a cheaply funded third troll — the one piece Track E and
+  this read both point at. — coordinator
 
