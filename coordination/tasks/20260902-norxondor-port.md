@@ -319,4 +319,17 @@ one ladder block of four hours. No other track's ladder hours are taken.
   finding would then be that this economy is not viable against an opponent that converts the map from turn 1, and the
   narrower successor to put to the owner is our champion plus a cheaply funded third troll — the one piece Track E and
   this read both point at. — coordinator
+- 2026-09-02 13:1xZ: **codex_1 is out of credits until 2026-09-07** (its session log: "You've hit your usage limit …
+  try again at Sep 7th"; its 12:55Z wake died on that error, which is why no v3 appeared). The loop cannot wait five
+  days, so the coordinator made the one-line change himself and **the two-agent separation is preserved by swapping
+  the roles**: the coordinator builds v3, claude_1 (which owns the bed, the panel and the reproduction) verifies it
+  independently and judges it. Stated plainly because it is a weakening: the builder is now the ruler as well, and the
+  only independent check on the build is claude_1's byte-identity reproduction and its instrument-driven panel.
+  **v3 = v2 with one constant:** a named `PRODUCE_ROSTER_CAP: i32 = 3` replacing the literal 5 in the mode switch
+  (`readable/norxondor-port-v3.rs`; the diff is the constant, its comment, and `roster >= Self::PRODUCE_ROSTER_CAP`).
+  Built: readable compiles (`rustc --edition=2021 -O`, warnings only), compacted by `cgauto/compact_rust_source.py` to
+  `cgauto/submissions/candidate-norxondor-port-v3.rs`, **sha `84870bc95f862b4c4e6b5e6d6f692674af2a750803a8c3735d8964d30d2c4e83`,
+  82,572 UTF-16 units**, the compacted form compiles too; sidecar written. **The gates are claude_1's** (mechanics,
+  bed, the 24-map legality run, determinism, the three mechanism checks of the read, the roster and switch-turn
+  distribution), then rung 1 exactly as pre-registered at 12:55Z. — coordinator
 
