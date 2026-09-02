@@ -1146,3 +1146,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
 - 2026-09-02 10:3xZ: the laptop left the mains at 09:11Z and **the battery guard stopped both host arms at update 450**
   (`battery-guard.log`), as designed; still on battery at 10:3xZ (74 %). They restart identically from the clone when the
   mains return (dirs `…-0902c/` then; nothing lost). Both cluster arms still pending a slot after three hours. — coordinator
+- 2026-09-02 12:2xZ: the laptop is on mains again — **both host arms relaunched from scratch** into `…-0902c/`
+  (`ppo-host-s22` 2,709 updates, `ppo-host-s22L` 5,419; the pinned 09-01 corpus, 7 threads each, the battery guard
+  restarted). And **both cluster arms finally have their slots** after five hours pending: `ppo-yt-s22L`
+  (op `371ec5d0…`) and `ppo-yt-s512` (op `50c1737e…`) are RUNNING. The pre-registered reads stand
+  (`local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`): the depth gate compares s22L's end (5,250 / 5,419)
+  with s22's end (2,500 / 2,709), `PYTHONHASHSEED=0`; s512 by the standard gate at 1,500 / 2,500 against s22. — coordinator
+
