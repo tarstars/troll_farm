@@ -2,7 +2,8 @@
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
 
-The champion of record reads 18–21 on the ladder; the top four read 27.7–30.9; every rule change
+The champion of record reads 17–21 on the ladder (21.2 on 08-27, 18.2 on 08-29, **17.0 at rank
+110 on 09-02** — the field rises while the bot stands still); the top four read 27.7–30.9; every rule change
 tried since 08-27 read flat or worse on single one-hour ladder readings (noise ± 1.5). The fastest
 path is the one design already proven at 29.7 that we have reconstructed and never written as a
 program: **the second-placed player's bot**. Three lines run at once, each with its card:
