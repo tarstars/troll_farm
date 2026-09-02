@@ -1,7 +1,7 @@
-// Norxondor hybrid port v1.
+// Norxondor hybrid port v2 (complete round-one review).
 //
 // Macro policy: reconstructed Norxondor ladder, Produce/Deforest switch, bounded near-shack
-// orchard, and plant-and-cut banana conversion. Micro policy: champion-of-record parsing,
+// orchard, and plant-and-cut deposited-seed conversion. Micro policy: champion-of-record parsing,
 // pathing, targets, joint selection, and collision handling. The accepted design is
 // codex_1/norxondor-port/DESIGN-2026-09-02.md.
 
@@ -539,7 +539,7 @@ mod bot {
         #[derive(Clone, Copy, Debug, Eq, PartialEq)]
         enum PlantPurpose {
             Orchard,
-            Banana,
+            Conversion,
         }
         #[derive(Clone, Copy, Debug, Eq, PartialEq)]
         enum PlantStage {
@@ -1253,7 +1253,7 @@ mod bot {
             }
             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
                 let mut bot = Self::with_opening_policy(YamoOpeningPolicy::TUNED_CARRY);
-                bot.announcement = "norxondor-port-v1";
+                bot.announcement = "norxondor-port-v2";
                 bot.door_unblocking = true;
                 bot.partial_bank_transit = true;
                 bot
@@ -2780,6 +2780,15 @@ mod bot {
             // === Norxondor hybrid macro ================================================
             const LAST_TRAIN_TURN: i32 = 185;
 
+            fn switch_deadline(roster: i32) -> Option<i32> {
+                match roster {
+                    2 => Some(129),
+                    3 => Some(144),
+                    4 => Some(154),
+                    _ => None,
+                }
+            }
+
             fn roster(view: &GameState) -> i32 {
                 view.units.iter().filter(|unit| unit.player == 0).count() as i32
             }
@@ -2975,12 +2984,17 @@ mod bot {
                 if self.mode == EconomyMode::Deforest {
                     return;
                 }
-                if Self::roster(view) >= 5
+                let roster = Self::roster(view);
+                let floor_unaffordable = !Self::floor_affordable(view);
+                let hard_switch = Self::switch_deadline(roster)
+                    .is_some_and(|deadline| view.turn >= deadline);
+                if roster >= 5
                     || view.turn > Self::LAST_TRAIN_TURN
                     || (!train_now
-                        && !Self::floor_affordable(view)
-                        && view.turn.saturating_add(Self::projected_floor_eta(view))
-                            > Self::LAST_TRAIN_TURN)
+                        && floor_unaffordable
+                        && (hard_switch
+                            || view.turn.saturating_add(Self::projected_floor_eta(view))
+                                > Self::LAST_TRAIN_TURN))
                 {
                     self.mode = EconomyMode::Deforest;
                     if self
@@ -3014,7 +3028,7 @@ mod bot {
                 if (self.mode == EconomyMode::Deforest
                     && job.purpose == PlantPurpose::Orchard)
                     || (self.mode == EconomyMode::Produce
-                        && job.purpose == PlantPurpose::Banana)
+                        && job.purpose == PlantPurpose::Conversion)
                 {
                     self.plant_job = None;
                     return;
@@ -3044,7 +3058,7 @@ mod bot {
                             .unwrap_or(false);
                         if planted {
                             self.owned_plants.insert(job.cell, job.kind);
-                            if job.purpose == PlantPurpose::Banana {
+                            if job.purpose == PlantPurpose::Conversion {
                                 job.stage = PlantStage::Cut;
                                 self.plant_job = Some(job);
                             } else {
@@ -3106,6 +3120,20 @@ mod bot {
                     })
                     .max()
                     .map(|(_, _, kind)| kind)
+            }
+
+            fn conversion_kind(view: &GameState) -> Option<PlantKind> {
+                [
+                    PlantKind::Banana,
+                    PlantKind::Plum,
+                    PlantKind::Lemon,
+                    PlantKind::Apple,
+                ]
+                .into_iter()
+                .enumerate()
+                .filter(|(_, kind)| view.inventories[0][kind.item_index()] > 0)
+                .min_by_key(|(priority, kind)| (tree_health(*kind, 1), *priority))
+                .map(|(_, kind)| kind)
             }
 
             fn plant_cell(view: &GameState, unit: &Unit) -> Option<Cell> {
@@ -3186,7 +3214,10 @@ mod bot {
                             stage: PlantStage::Acquire,
                         });
                     }
-                } else if Self::roster(view) >= 2 && view.inventories[0][BANANA] > 0 {
+                } else if Self::roster(view) >= 2 {
+                    let Some(kind) = Self::conversion_kind(view) else {
+                        return;
+                    };
                     let choice = units
                         .iter()
                         .filter(|unit| {
@@ -3202,7 +3233,7 @@ mod bot {
                                 + Self::conversion_chop_turns(
                                     view,
                                     cell,
-                                    PlantKind::Banana,
+                                    kind,
                                     unit.stats.chop_power,
                                 )
                                 + 3;
@@ -3218,9 +3249,9 @@ mod bot {
                     if let Some((_, _, _, unit, cell)) = choice {
                         self.plant_job = Some(PlantJob {
                             unit_id: unit.id,
-                            kind: PlantKind::Banana,
+                            kind,
                             cell,
-                            purpose: PlantPurpose::Banana,
+                            purpose: PlantPurpose::Conversion,
                             stage: PlantStage::Acquire,
                         });
                     }
@@ -3856,7 +3887,7 @@ mod bot {
                 bot.mode = EconomyMode::Deforest;
                 bot.prepare_plant_job(&view, false);
                 let mut job = bot.plant_job.expect("banana conversion job");
-                assert_eq!(job.purpose, PlantPurpose::Banana);
+                assert_eq!(job.purpose, PlantPurpose::Conversion);
                 let acquire = YamoBot::job_candidates(&view, &view.units[0], job);
                 assert!(acquire.iter().any(|candidate| candidate.command == "PICK 0 BANANA"));
 
@@ -3881,6 +3912,43 @@ mod bot {
                 assert_eq!(cut_job.stage, PlantStage::Cut);
                 let cut = YamoBot::job_candidates(&view, &view.units[0], cut_job);
                 assert!(cut.iter().any(|candidate| candidate.command == "CHOP 0"));
+            }
+
+            #[test]
+            fn conversion_falls_back_to_cheapest_deposited_seed() {
+                let mut view = test_view(2, 200, true);
+                view.inventories[0][PLUM] = 1;
+                view.inventories[0][LEMON] = 1;
+                view.inventories[0][APPLE] = 1;
+                let mut bot = bot();
+                bot.mode = EconomyMode::Deforest;
+                bot.prepare_plant_job(&view, false);
+                let job = bot.plant_job.expect("fallback conversion job");
+                assert_eq!(job.kind, PlantKind::Plum);
+                assert_eq!(job.purpose, PlantPurpose::Conversion);
+            }
+
+            #[test]
+            fn roster_deadlines_are_hard_only_when_floor_is_unaffordable() {
+                for (roster, deadline) in [(2, 129), (3, 144), (4, 154)] {
+                    let mut view = test_view(roster, deadline - 1, true);
+                    let cost = YamoBot::floor_cost(&view).unwrap();
+                    view.inventories[0] = cost;
+                    view.inventories[0][PLUM] -= 1;
+                    let mut before = bot();
+                    before.update_mode(&view, false);
+                    assert_eq!(before.mode, EconomyMode::Produce);
+
+                    view.turn = deadline;
+                    let mut at = bot();
+                    at.update_mode(&view, false);
+                    assert_eq!(at.mode, EconomyMode::Deforest);
+
+                    view.inventories[0] = cost;
+                    let mut affordable = bot();
+                    affordable.update_mode(&view, true);
+                    assert_eq!(affordable.mode, EconomyMode::Produce);
+                }
             }
 
             #[test]
