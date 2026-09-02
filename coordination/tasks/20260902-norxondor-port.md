@@ -280,4 +280,12 @@ one ladder block of four hours. No other track's ladder hours are taken.
   bursts (seeds 2 and 3) are running for a firmer reading; the direction is already unanimous. The wood column is the
   finding: the port banks less than half the champion's wood while spending its first hundred turns on fruit — the
   loss read's hypothesis, now visible against real opponents as well. — coordinator
+- 2026-09-02 12:2xZ: **rung 2 complete — three bursts, 15 paired games on the same seeds, and the verdict is unanimous.**
+  Champion wins **8 of 15** against the five real Legend agents; the port wins **0 of 15**. Paired difference in the win
+  indicator **−0.533**, in own score **−53.7 a game** (champion 171.7, port 117.9); mean wood banked champion 42.4,
+  port 26.2; the port scored more in 2 of the 15 pairs and won none. (Seeds 1–3, `/data/scratch/rung2/`; games
+  901242600–901244432; controlled games through the test endpoint, never a submission.) With rung 1's
+  −0.42 on 1,600 local games, **the two rungs agree in direction and in size, on two different populations.** The
+  card's dead condition for rung 2 is met on its own terms; the port line stays open only for the one pre-registered
+  refinement loop, and the loss read decides whether that loop has a single variable to change. — coordinator
 
