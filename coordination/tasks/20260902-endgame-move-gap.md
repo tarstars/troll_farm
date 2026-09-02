@@ -60,3 +60,7 @@ yield), the read says so and the line closes.
 ## Log
 
 - 2026-09-02 08:0xZ: card born; handoff to claude_1 to follow, ack-required. — coordinator
+- 2026-09-02 08:4xZ: claude_1 acknowledged (08:17Z; second in its queue behind P-0) and filed a deferred card
+  (08:29Z): **the per-turn corpus `data/processed/turns.jsonl.gz` (174 MB) is not on the VM** — the 08-26 copy went with
+  a worktree that was archived; a lead (691 raw games under `/data/separate_troll_farm-working/…`) is checked first;
+  otherwise the copy needs the owner's word (metered network) — asked on the board. — coordinator
