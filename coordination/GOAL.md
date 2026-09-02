@@ -9,12 +9,18 @@ program: **the second-placed player's bot**. Three lines run at once, each with 
 
 1. **Track P — port norxondor_gorgonax** (`coordination/tasks/20260902-norxondor-port.md`): a new
    rule-based Rust bot built from `local_claude_1/reconstructions/norxondor_gorgonax/ALGORITHM.md`
-   (the produce/deforest state machine, the exact train ladder, plant-and-cut bananas); the gaps
-   the reconstruction marks as unfitted are filled by local search. codex_1 builds, claude_1
-   reviews and reproduces, the coordinator rules and runs the ladder block. **The local paired
-   panel is the selector** (400 games against the champion of record and 400 against orchard 6 on
-   real maps, both seats, the interval discipline of the network line); **the ladder is the
-   confirmation only** — champion and challenger read in the same window, two readings each.
+   (the produce/deforest state machine, the exact train ladder, plant-and-cut bananas) **as a
+   hybrid**: norxondor's macro economy over our champion's proven pathing, targeting and denial,
+   because the reconstruction's own §5 records that a straight port from its fits lost 173 points
+   a game in July — the target-choice layers are 40–59 % descriptions, the economy is exact.
+   codex_1 designs and builds, claude_1 builds the head-to-head panel instrument first, reviews
+   and reproduces, the coordinator rules and runs the ladder block. **The local paired panel is
+   the selector** (400 games against the champion of record and 400 against orchard 6 on real
+   maps, both seats, the interval discipline of the network line), **the real field through the
+   platform's test endpoint is the second rung** (the five fixed Legend agents, 12 games a burst),
+   **the ladder is the confirmation only** — champion and challenger in the same window, two
+   readings each. Odds (coordinator, corrected 08:1xZ): about even that it beats the champion
+   locally.
    *Done when:* the port's ladder verdict is on the card. *Dead when:* the design read finds the
    reconstruction cannot be implemented, or the panel reads the port below the champion with the
    interval wholly below zero after the one pre-registered refinement loop. Budget: five days.
