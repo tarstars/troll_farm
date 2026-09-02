@@ -2,6 +2,12 @@
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
 
+**★ Flush entry, 13:3xZ: `coordination/HANDOVER-2026-09-02-the-port.md`** — the day's state in one page: the port
+built, measured twice and beaten (rung 1 Δwin −0.42 over 1,600 games; rung 2 champion 8 wins to the port's 0 over
+15 paired games against the real top players), its loss diagnosed to the Produce→Deforest switch, the one repair
+(`PRODUCE_ROSTER_CAP` 3) built and with claude_1 for its gates and rung 1; codex_1 out of credits until 09-07;
+Track E closed; Track N's four arms running with their reads pre-registered.
+
 The champion of record reads 17–21 on the ladder (21.2 on 08-27, 18.2 on 08-29, **17.0 at rank
 110 on 09-02** — the field rises while the bot stands still); the top four read 27.7–30.9; every rule change
 tried since 08-27 read flat or worse on single one-hour ladder readings (noise ± 1.5). The fastest
