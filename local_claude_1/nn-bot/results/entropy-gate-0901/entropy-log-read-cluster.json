@@ -1,0 +1,215 @@
+{
+  "off": {
+    "entropy_coef": 0.0,
+    "seed": 41,
+    "updates": 2709,
+    "wall_hours": 1.9
+  },
+  "on": {
+    "entropy_coef": 0.01,
+    "seed": 41,
+    "updates": 2709,
+    "wall_hours": 1.76
+  },
+  "block": 250,
+  "common_updates": 2709,
+  "fields": {
+    "win_rate": {
+      "off_mean": 0.199127,
+      "on_mean": 0.203132,
+      "delta_on_minus_off": 0.004006,
+      "ci95": [
+        -0.003981,
+        0.011222
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "mean_referee_margin": {
+      "off_mean": -48.187634,
+      "on_mean": -48.208369,
+      "delta_on_minus_off": -0.020735,
+      "ci95": [
+        -0.560869,
+        0.516601
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "mean_episode_return": {
+      "off_mean": -48.187634,
+      "on_mean": -48.208369,
+      "delta_on_minus_off": -0.020735,
+      "ci95": [
+        -0.560869,
+        0.516601
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "entropy": {
+      "off_mean": 0.930938,
+      "on_mean": 0.999382,
+      "delta_on_minus_off": 0.068444,
+      "ci95": [
+        0.051112,
+        0.082671
+      ],
+      "blocks": 11,
+      "crosses_zero": false
+    },
+    "anchor_agreement": {
+      "off_mean": 0.984585,
+      "on_mean": 0.977001,
+      "delta_on_minus_off": -0.007584,
+      "ci95": [
+        -0.008388,
+        -0.006873
+      ],
+      "blocks": 10,
+      "crosses_zero": false
+    },
+    "explained_variance": {
+      "off_mean": 0.294761,
+      "on_mean": 0.278278,
+      "delta_on_minus_off": -0.016483,
+      "ci95": [
+        -0.030901,
+        -0.004248
+      ],
+      "blocks": 11,
+      "crosses_zero": false
+    },
+    "approx_kl": {
+      "off_mean": 3.9e-05,
+      "on_mean": 4.3e-05,
+      "delta_on_minus_off": 4e-06,
+      "ci95": [
+        -0.0,
+        1e-05
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "clip_fraction": {
+      "off_mean": 3e-06,
+      "on_mean": 3e-06,
+      "delta_on_minus_off": 1e-06,
+      "ci95": [
+        -0.0,
+        2e-06
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "value_loss": {
+      "off_mean": 0.010018,
+      "on_mean": 0.009679,
+      "delta_on_minus_off": -0.000339,
+      "ci95": [
+        -0.000873,
+        0.000111
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    },
+    "mean_episode_turns": {
+      "off_mean": 284.355639,
+      "on_mean": 284.407347,
+      "delta_on_minus_off": 0.051708,
+      "ci95": [
+        -0.369681,
+        0.517518
+      ],
+      "blocks": 11,
+      "crosses_zero": true
+    }
+  },
+  "trajectory": [
+    {
+      "update": 500,
+      "off": {
+        "win_rate": 0.196,
+        "margin": -49.673,
+        "entropy": 0.9207,
+        "anchor_agreement": 0.9833,
+        "explained_variance": 0.2185
+      },
+      "on": {
+        "win_rate": 0.198,
+        "margin": -48.742,
+        "entropy": 0.9802,
+        "anchor_agreement": 0.9732,
+        "explained_variance": 0.2053
+      }
+    },
+    {
+      "update": 1000,
+      "off": {
+        "win_rate": 0.1917,
+        "margin": -48.918,
+        "entropy": 0.9504,
+        "anchor_agreement": 0.9835,
+        "explained_variance": 0.2676
+      },
+      "on": {
+        "win_rate": 0.2017,
+        "margin": -47.777,
+        "entropy": 1.002,
+        "anchor_agreement": 0.9762,
+        "explained_variance": 0.2707
+      }
+    },
+    {
+      "update": 1500,
+      "off": {
+        "win_rate": 0.1997,
+        "margin": -46.342,
+        "entropy": 0.9275,
+        "anchor_agreement": 0.9837,
+        "explained_variance": 0.299
+      },
+      "on": {
+        "win_rate": 0.2274,
+        "margin": -46.12,
+        "entropy": 1.0283,
+        "anchor_agreement": 0.9752,
+        "explained_variance": 0.2648
+      }
+    },
+    {
+      "update": 2000,
+      "off": {
+        "win_rate": 0.2034,
+        "margin": -47.411,
+        "entropy": 0.9318,
+        "anchor_agreement": 0.9839,
+        "explained_variance": 0.3132
+      },
+      "on": {
+        "win_rate": 0.1991,
+        "margin": -48.635,
+        "entropy": 1.0021,
+        "anchor_agreement": 0.9764,
+        "explained_variance": 0.3096
+      }
+    },
+    {
+      "update": 2500,
+      "off": {
+        "win_rate": 0.197,
+        "margin": -49.14,
+        "entropy": 0.903,
+        "anchor_agreement": 0.9888,
+        "explained_variance": 0.3156
+      },
+      "on": {
+        "win_rate": 0.1984,
+        "margin": -48.183,
+        "entropy": 0.9778,
+        "anchor_agreement": 0.9799,
+        "explained_variance": 0.3279
+      }
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+ "height": 8,
+ "inventories": [
+  [
+   5,
+   4,
+   10,
+   4,
+   7,
+   0
+  ],
+  [
+   5,
+   4,
+   10,
+   4,
+   7,
+   0
+  ]
+ ],
+ "map_id": "m900571120",
+ "rows": [
+  "...+....1..~...+",
+  ".....#....~~....",
+  "..........~~.#..",
+  "~.............~~",
+  "~~.............~",
+  "..#.~~..........",
+  "....~~....#.....",
+  "+...~..0....+..."
+ ],
+ "source": "starting state of ranked match 900571120",
+ "trees": [
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 11,
+   "size": 1,
+   "type": "APPLE",
+   "x": 2,
+   "y": 0
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 10,
+   "size": 3,
+   "type": "PLUM",
+   "x": 13,
+   "y": 0
+  },
+  {
+   "cooldown": 5,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 0,
+   "y": 1
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 0,
+   "y": 2
+  },
+  {
+   "cooldown": 2,
+   "fruits": 0,
+   "health": 10,
+   "size": 3,
+   "type": "PLUM",
+   "x": 1,
+   "y": 2
+  },
+  {
+   "cooldown": 2,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 2,
+   "y": 2
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 5,
+   "y": 3
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 10,
+   "y": 4
+  },
+  {
+   "cooldown": 2,
+   "fruits": 1,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 13,
+   "y": 5
+  },
+  {
+   "cooldown": 2,
+   "fruits": 0,
+   "health": 10,
+   "size": 3,
+   "type": "PLUM",
+   "x": 14,
+   "y": 5
+  },
+  {
+   "cooldown": 3,
+   "fruits": 2,
+   "health": 6,
+   "size": 4,
+   "type": "BANANA",
+   "x": 15,
+   "y": 5
+  },
+  {
+   "cooldown": 5,
+   "fruits": 2,
+   "health": 12,
+   "size": 4,
+   "type": "LEMON",
+   "x": 15,
+   "y": 6
+  },
+  {
+   "cooldown": 6,
+   "fruits": 0,
+   "health": 10,
+   "size": 3,
+   "type": "PLUM",
+   "x": 2,
+   "y": 7
+  },
+  {
+   "cooldown": 1,
+   "fruits": 0,
+   "health": 11,
+   "size": 1,
+   "type": "APPLE",
+   "x": 13,
+   "y": 7
+  }
+ ],
+ "trolls": [
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 0,
+   "ms": 1,
+   "player": 0,
+   "x": 7,
+   "y": 7
+  },
+  {
+   "cc": 1,
+   "chop": 1,
+   "hp": 1,
+   "id": 1,
+   "ms": 1,
+   "player": 1,
+   "x": 8,
+   "y": 0
+  }
+ ],
+ "width": 16
+}

@@ -1,0 +1,181 @@
+{
+  "off": {
+    "entropy_coef": 0.0,
+    "seed": 41,
+    "updates": 1753,
+    "wall_hours": 3.02
+  },
+  "on": {
+    "entropy_coef": 0.01,
+    "seed": 41,
+    "updates": 1764,
+    "wall_hours": 3.02
+  },
+  "block": 250,
+  "common_updates": 1753,
+  "fields": {
+    "win_rate": {
+      "off_mean": 0.196552,
+      "on_mean": 0.197193,
+      "delta_on_minus_off": 0.000641,
+      "ci95": [
+        -0.005897,
+        0.00696
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "mean_referee_margin": {
+      "off_mean": -48.15746,
+      "on_mean": -47.908172,
+      "delta_on_minus_off": 0.249288,
+      "ci95": [
+        -0.496096,
+        1.030737
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "mean_episode_return": {
+      "off_mean": -48.15746,
+      "on_mean": -47.908172,
+      "delta_on_minus_off": 0.249288,
+      "ci95": [
+        -0.496096,
+        1.030737
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "entropy": {
+      "off_mean": 0.933155,
+      "on_mean": 0.997343,
+      "delta_on_minus_off": 0.064188,
+      "ci95": [
+        0.038408,
+        0.094191
+      ],
+      "blocks": 8,
+      "crosses_zero": false
+    },
+    "anchor_agreement": {
+      "off_mean": 0.98589,
+      "on_mean": 0.974102,
+      "delta_on_minus_off": -0.011788,
+      "ci95": [
+        -0.01739,
+        -0.008288
+      ],
+      "blocks": 7,
+      "crosses_zero": false
+    },
+    "explained_variance": {
+      "off_mean": 0.243248,
+      "on_mean": 0.253591,
+      "delta_on_minus_off": 0.010343,
+      "ci95": [
+        -0.003209,
+        0.026112
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "approx_kl": {
+      "off_mean": 5.2e-05,
+      "on_mean": 5.6e-05,
+      "delta_on_minus_off": 4e-06,
+      "ci95": [
+        -3e-06,
+        1e-05
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "clip_fraction": {
+      "off_mean": 3e-06,
+      "on_mean": 2e-06,
+      "delta_on_minus_off": -1e-06,
+      "ci95": [
+        -4e-06,
+        2e-06
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "value_loss": {
+      "off_mean": 0.009932,
+      "on_mean": 0.009935,
+      "delta_on_minus_off": 3e-06,
+      "ci95": [
+        -0.000352,
+        0.000339
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    },
+    "mean_episode_turns": {
+      "off_mean": 283.770222,
+      "on_mean": 283.923842,
+      "delta_on_minus_off": 0.15362,
+      "ci95": [
+        -0.146291,
+        0.423547
+      ],
+      "blocks": 8,
+      "crosses_zero": true
+    }
+  },
+  "trajectory": [
+    {
+      "update": 500,
+      "off": {
+        "win_rate": 0.2111,
+        "margin": -48.335,
+        "entropy": 0.9399,
+        "anchor_agreement": 0.982,
+        "explained_variance": 0.2167
+      },
+      "on": {
+        "win_rate": 0.1998,
+        "margin": -48.932,
+        "entropy": 0.9764,
+        "anchor_agreement": 0.9728,
+        "explained_variance": 0.2563
+      }
+    },
+    {
+      "update": 1000,
+      "off": {
+        "win_rate": 0.199,
+        "margin": -48.598,
+        "entropy": 0.919,
+        "anchor_agreement": 0.9858,
+        "explained_variance": 0.2528
+      },
+      "on": {
+        "win_rate": 0.2012,
+        "margin": -46.419,
+        "entropy": 0.9902,
+        "anchor_agreement": 0.9744,
+        "explained_variance": 0.2429
+      }
+    },
+    {
+      "update": 1500,
+      "off": {
+        "win_rate": 0.1991,
+        "margin": -48.893,
+        "entropy": 0.9143,
+        "anchor_agreement": 0.9861,
+        "explained_variance": 0.2786
+      },
+      "on": {
+        "win_rate": 0.1978,
+        "margin": -48.951,
+        "entropy": 0.9757,
+        "anchor_agreement": 0.9784,
+        "explained_variance": 0.2694
+      }
+    }
+  ]
+}

@@ -18,9 +18,9 @@
 \newcommand{\fp}[1]{{\small\path{#1}}}
 \graphicspath{{figs/2026-08-30-nn-progress/}}
 
-\title{The neural-network bot for Troll Farm\\[2pt]\large Where the project stands on 2026-08-30}
+\title{The neural-network bot for Troll Farm\\[2pt]\large Where the project stands on 2026-09-01}
 \author{Prepared for the owner by the coordinator (\texttt{local\_claude\_1})}
-\date{2026-08-31, 04:2xZ (fifth edition; the earlier ones were 08-30 06:1xZ, 12:5xZ, 15:2xZ and 16:3xZ) --- everything below is on \texttt{main} unless a path says otherwise}
+\date{2026-09-02, 06:3xZ (seventh edition: the campaign ledger --- training now improves the bot, Figure~\ref{fig:ledger}; the sixth was 09-01 17:2xZ) --- everything below is on \texttt{main} unless a path says otherwise}
 
 \begin{document}
 \maketitle
@@ -44,7 +44,9 @@
   \item \textbf{Phase 4 is complete: the clone exists as one Rust file} (\fp{cgauto/submissions/candidate-nn-clone.rs}), now with a runtime processor check and a proven fallback --- an audit found the first version executed AVX2 instructions unconditionally, which on a platform machine without them would crash before the first command; the repair was delivered, and the shipping binary's fallback path was proven AVX-free by disassembly. 54,218 characters (83,282 in the platform's likely counting units, of 100,000); 6.5\,ms a turn; move-for-move identical to the Python clone on both processor paths; reproduced twice. \textbf{Not submitted}, and not called ladder-ready until the three-run timing certificate on this computer (taken when a real candidate ships) and your word.
 \end{itemize}
 
-\textbf{What is next.} The three cluster jobs return by $\sim$20:00Z and their final snapshots are benched here against the champion's file; the clone's 9 of 48 stays the bar. The gradient instrument (written by claude\_1, one correction pending) then says \emph{why} the value estimate's learning bends the policy, and the next lever is picked on that evidence: the never-fading leash (already running as i2), the winner's final stage (a joint fine-tune at a tiny rate from run I's update-1,000 snapshot), or separating the value estimate's body from the policy's. A snapshot above 55\,\% starts the card's 400-game checks against the champion and orchard~6; then the export (a one-command step), the bed, the timing certificate, and --- on your word, when the platform is free --- one hour on the ladder.
+\textbf{Added 2026-09-01 (Section~\ref{sec:sept1}).} The three overnight jobs answered as feared (2, 3 and 4 of 48 --- depth hurts, full-parameter or staged). The reviewer's prime suspect, the \emph{entropy bonus}, was put to a frozen test: two arms from the same clone differing in that one number, trained to 2,709 updates on the cluster, benched on a locked 144-cell panel at two ages --- \textbf{verdict \texttt{NOT CONFIRMED}: removing the bonus changes nothing} (24 / 21 wins against 23 / 22 of 144; effect $0.000$, interval $[-0.017, +0.021]$), replicated on this computer. What the day did find is \emph{why} the runs decay: the planner learns from a signal that is \textbf{97.7\,\% the value estimate's own opinion and 2.3\,\% observed outcome}, because wood's whole value is paid on the last turn while the trainer looks ahead about nine turns; under that reward only the 0.13\,\% of rows that are game endings carry any reward at all. The first lever against it --- paying half of wood's value on delivery --- is training on the cluster as this edition is written (Figures~\ref{fig:entropy-scouts}--\ref{fig:levers}).
+
+\textbf{What was next on 08-31.} The three cluster jobs return by $\sim$20:00Z and their final snapshots are benched here against the champion's file; the clone's 9 of 48 stays the bar. The gradient instrument (written by claude\_1, one correction pending) then says \emph{why} the value estimate's learning bends the policy, and the next lever is picked on that evidence: the never-fading leash (already running as i2), the winner's final stage (a joint fine-tune at a tiny rate from run I's update-1,000 snapshot), or separating the value estimate's body from the policy's. A snapshot above 55\,\% starts the card's 400-game checks against the champion and orchard~6; then the export (a one-command step), the bed, the timing certificate, and --- on your word, when the platform is free --- one hour on the ladder.
 
 \section{The plan and its status}
 
@@ -136,6 +138,53 @@ The winner's recorded stage 4 --- freeze the movement network, train the plan se
 \includegraphics[width=\textwidth]{ppo-progress.png}
 \caption{Run D from start to stop (1,138 updates): trained against a pool the exact champion dominates, so its practice win rate is a harder number than run A's was; it never rose. Both curves are over the last 1,000 finished games; the dotted lines mark the two snapshots tested in Figure~\ref{fig:curves}.}
 \label{fig:ppo}
+\end{figure}
+
+\clearpage
+\section{2026-09-01 --- the entropy gate, the credit path, the first lever}\label{sec:sept1}
+
+\textbf{The overnight jobs, read.} The three cluster jobs of 08-30 returned and were benched at their final snapshots against the champion's file: \emph{a2} (full-parameter, 6,239 updates) \textbf{2 of 48}; \emph{e2} (the corrected objective, 3,198) \textbf{3 of 48}; \emph{i2} (the staged scope with the leash pinned, 5,414) \textbf{4 of 48}. The pinned leash slows the drift; it does not stop it. Every run ever benched has the same shape: the score peaks near the clone and decays with training. Nothing has passed 10 of 48; parity would need 24.
+
+\textbf{The second opinion, adopted.} chatgpt\_1's review of the whole experiment (08-31) corrected four claims of mine and named the causes in a new order: the trainer's credit horizon is the 32-step rollout buffer (about nine game turns), not the 300-turn game; run I's leash never actually faded; a 48-game bench is a $\pm 5$-win look, not a selector; and the \emph{entropy bonus} --- a term that rewards the planner for spreading its choice over 400 possible plans of which only 106 are ever seen from the teachers --- was the best-fitting explanation of the staged drift. A recovery programme in numbered steps followed (\fp{coordination/GOAL.md}): errata; a paired bench protocol (a 48-game scout, a locked 144-cell confirmation panel of 72 maps $\times$ 2 seats, effects read per cell); a measurement gate before any new run; then the entropy test under a gate frozen before its data existed.
+
+\textbf{Gate 0 --- measure before running.} Three instruments were built and reproduced: the gradient instrument (does the value estimate's learning bend the policy through the shared body? --- for warmed-up runs, no: acquitted); the rollout telemetry (how many rows of a training buffer ever see a real game ending); and an independent calibration of the value estimate (it explains 4\,\% of the variance of the returns it predicts --- nearly blind).
+
+\textbf{Step 4 --- the entropy falsifier.} Two arms from the same clone, same seed, same everything, differing in exactly one number (entropy bonus 0 versus 0.01), both on the cluster so that the machine cannot be confounded with the knob. The first attempt was preempted five times and its salvage kept only the newest checkpoint --- twenty job-hours produced two snapshots at unrelated ages; the salvage was repaired to keep every checkpoint, and both arms were relaunched at the size the gate needs (2,709 updates) and, as insurance, on this computer as well. The cluster pair finished without preemption in 1.9 and 1.8 hours. Figure~\ref{fig:entropy-training} shows the training side: the bonus does raise entropy ($+0.068$, interval $[0.051, 0.083]$ --- the knob works) and changes nothing else (win rate $+0.004$ $[-0.004, +0.011]$; margin $-0.02$ $[-0.56, +0.52]$). Figure~\ref{fig:entropy-scouts} shows the scouts at five ages: no age separates the arms, and both decay with depth. Figure~\ref{fig:entropy-gate} shows the gate itself: on the locked panel at updates 1,500 and 2,500 the bonus-off arm won \textbf{24 and 21} of 144, the bonus-on arm \textbf{23 and 22}; the paired effect of removing the bonus is \textbf{0.000 wins per cell, 95\,\% interval $[-0.017, +0.021]$} (a bootstrap over the 144 map-seat units, both ages carried together, never pooled as 288 rows); the treatment arm loses no ground to the clone (net 0 cells of 6 allowed). \textbf{Verdict of record: \texttt{ENTROPY\_NOT\_CONFIRMED}.} The pair on this computer --- same design, the full map corpus --- gives the same verdict (18 / 20 against 23 / 22; effect $-0.024$ $[-0.056, +0.003]$). Two platforms, one answer: the bonus does not matter.
+
+\textbf{The credit path --- the day's real finding.} With the entropy suspect acquitted, the rollout telemetry was read for what the planner actually learns from. The trainer scores each decision by an estimate of the game's outcome; that estimate is a blend of \emph{observed reward} (what really happened within its look-ahead) and the \emph{value estimate's own opinion} of everything beyond. Measured on 50 million rows of the two arms: \textbf{observed reward supplies 2.3\,\% of the planner's learning signal; the value estimate supplies 97.7\,\%}, reproduced to two decimals by the second arm --- against a value estimate that Gate 0 found nearly blind. (I first wrote that the reward was \emph{absent}; that was wrong --- the trainer's own trace delivers it within a turn --- and the correction is on the card.) The reason is the reward's shape: in every run so far wood's whole value (4 points a piece) is paid in one lump on the final turn (\texttt{wood\_shaping 0 + end\_wood 4}), while the trainer looks ahead about nine turns of a 285-turn game. claude\_1 then priced the two obvious levers offline on one set of games, with no training and no critic in the sentence (Figure~\ref{fig:levers}): under the lump-sum reward the only rows in a training buffer carrying any observed reward are the 88 of 65,536 that are game endings --- exactly, on three seeds; paying part of wood's value on delivery puts reward on 1,780 rows (a factor of 20), and the environment's own default split (0.5 + 3.5) covers the same rows as 2 + 2 --- only the size of the immediate signal differs; a 128-step rollout reaches a real ending 4.3 times as often (1.46\,\% $\to$ 6.21\,\% of rows). The two levers act on different rows, so neither replaces the other.
+
+\textbf{Step 5 --- the first lever is training.} Under the goal's standing authorization, the reward-path arm \emph{r22} was launched on the cluster at 15:53Z: \texttt{wood\_shaping 2 + end\_wood 2} --- wood still worth 4, half paid on the turn of delivery --- everything else the bonus-on arm's recipe exactly (verified by argument diff and payload manifest), so that arm is the ready-made control and the same frozen gate reads the difference on the same 144 cells. It lands as this edition is written; its verdict goes on the card, the board and to chatgpt\_1 the same way. After it, in the reviewer's order and one variable at a time: the longer rollout; whole-game returns for the planner; separating the value estimate's body from the policy's; target commitment.
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{entropy-training.png}
+\caption{The training side of the entropy test, both cluster arms over their 2,709 updates (means of 250-update blocks). Left: the bonus does what it says --- the entropy-on arm's action distribution is measurably wider throughout. Right: the training win rate (sampled play against the exact champion) does not care. This is evidence, not the verdict: the verdict is played out on fixed panels with the shipped decoding (Figure~\ref{fig:entropy-gate}).}
+\label{fig:entropy-training}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{entropy-scouts.png}
+\caption{The scouts: each arm's checkpoints at five ages, 48 games against the champion's file, the same flags for every bench by construction. Left the cluster pair (the gate's arms), right the pair on this computer (the replication). A scout is a $\pm 5$-win look, not a verdict; what it shows is that no age separates the two arms, and that both decay with depth --- the shape every run has shown.}
+\label{fig:entropy-scouts}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{entropy-gate.png}
+\caption{The frozen gate. Left: the confirmation benches on the locked 144-cell panel (72 maps $\times$ 2 seats, the same cells for every bar) at updates 1,500 and 2,500, cluster pair and host pair; the dotted line is the clone on the same panel. Right: the gate's number --- the paired effect of removing the bonus, wins per cell, with its 95\,\% interval from a bootstrap over the 144 units. Both intervals contain zero: \texttt{NOT CONFIRMED}, twice.}
+\label{fig:entropy-gate}
+\end{figure}
+
+\textbf{The night's answers (09-01/02, added in the seventh edition).} The lever was run and \textbf{the frozen gate confirmed it} --- the programme's first positive result: \emph{r22} (wood 2 + 2) won \textbf{31 and 29 of 144} on the locked panel against the control's 23 and 22 (paired effect $+0.052$ $[+0.003, +0.101]$, positive at both ages, margin $+8.3$ points) and finished \textbf{net $+11$ cells above the clone --- the first trained artefact to stand above its own starting point}. The host replication reproduced the effect's size ($+0.049$, interval touching zero exactly). Then the follow-ups, one variable each: the longer rollout \emph{alone} is not confirmed ($+0.017$ $[-0.004, +0.042]$); the environment's default split 0.5 + 3.5 is no different from 2 + 2 ($-0.017$ $[-0.066, +0.031]$), so \textbf{2 + 2 stays the recipe}; and \textbf{the stack} --- the split \emph{plus} the 128-step rollout --- posts the campaign's best numbers, \textbf{29 $\to$ 33 $\to$ 33 of 144} across updates 1,500 / 2,500 / 2,709, \emph{rising with training age where every earlier run decayed} (its gain over the split alone is not yet separable from noise). Figure~\ref{fig:ledger} is the whole campaign on one axis. The same stack with a doubled training budget runs on the cluster as this edition is written; its read is pre-registered as exploratory, and any promotion claim requires a fresh frozen gate written before the numbers are seen.
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{campaign-ledger.png}
+\caption{The campaign ledger: every arm of 2026-09-01/02 on the locked 144-cell panel against the champion's file, at training ages 1,500 (blue) and 2,500 (orange); the grey diamond is the clone every arm started from, the dotted line its 26 of 144; parity would be 72. The entropy arms sit at or below the clone; the wood split (2 + 2) lifts both platforms above it; the stack adds the long rollout and is the only arm whose score rises with age --- 33 of 144 at its final checkpoint (green square, exploratory).}
+\label{fig:ledger}
+\end{figure}
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{credit-levers.png}
+\caption{Why the runs decay, priced without a critic in the sentence (claude\_1's instrument, one set of 65,536 training rows collected with the clone, replayed under each reward split and re-cut into each window; three seeds agree). Left: under the lump-sum reward used in every run so far, the only rows carrying any observed reward are the 88 that are game endings; paying part of wood's value on delivery puts reward on 1,780 rows --- and the environment's own default split covers the same rows as the 2 + 2 now training. Right: a 128-step rollout lets the trainer's credit trace reach a real ending 4.3 times as often.}
+\label{fig:levers}
 \end{figure}
 
 \clearpage
@@ -273,11 +322,12 @@ program & takes & gives \\
 
 \section{The numbers so far}
 
-\begin{center}\small
-\begin{tabular}{@{}L{7.4cm}L{8.0cm}@{}}
+\begin{small}
+\begin{longtable}{@{}L{7.4cm}L{8.0cm}@{}}
 \toprule
 & \\
 \midrule
+\endhead
 The environment's check & 1,000 self-play games replayed through an independent rules copy: 0 disagreements, 0 illegal commands; 214 game-turns/s on the VM's 4 cores \\
 The training set & 817,811 decisions (224,400 plan + 593,411 command) from 748 games; 0 labels outside the vocabulary; built in 1\,min\,42\,s \\
 The clone, 4 passes & agreement with the teachers 74\,\% (which troll) and 65\,\% (what it does); Figure~\ref{fig:verbs} per move \\
@@ -295,9 +345,15 @@ Phase 4: the clone as one file & 52,854 characters; 48/48 games and 13,206/13,20
 The exact champion opponent & matches the champion's submitted file on 200/200 games and 49,945/49,945 turns, raw and gameplay commands; reproduced; 1,058 turns/s \\
 The cluster & the smoke job: 899 decisions/s on 16 cores; the first six jobs died at their wall-clock limits (my inconsistent budget) or were aborted --- nothing retrievable; rebuilt with half-hourly salvage uploads; \textbf{three jobs at $\sim$1,040 decisions/s, 60 million each}: a2 (full-parameter, long horizon), e2 (corrected objective), i2 (staged, the leash pinned at 0.1); results $\sim$19:00--20:00Z \\
 This computer & 20 cores, no GPU: the network answers 17,000 boards/s in batches; the bottleneck is building the planes and running the opponents \\
+\midrule
+The overnight cluster jobs (08-31) & a2 (full-parameter) at update 6,239: \textbf{2 of 48}; e2 (corrected objective) at 3,198: \textbf{3 of 48}; i2 (staged, leash pinned) at 5,414: \textbf{4 of 48} --- depth hurts; the pinned leash slows the drift, does not stop it \\
+Gate 0 (09-01) & the value estimate's learning acquitted for warmed-up runs; the value estimate explains 4\,\% of its targets' variance; the credit trace reaches a real ending on 1.8\,\% of rows \\
+The entropy gate (09-01) & cluster pair, 2,709 updates each, one field differs: locked panel \textbf{E00 24 / 21, E01 23 / 22 of 144} at updates 1,500 / 2,500; paired effect \textbf{0.000 $[-0.017, +0.021]$}; clone non-inferiority net 0; \textbf{\texttt{ENTROPY\_NOT\_CONFIRMED}}; the host pair replicates it (18 / 20 vs 23 / 22; $-0.024$ $[-0.056, +0.003]$); scouts E00 10 / 12 / 9 / 6 / 7, E01 8 / 6 / 10 / 6 / 8; training side: entropy $+0.068$, win rate and margin null \\
+The credit path (09-01) & the planner's learning signal is \textbf{2.3\,\% observed reward, 97.7\,\% the value estimate}, reproduced by the second arm; under the lump-sum reward, reward rows $=$ game endings exactly (88 / 82 / 84 of 65,536 on three seeds); shaping on: $\sim$1,780 rows ($\times 20$); 128-step rollout: 4.3$\times$ the traces reaching an ending \\
+The first lever (09-01) & \emph{r22}: wood 2 + 2, otherwise the bonus-on arm's recipe; launched 15:53Z on the cluster; verdict by the same frozen gate against the bonus-on arm as control \\
 \bottomrule
-\end{tabular}
-\end{center}
+\end{longtable}
+\end{small}
 
 \section{How to read the clone's games}\label{sec:read}
 

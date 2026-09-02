@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "id": "champion-baseline-0902-r1",
+    "label": "THE CHAMPION OF RECORD (41202036's file, sha 0e92f8fa\u2026) \u2014 fresh baseline reading in the current field, round 1; holds the ladder afterwards",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+    "submission_id": 41230202,
+    "submitted_at": "2026-09-02T08:00:04Z"
+  },
   "done": [
     {
       "agent_id": 6670021,

@@ -1,0 +1,93 @@
+# The harness — how to run your bot
+
+Two things live here:
+
+- **`maps/`** — 24 frozen starting positions, six of each map size (16x8, 18x9, 20x10, 22x11).
+  They are the real starting states of 24 recorded ranked matches, not generated ones, so every
+  position here is one the platform actually dealt. Each is a JSON file: the map rows, both
+  players' starting stock, every tree with its exact size, health, fruit count and cooldown, and
+  both starting trolls.
+- **`referee.py`** — a referee, and a runner that starts two programs as child processes, speaks
+  the protocol to both, applies the rules, and reports the result. `test_referee.py` holds its
+  boundary tests (`python3 -m unittest test_referee.py`).
+
+**The reference bot is not here.** You receive it — as an executable, never as source — only
+after your version 0 is complete and its source hash recorded; see "The acceptance ladder"
+below. Until then your opponent is your own bot.
+
+## Running it
+
+    python3 referee.py --p0 ./mybot --p1 ./mybot --both-seats --json step1.json
+    python3 referee.py --p0 ./mybot --p1 "python3 other.py" --both-seats --trace turns.jsonl
+
+`--both-seats` plays every map twice, swapping which program sits in which seat. Always use it
+for anything you intend to draw a conclusion from: the map is symmetric but the two seats are not
+interchangeable in the referee's resolution order.
+
+Useful flags: `--limit N` (first N maps only), `--turns N` (shorter matches while debugging),
+`--enforce-time` (lose on the third strike, as the platform does; off by default so a debugger
+does not lose you the match), `--trace FILE` (one JSON line per turn: the full state both bots
+saw and both command lines — the way to turn a lost match into game observations), `--wall S`
+(a bot that answers nothing for S seconds loses that match instead of hanging the run; 5 s).
+
+## Two ways this referee differs from the platform's, on purpose
+
+1. **Equal-best movement ties.** The platform's referee breaks a tie between two equally short
+   steps **randomly**; this one takes the lexicographically smaller cell (RULES §4). A bot whose
+   play depends on which of two equal steps it gets is a bot that will behave differently on the
+   platform. Do not tune against this.
+2. **Time is measured but not enforced** unless you pass `--enforce-time`. The numbers it
+   measures are *this machine's*, and this machine is not the judge machine
+   (CONSTRAINTS §3).
+
+Everything else is the rules as written in `RULES.md`, checked against 40,458 turns of real
+recorded matches. If you find a disagreement between `referee.py` and `RULES.md`, that is a bug
+in the package — say so.
+
+## The acceptance ladder
+
+Climb it in order. Do not read a number from a later step until the earlier one is clean.
+
+**Step 1 — legal, complete matches, against yourself.** Play all 24 maps, both seats
+(48 matches), your bot in both seats:
+
+    python3 referee.py --p0 ./mybot --p1 ./mybot --both-seats --json step1.json
+
+Pass = **48 of 48 finished with no illegal command, no crash and no silence** (the runner prints
+how many ended otherwise, and exits non-zero if any did). Ignore the scores entirely at this
+step. A bot that scores well and crashes in one match in fifty is not ready; fix the crash first.
+When step 1 is clean, **freeze version 0**: record the source file's hash on the card. That is
+the moment the reference bot is handed over.
+
+**Step 2 — the scout, 48 matches against the reference.** The same 48 matches, now against the
+reference bot, read for strength. This is a look, not a verdict: 48 matches is enough to see a
+bot that is far off and not enough to separate two close ones. What you want here is a win count
+that is not embarrassing and a mean margin that is not a collapse. Run it with `--trace` and keep
+the trace: it is the material for the one refinement round.
+
+**Step 3 — the locked panel, 144 cells.** 24 maps x 2 seats x 3 repeats = 144 matches, run once,
+with the map list and the command lines **written down before you run it**. The point of locking
+it is that you cannot go back and choose a different panel after seeing the result. Compare per
+cell — the same map and seat, your bot and the reference — and report the **paired** margin, not
+two separate averages.
+
+**Step 4 — 400 matches.** Only if step 3 says it is close. Parity means the 95 % interval of the
+per-cell margin difference contains zero or better.
+
+## What "the same strength" means here
+
+Played against itself on these 24 maps in both seats (`reference-vs-reference-48.json`, handed
+over with the reference bot as the step-2 baseline), the reference bot scores **59 to 220, mean
+130**, in matches that last 198 turns on average — 16 wins, 16 losses and 16 draws, the draws
+because on a point-symmetric map a deterministic bot often mirrors itself exactly. These are lower
+than its ladder scores (`CHAMPION-BEHAVIOUR.md` §A1: mean 183) because in a mirror match both
+sides log out the same map and the ending clock (RULES §11) stops the match early: 18 of the 48
+end with both players out of fruit and trees. If your bot loses 48 out of 48 you have a bug, not
+a strategy problem. If it wins 30 of 48 you have something; take it to step 3 before believing it.
+
+## A caution about this harness as a judge
+
+These 24 maps and one opponent are not the ladder. A local result has been wrong about the real
+ladder by a wide margin more than once on this project (`DOMAIN.md` §4). Treat the harness as a
+check that your bot **works** and is **roughly in the right class**, and treat a small local
+advantage as noise.
