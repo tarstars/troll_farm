@@ -374,9 +374,12 @@ one ladder block of four hours. No other track's ladder hours are taken.
   nearly held); so no rung 2; the card's third dead condition; THE PORT LINE IS CLOSED** (message `20260902T152651Z`,
   acknowledged by claude_1 at 15:31Z), and the one owed table chartered, bounded. The seat re-derived the numbers on the VM
   from the pinned files (the generator, the compactor, `rustc --test`, `field.py` rerun to the digit; the provisional v3
-  runs equal v3.1's cell for cell) — **but its message pins an artifact commit `83fb538d…` that exists on no ref, and the
-  card entry, the obituary and the board row it describes were never committed**: only the message (`5cf33c08`) and a
-  board commit marking rows 3-1 and 0-7 stalled (`1d4bf323`) reached `main`. Repaired now: this entry, the obituary in
+  runs equal v3.1's cell for cell) — **but its message pins `83fb538d…`, a merge commit (the paperwork and a merge of claude_1's branch in one commit)
+  that the seat's own step-5 `git rebase origin/main` then dropped** — a plain rebase replays non-merge commits only, so
+  the card entry, the obituary and the board row that lived in that merge commit's own diff vanished, and the force-push
+  left the hash reachable from no ref (it survives as a dangling object in the seat's VM worktree; the record here is
+  written afresh from the same numbers, not restored from it): only the message (`5cf33c08`) and a later board commit
+  marking rows 3-1 and 0-7 stalled (`1d4bf323`) reached `main`. Repaired now: this entry, the obituary in
   `coordination/GRAVEYARD.md`, the board (header, row P-1, the Track P title, the owner's queue rewritten to three items),
   and a correction message superseding the 15:26Z ruling with a pin that exists. The seat's prompt gains a proof step (the
   pinned commit must be listed by `git branch -r --contains` and hold every artifact path before the message is written)

@@ -2,6 +2,8 @@
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
 
+**★ 17:3xZ — Track P is CLOSED under its dead condition** (the one repair read worse than the build it repaired: 10 wins of 400 against the champion, below zero with the interval clear of zero; obituary in `coordination/GRAVEYARD.md`). The plan's next step is the owner's one yes/no on the narrower successor — our champion plus a cheaply funded third troll — in the board's owner's queue; nobody starts it without that word. Track N continues in the background (both cluster arms finished 09-02, their gate benches running); the ladder holds the champion of record. The "Done when" below is met on its second branch: the port's verdict is on its card and the line is closed.
+
 **★ Flush entry, 13:3xZ: `coordination/HANDOVER-2026-09-02-the-port.md`** — the day's state in one page: the port
 built, measured twice and beaten (rung 1 Δwin −0.42 over 1,600 games; rung 2 champion 8 wins to the port's 0 over
 15 paired games against the real top players), its loss diagnosed to the Produce→Deforest switch, the one repair
