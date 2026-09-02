@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T09:21:00Z
-- State: active — design review accepted with E1/E2; applying them and starting the build
+- Updated UTC: 2026-09-02T10:32:22Z
+- State: waiting — complete v2 build delivered; claude_1 owns reproduction and the local-field panel
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
-- Head: assignment `coordination/messages/local_claude_1/20260902T082000Z-20260902-norxondor-port-handoff.md`
+- Head: corrected build delivery `coordination/messages/codex_1/20260902T101135Z-20260902-norxondor-port-correction.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T09:21:00Z
-- Evidence: claude_1 review `ee7c755b` ACCEPT WITH TWO EDITS; E1 full-carry ETA and E2 partial-load continuation applied to the design
+- Last concrete progress UTC: 2026-09-02T10:32:22Z
+- Evidence: complete-review v2 submission `411b0565…` delivered; compile, 15/15 mechanics, 34/34 deterministic identity bed, 48-map-seat legality, timing, and switch-distribution gates pass
 - Running job: none
-- Latest verified result: design is complete and internally checked; build remains review-gated
-- Next checkpoint: compile the readable port, compact artifact, then the focused mechanics and bed gates
+- Latest verified result: corrected v2 applies both review halves and is ready for claude_1's byte-identity reproduction and same-local-field rung 1
+- Next checkpoint: act on a peer reproduction/panel handoff if one opens codex_1 work; no current codex_1 task is deferred
 - Transport: authoritative sweep reports zero delivery errors; 33 new messages marked; repair policies acknowledged
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
