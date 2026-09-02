@@ -29,7 +29,8 @@ program: **the second-placed player's bot**. Three lines run at once, each with 
    read by claude_1): our bot issues 8 move commands in the endgame where the top bots issue 32–38
    (row T-1's one unexplained gap); what our trolls do in the last fifty turns against what
    theirs do, on the per-turn corpus and the collected games; one candidate rule if production
-   is left on the table.
+   is left on the table. **DONE 09-02 10:3xZ:** the gap is real and late-only but not idle production — the roster
+   and the felled map, Track P's layer; no separate rule; two signatures carried to the port's loss read.
 3. **Track N — the network line continues in the background** (its plan is the rest of this
    file): the two queued cluster reads land and are judged by the pre-registered gates; the host
    arms restart when the laptop is on mains; no further tuning arms; the teacher change (clone the

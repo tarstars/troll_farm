@@ -1,0 +1,8457 @@
+{
+ "replays": "/data/scratch/claude1-norx-v2/port-v2-vs-champion.replays.jsonl",
+ "replays_sha256": "d82d28b86c11f837f3966b9a1066f8cbd0387ddc163554f908ca6c8c331e0597",
+ "panel_sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+ "summary": {
+  "games": 400,
+  "games_reaching_turn_251": 333,
+  "standing_size_units_at_end": {
+   "n": 400,
+   "median": 0.0,
+   "mean": 0.69
+  },
+  "standing_trees_at_end": {
+   "n": 400,
+   "median": 0.0,
+   "mean": 0.172
+  },
+  "policy": {
+   "move_per_troll_turn_251_300_pooled": 0.346,
+   "move_per_troll_turn_251_300_per_game": {
+    "n": 333,
+    "median": 0.36,
+    "mean": 0.331
+   },
+   "roster_150": {
+    "n": 400,
+    "median": 3.0,
+    "mean": 2.882
+   },
+   "roster_end": {
+    "n": 400,
+    "median": 3.0,
+    "mean": 2.89
+   }
+  },
+  "opponent": {
+   "move_per_troll_turn_251_300_pooled": 0.079,
+   "move_per_troll_turn_251_300_per_game": {
+    "n": 333,
+    "median": 0.0,
+    "mean": 0.089
+   },
+   "roster_150": {
+    "n": 400,
+    "median": 2.0,
+    "mean": 2
+   },
+   "roster_end": {
+    "n": 400,
+    "median": 2.0,
+    "mean": 2
+   }
+  }
+ },
+ "games": [
+  {
+   "map_hash": "1c42786fd746a099",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 76,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1c42786fd746a099",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8431b70e65e7d4ec",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6720b8488ce04dc5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 38,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.2,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6720b8488ce04dc5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8431b70e65e7d4ec",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "44ab6ee43a2ba3c7",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "44ab6ee43a2ba3c7",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d9c8059a3038862e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d9c8059a3038862e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 79,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.395,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e506f9694285b200",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 77,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.385,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e506f9694285b200",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 83,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.415,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "80fddd7ef0a9d4e4",
+   "policy_seat": 0,
+   "turns": 236,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "653c003c8e9f1baa",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 50,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 19,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.19,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "80fddd7ef0a9d4e4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 45,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "653c003c8e9f1baa",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d2ba6f6e50e5fd21",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 45,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 3,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.03,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d4494336faace68e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d4494336faace68e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d2ba6f6e50e5fd21",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 74,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.37,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "47bf4de41cef7828",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 85,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.425,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "47bf4de41cef7828",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "63010c07953f245e",
+   "policy_seat": 0,
+   "turns": 297,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 18,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.19148936170212766,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.0851063829787234,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7cf0b6e72fd40963",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "63010c07953f245e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7cf0b6e72fd40963",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fae35d6d2666bff",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 12,
+   "standing_trees": 3,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fae35d6d2666bff",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 12,
+   "standing_trees": 3,
+   "policy": {
+    "late_moves": 41,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.41,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 1,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.01,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "24afd3cbb1669781",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7057ae43ab50c4ab",
+   "policy_seat": 0,
+   "turns": 222,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "24afd3cbb1669781",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4266666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7057ae43ab50c4ab",
+   "policy_seat": 1,
+   "turns": 255,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 3,
+    "late_troll_turns": 10,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 10,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "21f331b554fe68cd",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "21f331b554fe68cd",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.275,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "37cd14e68bfe156f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c33d3c2062a13494",
+   "policy_seat": 0,
+   "turns": 218,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "37cd14e68bfe156f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c33d3c2062a13494",
+   "policy_seat": 1,
+   "turns": 255,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 10,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 10,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5bcfe32e9d545ced",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5bcfe32e9d545ced",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 75,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.375,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "61e62be5a4837160",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "61e62be5a4837160",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 49,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.32666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "42599213b54729c8",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "42599213b54729c8",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 56,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.37333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "335ae51ab08b0e3e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 39,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.39,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "335ae51ab08b0e3e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 43,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.2866666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 13,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.13,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d1e31d0e16e28e0f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d1e31d0e16e28e0f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fb64bbc3b7c53af8",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fb64bbc3b7c53af8",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "17a8fb4d263a6147",
+   "policy_seat": 1,
+   "turns": 287,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 74,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 17,
+    "late_troll_turns": 74,
+    "move_per_troll_turn_251_300": 0.22972972972972974,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "17a8fb4d263a6147",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 56,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.37333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "87f8d628af0a9ff5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "87f8d628af0a9ff5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.35333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8bb78c4ebbdf9a81",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 81,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.54,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8bb78c4ebbdf9a81",
+   "policy_seat": 1,
+   "turns": 234,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f65c7f118e19d2ab",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 45,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2a64c0348f3c9bfe",
+   "policy_seat": 0,
+   "turns": 252,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 2,
+    "late_troll_turns": 6,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 4,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f65c7f118e19d2ab",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 47,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.31333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2a64c0348f3c9bfe",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 52,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.26,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bf34f944f9ade500",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bf34f944f9ade500",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 42,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.28,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7072826c2b86bd28",
+   "policy_seat": 0,
+   "turns": 236,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7072826c2b86bd28",
+   "policy_seat": 1,
+   "turns": 283,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 66,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 27,
+    "late_troll_turns": 66,
+    "move_per_troll_turn_251_300": 0.4090909090909091,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b6d5cee06832b8bd",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b6d5cee06832b8bd",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4b90d1a1073cd55f",
+   "policy_seat": 0,
+   "turns": 205,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4b90d1a1073cd55f",
+   "policy_seat": 1,
+   "turns": 213,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b04ce25fe2af8809",
+   "policy_seat": 1,
+   "turns": 181,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b04ce25fe2af8809",
+   "policy_seat": 0,
+   "turns": 230,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c372d356969bd82f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 28,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.18666666666666668,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.2,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4bd3a7bf7e13b341",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c372d356969bd82f",
+   "policy_seat": 1,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 25,
+    "late_troll_turns": 144,
+    "move_per_troll_turn_251_300": 0.1736111111111111,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.20833333333333334,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4bd3a7bf7e13b341",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6bccd83cc1b33dd8",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 52,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3466666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eda85f07a3f37a2d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6bccd83cc1b33dd8",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eda85f07a3f37a2d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "becc6d7616f02ca9",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 69,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.46,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "becc6d7616f02ca9",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.24,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bbb2cd47cc8e4c80",
+   "policy_seat": 1,
+   "turns": 209,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bbb2cd47cc8e4c80",
+   "policy_seat": 0,
+   "turns": 228,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d287276839035cde",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d287276839035cde",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a82b78ae565be035",
+   "policy_seat": 0,
+   "turns": 226,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a77244269a722c0b",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 27,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.27,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a77244269a722c0b",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a82b78ae565be035",
+   "policy_seat": 1,
+   "turns": 297,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 141,
+    "move_per_troll_turn_251_300": 0.41134751773049644,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.09574468085106383,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "97a1fa26dad2384b",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 20,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.2,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "25d4cc610fd2aef8",
+   "policy_seat": 0,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 23,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.23958333333333334,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "25d4cc610fd2aef8",
+   "policy_seat": 1,
+   "turns": 228,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "97a1fa26dad2384b",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9568cfe133ca132f",
+   "policy_seat": 0,
+   "turns": 144,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c23a260b81f62284",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 50,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 43,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.43,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c23a260b81f62284",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 50,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9568cfe133ca132f",
+   "policy_seat": 1,
+   "turns": 263,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 3,
+    "late_troll_turns": 26,
+    "move_per_troll_turn_251_300": 0.11538461538461539,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 22,
+    "late_troll_turns": 26,
+    "move_per_troll_turn_251_300": 0.8461538461538461,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fa508110087ab54",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c7eeffe93417f77a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4533333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fa508110087ab54",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 51,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c7eeffe93417f77a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4de06027ca4a0f5e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 32,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 24,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.24,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4de06027ca4a0f5e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8771aca3fc432bcc",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a3fe9ee076ec2416",
+   "policy_seat": 0,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 31,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.3163265306122449,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8771aca3fc432bcc",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 72,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a3fe9ee076ec2416",
+   "policy_seat": 1,
+   "turns": 297,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 29,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.30851063829787234,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9eb57911571be854",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dce955296217d370",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 78,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.52,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 15,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.15,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9eb57911571be854",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 91,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.455,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 3,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.03,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dce955296217d370",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 74,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.37,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f618f87c37d7c443",
+   "policy_seat": 1,
+   "turns": 289,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 16,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.20512820512820512,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f618f87c37d7c443",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 19,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.19,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "23a811be8cb6bccb",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 78,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.78,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "23a811be8cb6bccb",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 12,
+   "standing_trees": 3,
+   "policy": {
+    "late_moves": 30,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 33,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.33,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c39956a0b5ea139f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 50,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c39956a0b5ea139f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 25,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.25,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fab6a2a2f2f18996",
+   "policy_seat": 1,
+   "turns": 235,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fab6a2a2f2f18996",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 41,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.205,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 27,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.27,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0a87e3d07009f6ac",
+   "policy_seat": 0,
+   "turns": 215,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0a87e3d07009f6ac",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "81686eb87ecb8351",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 86,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.43,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "81686eb87ecb8351",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "116fdc7751feea8c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 41,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.41,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "894a0699741325d3",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 69,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.345,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "894a0699741325d3",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 41,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.205,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "116fdc7751feea8c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 40,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9a3d642b7b794d35",
+   "policy_seat": 0,
+   "turns": 254,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 4,
+    "late_troll_turns": 12,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 8,
+    "move_per_troll_turn_251_300": 1.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9a3d642b7b794d35",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 103,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.515,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "572c9e8d52bbb07c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "572c9e8d52bbb07c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4266666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f876bbb75868f682",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "883c9218efededdf",
+   "policy_seat": 1,
+   "turns": 219,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "883c9218efededdf",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 32,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.21333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 23,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f876bbb75868f682",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4533333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "aee74d69b85c47ff",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "083018051daa068d",
+   "policy_seat": 0,
+   "turns": 230,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "aee74d69b85c47ff",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 17,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.17,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e5df6c4f7fa91385",
+   "policy_seat": 0,
+   "turns": 263,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 26,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 26,
+    "move_per_troll_turn_251_300": 0.23076923076923078,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e5df6c4f7fa91385",
+   "policy_seat": 1,
+   "turns": 236,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "083018051daa068d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 26,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.26,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "acdb90d56624350c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 78,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.39,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "acdb90d56624350c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.305,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d459eb3ab325cc35",
+   "policy_seat": 1,
+   "turns": 240,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d459eb3ab325cc35",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 35,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.23333333333333334,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4769349ab49dbd32",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 43,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.2866666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 46,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.46,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4769349ab49dbd32",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.35333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4d667ef39135a6f6",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "4d667ef39135a6f6",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c8133082187414ff",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 21,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.21,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c8133082187414ff",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fe74e146a0c3bb1",
+   "policy_seat": 0,
+   "turns": 218,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1002f4ad75d4b453",
+   "policy_seat": 0,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 14,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.14285714285714285,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.10204081632653061,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1002f4ad75d4b453",
+   "policy_seat": 1,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 34,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.3541666666666667,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.052083333333333336,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9fe74e146a0c3bb1",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "af53b2107e501a3a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "af53b2107e501a3a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b9429ce55eba1962",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b9429ce55eba1962",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f13e6fb199a42173",
+   "policy_seat": 0,
+   "turns": 149,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f13e6fb199a42173",
+   "policy_seat": 1,
+   "turns": 124,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6ca30c295d49c816",
+   "policy_seat": 0,
+   "turns": 201,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 5,
+    "roster_end": 5
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6ca30c295d49c816",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "cb81c042aa06a451",
+   "policy_seat": 1,
+   "turns": 210,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "cb81c042aa06a451",
+   "policy_seat": 0,
+   "turns": 234,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "21eacb63244fba81",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.35333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "21eacb63244fba81",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 52,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3466666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "196a89cea3f84c68",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 28,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.28,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "196a89cea3f84c68",
+   "policy_seat": 1,
+   "turns": 291,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 123,
+    "move_per_troll_turn_251_300": 0.43089430894308944,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 82,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b1cd3202c080b06a",
+   "policy_seat": 0,
+   "turns": 191,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f0fc246eb2ed5bd5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b1cd3202c080b06a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f0fc246eb2ed5bd5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d2fc1585b7ab7ccb",
+   "policy_seat": 0,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 56,
+    "late_troll_turns": 144,
+    "move_per_troll_turn_251_300": 0.3888888888888889,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 44,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.4583333333333333,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "799956271a8473e2",
+   "policy_seat": 0,
+   "turns": 166,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d2fc1585b7ab7ccb",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.27,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "799956271a8473e2",
+   "policy_seat": 1,
+   "turns": 296,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 39,
+    "late_troll_turns": 138,
+    "move_per_troll_turn_251_300": 0.2826086956521739,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.13043478260869565,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "534a7c6145753d2b",
+   "policy_seat": 0,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 27,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.28125,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 25,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.2604166666666667,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "aa482be63affc79a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "aa482be63affc79a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "534a7c6145753d2b",
+   "policy_seat": 1,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 144,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.020833333333333332,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "456e281e900b7cf2",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "456e281e900b7cf2",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 50,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "18a7d87ec8559f8a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 56,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.37333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "18a7d87ec8559f8a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "936a902e26ab80d4",
+   "policy_seat": 0,
+   "turns": 183,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a06906a15964504d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a06906a15964504d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "936a902e26ab80d4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.43333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ef1c0f35cadb9c7a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "22d6669b9a1c0235",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 12,
+   "standing_trees": 3,
+   "policy": {
+    "late_moves": 79,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.5266666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "22d6669b9a1c0235",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 118,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.59,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ef1c0f35cadb9c7a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 34,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a8fde494d92d0cac",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a8fde494d92d0cac",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "37bfb00ee86b401f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 34,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "37bfb00ee86b401f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ed0290cc63118467",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 28,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.28,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ed0290cc63118467",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.35333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d6a218ccc3415c8b",
+   "policy_seat": 0,
+   "turns": 288,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 13,
+    "late_troll_turns": 76,
+    "move_per_troll_turn_251_300": 0.17105263157894737,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 76,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d6a218ccc3415c8b",
+   "policy_seat": 1,
+   "turns": 280,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 19,
+    "late_troll_turns": 60,
+    "move_per_troll_turn_251_300": 0.31666666666666665,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 60,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fe16fdf2fff24158",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 96,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.48,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fe16fdf2fff24158",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 89,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.445,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "da9f4fc421767a49",
+   "policy_seat": 0,
+   "turns": 212,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 5
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "da9f4fc421767a49",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 77,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.385,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "df7f7a3c9bf84594",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 3,
+    "late_troll_turns": 250,
+    "move_per_troll_turn_251_300": 0.012,
+    "roster_150": 4,
+    "roster_end": 5
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "df7f7a3c9bf84594",
+   "policy_seat": 1,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 89,
+    "late_troll_turns": 196,
+    "move_per_troll_turn_251_300": 0.45408163265306123,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c82f14901aba09c0",
+   "policy_seat": 0,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 29,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.29591836734693877,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.12244897959183673,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1c105ea677acd759",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 87,
+    "late_troll_turns": 250,
+    "move_per_troll_turn_251_300": 0.348,
+    "roster_150": 5,
+    "roster_end": 5
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c82f14901aba09c0",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 17,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.17,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1c105ea677acd759",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 66,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.33,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 13,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.13,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c9301350b5eaf7e6",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.43333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 15,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.15,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c9301350b5eaf7e6",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.35333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "28dae0e884a02e5f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4533333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 3,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.03,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "28dae0e884a02e5f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 74,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.37,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d895254d5654c8ef",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4266666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d895254d5654c8ef",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.43333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "29b585b317a52160",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 16,
+   "standing_trees": 4,
+   "policy": {
+    "late_moves": 50,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.25,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 27,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.27,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "29b585b317a52160",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.275,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "97d2e85d5f9054ec",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4533333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "97d2e85d5f9054ec",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6f1138b325ad32c4",
+   "policy_seat": 0,
+   "turns": 289,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 42,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.5384615384615384,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6f1138b325ad32c4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 95,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.6333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fff12e6b605cb7ea",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 70,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4666666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fff12e6b605cb7ea",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 56,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.37333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d56e38c47df0209a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d56e38c47df0209a",
+   "policy_seat": 1,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 53,
+    "late_troll_turns": 147,
+    "move_per_troll_turn_251_300": 0.36054421768707484,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5738d4e073e17fd2",
+   "policy_seat": 1,
+   "turns": 219,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5738d4e073e17fd2",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 78,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.39,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 3,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.03,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e774547e44527bbe",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e774547e44527bbe",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 25,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.25,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 53,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.53,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eef43f97ab876cd4",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.335,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eef43f97ab876cd4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f289b0d22120b2bf",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.285,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f289b0d22120b2bf",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.315,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "39501dbd60abd1b1",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "39501dbd60abd1b1",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4533333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a634fc5515a2f8c2",
+   "policy_seat": 0,
+   "turns": 239,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a634fc5515a2f8c2",
+   "policy_seat": 1,
+   "turns": 223,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a331c0eab2b9dbf4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.54,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a331c0eab2b9dbf4",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e0ee23173caabef6",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e0ee23173caabef6",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2e3c6b870cf1b549",
+   "policy_seat": 0,
+   "turns": 167,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2e3c6b870cf1b549",
+   "policy_seat": 1,
+   "turns": 165,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8c28acfca3522cee",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8c28acfca3522cee",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.305,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1c73a76a68e8c386",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1c73a76a68e8c386",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a61d32d8c2c23651",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.325,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a61d32d8c2c23651",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 92,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.46,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9abdcd2b5bb49191",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 45,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9abdcd2b5bb49191",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e7b2584577c0c1e4",
+   "policy_seat": 0,
+   "turns": 203,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e7b2584577c0c1e4",
+   "policy_seat": 1,
+   "turns": 181,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7f10c80c1b6212bd",
+   "policy_seat": 0,
+   "turns": 153,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7f10c80c1b6212bd",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "99f840b4198dbd74",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 74,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.49333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "99f840b4198dbd74",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 22,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.22,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "237ca1d8e5c624dd",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 6,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.06,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0c38824f3c51aecf",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.48,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0c38824f3c51aecf",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 35,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.35,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "237ca1d8e5c624dd",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 52,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3466666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c5b04fd25b10cdb7",
+   "policy_seat": 0,
+   "turns": 200,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c5b04fd25b10cdb7",
+   "policy_seat": 1,
+   "turns": 200,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b66126f853bbd78d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.335,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b66126f853bbd78d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 68,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "91681bdb36c8e835",
+   "policy_seat": 0,
+   "turns": 256,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 12,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 12,
+    "move_per_troll_turn_251_300": 0.3333333333333333,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "57eb41149ac804af",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.42,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "57eb41149ac804af",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "91681bdb36c8e835",
+   "policy_seat": 1,
+   "turns": 279,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 14,
+    "late_troll_turns": 58,
+    "move_per_troll_turn_251_300": 0.2413793103448276,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 58,
+    "move_per_troll_turn_251_300": 0.13793103448275862,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bce9292df4c41197",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 47,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.47,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7b2c70d0cb49e32e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 75,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bce9292df4c41197",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 26,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.26,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7b2c70d0cb49e32e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "90cf2661eb710f80",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 86,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.43,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "90cf2661eb710f80",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 95,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.475,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dc619839be1d34ee",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dc619839be1d34ee",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d4572b50086f37a2",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 74,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.37,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d4572b50086f37a2",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 52,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3466666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.2,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "601e1fb82b174f34",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 22,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.22,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "601e1fb82b174f34",
+   "policy_seat": 1,
+   "turns": 297,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 24,
+    "late_troll_turns": 94,
+    "move_per_troll_turn_251_300": 0.2553191489361702,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "29ad34415e14cb26",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 73,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.365,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "29ad34415e14cb26",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 67,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.335,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "312ef24b8bfbd01c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 31,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.31,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 1,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.01,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "312ef24b8bfbd01c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 40,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "76acf0db78d75ac5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "76acf0db78d75ac5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c28645d15e3ecb2e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 24,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.24,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c28645d15e3ecb2e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 8,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.08,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fdb396713b2de14f",
+   "policy_seat": 1,
+   "turns": 251,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 1,
+    "late_troll_turns": 4,
+    "move_per_troll_turn_251_300": 0.25,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 1,
+    "late_troll_turns": 2,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fdb396713b2de14f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 31,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.31,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ddddaf94a30bb8b0",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 60,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 14,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.14,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ddddaf94a30bb8b0",
+   "policy_seat": 1,
+   "turns": 220,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eebeb3ea55940001",
+   "policy_seat": 0,
+   "turns": 296,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 11,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.11956521739130435,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 28,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.30434782608695654,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "eebeb3ea55940001",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 30,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8309cff5e1604569",
+   "policy_seat": 0,
+   "turns": 167,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8309cff5e1604569",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4266666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9b2aefbd40973059",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 24,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.24,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 50,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5d4c5c57e0ee7435",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 16,
+   "standing_trees": 4,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "5d4c5c57e0ee7435",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 16,
+   "standing_trees": 4,
+   "policy": {
+    "late_moves": 50,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.25,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 21,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.21,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9b2aefbd40973059",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 12,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.12,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 52,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.52,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fccfb9b5c0b8a50b",
+   "policy_seat": 0,
+   "turns": 189,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "fccfb9b5c0b8a50b",
+   "policy_seat": 1,
+   "turns": 202,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "201ad1509965a3d4",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 61,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4066666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "201ad1509965a3d4",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ee9774be4c2b9eb0",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 88,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.04,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ee9774be4c2b9eb0",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 12,
+   "standing_trees": 3,
+   "policy": {
+    "late_moves": 73,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4866666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b35e826e5d61ba17",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.325,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "869ab9b20f2f3a8e",
+   "policy_seat": 0,
+   "turns": 215,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "869ab9b20f2f3a8e",
+   "policy_seat": 1,
+   "turns": 219,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b35e826e5d61ba17",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 92,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.46,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ae48a4dc43a57ab9",
+   "policy_seat": 0,
+   "turns": 175,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0b73f7f49311aab3",
+   "policy_seat": 0,
+   "turns": 147,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "ae48a4dc43a57ab9",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 77,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.385,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0b73f7f49311aab3",
+   "policy_seat": 1,
+   "turns": 144,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e83e1e55760a9f7c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 29,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.19333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 24,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.24,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e83e1e55760a9f7c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6e703a3d9f5e05f6",
+   "policy_seat": 1,
+   "turns": 180,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8b15f74d0b198f5e",
+   "policy_seat": 0,
+   "turns": 202,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "6e703a3d9f5e05f6",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.43333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "8b15f74d0b198f5e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2b5d0cd98050df74",
+   "policy_seat": 0,
+   "turns": 197,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f55f17d2cfc8fbbd",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 80,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.4,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f55f17d2cfc8fbbd",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 66,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "2b5d0cd98050df74",
+   "policy_seat": 1,
+   "turns": 207,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d6794239c8984fd5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 62,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.41333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 5,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.05,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "d6794239c8984fd5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 66,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.33,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bdd06540d183e4ea",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "bdd06540d183e4ea",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 43,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.43,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.09,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "35703ea118408e3a",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 47,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.31333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9836f58a9aa83f22",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 87,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.58,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 10,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.1,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9836f58a9aa83f22",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 15,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.15,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "35703ea118408e3a",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 59,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3933333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1d6d258f2a27ceee",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1d6d258f2a27ceee",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 50,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "af4546fe39733ae9",
+   "policy_seat": 1,
+   "turns": 295,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 90,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 24,
+    "late_troll_turns": 90,
+    "move_per_troll_turn_251_300": 0.26666666666666666,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "af4546fe39733ae9",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.29333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b3354367d68eaa01",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b3354367d68eaa01",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 66,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.44,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "83655ae4386a5114",
+   "policy_seat": 0,
+   "turns": 266,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 32,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 9,
+    "late_troll_turns": 32,
+    "move_per_troll_turn_251_300": 0.28125,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "83655ae4386a5114",
+   "policy_seat": 1,
+   "turns": 289,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 21,
+    "late_troll_turns": 78,
+    "move_per_troll_turn_251_300": 0.2692307692307692,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "80f45ac53825096b",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "80f45ac53825096b",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 44,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.22,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0ac89be1babd05b2",
+   "policy_seat": 0,
+   "turns": 168,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0ac89be1babd05b2",
+   "policy_seat": 1,
+   "turns": 138,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a34b500a9fcd3663",
+   "policy_seat": 1,
+   "turns": 284,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 31,
+    "late_troll_turns": 68,
+    "move_per_troll_turn_251_300": 0.45588235294117646,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 12,
+    "late_troll_turns": 68,
+    "move_per_troll_turn_251_300": 0.17647058823529413,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a34b500a9fcd3663",
+   "policy_seat": 0,
+   "turns": 294,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 34,
+    "late_troll_turns": 88,
+    "move_per_troll_turn_251_300": 0.38636363636363635,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 88,
+    "move_per_troll_turn_251_300": 0.022727272727272728,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a6acf68ed442d44f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a6acf68ed442d44f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.07,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "352717caaf3cd15d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "352717caaf3cd15d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "503a7f5422f429aa",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 30,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.2,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 11,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.11,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "503a7f5422f429aa",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 29,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.19333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 23,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1152777fd492bc50",
+   "policy_seat": 0,
+   "turns": 242,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "1152777fd492bc50",
+   "policy_seat": 1,
+   "turns": 296,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 66,
+    "late_troll_turns": 138,
+    "move_per_troll_turn_251_300": 0.4782608695652174,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "779cdd565091814c",
+   "policy_seat": 1,
+   "turns": 257,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 14,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 4,
+    "late_troll_turns": 14,
+    "move_per_troll_turn_251_300": 0.2857142857142857,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c806cf9ec398f622",
+   "policy_seat": 0,
+   "turns": 241,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "779cdd565091814c",
+   "policy_seat": 0,
+   "turns": 293,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 86,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 23,
+    "late_troll_turns": 86,
+    "move_per_troll_turn_251_300": 0.26744186046511625,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "c806cf9ec398f622",
+   "policy_seat": 1,
+   "turns": 244,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7838de8e7723289f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 71,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.47333333333333333,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "7838de8e7723289f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 90,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.6,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 21,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.21,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "722d8b1b2498a08d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "722d8b1b2498a08d",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 2,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.02,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dc84138afe6c78db",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 63,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.315,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "dc84138afe6c78db",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 200,
+    "move_per_troll_turn_251_300": 0.325,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "192d49daba211827",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 87,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.58,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "192d49daba211827",
+   "policy_seat": 1,
+   "turns": 299,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 81,
+    "late_troll_turns": 196,
+    "move_per_troll_turn_251_300": 0.413265306122449,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 98,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f6cf41da2e013b6c",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 47,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.47,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 23,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.23,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "661d66815357696f",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 49,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.32666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "661d66815357696f",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 45,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "f6cf41da2e013b6c",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 58,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.38666666666666666,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0a3a374ffc54c5de",
+   "policy_seat": 1,
+   "turns": 241,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9e7ddc31b57ee9b5",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 51,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.34,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "0a3a374ffc54c5de",
+   "policy_seat": 0,
+   "turns": 296,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 20,
+    "late_troll_turns": 92,
+    "move_per_troll_turn_251_300": 0.21739130434782608,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "9e7ddc31b57ee9b5",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 55,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "411de57e24478007",
+   "policy_seat": 1,
+   "turns": 226,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b4a37d9ea678626e",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 38,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.38,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 35,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.35,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "411de57e24478007",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.32,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "b4a37d9ea678626e",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 16,
+   "standing_trees": 4,
+   "policy": {
+    "late_moves": 19,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.19,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 29,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.29,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "64dc33f2b49c3f74",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 39,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.26,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "64dc33f2b49c3f74",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 46,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.30666666666666664,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 18,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.18,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e34ab2b794c09fe8",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 8,
+   "standing_trees": 2,
+   "policy": {
+    "late_moves": 28,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.28,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 16,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.16,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e34ab2b794c09fe8",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 4,
+   "standing_trees": 1,
+   "policy": {
+    "late_moves": 30,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.3,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 3,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.03,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "583d8a8d5744d1a6",
+   "policy_seat": 1,
+   "turns": 223,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "583d8a8d5744d1a6",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 43,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.2866666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a59702547846bc78",
+   "policy_seat": 0,
+   "turns": 247,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "a59702547846bc78",
+   "policy_seat": 1,
+   "turns": 259,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 3,
+    "late_troll_turns": 18,
+    "move_per_troll_turn_251_300": 0.16666666666666666,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 7,
+    "late_troll_turns": 18,
+    "move_per_troll_turn_251_300": 0.3888888888888889,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "71375da602d4aa0d",
+   "policy_seat": 1,
+   "turns": 216,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "71375da602d4aa0d",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 64,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.4266666666666667,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "14395351868c29be",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 54,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.36,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "14395351868c29be",
+   "policy_seat": 1,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 65,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.43333333333333335,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "197ad647fa179657",
+   "policy_seat": 1,
+   "turns": 208,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "3d0029242780c86e",
+   "policy_seat": 1,
+   "turns": 207,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 1,
+    "roster_end": 1
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "3d0029242780c86e",
+   "policy_seat": 0,
+   "turns": 279,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 18,
+    "late_troll_turns": 29,
+    "move_per_troll_turn_251_300": 0.6206896551724138,
+    "roster_150": 1,
+    "roster_end": 1
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 58,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "197ad647fa179657",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 75,
+    "late_troll_turns": 150,
+    "move_per_troll_turn_251_300": 0.5,
+    "roster_150": 3,
+    "roster_end": 3
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "26af46c7e2626533",
+   "policy_seat": 0,
+   "turns": 300,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 48,
+    "late_troll_turns": 250,
+    "move_per_troll_turn_251_300": 0.192,
+    "roster_150": 4,
+    "roster_end": 5
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 100,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e4bdf12a386ce734",
+   "policy_seat": 0,
+   "turns": 217,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "26af46c7e2626533",
+   "policy_seat": 1,
+   "turns": 298,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 57,
+    "late_troll_turns": 192,
+    "move_per_troll_turn_251_300": 0.296875,
+    "roster_150": 4,
+    "roster_end": 4
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 96,
+    "move_per_troll_turn_251_300": 0.0,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  },
+  {
+   "map_hash": "e4bdf12a386ce734",
+   "policy_seat": 1,
+   "turns": 211,
+   "standing_size_units": 0,
+   "standing_trees": 0,
+   "policy": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   },
+   "opponent": {
+    "late_moves": 0,
+    "late_troll_turns": 0,
+    "move_per_troll_turn_251_300": null,
+    "roster_150": 2,
+    "roster_end": 2
+   }
+  }
+ ]
+}

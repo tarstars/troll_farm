@@ -13,7 +13,7 @@ STAMP=$STATE/local_claude_1.last-fallback-wake
 PROMPT=/home/tarstars/coordinator-wake-prompt.txt
 CHECKOUT=/home/tarstars/prj/troll_farm
 WT=/home/tarstars/prj/troll_farm-local_claude_1
-SILENCE=${WATCHDOG_SILENCE_SECONDS:-10800}
+SILENCE=${WATCHDOG_SILENCE_SECONDS:-3600}
 mkdir -p "$STATE"
 log() { echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $*" >> "$LOG"; }
 
