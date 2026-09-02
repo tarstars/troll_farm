@@ -173,3 +173,36 @@ one ladder block of four hours. No other track's ladder hours are taken.
   champion vs itself 113–174–113 (margin 0.0); **orchard 6 65–11–324, −26 a game** against ladder readings of
   18.8 vs 18.2; the denial rule −0.7. Ruling above: rung 1 becomes a field reading; the slice stands as the
   pool. codex_1 acknowledged 08:23Z (design read first, then the build). — coordinator
+- 2026-09-02 09:2xZ: **claude_1 delivered `field.py`** (rung 1's aggregator; `claude_1/h2h-panel/field.py`, 9 tests, pinned
+  `5f23c53c…`): per-opponent paired differences and a FIELD line with the clustered interval over maps; refuses unpaired
+  inputs; verdicts FIELD_ABOVE_ZERO / BELOW / STRADDLES / INCONCLUSIVE. Ruling on its one open wording: **the bar is the
+  win indicator** (the ladder's rating is computed from wins and losses, not margins); the margin is printed beside it and
+  breaks a straddle only in the report's prose, never in the verdict. claude_1 plays and pins the champion's four field
+  runs now, so a candidate's day costs only its own four. Track E's lead held two of the four bots (delineate 141 games,
+  Bubaptik 66; norxondor and MSz none) — moot since the corpus is on the VM. — coordinator
+- 2026-09-02 09:2xZ: **codex_1 delivered the design read** (`codex_1/norxondor-port/DESIGN-2026-09-02.md`, pinned
+  `e1300d02…`, 320 lines) within an hour of its charter and waits at the review gate (its deferred card `20260902T091328Z`).
+  **The coordinator's half of the one review round — DESIGN_ACCEPTED with two named changes, no second round:**
+  the July diagnosis is sound and cites its records (the failure was at the policy/state boundary: a learned intent tree
+  stood in for the missing P/D state, PICK without a plan or a cap, PICK racing TRAIN for the same bill); the hybrid
+  boundary table is complete over §3.9 and §5; the TRAIN transaction is consistent with the exact same-turn rule (the
+  completion test runs only when the floor is not affordable, and the referee applies PICK before TRAIN, so suppressing
+  PICK on a TRAIN turn and pricing from the pre-turn inventory is right); the single bounded orchard job with a
+  preselected cell removes the July loop without deleting the signature. The two changes, each from the measurement:
+  **(1) the switch deadline.** The design forces D only at roster five or when the next floor cannot complete by turn
+  185 (the corpus's latest TRAIN). Measured: the switch comes at median turn 153, and by roster at the switch 2 → 129,
+  3 → 144, 4 → 154, 5 → 173; the bot ends with a median of four trolls (five in 24 of 218 games). A single 185 deadline
+  keeps P running toward roster five whenever the fifth floor is reachable and lands D twenty to thirty turns late in the
+  common roster-four game. Change: a roster-indexed table `SWITCH_DEADLINE = {2: 129, 3: 144, 4: 154}` (roster 5 → D at
+  once, as designed) — D when the next floor is not affordable on the first turn at or past the deadline, the
+  projected-completion test kept as the early exit before it; **gate 6 reports the produced switch turn and roster
+  distribution on the 24-map run against the measured table.** The constant is the first tunable of the refinement
+  loop. **(2) the conversion job's seed kinds.** Once bananas run low the real bot keeps planting and cutting the other
+  kinds (turns 250–299: plum 309, lemon 266, apple 152, banana 128 across 218 games; fruit and wood score 1 and 4 a
+  unit, trees nothing): the D conversion job takes the kind in stock that is cheapest to fell — banana first, then the
+  sapling with the least health — under the same single-job bound. Pre-registered for the loop, not for v1: the banana
+  loop admitted in P from roster three (2.8 bananas planted by turn 150 in the corpus, worth ~10 points), banana
+  harvesting in P (8 % of trips). On the third question (v6 fields): claude_1's bed decodes the v6 line; the decoder
+  needs no nonzero counter as far as the champion's own arm shows — claude_1 confirms in its half. **Build starts on
+  this version with the two changes when claude_1's half of the round is in (due by 15:00Z); if it names a hole, it
+  folds into the same round.** — coordinator
