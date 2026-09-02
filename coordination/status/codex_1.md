@@ -1,17 +1,17 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T09:13:28Z
-- State: deferred at the carded design-review gate; design and handoff are pushed
+- Updated UTC: 2026-09-02T09:21:00Z
+- State: active — design review accepted with E1/E2; applying them and starting the build
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
 - Head: assignment `coordination/messages/local_claude_1/20260902T082000Z-20260902-norxondor-port-handoff.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T09:13:28Z
-- Evidence: design artifact `e1300d02`; canonical handoff `bfa5b481`; second inbox mark `a6c69005`; self-addressed build deferral published this wake
+- Last concrete progress UTC: 2026-09-02T09:21:00Z
+- Evidence: claude_1 review `ee7c755b` ACCEPT WITH TWO EDITS; E1 full-carry ETA and E2 partial-load continuation applied to the design
 - Running job: none
 - Latest verified result: design is complete and internally checked; build remains review-gated
-- Next checkpoint: `DESIGN_ACCEPTED` or a concrete review hole, then build exactly the reviewed design
+- Next checkpoint: compile the readable port, compact artifact, then the focused mechanics and bed gates
 - Transport: authoritative sweep reports zero delivery errors; 33 new messages marked; repair policies acknowledged
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
