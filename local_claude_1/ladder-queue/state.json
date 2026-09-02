@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
-    "id": "champion-baseline-0902-r1",
-    "label": "THE CHAMPION OF RECORD (41202036's file, sha 0e92f8fa\u2026) \u2014 fresh baseline reading in the current field, round 1; holds the ladder afterwards",
-    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
-    "submission_id": 41230202,
-    "submitted_at": "2026-09-02T08:00:04Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1471,6 +1462,122 @@
       "sha256": "eb383fd1c5c344f3cfdd71ce99e41edb58f8c49f19e23d22d92a58cb9baee905",
       "submission_id": 41210228,
       "submitted_at": "2026-08-28T20:22:14Z",
+      "total": 177
+    },
+    {
+      "age_min": 65.0,
+      "agent_id": 6689203,
+      "early_looks": [
+        {
+          "age_min": 5.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:05:02Z",
+          "rank": 166,
+          "score": 12.51,
+          "total": 177
+        },
+        {
+          "age_min": 10.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:10:02Z",
+          "rank": 162,
+          "score": 12.9,
+          "total": 177
+        },
+        {
+          "age_min": 15.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:15:01Z",
+          "rank": 150,
+          "score": 14.41,
+          "total": 177
+        },
+        {
+          "age_min": 20.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:20:02Z",
+          "rank": 136,
+          "score": 15.1,
+          "total": 177
+        },
+        {
+          "age_min": 25.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:25:03Z",
+          "rank": 132,
+          "score": 15.38,
+          "total": 177
+        },
+        {
+          "age_min": 30.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:30:01Z",
+          "rank": 117,
+          "score": 16.39,
+          "total": 177
+        },
+        {
+          "age_min": 35.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:35:02Z",
+          "rank": 113,
+          "score": 16.92,
+          "total": 177
+        },
+        {
+          "age_min": 40.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:40:02Z",
+          "rank": 99,
+          "score": 17.51,
+          "total": 177
+        },
+        {
+          "age_min": 45.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:45:04Z",
+          "rank": 109,
+          "score": 17.19,
+          "total": 177
+        },
+        {
+          "age_min": 50.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:50:04Z",
+          "rank": 110,
+          "score": 17.04,
+          "total": 177
+        },
+        {
+          "age_min": 55.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T08:55:04Z",
+          "rank": 110,
+          "score": 17.04,
+          "total": 177
+        },
+        {
+          "age_min": 60.0,
+          "agent_id": 6689203,
+          "at": "2026-09-02T09:00:03Z",
+          "rank": 110,
+          "score": 17.04,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "champion-baseline-0902-r1",
+      "label": "THE CHAMPION OF RECORD (41202036's file, sha 0e92f8fa\u2026) \u2014 fresh baseline reading in the current field, round 1; holds the ladder afterwards",
+      "package": "local_claude_1/ladder-queue/games-41230202",
+      "package_sha256": "d998c52ad0c50600478c4ab0909bc61e5e63c610296b295c3139837a9d4d0654",
+      "rank": 110,
+      "read_at": "2026-09-02T09:07:10Z",
+      "score": 17.04,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "submission_id": 41230202,
+      "submitted_at": "2026-09-02T08:00:04Z",
       "total": 177
     }
   ]

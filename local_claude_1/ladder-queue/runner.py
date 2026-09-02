@@ -92,8 +92,23 @@ def git_commit_push(message: str) -> None:
         if r.returncode == 0:
             return
         log(f"git push refused (attempt {attempt}): {(r.stdout + r.stderr)[-300:]}")
-        run(["git", "pull", "-q", "--rebase", "origin", "main"], timeout=300)
+        # autoStash: the checkout carries the collector's modified stats.json, and a plain
+        # `pull --rebase` refuses to run over unstaged changes (09-02: pushes failed forever once
+        # main had moved under the runner)
+        run(["git", "-c", "rebase.autoStash=true", "pull", "-q", "--rebase", "origin", "main"],
+            timeout=300)
     log("git push FAILED twice; the commit stays local and the next tick retries")
+
+
+def git_sync() -> None:
+    """Bring the checkout up to `origin/main` before a tick, so a `queue.json` pushed to `main`
+    from anywhere reaches the runner without a hand pull (09-02: the owner wants the research to
+    move without pushing). Local unpushed commits are rebased on top; the collector's dirty
+    stats.json is stashed around the rebase."""
+    r = run(["git", "-c", "rebase.autoStash=true", "pull", "-q", "--rebase", "origin", "main"],
+            timeout=300)
+    if r.returncode != 0:
+        log(f"git sync refused: {(r.stdout + r.stderr)[-300:]}")
 
 
 def arena_room() -> dict | None:
@@ -225,6 +240,7 @@ def read_current(queue: dict, state: dict) -> None:
 
 
 def tick() -> None:
+    git_sync()
     queue = load(QUEUE, {"items": []})
     state = load(STATE, {"current": None, "done": []})
     if state.get("halted"):

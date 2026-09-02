@@ -2,7 +2,8 @@
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
 
-The champion of record reads 18–21 on the ladder; the top four read 27.7–30.9; every rule change
+The champion of record reads 17–21 on the ladder (21.2 on 08-27, 18.2 on 08-29, **17.0 at rank
+110 on 09-02** — the field rises while the bot stands still); the top four read 27.7–30.9; every rule change
 tried since 08-27 read flat or worse on single one-hour ladder readings (noise ± 1.5). The fastest
 path is the one design already proven at 29.7 that we have reconstructed and never written as a
 program: **the second-placed player's bot**. Three lines run at once, each with its card:
@@ -33,6 +34,16 @@ program: **the second-placed player's bot**. Three lines run at once, each with 
    file): the two queued cluster reads land and are judged by the pre-registered gates; the host
    arms restart when the laptop is on mains; no further tuning arms; the teacher change (clone the
    champion from unlimited generated positions) waits for the owner's word.
+
+**08:4xZ, after P-0's calibration (orchard 6 loses 324 of 400 to the champion head-to-head yet read
+above it on the ladder): rung 1 is a FIELD reading — candidate and champion each against the same
+four local opponents, paired — not a duel; the real-field rung decides when it straddles zero.**
+
+**The research moves without the owner (owner 09-02: "I want this research to move on without me
+pushing it"):** the coordinator paces itself with scheduled wakes on the laptop; a fallback seat on
+the VM (`local_claude_1/coordinator-fallback/`, hourly watchdog) runs one headless coordinator wake
+whenever the laptop has been silent for three hours and mail waits; the bots wake on ack-required
+mail through the VM launcher; the ladder runner syncs its queue from `main` before every tick.
 
 **The ladder is the coordinator's again** (owner 09-02): the VM queue (`local_claude_1/ladder-queue/
 queue.json`, runner by cron) holds the champion of record for a fresh baseline in today's field;
