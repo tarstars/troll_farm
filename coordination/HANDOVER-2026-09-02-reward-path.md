@@ -32,10 +32,17 @@ and every bench: `local_claude_1/nn-bot/results/entropy-gate-0901/`; the plain-w
 
 ## In flight right now
 
-- **`ppo-yt-s22L`** — the stack at a **doubled budget** (22,200,000 turn-steps = 5,420 updates),
-  the one changed field (verified by config diff); operation `5f5afe7-4ade45ef-42e03e8-24076e87`;
-  at 06:05Z it was **pending a cluster slot** (queued, not running — check first). ~4 h once
-  running; a preemption restarts it from scratch and the salvage keeps every checkpoint
+- **`ppo-yt-s22L`** — the stack at a **doubled budget** (22,200,000 turn-steps = 5,419 updates),
+  the one changed field. **Relaunched 07:18Z as operation `371ec5d0-7528153d-42e03e8-30941f24`**
+  (the 04:54Z launch `5f5afe7…` was aborted while still queued: its payload carried 6,373 maps
+  against s22's 6,218 — recipe step 0 below). Beside it **`ppo-yt-s512`** (the stack with
+  `--rollout-steps 512 --num-envs 8`, operation `50c1737e-2212e43a-42e03e8-a7d614ed`, vs s22).
+  Both pending a slot at 07:21Z. The reads are pre-registered in
+  `local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md` (the depth gate = END vs END:
+  s22L@5250/5419 against s22@2500/2709; s512 by the standard gate at 1,500/2,500). Host arms
+  `ppo-host-s22` (vs hr22) and `ppo-host-s22L` (vs host s22) were stopped at update 21 — the
+  laptop is on battery — and restart identically when it is on mains (recipe step 5). ~4.7 h for
+  s22L once running; a preemption restarts it from scratch and the salvage keeps every checkpoint
   (`mid-run-…` names under `//home/delivery_ml/research/tarstars/troll_farm/runs/ppo-yt-s22L/outputs`).
   **Its read is pre-registered as EXPLORATORY**: retrieve (`yt_ppo_launcher.py retrieve
   --run-name ppo-yt-s22L --output-dir yt_work/ppo/ppo-yt-s22L-output`, math-venv python), then
@@ -46,6 +53,14 @@ and every bench: `local_claude_1/nn-bot/results/entropy-gate-0901/`; the plain-w
 
 ## The recipe for any new arm (hard-won, follow exactly)
 
+0. **Pin the maps (09-02 lesson).** The daily collector (05:17 local) appends to
+   `data/processed/maps.jsonl`, and the launcher's default slices whatever the file holds on the
+   day of `prepare` — so two arms prepared on different days silently train on different
+   corpora (the first s22L launch: 6,373 maps vs s22's 6,218; aborted before it ran). Cluster:
+   `--maps yt_work/ppo/<control>/maps.jsonl` (or the control's tarball contents), then verify
+   `tar -xzOf yt_work/ppo/<run>/troll_farm_payload.tar.gz data/maps.jsonl | sha256sum` equals the
+   control's. Host: `--maps /home/tarstars/nn-data/maps-host-corpus-0901-31088.jsonl` (the 09-01
+   corpus every host arm so far trained on; sha256 `f56dee62b956…`), never the live file.
 1. Cluster: `yt_ppo_launcher.py prepare` with the FULL flag set of the arm it must match, then
    **diff `yt_work/ppo/<run>/yt_run_config.json` trainer_args against the control's** — expect
    only the intended fields + the run name. The launcher's silent defaults have bitten twice:
@@ -63,10 +78,18 @@ and every bench: `local_claude_1/nn-bot/results/entropy-gate-0901/`; the plain-w
    **Never start a second `bench_ages` driver for an age whose JSON does not exist yet** — it
    truncates the shared replays file (one corrupt replays file exists: `hr22-locked-u1500`; its
    JSON is fine). Launch missing ages with `--ages <that age>` only.
-4. The gate: `gate1.py --treatment 1500=… 2500=… --control … --clone bench-clone-locked.json`.
-   Its four outcome names are frozen from the entropy era (`ENTROPY_*`); the rule is
-   variable-agnostic and printed with every verdict. Renaming the labels was offered to
-   chatgpt_1 for ack — do not touch the file without it.
+4. The gate: `PYTHONHASHSEED=0 gate1.py --treatment 1500=… 2500=… --control … --clone
+   bench-clone-locked.json` — the hash seed pinned since 09-02 (the bootstrap resamples a
+   set-ordered vector; the interval moved by one quantum, 1/288, across hash seeds; no verdict
+   flipped in 40 re-runs each of hr22 and r22). Its four outcome names are frozen from the
+   entropy era (`ENTROPY_*`); the rule is variable-agnostic and printed with every verdict.
+   Renaming the labels and the one-line sort repair were offered to chatgpt_1 for ack — do not
+   touch the file without it. The age labels are only measurement keys: the depth gate uses
+   `1=` and `2=` to pair s22L@5250/5419 with s22@2500/2709 (see
+   `local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`).
+5. **The host is a laptop.** Before launching or benching on it, check
+   `cat /sys/class/power_supply/AC/online` (1 = mains). On battery the cores sit at 800 MHz
+   (four times slower) and a training drains the owner's battery — do not run there.
 
 ## Track C — the clean room (halted, waiting)
 

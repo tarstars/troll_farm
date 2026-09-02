@@ -138,6 +138,18 @@ the best-fitting explanation of the staged drift. The full dossier:
    doubled step budget (5,420 updates; the one changed field, verified), the depth question the
    rise poses; its read is pre-registered as exploratory benches at updates 3,000…5,400, and any
    promotion claim requires a fresh frozen gate written before those numbers are seen.
+
+   **09-02 07:3xZ — that gate is written, blind** (`local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`):
+   the depth read compares s22L's *end* (updates 5,250 / 5,419) with s22's end (2,500 / 2,709) through the
+   frozen `gate1.py`, because the trainer anneals the learning rate over the whole budget and the two arms
+   are therefore different schedules from update 1, not one continued. Found the same hour: the first s22L
+   launch had been prepared on a map corpus the daily collector had just grown (6,373 maps vs s22's 6,218) —
+   aborted before it ran, relaunched with s22's slice byte for byte (op `371ec5d0…`); and `ppo-yt-s512`
+   (the stack with a 512-step rollout, eight environments; op `50c1737e…`) launched against s22 as the
+   reviewer's long-horizon lever taken one step further. Both pending a slot. The host arms (the stack and
+   the doubled budget, controls hr22 and host s22) were stopped at update 21: the laptop is on battery at
+   800 MHz; they restart identically when it is back on mains. Every gate run now sets `PYTHONHASHSEED=0`
+   (the interval jittered by one quantum across hash seeds; no verdict of record flips, 40 re-runs each).
 5. **The cluster reads** (as they land, ~19:00–20:00Z): retrieve a2 / e2 / i2, bench each final
    snapshot on the scout panel — exploratory evidence only; i2 is read as "constant vs nearly
    constant anchor", not a fade test. *Then the decision*, on the evidence of 3–5: the next lever

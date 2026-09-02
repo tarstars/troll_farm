@@ -1,0 +1,86 @@
+{
+  "clone": {
+    "sha256": "970097ed0842463b7ef5a4c08831d47ecc4e28397a52cadcc66d688e2a085109",
+    "source": "/home/tarstars/nn-data/clone-2026-08-30-a/clone-pilot.pt"
+  },
+  "created_utc": "2026-09-02T04:54:12.697730+00:00",
+  "files": [
+    {
+      "bytes": 10346,
+      "path": "cgauto/rl_level1_env.py",
+      "sha256": "815acc2a0d34bbe71e55ddcb7cf1cc1db97ffa0eace602d9a79a12a2c23feced"
+    },
+    {
+      "bytes": 13193,
+      "path": "cgauto/rl_level2_env.py",
+      "sha256": "e42affed48b8c9f3d8eb077664c879e10a8e71101eeb2ca2211c7d7582c3901c"
+    },
+    {
+      "bytes": 12340,
+      "path": "cgauto/rl_level3_env.py",
+      "sha256": "ab09fa9290456486897a2246c3db4c317d9bd4447f1e519356f020741161ae3b"
+    },
+    {
+      "bytes": 14741,
+      "path": "cgauto/rl_level4_env.py",
+      "sha256": "7b248685e8e70ad0aa0745d963f41a5480dd2293b5c4bf17914883bbef821087"
+    },
+    {
+      "bytes": 28143,
+      "path": "cgauto/rl_level5_env.py",
+      "sha256": "29328f0b614c6d57ccee4bae2a962815ec2d9cc281eaabcc9b34943a90d1331c"
+    },
+    {
+      "bytes": 34289,
+      "path": "cgauto/rl_full_env.py",
+      "sha256": "137c1ba931a178651207338e2d62f3e8377565b286217e539758331ed081fe1d"
+    },
+    {
+      "bytes": 75046,
+      "path": "cgauto/train_level1_ppo.py",
+      "sha256": "cca13170fdf01a3e1961f2bdebbbeb83c07d940eb97c4eef7332cb97abd109c8"
+    },
+    {
+      "bytes": 81068,
+      "path": "local_claude_1/nn-bot/train_ppo_full.py",
+      "sha256": "8f239a02b240a17eacae97087035916d40c53b90827df6fd72f13e57e1db2c80"
+    },
+    {
+      "bytes": 27313,
+      "path": "local_claude_1/nn-bot/fake_full_env.py",
+      "sha256": "913369649c18916bddd644157a81ef38b86f6b3ef4b0d03708732770c34ec13a"
+    },
+    {
+      "bytes": 3702328,
+      "path": "rust/target/release/libtroll_farm.so",
+      "sha256": "5298c2306d6f778b862e4037009ad176934c0510a014023459cc12e402669eaf"
+    },
+    {
+      "bytes": 14277077,
+      "path": "data/maps.jsonl",
+      "sha256": "48c183e80c7c7b621333a57810e44d5b49028e568ab1b46931c235dd838ded6f"
+    },
+    {
+      "bytes": 453799,
+      "path": "checkpoints/clone.pt",
+      "sha256": "970097ed0842463b7ef5a4c08831d47ecc4e28397a52cadcc66d688e2a085109"
+    }
+  ],
+  "library": {
+    "sha256": "5298c2306d6f778b862e4037009ad176934c0510a014023459cc12e402669eaf",
+    "source": "rust/target/release/libtroll_farm.so"
+  },
+  "maps": {
+    "destination": "/home/tarstars/prj/troll_farm-local_claude_1/yt_work/ppo/ppo-yt-s22L/maps.jsonl",
+    "destination_bytes": 14277077,
+    "every": 5,
+    "limit": null,
+    "lines_kept": 6373,
+    "lines_read": 31863,
+    "mode": "slice",
+    "source": "/home/tarstars/prj/troll_farm/data/processed/maps.jsonl",
+    "source_bytes": 71434080
+  },
+  "purpose": "self-play PPO over the full game, CPU-only vanilla operation",
+  "run_name": "ppo-yt-s22L"
+}

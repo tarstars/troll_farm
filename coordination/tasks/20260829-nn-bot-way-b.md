@@ -1111,3 +1111,29 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   edition** with the campaign-ledger figure. **FLUSH ENTRY: `coordination/HANDOVER-2026-09-02-reward-path.md`** — the
   ledger, the recipe for new arms with every pitfall, the in-flight ops, Track C's state, the standing constraints.
   — coordinator
+- 2026-09-02 07:3xZ: **four arms launched, one relaunched, two stopped — and three things learned before any of their numbers
+  exist** (all pre-registered in `local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`). **(1) The map-slice
+  confound.** `ppo-yt-s22L` as launched at 04:54Z (op `5f5afe7…`) carried a 6,373-map slice while its control s22 trained on
+  6,218: the daily collector appended 775 maps to `data/processed/maps.jsonl` at 02:39Z (append-only, verified byte for byte
+  — the 09-01 corpus is exactly the first 31,088 lines of today's file, the byte size the s22 manifest recorded) and the
+  launcher's default slices whatever the file holds on the day of `prepare`. "The one changed field" was true of the trainer
+  arguments and false of the payload. The job had not started (pending 2.4 h); **aborted 07:15Z and relaunched 07:18Z with
+  s22's slice shipped verbatim** (op `371ec5d0-7528153d-42e03e8-30941f24`; the maps inside the tarball hash `16577bf1…` like
+  s22's; trainer_args differ in total steps and run name only; job limit 10 h). Recipe amended: pin `--maps` to the control's
+  file and compare the hash inside the payload tarball. **(2) `ppo-yt-s512` launched** (op `50c1737e-2212e43a-42e03e8-a7d614ed`,
+  same slice, differs from s22 in `--rollout-steps 512 --num-envs 8` only, batch 4,096 held; limit 8 h): the reviewer's
+  long-horizon-credit lever one step further, ~130–170 turns of look-ahead; read by the standard gate vs s22 at 1,500 / 2,500.
+  Both cluster jobs pending a slot at 07:21Z. **(3) The anneal caveat, recorded blind:** the trainer anneals the learning rate
+  linearly to zero over the TOTAL budget, so s22L is a different schedule from update 1 (rate 54 % vs 7.7 % at update 2,500),
+  not "s22 continued"; the depth gate therefore compares END against END — s22L@5250 / 5419 vs s22@2500 / 2709 (the frozen
+  `gate1.py` with measurement labels, `PYTHONHASHSEED=0`) — and s22's rise 29 → 33 → 33 coincides with its own rate annealing
+  to zero, which is also what makes a level hold. **(4) The gate's interval jitters by one quantum across Python hash seeds**
+  (set iteration order feeds the bootstrap): 40 re-runs each — hr22 NOT_CONFIRMED 40/40 (lower bound −0.0035 ×3, 0.0000 ×37),
+  r22 CONFIRMED 40/40 (+0.0035 ×38, +0.0069 ×2); no verdict of record flips; every gate run now sets `PYTHONHASHSEED=0`; the
+  one-line sort repair goes to chatgpt_1 with the label rename. **(5) The host is a laptop on battery** (42 %, power-saver,
+  all cores at 800 MHz of 4,800; the bench that finished 06:40Z already ran 2.4× slow): the two host arms launched 07:17Z —
+  `ppo-host-s22` (the stack vs hr22; pinned 09-01 corpus copy `maps-host-corpus-0901-31088.jsonl`) and `ppo-host-s22L` (the
+  doubled budget vs host s22) — ran at 17 s an update instead of 4.5 and were **stopped at update 21** rather than drain the
+  owner's battery; deterministic, they restart from scratch when the machine is on mains (dirs `…-0902/` hold only the
+  aborted logs; an empty `ppo-host-s22-0901/` is the trace of a launch interrupted at 06:45Z). No bench runs on battery.
+  — coordinator
