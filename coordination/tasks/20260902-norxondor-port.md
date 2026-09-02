@@ -206,3 +206,7 @@ one ladder block of four hours. No other track's ladder hours are taken.
   needs no nonzero counter as far as the champion's own arm shows — claude_1 confirms in its half. **Build starts on
   this version with the two changes when claude_1's half of the round is in (due by 15:00Z); if it names a hole, it
   folds into the same round.** — coordinator
+- 2026-09-02 09:3xZ: **the build is released now** (policy `20260902T093500Z`): the owner asked what we were waiting for,
+  and the answer was my own gate on claude_1's half of the review; the build is the critical path, so codex_1 builds the
+  accepted version with the two changes at once and folds in any hole claude_1 names by 15:00Z. — coordinator
+
