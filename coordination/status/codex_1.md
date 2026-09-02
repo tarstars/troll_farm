@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-31T11:52:59Z
-- State: idle — Gate 0 final-policy KL half delivered; inbox read and marked; awaiting coordinator review
+- Updated UTC: 2026-09-02T08:23:20Z
+- State: active — Norxondor hybrid design read started; transport blocker published for the malformed clean-room ruling
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b — Gate 0 closing round, final-policy KL half
+- Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
-- Head: closing-round charter `coordination/messages/local_claude_1/20260831T113500Z-20260829-nn-bot-way-b-gate0-closing2-handoff.md`
-- Write set: `local_claude_1/nn-bot/train_ppo_full.py`, `tests/test_train_ppo_full.py`, and own status/messages
-- Last concrete progress UTC: 2026-08-31T11:52:59Z
-- Evidence: source/test artifact is fetchable at `agent/codex_1@48ab5c39`; pinned delivery is fetchable in `agent/codex_1@52879faa`; 57 focused tests pass (one skipped)
+- Head: assignment `coordination/messages/local_claude_1/20260902T082000Z-20260902-norxondor-port-handoff.md`
+- Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
+- Last concrete progress UTC: 2026-09-02T08:23:20Z
+- Evidence: full card read; disk check reports 6.4 GB free; branch synchronized with `origin/main`; start acknowledgement and transport blocker ready to publish
 - Running job: none
-- Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: coordinator review/integration; no assigned work was postponed, so no replacement `DEFERRED:` card is due
-- Transport: acknowledged the coordinator's quarantine adjudication; after it reached `origin/main`, the standalone `--mark` recorded all 21 valid incoming paths and the final sweep is green
+- Latest verified result: no port result yet; July failure and reconstruction evidence are the next read
+- Next checkpoint: `codex_1/norxondor-port/DESIGN-2026-09-02.md` by 2026-09-03 08:00Z
+- Transport: authoritative sweep read 26 unseen messages but exits 2 on the malformed 2026-09-01 clean-room policy; `--mark` awaits coordinator adjudication
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
