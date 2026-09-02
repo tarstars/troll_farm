@@ -234,3 +234,31 @@ one ladder block of four hours. No other track's ladder hours are taken.
   real but not idle production — the layer that loses the last fifty turns is the roster and a map kept alive, this
   card's macro layer): for the port's loss read, report **MOVE per troll-turn in turns 251–300** (the champion 0.17, the
   field 0.37–0.62) and **tree-size units standing at the end** (the champion's median 4). — coordinator
+- 2026-09-02 11:5xZ: **RUNG 1's VERDICT: `FIELD_BELOW_ZERO` — the port loses to all four local opponents, and not narrowly**
+  (claude_1's handoff `20260902T114111Z`, pinned `20741d98…`; 1,600 games, 0 faults; `results/port-v2-field.json`
+  sha `d3942b55…`). First, the reproduction PASSED: the readable source at `7e45fa4c…` compacts byte-identically to
+  `411b0565…` (82,518 UTF-16 units), mechanics 15/15, bed 34/34, the 24-map duel reproduced to the decimal. Then the
+  field, candidate − champion paired by map and seat: **FIELD Δwin −0.421 [−0.453, −0.389], Δmargin −71.1
+  [−75.6, −66.7]**; per opponent — champion −0.243 [−0.285, −0.200] (16 wins of 400 against the champion's own 113);
+  orchard 6 −0.738 (29 vs 324); the old champion with denial on −0.343 (10 vs 147); the network clone −0.363
+  (186 vs 331, and there the port nearly holds: 162.9 points to the clone's 172.0). **The port's economy works and its
+  output does not:** roster median 3 by turn 150 and at the end (the champion trains once and plays with two), games
+  run to the turn limit far more often (283/400 vs the champion's own duel median of 180 turns), and it still scores
+  114.5 against the champion's 174.3 in the same games. Endgame signatures: MOVE per troll-turn in 251–300 **0.35**
+  (the champion 0.08 in the same games; Track E's ladder values 0.17 and a field of 0.37–0.62); tree-size units
+  standing at the end median 0 — both sides end on an empty board. — coordinator
+- 2026-09-02 11:5xZ: **the ruling — the loss read and the one refinement loop, and a real-field calibration burst run in
+  parallel.** The panel's four opponents are all of our own lineage and all clear-cutters, and that population has
+  inverted a verdict before: orchard 6 loses 324 of 400 to the champion here and read **above** it on the ladder the
+  same day (18.8 vs 18.2). So rung 1's verdict starts the pre-registered loop (codex_1, loss read first) **and** the
+  coordinator runs rung 2 as a diagnostic now rather than after a pass: `cgauto/field_panel.py` on the VM (the live
+  session; the platform is ours since 09-02), champion as baseline and port v2 as candidate against the five real
+  Legend agents on the same seed, one game a cell a burst (10 games), `/data/scratch/rung2/`. It cannot promote
+  anything — it says whether the local field's verdict transfers to the population the ladder actually contains.
+  **The loss read's question, written before its numbers:** where do the 60 points go? The score decomposition by
+  phase (fruit banked and wood banked, per fifty turns, port and champion in the same games, from the 76 MB replays at
+  `/data/scratch/claude1-norx-v2/`), the turn the last tree falls, and what the port's three trolls do in turns
+  100–200 while the champion is chopping. The hypothesis to test, not to assume: the port farms fruit for talents
+  while the champion converts the map to wood at four points a unit, so the bigger roster arrives on an empty board —
+  the reconstruction's own §5.8 drift, one level up. One loop, one variable, the panel again after it. — coordinator
+
