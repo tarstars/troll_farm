@@ -1,4 +1,41 @@
-# GOAL — Track N, the neural-network bot: the recovery programme after the second opinion (owner 2026-08-31 ~07:0xZ: "let's write down your 'What I'll do now' as goal file and set it in action")
+# GOAL — raise the bot's ladder score as fast as possible (owner 2026-09-02 ~07:5xZ: "I like this approach. Write it down and let's do it. I took submission control from codex, it's yours now. We don't need stop neuronetwork approach, we can conduct another tasks while waiting for training.")
+
+## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
+
+The champion of record reads 18–21 on the ladder; the top four read 27.7–30.9; every rule change
+tried since 08-27 read flat or worse on single one-hour ladder readings (noise ± 1.5). The fastest
+path is the one design already proven at 29.7 that we have reconstructed and never written as a
+program: **the second-placed player's bot**. Three lines run at once, each with its card:
+
+1. **Track P — port norxondor_gorgonax** (`coordination/tasks/20260902-norxondor-port.md`): a new
+   rule-based Rust bot built from `local_claude_1/reconstructions/norxondor_gorgonax/ALGORITHM.md`
+   (the produce/deforest state machine, the exact train ladder, plant-and-cut bananas); the gaps
+   the reconstruction marks as unfitted are filled by local search. codex_1 builds, claude_1
+   reviews and reproduces, the coordinator rules and runs the ladder block. **The local paired
+   panel is the selector** (400 games against the champion of record and 400 against orchard 6 on
+   real maps, both seats, the interval discipline of the network line); **the ladder is the
+   confirmation only** — champion and challenger read in the same window, two readings each.
+   *Done when:* the port's ladder verdict is on the card. *Dead when:* the design read finds the
+   reconstruction cannot be implemented, or the panel reads the port below the champion with the
+   interval wholly below zero after the one pre-registered refinement loop. Budget: five days.
+2. **Track E — the endgame gap** (`coordination/tasks/20260902-endgame-move-gap.md`, a one-day
+   read by claude_1): our bot issues 8 move commands in the endgame where the top bots issue 32–38
+   (row T-1's one unexplained gap); what our trolls do in the last fifty turns against what
+   theirs do, on the per-turn corpus and the collected games; one candidate rule if production
+   is left on the table.
+3. **Track N — the network line continues in the background** (its plan is the rest of this
+   file): the two queued cluster reads land and are judged by the pre-registered gates; the host
+   arms restart when the laptop is on mains; no further tuning arms; the teacher change (clone the
+   champion from unlimited generated positions) waits for the owner's word.
+
+**The ladder is the coordinator's again** (owner 09-02): the VM queue (`local_claude_1/ladder-queue/
+queue.json`, runner by cron) holds the champion of record for a fresh baseline in today's field;
+challengers go up only after the panel, the bed and a second agent's byte-identity reproduction,
+with the owner's prediction asked first. One bot at a time; every reading and its games on `main`.
+
+---
+
+# The network line (Track N) — the recovery programme after the second opinion (owner 2026-08-31 ~07:0xZ: "let's write down your 'What I'll do now' as goal file and set it in action")
 
 **THE STANDING TARGET (owner 2026-08-29 14:4xZ, unchanged):** *a neural-network candidate that beats
 the champion of record and orchard 6 on the local bench — at least 60 % wins over 400 games against
@@ -180,15 +217,17 @@ the report PDF re-issued at the owner's request or at a phase boundary.
    checkout `/home/tarstars/prj/troll_farm` in a separate call.
 
 ## Not allowed
-Any platform action (the ladder is codex's until the owner says otherwise); deletions or moves of
-data; new cluster trees/pools; unfreezing a joint fine-tune before Gate 0's instrument and the
-critic calibration are read (the reviewer's rule, adopted).
+Deletions or moves of data; new cluster trees/pools; a submission that has not passed the panel,
+the bed and a second agent's byte-identity reproduction (the champion of record's own restore
+excepted); training or benching on this laptop while it is on battery; any spend beyond the pool
+in use. (The platform freeze of 08-29 ended 09-02: the ladder is the coordinator's, under the
+ladder-queue rules above.)
 
 ## Done when
-Either a candidate passes the standing target's gates (then the one message to the owner), or the
-programme's stop condition fires (2026-10-17, or the card's dead conditions) and the final report
-says what was learned. Each wake ends with the board truthful and `origin/main` ==
-`agent/local_claude_1` == the checkout.
+Track P has its ladder verdict on its card (either the port becomes the champion of record on the
+owner's word, or its obituary says why not), and Track N either passes the standing target's gates
+or hits its stop condition (2026-10-17, or the card's dead conditions) with a final report. Each
+wake ends with the board truthful and `origin/main` == `agent/local_claude_1` == the checkout.
 
 *(The third-troll experiment, the floor and the apple farm — the pre-freeze ladder work — are on
 hold while the platform is codex's; their state is in git history of this file and on the board.
