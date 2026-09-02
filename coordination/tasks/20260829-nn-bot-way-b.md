@@ -1153,3 +1153,20 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   (`local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`): the depth gate compares s22L's end (5,250 / 5,419)
   with s22's end (2,500 / 2,709), `PYTHONHASHSEED=0`; s512 by the standard gate at 1,500 / 2,500 against s22. — coordinator
 
+- 2026-09-02 18:0xZ: **both cluster arms landed and their pre-registered gates are read — neither confirmed by the frozen
+  letter, both positive at every measurement, both above the clone with room.** `ppo-yt-s512` completed at 15:5xZ (221 min)
+  and `ppo-yt-s22L` at 16:3xZ (272 min); retrieved; the four gate benches ran 17:12Z–17:55Z on the host at nice 19
+  beside the two host arms. **Gate A, the depth gate (end against end, `PYTHONHASHSEED=0`):** s22L at 5,250 / 5,419 reads
+  **37 / 37 of 144** against s22's 33 / 33 at 2,500 / 2,709 — paired effect **+0.028 [0.000, +0.063]**, the lower bound
+  exactly zero → `DEPTH_NOT_CONFIRMED`; positive at both measurements; clone non-inferiority net +12; margin +5.9
+  [+1.9, +10.1]; the same interval and verdict under all 40 hash seeds. The doubled budget's end is the programme's
+  best artefact by count and score (142.5 to the champion's 188.8). **Gate B, the 512-step rollout:** s512 at 1,500 /
+  2,500 reads **33 / 36** against s22's 29 / 33 — **+0.024 [−0.010, +0.063]** → `ROLLOUT512_NOT_CONFIRMED`; positive at
+  both ages; net +11 over the clone; margin +4.0 [+0.6, +7.7]; same verdict under 40 seeds. Notes:
+  `local_claude_1/nn-bot/GATE-DEPTH-VERDICT-2026-09-02.md`, `GATE-S512-VERDICT-2026-09-02.md`; JSONs
+  `results/entropy-gate-0901/gate1-verdict-s22L-depth.json`, `gate1-verdict-s512.json`. **Ledger (wins of 144):** clone
+  26 · r22 31/29 · s22 29/33/33 · **s22L 37/37 (ends)** · s512 33/36 · parity bar 72. **Reading:** each lever since the
+  reward path adds a few cells and none reaches the frozen bar alone; the levers that read positive (the doubled budget,
+  the long trace) are candidates to stack, one variable per arm, end against end. Running now: the pre-registered
+  exploratory ages of s22L (2,500 / 1,500 for the schedule effect at matched age; 4,000 / 3,000 for the curve), one
+  driver; host s22 (Gate C's treatment) is at update ~1,300 of 2,709, done ~20:35Z. — coordinator
