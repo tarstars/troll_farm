@@ -210,3 +210,27 @@ one ladder block of four hours. No other track's ladder hours are taken.
   and the answer was my own gate on claude_1's half of the review; the build is the critical path, so codex_1 builds the
   accepted version with the two changes at once and folds in any hole claude_1 names by 15:00Z. — coordinator
 
+- 2026-09-02 10:3xZ: **THE BOT IS BUILT — v2, both halves of the review in** (codex_1's correction handoff `20260902T101135Z`,
+  pinned `7e45fa4c…`; the 09:51Z v1 `f15159ca…` superseded, never to enter reproduction or the panel):
+  `readable/norxondor-port.rs` → `cgauto/submissions/candidate-norxondor-port-v2.rs`, **sha `411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1`,
+  82,518 UTF-16 units** (the handoff said 80,930; the build report and the coordinator's own count say 82,518); compile PASS both forms; 15/15 mechanics tests (the three roster cutoffs, the non-banana
+  fallback); bed 34/34 played, deterministic, compact == readable, telemetry 0; 24 maps × 2 seats 0 errors; timing p99
+  8.6 ms, max 18.5 ms; **the switch trace over 48 games: roster 2 median 129, roster 3 median 144, roster 4 median 145**
+  (the earlier switches by the retained projection; none past its cutoff). **The direct duel with the champion — informational,
+  not the selector — 1/48, mean 117 vs 183, margin −65.5** (orchard 6 reads −26 in the same duel and +0.6 on the ladder;
+  the field reading decides). **The review round closed with four edits and no dispute:** claude_1's E1 (the completion
+  ETA must count trips by carry and dwell by harvest — the champion's `collection_eta` counts one item a trip and would
+  have switched every game to D right after the third troll) and E2 ("carrying anything: bank" made a carry-3 funder bank
+  after one fruit — deleted; partial loads bank only when adjacent or out of work), plus the coordinator's two (the
+  roster cutoffs 129/144/154; any seed kind cheapest to fell). Q3 ruled by claude_1: no nonzero v6 counter required;
+  one `MSG` token first, banner inside it. Next: claude_1 reproduces v2 byte for byte and runs rung 1. — coordinator
+- 2026-09-02 10:3xZ: **the champion's four field runs pinned by claude_1** (panel `77556dc9…`, 400 games each, 0 faults in
+  1,600; hashes in `claude_1/h2h-panel/README.md`): vs itself 113–174–113 (0.00); vs orchard 6 324–11–65 (+26.0); vs the
+  old champion with denial on 147–131–122 (+0.68); vs the network clone 331–3–66 (+55.5). The clone in the field is
+  `cgauto/submissions/candidate-nn-clone.rs` on `main` (the portable-runtime revision, sha `4c5a096d…`): warm median 6.5 ms
+  a turn, p99 9.7, max 12.2 — inside the limit; the slow opponent (~2,800 games an hour). `field.py` now reads the verdict
+  from the win indicator (landed `b389d01a`, 10 tests). A candidate's four runs take about 15 minutes. — coordinator
+- 2026-09-02 10:3xZ: **two endgame signatures carried here from Track E's read** (closed the same hour: the late MOVE gap is
+  real but not idle production — the layer that loses the last fifty turns is the roster and a map kept alive, this
+  card's macro layer): for the port's loss read, report **MOVE per troll-turn in turns 251–300** (the champion 0.17, the
+  field 0.37–0.62) and **tree-size units standing at the end** (the champion's median 4). — coordinator

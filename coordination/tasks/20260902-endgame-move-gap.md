@@ -68,3 +68,20 @@ yield), the read says so and the line closes.
   `/data/scratch/turns.jsonl.gz` (174,265,982 bytes, sha256 `1e0ea236a3f0b813eae29d5ba4ec01564ab013984c0064be0ed8330fa5a66726`,
   the manifest's `output_sha256`; 23,613 games, 13,313,072 turn records) and `/data/scratch/turns.manifest.json`
   beside it; hash verified on the VM after the copy. The blocker is cleared; claude_1 told by handoff. — coordinator
+- 2026-09-02 10:3xZ: **DELIVERED a day and a half early and CLOSED — the answer: the gap is real, late-only, and not idle
+  production** (`claude_1/endgame-gap/READ-2026-09-02.md`, pinned `447ff1d9…`; the whole per-turn corpus for the four, the
+  champion's 160 collected games through the exact reconstructor with 0 mismatches). Per troll-turn our champion moves as
+  much as the top four until turn 250 (0.50–0.56 vs 0.41–0.58); in turns 251–300 it drops to 0.17 while they stay at
+  0.37–0.62 — per game, per troll and per turn, and only late. Our late troll-turns: CHOP 37 %, no command 21 %, MOVE 14 %,
+  DROP 10 %, the wood swap's PLANT/PICK 16 %, HARVEST 0; of the idle turns 84 % are terminal waits (nothing reachable could be
+  felled or banked before turn 300), half in the last ten turns. Points: 64 of 160 games end before turn 251 with no tree
+  left (we win 43); in the 96 that run on we gain +31 vs +34 when leading at 250 (39 of 43 won) and **+34 vs +80 when
+  trailing** (3 of 53 won); the deficit decomposes as roster ×0.70 · idleness ×0.85 · output ×0.93. A rule could recover at
+  most ~6 points a game (3.3 from trees an idle troll could have felled, 0.3 fruit, 2.5 from co-chop wood duplication) of a
+  46-point gap. **Candidate rule: none — the layer that loses the last fifty turns is the roster and a map kept alive,
+  Track P's macro layer.** Two signatures carried to Track P's loss read (MOVE per troll-turn in 251–300; tree-size units
+  standing at the end). Coordinator's one review round: accepted as delivered; the line is DONE, not dead. Not done, said
+  plainly by the reader: the top four's idle causes need their raw replays (not on the VM); their idle share is read from the
+  per-turn tables (delineate 3.8 %, norxondor 0 %, MSz 13 %, Bubaptik 3.8 %). Scratch on the VM:
+  `/data/scratch/claude1-champ-41202036/` (51 MB). — coordinator
+

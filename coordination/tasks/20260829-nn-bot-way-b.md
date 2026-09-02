@@ -1143,3 +1143,6 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   update (31 updates in 150 s), so host s22 lands ≈ 12:00Z and host s22L ≈ 15:30Z. A battery guard
   (`/home/tarstars/nn-data/battery-guard.sh`, pid file beside it) stops every host training within a minute if the
   mains go away. Both cluster arms still pending a slot at 08:3xZ. — coordinator
+- 2026-09-02 10:3xZ: the laptop left the mains at 09:11Z and **the battery guard stopped both host arms at update 450**
+  (`battery-guard.log`), as designed; still on battery at 10:3xZ (74 %). They restart identically from the clone when the
+  mains return (dirs `…-0902c/` then; nothing lost). Both cluster arms still pending a slot after three hours. — coordinator
