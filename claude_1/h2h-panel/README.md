@@ -57,3 +57,21 @@ opponents and jobs as the champion's runs above. `claude_1/norxondor-port/REPRO-
 **FIELD_BELOW_ZERO**. `results/port-v2-vs-legality24.json` is the 24-map legality run (48 games, 0/0/0, the duel
 reproduced to the decimal). `endgame_sig.py` reads the two endgame signatures and the roster from an `h2h.py --replays`
 file through the same referee (`results/port-v2-endgame-sig.json`).
+
+## The port v3.1's four field runs (2026-09-02 13:53Z–14:11Z; rung 1: FIELD_BELOW_ZERO, and below v2)
+
+Policy `cgauto/submissions/candidate-norxondor-port-v3-1.rs` at the coordinator's `115acba2` (sha `7689de32…`; v2 with
+`PRODUCE_ROSTER_CAP` 3 and its tests brought to the cap), the same panel, the same opponent files. `results/port-v3-*.json`
+are the same runs on the retired v3 build (`84870bc9…`, the same play; every cell identical). `REPRO-2026-09-02.md` §5.
+
+| opponent | file | sha256 | W–T–L (port) | margin [95%] | faults |
+|---|---|---|---|---|---|
+| the champion of record | `results/port-v31-vs-champion.json` | `0b4a490dc34ba3a178ef15a1d5a44cae2123d522ea329041482f670e03db1eb1` | 10–1–389 | −55.51 [−59.35, −51.65] | 0/0/0 |
+| orchard 6 | `results/port-v31-vs-orchard6.json` | `24ac38fd98eae2126332d569a3652ccd27038ff6a5d0d818c5f03294f0d6235f` | 24–0–376 | −70.14 [−75.36, −64.69] | 0/0/0 |
+| the old champion, denial on | `results/port-v31-vs-old-denial-on.json` | `c4592c23c65aed1b22e9d6f613549dc5243dccfb67c66662c8830c633163850a` | 10–4–386 | −48.80 [−52.66, −44.99] | 0/0/0 |
+| the network clone | `results/port-v31-vs-nn-clone.json` | `38055338f235782e3547d9b78b5684c3196c21070659f3030fb1d7b5310fc41e` | 123–2–275 | −46.06 [−55.46, −36.69] | 0/0/0 |
+
+`results/port-v31-field.json` (`c12182a5f90e4dbd98a37ecfab438cb88ddfc5fc727811825b544e1cad497ddd`): FIELD Δwin −0.4675 [−0.4975, −0.4363], Δmargin −75.69 [−79.59, −71.74] —
+**FIELD_BELOW_ZERO**. `results/port-v31-minus-v2-field.json` (`627e1dc9…`): v3.1 − v2 on the same cells, FIELD Δwin −0.0462 [−0.0612, −0.0312] — below v2.
+`results/port-v31-vs-legality24.json` the 24-map legality run (48 games, 0/0/0); `results/bed-port-v31.json`, `results/turn-time-port-v31.json`,
+`results/port-v31-endgame-sig.json` the bed, the timing and the endgame signatures.
