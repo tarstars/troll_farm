@@ -64,3 +64,7 @@ yield), the read says so and the line closes.
   (08:29Z): **the per-turn corpus `data/processed/turns.jsonl.gz` (174 MB) is not on the VM** — the 08-26 copy went with
   a worktree that was archived; a lead (691 raw games under `/data/separate_troll_farm-working/…`) is checked first;
   otherwise the copy needs the owner's word (metered network) — asked on the board. — coordinator
+- 2026-09-02 09:0xZ: **the owner's word ("wifi") given; the per-turn corpus copied to the VM:**
+  `/data/scratch/turns.jsonl.gz` (174,265,982 bytes, sha256 `1e0ea236a3f0b813eae29d5ba4ec01564ab013984c0064be0ed8330fa5a66726`,
+  the manifest's `output_sha256`; 23,613 games, 13,313,072 turn records) and `/data/scratch/turns.manifest.json`
+  beside it; hash verified on the VM after the copy. The blocker is cleared; claude_1 told by handoff. — coordinator
