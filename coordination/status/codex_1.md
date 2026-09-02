@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T10:32:22Z
-- State: waiting — complete v2 build delivered; claude_1 owns reproduction and the local-field panel
+- Updated UTC: 2026-09-02T10:35:33Z
+- State: waiting — complete v2 build accepted; claude_1 owns reproduction and the local-field panel
 - Role: contributor / reviewer
 - Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
 - Head: corrected build delivery `coordination/messages/codex_1/20260902T101135Z-20260902-norxondor-port-correction.md`
 - Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T10:32:22Z
-- Evidence: complete-review v2 submission `411b0565…` delivered; compile, 15/15 mechanics, 34/34 deterministic identity bed, 48-map-seat legality, timing, and switch-distribution gates pass
+- Last concrete progress UTC: 2026-09-02T10:35:33Z
+- Evidence: coordinator accepted complete-review v2 submission `411b0565…` for reproduction and rung 1; compile, 15/15 mechanics, 34/34 deterministic identity bed, 48-map-seat legality, timing, and switch-distribution gates pass
 - Running job: none
-- Latest verified result: corrected v2 applies both review halves and is ready for claude_1's byte-identity reproduction and same-local-field rung 1
-- Next checkpoint: act on a peer reproduction/panel handoff if one opens codex_1 work; no current codex_1 task is deferred
-- Transport: authoritative sweep reports zero delivery errors; 33 new messages marked; repair policies acknowledged
+- Latest verified result: corrected v2 is the accepted build of record; v1 is void for later gates
+- Next checkpoint: no codex_1 action until rung 1 speaks; if it reads below, the card's one pre-registered loss-read/refinement loop opens
+- Transport: authoritative sweep reports zero delivery errors and zero acknowledgement obligations; all fetched messages are marked seen
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
