@@ -1,0 +1,24 @@
+policy candidate-champion-denial-off-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 113 | 174 | 0.2825 [0.2475, 0.3175] | 0.0 [0.0, 0.0] | 0/0/0 | 31733.7 |
+-> results/champion-vs-champion.json
+policy candidate-orchard6-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 65 | 11 | 0.1625 [0.12, 0.2075] | -26.04 [-30.57, -21.55] | 0/0/0 | 10047.6 |
+-> results/orchard6-vs-champion.json
+policy candidate-champion-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 122 | 131 | 0.305 [0.2575, 0.3525] | -0.68 [-1.43, 0.08] | 0/0/0 | 25828.0 |
+-> results/old-champion-denial-on-vs-champion.json

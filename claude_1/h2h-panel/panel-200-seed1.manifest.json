@@ -1,0 +1,11 @@
+{
+  "corpus": "/home/tarstars/prj/troll_farm-claude_1/local_claude_1/nn-bot/maps-slice-1000.jsonl",
+  "corpus_sha256": "fc2f998e028dfa6859811da3b7a3448af371aa1ebd871660de363cbdbbdad303",
+  "corpus_maps": 999,
+  "count": 200,
+  "seed": 1,
+  "panel": "claude_1/h2h-panel/panel-200-seed1.jsonl",
+  "panel_sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+  "map_hashes_sha256": "2790bcf085fb3afeb78f303200df071122db6aa9c9377af70d15168e3aebd563",
+  "draw_rule": "smoke.py: [randint(2,10)]*5 + [0] from the same seeded rng after the shuffle"
+}

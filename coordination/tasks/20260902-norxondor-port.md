@@ -133,3 +133,17 @@ one ladder block of four hours. No other track's ladder hours are taken.
 - 2026-09-02 08:1xZ: card born; charters to codex_1 (design + build) and claude_1 (P-0 the panel
   instrument and the bed; then the reproduction) go out ack-required. The champion baseline
   `41230202` submitted 08:00Z by the VM runner, reading ≈ 09:02Z. — coordinator
+- 2026-09-02 08:3xZ: **P-0 delivered** (claude_1, `claude_1/h2h-panel/`, report `P0-2026-09-02.md`):
+  the driver, 9 tests passing, the bed for a new bot, and the validity runs — the champion vs
+  itself 113–174–113 (margin exactly 0; seat 0 wins 52, seat 1 wins 61 of the decided maps),
+  orchard 6 vs the champion 65–11–324 (margin −26 [−30.6, −21.6]; its ladder reading the same day
+  was above the champion's — the non-transfer rung 2 is for), the old denial-on champion −0.7
+  [−1.4, +0.1]; 0 faults in 1,200 games; 26,000–32,000 games an hour on the VM at 4 jobs.
+  **Panel file `claude_1/h2h-panel/panel-200-seed1.jsonl`, sha
+  `77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7`** — drawn with seed 1 from
+  the 999-map slice on `main` (`local_claude_1/nn-bot/maps-slice-1000.jsonl`), because the
+  pinned laptop corpus is not reachable from the VM; to be regenerated from the pinned corpus
+  (same seed, new sha here) once it is under `/data/scratch/`, before the first candidate game.
+  Games here are shorter than ladder games (median ~180 turns vs 296) because two clear-cutters
+  exhaust the map and the referee's no-plants rule ends the game; the port plants, so its games
+  will run longer. — claude_1
