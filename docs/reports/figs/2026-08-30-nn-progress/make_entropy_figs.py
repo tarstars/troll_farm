@@ -153,9 +153,62 @@ def fig_levers():
     fig.savefig(os.path.join(HERE, "credit-levers.png"), dpi=160)
 
 
+
+
+def fig_ledger():
+    """The campaign ledger: every 2026-09-01/02 arm on the locked 144-cell panel, both ages."""
+    arms = [
+        ("the clone (no training)", None, None, "clone"),
+        ("entropy off (E00, cluster)", "e00b", None, None),
+        ("entropy on (E01, cluster)", "e01b", None, None),
+        ("entropy off (h00, host)", "h00", None, None),
+        ("entropy on (h01, host)", "h01", None, None),
+        ("rollout 128 alone (host)", "hl128", None, None),
+        ("wood 0.5 + 3.5 (host)", "r0535", None, None),
+        ("wood 2 + 2 (host)", "hr22", None, None),
+        ("wood 2 + 2 (r22, cluster)", "r22", None, None),
+        ("the stack: 2 + 2 + rollout 128 (s22)", "s22", None, None),
+    ]
+    fig, ax = plt.subplots(figsize=(9, 5.6))
+    clone = json.load(open(os.path.join(R, "bench-clone-locked.json")))["policy_wins"]
+    ax.axvline(clone, color=NEUTRAL, linewidth=1, linestyle=":")
+    ax.text(clone + 0.3, -0.62, f"the clone's bar, {clone}", color=NEUTRAL, fontsize=8)
+    for i, (label, tag, _, kind) in enumerate(arms):
+        y = len(arms) - 1 - i
+        if kind == "clone":
+            ax.plot([clone], [y], marker="D", markersize=7, color=NEUTRAL)
+            continue
+        w1 = bench(tag, 1500, True)["policy_wins"]
+        w2 = bench(tag, 2500, True)["policy_wins"]
+        ax.plot([w1, w2], [y, y], color=GRID, linewidth=2, zorder=1)
+        ax.plot([w1], [y], marker="o", markersize=8, color=OFF, zorder=2)
+        ax.plot([w2], [y], marker="o", markersize=8, color=ON, zorder=2)
+        lo, hi = (w1, w2) if w1 <= w2 else (w2, w1)
+        ax.text(hi + 0.6, y, f"{w1} → {w2}", va="center", fontsize=9, color="#0b0b0b")
+        p2709 = os.path.join(R, "bench-s22-locked-u2709.json")
+        if tag == "s22" and os.path.exists(p2709):
+            w3 = json.load(open(p2709))["policy_wins"]
+            ax.plot([w3], [y], marker="s", markersize=7, color="#1baf7a", zorder=3)
+            ax.text(w3 + 0.5, y - 0.5, f"update 2,709: {w3} (exploratory)", fontsize=8, color="#1baf7a", ha="center")
+    ax.set_yticks(range(len(arms)))
+    ax.set_yticklabels([a[0] for a in reversed(arms)], fontsize=9)
+    ax.set_xlabel("wins of 144 on the locked panel, against the champion's file (parity = 72)")
+    ax.set_xlim(14, 42)
+    ax.set_ylim(-1.0, len(arms) - 0.4)
+    from matplotlib.lines import Line2D
+    ax.legend(handles=[Line2D([], [], marker="o", color=OFF, linestyle="none", label="at update 1,500"),
+                       Line2D([], [], marker="o", color=ON, linestyle="none", label="at update 2,500"),
+                       Line2D([], [], marker="D", color=NEUTRAL, linestyle="none", label="the clone (the starting point)")],
+              frameon=False, fontsize=9, loc="lower left")
+    ax.set_title("Training now improves the bot: the whole campaign on one axis", fontsize=11, loc="left")
+    fig.tight_layout()
+    fig.savefig(os.path.join(HERE, "campaign-ledger.png"), dpi=160)
+
+
 if __name__ == "__main__":
     fig_scouts()
     fig_gate()
     fig_training()
     fig_levers()
-    print("wrote entropy-scouts.png entropy-gate.png entropy-training.png credit-levers.png")
+    fig_ledger()
+    print("wrote entropy-scouts.png entropy-gate.png entropy-training.png credit-levers.png campaign-ledger.png")

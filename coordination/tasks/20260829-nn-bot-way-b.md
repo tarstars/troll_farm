@@ -1105,3 +1105,9 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   `--total-turn-steps 22200000` (5,420 updates), the one changed field, to see whether the rise holds at depth; its read is
   pre-registered as exploratory benches at 3,000…5,400, and any promotion claim needs a fresh frozen gate written before
   those numbers are seen. — coordinator
+- 2026-09-02 06:4xZ: s22's final checkpoint (update 2,709), exploratory locked bench: **33 of 144** — the rise holds its
+  level past the gate's last age (29 → 33 → 33), it does not extend by itself; the doubled-budget arm `ppo-yt-s22L`
+  answers whether depth adds anything (still pending a cluster slot at 06:0xZ). The report re-issued as the **seventh
+  edition** with the campaign-ledger figure. **FLUSH ENTRY: `coordination/HANDOVER-2026-09-02-reward-path.md`** — the
+  ledger, the recipe for new arms with every pitfall, the in-flight ops, Track C's state, the standing constraints.
+  — coordinator

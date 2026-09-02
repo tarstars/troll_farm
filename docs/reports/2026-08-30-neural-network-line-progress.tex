@@ -20,7 +20,7 @@
 
 \title{The neural-network bot for Troll Farm\\[2pt]\large Where the project stands on 2026-09-01}
 \author{Prepared for the owner by the coordinator (\texttt{local\_claude\_1})}
-\date{2026-09-01, 17:2xZ (sixth edition: the entropy gate, the credit path and the first lever, Section~\ref{sec:sept1}; the fifth edition was 08-31 04:2xZ) --- everything below is on \texttt{main} unless a path says otherwise}
+\date{2026-09-02, 06:3xZ (seventh edition: the campaign ledger --- training now improves the bot, Figure~\ref{fig:ledger}; the sixth was 09-01 17:2xZ) --- everything below is on \texttt{main} unless a path says otherwise}
 
 \begin{document}
 \maketitle
@@ -171,6 +171,14 @@ The winner's recorded stage 4 --- freeze the movement network, train the plan se
 \includegraphics[width=\textwidth]{entropy-gate.png}
 \caption{The frozen gate. Left: the confirmation benches on the locked 144-cell panel (72 maps $\times$ 2 seats, the same cells for every bar) at updates 1,500 and 2,500, cluster pair and host pair; the dotted line is the clone on the same panel. Right: the gate's number --- the paired effect of removing the bonus, wins per cell, with its 95\,\% interval from a bootstrap over the 144 units. Both intervals contain zero: \texttt{NOT CONFIRMED}, twice.}
 \label{fig:entropy-gate}
+\end{figure}
+
+\textbf{The night's answers (09-01/02, added in the seventh edition).} The lever was run and \textbf{the frozen gate confirmed it} --- the programme's first positive result: \emph{r22} (wood 2 + 2) won \textbf{31 and 29 of 144} on the locked panel against the control's 23 and 22 (paired effect $+0.052$ $[+0.003, +0.101]$, positive at both ages, margin $+8.3$ points) and finished \textbf{net $+11$ cells above the clone --- the first trained artefact to stand above its own starting point}. The host replication reproduced the effect's size ($+0.049$, interval touching zero exactly). Then the follow-ups, one variable each: the longer rollout \emph{alone} is not confirmed ($+0.017$ $[-0.004, +0.042]$); the environment's default split 0.5 + 3.5 is no different from 2 + 2 ($-0.017$ $[-0.066, +0.031]$), so \textbf{2 + 2 stays the recipe}; and \textbf{the stack} --- the split \emph{plus} the 128-step rollout --- posts the campaign's best numbers, \textbf{29 $\to$ 33 $\to$ 33 of 144} across updates 1,500 / 2,500 / 2,709, \emph{rising with training age where every earlier run decayed} (its gain over the split alone is not yet separable from noise). Figure~\ref{fig:ledger} is the whole campaign on one axis. The same stack with a doubled training budget runs on the cluster as this edition is written; its read is pre-registered as exploratory, and any promotion claim requires a fresh frozen gate written before the numbers are seen.
+
+\begin{figure}[h]\centering
+\includegraphics[width=\textwidth]{campaign-ledger.png}
+\caption{The campaign ledger: every arm of 2026-09-01/02 on the locked 144-cell panel against the champion's file, at training ages 1,500 (blue) and 2,500 (orange); the grey diamond is the clone every arm started from, the dotted line its 26 of 144; parity would be 72. The entropy arms sit at or below the clone; the wood split (2 + 2) lifts both platforms above it; the stack adds the long rollout and is the only arm whose score rises with age --- 33 of 144 at its final checkpoint (green square, exploratory).}
+\label{fig:ledger}
 \end{figure}
 
 \begin{figure}[h]\centering
