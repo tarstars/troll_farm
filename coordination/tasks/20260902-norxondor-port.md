@@ -362,3 +362,36 @@ one ladder block of four hours. No other track's ladder hours are taken.
   Handed back to claude_1 (ack-required): reproduce v3.1 through the generator from v3's readable at `e9659abf…`, the gates
   from the top, then rung 1 as pre-registered. v3 as pinned (`84870bc9…`) is retired as a build; it never played on the
   record. — coordinator
+- 2026-09-02 17:3xZ: **the record of the close, restated by the laptop coordinator with the pin repaired.** Between 14:11Z
+  and 17:00Z this laptop was off the network (its WiFi dropped at 14:46Z; no sleep — the host arms ran on at 6.8 s an
+  update); claude_1's rung-1 handoff on v3.1 arrived at 14:17Z, and at 15:2xZ the coordinator's VM fallback seat
+  (`local_claude_1/coordinator-fallback/`, its first real firing) took the ruling: **the 14:17Z handoff accepted; v3.1
+  reproduced byte for byte, every gate PASS (15/15 tests, bed 34/34, the 24-map run 0 faults, timing p99 2.7 ms; the switch
+  at roster 3 in 36 of 48 games at median turn 80.5, no fourth troll in 400 games); rung 1 `FIELD_BELOW_ZERO` — wins 10 / 24
+  / 10 / 123 of 400 against the champion / orchard 6 / the old champion with denial on / the network clone, FIELD Δwin
+  −0.4675 [−0.4975, −0.4363], Δmargin −75.69 [−79.59, −71.74]; v3.1 against v2 on the same 1,600 cells Δwin −0.0462
+  [−0.0612, −0.0312], Δmargin −4.55 — the repair made it worse (the cap costs 63 wins against the clone, the one opponent v2
+  nearly held); so no rung 2; the card's third dead condition; THE PORT LINE IS CLOSED** (message `20260902T152651Z`,
+  acknowledged by claude_1 at 15:31Z), and the one owed table chartered, bounded. The seat re-derived the numbers on the VM
+  from the pinned files (the generator, the compactor, `rustc --test`, `field.py` rerun to the digit; the provisional v3
+  runs equal v3.1's cell for cell) — **but its message pins an artifact commit `83fb538d…` that exists on no ref, and the
+  card entry, the obituary and the board row it describes were never committed**: only the message (`5cf33c08`) and a
+  board commit marking rows 3-1 and 0-7 stalled (`1d4bf323`) reached `main`. Repaired now: this entry, the obituary in
+  `coordination/GRAVEYARD.md`, the board (header, row P-1, the Track P title, the owner's queue rewritten to three items),
+  and a correction message superseding the 15:26Z ruling with a pin that exists. The seat's prompt gains a proof step (the
+  pinned commit must be listed by `git branch -r --contains` and hold every artifact path before the message is written)
+  and its step 5 no longer rebases after pinning — a rebase rewrites the hash every pinned message names, the stale-pin
+  failure of 08-26/27. The ruling itself is exactly the 12:55Z pre-registration applied and stands unchanged.
+  **The owed phase table (claude_1's handoff `20260902T153407Z`, artifacts at `345c6735…`, landed on `main`):** codex_1's
+  analyzer byte for byte (`loss_read_codex1_084a35c6.py`, sha `de7b38e3…`; codex_1's own commit `084a35c6…` is now on
+  `main` too), pointed at the v3.1 champion-run replays (400 games, sha `8f25e5f4…`; **107,896 recorded scores replayed,
+  all exact**; the v2 control rerun equal to the pinned `loss-read-v2.json` in every field). **Verified by execution by
+  the coordinator at 17:2xZ, on the VM from claude_1's worktree: the summary object equal in every field, 16 s.** The
+  table: the turn-100 deficit **55.04 → 52.35** (−2.69); the turn-150 deficit 64.11 → 52.88 (−11.23); the final deficit
+  59.78 → 55.52; chop rate in turns 100–150 12.67 % → 19.63 % (harvest 6.53 % → 0.59 %, mine 1.65 % → 0.02 %, idle
+  12.25 % → 21.45 %); CHOP commands in turns 1–100 5.90 → 15.60; the port's own final bank 114.48 → 105.32 on a board
+  empty at the end in 366 of 400 games (v2: 360). In one sentence: the cap did what the read asked of it mechanically, and
+  the lead is made before turn 100 — in turns 1–50 the champion banks 34.9 points of wood against the port's 0.3, and no
+  switch rule reaches that phase. Nothing here reopens the line; the handoff is accepted and acknowledged in the
+  correction message. **Nothing else remains on this card.** The successor — our champion plus a cheaply funded third
+  troll — is one yes/no in the owner's queue; nobody starts it without that word. — coordinator
