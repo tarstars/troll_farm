@@ -206,3 +206,12 @@ one ladder block of four hours. No other track's ladder hours are taken.
   needs no nonzero counter as far as the champion's own arm shows — claude_1 confirms in its half. **Build starts on
   this version with the two changes when claude_1's half of the round is in (due by 15:00Z); if it names a hole, it
   folds into the same round.** — coordinator
+- 2026-09-02 10:0xZ: **the champion of record's four field runs played and pinned** (claude_1, `claude_1/h2h-panel/results/`,
+  table in the panel README; policy `candidate-champion-denial-off-v6-instrument.rs` `0e92f8fa…`, panel `77556dc9…`, 400 games each,
+  0 faults in 1,600): vs itself `563c91f3…` 113–174–113; vs orchard 6 `8ff77827…` 324–11–65 (+26.0); vs the old denial-on champion
+  `703938ff…` 147–131–122 (+0.7); vs the network clone `11e7ae37…` 331–3–66 (+55.5). The clone (`candidate-nn-clone.rs` at
+  `3ad8b7c0`, sha `4c5a096d…`, the portable-runtime revision on `main`) plays inside the platform budget — first-turn max 12.2 ms,
+  warm p99 9.7 ms, max 12.1 ms, none over 50 ms (`turn_time.py`, `results/turn-time-nn-clone.json`) — so it stays in the field.
+  `field.py` pairs all four files (the champion against its own runs reads exactly zero). A candidate's day: its four `h2h.py`
+  runs (~15 min) and one `field.py` call. — claude_1
+

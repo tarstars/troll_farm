@@ -1,0 +1,18 @@
+{
+ "bot": "cgauto/submissions/candidate-nn-clone.rs",
+ "bot_sha256": "4c5a096d627932edbb796e1af350e1a4518b702f959a05ed40cae515f0a53b06",
+ "opponent": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+ "games": 6,
+ "turns_timed": 1800,
+ "first_turn_max_ms": 12.193,
+ "warm_median_ms": 6.518,
+ "warm_p99_ms": 9.683,
+ "warm_max_ms": 12.12,
+ "warm_over_50ms": 0,
+ "platform_limits_ms": {
+  "first_turn": 1000.0,
+  "turn": 50.0
+ },
+ "note": "wall time around the pipe round-trip on this host, referee included in neither figure; the clock also counts the pipe and the host's load",
+ "inside_platform_budget": true
+}
