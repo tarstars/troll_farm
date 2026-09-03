@@ -1,4 +1,4 @@
-name: chatgpt1-three-troll-optimized-start-finalize
+name: chatgpt1-three-troll-optimized-start-v2
 
 on:
   push:
@@ -16,17 +16,84 @@ env:
   ROOT: chatgpt_1/three-troll-optimized-start
 
 jobs:
-  finalize-evidence:
+  build-and-panel:
     runs-on: ubuntu-24.04
-    timeout-minutes: 20
+    timeout-minutes: 75
     steps:
       - name: Check out branch
         uses: actions/checkout@v4
 
+      - name: Apply the champion-second repair
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          root = Path('chatgpt_1/three-troll-optimized-start')
+          path = root / 'make_candidate.py'
+          text = path.read_text()
+          old = '    target_replacement = (\n        "                let target = if n == 1 {\\n"\n'
+          new = (
+              '    target_replacement = (\n'
+              '        "                // The proven champion owns the second-troll opening.\\n"\n'
+              '        "                // Keep this controller dormant until two trolls stand.\\n"\n'
+              '        "                if n == 1 {\\n"\n'
+              '        "                    return None;\\n"\n'
+              '        "                }\\n"\n'
+              '        "                let target = if n == 1 {\\n"\n'
+          )
+          if text.count(old) != 1:
+              raise SystemExit(f'champion-second anchor count={text.count(old)}')
+          text = text.replace(old, new, 1)
+          text = text.replace(
+              'The candidate keeps stage 2A only for the cheap, real-field-proven second troll. Once two\n'
+              'workers stand,',
+              'The candidate leaves the complete second-troll opening to the proven champion. Once two\n'
+              'workers stand,',
+          )
+          text = text.replace(
+              'The control is byte-identical except that third-troll planning is disabled. It isolates the\n'
+              'optimizer from the turn-2-second-troll change.',
+              'The control is byte-identical except that third-troll planning is disabled. With the champion\n'
+              'owning the second troll, it isolates the third-troll optimizer cleanly.',
+          )
+          text = text.replace(
+              '"champion + turn-2 second troll; a contested-resource assignment dynamic program admits "',
+              '"champion opening and second troll; a contested-resource assignment dynamic program admits "',
+          )
+          path.write_text(text)
+
+          analyser = root / 'analyse_results.py'
+          text = analyser.read_text().replace(
+              'The candidate and control share the same turn-2-second-troll opening. Only the candidate ',
+              'The candidate and control share the champion opening and second-troll policy. Only the candidate ',
+          ).replace(
+              'optimizer rather than the already-known early-second-troll change.',
+              'third-troll optimizer, with no second-troll policy change mixed into the result.',
+          )
+          analyser.write_text(text)
+
+          readme = root / 'README.md'
+          text = readme.read_text()
+          text += (
+              '\n## V2 correction after the first executed gate\n\n'
+              'The first generated control proved that replacing the champion second-troll opening was itself '
+              'unsafe: it triggered nine no-progress smoke failures. V2 therefore leaves the complete opening '
+              'through the second troll to the champion. The optimizer begins only when two trolls already stand; '
+              'its disabled control is consequently the champion on all ordinary two-troll states.\n'
+          )
+          readme.write_text(text)
+          PY
+          rm -rf "$ROOT/results"
+          mkdir -p "$ROOT/results"
+          python3 -m py_compile "$ROOT/make_candidate.py" "$ROOT/analyse_results.py"
+
+      - name: Generate candidate and matched control
+        run: |
+          python3 "$ROOT/make_candidate.py" | tee "$ROOT/results/build.log"
+
       - name: Candidate differential bed
         shell: bash
         run: |
-          mkdir -p "$ROOT/results"
           set +e
           python3 local_claude_1/third-troll/fixtures_diff.py \
             --arm "$GITHUB_WORKSPACE/$ROOT/champion-three-troll-optimized-v6-instrument.rs" \
@@ -52,25 +119,95 @@ jobs:
           if [ "$rc" -gt 1 ]; then exit "$rc"; fi
           test -s "$ROOT/results/control-fixtures.json"
 
-      - name: Render and evaluate the pre-registered gates
-        shell: bash
+      - name: Candidate 24-map smoke
         run: |
-          set -o pipefail
-          python3 "$ROOT/analyse_results.py" | tee "$ROOT/results/analyse.log"
-          test -s "$ROOT/results/summary.json"
-          test -s "$ROOT/results/verdict.txt"
-          test -s "$ROOT/RESULTS.md"
+          python3 local_claude_1/third-troll/smoke.py \
+            --arm "$ROOT/champion-three-troll-optimized-v6-instrument.rs" \
+            --records local_claude_1/third-troll/smoke-maps-seed0.jsonl \
+            --out "$ROOT/results/smoke.json" \
+            --third-spec '1 1 0 1|1 2 0 1|2 2 0 1|2 2 0 2|2 3 0 1|2 3 0 2|2 3 0 3' \
+            2>&1 | tee "$ROOT/results/smoke.log"
 
-      - name: Publish completed evidence
+      - name: Control 24-map smoke
+        run: |
+          python3 local_claude_1/third-troll/smoke.py \
+            --arm "$ROOT/champion-turn2-second-control-v6-instrument.rs" \
+            --records local_claude_1/third-troll/smoke-maps-seed0.jsonl \
+            --out "$ROOT/results/control-smoke.json" \
+            --third-spec '1 1 0 1|1 2 0 1|2 2 0 1|2 2 0 2|2 3 0 1|2 3 0 2|2 3 0 3' \
+            2>&1 | tee "$ROOT/results/control-smoke.log"
+
+      - name: One-core turn timing
+        run: |
+          cpu=$(taskset -pc $$ | sed 's/.*: //' | cut -d, -f1 | cut -d- -f1)
+          taskset -c "$cpu" python3 claude_1/h2h-panel/turn_time.py \
+            --bot "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --maps 3 \
+            --json-out "$ROOT/results/turn-time.json" \
+            2>&1 | tee "$ROOT/results/turn-time.log"
+
+      - name: Direct candidate versus control
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-control.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-control.log"
+
+      - name: Candidate and control versus champion
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-champion.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-champion.log"
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/control-vs-champion.json" \
+            2>&1 | tee "$ROOT/results/control-vs-champion.log"
+
+      - name: Candidate and control versus orchard 6
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-orchard6-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-orchard6.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-orchard6.log"
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-orchard6-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/control-vs-orchard6.json" \
+            2>&1 | tee "$ROOT/results/control-vs-orchard6.log"
+
+      - name: Paired candidate-minus-control reading
+        run: |
+          python3 claude_1/h2h-panel/field.py \
+            --opponent champion="$ROOT/results/candidate-vs-champion.json,$ROOT/results/control-vs-champion.json" \
+            --opponent orchard6="$ROOT/results/candidate-vs-orchard6.json,$ROOT/results/control-vs-orchard6.json" \
+            --expected-cells 200 \
+            --json-out "$ROOT/results/field.json" \
+            2>&1 | tee "$ROOT/results/field.log"
+
+      - name: Render and evaluate gates
+        run: |
+          python3 "$ROOT/analyse_results.py" | tee "$ROOT/results/analyse.log"
+
+      - name: Publish V2 sources and evidence
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A "$ROOT"
-          if git diff --cached --quiet; then
-            echo 'No evidence changes to publish'
-          else
-            git commit -m 'chatgpt_1: finalize optimized three-troll verdict [skip ci]'
-            git push origin HEAD:agent/chatgpt_1
-          fi
+          git commit -m 'chatgpt_1: repair and measure champion-second optimized three-troll start [skip ci]'
+          git push origin HEAD:agent/chatgpt_1
           echo "verdict=$(cat "$ROOT/results/verdict.txt")"
           echo "published_commit=$(git rev-parse HEAD)"
+
+      - name: Enforce pre-registered result
+        run: |
+          test "$(cat "$ROOT/results/verdict.txt")" = PASS_TO_REVIEW
