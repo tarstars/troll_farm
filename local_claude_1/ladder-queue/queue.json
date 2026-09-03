@@ -1,15 +1,15 @@
 {
- "written": "2026-09-03T04:1xZ: the owner's 'extend' on the orchard rows (09-02 18:0xZ) — orchard 8 (orchard 6 plus the never-abandon rule only; bed PASS, smoke PASS 24/24) for one hour, round 1, then the champion of record put back; the earlier item (the champion's 09-02 baseline) is done in state.json",
+ "written": "2026-09-03T13:1xZ: the owner's word 'put it on the platform' — THE OPENING DISPATCHER (stage 2A of the opening solver: the champion of record with the solver's opening planner from turn 1 to the third troll, then the champion's own play) for one hour, round 1, then the champion of record put back. Submitted against the coordinator's stated advice: the local field reading has it well below the champion on three of four opponents (29 wins of 400 against the champion's 113; -21, -28 and -37.5 points of win rate), and the pre-registered rule on the card would have called it dead. The owner's word overrides that rule; the reading is taken as a fact and recorded either way. Gates that did pass before this submission: build reproduced byte for byte from the pin by the coordinator, bed 34/34, smoke 24/24 (a third troll in every game, median turn 70.5 against orchard 6's 87.0 on the same maps), timing 4.27 ms on turn 1 against 1,000 and 2.28 ms at the 99th percentile against 50, 78,035 characters against the 100,000 limit.",
  "items": [
   {
-   "id": "orchard8-r1",
-   "label": "ORCHARD 8 (orchard 6 + the never-abandon rule only; sha 4b3e094a…) — round 1, one hour, one reading; the owner's 'extend' of 09-02",
-   "file": "cgauto/submissions/candidate-orchard8-v6-instrument.rs",
-   "sha256": "4b3e094a28617240b56f0150288084526846abdc9589b185b58b7ebebdfebafb"
+   "id": "opening-dispatcher-r1",
+   "label": "THE OPENING DISPATCHER (the champion of record + the opening solver's planner to the third troll; sha fe9e9ec8...) — round 1, one hour, one reading; the owner's 'put it on the platform' of 2026-09-03 13:1xZ",
+   "file": "cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs",
+   "sha256": "fe9e9ec839183b70fb90c6793cd15bee206da8c85a0ca647b7baf576c3d6dc78"
   },
   {
-   "id": "champion-restore-0903",
-   "label": "THE CHAMPION OF RECORD (sha 0e92f8fa…) put back after orchard 8's hour; holds the ladder",
+   "id": "champion-restore-0903b",
+   "label": "THE CHAMPION OF RECORD (sha 0e92f8fa...) put back after the opening dispatcher's hour; holds the ladder",
    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
   }
