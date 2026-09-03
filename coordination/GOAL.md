@@ -65,6 +65,20 @@ with the owner's prediction asked first. One bot at a time; every reading and it
 
 # The network line (Track N) — the recovery programme after the second opinion (owner 2026-08-31 ~07:0xZ: "let's write down your 'What I'll do now' as goal file and set it in action")
 
+**★ THE PLAN OF 2026-09-03 08:3xZ (the owner: "I like this plan"), in order.** The doubled budget is read on both
+platforms and does not move the network; the ceiling is the learning setup, not compute. (1) **Today:** the stacked arm
+(`ppo-yt-s22L512`) finishes and its Gate D is read as pre-registered, on the VM; **no more compute-scaling arms.**
+(2) **One more network arm, the open lead:** the clone anchor faded to zero over the run (`ppo-yt-s22F`, Gate E
+pre-registered in `local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md` before its launch), one variable on the
+s22 recipe, on the cluster. If it collapses or does not move, the "self-play from the clone" road is closed in this form.
+(3) **The bridge to the solver:** when the opening solver's stage 1 lands (`coordination/tasks/20260903-opening-solver.md`,
+about two days), its optimal openings are the demonstrations — first for the rule bot's opening (stage 2, the planner in
+the bot's first second), and, if the network line continues, as a second cloning dataset so the network learns turns
+1–100 from the solver rather than from the top players' habits. (4) **The target, honestly:** a network candidate at
+60 % by 2026-10-17 is not on track at this pace (the best artefact wins 37 of 144 against the champion's file); it is
+re-based after the anchor-fade arm reads, in about a week.
+
+
 **THE STANDING TARGET (owner 2026-08-29 14:4xZ, unchanged):** *a neural-network candidate that beats
 the champion of record and orchard 6 on the local bench — at least 60 % wins over 400 games against
 each, a positive mean margin, three gates in a row — exported as one Rust file under 100,000

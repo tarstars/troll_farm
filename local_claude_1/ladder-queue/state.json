@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
-    "id": "champion-restore-0903",
-    "label": "THE CHAMPION OF RECORD (sha 0e92f8fa\u2026) put back after orchard 8's hour; holds the ladder",
-    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
-    "submission_id": 41234663,
-    "submitted_at": "2026-09-03T05:17:22Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1703,6 +1694,122 @@
       "sha256": "4b3e094a28617240b56f0150288084526846abdc9589b185b58b7ebebdfebafb",
       "submission_id": 41234498,
       "submitted_at": "2026-09-03T04:10:10Z",
+      "total": 177
+    },
+    {
+      "age_min": 62.7,
+      "agent_id": 6693889,
+      "early_looks": [
+        {
+          "age_min": 2.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:20:04Z",
+          "rank": 158,
+          "score": 13.95,
+          "total": 177
+        },
+        {
+          "age_min": 7.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:25:03Z",
+          "rank": 123,
+          "score": 15.81,
+          "total": 177
+        },
+        {
+          "age_min": 12.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:30:03Z",
+          "rank": 110,
+          "score": 17.07,
+          "total": 177
+        },
+        {
+          "age_min": 17.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:35:04Z",
+          "rank": 113,
+          "score": 16.84,
+          "total": 177
+        },
+        {
+          "age_min": 22.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:40:03Z",
+          "rank": 88,
+          "score": 18.08,
+          "total": 177
+        },
+        {
+          "age_min": 27.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:45:05Z",
+          "rank": 89,
+          "score": 18.06,
+          "total": 177
+        },
+        {
+          "age_min": 32.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:50:04Z",
+          "rank": 81,
+          "score": 18.33,
+          "total": 177
+        },
+        {
+          "age_min": 37.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T05:55:03Z",
+          "rank": 76,
+          "score": 18.59,
+          "total": 177
+        },
+        {
+          "age_min": 42.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T06:00:06Z",
+          "rank": 86,
+          "score": 18.14,
+          "total": 177
+        },
+        {
+          "age_min": 47.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T06:05:04Z",
+          "rank": 86,
+          "score": 18.14,
+          "total": 177
+        },
+        {
+          "age_min": 52.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T06:10:05Z",
+          "rank": 86,
+          "score": 18.14,
+          "total": 177
+        },
+        {
+          "age_min": 57.7,
+          "agent_id": 6693889,
+          "at": "2026-09-03T06:15:04Z",
+          "rank": 86,
+          "score": 18.14,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "champion-restore-0903",
+      "label": "THE CHAMPION OF RECORD (sha 0e92f8fa\u2026) put back after orchard 8's hour; holds the ladder",
+      "package": "local_claude_1/ladder-queue/games-41234663",
+      "package_sha256": "c1009cf25652919e2fea1f1db258153d8efabec94c379f4fae9ec93e777f260a",
+      "rank": 86,
+      "read_at": "2026-09-03T06:22:09Z",
+      "score": 18.14,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "submission_id": 41234663,
+      "submitted_at": "2026-09-03T05:17:22Z",
       "total": 177
     }
   ]

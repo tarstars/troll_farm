@@ -494,7 +494,16 @@ def main() -> int:
         child_env["RAYON_NUM_THREADS"] = str(cpu_limit)
         child_env["OMP_NUM_THREADS"] = str(cpu_limit)
         child_env["MKL_NUM_THREADS"] = str(cpu_limit)
-        child_env["CUDA_VISIBLE_DEVICES"] = ""
+        # 2026-09-03: the card the job reserves is hidden from a CPU trainer (the recipe of every
+        # arm so far) and handed to a trainer prepared with `--device cuda` (the owner's speed
+        # question: the learning pass is dense convolution work, 60 % of an update on a CPU).
+        trainer_args_list = list(config.get("trainer_args", []))
+        trainer_device = "cpu"
+        if "--device" in trainer_args_list:
+            trainer_device = trainer_args_list[trainer_args_list.index("--device") + 1]
+        if trainer_device != "cuda":
+            child_env["CUDA_VISIBLE_DEVICES"] = ""
+        log("trainer_device", device=trainer_device, cuda_visible=child_env.get("CUDA_VISIBLE_DEVICES", "<inherited>"))
         # Inert today -- `cgauto/rl_full_env.py` reads no environment variable for the library --
         # but set anyway so that the day it grows one, the job already answers it.
         child_env["TF_FULL_LIBRARY"] = library["path"]

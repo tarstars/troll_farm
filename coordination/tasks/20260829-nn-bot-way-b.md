@@ -1192,3 +1192,45 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the panel cannot separate from zero on either platform; the recipe stays 2 + 2 with the 128-step rollout. The host arm
   s22L finished 09-02 23:4xZ (5,419 updates, training summary written); its depth gate (hs22L at 5,250 / 5,419 against hs22
   at 2,500 / 2,709) waits for the mains — the laptop is on battery since ~05:4xZ. — coordinator
+- 2026-09-03 07:4xZ: **the host depth gate read — the doubled budget does not replicate.** hs22L at its ends (5,250 / 5,419)
+  reads **33 / 33 of 144** against hs22's 32 / 33 at 2,500 / 2,709: paired effect **+0.003 [−0.024, +0.028]**, not
+  confirmed, not positive at the second measurement, net +7 over the clone, margin −0.6 [−3.5, +2.4]
+  (`GATE-HS22L-DEPTH-VERDICT-2026-09-03.md`, `gate1-verdict-hs22L-depth.json`). Beside the cluster's Gate A (37 / 37 vs
+  33 / 33, +0.028 [0.000, +0.063]): two readings of one lever, neither confirmed, the host flat — the doubled training
+  budget is not a lever we can confirm on either platform, and the cluster's four extra cells sit inside the panel's
+  noise. No promotion; the recipe stays 2 + 2 with the 128-step rollout at the standard budget; the depth question's
+  remaining arm is the stack `ppo-yt-s22L512` (Gate D, running). Benched on the VM under the owner's compute rule (four
+  cores, two used, nice 19; the referee library from claude_1's VM worktree, its `rust/` source identical to `main`).
+  — coordinator
+- 2026-09-03 08:3xZ: **the owner asked "we checked that the model doesn't improve with doubled compute. What's the plan?" and
+  accepted the answer ("I like this plan"). The plan, now the plan of record (GOAL.md, the network line's head):** (1) today,
+  the stacked arm's Gate D as pre-registered, then no more compute-scaling arms; (2) one arm on the open lead — the clone
+  anchor faded to zero over the run (`ppo-yt-s22F`; Gate E pre-registered blind before the launch; the anchor never faded in
+  any run so far: coefficient 0.0987 at s22's end, 0.0889 at s22L's); if it collapses or does not move, the self-play-from-
+  the-clone road is closed in this form; (3) the bridge to the opening solver — its optimal openings as demonstrations for the
+  rule bot (stage 2) and, if the line continues, as a second cloning dataset for turns 1–100; (4) the 10-17 target is not on
+  track (best artefact 37 of 144) and is re-based after the anchor-fade arm reads (~a week). — coordinator
+- 2026-09-03 08:28Z: **the anchor-fade arm `ppo-yt-s22F` STARTED on the cluster**, operation `bd54fcc2-95c34640-42e03e8-6ee68d40` — s22's recipe with the clone anchor
+  falling linearly from 0.1 to 0 over the 11.1 M-step budget (`--anchor-coef-final 0.0 --anchor-decay-steps 11100000`); the prepared
+  arguments differ from s22's in those two fields and the name only; s22's map slice `16577bf1…` verified inside the payload; Gate E
+  pre-registered blind (the PREREG file) with the two live outcomes, collapse or the largest move yet, put near even. ~2 h on the
+  cluster; benches on the VM. — coordinator
+- 2026-09-03 08:3xZ: **the stacked arm `ppo-yt-s22L512` was preempted twice** (operation `b3c6af06…`: aborted 2, running 1); its
+  first attempt had reached 9.2 M of 22.2 M turn-steps by 08:04Z; the entrypoint restarts from scratch (deterministic, so the
+  trajectory is reproduced; the salvage holds the first attempt's checkpoints under `mid-run-`), the third attempt started
+  ~08:24Z — Gate D's benches slip to ~16:30Z at the earliest. The anchor-fade arm `ppo-yt-s22F` runs beside it (0 aborts so
+  far). — coordinator
+- 2026-09-03 09:0xZ: **the owner: "8 hour iteration is too long. What does [accelerate]?" — the measured split and the first
+  step.** One host update (4,096 samples, 7 threads) takes 5.9 s: 2.3 s playing the steps (the Rust environment plus one
+  network read per step, 1,800 steps/s) and 3.6 s in the learning pass (two epochs over 104 × 11 × 22 = 25,168-number
+  observations through the convolution, the anchor and frozen passes, the KL check). The dense half is what a GPU does; the
+  coordinator's earlier "a GPU would not help" was wrong on that half and is corrected on the board. The cluster job already
+  reserves a card and ships CUDA torch; the entrypoint hid it (`CUDA_VISIBLE_DEVICES=""`). **Edits:** the launcher gains
+  `--device {cpu,cuda}` (default cpu; every arm so far unchanged), the entrypoint hides the card only for a cpu trainer.
+  **The timing test `ppo-yt-s22cuda-t`:** s22's recipe, 2,048,000 turn-steps (500 updates), `--device cuda`, threads 32;
+  the prepared arguments differ from s22's in device, budget, threads and the name only; its steps/s against s22's ~2,000
+  is the number. Today's eight hours were the stacked arm (8 environments, four times slower) plus two preemptions with
+  restarts from scratch — not the standard run (~2 h + ~1 h of benches). The acceleration plan, in order of payoff per day
+  of work: (1) `--device cuda` (free); (2) the benches inside the cluster job on its 32 cores (`--gate-every`) instead of
+  an hour on the VM; (3) resume from the salvaged checkpoint after a preemption; (4) more environments per rollout to feed
+  the card. (2)–(3) only if Gate E keeps the network line open. — coordinator
