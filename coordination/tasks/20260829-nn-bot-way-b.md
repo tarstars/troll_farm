@@ -1245,3 +1245,9 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   `//porto_layers/delta/gpu/cuda/<version>` (… 12.1, 12.2, 12.6). Third job `ppo-yt-s22cuda-t3` (op `2ff7cf2a…`, 09:32Z):
   the same two layers plus `driver/590.48.01` and `cuda/12.1` (the torch build's CUDA); a driver mismatch would now fail
   readably and the next version is tried. — coordinator
+- 2026-09-03 09:4xZ: **the CUDA test stops here.** The third job (`ppo-yt-s22cuda-t3`, op `2ff7cf2a…`, with `driver/590.48.01` and
+  `cuda/12.1` added to the layers) reads the same: `cuda_available: false`, `CUDA_VISIBLE_DEVICES` empty from the scheduler,
+  `NVIDIA_VISIBLE_DEVICES` unset — the job's container is given no device even though the operation reserves one. Wiring the card
+  needs the cluster's own GPU-job conventions (a gpu-check layer, an operation option, or a different tree), which the coordinator
+  does not have; the owner, who knows the cluster, is asked. The rest of the speed plan stands: the benches inside the job on its
+  32 cores, resume from the salvaged checkpoint after a preemption, more environments per rollout. — coordinator

@@ -110,3 +110,19 @@ no platform, no cluster or host training touched. Stage 2 is not budgeted here.
   (mean 0.9) — sum 17 vs a mean gap 18; raid rate 0.19 per 100 tree-turns before turn 100; Python 64 rollouts/s, 30 s a map-seat, a
   deterministic plan 15 ms. **Not dead on paper.** Verification by the coordinator's own replayer through `sim/engine.py` on all 400 ×
   4 schedules and the re-run of `report.py` is in progress; the ack waits on it. — coordinator
+- 2026-09-03 09:4xZ: **stage 1 VERIFIED by execution.** The coordinator's own replayer (written from scratch, not claude_1's `replay.py`)
+  fed every kept schedule to `sim/engine.py` with an idle opponent: **1,492 of 1,492** variant-schedules (400 free + 400 chop-2 + 400
+  chop-1 + 292 same-roster) match on the TRAIN turns, talents, unit ids, final unit count, inventory and score; the two flagged
+  map-seats (`c8133082…` s1, `b4a37d9e…` s1) are `done: false` for the same-roster variant only and excluded from n = 292 as the
+  page says. `report.py` reproduces the page's numbers; the §3 verb-order table is not printed by `report.py` (a tooling gap) and
+  was recomputed from the JSON — exact. The ablation table reproduces from `ablation.json`; the raid table re-executes from the
+  raw inputs (6,200 trees, all 20 bins). **Two wording slips for the author:** the page's "mean gap of about 18" is the median
+  (the mean is 21.7); "109 raided (6.4 %), 1,583 felled by itself" reads 114 / 6.68 % / 1,587 in the data. The verifier's own
+  caveat, kept: the page is an idle-opponent, no-blocking model by design; the verification confirms its arithmetic and referee
+  fidelity, not that the plan survives a contested opening — the design round's question 2. `sim/engine.py` has no error path for
+  illegal commands (they no-op), so exact state matching stood in for a legality check. Record:
+  `local_claude_1/opening-solver-verify/VERIFY-2026-09-03.md` (re-landing after a git mishap took the untracked copy).
+- 2026-09-03 09:5xZ: **the design round opened** — the review assignment to chatgpt_1 (`20260903T095000Z`, ack-required, pinned to the
+  landed merge of claude_1's branch): the objective's form (roster target vs chop sum; the third term for stage 2), the idle-opponent
+  assumption (what a contested opening changes), the rules-first split, the farm balance, anything overclaimed. The owner is asked to
+  activate chatgpt_1. — coordinator
