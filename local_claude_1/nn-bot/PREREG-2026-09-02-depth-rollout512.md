@@ -129,6 +129,47 @@ s512 at 1,500 / 2,500 (the schedule effect at matched age, the same shape as Gat
 candidate for the owner's read stays the best artefact by the frozen gates, which today is r22 (the
 only confirmed lever) with s22L's end as the best raw count.
 
+## Gate E — the anchor fade (s22F vs s22), written 09-03 08:4xZ before the arm ran
+
+**Why.** The doubled budget is read on both platforms (cluster +0.028 [0.000, +0.063], host +0.003
+[−0.024, +0.028]) and does not move the network; the credit-path read of 09-01 measured the learning
+signal at 2.3 % observed reward and 97.7 % the critic's opinion; and every run so far has held the
+policy next to the clone by an anchor that never faded — `--anchor-coef 0.1 --anchor-coef-final 0.05
+--anchor-decay-steps 100000000` decays over 100 M steps, so an 11.1 M-step run ends at coefficient
+0.0987 and a 22.2 M-step run at 0.0889 (the logs' `anchor_coef`). The 08-31 review named the anchor's
+counter-force as an open lead; this is the arm that pulls it. The owner's plan of 09-03 08:3xZ, item 2.
+
+**Question.** Does the stack, with the clone anchor faded to zero over the run, move further than the
+anchored stack — or collapse, as full-parameter self-play did without the staged scope?
+
+**Arm.** `ppo-yt-s22F`: s22's arguments with `--anchor-coef-final 0.0 --anchor-decay-steps 11100000`
+(the anchor falls linearly from 0.1 to 0 across the standard 11.1 M-step budget); everything else s22's
+(wood 2 + 2, rollout 128 × 32, plan-critic scope, the frozen refresh every 100 updates, seed 41,
+s22's map slice `16577bf1…` verified inside the payload). The prepared `trainer_args` must differ from
+s22's in those two fields and the run name only.
+
+**Gate.** The standard protocol: treatment s22F at **1,500** and **2,500**, control s22 at 1,500 / 2,500
+(benched: 29 / 33), clone non-inferiority against `bench-clone-locked.json`, `PYTHONHASHSEED=0`. Read as
+`ANCHORFADE_CONFIRMED` / `PARTIAL` / `NOT_CONFIRMED` / `INCONCLUSIVE`. Exploratory, pre-registered: the end
+(2,709) against s22's end, and the curve at 500 / 1,000 / 2,000 if the panel shows a collapse.
+
+```
+cd /home/tarstars/prj/troll_farm-local_claude_1 && R=local_claude_1/nn-bot/results/entropy-gate-0901 && \
+PYTHONHASHSEED=0 python3 local_claude_1/nn-bot/gate1.py \
+  --treatment 1500=$R/bench-s22F-locked-u1500.json --treatment 2500=$R/bench-s22F-locked-u2500.json \
+  --control   1500=$R/bench-s22-locked-u1500.json  --control   2500=$R/bench-s22-locked-u2500.json \
+  --clone $R/bench-clone-locked.json --json-out $R/gate1-verdict-s22F-anchorfade.json
+```
+
+**Expectation written before the data.** Two outcomes are live and I put them near even: (a) the policy
+drifts once the anchor is gone and the panel falls below the clone by 2,500 (the collapse shape of a2 / i2,
+though the staged scope should slow it); (b) the policy finally moves and the gain is the largest of the
+programme, because for the first time nothing holds it at the clone. A third, a null, would mean the
+anchor was never what held it. **The ruling this gate carries:** if (a), the "self-play from the clone"
+road is closed in this form and the network line's next signal comes from the opening solver's
+demonstrations; if (b) confirmed, the fade joins the recipe and the target is re-based on its curve; if
+null or not confirmed, the same as (a) for the road, with the recipe unchanged.
+
 ## Two instrument facts recorded today, before the data
 
 1. **The frozen gate's interval is not bit-reproducible across processes.** `gate1.py` iterates a

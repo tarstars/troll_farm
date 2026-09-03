@@ -1202,3 +1202,11 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   remaining arm is the stack `ppo-yt-s22L512` (Gate D, running). Benched on the VM under the owner's compute rule (four
   cores, two used, nice 19; the referee library from claude_1's VM worktree, its `rust/` source identical to `main`).
   — coordinator
+- 2026-09-03 08:3xZ: **the owner asked "we checked that the model doesn't improve with doubled compute. What's the plan?" and
+  accepted the answer ("I like this plan"). The plan, now the plan of record (GOAL.md, the network line's head):** (1) today,
+  the stacked arm's Gate D as pre-registered, then no more compute-scaling arms; (2) one arm on the open lead — the clone
+  anchor faded to zero over the run (`ppo-yt-s22F`; Gate E pre-registered blind before the launch; the anchor never faded in
+  any run so far: coefficient 0.0987 at s22's end, 0.0889 at s22L's); if it collapses or does not move, the self-play-from-
+  the-clone road is closed in this form; (3) the bridge to the opening solver — its optimal openings as demonstrations for the
+  rule bot (stage 2) and, if the line continues, as a second cloning dataset for turns 1–100; (4) the 10-17 target is not on
+  track (best artefact 37 of 144) and is re-based after the anchor-fade arm reads (~a week). — coordinator
