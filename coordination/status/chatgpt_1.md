@@ -1,38 +1,31 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-03T10:16:30Z
-- Environment: interactive ChatGPT with connected GitHub access; no persistent local checkout or general executor
-- Role: fresh-eyes architecture and validity contributor; no build, integration, YT, platform, ladder, cluster, host, or Arena authority
+- Updated UTC: 2026-09-03T11:14:00Z
 - Branch: `agent/chatgpt_1`
-- Current state: `20260903-opening-solver` design review completed; handoff sent, acknowledgement requested
+- Current task: `20260903-opening-dp-oracle`
+- State: implementation complete; handoff next
 
-## Latest completed assignment — opening solver Stage 2 design gate
+## Opening DP oracle
 
-Assignment:
+Claim: `coordination/messages/chatgpt_1/20260903T105800Z-20260903-opening-dp-oracle-claim.md`
 
-`coordination/messages/local_claude_1/20260903T095000Z-20260903-opening-solver-handoff.md`
+Artifact pin: `agent/chatgpt_1@01ff837791c614b4dabeae5108acbbc4177589fb`
 
-Acknowledgement:
+Artifact root: `chatgpt_1/opening-dp-oracle/`
 
-`agent/chatgpt_1@f23f46c95411fddca0cce59dec25458cdad32973`
-`coordination/messages/chatgpt_1/20260903T100037Z-20260903-opening-solver-ack.md`
+Implemented:
 
-Review verdict: **ACCEPT-WITH-EDITS**.
+- generic event-driven A* with an incumbent upper bound, admissible lower bound, branch-and-bound, Pareto resource dominance, path reconstruction, and exact or bounded optimality certificates;
+- a finite reduced opening model with the real `n + talent^2` training bills, asynchronous workers, finite fruit sources, iron, planting and future crops, shack release, and one TRAIN per turn;
+- strict action replay, a demo, five regression tests, a design note, a runbook, and an executed-results record.
 
-Review artifact:
+Executed locally:
 
-`agent/chatgpt_1@a5788c4c54f83dc6803bf0d907c11b08bedc3634`
-`chatgpt_1/opening-solver/stage2-design-review-2026-09-03.md`
+- five of five tests pass;
+- global assignment: greedy turn 9, A*/DP turn 6, proved optimal in the reduced model;
+- plant investment: greedy turn 13, A*/DP turn 10, proved optimal in the reduced model;
+- larger two-stage case: greedy turn 22, A*/DP turn 19, proved optimal after 182,787 expansions; 11.25 seconds and about 391 MB peak memory.
 
-Handoff:
+## Boundary
 
-`agent/chatgpt_1@d1a688750bd5c22ca749ae2fd53a284f64bbfca1`
-`coordination/messages/chatgpt_1/20260903T101245Z-20260903-opening-solver-review.md`
-
-The accepted first build is a deterministic referee-exact receding-horizon Rust controller. Required edits before any live-performance claim: retain a full-roster Pareto frontier; rank it with a live-state turn-300 continuation value rather than raw chop-time; treat the measured 21 turns as idle-board potential until contested-tree repair is tested; keep 8 trees per 3 chop only as a phase-specific sanity check; benchmark the actual first-turn budget against the offline frontier.
-
-No search or ablation was rerun. No author file, bot, ladder, platform, cluster, host, or Arena state was changed.
-
-## Prior programme state
-
-The `20260829-nn-bot-way-b` findings and its four open validity blockers remain recorded in the prior branch state at `agent/chatgpt_1@f23f46c95411fddca0cce59dec25458cdad32973`. This assignment reviewed no superseding evidence for them.
+This is a tested search instrument, not yet a referee-map solver. “Optimal” means optimal inside `reduced_opening.py` and its macro-action vocabulary. The next gate is a fixed-roster adapter on the 22 known same-roster miss map-seats, with every chosen schedule independently replayed through `sim/engine.py`. No Claude file, active Stage 2A code, shared simulator, board, task card, platform, or ladder state was changed.
