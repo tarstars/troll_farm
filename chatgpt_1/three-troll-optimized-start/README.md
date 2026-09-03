@@ -1,42 +1,41 @@
 # Three-troll bot with a wood-aware optimized start
 
-This directory contains an isolated candidate built from the current denial-off champion. It is
-not the dead Stage 2A policy with a different constant. The previous candidate forced almost the
-whole opening toward the third-troll bill; it trained a third troll at median turn 147 against the
-real field and lost 4.13 ladder points. This candidate treats a third troll as an investment that
-must beat the wood the existing trolls could bank instead.
+**Executed verdict: `DEAD_AS_BOT`.** The candidate is preserved as an instrument, not offered for
+promotion. See `RESULTS.md` and `results/summary.json` for the executed evidence.
 
-## Policy
+This directory contains an isolated candidate built from the denial-off champion. It is not the
+dead Stage 2A policy with a different constant. The corrected replay reading shows that Stage 2A
+trained its third troll at median game turn **74.5**, not 147; 147 was the replay frame index before
+the frame-to-turn conversion was fixed. Stage 2A nevertheless lost 4.13 ladder-rating points.
+Its second troll appeared on turn 2 in all 160 field games, which proves that the behavior occurred,
+not that the second-troll change was independently beneficial.
+
+## Policy tested
 
 The opening has three layers.
 
-1. **Second troll:** reuse the Stage 2A turn-1/turn-2 second-troll rule. This is the separable half
-   that occurred on turn 2 in all 160 real ladder games of the dead candidate. Until that train,
-   the deterministic Stage 2A dispatcher remains the fallback.
-2. **Third troll:** when two trolls stand, evaluate the complete small roster set
-   `1/1/0/1`, `1/2/0/1`, `2/2/0/1`, `2/2/0/2`, `2/3/0/1`, `2/3/0/2`, `2/3/0/3`.
-   For each tuple, an exact enumeration splits every missing plum, lemon, apple and iron unit
-   between the two workers. Resource curves include travel, carrying, harvesting or mining,
-   banking, regrowth and a conservative contest rule. Current fruit is treated as unavailable
-   when an opponent harvester has an equal or better lower-bound arrival time, and subsequent
-   fruit is charged two cooldowns. The plan is rejected unless its contested completion is no
-   later than turn 110 and its estimated incremental value is at least eight points after charging
-   the existing trolls' best visible wood rates and the consumed fruit.
-3. **Execution and fallback:** the dynamic program produces resource shadow prices. Funding trips
-   and ordinary four-point wood trips compete on the same points-per-turn scale. The plan is
-   re-evaluated every five turns from the live board. If it no longer passes, the opening ends and
-   the unchanged champion resumes immediately. After a third troll is trained, the existing
-   generalized joint selector chooses all three commands together.
+1. **Second troll:** reuse the Stage 2A turn-1/turn-2 second-troll rule. Until that train, the
+   deterministic Stage 2A dispatcher remains the fallback.
+2. **Third troll:** when two trolls stand, evaluate the small roster set `1/1/0/1`, `1/2/0/1`,
+   `2/2/0/1`, `2/2/0/2`, `2/3/0/1`, `2/3/0/2`, `2/3/0/3`. For each tuple, exact enumeration
+   splits every missing plum, lemon, apple and iron unit between the two workers. Resource curves
+   include travel, carrying, harvesting or mining, banking, regrowth and a conservative contest
+   rule. A plan is rejected unless its contested completion is no later than turn 110 and its
+   estimated incremental value is at least eight points after charging foregone wood and consumed
+   fruit.
+3. **Execution and fallback:** the optimizer emits resource shadow prices, so funding trips and
+   ordinary four-point wood trips compete on one points-per-turn scale. The plan is re-evaluated
+   every five turns from the live board. If it no longer passes, the opening ends and the unchanged
+   champion resumes. After a third troll is trained, the generalized joint selector chooses all
+   three commands together.
 
-The value estimate is intentionally conservative and bounded by the standing wood visible on the
-board. It is a policy gate, not a proof of eventual game score.
+The value estimate is a bounded policy gate, not a proof of eventual game score.
 
-## Control
+## Matched control
 
 The generator also writes a control that differs by one constant: third-troll optimization is
 disabled. It still carries the turn-2 second-troll opening. Candidate minus control therefore
-measures the third-troll optimizer rather than crediting it for the already-known second-troll
-change.
+isolates the third-troll optimizer instead of crediting it for the shared opening change.
 
 ## Build
 
@@ -44,37 +43,22 @@ change.
 python3 chatgpt_1/three-troll-optimized-start/make_candidate.py
 ```
 
-Outputs remain in this directory:
+The generator writes the readable source, compacted candidate and control, diffs, hashes and build
+reports. It compiles both forms, verifies exact token-stream round trips, checks distinctness from
+existing bots, and refuses a source at or above 100,000 UTF-16 code units.
 
-- `champion-three-troll-optimized-v6-instrument.rs`
-- `three-troll-optimized-readable.rs`
-- `candidate-three-troll-optimized-v6-instrument.rs`
-- `three-troll-optimized.diff`
-- corresponding `turn2-second-control` files
-- `results/build.json` and `results/control-build.json`
+## Executed validation
 
-The generator applies anchored edits to both the diagnostic arm and readable champion, compiles
-both, compacts the diagnostic arm, verifies token-stream round-trip identity, checks that candidate
-and control are distinct from existing bots, and refuses a source at or above 100,000 UTF-16 code
-units.
+- Both 34-situation deterministic/compaction/telemetry beds passed.
+- Candidate smoke passed the stall/mechanics gate on 19/24 maps. Five maps entered long funding
+  stalls, which is a pre-registered death condition.
+- A third troll was trained in 14/24 smoke games, always by turn 110: p25 / median / p75 were
+  turns 10 / 30 / 56. The chosen tuples were `1 1 0 1` ten times and `1 2 0 1` four times.
+- Candidate source size was 90,070 UTF-16 units. Warm p99 turn time was 1.045 ms.
+- In the direct 200-game matched-control duel, the candidate went 51 wins, 57 ties and 92 losses;
+  score-margin difference was -0.97 with 95% interval [-1.81, -0.24].
+- Against the two-opponent external panel, candidate minus control was +0.050 wins per game with
+  95% interval [+0.005, +0.095]. This was opponent-specific: -0.015 versus the champion and
+  +0.115 versus orchard 6. It does not override the smoke death or direct-control loss.
 
-## Validation
-
-The branch-only workflow runs:
-
-1. the 34-situation deterministic/compaction/telemetry bed;
-2. the frozen 24-map smoke with allowed third-troll tuples;
-3. one-core per-turn timing;
-4. a direct candidate-versus-control panel;
-5. candidate and control against the champion and orchard 6 on identical maps and seats, followed
-   by the repository's clustered paired reading.
-
-`analyse_results.py` writes `results/summary.json` and `RESULTS.md`. No ladder or platform action is
-part of this artifact.
-
-## Pre-registered stop conditions
-
-The candidate is dead as a bot when any mechanics/round-trip check fails, warm p99 is at least
-40 ms, it never trains a third troll by turn 110 on the smoke, or its paired win difference versus
-the control is below -0.05 with the entire 95% interval below -0.05. A dead result remains useful
-as an instrument and is still recorded.
+No ladder, platform, cluster or Arena action was taken.
