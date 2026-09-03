@@ -2,12 +2,12 @@
   "current": {
     "agent_id": null,
     "early_looks": [],
-    "file": "cgauto/submissions/candidate-orchard8-v6-instrument.rs",
-    "id": "orchard8-r1",
-    "label": "ORCHARD 8 (orchard 6 + the never-abandon rule only; sha 4b3e094a\u2026) \u2014 round 1, one hour, one reading; the owner's 'extend' of 09-02",
-    "sha256": "4b3e094a28617240b56f0150288084526846abdc9589b185b58b7ebebdfebafb",
-    "submission_id": 41234498,
-    "submitted_at": "2026-09-03T04:10:10Z"
+    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "id": "champion-restore-0903",
+    "label": "THE CHAMPION OF RECORD (sha 0e92f8fa\u2026) put back after orchard 8's hour; holds the ladder",
+    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+    "submission_id": 41234663,
+    "submitted_at": "2026-09-03T05:17:22Z"
   },
   "done": [
     {
@@ -1587,6 +1587,122 @@
       "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
       "submission_id": 41230202,
       "submitted_at": "2026-09-02T08:00:04Z",
+      "total": 177
+    },
+    {
+      "age_min": 64.9,
+      "agent_id": 6693592,
+      "early_looks": [
+        {
+          "age_min": 4.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:15:03Z",
+          "rank": 168,
+          "score": 11.92,
+          "total": 177
+        },
+        {
+          "age_min": 9.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:20:03Z",
+          "rank": 136,
+          "score": 15.07,
+          "total": 177
+        },
+        {
+          "age_min": 14.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:25:03Z",
+          "rank": 117,
+          "score": 16.37,
+          "total": 177
+        },
+        {
+          "age_min": 19.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:30:04Z",
+          "rank": 113,
+          "score": 16.71,
+          "total": 177
+        },
+        {
+          "age_min": 24.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:35:03Z",
+          "rank": 114,
+          "score": 16.73,
+          "total": 177
+        },
+        {
+          "age_min": 29.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:40:04Z",
+          "rank": 108,
+          "score": 17.15,
+          "total": 177
+        },
+        {
+          "age_min": 34.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:45:04Z",
+          "rank": 93,
+          "score": 17.81,
+          "total": 177
+        },
+        {
+          "age_min": 39.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:50:04Z",
+          "rank": 92,
+          "score": 17.92,
+          "total": 177
+        },
+        {
+          "age_min": 44.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T04:55:04Z",
+          "rank": 84,
+          "score": 18.25,
+          "total": 177
+        },
+        {
+          "age_min": 49.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T05:00:03Z",
+          "rank": 89,
+          "score": 17.98,
+          "total": 177
+        },
+        {
+          "age_min": 54.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T05:05:04Z",
+          "rank": 89,
+          "score": 17.98,
+          "total": 177
+        },
+        {
+          "age_min": 59.9,
+          "agent_id": 6693592,
+          "at": "2026-09-03T05:10:03Z",
+          "rank": 89,
+          "score": 17.98,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-orchard8-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "orchard8-r1",
+      "label": "ORCHARD 8 (orchard 6 + the never-abandon rule only; sha 4b3e094a\u2026) \u2014 round 1, one hour, one reading; the owner's 'extend' of 09-02",
+      "package": "local_claude_1/ladder-queue/games-41234498",
+      "package_sha256": "1fe414978bc30f071894311401c5e1a2fb864dee05d622ec490923cca1780687",
+      "rank": 89,
+      "read_at": "2026-09-03T05:17:08Z",
+      "score": 17.98,
+      "sha256": "4b3e094a28617240b56f0150288084526846abdc9589b185b58b7ebebdfebafb",
+      "submission_id": 41234498,
+      "submitted_at": "2026-09-03T04:10:10Z",
       "total": 177
     }
   ]
