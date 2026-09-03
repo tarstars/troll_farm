@@ -1210,3 +1210,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the-clone road is closed in this form; (3) the bridge to the opening solver — its optimal openings as demonstrations for the
   rule bot (stage 2) and, if the line continues, as a second cloning dataset for turns 1–100; (4) the 10-17 target is not on
   track (best artefact 37 of 144) and is re-based after the anchor-fade arm reads (~a week). — coordinator
+- 2026-09-03 08:28Z: **the anchor-fade arm `ppo-yt-s22F` STARTED on the cluster**, operation `bd54fcc2-95c34640-42e03e8-6ee68d40` — s22's recipe with the clone anchor
+  falling linearly from 0.1 to 0 over the 11.1 M-step budget (`--anchor-coef-final 0.0 --anchor-decay-steps 11100000`); the prepared
+  arguments differ from s22's in those two fields and the name only; s22's map slice `16577bf1…` verified inside the payload; Gate E
+  pre-registered blind (the PREREG file) with the two live outcomes, collapse or the largest move yet, put near even. ~2 h on the
+  cluster; benches on the VM. — coordinator

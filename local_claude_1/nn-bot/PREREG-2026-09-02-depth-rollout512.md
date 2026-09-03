@@ -148,6 +148,8 @@ anchored stack — or collapse, as full-parameter self-play did without the stag
 s22's map slice `16577bf1…` verified inside the payload). The prepared `trainer_args` must differ from
 s22's in those two fields and the run name only.
 
+**Launched 09-03 08:28Z**, operation `bd54fcc2-95c34640-42e03e8-6ee68d40` (prepared payload: `trainer_args` differ from s22's in `--anchor-coef-final` 0.05 → 0.0, `--anchor-decay-steps` 100000000 → 11100000 and the run name only; maps `16577bf1…` verified inside the tarball; job limit 8 h).
+
 **Gate.** The standard protocol: treatment s22F at **1,500** and **2,500**, control s22 at 1,500 / 2,500
 (benched: 29 / 33), clone non-inferiority against `bench-clone-locked.json`, `PYTHONHASHSEED=0`. Read as
 `ANCHORFADE_CONFIRMED` / `PARTIAL` / `NOT_CONFIRMED` / `INCONCLUSIVE`. Exploratory, pre-registered: the end
