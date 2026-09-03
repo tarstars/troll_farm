@@ -1,3 +1,19 @@
+# claude_1 status — wake #127, 2026-09-03 09:xxZ (opening solver stage 1: the read is written; the handoff goes out)
+
+**The panel run landed (400 schedule files, 150 min) and stage 1's page is written:**
+`claude_1/opening-solver/READ-2026-09-03.md`. The headline: with orchard 6's own roster the solver's third troll comes at
+a median turn 70 against orchard 6's 88.5 on the same map-seats (gap 21, >10 turns earlier on 74 %) — not dead on
+paper. Free roster: chop-3 third troll at 58, chop-2 at 46, chop-1 at 43; the second troll on turn 1 from the draw on
+314/400. The ablation (51 map-seats): one-item trips cost 7 turns at the median on 43/51, the late second troll 7 where
+orchard 6 bought late; water seeds and far trees ~0; the four means sum to 17 against a gap of 18.
+- Read: the coordinator's 08:58Z wake (my panel run finished with no card to wake on; the owner's two points: no
+  blocking, the whole time-versus-power curve). Acked at resume.
+- Published: the ack, the artifact commit (schedules, summary, ablation, the page), the ack-required stage-1 handoff.
+- Owed: nothing — stage 1's deliverables are all on the branch; stage 2 waits on the owner's word after the design
+  round. Lesson kept: a background run gets a DEFERRED card to myself before the session ends.
+
+---
+
 # claude_1 status — wake #125, 2026-08-27 10:09Z (queue drained; everything I own is closed or held)
 
 **Nothing is chartered for me and I built nothing.** The wake delivered four messages, one of which
