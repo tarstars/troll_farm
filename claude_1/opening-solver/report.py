@@ -69,6 +69,8 @@ def main():
     seeds = Counter()
     verbs = Counter()
     n_sched = 0
+    first = {v: [] for v in ("PICK", "PLANT", "HARVEST", "MINE")}   # first turn each verb appears, per schedule
+    per_sched = {v: [] for v in ("HARVEST", "MINE")}                # count of the verb per schedule
     for r in rows:
         if not r.get("free_done"):
             continue
@@ -80,10 +82,32 @@ def main():
         seeds[tuple((k, m) for k, m in sol["plan"]["seeds"])] += 1
         verbs.update(walk_stats(sol["commands"], sol["trains"]))
         n_sched += 1
+        seen_first = {}
+        counts = Counter()
+        for t, line in enumerate(sol["commands"], start=1):
+            for c in line:
+                verb = c.split()[0]
+                seen_first.setdefault(verb, t)
+                counts[verb] += 1
+        for v in first:
+            if v in seen_first:
+                first[v].append(seen_first[v])
+        for v in per_sched:
+            per_sched[v].append(counts[v])
     print("\nseed programmes chosen (free):", seeds.most_common(6))
     tot = sum(verbs.values())
     print(f"verb mix over {n_sched} free schedules (all trolls, turns to completion): " +
           ", ".join(f"{k} {100*v/tot:.0f}%" for k, v in verbs.most_common()))
+    # the §3 verb-order table: the median first turn of each verb, and how many schedules use it at all
+    second = [r["free_second_turn"] for r in rows if r.get("free_done")]
+    others = sorted(t for t in second if t != 1)
+    print(f"\nthe order of the opening (free, {n_sched} schedules):")
+    print(f"  second troll TRAINed on turn 1 in {sum(1 for t in second if t == 1)} of {len(second)}; "
+          f"the rest at turns {others[0] if others else '-'}–{others[-1] if others else '-'} "
+          f"(middle half {pct(others, 0.25)}–{pct(others, 0.75)})")
+    for v in ("PICK", "PLANT", "HARVEST", "MINE"):
+        print(f"  first {v:<8} median turn {med(first[v])}  (appears in {len(first[v])} of {n_sched})")
+    print(f"  per schedule: HARVEST median {med(per_sched['HARVEST'])}, MINE median {med(per_sched['MINE'])}")
 
 
 if __name__ == "__main__":
