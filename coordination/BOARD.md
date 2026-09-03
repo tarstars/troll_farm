@@ -103,6 +103,7 @@ Last updated: 2026-09-03T07:4xZ — **the host depth gate is read: the doubled b
 
 ## Decisions (dated)
 
+- 2026-09-03 08:0xZ: owner — **"one more rule for laptop batteries: don't run heavy computational tasks when battery is not fully charged when laptop is connected to power grid"** → heavy work on the laptop only when the mains are on AND the battery is full; the battery guard (`local_claude_1/nn-bot/battery-guard.sh`, deployed at `/home/tarstars/nn-data/`) now stops trainings and benches in either other state, and `battery-guard.sh --check` is the launch test. — owner
 - 2026-09-03 06:0xZ: owner — **"1. kill"** (the orchard line after orchard 8's 17.98); **"2. check progress once in 10 minutes"**; **"3. laptop suspends when I'm going to work and back to home. It's better use Yt or VM for CPU heavy computations. laptop is plugged into socket for the whole night, it's good time for crunching numbers"** → the orchard line killed (obituary); ten-minute wakes; the compute rule: cluster or VM by day, the laptop overnight. — owner
 - 2026-09-03 05:2xZ: coordinator (VM fallback) — **the cheap third troll (row 3-2) dies on paper, no build**: the read's own condition is met on the seed reading (bill 36.5 points, earnings 30, net −6.5 with the interval clear of zero) and the 81 % swap rate that makes that the honest reading is measured; verified by execution on the VM. Reopens only on the owner's "build" (the 30-turn variant). Orchard 8 (row 3-1) read 17.98 at rank 89; its extension is spent; kill or extend is the owner's. — coordinator (VM fallback)
 
@@ -150,7 +151,7 @@ Last updated: 2026-09-03T07:4xZ — **the host depth gate is read: the doubled b
 
 1. **Orchard 8 and the orchard line: killed at your word** (06:0xZ; the obituary is in the graveyard). Nothing is queued; the champion of record holds the ladder.
 
-2. **Standing rule from your word (06:0xZ):** CPU-heavy work runs on the cluster or the VM by day; the laptop crunches at night, when it is plugged in — it suspends on your commute, and that is fine. The loop checks progress every ten minutes. The host depth gate for the finished s22L arm and the stacked arm's benches move to the VM if it can run them, else to tonight on the laptop.
+2. **Standing rules from your words (06:0xZ, 08:0xZ):** CPU-heavy work runs on the cluster or the VM by day; the laptop crunches at night, when it is plugged in AND its battery is full (the guard now stops any host training or bench on battery or while the battery is charging below full) — it suspends on your commute, and that is fine. The loop checks progress every ten minutes. The host depth gate for the finished s22L arm and the stacked arm's benches move to the VM if it can run them, else to tonight on the laptop.
 
 *(decided 09-02 18:0xZ: the successor — yes; codex_1 — dead for now, reviews from chatgpt_1 on request, the owner activates it; the orchard rows — extend. Earlier record: the VM's disk resolved; the reports of 08-28 and 08-30; the floor closed; the apple farm paused; the third troll (a) retired; the 08-27 decisions.)*
 

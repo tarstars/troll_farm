@@ -88,7 +88,7 @@ and every bench: `local_claude_1/nn-bot/results/entropy-gate-0901/`; the plain-w
    `1=` and `2=` to pair s22L@5250/5419 with s22@2500/2709 (see
    `local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`).
 5. **The host is a laptop.** Before launching or benching on it, check
-   `cat /sys/class/power_supply/AC/online` (1 = mains). On battery the cores sit at 800 MHz
+   `/home/tarstars/nn-data/battery-guard.sh --check` (exit 0 = mains on AND battery full — the owner's rule of 09-03: no heavy work while the battery charges). On battery the cores sit at 800 MHz
    (four times slower) and a training drains the owner's battery — do not run there.
 
 ## Track C — the clean room (halted, waiting)
