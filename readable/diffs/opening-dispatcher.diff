@@ -1,0 +1,726 @@
+--- readable/denial-off-champion.rs
++++ readable/denial-off-champion.rs (the opening dispatcher)
+@@ -533,6 +533,13 @@
+             idle_harvest: bool,
+             idle_harvest_clock_only: bool,
+             regeneration_commitments: BTreeMap<i32, PlantKind>,
++            // The opening dispatcher's memory (stage 2A): over once three trolls stand;
++            // the seed each troll carries and the cell it is for; seeds picked so far;
++            // each troll's target last turn (a small hold against flip-flops).
++            opening_done: bool,
++            opening_seeds: BTreeMap<i32, (PlantKind, Cell)>,
++            opening_seed_count: usize,
++            opening_targets: BTreeMap<i32, Cell>,
+             opponent_eta_penalty: i32,
+         }
+         #[derive(Clone, Copy)]
+@@ -1125,6 +1132,10 @@
+                     idle_harvest_clock_only: false,
+                     regeneration_commitments: BTreeMap::new(),
+                     opponent_eta_penalty: 0,
++                    opening_done: false,
++                    opening_seeds: BTreeMap::new(),
++                    opening_seed_count: 0,
++                    opening_targets: BTreeMap::new(),
+                 }
+             }
+             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
+@@ -1401,6 +1412,662 @@
+                 if self.desired_second.is_none() {
+                     self.opening_abandoned = true;
+                 }
++            }
++            // --------------------------------------------------------------------------
++            // The opening dispatcher (stage 2A of `20260903-opening-solver`, 2026-09-03).
++            //
++            // From turn 1 until the third troll is trained the opening is played by the
++            // offline solver's dispatcher in its deterministic form, recomputed every turn
++            // from the live board (a taken tree or a planted cell repairs itself by
++            // recomputation), in the order of weight the design round ruled:
++            //   R1  turn 1 the starting troll steps off the shack and the shack trains the
++            //       second troll from the draw when the draw affords a useful one (each
++            //       talent the most its fruit affords, capped 2/2/2/1, and at least carry 2
++            //       with harvest 1 -- the floor that reproduces the solver's buy-or-wait call
++            //       on 332 of its 400 verified schedules); else the second troll (2/2/1/1,
++            //       harvest 2 when the apples afford it) is funded from the first harvests,
++            //       the strongest affordable carry-2 troll from turn 35, any harvester from 60;
++            //   R2  a trip home carries a useful load: the task values trade the load's
++            //       worth against the turns it costs, and a full troll banks;
++            //   R3  the invariant: the bill is checked on the pre-turn stock, no PICK is
++            //       issued on a turn the TRAIN fires, a seed never delays the second troll;
++            //   R4  a seed goes next to water when the detour is short, else next door,
++            //       and the picking troll plants it on its way;
++            //   R5  everybody gathers, iron only against the bill's deficit, nobody idles.
++            // The third troll's shape follows the iron (the orchard bots' rule: chop 3 with
++            // iron within 5 steps of a door, 2 within 10, 1 within 16). Once three trolls
++            // stand the champion's own play takes over, unchanged.
++            // --------------------------------------------------------------------------
++            const OPENING_HORIZON_LAST_TURN: i32 = 200;
++            const OPENING_SECOND_DEADLINE: i32 = 35;
++            const OPENING_SECOND_LAST_CALL: i32 = 60;
++            const OPENING_SEED_TURN_LIMIT: i32 = 14;
++            const OPENING_SEEDS: [PlantKind; 2] = [PlantKind::Lemon, PlantKind::Plum];
++            const OPENING_WATER_DETOUR: i32 = 6;
++            const OPENING_SURPLUS_WEIGHT: f64 = 0.25;
++            const OPENING_WAIT_CD: i32 = 4;
++            const OPENING_BOTTLENECK: f64 = 1.0;
++            const OPENING_HOLD: f64 = 1.05;
++            const OPENING_CAPS: (i32, i32, i32, i32) = (2, 2, 2, 1);
++            const OPENING_SCORE: f64 = 100_000.0;
++            const IRON_STEPS_FOR_CHOP: [(i32, i32); 3] = [(5, 3), (10, 2), (16, 1)];
++            fn opening_doors(view: &GameState) -> Vec<Cell> {
++                ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect()
++            }
++            fn opening_pay(view: &GameState) -> Vec<usize> {
++                if view.iron.is_empty() {
++                    vec![PLUM, LEMON, APPLE]
++                } else {
++                    vec![PLUM, LEMON, APPLE, IRON]
++                }
++            }
++            fn opening_affordable(view: &GameState, n: i32, stats: Stats, inv: &[i32; 6]) -> bool {
++                let cost = training_cost(n, stats.tuple());
++                Self::opening_pay(view).into_iter().all(|item| inv[item] >= cost[item])
++            }
++            fn iron_steps(view: &GameState) -> Option<i32> {
++                let from_doors = bfs_distances(&view.walkable, &Self::opening_doors(view));
++                view.iron
++                    .iter()
++                    .flat_map(|iron| ortho_neighbors(*iron))
++                    .filter_map(|cell| from_doors.get(&cell).copied())
++                    .min()
++            }
++            fn third_troll_for(view: &GameState) -> Option<Stats> {
++                let shape = |chop: i32| Stats {
++                    movement_speed: 2,
++                    carry_capacity: 3,
++                    harvest_power: 0,
++                    chop_power: chop,
++                };
++                if view.iron.is_empty() {
++                    return Some(shape(3));
++                }
++                let steps = Self::iron_steps(view);
++                let stock = view.inventories[0][IRON];
++                for (limit, chop) in Self::IRON_STEPS_FOR_CHOP {
++                    let needed = 2 + chop * chop - stock;
++                    if needed <= 0 || steps.is_some_and(|s| s <= limit) {
++                        return Some(shape(chop));
++                    }
++                }
++                None
++            }
++            // The most of each talent the stock affords for a second troll, capped; None when
++            // no troll at all is affordable (a talent below its floor).
++            fn opening_second_permax(view: &GameState) -> Option<Stats> {
++                let inv = &view.inventories[0];
++                let best = |item: usize, cap: i32, floor: i32| -> i32 {
++                    let mut v = floor - 1;
++                    for t in floor..=cap {
++                        if inv[item] >= 1 + t * t {
++                            v = t;
++                        }
++                    }
++                    v
++                };
++                let (ms_cap, cc_cap, hp_cap, chop_cap) = Self::OPENING_CAPS;
++                let movement_speed = best(PLUM, ms_cap, 1);
++                let carry_capacity = best(LEMON, cc_cap, 1);
++                let harvest_power = best(APPLE, hp_cap, 0);
++                let chop_power = if view.iron.is_empty() { chop_cap } else { best(IRON, chop_cap, 0) };
++                if movement_speed < 1 || carry_capacity < 1 || harvest_power < 0 || chop_power < 0 {
++                    return None;
++                }
++                // Harvest above carry is wasted: a troll takes at most what it can hold.
++                let harvest_power = harvest_power.min(carry_capacity);
++                Some(Stats {
++                    movement_speed,
++                    carry_capacity,
++                    harvest_power,
++                    chop_power,
++                })
++            }
++            fn opening_second_target(view: &GameState) -> Stats {
++                let permax = Self::opening_second_permax(view);
++                if view.turn <= 1 {
++                    if let Some(p) = permax {
++                        if p.carry_capacity >= 2 && p.harvest_power >= 1 {
++                            return p;
++                        }
++                    }
++                }
++                // Past the deadline the strongest affordable troll that still carries two;
++                // past the last call, any troll that harvests (the champion never stays alone).
++                if view.turn >= Self::OPENING_SECOND_DEADLINE {
++                    if let Some(p) = permax {
++                        if p.harvest_power >= 1
++                            && (p.carry_capacity >= 2 || view.turn >= Self::OPENING_SECOND_LAST_CALL)
++                        {
++                            return p;
++                        }
++                    }
++                }
++                Stats {
++                    movement_speed: 2,
++                    carry_capacity: 2,
++                    harvest_power: 1,
++                    chop_power: 1,
++                }
++            }
++            fn opening_fruits_at(plant: &Plant, cd_eff: i32, dt: i32) -> (i32, i32, i32) {
++                let (mut size, mut fruits, mut cd) = (plant.size, plant.fruits, plant.cooldown.max(0));
++                for _ in 0..dt {
++                    if cd > 0 {
++                        cd -= 1;
++                    }
++                    if cd == 0 {
++                        if size < 4 {
++                            size += 1;
++                            cd = cd_eff;
++                        } else if fruits < 3 {
++                            fruits += 1;
++                            cd = cd_eff;
++                        }
++                    }
++                }
++                (fruits, size, cd)
++            }
++            fn opening_near_water(view: &GameState, cell: Cell) -> bool {
++                view.water.iter().any(|water| is_adjacent(*water, cell))
++            }
++            fn opening_ceil(a: i32, b: i32) -> i32 {
++                (a + b.max(1) - 1) / b.max(1)
++            }
++            // The free reachable cell minimising distance-to-a-door plus distance-to-the-troll
++            // (the top bots' rule), among cells next to water when asked; never a door.
++            fn opening_plant_cell(
++                view: &GameState,
++                home: &BTreeMap<Cell, i32>,
++                from_unit: &BTreeMap<Cell, i32>,
++                doors: &[Cell],
++                water: bool,
++            ) -> Option<(i32, Cell)> {
++                let mut best: Option<(i32, Cell)> = None;
++                for (cell, d_home) in home {
++                    if *d_home == 0 || doors.contains(cell) || view.plant_at(*cell).is_some() {
++                        continue;
++                    }
++                    if water && !Self::opening_near_water(view, *cell) {
++                        continue;
++                    }
++                    let Some(d_unit) = from_unit.get(cell) else {
++                        continue;
++                    };
++                    let v = (*d_home + 1 + *d_unit, *cell);
++                    if best.map_or(true, |b| v < b) {
++                        best = Some(v);
++                    }
++                }
++                best
++            }
++            // Turns per unit of `item` for the troll from the cheapest source now (walking
++            // there and back from the nearest door, the taking, per unit carried); None: no
++            // source. Measured from the doors, not from the troll, so the weights do not
++            // change as it walks (a weight that moved with the troll made it dance).
++            fn opening_fetch_cost(
++                view: &GameState,
++                unit: &Unit,
++                item: usize,
++                from_door: &BTreeMap<Cell, i32>,
++                mine_cells: &[Cell],
++            ) -> Option<f64> {
++                let free = unit.free_capacity();
++                if item == IRON {
++                    let chop = unit.stats.chop_power;
++                    if chop == 0 {
++                        return None;
++                    }
++                    let d = mine_cells
++                        .iter()
++                        .filter_map(|c| from_door.get(c).copied())
++                        .min()?;
++                    let take = if free > 0 { free.min(chop) } else { 1 };
++                    return Some((2 * d + Self::opening_ceil(take, chop) + 1) as f64 / take.max(1) as f64);
++                }
++                let mut best: Option<f64> = None;
++                for plant in &view.plants {
++                    if plant.kind.item_index() != item || plant.health <= 0 {
++                        continue;
++                    }
++                    let Some(d) = from_door.get(&plant.cell) else {
++                        continue;
++                    };
++                    let fr = if plant.fruits > 0 { plant.fruits } else if plant.size >= 4 { 1 } else { 0 };
++                    if fr <= 0 {
++                        continue;
++                    }
++                    let take = unit.stats.carry_capacity.max(1).min(fr);
++                    let cost = (2 * d + Self::opening_ceil(take, unit.stats.harvest_power) + 1) as f64
++                        / take as f64;
++                    if best.map_or(true, |b| cost < b) {
++                        best = Some(cost);
++                    }
++                }
++                best
++            }
++            // One turn of the opening: the TRAIN (if the pre-turn stock clears the bill) and
++            // one command per own troll; None once the opening is over (the champion plays).
++            fn opening_dispatch(&mut self, view: &GameState) -> Option<(Option<Stats>, BTreeMap<i32, Candidate>)> {
++                struct Task {
++                    value: f64,
++                    command: String,
++                    target: Cell,
++                    claim: Option<(usize, i32)>,
++                    claim_cell: Option<(Cell, i32)>,
++                    seed: Option<(PlantKind, Cell)>,
++                    // A task that fetches something the bill still needs (or banks, or plants).
++                    needed: bool,
++                }
++                if self.opening_done {
++                    return None;
++                }
++                let mut own: Vec<&Unit> = view.units.iter().filter(|unit| unit.player == 0).collect();
++                own.sort_by_key(|unit| unit.id);
++                let n = own.len() as i32;
++                let shack = view.shacks[0];
++                let doors = Self::opening_doors(view);
++                if n == 0 || n >= 3 || doors.is_empty() || (n == 2 && view.turn > Self::OPENING_HORIZON_LAST_TURN) {
++                    self.opening_done = true;
++                    return None;
++                }
++                let target = if n == 1 {
++                    Some(Self::opening_second_target(view))
++                } else {
++                    Self::third_troll_for(view)
++                };
++                let Some(target) = target else {
++                    self.opening_done = true;
++                    return None;
++                };
++                let bill = training_cost(n, target.tuple());
++                let pay = Self::opening_pay(view);
++                let inv = view.inventories[0];
++                // R3: the TRAIN on the pre-turn stock; a delayed second troll takes harvest 2
++                // when the apples afford it.
++                let mut train: Option<Stats> = None;
++                if Self::opening_affordable(view, n, target, &inv) {
++                    let mut chosen = target;
++                    if n == 1 && view.turn > 1 && chosen.harvest_power == 1 {
++                        let up = Stats {
++                            harvest_power: 2,
++                            ..chosen
++                        };
++                        if Self::opening_affordable(view, n, up, &inv) {
++                            chosen = up;
++                        }
++                    }
++                    train = Some(chosen);
++                }
++                let home = bfs_distances(&view.walkable, &doors);
++                let from_doors: Vec<(Cell, BTreeMap<Cell, i32>)> = doors
++                    .iter()
++                    .map(|door| (*door, bfs_distances(&view.walkable, &[*door])))
++                    .collect();
++                let mut mine_cells: Vec<Cell> = view
++                    .iron
++                    .iter()
++                    .flat_map(|iron| ortho_neighbors(*iron))
++                    .filter(|cell| home.contains_key(cell))
++                    .collect();
++                mine_cells.sort();
++                mine_cells.dedup();
++                let sw = Self::OPENING_SURPLUS_WEIGHT;
++                // The stock, every troll's load and this turn's claims count toward the bill.
++                let mut have = inv;
++                for unit in &own {
++                    for item in 0..6 {
++                        have[item] += unit.carry[item];
++                    }
++                }
++                let mut claims_by_cell: BTreeMap<Cell, i32> = BTreeMap::new();
++                let mut commands: BTreeMap<i32, Candidate> = BTreeMap::new();
++                let mut targets_now: BTreeMap<i32, Cell> = BTreeMap::new();
++                let mut seeds_now = self.opening_seed_count;
++                for unit in &own {
++                    let from_unit = bfs_distances(&view.walkable, &[unit.cell]);
++                    let on_shack = unit.cell == shack;
++                    let at_door = !on_shack && is_adjacent(unit.cell, shack);
++                    let free = unit.free_capacity();
++                    let carrying = unit.total_carried();
++                    let ms = unit.stats.movement_speed.max(1);
++                    let hp = unit.stats.harvest_power;
++                    let mut need = [0i32; 6];
++                    for item in pay.iter().copied() {
++                        need[item] = (bill[item] - have[item]).max(0);
++                    }
++                    let needed_any = need.iter().any(|d| *d > 0);
++                    // A seed in hand is planted where it was meant to go, or where a free cell
++                    // now is; a seed no longer carried is forgotten.
++                    let mut task: Option<Task> = None;
++                    if let Some((kind, cell)) = self.opening_seeds.get(&unit.id).copied() {
++                        if unit.carry[kind.item_index()] > 0 {
++                            let cell = if view.plant_at(cell).is_none() && home.contains_key(&cell) {
++                                Some(cell)
++                            } else {
++                                let wet = Self::opening_plant_cell(view, &home, &from_unit, &doors, true);
++                                let dry = Self::opening_plant_cell(view, &home, &from_unit, &doors, false);
++                                match (wet, dry) {
++                                    (Some(w), Some(d)) if w.0 <= d.0 + Self::OPENING_WATER_DETOUR => Some(w.1),
++                                    (_, Some(d)) => Some(d.1),
++                                    (Some(w), None) => Some(w.1),
++                                    (None, None) => None,
++                                }
++                            };
++                            if let Some(cell) = cell {
++                                self.opening_seeds.insert(unit.id, (kind, cell));
++                                let command = if unit.cell == cell {
++                                    format!("PLANT {} {}", unit.id, kind.as_str())
++                                } else {
++                                    format!("MOVE {} {} {}", unit.id, cell.0, cell.1)
++                                };
++                                task = Some(Task {
++                                    value: 0.0,
++                                    command,
++                                    target: cell,
++                                    claim: None,
++                                    claim_cell: None,
++                                    seed: None,
++                                    needed: true,
++                                });
++                            } else {
++                                self.opening_seeds.remove(&unit.id);
++                            }
++                        } else {
++                            self.opening_seeds.remove(&unit.id);
++                        }
++                    }
++                    if task.is_none() {
++                        // The door to bank at: the walk to it plus the walk from it to the next
++                        // job (the closest tree with fruit the bill needs, or the mine).
++                        let mut job_cells: Vec<Cell> = view
++                            .plants
++                            .iter()
++                            .filter(|plant| {
++                                plant.health > 0
++                                    && home.contains_key(&plant.cell)
++                                    && (plant.fruits > 0 || plant.size >= 4)
++                                    && need[plant.kind.item_index()] > 0
++                            })
++                            .map(|plant| plant.cell)
++                            .collect();
++                        if need[IRON] > 0 {
++                            job_cells.extend(mine_cells.iter().take(2).copied());
++                        }
++                        let door = from_doors
++                            .iter()
++                            .map(|(door, map)| {
++                                let d0 = if on_shack { 1 } else { from_unit.get(door).copied().unwrap_or(9_999) };
++                                let d1 = job_cells
++                                    .iter()
++                                    .map(|cell| map.get(cell).copied().unwrap_or(9_999))
++                                    .min()
++                                    .unwrap_or(0);
++                                ((d0 + d1, d0, *door), *door)
++                            })
++                            .min_by_key(|(key, _)| *key)
++                            .map(|(_, door)| door)
++                            .unwrap();
++                        let d_home = if on_shack { 1 } else { from_unit.get(&door).copied().unwrap_or(9_999) };
++                        // The bottleneck first: a needed unit's weight is its fetch cost
++                        // relative to the mean over the items still needed.
++                        let mut w = [1.0f64; 6];
++                        if needed_any && Self::OPENING_BOTTLENECK > 0.0 {
++                            let mut costs: Vec<(usize, f64)> = Vec::new();
++                            for item in 0..6 {
++                                if need[item] > 0 {
++                                    let c = Self::opening_fetch_cost(view, unit, item, &home, &mine_cells)
++                                        .unwrap_or(40.0);
++                                    costs.push((item, c));
++                                }
++                            }
++                            if !costs.is_empty() {
++                                let mean = costs.iter().map(|(_, c)| *c).sum::<f64>() / costs.len() as f64;
++                                for (item, c) in costs {
++                                    w[item] = (1.0 + Self::OPENING_BOTTLENECK * (c / mean - 1.0)).clamp(0.3, 4.0);
++                                }
++                            }
++                        }
++                        let mut tasks: Vec<Task> = Vec::new();
++                        if carrying > 0 {
++                            let mut needed_carried = 0.0;
++                            let mut plain = 0;
++                            if needed_any {
++                                for item in 0..6 {
++                                    let k = unit.carry[item].min(need[item]);
++                                    needed_carried += k as f64 * w[item];
++                                    plain += k;
++                                }
++                            }
++                            let value = (needed_carried + (carrying - plain) as f64 * sw) / (d_home + 1) as f64
++                                + if free == 0 { 2.0 } else { 0.0 };
++                            let command = if at_door {
++                                format!("DROP {}", unit.id)
++                            } else {
++                                format!("MOVE {} {} {}", unit.id, door.0, door.1)
++                            };
++                            tasks.push(Task {
++                                value,
++                                command,
++                                target: door,
++                                claim: None,
++                                claim_cell: None,
++                                seed: None,
++                                needed: true,
++                            });
++                        }
++                        if free > 0 {
++                            for plant in &view.plants {
++                                if plant.health <= 0 || hp <= 0 {
++                                    continue;
++                                }
++                                let Some(d) = from_unit.get(&plant.cell).copied() else {
++                                    continue;
++                                };
++                                let arrive = Self::opening_ceil(d, ms);
++                                let cd_eff = effective_cooldown(plant.kind, Self::opening_near_water(view, plant.cell));
++                                let (fr, size, cd) = Self::opening_fruits_at(plant, cd_eff, arrive);
++                                let claimed = claims_by_cell.get(&plant.cell).copied().unwrap_or(0);
++                                let k = plant.kind.item_index();
++                                let worth_each = if need[k] > 0 { w[k] } else { sw };
++                                let back = home.get(&plant.cell).copied().unwrap_or(9_999) as f64 / ms as f64 + 1.0;
++                                let worth_of = |take: i32| -> f64 {
++                                    if needed_any {
++                                        take.min(need[k]) as f64 * w[k] + (take - need[k]).max(0) as f64 * sw
++                                    } else {
++                                        take as f64
++                                    }
++                                };
++                                let harvest = |take: i32| -> String {
++                                    if unit.cell == plant.cell {
++                                        let _ = take;
++                                        format!("HARVEST {}", unit.id)
++                                    } else {
++                                        format!("MOVE {} {} {}", unit.id, plant.cell.0, plant.cell.1)
++                                    }
++                                };
++                                let avail = (fr - claimed).max(0);
++                                if avail > 0 {
++                                    let take = free.min(avail + if fr >= 3 && cd == 0 { 1 } else { 0 });
++                                    let turns = (arrive + Self::opening_ceil(take, hp)) as f64 + back;
++                                    tasks.push(Task {
++                                        value: worth_of(take) / turns,
++                                        command: harvest(take),
++                                        target: plant.cell,
++                                        claim: Some((k, take)),
++                                        claim_cell: Some((plant.cell, take)),
++                                        seed: None,
++                                        needed: need[k] > 0,
++                                    });
++                                }
++                                if size >= 4 && cd_eff <= Self::OPENING_WAIT_CD && free > avail && claimed == 0 {
++                                    let take = free;
++                                    let extra = take - avail;
++                                    let turns = (arrive + Self::opening_ceil(avail, hp).max(1) + extra * cd_eff) as f64 + back;
++                                    let command = if unit.cell == plant.cell && plant.fruits == 0 {
++                                        "WAIT".to_string()
++                                    } else {
++                                        harvest(take)
++                                    };
++                                    tasks.push(Task {
++                                        value: worth_of(take) / turns * 0.98,
++                                        command,
++                                        target: plant.cell,
++                                        claim: Some((k, take)),
++                                        claim_cell: Some((plant.cell, take)),
++                                        seed: None,
++                                        needed: need[k] > 0,
++                                    });
++                                }
++                                if arrive < 20 && fr == 0 && size >= 4 && cd > 0 && cd + arrive <= 12 && need[k] > 0 && claimed == 0 {
++                                    let take = free.min(1);
++                                    let turns = (arrive + (cd - arrive).max(0) + 1) as f64 + back;
++                                    let command = if unit.cell == plant.cell {
++                                        "WAIT".to_string()
++                                    } else {
++                                        harvest(take)
++                                    };
++                                    tasks.push(Task {
++                                        value: worth_each / turns * 0.9,
++                                        command,
++                                        target: plant.cell,
++                                        claim: Some((k, take)),
++                                        claim_cell: Some((plant.cell, take)),
++                                        seed: None,
++                                        needed: true,
++                                    });
++                                }
++                            }
++                            if !view.iron.is_empty() && unit.stats.chop_power > 0 && need[IRON] > 0 {
++                                if let Some(cell) = mine_cells
++                                    .iter()
++                                    .min_by_key(|c| (from_unit.get(c).copied().unwrap_or(9_999), **c))
++                                    .copied()
++                                {
++                                    let d = from_unit.get(&cell).copied().unwrap_or(9_999);
++                                    let arrive = Self::opening_ceil(d, ms);
++                                    let take = free.min(need[IRON].max(1));
++                                    let turns = (arrive + Self::opening_ceil(take, unit.stats.chop_power)) as f64
++                                        + home.get(&cell).copied().unwrap_or(9_999) as f64 / ms as f64
++                                        + 1.0;
++                                    let command = if unit.cell == cell {
++                                        format!("MINE {}", unit.id)
++                                    } else {
++                                        format!("MOVE {} {} {}", unit.id, cell.0, cell.1)
++                                    };
++                                    tasks.push(Task {
++                                        value: take.min(need[IRON]) as f64 * w[IRON] / turns,
++                                        command,
++                                        target: cell,
++                                        claim: Some((IRON, take)),
++                                        claim_cell: None,
++                                        seed: None,
++                                        needed: true,
++                                    });
++                                }
++                            }
++                            // A seed: only from stock the second troll's bill does not need,
++                            // never on a turn the TRAIN fires (R3), early in the game, with
++                            // empty hands; next to water when the detour is short (R4).
++                            if seeds_now < Self::OPENING_SEEDS.len()
++                                && view.turn <= Self::OPENING_SEED_TURN_LIMIT
++                                && carrying == 0
++                                && train.is_none()
++                            {
++                                let kind = Self::OPENING_SEEDS[seeds_now];
++                                let k = kind.item_index();
++                                let reserve = if n <= 1 { bill[k] } else { 0 };
++                                if inv[k] - reserve > 0 {
++                                    let wet = Self::opening_plant_cell(view, &home, &from_unit, &doors, true);
++                                    let dry = Self::opening_plant_cell(view, &home, &from_unit, &doors, false);
++                                    let cell = match (wet, dry) {
++                                        (Some(w), Some(d)) if w.0 <= d.0 + Self::OPENING_WATER_DETOUR => Some(w.1),
++                                        (_, Some(d)) => Some(d.1),
++                                        (Some(w), None) => Some(w.1),
++                                        (None, None) => None,
++                                    };
++                                    if let Some(cell) = cell {
++                                        let turns = d_home + 1 + home.get(&cell).copied().unwrap_or(9_999) + 1;
++                                        let command = if at_door {
++                                            format!("PICK {} {}", unit.id, kind.as_str())
++                                        } else {
++                                            format!("MOVE {} {} {}", unit.id, door.0, door.1)
++                                        };
++                                        tasks.push(Task {
++                                            value: 3.0 / turns as f64,
++                                            command,
++                                            target: cell,
++                                            claim: None,
++                                            claim_cell: None,
++                                            seed: Some((kind, cell)),
++                                            needed: true,
++                                        });
++                                    }
++                                }
++                            }
++                        }
++                        // The bill first (R5): while anything the bill needs can be fetched, a
++                        // harvest for points alone is not an option (a near tree's quarter-points
++                        // every other turn once outscored the only plum tree on the map, 16 steps
++                        // away, and the third troll never came). Then the best value wins, the
++                        // first on a tie; last turn's target holds a little, so a close call
++                        // does not flip a troll every turn.
++                        if tasks.iter().any(|t| t.needed && t.claim.is_some()) {
++                            tasks.retain(|t| t.needed);
++                        }
++                        let last = self.opening_targets.get(&unit.id).copied();
++                        let mut best: Option<Task> = None;
++                        for t in tasks {
++                            let value = if last == Some(t.target) { t.value * Self::OPENING_HOLD } else { t.value };
++                            if best.as_ref().map_or(true, |b| value > b.value) {
++                                best = Some(Task { value, ..t });
++                            }
++                        }
++                        task = best;
++                    }
++                    let (command, target) = match task {
++                        Some(t) => {
++                            if let Some((item, amount)) = t.claim {
++                                have[item] += amount;
++                            }
++                            if let Some((cell, amount)) = t.claim_cell {
++                                *claims_by_cell.entry(cell).or_insert(0) += amount;
++                            }
++                            if let Some(seed) = t.seed {
++                                if t.command.starts_with("PICK ") {
++                                    self.opening_seeds.insert(unit.id, seed);
++                                    self.opening_seed_count += 1;
++                                }
++                                seeds_now += 1;
++                            }
++                            (t.command, Some(t.target))
++                        }
++                        None => ("WAIT".to_string(), None),
++                    };
++                    // A troll on the shack always steps off it (it can do nothing there and it
++                    // blocks the TRAIN).
++                    let command = if on_shack && !command.starts_with("MOVE ") {
++                        format!("MOVE {} {} {}", unit.id, doors[0].0, doors[0].1)
++                    } else {
++                        command
++                    };
++                    if let Some(cell) = target {
++                        targets_now.insert(unit.id, cell);
++                    }
++                    commands.insert(
++                        unit.id,
++                        Candidate {
++                            command,
++                            score: Self::OPENING_SCORE,
++                            target: Target::None,
++                        },
++                    );
++                }
++                self.opening_targets = targets_now;
++                Some((train, commands))
+             }
+             fn fallback_second_troll() -> Stats {
+                 Stats {
+@@ -2065,11 +2732,20 @@
+                 self.reconcile_regeneration_commitments(view);
+                 self.ensure_opening(view);
+                 self.enforce_training_deadline(view);
+-                let desired = self
+-                    .desired_second
+-                    .map(|objective| objective.stats)
+-                    .unwrap_or_else(Self::fallback_second_troll);
+-                let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
++                // The opening dispatcher (stage 2A) owns the TRAIN and every troll's command
++                // from turn 1 to the third troll; None once the champion's own play resumes.
++                let opening = self.opening_dispatch(view);
++                let desired = match opening.as_ref().and_then(|plan| plan.0) {
++                    Some(stats) => stats,
++                    None => self
++                        .desired_second
++                        .map(|objective| objective.stats)
++                        .unwrap_or_else(Self::fallback_second_troll),
++                };
++                let train_now = match opening.as_ref() {
++                    Some(plan) => plan.0.is_some(),
++                    None => !self.opening_abandoned && MoisanBot::can_train(view, desired),
++                };
+                 let mut out = Vec::new();
+                 if !self.announced {
+                     self.announced = true;
+@@ -2162,6 +2838,9 @@
+                             });
+                         }
+                     }
++                    if let Some(forced) = opening.as_ref().and_then(|plan| plan.1.get(&unit.id)) {
++                        candidates = vec![forced.clone()];
++                    }
+                     by_id.insert(unit.id, candidates);
+                 }
+                 if self.door_unblocking {
