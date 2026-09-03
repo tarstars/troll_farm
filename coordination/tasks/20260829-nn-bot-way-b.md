@@ -1234,3 +1234,14 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   of work: (1) `--device cuda` (free); (2) the benches inside the cluster job on its 32 cores (`--gate-every`) instead of
   an hour on the VM; (3) resume from the salvaged checkpoint after a preemption; (4) more environments per rollout to feed
   the card. (2)–(3) only if Gate E keeps the network line open. — coordinator
+- 2026-09-03 09:3xZ: **the CUDA timing test, two failures read and one relaunch.** The first job (`ppo-yt-s22cuda-t`, op
+  `94fd5280…`) died silent — the cluster keeps a job's stderr, not its stdout, and the trainer writes there; the entrypoint now
+  echoes a dying trainer's last 80 lines to stderr and logs `compute_ready` / `trainer_device` there. The second job
+  (`ppo-yt-s22cuda-t2`, op `6cca1cf…`) then said it plainly: torch 2.4.1+cu121 but `cuda_available: false`,
+  `CUDA_VISIBLE_DEVICES` empty from the scheduler, `NVIDIA_VISIBLE_DEVICES` unset — **the card the job reserves is never
+  mounted into our container, because our two porto layers (Ubuntu jammy, Python 3.11) carry no NVIDIA driver.** So every
+  GPU-tree job since 08-30 held a card as a scheduling ticket only; the owner's worry of 09:0xZ is confirmed in the mechanism.
+  The cluster has the layers: `//porto_layers/delta/gpu/driver/<version>` (525.60.13 … 590.48.01) and
+  `//porto_layers/delta/gpu/cuda/<version>` (… 12.1, 12.2, 12.6). Third job `ppo-yt-s22cuda-t3` (op `2ff7cf2a…`, 09:32Z):
+  the same two layers plus `driver/590.48.01` and `cuda/12.1` (the torch build's CUDA); a driver mismatch would now fail
+  readably and the next version is tried. — coordinator
