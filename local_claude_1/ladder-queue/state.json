@@ -1,5 +1,14 @@
 {
-  "current": null,
+  "current": {
+    "agent_id": null,
+    "early_looks": [],
+    "file": "cgauto/submissions/candidate-orchard8-v6-instrument.rs",
+    "id": "orchard8-r1",
+    "label": "ORCHARD 8 (orchard 6 + the never-abandon rule only; sha 4b3e094a\u2026) \u2014 round 1, one hour, one reading; the owner's 'extend' of 09-02",
+    "sha256": "4b3e094a28617240b56f0150288084526846abdc9589b185b58b7ebebdfebafb",
+    "submission_id": 41234498,
+    "submitted_at": "2026-09-03T04:10:10Z"
+  },
   "done": [
     {
       "agent_id": 6670021,
