@@ -203,3 +203,40 @@ no loss, or the maximum expected lead) is asked when 2B is chartered.**
   byte, both forms compiled, and the submission's size measured against the 100,000-character limit. Recorded for the
   next agent: **`ssh troll-vm 'rustc …'` finds no compiler** — rustc lives at `/home/tarstars/.cargo/bin/rustc` on the VM
   and needs the full path or a login shell, though the runbook's §3.2 command assumes a bare `rustc`. — coordinator
+- 2026-09-03 12:5xZ coordinator: the stall diagnosed from claude_1's session log and the VM, and it was not forgetfulness.
+  claude_1 **had** run the timing gate at 10:57Z and **had** started the first field run at 10:57:55Z; its session was then cut
+  between the commit and the message, so the pinned commit carried an empty `turn-time.log`, the first h2h run died a minute in
+  leaving an orphan `/tmp/h2h-*` directory, and claude_1 slept 103 minutes waiting for a completion notice that could never
+  arrive. Woken ack-required at 12:33Z (`20260903T123335Z`); acked 12:41Z, which committed the timing gate: **first turn
+  4.27 ms against the platform's 1,000 ms, warm median 0.647 ms, p99 2.28 ms, max 2.86 ms against 50 ms, 0 turns over budget in
+  1,940 timed turns — PASS with a fifteen-fold margin.** Lesson recorded for every agent: **the progress message goes out with
+  the commit, not after the last gate** — a delivered build nobody is told about waits exactly as long as an undelivered one.
+- 2026-09-03 13:07Z **RUNG 1, THE FIELD READING: `FIELD_BELOW_ZERO`.** Δwin **−0.2219 [−0.2562, −0.1862]**, Δmargin
+  **−28.71 [−32.74, −24.85]**, 200 maps × 1,600 paired cells, faults 0 / 0 / 0. Per opponent (the candidate's wins against the
+  champion's wins on the same 400 cells): champion of record 29 vs 113 (Δwin −0.2100 [−0.2550, −0.1650], Δmargin −35.19);
+  orchard 6 174 vs 324 (−0.3750 [−0.4400, −0.3100], −30.25); the old champion with denial on 35 vs 147 (−0.2800 [−0.3425,
+  −0.2175], −42.15); the network clone 322 vs 331 (**−0.0225 [−0.0775, +0.0325]** — the only opponent it holds, and the only one
+  of the four that does not race for wood). **Measured twice independently and agreeing to the digit**: claude_1's run in its
+  worktree and the coordinator's from a fresh `git archive` of the pinned commit into `/data/scratch/2a-verify`, both 29 / 174 /
+  35 / 322 with identical scores; the coordinator's copy of the reading is
+  `local_claude_1/opening-solver-verify/stage2a/coordinator-field-reproduction.json`. **The interval is clear of zero, which is
+  the card's pre-registered dead condition.**
+- 2026-09-03 12:5xZ coordinator, a correction to its own arithmetic, made before the owner acted on it: the "17 to 18 turns
+  earlier" first reported for the third troll compared the candidate's median (70.5, on the 24-map smoke slice) with orchard 6's
+  88.5, which is orchard 6's figure from a **different** population (its 292 real map-seats) — two medians from two different
+  sets of games. Orchard 6 has been smoked on the identical 24 maps against the identical resident, so the honest comparison is
+  paired map for map: **median 14.0 turns earlier (mean 15.5), earlier on 19 maps of 24, later on 5 (once by 39), middle half 6
+  to 36; medians 70.5 against 87.0.** The offline solver promised 21 turns on paper, so the rules capture about two thirds of it.
+  The corrected figure is the one of record; the 17/18 figures are withdrawn. — coordinator
+- 2026-09-03 13:0xZ **THE OWNER: "put it on the platform."** Said after being told the field reading was below zero and that the
+  coordinator's advice was **not** to spend a ladder hour on it. The owner's word overrides the pre-registered rule (the standing
+  rule that it does is in the runbook, §2.6). Queued at 13:1xZ (`opening-dispatcher-r1`, sha `fe9e9ec8…`, with
+  `champion-restore-0903b` behind it) and **submitted 13:10:07Z as `41236483`**; one hour, one reading, the champion of record
+  restored automatically after it (~14:12Z). claude_1's stage-2A branch was merged to `main` first so the submitted file and its
+  round trip are of record. The queue file's `written` field and the commit message both state that the submission went up
+  against the coordinator's advice and which rule it overrode. **Ruling: stage 2A is NOT closed by the coordinator while the
+  owner has it live on the ladder.** The pre-registered dead condition is met on the local evidence and stands recorded above;
+  the final verdict — obituary or otherwise — is taken after the ladder reading, and is the owner's to direct. The coordinator's
+  prediction, given before the reading: **15 to 17**, below the champion's 18.14 but by less than the local games alone imply,
+  because the ladder plays the whole field rather than our own clear-cutting lineage (the orchard series showed exactly that
+  gap between a duel against our champion and a ladder reading). — coordinator
