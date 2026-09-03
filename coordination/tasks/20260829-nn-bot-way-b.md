@@ -1215,3 +1215,8 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   arguments differ from s22's in those two fields and the name only; s22's map slice `16577bf1…` verified inside the payload; Gate E
   pre-registered blind (the PREREG file) with the two live outcomes, collapse or the largest move yet, put near even. ~2 h on the
   cluster; benches on the VM. — coordinator
+- 2026-09-03 08:3xZ: **the stacked arm `ppo-yt-s22L512` was preempted twice** (operation `b3c6af06…`: aborted 2, running 1); its
+  first attempt had reached 9.2 M of 22.2 M turn-steps by 08:04Z; the entrypoint restarts from scratch (deterministic, so the
+  trajectory is reproduced; the salvage holds the first attempt's checkpoints under `mid-run-`), the third attempt started
+  ~08:24Z — Gate D's benches slip to ~16:30Z at the earliest. The anchor-fade arm `ppo-yt-s22F` runs beside it (0 aborts so
+  far). — coordinator
