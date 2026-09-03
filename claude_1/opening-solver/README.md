@@ -18,6 +18,8 @@ read off the referee's world, not the model's.
 | `ablate.py` | where the turns go: the solver re-run under orchard 6's habits one at a time (its second troll no earlier than orchard 6 bought it; seeds next door only; one item a trip; no wild tree beyond four steps) |
 | `raid_rate.py` | the balance question: every planted tree in the collected games and its fate (raided by the enemy, converted by its owner, standing); raids per 100 tree-turns by distance and by turn; `raid-rate.json` |
 | `report.py` | the numbers of the one page from `panel-summary.json` and the schedules |
+| `READ-2026-09-03.md` | the one page for the owner (stage 1's read) |
+| `panel-summary.json`, `schedules/`, `ablation.json`, `raid-rate.json` | the panel run of 2026-09-03 (400 map-seats, 150 min), the ablation run (51 map-seats), the raid table |
 
     cd claude_1/opening-solver
     python3 run_panel.py 0 4          # every map, 4 workers (about 80 minutes on the laptop)
