@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs",
-    "id": "opening-dispatcher-r1",
-    "label": "THE OPENING DISPATCHER (the champion of record + the opening solver's planner to the third troll; sha fe9e9ec8...) \u2014 round 1, one hour, one reading; the owner's 'put it on the platform' of 2026-09-03 13:1xZ",
-    "sha256": "fe9e9ec839183b70fb90c6793cd15bee206da8c85a0ca647b7baf576c3d6dc78",
-    "submission_id": 41236483,
-    "submitted_at": "2026-09-03T13:10:07Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -1819,6 +1810,122 @@
       "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
       "submission_id": 41234663,
       "submitted_at": "2026-09-03T05:17:22Z",
+      "total": 177
+    },
+    {
+      "age_min": 64.9,
+      "agent_id": 6696169,
+      "early_looks": [
+        {
+          "age_min": 4.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:15:03Z",
+          "rank": 175,
+          "score": 8.22,
+          "total": 177
+        },
+        {
+          "age_min": 10.0,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:20:05Z",
+          "rank": 169,
+          "score": 11.74,
+          "total": 177
+        },
+        {
+          "age_min": 14.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:25:03Z",
+          "rank": 161,
+          "score": 13.05,
+          "total": 177
+        },
+        {
+          "age_min": 19.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:30:04Z",
+          "rank": 160,
+          "score": 13.25,
+          "total": 177
+        },
+        {
+          "age_min": 24.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:35:03Z",
+          "rank": 158,
+          "score": 13.8,
+          "total": 177
+        },
+        {
+          "age_min": 29.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:40:04Z",
+          "rank": 158,
+          "score": 13.92,
+          "total": 177
+        },
+        {
+          "age_min": 34.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:45:03Z",
+          "rank": 143,
+          "score": 14.72,
+          "total": 177
+        },
+        {
+          "age_min": 39.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:50:04Z",
+          "rank": 139,
+          "score": 14.9,
+          "total": 177
+        },
+        {
+          "age_min": 44.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T13:55:03Z",
+          "rank": 142,
+          "score": 14.82,
+          "total": 177
+        },
+        {
+          "age_min": 50.0,
+          "agent_id": 6696169,
+          "at": "2026-09-03T14:00:04Z",
+          "rank": 145,
+          "score": 14.65,
+          "total": 177
+        },
+        {
+          "age_min": 54.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T14:05:04Z",
+          "rank": 147,
+          "score": 14.59,
+          "total": 177
+        },
+        {
+          "age_min": 59.9,
+          "agent_id": 6696169,
+          "at": "2026-09-03T14:10:03Z",
+          "rank": 147,
+          "score": 14.59,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "opening-dispatcher-r1",
+      "label": "THE OPENING DISPATCHER (the champion of record + the opening solver's planner to the third troll; sha fe9e9ec8...) \u2014 round 1, one hour, one reading; the owner's 'put it on the platform' of 2026-09-03 13:1xZ",
+      "package": "local_claude_1/ladder-queue/games-41236483",
+      "package_sha256": "4fdb01aa9eb1f06c02fb34a12f00518e93353db476855ce2942eea80a9014268",
+      "rank": 147,
+      "read_at": "2026-09-03T14:17:17Z",
+      "score": 14.59,
+      "sha256": "fe9e9ec839183b70fb90c6793cd15bee206da8c85a0ca647b7baf576c3d6dc78",
+      "submission_id": 41236483,
+      "submitted_at": "2026-09-03T13:10:07Z",
       "total": 177
     }
   ]
