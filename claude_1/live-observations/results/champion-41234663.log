@@ -1,0 +1,32 @@
+40/160
+80/160
+120/160
+160/160
+== champion of record, submission 41234663, 160 ladder games: 160 games ok of 160 ==
+third troll in 0/160 games, median turn None
+-- 1. switching, intent-free (trips between actions against the shortest path)
+  opening  troll-turns   81983  trips   8075  turns/trip  5.36 shortest  4.74  EXCESS   5066 (31.66/game, 6.18% of troll-turns)  away-steps  1500 (1.83/100)  trips-with-a-step-away   716 ( 8.9%)  blocked     0  idle-en-route  1087  dance  1361 (1.66/100)  unfinished: turns  3040 moves   407 idle  2633
+  after    troll-turns       0  trips      0  turns/trip  0.00 shortest  0.00  EXCESS      0 ( 0.00/game, 0.00% of troll-turns)  away-steps     0 (0.00/100)  trips-with-a-step-away     0 ( 0.0%)  blocked     0  idle-en-route     0  dance     0 (0.00/100)  unfinished: turns     0 moves     0 idle     0
+  le70     troll-turns   20913  trips   3051  turns/trip  3.90 shortest  3.36  EXCESS   1657 (10.36/game, 7.92% of troll-turns)  away-steps   318 (1.52/100)  trips-with-a-step-away   170 ( 5.6%)  blocked     0  idle-en-route   141  dance   220 (1.05/100)  unfinished: turns     0 moves     0 idle     0
+  gt70     troll-turns   61070  trips   5024  turns/trip  6.25 shortest  5.57  EXCESS   3409 (21.31/game, 5.58% of troll-turns)  away-steps  1182 (1.94/100)  trips-with-a-step-away   546 (10.9%)  blocked     0  idle-en-route   946  dance  1141 (1.87/100)  unfinished: turns  3040 moves   407 idle  2633
+-- 2. trees left standing at the last turn
+  standing per game mean 4.59 median 1  total 734
+  size mix {1: 40, 2: 41, 3: 34, 4: 619}  mean health 10.5  door-dist median 11  unreachable-from-doors 0
+  ever a banked chop candidate for one of ours in turns 200-300: 705 of 734; last such turn median 280
+  fellable without the walk home at some turn 200-300: 715 of 734
+  chop candidates emptied for good in 129 games, median turn 293; cause per (troll, standing tree) on that turn: {'too_far_to_return': 822, 'hands_full': 531, 'predicted_dead': 51}
+  last CHOP by us: median turn 289
+  opp_take_from_standing_after_unbanked_fell_pts       mean   4.78/game  median   0.00
+  opp_take_from_standing_after_our_last_chop_pts       mean   0.57/game  median   0.00
+  opp_take_all_trees_since_200_pts                     mean   7.68/game  median   2.00
+  our_take_from_standing_since_200_pts                 mean   0.03/game  median   0.00
+  final wood ours mean 45.6  theirs 46.8
+-- 3. enemy-planted trees (exact provenance from the replay's two command streams)
+  planted per game: theirs 25.75  ours 9.77  unattributed 0.00  (totals {'theirs': 4120, 'ours': 1563})
+  opponent's plants: felled by us 7.04/game, by them 10.99, both 4.61, vanished without a chop 0.00; standing at end 3.10/game
+  fruit the opponent harvested from its own plants 23.54/game; fruit we took from them 0.03/game
+  the live adjacency inference against the truth: {'theirs->theirs': 3526, 'theirs->ambiguous': 594, 'ours->ours': 1473, 'ours->ambiguous': 90}
+
+real	0m24.601s
+user	0m24.555s
+sys	0m0.042s
