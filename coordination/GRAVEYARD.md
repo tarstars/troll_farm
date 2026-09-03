@@ -149,6 +149,22 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   planted until denial ends, farm afterwards) is written into the card for that day. Games
   `local_claude_1/farm-watch/games-41201668/`; readable diff `readable/diffs/banana-farm-vs-v6-instrument.diff`.
 
+- **2026-09-03 — Track 3, the orchard line (the third troll → three heroes → the orchards 1–8)** (`20260828-third-troll`;
+  rows 3-1 and 0-7; killed 06:0xZ by the owner's word "kill" after orchard 8's reading). **What it was:** the champion of
+  record with a harvest-1 second troll, both trolls funding a 2/3/0/3 third troll, an orchard of lemons and plums planted
+  beside the tent to feed the bill, protected from our own axes; eight builds in seven days, each one owner-ruled variable.
+  **What killed it:** the readings — (a) 11.3, three heroes 11.7 / 12.0, orchard 5 14.7 / 13.5, orchard 6 18.8 (the champion
+  18.2 that day), orchard 7 16.7 / 16.6, orchard 8 17.98 (the champion 17.0 the day before) — never more than a point above
+  the champion and inside the ±1.5 noise; and the turn-by-turn read of 09-03 (`local_claude_1/funding-order/OUR-BOT-FUNDING-2026-09-03.md`):
+  the second troll at a median turn 26 (the top four: turns 1–9 from the starting draw), one seed per far-door trip, 77 % of
+  trips home carrying one item, a quarter of wild harvests five or more steps away with the orchard at the door. **What we
+  learned:** the third troll is not the lever by itself — the top four buy theirs later (turn 95–115) and are far stronger;
+  the order of train, plant and gather in the first thirty turns is, and our rules had it backwards (plant first, train
+  late, gather alone); planting itself is early and the PICK-before-TRAIN clash never happens. **What would reopen it:**
+  nothing in this form — the successor is the opening solver (`20260903-opening-solver`), which plans the same actions
+  in the referee's own order. Instruments kept: the generator chain (`local_claude_1/third-troll/make_*.py`), the bed and
+  the smoke slice, the collected batches (41206542 … 41234498) and their reads.
+
 - **2026-09-03 — Track 3, the cheap third troll** (`20260902-cheap-third-troll`; dead on paper 05:2xZ by the
   coordinator's VM fallback seat, after claude_1's read of 04:23Z). **What it was:** the successor to the port —
   our champion exactly as it plays, plus the weakest third troll worth having (speed 1, carry 1, no harvest, chop 1:

@@ -2,7 +2,7 @@
 
 - Born 2026-08-28 04:3xZ by the owner's word ("set as next goal bot with the third troll"), after the reconstruction of the four top players (`docs/reports/2026-08-28-top-four-algorithms.pdf`, `local_claude_1/reconstructions/README.md`) ranked it first among the ideas to test.
 - Record owner: local_claude_1 (coordinator) · Work owner: **local_claude_1** (builds it, as the apple farm and the floor were built) · Reviewer: **codex_1** (reproduces the build, the bed and the smoke) · Arena: the coordinator submits — the ladder slot after the floor's last reading (round 3, 05:24Z).
-- Status line: **DESIGN ROUND 2 ACCEPTED 06:2xZ → THREE HEROES BUILT, BED PASS, SMOKE PASS (a third troll in 20/24 local games at median turn 111, no stall) — queued on the VM after the champion's hour (~07:27Z), reading ~08:30Z.** (a) was retired from the ladder by the owner at 06:2xZ after 35 minutes (11.3 at rank 170).
+- Status line: **KILLED 2026-09-03 06:0xZ (owner: "kill" after orchard 8's 17.98 at rank 89; obituary in `coordination/GRAVEYARD.md`; the successor is `20260903-opening-solver`).** Previously: **DESIGN ROUND 2 ACCEPTED 06:2xZ → THREE HEROES BUILT, BED PASS, SMOKE PASS (a third troll in 20/24 local games at median turn 111, no stall) — queued on the VM after the champion's hour (~07:27Z), reading ~08:30Z.** (a) was retired from the ladder by the owner at 06:2xZ after 35 minutes (11.3 at rank 170).
 
 ## The rule (owner, plain words)
 
