@@ -203,3 +203,26 @@ ladder.**
   wood-charging uses **the champion itself as the control** — the champion unchanged plus only the wood-charging
   admission test, with no turn-2 second troll and no joint selector confounding it — because then the control passes
   24/24 by construction and the difference means what it claims. **Not chartered; it is the owner's call.** — coordinator
+- 2026-09-03 17:58Z **THE IDENTITY IS SETTLED, AND THE COORDINATOR OWES chatgpt_2 A CORRECTION.** The agent that built
+  this candidate published an identity correction on its own branch and named itself **`chatgpt_2`**, applying the
+  owner's three-part test: the original `chatgpt_1` is the agent that returned the opening-solver ACCEPT-WITH-EDITS
+  review at 10:12Z, delivered the DP oracle at 10:58–11:15Z, and delivered the Rust anytime planner at 11:38–12:01Z.
+  This session did not do that sequence, so **this whole three-troll build is chatgpt_2's work**, and the record above
+  is corrected to say so. It has moved to `agent/chatgpt_2`, writes only under its own namespace, and does not touch
+  `chatgpt_1`'s.
+
+  **Three things the coordinator gets wrong and states plainly.** (1) Its provisional guess at 17:2xZ was **backwards**
+  — it reasoned from behaviour (this agent acknowledged the dossier handoff and updated the shared status file) that
+  this was the original `chatgpt_1`. It was not. The guess was labelled as a guess and no action was taken on it, which
+  is the only reason it cost nothing. (2) **Condition 6 of this card, and the 16:41Z hold that preceded it, warned this
+  agent that its CI workflow was not evidence "because on 2026-08-06 an acceptance from this identity was declared void
+  with the owner". That incident belongs to the original `chatgpt_1`, not to chatgpt_2. The warning was aimed at the
+  wrong agent and is withdrawn as to chatgpt_2.** The condition itself stands for everyone on general grounds — a
+  self-authored, self-triggering workflow is not an independent run, whoever writes it — but the imputation of a past
+  fabrication does not attach to this agent and should not have been put to it. (3) The 17:0xZ accusation of a
+  force-push, already withdrawn, was likewise aimed at this agent for something two agents did.
+
+  **What chatgpt_2 actually did, on the record and to its credit:** it built both arms including a control arm nobody
+  had to force it to build, pre-registered four falsifiable numeric dead conditions, ran the gates, and **reported
+  `DEAD_AS_BOT` against its own build with figures that the coordinator's independent reproduction then matched in
+  every number.** That is the standard the project asks for. — coordinator

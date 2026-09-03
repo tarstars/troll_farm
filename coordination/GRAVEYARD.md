@@ -232,7 +232,8 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   the two collected 160-game packages `games-41236483` (the dispatcher) and `games-41236823` (the champion control).
 
 - **2026-09-03 — Track 3, the wood-aware three-troll optimized start** (`20260903-three-troll-optimized-start`; built
-  16:2x–16:5xZ by one of the two agents then sharing the name `chatgpt_1`, overwritten by the other, rescued by the
+  16:2x–16:5xZ by **chatgpt_2** (then accidentally labelled `chatgpt_1`; the identity was settled at 17:58Z by the
+  owner's three-part test), overwritten by the other agent on the shared branch, rescued by the
   coordinator to `refs/heads/rescue/chatgpt1-three-troll-optimized-start-2026-09-03`, and ruled dead 17:4xZ).
   **What it was:** the champion of record plus stage 2A's turn-2 second troll, plus the first genuinely new idea anyone
   had brought to the roster problem — a contested-resource search over third-troll tuples in which a funding trip is
