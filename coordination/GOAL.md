@@ -74,7 +74,7 @@ s22 recipe, on the cluster. If it collapses or does not move, the "self-play fro
 (3) **The bridge to the solver:** when the opening solver's stage 1 lands (`coordination/tasks/20260903-opening-solver.md`,
 about two days), its optimal openings are the demonstrations — first for the rule bot's opening (stage 2, the planner in
 the bot's first second), and, if the network line continues, as a second cloning dataset so the network learns turns
-1–100 from the solver rather than from the top players' habits. (4) **The target, honestly:** a network candidate at
+1–100 from the solver rather than from the top players' habits. **12:1xZ, Gate E read: the anchor fade NOT CONFIRMED (36 / 29 vs 29 / 33; no collapse, no gain) — step 2's road is CLOSED in this form; no more tuning arms; step 3 (the solver's openings as the teacher) is the next design step.** (4) **The target, honestly:** a network candidate at
 60 % by 2026-10-17 is not on track at this pace (the best artefact wins 37 of 144 against the champion's file); it is
 re-based after the anchor-fade arm reads, in about a week.
 

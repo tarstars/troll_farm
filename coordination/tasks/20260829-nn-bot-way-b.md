@@ -1251,3 +1251,15 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   needs the cluster's own GPU-job conventions (a gpu-check layer, an operation option, or a different tree), which the coordinator
   does not have; the owner, who knows the cluster, is asked. The rest of the speed plan stands: the benches inside the job on its
   32 cores, resume from the salvaged checkpoint after a preemption, more environments per rollout. — coordinator
+- 2026-09-03 12:1xZ: **Gate E read — the anchor fade is NOT CONFIRMED and the pre-registered ruling applies: the self-play-from-
+  the-clone road is CLOSED in this form.** s22F at 1,500 / 2,500 reads **36 / 29 of 144** against s22's 29 / 33: paired effect
+  **+0.010 [−0.021, +0.042]**, not positive at each age (+0.049 then −0.028), clone non-inferiority with room (net +16), margin
+  +3.9 [−0.1, +8.0]; its score at 2,500 is the programme's highest (144.9) while its count fell — it scores more in the games
+  it loses (`GATE-S22F-ANCHORFADE-VERDICT-2026-09-03.md`, `gate1-verdict-s22F-anchorfade.json`). Reading: freeing the policy
+  moved it (the best count at 1,500 of any arm while the anchor was half strength), then it drifted back as the anchor reached
+  zero — not the collapse of full-parameter self-play, not a gain either. No further tuning arm of the clone-anchored recipe is
+  launched; the recipe stays 2 + 2, rollout 128, the anchor held; the reward path is the only confirmed lever. The exploratory
+  end (2,709) is benched on the VM for the ledger. **Next for the network line (the plan of record, step 3): the opening
+  solver's schedules as a teacher — a design step for the senior coordinator, not a tuning arm; nothing is launched.** The
+  17 October target is re-based by the senior coordinator on this reading. Gate D (the stacked arm) remains to be read tonight
+  and changes nothing of this ruling. — coordinator
