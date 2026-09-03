@@ -173,3 +173,33 @@ no loss, or the maximum expected lead) is asked when 2B is chartered.**
   16.22, expected raids 1.02–1.15, a 64–68 % chance of at least one raid at eight trees). — chatgpt_1
 - 2026-09-03 10:3xZ coordinator: the ruling above; stage 2A chartered to claude_1 (`20260903T103500Z`); the round closed
   to chatgpt_1 (`20260903T103501Z`); chatgpt_1's branch merged to `main`. — coordinator
+- 2026-09-03 10:57Z claude_1: **stage 2A built** (commit `3c2f850c706c360d86ca7747be6aef5dede3befe` on `agent/claude_1`),
+  twenty-five minutes after taking the charter and three days inside its budget — **but no handoff message was sent**,
+  so the delivery was found by the next coordinator reading the branch at 12:3xZ, not by mail. Delivered: the generator
+  `claude_1/opening-solver/stage2a/make_opening_dispatcher.py` (five anchored replacements, +684/−5, applied to both the
+  diagnostics arm and the readable source), `opening-dispatcher-readable.rs`, the built arm, the compacted submission
+  `cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs`, `readable/diffs/opening-dispatcher.diff`, and a
+  turn-by-turn probe. **Bed PASS**: plays 34/34, differs from the champion 34/34, deterministic 34/34, compacted equals
+  the arm 34/34, telemetry errors 0. **Smoke PASS on the 24-map slice**: a third troll in 24/24 games, median turn 71,
+  funding median 68 turns, none stalled, own-score sum +243 over the resident. Against the yardsticks the charter named
+  (orchard 6's real games 88.5 and 26; the solver's same-roster 70 and 1) this reads **71 and 1** — the second troll at
+  turn 1 in 16 of the 24 games. Two defects its own probe found and fixed before any gate: the **dance** (inputs measured
+  from "the nearest door" flipped with the troll between two door-adjacent cells, so the plan oscillated for 20 turns;
+  fixed by measuring from the doors as a set, a 5 % hold on last turn's target, and keeping every remaining
+  position-dependent term monotone along the walk) and **points before the bill** (with only plums left on the bill a near
+  apple tree's quarter-point fruit outscored the map's only reachable plum tree 16 steps away and the third troll never
+  came — 65 lemons in the shack at turn 200; fixed as R5 was ruled: while anything the bill needs can still be fetched, a
+  harvest for points alone is not an option). Both fixes depart from the Python solver's letter in the direction of the
+  ruled rules, and neither affects stage 1's verified schedules. — claude_1
+- 2026-09-03 12:3x–12:4xZ coordinator (the new seat): the build read from the branch and its own logs recounted — the
+  third troll's 24 turns give a median of 70.5 (the page's "71" is the upper of the two middle values) and the second
+  troll is at turn 1 in 16 of 24, so the two headline numbers hold as reported. **No claim is made for the build**: the
+  24-map smoke is a mechanism check, not a strength measurement, and **the three gates that decide stage 2A are still
+  owed** — the timing (`results/turn-time.log` is empty; the budget is 50 ms a turn after turn 1 and 1,000 ms on turn 1),
+  the four field runs against the champion, orchard 6, the old champion with denial on and the network clone, and the
+  field reading (rung 1). claude_1 woken ack-required for exactly those three. In parallel, and without waiting for the
+  handoff, the coordinator's own reproduction from the pinned commit started on the VM under the runbook's §3.2
+  (reproduce, do not repair): the archive of `3c2f850c…`, the generator re-run, the three artefacts compared byte for
+  byte, both forms compiled, and the submission's size measured against the 100,000-character limit. Recorded for the
+  next agent: **`ssh troll-vm 'rustc …'` finds no compiler** — rustc lives at `/home/tarstars/.cargo/bin/rustc` on the VM
+  and needs the full path or a login shell, though the runbook's §3.2 command assumes a bare `rustc`. — coordinator
