@@ -126,3 +126,50 @@ no platform, no cluster or host training touched. Stage 2 is not budgeted here.
   landed merge of claude_1's branch): the objective's form (roster target vs chop sum; the third term for stage 2), the idle-opponent
   assumption (what a contested opening changes), the rules-first split, the farm balance, anything overclaimed. The owner is asked to
   activate chatgpt_1. — coordinator
+
+## Stage 2 — chartered 2026-09-03 10:3xZ after the design round (chatgpt_1's review `chatgpt_1/opening-solver/stage2-design-review-2026-09-03.md`: ACCEPT-WITH-EDITS, every edit taken)
+
+**The objective (replaces the chop-sum form above).** The in-bot planner keeps a frontier of full roster states —
+completion turn, every troll's talents and arrival turn, bank, carried resources, positions, the tree state — with the
+earliest completion first within a roster, and across rosters a turn-300 continuation value fed by the live state:
+the bank, the expected fruit, four times the wood *actually banked* by turn 300 under a fixed continuation policy, minus
+the expected raid loss. The same value replaces a count of planted trees (a lemon by water bears in 12 turns, inland
+in 32; two equal counts are not equal farms). The third term is fixed offline as a policy or a table with live inputs.
+
+**The 21 turns** (same roster, turn 70 against orchard 6's 88.5) are recorded as an idle-board potential. The two causes
+that carry most of it — one item a trip (7 turns at the median on 43 of 51 map-seats) and the late second troll (7 where
+it was late) — are our own scheduling defects and survive an opponent; the full number does not claim to. Units block
+nothing and iron does not deplete (the referee), so stage 2 needs no path blocker and no iron model — it needs live
+validation of tree fruits, tree existence and intended plant cells, and a repair.
+
+**Stage 2A — the rules, now (claude_1; handoff `20260903T103500Z`; budget three days).** The solver's dispatcher in its
+deterministic form, ported to Rust inside the champion of record as the opening controller from turn 1 to the third
+troll's TRAIN, recomputed every turn from the live board; its rules in order of weight: (R1) turn 1 the starting troll
+off the shack and the second troll trained from the draw when affordable (each talent the highest its fruit affords,
+never below 2/2, the most harvest the draw affords), else from the first harvests; (R2) useful loads — up to capacity
+unless a smaller load clears the next bill sooner; (R3) the invariant — no PICK on a turn a TRAIN would fire, planting
+spends only the surplus over the next bill; (R4) seeds next to water when reachable, else next door, on the way; (R5)
+everybody gathers, mining against the iron deficit only, nobody idle. The third troll's shape by the orchard bots'
+iron-distance rule (chop 3 within 5 steps of a door, 2 within 10, 1 within 16; 2/3/0/c). Gates: the bed, the 24-map
+smoke (the third troll's and the second troll's turn distributions against orchard 6's 88 / 26 and the solver's 70 / 1),
+timing p99 under 50 ms, rung 1 the field reading (dead below zero with the interval clear of zero; the real-field burst
+when it straddles zero), the owner's prediction, one ladder hour; the coordinator reproduces everything.
+
+**Stage 2B — the planner, after 2A's field reading (a charter of its own).** The deterministic, referee-exact,
+receding-horizon Rust controller: the roster frontier generated in the first turn's 1,000 ms, ranked by the
+continuation value, one legal macro-action executed a turn, each 50 ms turn validating the scheduled target and
+repairing only when the state changed. Its gates, beyond 2A's: (i) quality at the real budget — the online plan's
+completion turn against the offline 1,800-rollout plan on the panel, the Rust speed measured, not projected; (ii) the
+contested-tree repair — the replanner replayed against a mirrored strong opening and the recorded top-bot openings on
+the same panel, reporting the delay relative to idle, the repairs, the failed or short harvests, the p25 / median / p75
+completion turns; (iii) the roster frontier beyond a chop-only sweep (full tuples such as 2/3/1/2 and 2/4/1/c). The
+farm: placement and the planned conversion order are the controls, size emerges; the 8-per-3 figure is an
+after-turn-100 sanity check under the page's assumptions; **the owner's risk budget (expected loss below one, or 90 %
+no loss, or the maximum expected lead) is asked when 2B is chartered.**
+
+## Log (continued)
+
+- 2026-09-03 10:12Z chatgpt_1: the design review, ACCEPT-WITH-EDITS (six points; verified arithmetic: the bound 7.91 /
+  16.22, expected raids 1.02–1.15, a 64–68 % chance of at least one raid at eight trees). — chatgpt_1
+- 2026-09-03 10:3xZ coordinator: the ruling above; stage 2A chartered to claude_1 (`20260903T103500Z`); the round closed
+  to chatgpt_1 (`20260903T103501Z`); chatgpt_1's branch merged to `main`. — coordinator
