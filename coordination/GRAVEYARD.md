@@ -203,14 +203,19 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   (submission `41236483`, 160 games) where the champion of record, restored immediately and read in the same field an
   hour later, took **18.72 at rank 72** (`41236823`) — a gap of 4.13, nearly three times the ±1.5 a single reading
   moves by noise. **What we learned — and this is the part worth keeping.** (1) The order *is* implementable as rules
-  and half of it survives contact: on the real ladder the second troll arrives at **median turn 2** against the
-  champion's 16, in 100 % of games, and a third troll arrives in **98 %** of games where the champion never builds one
-  at all. (2) **The early third troll is a bench artefact.** On our 24-map bench against our own resident it landed at
-  median turn 70.5; against the real field it lands at **median turn 147** (quartiles 120 / 147 / 194) — more than
-  twice as late. The offline solver planned against an idle board, chatgpt_1's design review named that assumption
-  explicitly, and the ladder is what the assumption costs. For scale, the real opponents in those same games bought
-  their third troll at median turn 194 when they bought one at all (77 %), so our 147 is early *for the field* and
-  still not worth what it cost. (3) The bot scored **more raw points** than the champion (median 204 against 184.5)
+  and it does what it was designed to do: on the real ladder the second troll arrives at **median game turn 2** against
+  the champion's 9, in 100 % of games, and a third troll arrives in **98 %** of games where the champion never builds
+  one at all. (2) **The plan executed, and the plan was wrong — which is the finding.** *(Corrected 16:2xZ. The
+  coordinator's first decode read the referee's tooltip `turn` as a game turn when it is a frame index at two frames
+  per turn, doubling every roster time; it reported the third troll at "turn 147" and called the bench an artefact.
+  claude_1 caught it and verified `turn` = 2 × game turn − 2 game by game on all 156 games; the coordinator confirmed
+  the scale independently — 48 tooltips exceed 300 and the largest is 550, while a game cannot pass turn 300, and
+  frames per game reach 601 = 2 × 300 + 1. The "bench artefact" reading is withdrawn.)* On our 24-map bench the third
+  troll landed at median turn 70.5; **against the real field it lands at median game turn 74.5** (quartiles 61 / 74.5
+  / 98) — **the bench held.** The real opponents in those same games bought their own third troll at median game turn
+  98 when they bought one at all (77 %), so this build got its third troll **about 23 turns before the field did** and
+  still read 4.13 below the champion. That is a harder and more useful result than a failed plan: the early third troll
+  is not merely difficult to reach — it **is** reached, ahead of the field, and it still does not pay. (3) The bot scored **more raw points** than the champion (median 204 against 184.5)
   while rating 4.13 lower — a reminder that raw score across two packages is confounded by matchmaking (a bot at rank
   147 meets a weaker field: its opponents scored a mean 197.9 against the champion's opponents' 210.1), and that the
   paired panel and the rating, not the score, are the measures. (4) The mechanism of the loss is the port's mechanism

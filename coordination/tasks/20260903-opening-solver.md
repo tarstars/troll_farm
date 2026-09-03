@@ -282,3 +282,39 @@ no loss, or the maximum expected lead) is asked when 2B is chartered.**
   starting draw, so nearly free; demonstrably surviving the real field; one variable on top of the champion). That is an
   untested build and it is the owner's call whether to charter it; stage 2B (the planner that plans against a contesting
   opponent, which is the principled answer to finding 2) still needs the owner's go and a raid risk budget. — coordinator
+- 2026-09-03 16:2xZ **CORRECTION, caught by claude_1: the coordinator's 15:3xZ roster timeline was doubled, and the
+  bench held.** The referee's event tooltip carries a `turn` field; the coordinator's decode read it as a game turn. It
+  is a **frame index**, and the referee emits one frame per seat per turn. claude_1 verified `turn` = 2 × game turn − 2
+  game by game against the reconstructed pre-turn state on all 156 games with a third troll (ratio 1.95–1.99,
+  difference −2 every time). The coordinator confirmed the scale independently before accepting it: **48 of 648
+  tooltips in the dispatcher's package carry `turn` above 300 and the largest is 550, while a game cannot run past turn
+  300, and frames per game reach 601 = 2 × 300 + 1.** The instrument
+  (`local_claude_1/opening-solver-verify/stage2a/ladder_read_trolls.py`) now applies
+  `game_turn = (tooltip_turn + 2) / 2` and carries both checks and the story of the error in its docstring.
+
+  **Withdrawn:** "the third troll lands at median turn 147", "more than twice as late", and "the early third troll is a
+  bench artefact". **The corrected figures, in game turns:**
+
+  | | the dispatcher (41236483) | the champion (41236823) |
+  |---|---|---|
+  | second troll | 160/160, median turn **2.0** (q 2 / 2 / 21) | 160/160, median turn **9.0** (q 2 / 9 / 15) |
+  | third troll | 156/160 = 98 %, median turn **74.5** (q 61 / 74.5 / 98) | 0/160 |
+  | the opponents' third troll | 77 %, median turn **98.0** | 59 %, median turn **107.0** |
+
+  **What this changes, and it is not in the build's favour.** The 24-map bench promised a third troll at 70.5 and the
+  real field delivered 74.5 — **the bench held**, and chatgpt_1's idle-board caveat, while correct as a caveat, is not
+  what killed this build. The build reached three trolls about **23 turns ahead of the field it was playing** and still
+  read **4.13 below the champion**. So the finding is stronger and simpler than the one first recorded: *the early
+  third troll is not hard to reach; it is reached, ahead of the field, and it does not pay.* Sixth independent line of
+  evidence against the roster as the lever.
+
+  **What it also changes:** the surviving candidate shrinks. The turn-2 second troll gains **seven** turns over the
+  champion (game turn 2 against 9), not the fourteen reported at 15:3xZ, and seven turns of a single troll may sit
+  below what a ladder hour can resolve (±1.5). That scepticism is now written into the question put to chatgpt_1
+  rather than left for it to find.
+
+  **What does not change:** the DEAD ruling, which rests on the rating (14.59 at rank 147 against 18.72 at rank 72) and
+  on the paired field panel (Δwin −0.2219, interval clear of zero); and the matchmaking-confound warning, which is
+  about score across packages and is untouched by the timing field. The obituary in `GRAVEYARD.md`, the board header
+  and the dossier `coordination/DOSSIER-2026-09-03-the-bot-and-its-problems.md` (already sent to chatgpt_1) are all
+  corrected in place and each marked as a correction, not silently edited. — coordinator
