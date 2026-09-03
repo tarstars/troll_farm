@@ -1,0 +1,41 @@
+=== opening-dispatcher vs champion start 12:40:31Z
+policy candidate-opening-dispatcher-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 29 | 8 | 0.0725 [0.0425, 0.105] | -35.19 [-38.64, -31.8] | 0/0/0 | 8510.1 |
+-> claude_1/h2h-panel/results/opening-dispatcher-vs-champion.json
+=== opening-dispatcher vs champion exit 0 end 12:43:36Z
+=== opening-dispatcher vs orchard6 start 12:43:36Z
+policy candidate-opening-dispatcher-v6-instrument.rs
+bot    candidate-orchard6-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 174 | 11 | 0.435 [0.3775, 0.4925] | -4.21 [-8.47, 0.08] | 0/0/0 | 5629.0 |
+-> claude_1/h2h-panel/results/opening-dispatcher-vs-orchard6.json
+=== opening-dispatcher vs orchard6 exit 0 end 12:48:20Z
+=== opening-dispatcher vs old-denial-on start 12:48:20Z
+policy candidate-opening-dispatcher-v6-instrument.rs
+bot    candidate-champion-v6-instrument.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 35 | 5 | 0.0875 [0.055, 0.1225] | -41.47 [-46.0, -36.96] | 0/0/0 | 8454.3 |
+-> claude_1/h2h-panel/results/opening-dispatcher-vs-old-denial-on.json
+=== opening-dispatcher vs old-denial-on exit 0 end 12:51:33Z
+=== opening-dispatcher vs nn-clone start 12:51:33Z
+policy candidate-opening-dispatcher-v6-instrument.rs
+bot    candidate-nn-clone.rs
+panel  /home/tarstars/prj/troll_farm-claude_1/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 322 | 0 | 0.805 [0.7575, 0.85] | 48.26 [40.91, 55.35] | 0/0/0 | 1460.3 |
+-> claude_1/h2h-panel/results/opening-dispatcher-vs-nn-clone.json
+=== opening-dispatcher vs nn-clone exit 0 end 13:08:13Z
+ALL-DONE

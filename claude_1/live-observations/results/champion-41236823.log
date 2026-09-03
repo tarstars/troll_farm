@@ -1,0 +1,29 @@
+40/160
+80/160
+120/160
+160/160
+== champion of record, submission 41236823, 160 ladder games (same field as the dispatcher, an hour later): 160 games ok of 160 ==
+third troll in 0/160 games, median turn None
+-- 1. switching, intent-free (trips between actions against the shortest path)
+  opening  troll-turns   82215  trips   8090  turns/trip  5.31 shortest  4.65  EXCESS   5381 (33.63/game, 6.55% of troll-turns)  away-steps  1635 (1.99/100)  trips-with-a-step-away   799 ( 9.9%)  blocked     0  idle-en-route  1101  dance  1630 (1.98/100)  unfinished: turns  3653 moves   732 idle  2921  away-steps by telemetry: want-changed 574 same 1061 unknown 0
+  after    troll-turns       0  trips      0  turns/trip  0.00 shortest  0.00  EXCESS      0 ( 0.00/game, 0.00% of troll-turns)  away-steps     0 (0.00/100)  trips-with-a-step-away     0 ( 0.0%)  blocked     0  idle-en-route     0  dance     0 (0.00/100)  unfinished: turns     0 moves     0 idle     0  away-steps by telemetry: want-changed 0 same 0 unknown 0
+  le70     troll-turns   20901  trips   3060  turns/trip  3.85 shortest  3.30  EXCESS   1682 (10.51/game, 8.05% of troll-turns)  away-steps   351 (1.68/100)  trips-with-a-step-away   197 ( 6.4%)  blocked     0  idle-en-route    88  dance   292 (1.40/100)  unfinished: turns   222 moves   136 idle    86  away-steps by telemetry: want-changed 124 same 227 unknown 0
+  gt70     troll-turns   61314  trips   5030  turns/trip  6.20 shortest  5.47  EXCESS   3699 (23.12/game, 6.03% of troll-turns)  away-steps  1284 (2.09/100)  trips-with-a-step-away   602 (12.0%)  blocked     0  idle-en-route  1013  dance  1338 (2.18/100)  unfinished: turns  3431 moves   596 idle  2835  away-steps by telemetry: want-changed 450 same 834 unknown 0
+-- 2. trees left standing at the last turn
+  standing per game mean 5.26 median 0  total 841
+  size mix {1: 45, 2: 46, 3: 56, 4: 694}  mean health 11.6  door-dist median 11  unreachable-from-doors 0
+  ever a banked chop candidate for one of ours in turns 200-300: 783 of 841; last such turn median 281
+  what the troll it was last feasible for did that turn: {'CHOP': 473, 'PICK': 104, 'DROP': 83, 'PLANT': 82, 'MOVE': 41}
+  fellable without the walk home at some turn 200-300: 805 of 841
+  chop candidates emptied for good in 134 games, median turn 292; cause per (troll, standing tree) on that turn: {'too_far_to_return': 1036, 'hands_full': 496, 'predicted_dead': 58}
+  last CHOP by us: median turn 288
+  opp_take_from_standing_after_unbanked_fell_pts       mean   4.02/game  median   0.00
+  opp_take_from_standing_after_our_last_chop_pts       mean   0.26/game  median   0.00
+  opp_take_all_trees_since_200_pts                     mean   7.16/game  median   2.00
+  our_take_from_standing_since_200_pts                 mean   0.01/game  median   0.00
+  final wood ours mean 46.3  theirs 49.7
+-- 3. enemy-planted trees (exact provenance from the replay's two command streams)
+  planted per game: theirs 26.73  ours 9.44  unattributed 0.00  (totals {'theirs': 4276, 'ours': 1510})
+  opponent's plants: felled by us 6.98/game, by them 11.43, both 4.71, vanished without a chop 0.00; standing at end 3.61/game
+  fruit the opponent harvested from its own plants 22.48/game; fruit we took from them 0.01/game
+  the live adjacency inference against the truth: {'theirs->theirs': 3659, 'theirs->ambiguous': 617, 'ours->ours': 1423, 'ours->ambiguous': 87}
