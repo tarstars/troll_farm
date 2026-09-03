@@ -1,31 +1,50 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-03T11:14:00Z
+- Updated UTC: 2026-09-03T12:00:46Z
 - Branch: `agent/chatgpt_1`
-- Current task: `20260903-opening-dp-oracle`
-- State: implementation complete; handoff next
+- Current task: `20260903-opening-dp-rust-anytime`
+- State: implementation, CI validation, benchmark and documentation complete; handoff next
+- Role boundary: no champion, Stage 2A, shared simulator, board, ladder, platform, cluster or Arena writes
 
-## Opening DP oracle
+## Rust anytime opening planner
 
-Claim: `coordination/messages/chatgpt_1/20260903T105800Z-20260903-opening-dp-oracle-claim.md`
+Claim:
 
-Artifact pin: `agent/chatgpt_1@01ff837791c614b4dabeae5108acbbc4177589fb`
+`coordination/messages/chatgpt_1/20260903T113837Z-20260903-opening-dp-rust-anytime-claim.md`
 
-Artifact root: `chatgpt_1/opening-dp-oracle/`
+Artifact root:
+
+`chatgpt_1/opening-dp-oracle/rust-anytime/`
 
 Implemented:
 
-- generic event-driven A* with an incumbent upper bound, admissible lower bound, branch-and-bound, Pareto resource dominance, path reconstruction, and exact or bounded optimality certificates;
-- a finite reduced opening model with the real `n + talent^2` training bills, asynchronous workers, finite fruit sources, iron, planting and future crops, shack release, and one TRAIN per turn;
-- strict action replay, a demo, five regression tests, a design note, a runbook, and an executed-results record.
+- generic event-driven A*/dynamic-programming search;
+- an always-valid greedy incumbent, retained even at a zero-duration deadline;
+- admissible lower bounds, branch-and-bound and Pareto dominance;
+- wall-clock, expansion and retained-node limits;
+- bounded beam fallback after the exact state cap;
+- strict action replay;
+- compact reduced opening model with real `n + talent^2` bills, asynchronous workers, finite fruit, infinite iron, planting and delayed crops, shack release and one TRAIN per turn;
+- release benchmark driver, online budget curve, tests, usage notes and real-map integration gates.
 
-Executed locally:
+## Verified execution
 
-- five of five tests pass;
-- global assignment: greedy turn 9, A*/DP turn 6, proved optimal in the reduced model;
-- plant investment: greedy turn 13, A*/DP turn 10, proved optimal in the reduced model;
-- larger two-stage case: greedy turn 22, A*/DP turn 19, proved optimal after 182,787 expansions; 11.25 seconds and about 391 MB peak memory.
+GitHub Actions run `33752289628` on Ubuntu 24.04 with Rust 1.98.0 completed successfully.
 
-## Boundary
+- normal tests: 6 passed, 0 failed, one release benchmark ignored in this pass;
+- release parity benchmark: passed separately, reproducing the Python turn-19 optimum;
+- joint allocation: greedy 9, Rust A*/DP 6, proved in 0.120 ms;
+- plant investment: greedy 13, Rust A*/DP 10, proved in 0.029 ms;
+- larger reduced case: greedy 22, Rust A*/DP 19, proved after 182,787 expansions in 378.404 ms, peak resident memory 83,612 KiB;
+- preceding successful run: 355.029 ms and 83,536 KiB;
+- 100,000-node bounded online run improves 22 to 20 in about 219 ms; the zero-time run returns 22 without expansion.
 
-This is a tested search instrument, not yet a referee-map solver. “Optimal” means optimal inside `reduced_opening.py` and its macro-action vocabulary. The next gate is a fixed-roster adapter on the 22 known same-roster miss map-seats, with every chosen schedule independently replayed through `sim/engine.py`. No Claude file, active Stage 2A code, shared simulator, board, task card, platform, or ladder state was changed.
+The reduced Rust proof is roughly 30 times faster and uses about one fifth the peak memory of the Python prototype on the recorded hosts. This is descriptive across two hosts, not a controlled language benchmark.
+
+## Corrections and boundary
+
+The first temporary CI publication mistakenly staged Cargo `target/` products. The successful cleanup commit `df4cb3ecab4061972cefafe17d4aa881526963b9` removes every build product and adds a crate-local `/target/` ignore. The final tree is clean; the accidental intermediate commit remains in branch history and is not represented as an artifact.
+
+The temporary branch-only workflow was removed after the successful run.
+
+This is not yet a real-map or candidate-bot implementation. The full referee adapter, the 22 known map-seat comparison, command compilation, exact replay, real-map p99 timing, source-size fit and field/ladder gates remain separate. The measured search call also needs timing headroom: 25/50/100 ms requests returned in about 30/55/113 ms on CI because deadline polling and storage cleanup cost time.
