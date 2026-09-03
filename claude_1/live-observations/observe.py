@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import re
 import json
 import sys
 from pathlib import Path
@@ -218,7 +219,9 @@ def analyse(path, agent):
     n = r.n_turns
     final = states[n]
     out = {"gameId": gid, "our_seat": ours, "n_turns": n, "mismatch": dict(r.mismatch),
-           "score": {"ours": r.agents[ours]["score"], "theirs": r.agents[theirs]["score"]}}
+           "score": {"ours_points": sum(final["inv"][ours][:4]) + 4 * final["inv"][ours][5],
+                     "theirs_points": sum(final["inv"][theirs][:4]) + 4 * final["inv"][theirs][5],
+                     "ours_ladder": r.agents[ours]["score"], "theirs_ladder": r.agents[theirs]["score"]}}
 
     # roster: our third troll's TRAIN turn (first pre-turn state with three of ours)
     t3 = next((t for t in range(1, n + 1) if sum(1 for u in states[t - 1]["units"] if u["player"] == ours) >= 3), None)
@@ -226,11 +229,17 @@ def analyse(path, agent):
     out["third_troll_turn"] = t3
     out["second_troll_turn"] = t2
 
-    # ---- per-turn command tables, both seats
+    # ---- per-turn command tables, both seats; our v6 telemetry's per-unit "want" (the argmax candidate)
     cmds = {}
+    want = {}
     for t in range(1, n + 1):
         c0, c1 = r.commands(t)
         cmds[t] = {0: parse_cmds(c0), 1: parse_cmds(c1)}
+        want[t] = {}
+        for c in (c0, c1)[ours]:
+            if c.startswith("MSG"):
+                for m in re.finditer(r"u(\d+)=([A-Z]+(?:\(\d+,\d+\))?)/([A-Z]+(?:\(\d+,\d+\))?)/", c):
+                    want[t][int(m.group(1))] = m.group(3)
 
     # ---- 1. switching, intent-free: trips between actions, scored against the shortest path
     # A trip starts the turn after a troll's last action (or at its spawn) and ends on the turn it next
@@ -266,7 +275,7 @@ def analyse(path, agent):
                 sw[ph]["troll_turns"] += 1
             v, args = by_unit.get(uid, (None, []))
             if uid not in trip:
-                trip[uid] = dict(start_turn=t, start_pos=pos, moves=0, blocked=0, idle=0, path=[pos], speed=u["ms"])
+                trip[uid] = dict(start_turn=t, start_pos=pos, moves=0, blocked=0, idle=0, path=[pos], turns=[], speed=u["ms"])
             tr = trip[uid]
             if v in ACT_HERE or v in ACT_SHACK:
                 # the trip ends here at D = pos (DROP/PICK act at the shack from a door cell)
@@ -275,9 +284,13 @@ def analyse(path, agent):
                     shortest = ceil_div(d.get(tr["start_pos"], 0), max(tr["speed"], 1))
                     turns = t - tr["start_turn"]
                     away = 0
-                    for a, b in zip(tr["path"], tr["path"][1:]):
+                    for (a, b), tstep in zip(zip(tr["path"], tr["path"][1:]), tr["turns"]):
                         if d.get(b, 10 ** 6) > d.get(a, 10 ** 6):
                             away += 1
+                            w_now, w_prev = want.get(tstep, {}).get(uid), want.get(tstep - 1, {}).get(uid)
+                            key = "away_want_unknown" if w_now is None or w_prev is None else ("away_want_changed" if w_now != w_prev else "away_want_same")
+                            for ph in phases_of(tr["start_turn"]):
+                                sw[ph][key] += 1
                     excess = max(turns - shortest, 0)
                     for ph in phases_of(tr["start_turn"]):
                         c = sw[ph]
@@ -296,7 +309,7 @@ def analyse(path, agent):
                         sw_examples.append({"unit": uid, "start_turn": tr["start_turn"], "end_turn": t, "from": list(tr["start_pos"]),
                                             "to": list(pos), "shortest": shortest, "turns": turns, "away_steps": away, "path": [list(c) for c in tr["path"]]})
                 # a new trip begins after this action (consecutive actions at the same cell extend nothing)
-                trip[uid] = dict(start_turn=t + 1, start_pos=pos_next.get(uid, pos), moves=0, blocked=0, idle=0, path=[pos_next.get(uid, pos)], speed=u["ms"])
+                trip[uid] = dict(start_turn=t + 1, start_pos=pos_next.get(uid, pos), moves=0, blocked=0, idle=0, path=[pos_next.get(uid, pos)], turns=[], speed=u["ms"])
                 continue
             if v == "MOVE":
                 tr["moves"] += 1
@@ -305,6 +318,7 @@ def analyse(path, agent):
             else:
                 tr["idle"] += 1
             tr["path"].append(pos_next.get(uid, pos))
+            tr["turns"].append(t)
             h = tr["path"]
             if len(h) >= 3 and h[-1] == h[-3] and h[-1] != h[-2]:
                 for ph in phases_of(t):
@@ -331,6 +345,7 @@ def analyse(path, agent):
     # last chop by us; the chop-candidate replay over the last phase
     last_chop_turn = 0
     last_feasible_turn = collections.defaultdict(int)     # cell -> last turn feasible for any of ours
+    last_feasible_doing = {}                                # cell -> what the troll it was feasible for did that turn
     last_feasible_unbanked = collections.defaultdict(int)
     earliest_unbanked_fell = {}                             # cell -> earliest turn a troll of ours could have felled it (no walk home), evaluated from LATE_FROM
     for t in range(1, n + 1):
@@ -357,6 +372,8 @@ def analyse(path, agent):
                     causes_this_turn[status] += 1
                     if status == "feasible":
                         last_feasible_turn[cell] = t
+                        verb = next((v for v, uid, a in cmds[t][ours] if uid == u["id"]), "NONE")
+                        last_feasible_doing[cell] = verb
                     if unbanked is not None and unbanked <= TOTAL_TURNS - t + 1:
                         last_feasible_unbanked[cell] = t
                         if cell not in earliest_unbanked_fell:
@@ -406,6 +423,7 @@ def analyse(path, agent):
     for s in standing:
         cell = tuple(s["cell"])
         s["last_feasible_turn"] = last_feasible_turn.get(cell, 0)
+        s["last_feasible_doing"] = last_feasible_doing.get(cell)
         s["last_feasible_unbanked_turn"] = last_feasible_unbanked.get(cell, 0)
         s["earliest_unbanked_fell_turn"] = earliest_unbanked_fell.get(cell)
     out["standing"] = {
@@ -505,7 +523,8 @@ def agg(games, label):
               f"EXCESS {c['excess_turns']:6d} ({c['excess_turns']/len(ok):5.2f}/game, {100*c['excess_turns']/tt:4.2f}% of troll-turns)  "
               f"away-steps {c['away_steps']:5d} ({100*c['away_steps']/tt:4.2f}/100)  trips-with-a-step-away {c['trips_with_a_step_away']:5d} ({100*c['trips_with_a_step_away']/tr:4.1f}%)  "
               f"blocked {c['blocked_moves']:5d}  idle-en-route {c['idle_in_trip']:5d}  dance {c['dance_turns']:5d} ({100*c['dance_turns']/tt:4.2f}/100)  "
-              f"unfinished: turns {c['unfinished_trip_turns']:5d} moves {c['unfinished_trip_moves']:5d} idle {c['unfinished_trip_idle']:5d}")
+              f"unfinished: turns {c['unfinished_trip_turns']:5d} moves {c['unfinished_trip_moves']:5d} idle {c['unfinished_trip_idle']:5d}  "
+              f"away-steps by telemetry: want-changed {c['away_want_changed']} same {c['away_want_same']} unknown {c['away_want_unknown']}")
     print("-- 2. trees left standing at the last turn")
     cnt = [g["standing"]["count"] for g in ok]
     trees = [s for g in ok for s in g["standing"]["trees"]]
@@ -518,6 +537,7 @@ def agg(games, label):
         lf = [s["last_feasible_turn"] for s in trees]
         print(f"  ever a banked chop candidate for one of ours in turns 200-300: {sum(1 for x in lf if x>0)} of {len(trees)}; "
               f"last such turn median {sorted(x for x in lf if x>0)[max(0,sum(1 for x in lf if x>0)//2-1)] if any(lf) else None}")
+        print(f"  what the troll it was last feasible for did that turn: {dict(collections.Counter(s['last_feasible_doing'] for s in trees if s['last_feasible_turn']).most_common())}")
         lu = [s["last_feasible_unbanked_turn"] for s in trees]
         print(f"  fellable without the walk home at some turn 200-300: {sum(1 for x in lu if x>0)} of {len(trees)}")
     ce = collections.Counter()
