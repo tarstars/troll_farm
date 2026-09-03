@@ -1,0 +1,8 @@
+policy candidate-three-troll-optimized-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/runner/work/troll_farm/troll_farm/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 200 | 33 | 14 | 0.165 [0.11, 0.225] | -8.35 [-10.27, -6.5] | 0/0/0 | 44682.7 |
+-> chatgpt_1/three-troll-optimized-start/results/candidate-vs-champion.json

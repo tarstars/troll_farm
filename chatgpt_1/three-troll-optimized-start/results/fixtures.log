@@ -1,0 +1,44 @@
+  SAME    OSC-001    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-002    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-003    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-004    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-005    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-006    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-007    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-008    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-009    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-010    turns 200  first divergence turn 13  train arm [{'turn': 64, 'spec': '2 2 1 1'}]  champion [{'turn': 19, 'spec': '1 1 0 1'}]  telemetry errors 0
+  SAME    OSC-011    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-012    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-013    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-014    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-015    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-016    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-017    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-018    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-019    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-020    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-021    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-022    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-023    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-024    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-025    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-026    turns 200  first divergence turn 11  train arm []  champion []  telemetry errors 0
+  SAME    OSC-027    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-028    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-029    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-030    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-031    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-032    turns 200  first divergence turn 19  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-033    turns 200  first divergence turn 8  train arm []  champion []  telemetry errors 0
+  SAME    OSC-034    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+Traceback (most recent call last):
+  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 179, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 149, in main
+    "arm": str(ARM.relative_to(REPO)), "arm_sha256": sha(arm_text),
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'chatgpt_1/three-troll-optimized-start/champion-three-troll-optimized-v6-instrument.rs' is not in the subpath of '/home/runner/work/troll_farm/troll_farm'

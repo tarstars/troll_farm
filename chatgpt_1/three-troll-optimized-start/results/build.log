@@ -1,0 +1,8 @@
+  base        arm 321723933c2a0cfb == resident 0e92f8fa1e9097dd (token stream)
+  arm         af49570fed292f4d  4436 lines  (+1334 / -23)
+  readable    071f2f69604868c8  rustfmt --check: NOT clean
+  compacted   d994b3fb6a127110  90070 bytes  -> chatgpt_1/three-troll-optimized-start/candidate-three-troll-optimized-v6-instrument.rs
+  distinct    from bare champion (old), bot A (old champion + diagnostics), bot B (keep-your-goal), banana farm, apple farm, the floor, the resident (champion of record), stage 2A opening dispatcher, three heroes, orchard 6
+  diff        chatgpt_1/three-troll-optimized-start/three-troll-optimized.diff  (+1334 / -23)
+  round trip  EXACT -> chatgpt_1/three-troll-optimized-start/results/build.json
+{"candidate_bytes": 90070, "candidate_utf16_units": 90070, "control_bytes": 90071, "control_utf16_units": 90071}

@@ -1,0 +1,19 @@
+{
+  "arm": {
+    "path": "chatgpt_1/three-troll-optimized-start/champion-turn2-second-control-v6-instrument.rs",
+    "sha256": "83fa85847addc0521cd9d91dddab31eb4e3dd34595bc3c6039b4b86ed38bfc37"
+  },
+  "diff": "chatgpt_1/three-troll-optimized-start/turn2-second-control.diff",
+  "readable": {
+    "path": "chatgpt_1/three-troll-optimized-start/turn2-second-control-readable.rs",
+    "sha256": "9834cbc5e27b1dd1464b3099a950088671cf568cf713bc16bdfe5a999d1f40a6"
+  },
+  "round_trip_exact": true,
+  "submission": {
+    "bytes": 90071,
+    "path": "chatgpt_1/three-troll-optimized-start/candidate-turn2-second-control-v6-instrument.rs",
+    "sha256": "2d62e0c77d75cd2457ad82b998c366b6a82deca1741eff6f44b3914f247baa51",
+    "utf16_units": 90071
+  },
+  "third_optimizer_enabled": false
+}
