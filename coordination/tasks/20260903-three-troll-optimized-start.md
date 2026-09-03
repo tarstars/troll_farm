@@ -162,3 +162,44 @@ ladder.**
   coordinator reproduces it by execution from the rescue ref. But two things are already clear: the mechanics failures
   most likely trip the card's own dead condition, and the positive candidate-minus-control signal is worth verifying
   regardless, because it is a measurement of the one idea nobody has tested — charging the foregone wood. — coordinator
+- 2026-09-03 17:4xZ **REPRODUCED BY EXECUTION, AND RULED DEAD.** From the rescue pin
+  `8da821a28db9658062bfb772e2e63b6f47f4868d`, archived into `/data/scratch/3t-verify` on the VM, nothing edited
+  (`/home/tarstars/verify_3t.log`):
+
+  **The build is sound as a build.** Re-running `make_candidate.py` regenerates **all four artefacts byte for byte**
+  (candidate `d994b3fb…`, control `2d62e0c7…`, candidate arm `af49570f…`, control arm `83fa8584…`); the base arm's token
+  stream is identical to the resident champion's; the compaction round trip is EXACT; both arms compile with `rustc -O`
+  at zero errors; the source is 90,070 and 90,071 UTF-16 units against the platform's 100,000. The diff is +1,334/−23.
+
+  **The play is not.** The 24-map smoke, run on both arms:
+
+  | | candidate | control |
+  |---|---|---|
+  | mechanics OK | **19 / 24** | **15 / 24** |
+  | maps stalled | 5 | **9** |
+  | a third troll | 14 / 24, median turn 30 | 0 / 24 |
+  | own score vs the resident | **−416** over 24 games | −242 |
+
+  **This fires the card's first dead condition — "any compile, round-trip or mechanics failure" — on both arms.**
+  The author's own report gave the same figures and its own verdict `DEAD_AS_BOT`; the reproduction agrees with it in
+  every number, so the failure is in the build and not in the reporting, and the author reported honestly against
+  itself. **Ruled DEAD.** Obituary in `GRAVEYARD.md`.
+
+- 2026-09-03 17:4xZ **A CORRECTION THE COORDINATOR MAKES AGAINST ITS OWN EARLIER READING, and it matters more than the
+  verdict.** At 17:1xZ the board and this card recorded that the candidate's **+0.0500 [+0.0050, +0.0950]** win
+  difference over its control was "a measurement of the one idea nobody has tested — charging the foregone wood — and
+  it read positive". **That reading is withdrawn.** The comparison is between two arms that *both* fail the mechanics
+  bar, and the control stalls on **nine maps of twenty-four**. It therefore measures less-broken against more-broken on
+  a damaged base; it does not measure the wood-charging gate against the champion. **Charging the foregone 4-point wood
+  against a funding trip remains untested**, and it is still the most interesting untried idea on this project.
+
+  What the gate demonstrably *did* do is change behaviour in the opposite direction from the one intended: the third
+  troll arrived at **median turn 30**, earlier than any build before it, and always as the **weakest tuple available**
+  (`1 1 0 1` ten times of fourteen, `1 2 0 1` four) — so charging the wood did not prevent a bad trade, it bought a
+  cheaper and earlier troll instead, and the bot still lost 416 points a game to the resident.
+
+  **The design lesson, for whoever tries this next: a control arm that does not itself clear the mechanics bar is not a
+  control.** This one silently invalidated the only comparison the build existed to make. The cheapest honest test of
+  wood-charging uses **the champion itself as the control** — the champion unchanged plus only the wood-charging
+  admission test, with no turn-2 second troll and no joint selector confounding it — because then the control passes
+  24/24 by construction and the difference means what it claims. **Not chartered; it is the owner's call.** — coordinator

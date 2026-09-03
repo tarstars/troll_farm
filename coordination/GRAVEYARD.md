@@ -230,3 +230,38 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   coordinator's reproduction (`local_claude_1/opening-solver-verify/stage2a/`) including the field reading and the new
   `ladder_read_trolls.py` (roster timelines from the referee's own event tooltips, no board reconstruction needed), and
   the two collected 160-game packages `games-41236483` (the dispatcher) and `games-41236823` (the champion control).
+
+- **2026-09-03 — Track 3, the wood-aware three-troll optimized start** (`20260903-three-troll-optimized-start`; built
+  16:2x–16:5xZ by one of the two agents then sharing the name `chatgpt_1`, overwritten by the other, rescued by the
+  coordinator to `refs/heads/rescue/chatgpt1-three-troll-optimized-start-2026-09-03`, and ruled dead 17:4xZ).
+  **What it was:** the champion of record plus stage 2A's turn-2 second troll, plus the first genuinely new idea anyone
+  had brought to the roster problem — a contested-resource search over third-troll tuples in which a funding trip is
+  **charged against the 4-point wood trip it displaces**, admitting a plan only if it finishes by turn 110 and clears
+  eight points of net continuation value after that charge, abandoning back to the champion when the gate fails, and
+  selecting for all three trolls jointly afterwards. It shipped with a **control arm** — the same opening with the
+  optimizer disabled — which is the right instrument and which its author built without being made to.
+  **What killed it: mechanics, on both arms, reproduced by the coordinator.** From the rescue pin, nothing edited, the
+  generator regenerates all four artefacts **byte for byte** (candidate `d994b3fb…`, control `2d62e0c7…`), both compile
+  with zero errors, the round trip is exact, and the source is 90,070 UTF-16 units of the platform's 100,000. Then the
+  24-map smoke: **the candidate is mechanically OK on 19 of 24 maps and the control on 15 of 24**, against a 24/24 bar —
+  the card's first dead condition, *any mechanics failure*. Five maps stall the candidate and **nine stall the control**;
+  the candidate scores **−416 own points against the resident over 24 games** and the control −242. Its author had
+  already reported the same numbers and its own verdict, `DEAD_AS_BOT`; the coordinator's reproduction agrees with it in
+  every figure, so this is a failure of the build and not of the reporting.
+  **What we learned, and the first point is a correction the coordinator made against its own earlier reading.**
+  (1) **The +0.0500 [+0.0050, +0.0950] by which the candidate beat its control is NOT evidence for charging the foregone
+  wood, and the board and card said it might be.** The comparison is between two arms that *both* fail mechanics, one of
+  which stalls on nine maps of twenty-four: it measures less-broken against more-broken on a damaged base, not the idea
+  against the champion. **Charging the foregone wood remains untested.** (2) The gate did change behaviour, but not in
+  the direction hoped: the third troll arrived at **median turn 30** — far earlier than any previous build — and always
+  as the *weakest* tuple available (`1 1 0 1` ten times of fourteen, `1 2 0 1` four). Charging the wood did not stop a
+  bad trade; it selected a cheaper, earlier troll instead, and the bot still lost 416 points a game to the resident.
+  (3) **A control arm must itself pass the mechanics bar or it is not a control.** This one did not, and it silently
+  invalidated the only comparison the build existed to make. (4) The change costs +1,334 lines and takes the source to
+  90 % of the platform's character limit, leaving little room for anything else.
+  **What would reopen it:** the idea, not this build. **The cheapest honest test of wood-charging uses the champion
+  itself as the control** — the champion unchanged, plus only the wood-charging admission test for a third troll, with
+  no turn-2 second troll and no joint selector confounding it; then the control passes 24/24 mechanics by construction
+  and the comparison means what it claims. Until a build clears the mechanics bar on both arms, nothing measured about
+  this gate is admissible. **Instruments kept:** the rescue ref with all 47 files, both generators, and the coordinator's
+  reproduction (`/data/scratch/3t-verify` on the VM, log `/home/tarstars/verify_3t.log`).
