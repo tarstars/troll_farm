@@ -33,6 +33,7 @@ heartbeat added, and the trainer swapped for the self-play one.
 
 from __future__ import annotations
 
+import collections
 import ctypes
 import hashlib
 import importlib.util
@@ -132,14 +133,23 @@ def run_tee(
         bufsize=1,
     )
     assert process.stdout is not None
+    # 2026-09-03: the cluster keeps a job's stderr, not its stdout, so a trainer that dies takes its
+    # last words with it (the CUDA timing job of 08:59Z failed with nothing to read). The tail of
+    # the child's output is echoed to stderr on failure.
+    tail: collections.deque[str] = collections.deque(maxlen=80)
     with log_path.open("a", encoding="utf-8") as output:
         for line in process.stdout:
             print(line, end="", flush=True)
             output.write(line)
             output.flush()
+            tail.append(line)
     return_code = process.wait()
-    log("command_complete", command=command[:2], return_code=return_code)
+    log("command_complete", command=command[:2], return_code=return_code, stderr=bool(return_code))
     if return_code:
+        print(f"[troll-farm-yt] the trainer exited {return_code}; its last {len(tail)} lines:",
+              file=sys.stderr, flush=True)
+        for line in tail:
+            print(line, end="", file=sys.stderr, flush=True)
         raise subprocess.CalledProcessError(return_code, command)
 
 
@@ -475,6 +485,7 @@ def main() -> int:
         cpu_limit = resolve_cpu_limit(config)
         log(
             "compute_ready",
+            stderr=True,
             torch=torch.__version__,
             numpy=numpy.__version__,
             cpu_limit=cpu_limit,
@@ -503,7 +514,9 @@ def main() -> int:
             trainer_device = trainer_args_list[trainer_args_list.index("--device") + 1]
         if trainer_device != "cuda":
             child_env["CUDA_VISIBLE_DEVICES"] = ""
-        log("trainer_device", device=trainer_device, cuda_visible=child_env.get("CUDA_VISIBLE_DEVICES", "<inherited>"))
+        log("trainer_device", stderr=True, device=trainer_device,
+            cuda_visible=child_env.get("CUDA_VISIBLE_DEVICES", "<inherited>"),
+            nvidia_visible=child_env.get("NVIDIA_VISIBLE_DEVICES", "<unset>"))
         # Inert today -- `cgauto/rl_full_env.py` reads no environment variable for the library --
         # but set anyway so that the day it grows one, the job already answers it.
         child_env["TF_FULL_LIBRARY"] = library["path"]
