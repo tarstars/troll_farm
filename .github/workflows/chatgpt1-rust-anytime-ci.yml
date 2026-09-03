@@ -25,7 +25,8 @@ jobs:
       - name: Toolchain identity
         run: rustc --version && cargo --version
       - name: Apply compiler-directed type annotation
-        run: sed -i 's/let mut optimistic_bank =/let mut optimistic_bank: [u16; 4] =/' src/model.rs
+        run: |
+          sed -i 's/let mut optimistic_bank =/let mut optimistic_bank: [u16; 4] =/' src/model.rs
       - name: Apply canonical formatting
         run: cargo fmt --all
       - name: Verify canonical formatting
