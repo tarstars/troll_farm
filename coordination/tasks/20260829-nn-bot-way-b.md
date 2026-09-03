@@ -1185,3 +1185,10 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   before the launch** (`PREREG-2026-09-02-depth-rollout512.md`: s22L512's ends against s22L's ends, `PYTHONHASHSEED=0`;
   the expectation written first: "not confirmed, positive"). This session paused 18:08Z–03:53Z inside one turn; the host
   worked throughout. — coordinator
+- 2026-09-03 04:4xZ: **Gate C read — the host replication of the stack** (`PREREG` Gate C; `PYTHONHASHSEED=0`): hs22 at
+  1,500 / 2,500 reads **30 / 32 of 144** against hr22's 28 / 31 — paired effect **+0.010 [−0.021, +0.042]**, not confirmed,
+  positive at both ages, net +8 over the clone, margin +2.7 [−0.7, +5.9] (`GATE-HS22-VERDICT-2026-09-03.md`,
+  `gate1-verdict-hs22.json`). The cluster's s22-vs-r22 shape (+0.007) to the digit: the rollout term is a small positive
+  the panel cannot separate from zero on either platform; the recipe stays 2 + 2 with the 128-step rollout. The host arm
+  s22L finished 09-02 23:4xZ (5,419 updates, training summary written); its depth gate (hs22L at 5,250 / 5,419 against hs22
+  at 2,500 / 2,709) waits for the mains — the laptop is on battery since ~05:4xZ. — coordinator

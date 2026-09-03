@@ -13,7 +13,9 @@ STAMP=$STATE/local_claude_1.last-fallback-wake
 PROMPT=/home/tarstars/coordinator-wake-prompt.txt
 CHECKOUT=/home/tarstars/prj/troll_farm
 WT=/home/tarstars/prj/troll_farm-local_claude_1
-SILENCE=${WATCHDOG_SILENCE_SECONDS:-3600}
+# 2026-09-03 05:4xZ: two hours with mail waiting (the 05:20Z firing duplicated a laptop coordinator that was
+# heads-down for 75 minutes; it ruled the same, but two seats on one handoff is one too many).
+SILENCE=${WATCHDOG_SILENCE_SECONDS:-7200}
 # 2026-09-03: the laptop session paused 9.5 h inside one turn with no mail waiting, and this seat
 # never fired. A second threshold fires on silence alone, mail or not.
 SILENCE_ALONE=${WATCHDOG_SILENCE_ALONE_SECONDS:-21600}
