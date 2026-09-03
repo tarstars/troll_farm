@@ -1170,3 +1170,18 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the long trace) are candidates to stack, one variable per arm, end against end. Running now: the pre-registered
   exploratory ages of s22L (2,500 / 1,500 for the schedule effect at matched age; 4,000 / 3,000 for the curve), one
   driver; host s22 (Gate C's treatment) is at update ~1,300 of 2,709, done ~20:35Z. — coordinator
+- 2026-09-03 04:0xZ: **the host arm s22 finished (2,709 updates, on time) and the doubled budget's exploratory reads are in.**
+  Exploratory (i), the schedule effect at matched age — s22L at 1,500 / 2,500 against s22 at 1,500 / 2,500, `gate1.py`,
+  `PYTHONHASHSEED=0`: **+0.010 [−0.021, +0.042]**, not confirmed, positive at both ages (31 vs 29, 34 vs 33), net +11 over the
+  clone, margin +1.1 [−2.3, +4.7] (`gate1-verdict-s22L-matched-age-exploratory.json`). Exploratory (ii), the curve:
+  **s22L 31 / 34 / 35 / 31 / 37 / 37 of 144 at 1,500 / 2,500 / 3,000 / 4,000 / 5,250 / 5,419** (scores 139.4 / 138.0 / 141.1
+  / 139.3 / 142.5 / 142.3) against s22's 29 / 33 / 33 at 1,500 / 2,500 / 2,709. Read: at matched age the two schedules are
+  the same artefact within noise; the doubled budget's gain (+4 cells) appears at its end, where its learning rate reaches
+  zero — the anneal caveat of the pre-registration, seen in the data. Gate C's benches on the host arm (`hs22-locked` at
+  1,500 / 2,500 / 2,709) launched 04:0xZ at nice 19. **The stacked arm `ppo-yt-s22L512`** (s22L's arguments with
+  `--rollout-steps 512 --num-envs 8`; s22's map slice `16577bf1…` verified inside the payload; the prepared trainer
+  arguments differ from s22L's in the two rollout fields and the name only, from s512's in the budget and the name only)
+  started on the cluster at 03:55Z, op `b3c6af06-72c446b3-42e03e8-dc7b1253`, job limit 12 h; **Gate D pre-registered blind
+  before the launch** (`PREREG-2026-09-02-depth-rollout512.md`: s22L512's ends against s22L's ends, `PYTHONHASHSEED=0`;
+  the expectation written first: "not confirmed, positive"). This session paused 18:08Z–03:53Z inside one turn; the host
+  worked throughout. — coordinator
