@@ -240,3 +240,45 @@ no loss, or the maximum expected lead) is asked when 2B is chartered.**
   prediction, given before the reading: **15 to 17**, below the champion's 18.14 but by less than the local games alone imply,
   because the ladder plays the whole field rather than our own clear-cutting lineage (the orchard series showed exactly that
   gap between a duel against our champion and a ladder reading). — coordinator
+- 2026-09-03 14:17Z **THE LADDER READING: 14.59 at rank 147 of 177** (submission `41236483`, 160 of 160 games collected,
+  package `local_claude_1/ladder-queue/games-41236483/`). The climb: 8.22 / 11.74 / 13.05 / 13.25 / 13.80 / 13.92 / 14.72 /
+  14.90 / 14.82 / 14.65 / 14.59 / 14.59 at five-minute steps — flat from 40 minutes. The champion of record was restored
+  automatically at 14:17:29Z and read in the same field an hour later: **18.72 at rank 72** (`41236823`, 160 games).
+  **The gap is 4.13, nearly three times the ±1.5 a single reading moves by noise.** The coordinator's own prediction of
+  15–17, given before the reading, was too high and is recorded as wrong; the local field panel (−0.2219) was the better
+  predictor of the two.
+- 2026-09-03 15:3xZ coordinator, **the decode of both 160-game packages** (`local_claude_1/opening-solver-verify/stage2a/ladder_read_trolls.py`
+  — roster timelines taken from the referee's own event tooltips, so no board reconstruction is needed; run on the dispatcher's
+  package and on the champion's as the control). **The finding that explains the whole reading:**
+
+  | | the dispatcher (41236483) | the champion (41236823) |
+  |---|---|---|
+  | rating / rank | 14.59 / 147 | 18.72 / 72 |
+  | a second troll | 160/160, **median turn 2** (q 2 / 2 / 40) | 160/160, median turn 16 (q 2 / 16 / 28) |
+  | a third troll | **156/160 = 98 %**, median turn **147** (q 120 / 147 / 194) | **0/160 = 0 %** |
+  | final roster | 3 trolls in 98 % | 2 trolls in 100 % |
+  | own score | median 204.0, mean 209.1 | median 184.5, mean 188.3 |
+  | wins in its own package | 86/160 = 0.537 | 91/160 = 0.569 |
+  | the opponents it met | third troll in 77 %, median turn 194; opp score mean 197.9 | third troll in 59 %, median turn 212; opp score mean 210.1 |
+
+  1. **Half the change survives contact and half does not.** The second troll really does arrive on turn 2 against the real
+     field, in every game, against the champion's turn 16 — the turn-1-train-from-the-draw rule works. And a third troll
+     really does get built, in 98 % of games, where the champion never builds one.
+  2. **But the early third troll is a bench artefact.** Our 24-map bench against our own resident said median turn 70.5;
+     the real field says **median turn 147**, more than twice as late. The offline solver planned against an idle board;
+     chatgpt_1's design review named that assumption in as many words ("the 21 turns are an idle-board potential"); this
+     reading is what the assumption costs. Note the real opponents bought their own third troll at median turn 194 when
+     they bought one at all, so 147 is early *for the field* — and still not worth its price.
+  3. **A trap recorded for the next agent: raw score across two packages is confounded by matchmaking.** The dispatcher
+     scored *more* points than the champion (204 against 184.5) while rating 4.13 lower, because at rank 147 it met a
+     weaker field (its opponents scored a mean 197.9 against the champion's opponents' 210.1). Only the paired panel
+     (identical maps, identical opponents) and the rating measure strength; the score in a collected package does not.
+- 2026-09-03 15:3xZ **RULING: STAGE 2A IS DEAD**, under the card's pre-registered condition, now confirmed twice —
+  the local field panel with the interval clear of zero, and the ladder reading the owner asked for, 4.13 below the
+  champion in the same field within the same two hours. Obituary in `coordination/GRAVEYARD.md` with what it was, what
+  killed it, the four things it taught and what would reopen it. The champion of record holds the ladder at 18.72 / rank 72
+  and nothing is queued. **The owner's word reopens it.** The one candidate the reading actively argues for is the cheap
+  separable half — **the turn-2 second troll alone, with the third troll's farming detour removed** (bought from the
+  starting draw, so nearly free; demonstrably surviving the real field; one variable on top of the champion). That is an
+  untested build and it is the owner's call whether to charter it; stage 2B (the planner that plans against a contesting
+  opponent, which is the principled answer to finding 2) still needs the owner's go and a raid risk budget. — coordinator

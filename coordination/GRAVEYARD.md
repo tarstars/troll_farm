@@ -183,3 +183,45 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   30-turn variant (one variable, a build, a bed, a smoke, a field reading); or a different card — a harvest-1 second
   troll that makes the fruit a two-troll job, or a talent priced in bananas. Read
   `claude_1/cheap-third-troll/READ-2026-09-03.md` (pinned `54786b02…`); card `coordination/tasks/20260902-cheap-third-troll.md`.
+
+- **2026-09-03 — Track 3, stage 2A of the opening solver: the opening dispatcher** (`20260903-opening-solver`, stage 2A;
+  built by claude_1 10:57Z, dead 15:3xZ on the ladder reading the owner asked for). **What it was:** the champion of
+  record with its opening replaced — five anchored replacements, +684/−5 lines, a 662-line deterministic dispatcher
+  that ran from turn 1 to the third troll's TRAIN and then handed back to the champion's own play byte for byte. Its
+  rules were the offline solver's, ruled after a design round: train the second troll from the starting draw on turn 1;
+  carry useful loads; never PICK on a turn a TRAIN would fire; plant seeds by water else next door, on the way; nobody
+  idle, mine only against the iron deficit; the third troll's shape by the iron-distance rule. Every gate before the
+  selector passed: the build reproduced byte for byte by the coordinator from the pinned commit on the VM (all three
+  artefacts, 0 compile errors, 78,035 of the platform's 100,000 characters), the bed 34/34, the 24-map smoke 24/24 with
+  a third troll in every game, and timing with a fifteen-fold margin (turn 1 at 4.27 ms against 1,000; p99 2.28 ms
+  against 50; 0 turns over budget in 1,940). **What killed it:** the field reading, then the ladder, agreeing.
+  Rung 1 read `FIELD_BELOW_ZERO` — Δwin **−0.2219 [−0.2562, −0.1862]**, Δmargin −28.71, over 1,600 paired games with
+  zero faults, measured twice independently (claude_1's run and the coordinator's from a fresh archive of the pin) and
+  agreeing to the digit: 29 / 174 / 35 / 322 wins of 400 against the champion of record, orchard 6, the old champion
+  with denial on and the network clone, against the champion's own 113 / 324 / 147 / 331. The owner then said "put it on
+  the platform" against the coordinator's advice, and the ladder confirmed it: **14.59 at rank 147 of 177**
+  (submission `41236483`, 160 games) where the champion of record, restored immediately and read in the same field an
+  hour later, took **18.72 at rank 72** (`41236823`) — a gap of 4.13, nearly three times the ±1.5 a single reading
+  moves by noise. **What we learned — and this is the part worth keeping.** (1) The order *is* implementable as rules
+  and half of it survives contact: on the real ladder the second troll arrives at **median turn 2** against the
+  champion's 16, in 100 % of games, and a third troll arrives in **98 %** of games where the champion never builds one
+  at all. (2) **The early third troll is a bench artefact.** On our 24-map bench against our own resident it landed at
+  median turn 70.5; against the real field it lands at **median turn 147** (quartiles 120 / 147 / 194) — more than
+  twice as late. The offline solver planned against an idle board, chatgpt_1's design review named that assumption
+  explicitly, and the ladder is what the assumption costs. For scale, the real opponents in those same games bought
+  their third troll at median turn 194 when they bought one at all (77 %), so our 147 is early *for the field* and
+  still not worth what it cost. (3) The bot scored **more raw points** than the champion (median 204 against 184.5)
+  while rating 4.13 lower — a reminder that raw score across two packages is confounded by matchmaking (a bot at rank
+  147 meets a weaker field: its opponents scored a mean 197.9 against the champion's opponents' 210.1), and that the
+  paired panel and the rating, not the score, are the measures. (4) The mechanism of the loss is the port's mechanism
+  again: the opening spends turns shopping while the champion banks wood at four points a unit, and the one opponent
+  the dispatcher held level was the network clone — the only one of the four that does not race for wood.
+  **What would reopen it:** two separable halves, and only the cheap one is attractive. (a) **The turn-2 second troll
+  alone** — it is nearly free, being bought from the starting draw, it demonstrably survives the real field, and it is
+  one variable on top of the champion with the third-troll farming detour removed; that is an untested build and the
+  obvious next candidate. (b) A planner that plans against a *contesting* opponent instead of an idle board — which is
+  stage 2B's search with its contested-tree repair gate, and needs the owner's go and a raid risk budget.
+  **Instruments kept:** the generator `claude_1/opening-solver/stage2a/make_opening_dispatcher.py` and its probe, the
+  coordinator's reproduction (`local_claude_1/opening-solver-verify/stage2a/`) including the field reading and the new
+  `ladder_read_trolls.py` (roster timelines from the referee's own event tooltips, no board reconstruction needed), and
+  the two collected 160-game packages `games-41236483` (the dispatcher) and `games-41236823` (the champion control).
