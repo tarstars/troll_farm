@@ -1192,3 +1192,13 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   the panel cannot separate from zero on either platform; the recipe stays 2 + 2 with the 128-step rollout. The host arm
   s22L finished 09-02 23:4xZ (5,419 updates, training summary written); its depth gate (hs22L at 5,250 / 5,419 against hs22
   at 2,500 / 2,709) waits for the mains — the laptop is on battery since ~05:4xZ. — coordinator
+- 2026-09-03 07:4xZ: **the host depth gate read — the doubled budget does not replicate.** hs22L at its ends (5,250 / 5,419)
+  reads **33 / 33 of 144** against hs22's 32 / 33 at 2,500 / 2,709: paired effect **+0.003 [−0.024, +0.028]**, not
+  confirmed, not positive at the second measurement, net +7 over the clone, margin −0.6 [−3.5, +2.4]
+  (`GATE-HS22L-DEPTH-VERDICT-2026-09-03.md`, `gate1-verdict-hs22L-depth.json`). Beside the cluster's Gate A (37 / 37 vs
+  33 / 33, +0.028 [0.000, +0.063]): two readings of one lever, neither confirmed, the host flat — the doubled training
+  budget is not a lever we can confirm on either platform, and the cluster's four extra cells sit inside the panel's
+  noise. No promotion; the recipe stays 2 + 2 with the 128-step rollout at the standard budget; the depth question's
+  remaining arm is the stack `ppo-yt-s22L512` (Gate D, running). Benched on the VM under the owner's compute rule (four
+  cores, two used, nice 19; the referee library from claude_1's VM worktree, its `rust/` source identical to `main`).
+  — coordinator
