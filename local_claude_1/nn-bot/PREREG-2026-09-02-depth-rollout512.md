@@ -87,6 +87,48 @@ The standard `gate1` protocol at 1,500 / 2,500 against `bench-hr22-locked-u{1500
 replication, on the second platform and the full map corpus, of the cluster's s22-vs-r22 read
 (+0.007, rising 29 → 33).
 
+## Gate D — the stack of the two positive levers (s22L512 vs s22L), written 18:2xZ before the arm ran
+
+**Why.** Gates A and B (read 18:0xZ) both came back positive at every measurement and not confirmed:
+the doubled budget +0.028 [0.000, +0.063] at its ends (37 / 37 of 144), the 512-step rollout +0.024
+[−0.010, +0.063] at 1,500 / 2,500 (33 / 36). Neither reaches the frozen bar alone; the recipe's next
+step is one arm that stacks them, one variable against the better control.
+
+**Question.** Does the four-times-longer trace add to the doubled-budget stack *at its end*?
+
+**Arm.** `ppo-yt-s22L512`: s22L's trainer arguments with `--rollout-steps 512 --num-envs 8` (the
+4,096-sample batch held, as in s512), `--total-turn-steps 22200000` (5,419 updates), s22's map slice
+shipped verbatim (`--maps yt_work/ppo/ppo-yt-s22/maps.jsonl`, sha256 `16577bf1c96a…`, to be verified
+inside the payload tarball before the start). The prepared `trainer_args` must differ from s22L's in
+`--rollout-steps`, `--num-envs` and the run name only, and from s512's in `--total-turn-steps` and
+the run name only.
+
+**Treatment measurements:** s22L512 at **5,250** and **5,419**. **Control:** s22L at **5,250** and
+**5,419** (benched 17:12Z–17:55Z: 37 / 37). Pairing 1 = 5,250 vs 5,250, 2 = 5,419 vs 5,419 per cell on
+the locked 144-cell panel; the rest exactly `gate1.py` with `PYTHONHASHSEED=0`; clone non-inferiority
+against `bench-clone-locked.json`. Read as `STACK_CONFIRMED` / `STACK_PARTIAL` / `STACK_NOT_CONFIRMED` /
+`INCONCLUSIVE` (the program prints the frozen entropy-era names).
+
+```
+cd /home/tarstars/prj/troll_farm-local_claude_1 && R=local_claude_1/nn-bot/results/entropy-gate-0901 && \
+PYTHONHASHSEED=0 python3 local_claude_1/nn-bot/gate1.py \
+  --treatment 1=$R/bench-s22L512-locked-u5250.json --treatment 2=$R/bench-s22L512-locked-u5419.json \
+  --control   1=$R/bench-s22L-locked-u5250.json    --control   2=$R/bench-s22L-locked-u5419.json \
+  --clone $R/bench-clone-locked.json --json-out $R/gate1-verdict-s22L512-stack.json
+```
+
+**Expectation written before the data.** If the two levers add, about +0.02 to +0.03 per cell over
+s22L (roughly 40 of 144), which this panel cannot separate from zero; a confirmed verdict would need a
+larger effect than either lever showed alone. So the likely reading is "not confirmed, positive"; the
+useful number is the artefact's raw count against the ledger (clone 26 · r22 31/29 · s22 29/33/33 ·
+s22L 37/37 · s512 33/36). Eight environments at the doubled budget could also hurt through correlated
+updates; either outcome is informative. **Exploratory, not the gate:** s22L512 at 1,500 / 2,500 against
+s512 at 1,500 / 2,500 (the schedule effect at matched age, the same shape as Gate A's exploratory read).
+
+**Promotion rule unchanged:** no artefact is "the candidate" on a not-confirmed gate; the programme's
+candidate for the owner's read stays the best artefact by the frozen gates, which today is r22 (the
+only confirmed lever) with s22L's end as the best raw count.
+
 ## Two instrument facts recorded today, before the data
 
 1. **The frozen gate's interval is not bit-reproducible across processes.** `gate1.py` iterates a
