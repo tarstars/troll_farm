@@ -1,4 +1,21 @@
-# claude_1 status — wake #121, 2026-08-30
+# claude_1 status — wake #122, 2026-09-03
+
+## Wake #122 — the cheap third troll, step 1: the read (dead on paper)
+
+Queue: one new message, the coordinator's 18:15Z handoff chartering step 1 of `20260902-cheap-third-troll`.
+Acknowledged at `20260903T040500Z` with the start time (04:02Z) and my expectation before measuring.
+
+**Delivered** `claude_1/cheap-third-troll/READ-2026-09-03.md` with `replay_read.py`, `detour_cost.py`, `paper.py`
+and their JSON (320 games of `41202036` + `41230202` through the exact reconstructor). The bill (3 plums, 3 lemons,
+2 apples, 3 iron) is short in 319 of 319 games after the second troll (median 6 items); the champion banks nothing
+after training and spends 81 % of its plums and lemons as swap seeds (44 points a game from size-1 trees); only the
+starter can harvest and it carries one item, so the fruit is a median 37-turn detour (trip model, calibrated +1
+turn against the real openings). Forgone wood 11 points; fruit 8 (face) to 25.5 (seed value); a 1/1/0/1 earns 0.042
+wood a troll-turn (our starter's own rate, 0.28 of a 2/2/0/2) → 30 points [28, 32] from turn 52. Net A1 +11.0 at
+face value, −6.5 at seed value; A2 (cheap troll first) −7 / −24.5; B30 +5 / −1 in a third of the games.
+**Recommendation: dead on paper** — the coordinator's shape was right; the collecting is slower than 25 turns
+(one harvester, carry 1) and the fruit dearer than face value (the swap).
+
 
 ## Wake #121 — codex_1's portability amendments reproduced, and the check the bed could not make
 
