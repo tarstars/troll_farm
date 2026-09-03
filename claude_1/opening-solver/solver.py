@@ -14,6 +14,10 @@ from world import IDX, IRON, MAX_FRUITS, State, training_cost
 
 FRUIT_KINDS = ("PLUM", "LEMON", "APPLE", "BANANA")
 
+#: ablation switches (ablate.py): one item a trip; wild trees beyond this distance off limits
+CARRY_ONE = False
+NEAR_ONLY = None
+
 
 # ------------------------------------------------------------------ tasks (one troll each)
 class Task:
@@ -120,8 +124,11 @@ class Plan:
     troll's bill.  `surplus_weight`: value of a fruit the bill does not need (a point, a seed)."""
 
     def __init__(self, t2, t3, seeds=(), temp=0.0, seed_turn_limit=14, reserve_t3=True,
-                 surplus_weight=0.25, mine_early=False, wait_cd=4, t2_not_before=1):
+                 surplus_weight=0.25, mine_early=False, wait_cd=4, t2_not_before=1, bottleneck=0.0,
+                 reserve_t2=True):
+        self.reserve_t2 = reserve_t2            # may a seed delay the second troll's purchase?
         self.t2_not_before = t2_not_before      # ablation: the second troll may not be bought earlier
+        self.bottleneck = bottleneck            # 0: every needed item worth 1; 1: worth its fetch cost (bottleneck first)
         self.t2 = tuple(t2) if t2 else None
         self.t3 = tuple(t3) if t3 else None
         self.seeds = [(k, m) for k, m in seeds]
@@ -136,7 +143,7 @@ class Plan:
         return dict(t2=self.t2, t3=self.t3, seeds=list(self.seeds), temp=self.temp,
                     seed_turn_limit=self.seed_turn_limit, reserve_t3=self.reserve_t3,
                     surplus_weight=self.surplus_weight, mine_early=self.mine_early, wait_cd=self.wait_cd,
-                    t2_not_before=self.t2_not_before)
+                    t2_not_before=self.t2_not_before, bottleneck=self.bottleneck, reserve_t2=self.reserve_t2)
 
 
 def fruits_at(p, cd_eff, dt):
@@ -192,7 +199,7 @@ def seed_surplus(s: State, plan: Plan, kind):
     i = IDX[kind]
     reserve = 0
     n = len(s.units)
-    if n <= 1 and plan.t2:
+    if n <= 1 and plan.t2 and plan.reserve_t2:
         reserve += training_cost(1, plan.t2)[i]
     if n <= 2 and plan.t3 and plan.reserve_t3:
         reserve += training_cost(2, plan.t3)[i]
@@ -215,19 +222,89 @@ def plant_cell(s: State, u, mode):
     return best_c
 
 
+def fetch_cost(s: State, u, item):
+    """Turns per unit of `item` for troll `u` from the cheapest source now (a rough, monotone
+    number: walking there and back, the taking, per unit carried)."""
+    m = s.m
+    door = m.nearest_door(u.pos)
+    best = None
+    if item == IRON:
+        cell = m.nearest_mine_cell(u.pos)
+        if cell is None or u.chop == 0:
+            return None
+        take = min(u.free, u.chop) if u.free > 0 else 1
+        d = m.d(door, cell)
+        return (2 * d + -(-take // u.chop) + 1) / max(take, 1)
+    for cell, p in s.plants.items():
+        if IDX[p.kind] != item or p.health <= 0 or cell not in m.dist:
+            continue
+        d = m.d(door, cell)
+        fr = p.fruits if p.fruits > 0 else (1 if p.size >= 4 else 0)
+        if fr <= 0:
+            continue
+        take = min(max(u.cc, 1), fr)
+        cost = (2 * d + -(-take // max(u.hp, 1)) + 1) / take
+        if best is None or cost < best:
+            best = cost
+    return best
+
+
+def item_weights(s: State, plan: Plan, u, need):
+    """Weight of one needed unit of each item: its fetch cost relative to the mean over the items
+    still needed, so the bottleneck is fetched first; unknown sources count as expensive."""
+    costs = {}
+    for i in range(6):
+        if need[i] > 0:
+            c = fetch_cost(s, u, i)
+            costs[i] = c if c is not None else 40.0
+    if not costs:
+        return (1.0,) * 6
+    mean = sum(costs.values()) / len(costs)
+    w = [1.0] * 6
+    for i, c in costs.items():
+        w[i] = 1.0 + plan.bottleneck * (c / mean - 1.0)
+        w[i] = max(0.3, min(w[i], 4.0))
+    return tuple(w)
+
+
+def best_door(s: State, u, need):
+    """The door to bank at: the one minimising the walk to it plus the walk from it to the next
+    job (the closest tree with fruit the bill needs, or the mine when iron is short).  The
+    funding read blamed our bot for walking to a far door; this is the rule that avoids it."""
+    m = s.m
+    if len(m.doors) == 1:
+        return m.doors[0]
+    targets = []
+    for cell, p in s.plants.items():
+        if p.health > 0 and cell in m.dist and (p.fruits > 0 or p.size >= 4) and need[IDX[p.kind]] > 0:
+            targets.append(cell)
+    if need[IRON] > 0 and m.mine_cells:
+        targets.extend(m.mine_cells[:2])
+    best, best_door_cell = None, None
+    for door in m.doors:
+        d0 = m.d(u.pos, door) if u.pos != m.shack else 1
+        d1 = min((m.d(door, c) for c in targets), default=0)
+        v = (d0 + d1, d0, door)
+        if best is None or v < best:
+            best, best_door_cell = v, door
+    return best_door_cell
+
+
 def candidate_tasks(s: State, plan: Plan, u):
     """Score every task the free troll `u` could take now; return [(value, task)]."""
     m = s.m
     talents, need = needs(s, plan)
     roster_done = talents is None
     out = []
-    door = m.nearest_door(u.pos)
+    door = best_door(s, u, need)
     d_home = m.d(u.pos, door) if u.pos != m.shack else 1
     carrying = u.total
     sw = plan.surplus_weight
+    w = item_weights(s, plan, u, need) if (plan.bottleneck and not roster_done) else (1.0,) * 6
     if carrying > 0:
-        needed_carried = 0 if roster_done else sum(min(u.carry[i], need[i]) for i in range(6))
-        value = needed_carried * 1.0 + (carrying - needed_carried) * sw
+        needed_carried = 0 if roster_done else sum(min(u.carry[i], need[i]) * w[i] for i in range(6))
+        plain = 0 if roster_done else sum(min(u.carry[i], need[i]) for i in range(6))
+        value = needed_carried + (carrying - plain) * sw
         out.append((value / (d_home + 1) + (2.0 if u.free == 0 else 0.0), Drop(door)))
     if u.free > 0:
         for cell, p in s.plants.items():
@@ -236,29 +313,33 @@ def candidate_tasks(s: State, plan: Plan, u):
             d = m.d(u.pos, cell)
             if d >= 9999:
                 continue
+            if NEAR_ONLY is not None and not p.own and min(m.d(cell, dd) for dd in m.doors) > NEAR_ONLY:
+                continue
             arrive = -(-d // u.ms)
             cd_eff = m.eff_cd(p.kind, cell)
             fr, size, cd = fruits_at(p, cd_eff, arrive)
             claimed = sum(v.task.want - v.task.taken for v in s.units
                           if v is not u and isinstance(v.task, Harvest) and v.task.cell == cell)
             k = IDX[p.kind]
-            worth_each = 1.0 if need[k] > 0 else sw
+            worth_each = w[k] if need[k] > 0 else sw
             back = m.d(cell, m.nearest_door(cell)) / u.ms + 1
             # take what is there (a full tree regrows one the same turn it is harvested)
             avail = max(0, fr - claimed)
             if avail > 0:
                 take = min(u.free, avail + (1 if fr >= MAX_FRUITS and cd == 0 else 0))
+                if CARRY_ONE:
+                    take = 1
                 turns = arrive + -(-take // max(u.hp, 1)) + back
-                worth = min(take, need[k]) * 1.0 + max(0, take - need[k]) * sw
+                worth = min(take, need[k]) * w[k] + max(0, take - need[k]) * sw
                 if roster_done:
                     worth = take
                 out.append((worth / turns, Harvest(cell, take)))
             # or stay and let a fast tree refill the carry
-            if size >= 4 and cd_eff <= plan.wait_cd and u.free > avail and claimed == 0:
+            if size >= 4 and cd_eff <= plan.wait_cd and u.free > avail and claimed == 0 and not CARRY_ONE:
                 take = u.free
                 extra = take - avail
                 turns = arrive + max(1, -(-avail // max(u.hp, 1))) + extra * cd_eff + back
-                worth = min(take, need[k]) * 1.0 + max(0, take - need[k]) * sw
+                worth = min(take, need[k]) * w[k] + max(0, take - need[k]) * sw
                 if roster_done:
                     worth = take
                 out.append((worth / turns * 0.98, Harvest(cell, take, wait=True)))
@@ -272,8 +353,10 @@ def candidate_tasks(s: State, plan: Plan, u):
             if cell is not None:
                 arrive = -(-m.d(u.pos, cell) // u.ms)
                 take = min(u.free, max(need[IRON], 1))
+                if CARRY_ONE:
+                    take = 1
                 turns = arrive + -(-take // u.chop) + m.d(cell, m.nearest_door(cell)) / u.ms + 1
-                out.append((min(take, need[IRON]) * 1.0 / turns, Mine(cell, take)))
+                out.append((min(take, need[IRON]) * w[IRON] / turns, Mine(cell, take)))
         if plan.seeds and s.turn <= plan.seed_turn_limit and carrying == 0:
             kind, mode = plan.seeds[0]
             if seed_surplus(s, plan, kind) > 0:

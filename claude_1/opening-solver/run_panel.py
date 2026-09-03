@@ -2,7 +2,8 @@
 
   free   : the solver picks the second troll from the draw; third troll (2,3,0,3) (orchard 6's).
   same   : the roster orchard 6 actually bought on that map-seat (its second AND third talents).
-  chop2  : the solver's second troll; a third troll of chop 2, (2,3,0,2) -- the P sweep's other point.
+  chop2  : the solver's second troll; a third troll of chop 2, (2,3,0,2) -- the P sweep's middle point.
+  chop1  : the solver's second troll; a third troll of chop 1, (2,3,0,1) -- the P sweep's cheap point.
 
 Every kept schedule is replayed through sim/engine.py before it is written; a disagreement is a
 hard error.  Output: schedules/<map_hash>-s<seat>.json and panel-summary.json."""
@@ -26,7 +27,8 @@ def solve_one(job):
     idx, item, seat, base = job
     out = {"map_hash": item["rec"]["map_hash"], "seat": seat, "draw": item["draw"], "index": idx,
            "orchard6": base, "solves": {}}
-    variants = {"free": dict(t2_list=None, t3=(2, 3, 0, 3)), "chop2": dict(t2_list=None, t3=(2, 3, 0, 2))}
+    variants = {"free": dict(t2_list=None, t3=(2, 3, 0, 3)), "chop2": dict(t2_list=None, t3=(2, 3, 0, 2)),
+                "chop1": dict(t2_list=None, t3=(2, 3, 0, 1))}
     if base and base.get("orchard6_third_talents") and base.get("orchard6_second_talents"):
         variants["same"] = dict(t2_list=[tuple(base["orchard6_second_talents"])], t3=tuple(base["orchard6_third_talents"]))
     for name, kw in variants.items():

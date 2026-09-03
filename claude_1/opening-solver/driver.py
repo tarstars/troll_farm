@@ -40,7 +40,8 @@ def run_plan(s0, plan_args, rng, horizon):
 
 
 def solve_map(item, seat=0, t3=(2, 3, 0, 3), rollouts=12, temps=(0.2, 0.5), horizon=200,
-              seed=1, refine=6, t2_list=None, programmes=None, wait_cds=(4,), t2_not_before=1):
+              seed=1, refine=6, t2_list=None, programmes=None, wait_cds=(4,), t2_not_before=1,
+              bottlenecks=(0.0, 1.0)):
     s0 = world.make_state(item, seat)
     draw = item["draw"]
     t2s = t2_list if t2_list is not None else sorted(set(en.t2_candidates(draw, s0.m.has_iron)) | set(en.T2_DELAYED))
@@ -50,12 +51,11 @@ def solve_map(item, seat=0, t3=(2, 3, 0, 3), rollouts=12, temps=(0.2, 0.5), hori
     stage_a = []
     for t2 in t2s:
         for seeds in programmes:
-            for reserve in (True, False):
-                if reserve and any(k != "LEMON" for k, _ in seeds) and not seeds:
-                    continue
+            for reserve in ((True, True), (True, False), (False, False)) if seeds else ((True, True),):
                 for wcd in wait_cds:
-                    args = dict(t2=t2, t3=t3, seeds=list(seeds), temp=0.0, reserve_t3=reserve, wait_cd=wcd,
-                                t2_not_before=t2_not_before)
+                  for bn in bottlenecks:
+                    args = dict(t2=t2, t3=t3, seeds=list(seeds), temp=0.0, reserve_t2=reserve[0], reserve_t3=reserve[1],
+                                wait_cd=wcd, t2_not_before=t2_not_before, bottleneck=bn)
                     s, t_done = run_plan(s0, args, random.Random(0), horizon)
                     n += 1
                     if t_done is not None:
