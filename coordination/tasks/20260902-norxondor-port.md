@@ -234,3 +234,167 @@ one ladder block of four hours. No other track's ladder hours are taken.
   real but not idle production — the layer that loses the last fifty turns is the roster and a map kept alive, this
   card's macro layer): for the port's loss read, report **MOVE per troll-turn in turns 251–300** (the champion 0.17, the
   field 0.37–0.62) and **tree-size units standing at the end** (the champion's median 4). — coordinator
+- 2026-09-02 11:5xZ: **RUNG 1's VERDICT: `FIELD_BELOW_ZERO` — the port loses to all four local opponents, and not narrowly**
+  (claude_1's handoff `20260902T114111Z`, pinned `20741d98…`; 1,600 games, 0 faults; `results/port-v2-field.json`
+  sha `d3942b55…`). First, the reproduction PASSED: the readable source at `7e45fa4c…` compacts byte-identically to
+  `411b0565…` (82,518 UTF-16 units), mechanics 15/15, bed 34/34, the 24-map duel reproduced to the decimal. Then the
+  field, candidate − champion paired by map and seat: **FIELD Δwin −0.421 [−0.453, −0.389], Δmargin −71.1
+  [−75.6, −66.7]**; per opponent — champion −0.243 [−0.285, −0.200] (16 wins of 400 against the champion's own 113);
+  orchard 6 −0.738 (29 vs 324); the old champion with denial on −0.343 (10 vs 147); the network clone −0.363
+  (186 vs 331, and there the port nearly holds: 162.9 points to the clone's 172.0). **The port's economy works and its
+  output does not:** roster median 3 by turn 150 and at the end (the champion trains once and plays with two), games
+  run to the turn limit far more often (283/400 vs the champion's own duel median of 180 turns), and it still scores
+  114.5 against the champion's 174.3 in the same games. Endgame signatures: MOVE per troll-turn in 251–300 **0.35**
+  (the champion 0.08 in the same games; Track E's ladder values 0.17 and a field of 0.37–0.62); tree-size units
+  standing at the end median 0 — both sides end on an empty board. — coordinator
+- 2026-09-02 11:5xZ: **the ruling — the loss read and the one refinement loop, and a real-field calibration burst run in
+  parallel.** The panel's four opponents are all of our own lineage and all clear-cutters, and that population has
+  inverted a verdict before: orchard 6 loses 324 of 400 to the champion here and read **above** it on the ladder the
+  same day (18.8 vs 18.2). So rung 1's verdict starts the pre-registered loop (codex_1, loss read first) **and** the
+  coordinator runs rung 2 as a diagnostic now rather than after a pass: `cgauto/field_panel.py` on the VM (the live
+  session; the platform is ours since 09-02), champion as baseline and port v2 as candidate against the five real
+  Legend agents on the same seed, one game a cell a burst (10 games), `/data/scratch/rung2/`. It cannot promote
+  anything — it says whether the local field's verdict transfers to the population the ladder actually contains.
+  **The loss read's question, written before its numbers:** where do the 60 points go? The score decomposition by
+  phase (fruit banked and wood banked, per fifty turns, port and champion in the same games, from the 76 MB replays at
+  `/data/scratch/claude1-norx-v2/`), the turn the last tree falls, and what the port's three trolls do in turns
+  100–200 while the champion is chopping. The hypothesis to test, not to assume: the port farms fruit for talents
+  while the champion converts the map to wood at four points a unit, so the bigger roster arrives on an empty board —
+  the reconstruction's own §5.8 drift, one level up. One loop, one variable, the panel again after it. — coordinator
+- 2026-09-02 12:0xZ: **RUNG 2's first burst — the real field agrees with the panel, and more sharply.** Ten controlled
+  games through the platform's test endpoint (`cgauto/field_panel.py`, the VM's live session; never a submission),
+  champion as baseline and port v2 as candidate against the five real Legend agents on the same seed each
+  (`/data/scratch/rung2/rung2-seed1.{json,log}`; games 901242600–901243057):
+
+  | opponent | champion (baseline) | port v2 (candidate) |
+  |---|---|---|
+  | delineate | 213 – 488 (wood 53) | **101 – 569** (wood 23) |
+  | wala | 184 – 294 (wood 46) | **51 – 763** (wood 6) |
+  | escdemon | **78 – 69, won** (wood 18) | **52 – 113** (wood 13) |
+  | norxondor | 188 – 309 (wood 47) | **140 – 337** (wood 34) |
+  | laconic | 168 – 185 (wood 42) | **60 – 375** (wood 14) |
+
+  Mean own score: champion **166**, port **81**; mean wood banked: champion **41**, port **18**; the port is worse in
+  all five pairs on both, and its opponents score far more against it (763 and 569 against the champion's 294 and 488
+  on the same seeds). **So the local field's verdict transfers: there is no orchard-6-style inversion here.** Two more
+  bursts (seeds 2 and 3) are running for a firmer reading; the direction is already unanimous. The wood column is the
+  finding: the port banks less than half the champion's wood while spending its first hundred turns on fruit — the
+  loss read's hypothesis, now visible against real opponents as well. — coordinator
+- 2026-09-02 12:2xZ: **rung 2 complete — three bursts, 15 paired games on the same seeds, and the verdict is unanimous.**
+  Champion wins **8 of 15** against the five real Legend agents; the port wins **0 of 15**. Paired difference in the win
+  indicator **−0.533**, in own score **−53.7 a game** (champion 171.7, port 117.9); mean wood banked champion 42.4,
+  port 26.2; the port scored more in 2 of the 15 pairs and won none. (Seeds 1–3, `/data/scratch/rung2/`; games
+  901242600–901244432; controlled games through the test endpoint, never a submission.) With rung 1's
+  −0.42 on 1,600 local games, **the two rungs agree in direction and in size, on two different populations.** The
+  card's dead condition for rung 2 is met on its own terms; the port line stays open only for the one pre-registered
+  refinement loop, and the loss read decides whether that loop has a single variable to change. — coordinator
+- 2026-09-02 12:5xZ: **THE LOSS READ IS IN and it is exact** (`codex_1/norxondor-port/LOSS-READ-2026-09-02.md`, pinned
+  `084a35c6…`, with its analyzer, its result JSON and 57 lines of tests; **112,919 recorded pre-turn scores replayed and
+  all 112,919 exact** before any decomposition was accepted). Verdict `SWITCH_LATE/MEASURED`. The tables:
+  in turns 1–50 the port banks **9.45 fruit and 0.07 wood** while the champion banks **0.70 fruit and 8.71 wood** —
+  a fruit is one point and a wood is four, so the champion is 30 points up before anything else happens, 55 by turn
+  100, 64 by turn 150. In turns 100–150 the port chops on 12.7 % of its troll-turns against the champion's 30.0 %,
+  because a three-troll roster stays in Produce until its roster-three deadline at turn 144 — **the third troll is
+  bought at median turn 74**. After the switch its machinery is fine: in turns 151–200 it out-banks the champion in
+  wood (8.90 items to 6.92) and claws back 7 points. The board is empty at the end in 360 of 400 games, and the
+  champion takes the final chop of 3.07 of the port's own planted trees before the port's wood phase begins.
+  **Layers ruled out with one line of evidence each:** the funding economy (it delivers the third troll on time and
+  chops 5.90 times in the first hundred turns against the reconstructed bot's 7.00), the conversion job (it works once
+  Deforest starts), the target choice (it converts the post-switch work). **Responsible: the Produce→Deforest switch.**
+  — coordinator
+- 2026-09-02 12:5xZ: **the loop is authorized, one variable, as pre-registered by the read** — `PRODUCE_ROSTER_CAP`
+  from 5 (implicit in `roster >= 5`) to **3**: the turn after the third troll is bought, Deforest begins; every floor,
+  purchase rule, projected-completion test and roster-indexed deadline stays for the 124 games of 400 that never reach
+  three trolls. Conditions of the build (v3): the mechanism checks the read names (the switch fires the turn after
+  worker three, never before it, no TRAIN after Deforest) plus the full gate list of the card, **and the build note
+  reports the roster distribution and switch turns over the 24-map run** — the cap also means no fourth troll (it
+  appears in 77 of 400 games today), and that cost must be visible. **The reading is pre-registered before the build:**
+  claude_1 reruns rung 1 unchanged (the port v3's four field runs against the champion's pinned four, `field.py`,
+  verdict on the win indicator); the coordinator reruns rung 2 (15 paired games, seeds 1–3) **if and only if** rung 1
+  improves on v2; and the loss read's own phase table is recomputed for v3 as a diagnostic (does the turn-100 deficit
+  shrink, and by how much) whatever the verdict. **The coordinator's expectation, written before the numbers:** this
+  narrows the gap and probably does not close it — the opening still spends about fifty turns banking one-point fruit
+  while the champion banks four-point wood, and the deficit at turn 100 is 55 points. **If v3's field reading is still
+  below zero with its interval clear of zero, the card's dead condition applies and the port line closes**; the
+  finding would then be that this economy is not viable against an opponent that converts the map from turn 1, and the
+  narrower successor to put to the owner is our champion plus a cheaply funded third troll — the one piece Track E and
+  this read both point at. — coordinator
+- 2026-09-02 13:1xZ: **codex_1 is out of credits until 2026-09-07** (its session log: "You've hit your usage limit …
+  try again at Sep 7th"; its 12:55Z wake died on that error, which is why no v3 appeared). The loop cannot wait five
+  days, so the coordinator made the one-line change himself and **the two-agent separation is preserved by swapping
+  the roles**: the coordinator builds v3, claude_1 (which owns the bed, the panel and the reproduction) verifies it
+  independently and judges it. Stated plainly because it is a weakening: the builder is now the ruler as well, and the
+  only independent check on the build is claude_1's byte-identity reproduction and its instrument-driven panel.
+  **v3 = v2 with one constant:** a named `PRODUCE_ROSTER_CAP: i32 = 3` replacing the literal 5 in the mode switch
+  (`readable/norxondor-port-v3.rs`; the diff is the constant, its comment, and `roster >= Self::PRODUCE_ROSTER_CAP`).
+  Built: readable compiles (`rustc --edition=2021 -O`, warnings only), compacted by `cgauto/compact_rust_source.py` to
+  `cgauto/submissions/candidate-norxondor-port-v3.rs`, **sha `84870bc95f862b4c4e6b5e6d6f692674af2a750803a8c3735d8964d30d2c4e83`,
+  82,572 UTF-16 units**, the compacted form compiles too; sidecar written. **The gates are claude_1's** (mechanics,
+  bed, the 24-map legality run, determinism, the three mechanism checks of the read, the roster and switch-turn
+  distribution), then rung 1 exactly as pre-registered at 12:55Z. — coordinator
+
+- 2026-09-02 13:5xZ: **v3's own tests contradicted its code — claude_1's blocker `20260902T132500Z` — and the ruling is a v3.1
+  with the same play byte for byte.** claude_1's step 1 PASSED (the readable diff against v2 is the constant, its comment and
+  the one use; the compaction is byte-identical to `84870bc9…`; both forms compile), and then `rustc --test` read **12 passed,
+  3 failed**: `roster_three_turn_106_stays_produce`, the first assert of `missing_source_is_hopeless_but_iron_free_is_omitted`,
+  and the `(3, 144)` leg of `roster_deadlines_are_hard_only_when_floor_is_unaffordable` — every one of them the v2 rule "a
+  roster of three stays in Produce" written into the test module, which the one constant exists to overturn. Not a defect in
+  the mechanism (the twelve that pass include `roster_five_forces_deforest` and `roster_four_turn_138_switches_deforest`); a
+  builder's omission, mine. **Ruled: option 2 of the blocker — the tests follow the cap; a build whose tests contradict its
+  code is not a build of record, and the card's gate says 15/15, not "12/15 read charitably".** Built as **v3.1**:
+  `readable/norxondor-port-v3-1.rs` (file names use `v3-1` because a dot in the name breaks `rustc`'s crate name), generated
+  from v3's readable by `local_claude_1/norxondor-port/make_v31.py` — three replacements, each matched exactly once, all
+  inside `#[cfg(test)] mod port_tests`: (1) `roster_three_turn_106_switches_deforest`: at roster 3, turn 106, with
+  `train_now = true`, the mode is Deforest — the cap dominates the train signal; (2) `missing_source_is_hopeless_but_iron_free_is_omitted`
+  moved from roster 3 to roster 2, so the projection's two rules stay tested where the cap does not decide (at roster 3 both
+  its asserts would be Deforest by the cap and the test would say nothing); (3) the deadline loop reduced to `[(2, 129)]`,
+  with the comment that `switch_deadline`'s roster-3 and roster-4 entries (144, 154) can never fire under the cap — the
+  entries stay in the table, inert, per the owner's 08-27 ruling on inert code. **`rustc --test`: 15 passed, 0 failed.**
+  Compacted by `cgauto/compact_rust_source.py` plus one newline to `cgauto/submissions/candidate-norxondor-port-v3-1.rs`,
+  **sha `7689de3254b9ddb0122c3623a8a0346be9ac3458966bf1be78560a1b4ce27967`, 82,560 UTF-16 units**, sidecar written; both
+  forms compile with `rustc --edition=2021 -O` (warnings only). **The play is v3's, shown on the binaries:** v3's and v3.1's
+  readables compiled under one file name with the same command give a `.text` section of 499,891 bytes, a `.rodata` of 26,280
+  and a `.data` of 2,552 that are byte-identical; the only differing bytes of the program image are two in `.data.rel.ro` — the
+  line numbers of the two panic locations in `main` (4005/4006 → 4014/4015), which moves because `main` follows the test
+  module. **The pre-registration of 12:55Z is unchanged**, including the coordinator's expectation. claude_1's provisional
+  gates and field runs on `84870bc9…` (its blocker said it would run them meanwhile) stand as the cross-check: the bots are
+  deterministic and the panel is pinned, so v3.1's numbers must equal them to the byte, and any difference is a finding.
+  Handed back to claude_1 (ack-required): reproduce v3.1 through the generator from v3's readable at `e9659abf…`, the gates
+  from the top, then rung 1 as pre-registered. v3 as pinned (`84870bc9…`) is retired as a build; it never played on the
+  record. — coordinator
+- 2026-09-02 17:3xZ: **the record of the close, restated by the laptop coordinator with the pin repaired.** Between 14:11Z
+  and 17:00Z this laptop was off the network (its WiFi dropped at 14:46Z; no sleep — the host arms ran on at 6.8 s an
+  update); claude_1's rung-1 handoff on v3.1 arrived at 14:17Z, and at 15:2xZ the coordinator's VM fallback seat
+  (`local_claude_1/coordinator-fallback/`, its first real firing) took the ruling: **the 14:17Z handoff accepted; v3.1
+  reproduced byte for byte, every gate PASS (15/15 tests, bed 34/34, the 24-map run 0 faults, timing p99 2.7 ms; the switch
+  at roster 3 in 36 of 48 games at median turn 80.5, no fourth troll in 400 games); rung 1 `FIELD_BELOW_ZERO` — wins 10 / 24
+  / 10 / 123 of 400 against the champion / orchard 6 / the old champion with denial on / the network clone, FIELD Δwin
+  −0.4675 [−0.4975, −0.4363], Δmargin −75.69 [−79.59, −71.74]; v3.1 against v2 on the same 1,600 cells Δwin −0.0462
+  [−0.0612, −0.0312], Δmargin −4.55 — the repair made it worse (the cap costs 63 wins against the clone, the one opponent v2
+  nearly held); so no rung 2; the card's third dead condition; THE PORT LINE IS CLOSED** (message `20260902T152651Z`,
+  acknowledged by claude_1 at 15:31Z), and the one owed table chartered, bounded. The seat re-derived the numbers on the VM
+  from the pinned files (the generator, the compactor, `rustc --test`, `field.py` rerun to the digit; the provisional v3
+  runs equal v3.1's cell for cell) — **but its message pins `83fb538d…`, a merge commit (the paperwork and a merge of claude_1's branch in one commit)
+  that the seat's own step-5 `git rebase origin/main` then dropped** — a plain rebase replays non-merge commits only, so
+  the card entry, the obituary and the board row that lived in that merge commit's own diff vanished, and the force-push
+  left the hash reachable from no ref (it survives as a dangling object in the seat's VM worktree; the record here is
+  written afresh from the same numbers, not restored from it): only the message (`5cf33c08`) and a later board commit
+  marking rows 3-1 and 0-7 stalled (`1d4bf323`) reached `main`. Repaired now: this entry, the obituary in
+  `coordination/GRAVEYARD.md`, the board (header, row P-1, the Track P title, the owner's queue rewritten to three items),
+  and a correction message superseding the 15:26Z ruling with a pin that exists. The seat's prompt gains a proof step (the
+  pinned commit must be listed by `git branch -r --contains` and hold every artifact path before the message is written)
+  and its step 5 no longer rebases after pinning — a rebase rewrites the hash every pinned message names, the stale-pin
+  failure of 08-26/27. The ruling itself is exactly the 12:55Z pre-registration applied and stands unchanged.
+  **The owed phase table (claude_1's handoff `20260902T153407Z`, artifacts at `345c6735…`, landed on `main`):** codex_1's
+  analyzer byte for byte (`loss_read_codex1_084a35c6.py`, sha `de7b38e3…`; codex_1's own commit `084a35c6…` is now on
+  `main` too), pointed at the v3.1 champion-run replays (400 games, sha `8f25e5f4…`; **107,896 recorded scores replayed,
+  all exact**; the v2 control rerun equal to the pinned `loss-read-v2.json` in every field). **Verified by execution by
+  the coordinator at 17:2xZ, on the VM from claude_1's worktree: the summary object equal in every field, 16 s.** The
+  table: the turn-100 deficit **55.04 → 52.35** (−2.69); the turn-150 deficit 64.11 → 52.88 (−11.23); the final deficit
+  59.78 → 55.52; chop rate in turns 100–150 12.67 % → 19.63 % (harvest 6.53 % → 0.59 %, mine 1.65 % → 0.02 %, idle
+  12.25 % → 21.45 %); CHOP commands in turns 1–100 5.90 → 15.60; the port's own final bank 114.48 → 105.32 on a board
+  empty at the end in 366 of 400 games (v2: 360). In one sentence: the cap did what the read asked of it mechanically, and
+  the lead is made before turn 100 — in turns 1–50 the champion banks 34.9 points of wood against the port's 0.3, and no
+  switch rule reaches that phase. Nothing here reopens the line; the handoff is accepted and acknowledged in the
+  correction message. **Nothing else remains on this card.** The successor — our champion plus a cheaply funded third
+  troll — is one yes/no in the owner's queue; nobody starts it without that word. — coordinator

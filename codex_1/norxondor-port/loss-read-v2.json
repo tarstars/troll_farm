@@ -1,0 +1,317 @@
+{
+ "instrument": "codex_1/norxondor-port/loss_read.py",
+ "replays": "/data/scratch/claude1-norx-v2/port-v2-vs-champion.replays.jsonl",
+ "replays_sha256": "d82d28b86c11f837f3966b9a1066f8cbd0387ddc163554f908ca6c8c331e0597",
+ "panel": "/dev/fd/63",
+ "panel_sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+ "summary": {
+  "games": 400,
+  "recorded_turn_score_checks": 112919,
+  "score_by_50_turn_phase": [
+   {
+    "turns": "1-50",
+    "policy": {
+     "fruit_items_banked_mean": 9.45,
+     "wood_items_banked_mean": 0.07,
+     "wood_score_banked_mean": 0.26,
+     "bank_score_after_phase_mean": 17.77
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0.7,
+     "wood_items_banked_mean": 8.71,
+     "wood_score_banked_mean": 34.86,
+     "bank_score_after_phase_mean": 47.89
+    },
+    "policy_minus_champion_score": -30.12
+   },
+   {
+    "turns": "51-100",
+    "policy": {
+     "fruit_items_banked_mean": 15.31,
+     "wood_items_banked_mean": 1.58,
+     "wood_score_banked_mean": 6.34,
+     "bank_score_after_phase_mean": 25.76
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 8.23,
+     "wood_score_banked_mean": 32.92,
+     "bank_score_after_phase_mean": 80.8
+    },
+    "policy_minus_champion_score": -55.04
+   },
+   {
+    "turns": "101-150",
+    "policy": {
+     "fruit_items_banked_mean": 10.52,
+     "wood_items_banked_mean": 4.86,
+     "wood_score_banked_mean": 19.45,
+     "bank_score_after_phase_mean": 45.96
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 7.51,
+     "wood_score_banked_mean": 30.06,
+     "bank_score_after_phase_mean": 110.07
+    },
+    "policy_minus_champion_score": -64.11
+   },
+   {
+    "turns": "151-200",
+    "policy": {
+     "fruit_items_banked_mean": 0.44,
+     "wood_items_banked_mean": 8.9,
+     "wood_score_banked_mean": 35.6,
+     "bank_score_after_phase_mean": 78.8
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 6.92,
+     "wood_score_banked_mean": 27.69,
+     "bank_score_after_phase_mean": 135.74
+    },
+    "policy_minus_champion_score": -56.94
+   },
+   {
+    "turns": "201-250",
+    "policy": {
+     "fruit_items_banked_mean": 0.02,
+     "wood_items_banked_mean": 4.35,
+     "wood_score_banked_mean": 17.4,
+     "bank_score_after_phase_mean": 94.58
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 4.1,
+     "wood_score_banked_mean": 16.39,
+     "bank_score_after_phase_mean": 150.47
+    },
+    "policy_minus_champion_score": -55.89
+   },
+   {
+    "turns": "251-300",
+    "policy": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 5.22,
+     "wood_score_banked_mean": 20.9,
+     "bank_score_after_phase_mean": 114.48
+    },
+    "champion": {
+     "fruit_items_banked_mean": 0,
+     "wood_items_banked_mean": 7.56,
+     "wood_score_banked_mean": 30.23,
+     "bank_score_after_phase_mean": 174.26
+    },
+    "policy_minus_champion_score": -59.78
+   }
+  ],
+  "board_and_policy_trees_by_50_turn_phase": [
+   {
+    "after_turn": 50,
+    "shared_tree_count_mean": 12.64,
+    "shared_tree_size_units_mean": 49.9,
+    "policy_trees_planted_mean": 2.08,
+    "policy_trees_felled_by_champion_mean": 0.22,
+    "policy_trees_felled_by_policy_mean": 0.06
+   },
+   {
+    "after_turn": 100,
+    "shared_tree_count_mean": 8.84,
+    "shared_tree_size_units_mean": 34.12,
+    "policy_trees_planted_mean": 1.93,
+    "policy_trees_felled_by_champion_mean": 1.01,
+    "policy_trees_felled_by_policy_mean": 1.04
+   },
+   {
+    "after_turn": 150,
+    "shared_tree_count_mean": 5.95,
+    "shared_tree_size_units_mean": 22.14,
+    "policy_trees_planted_mean": 3.33,
+    "policy_trees_felled_by_champion_mean": 1.84,
+    "policy_trees_felled_by_policy_mean": 2.59
+   },
+   {
+    "after_turn": 200,
+    "shared_tree_count_mean": 2.57,
+    "shared_tree_size_units_mean": 9.04,
+    "policy_trees_planted_mean": 3.0,
+    "policy_trees_felled_by_champion_mean": 1.5,
+    "policy_trees_felled_by_policy_mean": 3.79
+   },
+   {
+    "after_turn": 250,
+    "shared_tree_count_mean": 1.26,
+    "shared_tree_size_units_mean": 4.24,
+    "policy_trees_planted_mean": 1.64,
+    "policy_trees_felled_by_champion_mean": 0.7,
+    "policy_trees_felled_by_policy_mean": 1.79
+   },
+   {
+    "after_turn": 300,
+    "shared_tree_count_mean": 0.17,
+    "shared_tree_size_units_mean": 0.69,
+    "policy_trees_planted_mean": 1.03,
+    "policy_trees_felled_by_champion_mean": 0.42,
+    "policy_trees_felled_by_policy_mean": 1.76
+   }
+  ],
+  "activity": {
+   "policy": {
+    "windows": {
+     "100-150": {
+      "troll_turns": 56434,
+      "counts": {
+       "harvest": 3685,
+       "chop": 7153,
+       "mine": 933,
+       "plant": 1351,
+       "pick": 1146,
+       "move": 30425,
+       "drop": 4827,
+       "idle": 6914
+      },
+      "per_troll_turn": {
+       "harvest": 0.0653,
+       "chop": 0.1267,
+       "mine": 0.0165,
+       "plant": 0.0239,
+       "pick": 0.0203,
+       "move": 0.5391,
+       "drop": 0.0855,
+       "idle": 0.1225
+      }
+     },
+     "151-200": {
+      "troll_turns": 56200,
+      "counts": {
+       "harvest": 64,
+       "chop": 11492,
+       "mine": 11,
+       "plant": 1202,
+       "pick": 1166,
+       "move": 25115,
+       "drop": 2301,
+       "idle": 14849
+      },
+      "per_troll_turn": {
+       "harvest": 0.0011,
+       "chop": 0.2045,
+       "mine": 0.0002,
+       "plant": 0.0214,
+       "pick": 0.0207,
+       "move": 0.4469,
+       "drop": 0.0409,
+       "idle": 0.2642
+      }
+     },
+     "100-200": {
+      "troll_turns": 112634,
+      "counts": {
+       "harvest": 3749,
+       "chop": 18645,
+       "mine": 944,
+       "plant": 2553,
+       "pick": 2312,
+       "move": 55540,
+       "drop": 7128,
+       "idle": 21763
+      },
+      "per_troll_turn": {
+       "harvest": 0.0333,
+       "chop": 0.1655,
+       "mine": 0.0084,
+       "plant": 0.0227,
+       "pick": 0.0205,
+       "move": 0.4931,
+       "drop": 0.0633,
+       "idle": 0.1932
+      }
+     }
+    },
+    "chop_commands_per_game_turns_1_100": 5.9,
+    "chop_commands_per_game_turns_181_190": 5.15
+   },
+   "champion": {
+    "windows": {
+     "100-150": {
+      "troll_turns": 40692,
+      "counts": {
+       "harvest": 0,
+       "chop": 12197,
+       "mine": 0,
+       "plant": 304,
+       "pick": 318,
+       "move": 24905,
+       "drop": 1880,
+       "idle": 1088
+      },
+      "per_troll_turn": {
+       "harvest": 0.0,
+       "chop": 0.2997,
+       "mine": 0.0,
+       "plant": 0.0075,
+       "pick": 0.0078,
+       "move": 0.612,
+       "drop": 0.0462,
+       "idle": 0.0267
+      }
+     },
+     "151-200": {
+      "troll_turns": 38726,
+      "counts": {
+       "harvest": 0,
+       "chop": 9257,
+       "mine": 0,
+       "plant": 803,
+       "pick": 807,
+       "move": 19583,
+       "drop": 1969,
+       "idle": 6307
+      },
+      "per_troll_turn": {
+       "harvest": 0.0,
+       "chop": 0.239,
+       "mine": 0.0,
+       "plant": 0.0207,
+       "pick": 0.0208,
+       "move": 0.5057,
+       "drop": 0.0508,
+       "idle": 0.1629
+      }
+     },
+     "100-200": {
+      "troll_turns": 79418,
+      "counts": {
+       "harvest": 0,
+       "chop": 21454,
+       "mine": 0,
+       "plant": 1107,
+       "pick": 1125,
+       "move": 44488,
+       "drop": 3849,
+       "idle": 7395
+      },
+      "per_troll_turn": {
+       "harvest": 0.0,
+       "chop": 0.2701,
+       "mine": 0.0,
+       "plant": 0.0139,
+       "pick": 0.0142,
+       "move": 0.5602,
+       "drop": 0.0485,
+       "idle": 0.0931
+      }
+     }
+    },
+    "chop_commands_per_game_turns_1_100": 73.95,
+    "chop_commands_per_game_turns_181_190": 4.38
+   }
+  },
+  "games_empty_at_end": 360,
+  "last_tree_fall_turn_when_empty_at_end": {
+   "n_games": 360,
+   "median": 297.0,
+   "mean": 277.2
+  }
+ }
+}

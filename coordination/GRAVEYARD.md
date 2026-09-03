@@ -4,6 +4,35 @@ Format: **what it was · what killed it · what we learned · what would reopen 
 closed, not "in progress"; this file is the library the graveyard was missing. Older closures live
 in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here first.
 
+- **2026-09-02 — Track P, the port of norxondor_gorgonax** (`20260902-norxondor-port`; closed 15:26Z by the
+  coordinator's fallback seat, the paperwork landed 17:3xZ). **What it was:** the second-placed player's
+  rule-based economy — the exact train ladder to five trolls with harvest talents, the fruit-first orchard,
+  the plant-and-cut banana wood loop, the produce→deforest switch — rebuilt as a hybrid over our champion's
+  own pathing, targeting and denial; designed, reviewed (one round, four edits, two per reviewer), built
+  (v2, sha `411b0565…`) and reproduced byte for byte in one day. **What killed it:** rung 1, the field
+  reading against four local opponents paired by map and seat — 16 wins of 400 against the champion,
+  Δwin −0.42 [−0.45, −0.39] over 1,600 games, below all four; rung 2, 15 paired games against the five
+  real Legend agents on the same seeds — champion 8 wins, port 0, 118 points a game to 172, wood 26 to
+  42; the loss read (112,919 recorded scores replayed, all exact) named one mechanism, the
+  Produce→Deforest switch (the port banks 9.45 fruit and no wood in turns 1–50 while the champion banks
+  8.71 wood; a fruit is one point, a wood four; 30 points down by turn 50, 55 by turn 100; the third troll
+  arrives at turn 74 and farms until turn 144); the one pre-registered repair (v3.1: Produce ends the turn
+  after the third troll, not the fifth) read **worse** — 10 wins of 400, Δwin −0.47 [−0.50, −0.44], below
+  v2 by 0.046 [0.031, 0.061], the fourth troll gone, the turn-100 deficit moved from 55.0 to 52.4 points.
+  The card's third dead condition. **What we learned:** this economy is not viable against an opponent
+  that converts the map to wood from turn 1 — the lead is made before turn 100, in the phase no switch
+  rule reaches (the champion has banked 34.9 points of wood by turn 50 against the port's 0.3), and a
+  bigger roster arriving on an emptied board cannot buy it back; a duel with our own clear-cutter is not a
+  ladder proxy (orchard 6 loses 324 of 400 to the champion and read above it on the ladder the same day),
+  so a selector must be a field reading paired by map and seat; two reviewers found disjoint holes in one
+  design, keep both halves of a round; a build's test module is part of the build (v3 shipped with tests
+  asserting the old cap and was caught by the byte-identity reproduction). **What would reopen it:** a
+  real ladder field that rewards a fruit-first opening — none is known. The narrower successor the
+  endgame read and the loss read both point at — our champion plus a cheaply funded third troll — is a
+  new card on the owner's word, not a reopening. Instruments kept: `claude_1/h2h-panel/` (the field
+  panel, `field.py`, the bed), codex_1's loss-read analyzer (`codex_1/norxondor-port/loss_read.py`), the
+  switch-turn trace, the rung-2 burst driver (`cgauto/field_panel.py`).
+
 - **2026-08-26 — Candidate 0, the champion's replant fallback fix** (`20260826-candidate-0-regeneration-fallback`).
   One-hunk change: when a troll's idle-regeneration plan has no chops, extend the command list
   instead of replacing it. Killed at G-1, reproduced by codex_1: blocking games 118/240 vs 43/240 —
@@ -120,3 +149,21 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   planted until denial ends, farm afterwards) is written into the card for that day. Games
   `local_claude_1/farm-watch/games-41201668/`; readable diff `readable/diffs/banana-farm-vs-v6-instrument.diff`.
 
+- **2026-09-03 — Track 3, the cheap third troll** (`20260902-cheap-third-troll`; dead on paper 05:2xZ by the
+  coordinator's VM fallback seat, after claude_1's read of 04:23Z). **What it was:** the successor to the port —
+  our champion exactly as it plays, plus the weakest third troll worth having (speed 1, carry 1, no harvest, chop 1:
+  3 plums, 3 lemons, 2 apples, 3 iron with two trolls owned), bought with the smallest possible detour; a read from
+  our own 320 collected ladder games before any build. **What killed it:** the champion never holds that bill — short
+  in 319 of 319 games by a median of 6 items — and the shortfall is dear for two measured reasons: its trained troll
+  cannot harvest, so the fruit is the starting troll's job alone, one item a trip (a median 37-turn detour while the
+  trained troll mines the iron in 9), and the champion plants 81 % of its banked plums and lemons as seeds it fells for
+  four points each, so a fruit it spends is worth up to 4 points, not 1. Net per game: +11 [9, 13] with fruit at face
+  value, −6.5 [−8.4, −4.6] with fruit priced as the champion prices it; the only variant that loses under neither
+  reading (buy only when the bill is within 30 turns, a third of the games) is worth +5 to −1 — below what the field
+  panel can resolve. Every number reproduced by execution on the VM (`local_claude_1/cheap-third-troll/VERIFY-2026-09-03.md`).
+  **What we learned:** a bot with a harvest-0 second troll pays for fruit with its starter's round trips; the
+  champion's bank is not idle money but seed stock worth four points an item; the referee prices bananas at zero for
+  training, so the seven bananas the champion holds buy no troll. **Would reopen it:** the owner's "build" for the
+  30-turn variant (one variable, a build, a bed, a smoke, a field reading); or a different card — a harvest-1 second
+  troll that makes the fruit a two-troll job, or a talent priced in bananas. Read
+  `claude_1/cheap-third-troll/READ-2026-09-03.md` (pinned `54786b02…`); card `coordination/tasks/20260902-cheap-third-troll.md`.

@@ -1146,3 +1146,49 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
 - 2026-09-02 10:3xZ: the laptop left the mains at 09:11Z and **the battery guard stopped both host arms at update 450**
   (`battery-guard.log`), as designed; still on battery at 10:3xZ (74 %). They restart identically from the clone when the
   mains return (dirs `…-0902c/` then; nothing lost). Both cluster arms still pending a slot after three hours. — coordinator
+- 2026-09-02 12:2xZ: the laptop is on mains again — **both host arms relaunched from scratch** into `…-0902c/`
+  (`ppo-host-s22` 2,709 updates, `ppo-host-s22L` 5,419; the pinned 09-01 corpus, 7 threads each, the battery guard
+  restarted). And **both cluster arms finally have their slots** after five hours pending: `ppo-yt-s22L`
+  (op `371ec5d0…`) and `ppo-yt-s512` (op `50c1737e…`) are RUNNING. The pre-registered reads stand
+  (`local_claude_1/nn-bot/PREREG-2026-09-02-depth-rollout512.md`): the depth gate compares s22L's end (5,250 / 5,419)
+  with s22's end (2,500 / 2,709), `PYTHONHASHSEED=0`; s512 by the standard gate at 1,500 / 2,500 against s22. — coordinator
+
+- 2026-09-02 18:0xZ: **both cluster arms landed and their pre-registered gates are read — neither confirmed by the frozen
+  letter, both positive at every measurement, both above the clone with room.** `ppo-yt-s512` completed at 15:5xZ (221 min)
+  and `ppo-yt-s22L` at 16:3xZ (272 min); retrieved; the four gate benches ran 17:12Z–17:55Z on the host at nice 19
+  beside the two host arms. **Gate A, the depth gate (end against end, `PYTHONHASHSEED=0`):** s22L at 5,250 / 5,419 reads
+  **37 / 37 of 144** against s22's 33 / 33 at 2,500 / 2,709 — paired effect **+0.028 [0.000, +0.063]**, the lower bound
+  exactly zero → `DEPTH_NOT_CONFIRMED`; positive at both measurements; clone non-inferiority net +12; margin +5.9
+  [+1.9, +10.1]; the same interval and verdict under all 40 hash seeds. The doubled budget's end is the programme's
+  best artefact by count and score (142.5 to the champion's 188.8). **Gate B, the 512-step rollout:** s512 at 1,500 /
+  2,500 reads **33 / 36** against s22's 29 / 33 — **+0.024 [−0.010, +0.063]** → `ROLLOUT512_NOT_CONFIRMED`; positive at
+  both ages; net +11 over the clone; margin +4.0 [+0.6, +7.7]; same verdict under 40 seeds. Notes:
+  `local_claude_1/nn-bot/GATE-DEPTH-VERDICT-2026-09-02.md`, `GATE-S512-VERDICT-2026-09-02.md`; JSONs
+  `results/entropy-gate-0901/gate1-verdict-s22L-depth.json`, `gate1-verdict-s512.json`. **Ledger (wins of 144):** clone
+  26 · r22 31/29 · s22 29/33/33 · **s22L 37/37 (ends)** · s512 33/36 · parity bar 72. **Reading:** each lever since the
+  reward path adds a few cells and none reaches the frozen bar alone; the levers that read positive (the doubled budget,
+  the long trace) are candidates to stack, one variable per arm, end against end. Running now: the pre-registered
+  exploratory ages of s22L (2,500 / 1,500 for the schedule effect at matched age; 4,000 / 3,000 for the curve), one
+  driver; host s22 (Gate C's treatment) is at update ~1,300 of 2,709, done ~20:35Z. — coordinator
+- 2026-09-03 04:0xZ: **the host arm s22 finished (2,709 updates, on time) and the doubled budget's exploratory reads are in.**
+  Exploratory (i), the schedule effect at matched age — s22L at 1,500 / 2,500 against s22 at 1,500 / 2,500, `gate1.py`,
+  `PYTHONHASHSEED=0`: **+0.010 [−0.021, +0.042]**, not confirmed, positive at both ages (31 vs 29, 34 vs 33), net +11 over the
+  clone, margin +1.1 [−2.3, +4.7] (`gate1-verdict-s22L-matched-age-exploratory.json`). Exploratory (ii), the curve:
+  **s22L 31 / 34 / 35 / 31 / 37 / 37 of 144 at 1,500 / 2,500 / 3,000 / 4,000 / 5,250 / 5,419** (scores 139.4 / 138.0 / 141.1
+  / 139.3 / 142.5 / 142.3) against s22's 29 / 33 / 33 at 1,500 / 2,500 / 2,709. Read: at matched age the two schedules are
+  the same artefact within noise; the doubled budget's gain (+4 cells) appears at its end, where its learning rate reaches
+  zero — the anneal caveat of the pre-registration, seen in the data. Gate C's benches on the host arm (`hs22-locked` at
+  1,500 / 2,500 / 2,709) launched 04:0xZ at nice 19. **The stacked arm `ppo-yt-s22L512`** (s22L's arguments with
+  `--rollout-steps 512 --num-envs 8`; s22's map slice `16577bf1…` verified inside the payload; the prepared trainer
+  arguments differ from s22L's in the two rollout fields and the name only, from s512's in the budget and the name only)
+  started on the cluster at 03:55Z, op `b3c6af06-72c446b3-42e03e8-dc7b1253`, job limit 12 h; **Gate D pre-registered blind
+  before the launch** (`PREREG-2026-09-02-depth-rollout512.md`: s22L512's ends against s22L's ends, `PYTHONHASHSEED=0`;
+  the expectation written first: "not confirmed, positive"). This session paused 18:08Z–03:53Z inside one turn; the host
+  worked throughout. — coordinator
+- 2026-09-03 04:4xZ: **Gate C read — the host replication of the stack** (`PREREG` Gate C; `PYTHONHASHSEED=0`): hs22 at
+  1,500 / 2,500 reads **30 / 32 of 144** against hr22's 28 / 31 — paired effect **+0.010 [−0.021, +0.042]**, not confirmed,
+  positive at both ages, net +8 over the clone, margin +2.7 [−0.7, +5.9] (`GATE-HS22-VERDICT-2026-09-03.md`,
+  `gate1-verdict-hs22.json`). The cluster's s22-vs-r22 shape (+0.007) to the digit: the rollout term is a small positive
+  the panel cannot separate from zero on either platform; the recipe stays 2 + 2 with the 128-step rollout. The host arm
+  s22L finished 09-02 23:4xZ (5,419 updates, training summary written); its depth gate (hs22L at 5,250 / 5,419 against hs22
+  at 2,500 / 2,709) waits for the mains — the laptop is on battery since ~05:4xZ. — coordinator

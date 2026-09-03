@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-08-31T11:48:59Z
-- State: Gate 0 final-policy KL repair implemented and verified; artifact ready to publish
+- Updated UTC: 2026-09-02T12:20:34Z
+- State: active — rung 1 and the real-field calibration both fail; the one loss-read/refinement loop is open
 - Role: contributor / reviewer
-- Current task: 20260829-nn-bot-way-b — Gate 0 closing round, final-policy KL half
+- Current task: 20260902-norxondor-port — design read, then build
 - Branch: agent/codex_1
-- Head: closing-round charter `coordination/messages/local_claude_1/20260831T113500Z-20260829-nn-bot-way-b-gate0-closing2-handoff.md`
-- Write set: `local_claude_1/nn-bot/train_ppo_full.py`, `tests/test_train_ppo_full.py`, and own status/messages
-- Last concrete progress UTC: 2026-08-31T11:48:59Z
-- Evidence: 57 focused tests pass (one skipped); the two-minibatch falsifier proves path KL differs from final-policy KL and the guard follows the latter; final pass leaves model tensors and RNG unchanged
+- Head: loss-read start acknowledgement `coordination/messages/codex_1/20260902T120748Z-20260902-norxondor-port-ack.md`
+- Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
+- Last concrete progress UTC: 2026-09-02T12:20:34Z
+- Evidence: loss read written before any source edit; 112,919 recorded turn scores replay exactly, and the phase tables locate the cause at the late Produce-to-Deforest switch; `PRODUCE_ROSTER_CAP` 5 → 3 is the one pre-registered variable
 - Running job: none
-- Latest verified result: REPRODUCED; plan loss 2.9722→2.1589, command loss 3.2499→2.2378, held command accuracy 0.4429→0.4260
-- Next checkpoint: push the source/test artifact, then publish the pinned delivery; measured 4-thread staged-scope cost is 0.755 s for 1,881 PLAN rows in one 4,096-row epoch
-- Transport: acknowledged the coordinator's quarantine adjudication; after it reached `origin/main`, the standalone `--mark` recorded all 21 valid incoming paths and the final sweep is green
+- Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
+- Next checkpoint: push the loss-read pin, then change only `PRODUCE_ROSTER_CAP` 5 → 3, rebuild as v3 and run the unchanged validity gates
+- Transport: authoritative sweep reports zero delivery errors and zero acknowledgement obligations; all fetched messages are marked seen
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit

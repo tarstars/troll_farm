@@ -2,6 +2,16 @@
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)
 
+**★ 09-03 05:2xZ — the successor, the cheap third troll, is DEAD ON PAPER** (claude_1's read of 04:23Z, verified by execution on the VM: the bill short in every one of 319 games, a 37-turn fruit detour for the one troll that can harvest, the fruit worth up to 4 points as seeds; net +11 / −6.5 a game by how the fruit is priced; no build; obituary in `coordination/GRAVEYARD.md`, row 3-2). Orchard 8 read 17.98 at rank 89 (row 3-1, budget spent). Nothing rule-based is in motion until the owner's word — kill or extend orchard 8; "build" to reopen the cheap troll's 30-turn variant. Track N continues in the background on the laptop.
+
+**★ 17:3xZ — Track P is CLOSED under its dead condition** (the one repair read worse than the build it repaired: 10 wins of 400 against the champion, below zero with the interval clear of zero; obituary in `coordination/GRAVEYARD.md`). The plan's next step is the owner's one yes/no on the narrower successor — our champion plus a cheaply funded third troll — in the board's owner's queue; nobody starts it without that word. Track N continues in the background (both cluster arms finished 09-02, their gate benches running); the ladder holds the champion of record. The "Done when" below is met on its second branch: the port's verdict is on its card and the line is closed.
+
+**★ Flush entry, 13:3xZ: `coordination/HANDOVER-2026-09-02-the-port.md`** — the day's state in one page: the port
+built, measured twice and beaten (rung 1 Δwin −0.42 over 1,600 games; rung 2 champion 8 wins to the port's 0 over
+15 paired games against the real top players), its loss diagnosed to the Produce→Deforest switch, the one repair
+(`PRODUCE_ROSTER_CAP` 3) built and with claude_1 for its gates and rung 1; codex_1 out of credits until 09-07;
+Track E closed; Track N's four arms running with their reads pre-registered.
+
 The champion of record reads 17–21 on the ladder (21.2 on 08-27, 18.2 on 08-29, **17.0 at rank
 110 on 09-02** — the field rises while the bot stands still); the top four read 27.7–30.9; every rule change
 tried since 08-27 read flat or worse on single one-hour ladder readings (noise ± 1.5). The fastest
