@@ -33,6 +33,9 @@ jobs:
         run: |
           tar -xzf "$ROOT/source-payload.tar.gz.b64"
           rm "$ROOT/source-payload.tar.gz.b64"
+          mkdir -p "$ROOT/results"
+          sed -i 's/shadows\[WOOD\]/shadows[5]/' "$ROOT/optimizer.rs.in"
+          sed -i 's/item == WOOD/item == 5/' "$ROOT/make_candidate.py"
 
       - name: Syntax-check generator and analyser
         run: |
@@ -90,7 +93,8 @@ jobs:
 
       - name: One-core turn timing
         run: |
-          taskset -c 0 python3 claude_1/h2h-panel/turn_time.py \
+          cpu=$(taskset -pc $$ | sed 's/.*: //' | cut -d, -f1 | cut -d- -f1)
+          taskset -c "$cpu" python3 claude_1/h2h-panel/turn_time.py \
             --bot "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
             --maps 3 \
             --json-out "$ROOT/results/turn-time.json" \
