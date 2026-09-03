@@ -1,0 +1,18 @@
+{
+ "bot": "cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs",
+ "bot_sha256": "fe9e9ec839183b70fb90c6793cd15bee206da8c85a0ca647b7baf576c3d6dc78",
+ "opponent": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+ "games": 6,
+ "turns_timed": 1940,
+ "first_turn_max_ms": 4.27,
+ "warm_median_ms": 0.647,
+ "warm_p99_ms": 2.281,
+ "warm_max_ms": 2.861,
+ "warm_over_50ms": 0,
+ "platform_limits_ms": {
+  "first_turn": 1000.0,
+  "turn": 50.0
+ },
+ "note": "wall time around the pipe round-trip on this host, referee included in neither figure; the clock also counts the pipe and the host's load",
+ "inside_platform_budget": true
+}
