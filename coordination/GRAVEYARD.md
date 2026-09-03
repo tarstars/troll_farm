@@ -149,3 +149,21 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   planted until denial ends, farm afterwards) is written into the card for that day. Games
   `local_claude_1/farm-watch/games-41201668/`; readable diff `readable/diffs/banana-farm-vs-v6-instrument.diff`.
 
+- **2026-09-03 — Track 3, the cheap third troll** (`20260902-cheap-third-troll`; dead on paper 05:2xZ by the
+  coordinator's VM fallback seat, after claude_1's read of 04:23Z). **What it was:** the successor to the port —
+  our champion exactly as it plays, plus the weakest third troll worth having (speed 1, carry 1, no harvest, chop 1:
+  3 plums, 3 lemons, 2 apples, 3 iron with two trolls owned), bought with the smallest possible detour; a read from
+  our own 320 collected ladder games before any build. **What killed it:** the champion never holds that bill — short
+  in 319 of 319 games by a median of 6 items — and the shortfall is dear for two measured reasons: its trained troll
+  cannot harvest, so the fruit is the starting troll's job alone, one item a trip (a median 37-turn detour while the
+  trained troll mines the iron in 9), and the champion plants 81 % of its banked plums and lemons as seeds it fells for
+  four points each, so a fruit it spends is worth up to 4 points, not 1. Net per game: +11 [9, 13] with fruit at face
+  value, −6.5 [−8.4, −4.6] with fruit priced as the champion prices it; the only variant that loses under neither
+  reading (buy only when the bill is within 30 turns, a third of the games) is worth +5 to −1 — below what the field
+  panel can resolve. Every number reproduced by execution on the VM (`local_claude_1/cheap-third-troll/VERIFY-2026-09-03.md`).
+  **What we learned:** a bot with a harvest-0 second troll pays for fruit with its starter's round trips; the
+  champion's bank is not idle money but seed stock worth four points an item; the referee prices bananas at zero for
+  training, so the seven bananas the champion holds buy no troll. **Would reopen it:** the owner's "build" for the
+  30-turn variant (one variable, a build, a bed, a smoke, a field reading); or a different card — a harvest-1 second
+  troll that makes the fruit a two-troll job, or a talent priced in bananas. Read
+  `claude_1/cheap-third-troll/READ-2026-09-03.md` (pinned `54786b02…`); card `coordination/tasks/20260902-cheap-third-troll.md`.

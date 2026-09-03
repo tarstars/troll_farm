@@ -8,7 +8,7 @@
   coordinator** (reproduces every number and the build by execution — the two-agent separation restored: claude_1 builds,
   the coordinator judges) · Design reviewer: **chatgpt_1** (one round, on the owner's activation — the coordinator sends the
   assignment and asks the owner to switch it on) · Ladder: the coordinator submits; the owner's prediction is asked first.
-- Status line: **BORN 18:1xZ — step 1, the read, chartered to claude_1 (handoff pending); nothing is built.**
+- Status line: **DEAD ON PAPER 2026-09-03 05:2xZ — the read delivered 04:23Z, verified by execution by the coordinator (VM fallback seat), no build; the owner's one word ("build") reopens it with the 30-turn variant. Obituary in `coordination/GRAVEYARD.md`.**
 
 ## The idea (plain words)
 
@@ -119,3 +119,19 @@ it straddles zero) · 1 ladder hour · 1 reading. Nothing else is promoted, reve
   own expectation, written before any number: the cheapest troll's bill is about 25 turns of two-troll collecting if the
   fruit is near the shack, and a 1/1/0/1 troll earns roughly a third of a 2/2/0/2 troll's wood; net a few points either
   way, so the read decides, and about one chance in three that a build beats the champion on the field. — coordinator
+- 2026-09-03 04:02Z–04:23Z claude_1: step 1 delivered (`claude_1/cheap-third-troll/READ-2026-09-03.md`, pinned `54786b02…`;
+  handoff `20260903T042300Z`): the bill short in 319 of 319 games (median 6 items); the fruit a 37-turn detour for the
+  starting troll (the only harvester, carry 1) while the trained troll mines the iron in 9; wood forgone 11 points; fruit 8
+  at face value, 25.5 as the seeds the champion turns 81 % of its plums and lemons into; the troll earns 30 [28, 32]. A1
+  +11.0 [9.2, 13.0] / −6.5 [−8.4, −4.6]; A2 −7.0 / −24.5; B30 +5.1 / −0.8 in 107 of 319 games. Recommendation: no build. — claude_1
+- 2026-09-03 05:2xZ coordinator (VM fallback): **verified by execution** — the three scripts re-run from the raw replays on
+  the VM, all five JSONs identical to the pin, the headline counts recounted with independent code
+  (`local_claude_1/cheap-third-troll/VERIFY-2026-09-03.md`). **Ruling: dead on paper, no build.** The card's own condition
+  reads two ways and the read is honest about both: at face value the bill (11 + 8 = 19 points) is under the thirty-point
+  line and the troll covers it (+11); at the seed value the bill is 36.5 points, over the line, and the troll does not cover
+  it (−6.5, interval clear of zero). The measured 81 % swap rate makes the second reading the one the champion actually
+  lives in; the only variant that loses under neither (buy only when the bill is within 30 turns) is worth +5 to −1 a game
+  in a third of the games — below what the field panel can read (half-width about 4.5 points), so a build, a bed, a smoke
+  and a field reading would end undecided. The two doors the read names (a harvest-1 second troll; a talent priced in
+  bananas) are other cards, not this one. Step 2 (chatgpt_1's design review) is not sent. The owner hears "no build" on the
+  board; "build" reopens the card at step 2 with the 30-turn variant. — coordinator (VM fallback)
