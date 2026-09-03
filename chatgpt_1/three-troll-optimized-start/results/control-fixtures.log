@@ -32,13 +32,5 @@
   DIFFERS OSC-032    turns 200  first divergence turn 19  train arm []  champion []  telemetry errors 0
   DIFFERS OSC-033    turns 200  first divergence turn 8  train arm []  champion []  telemetry errors 0
   SAME    OSC-034    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
-Traceback (most recent call last):
-  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 179, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 149, in main
-    "arm": str(ARM.relative_to(REPO)), "arm_sha256": sha(arm_text),
-               ^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/lib/python3.12/pathlib.py", line 682, in relative_to
-    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
-ValueError: 'chatgpt_1/three-troll-optimized-start/champion-turn2-second-control-v6-instrument.rs' is not in the subpath of '/home/runner/work/troll_farm/troll_farm'
+
+  PASS  plays 34/34, differs from the champion on 4/34, deterministic 34/34, compacted==arm 34/34, telemetry errors 0; arm trained in 1/34 (champion 1/34), a third troll in [], wrong spec [], more than three []  -> /home/runner/work/troll_farm/troll_farm/chatgpt_1/three-troll-optimized-start/results/control-fixtures.json
