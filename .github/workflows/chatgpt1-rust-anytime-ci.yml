@@ -1,0 +1,38 @@
+name: chatgpt1-rust-anytime-ci
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1
+    paths:
+      - 'chatgpt_1/opening-dp-oracle/rust-anytime/**'
+      - '.github/workflows/chatgpt1-rust-anytime-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: chatgpt_1/opening-dp-oracle/rust-anytime
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+      - name: Toolchain identity
+        run: rustc --version && cargo --version
+      - name: Format check
+        run: cargo fmt --all -- --check
+      - name: Debug tests
+        run: cargo test --all-targets
+      - name: Release parity benchmark
+        run: /usr/bin/time -v cargo test --release larger_two_stage_case_is_19 -- --ignored --nocapture
+      - name: Small exact cases
+        run: cargo run --release -- small
+      - name: Large proof benchmark
+        run: /usr/bin/time -v cargo run --release -- bench
+      - name: Online budget curve
+        run: cargo run --release -- online
