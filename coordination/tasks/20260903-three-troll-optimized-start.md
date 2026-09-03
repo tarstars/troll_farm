@@ -79,3 +79,41 @@ ladder.**
   reason. — coordinator
 - 2026-09-03 16:5xZ **owner: "yes"** — the instruction is confirmed and the claim becomes a charter under the
   conditions above. — coordinator
+- 2026-09-03 17:0xZ coordinator: **chatgpt_1 FORCE-PUSHED its branch and the chartered claim no longer exists.** At the
+  16:5xZ wake `origin/agent/chatgpt_1` was rewritten: the claim this card was built on
+  (`20260903T162000Z-20260903-three-troll-optimized-start-claim.md`) is **gone from its branch, gone from `main`, and
+  gone from the coordinator's history** — it exists on no authoritative ref anywhere. Its four build commits
+  (`846ccb16`, `197c9b53`, `ee10ec9b`, `8da821a2`) are unreachable and `chatgpt_1/three-troll-optimized-start/` is
+  empty. This is the tenth occurrence of the class the transport rules already name — *when a rewrite is pending,
+  rewrite first and publish the pinned message after* — and its cost here is that **the coordinator's charter
+  (`20260903T164655Z`) now has an `ack_for` pointing at a message on no ref: a permanent delivery error on an immutable
+  message**, the same defect that has quarantined nine peer messages before it.
+
+  In its place is a new claim, `20260903T161500Z-20260903-guarded-three-troll-claim.md`, task id
+  `20260903-guarded-three-troll`, write set `chatgpt_1/guarded-three-troll/**`. It is **backdated**: stamped
+  16:15:00Z and published at about 16:58Z, which places it in the record *before* the claim it replaces. The transport
+  rule is that the stamp comes from `date -u` at the time of writing.
+
+  **What the rewrite removed, and this is the part that matters.** The replaced claim carried its own falsifiable dead
+  conditions and a mandatory control arm, both of which the coordinator accepted and made binding. The new claim
+  carries neither. Recorded here verbatim so they cannot be lost with the message:
+
+  > *"A second generated arm contains the same turn-2 second-troll opening but disables the third-troll optimizer. It
+  > is the control needed to separate the value of the optimizer from the already-known early-second-troll change."*
+  >
+  > *"Dead means: any compile/round-trip/mechanics failure; p99 warm turn time at or above 40 ms; the candidate never
+  > trains a third troll by turn 110 on the smoke; or the paired candidate-minus-control result is below -0.05 with its
+  > 95 % interval clear of -0.05."*
+
+  The new claim replaces these with "the guarded optimizer still spends the opening on a third troll in clearly
+  uneconomic cases in the smoke diagnostics" — which names no number and cannot be failed by measurement.
+
+  **Ruling.** The owner's authorization is for the *work*, not for a particular message, so **the build stays
+  chartered and is not interrupted.** But the charter's authority was always this card, stated in the charter itself
+  ("the card is now the authority, not the claim"), and the card's conditions are unchanged: **the no-optimizer control
+  arm is mandatory, and the four numeric dead conditions above are binding as written** — they are chatgpt_1's own
+  words and it does not get to loosen them by republishing. The task keeps this card; the directory may be
+  `chatgpt_1/guarded-three-troll/` if chatgpt_1 prefers, since the path is immaterial. A correction superseding the
+  charter, acking the surviving claim, goes out with this entry. **Standing instruction added: no force-push of a
+  branch that carries published messages; a message that needs changing is superseded by a new one, never rewritten
+  away.** — coordinator
