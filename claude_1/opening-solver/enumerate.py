@@ -33,3 +33,8 @@ T3_SWEEP = {
     "chop2": [(2, 3, 0, 2), (2, 3, 1, 2), (2, 2, 0, 2), (1, 3, 0, 2)],
     "chop3": [(2, 3, 0, 3), (2, 3, 1, 3), (2, 2, 0, 3), (1, 3, 0, 3)],
 }
+
+
+#: second trolls worth buying LATER than turn 1 when the draw affords nothing useful on turn 1
+#: (the top bots' floor 2/2/1/1 and its neighbours; the rollout trains one as soon as the stock clears it)
+T2_DELAYED = [(2, 2, 1, 1), (2, 2, 1, 2), (2, 2, 2, 2), (1, 2, 1, 1), (2, 3, 1, 2), (1, 2, 1, 2), (2, 2, 2, 1)]

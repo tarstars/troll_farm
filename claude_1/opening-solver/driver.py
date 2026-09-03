@@ -1,5 +1,7 @@
-"""Solve one panel map (one seat): sweep the third troll's chop power, the second troll's
-talents the draw affords, N rollouts each; keep the earliest completion, tie-break the bank."""
+"""Solve one panel map on one seat: a two-stage sweep.  Stage A: every plan (second-troll talents
+the draw affords x seed programmes x reserve rule) once, deterministically.  Stage B: the best
+`refine` plans again with `rollouts` randomized rollouts each.  Keep the earliest completion of
+the third troll; tie-break the bank in points plus the standing wood of our own trees."""
 from __future__ import annotations
 
 import random
@@ -9,6 +11,20 @@ import world
 import solver
 import enumerate as en
 
+SEED_PROGRAMMES = [
+    [],
+    [("LEMON", "near")],
+    [("LEMON", "water")],
+    [("LEMON", "water"), ("LEMON", "water")],
+    [("LEMON", "near"), ("LEMON", "near")],
+    [("LEMON", "water"), ("PLUM", "water")],
+    [("LEMON", "water"), ("LEMON", "water"), ("PLUM", "water")],
+    [("LEMON", "water"), ("LEMON", "water"), ("LEMON", "water")],
+    [("PLUM", "water"), ("LEMON", "water")],
+    [("LEMON", "near"), ("PLUM", "near")],
+    [("APPLE", "water"), ("LEMON", "water")],
+]
+
 
 def bank_points(s: world.State):
     """The bank in points plus the standing wood of the trees we planted (4 a size unit)."""
@@ -16,61 +32,52 @@ def bank_points(s: world.State):
     return s.score + 4 * own_wood
 
 
-def evaluate(s0, plan_args, rng, horizon):
+def run_plan(s0, plan_args, rng, horizon):
     plan = solver.Plan(**plan_args)
     s = solver.rollout(s0, plan, rng, horizon=horizon)
     done = len(s.trains) >= (2 if plan_args["t2"] else 1)
-    t_done = s.trains[-1][0] if done else None
-    return s, done, t_done
+    return s, (s.trains[-1][0] if done else None)
 
 
-def solve_map(item, seat=0, t3_list=None, rollouts=24, temps=(0.0, 0.15, 0.4), horizon=120,
-              seed=1, t2_list=None, seed_sets=None):
+def solve_map(item, seat=0, t3=(2, 3, 0, 3), rollouts=12, temps=(0.2, 0.5), horizon=200,
+              seed=1, refine=6, t2_list=None, programmes=None, wait_cds=(4,), t2_not_before=1):
     s0 = world.make_state(item, seat)
     draw = item["draw"]
-    t2s = t2_list if t2_list is not None else en.t2_candidates(draw, s0.m.has_iron)
-    t3s = t3_list if t3_list is not None else en.T3_SWEEP["chop3"]
-    seed_sets = seed_sets if seed_sets is not None else ([], ["LEMON"], ["LEMON", "LEMON"], ["LEMON", "PLUM"], ["LEMON", "LEMON", "PLUM"])
-    best = None
-    n = 0
+    t2s = t2_list if t2_list is not None else sorted(set(en.t2_candidates(draw, s0.m.has_iron)) | set(en.T2_DELAYED))
+    programmes = SEED_PROGRAMMES if programmes is None else programmes
     t0 = time.time()
-    for t3 in t3s:
-        for t2 in t2s:
-            for seeds in seed_sets:
-                for temp in temps:
-                    for k in range(rollouts if temp > 0 else 1):
-                        rng = random.Random(seed * 100003 + n)
-                        n += 1
-                        args = dict(t2=t2, t3=t3, seeds=list(seeds), temp=temp)
-                        s, done, t_done = evaluate(s0, args, rng, horizon)
-                        if not done:
-                            continue
-                        key = (t_done, -bank_points(s))
-                        if best is None or key < best[0]:
-                            best = (key, s, args)
+    n = 0
+    stage_a = []
+    for t2 in t2s:
+        for seeds in programmes:
+            for reserve in (True, False):
+                if reserve and any(k != "LEMON" for k, _ in seeds) and not seeds:
+                    continue
+                for wcd in wait_cds:
+                    args = dict(t2=t2, t3=t3, seeds=list(seeds), temp=0.0, reserve_t3=reserve, wait_cd=wcd,
+                                t2_not_before=t2_not_before)
+                    s, t_done = run_plan(s0, args, random.Random(0), horizon)
+                    n += 1
+                    if t_done is not None:
+                        stage_a.append(((t_done, -bank_points(s)), s, args))
+    stage_a.sort(key=lambda x: x[0])
+    best = stage_a[0] if stage_a else None
+    for key, s, args in stage_a[:refine]:
+        for temp in temps:
+            for k in range(rollouts):
+                rng = random.Random(seed * 100003 + n)
+                n += 1
+                a = dict(args, temp=temp)
+                s2, t_done = run_plan(s0, a, rng, horizon)
+                if t_done is None:
+                    continue
+                key2 = (t_done, -bank_points(s2))
+                if best is None or key2 < best[0]:
+                    best = (key2, s2, a)
     dt = time.time() - t0
     if best is None:
         return {"done": False, "rollouts": n, "seconds": dt}
     key, s, args = best
     return {"done": True, "turn": key[0], "bank": -key[1], "plan": args, "trains": s.trains,
-            "log": s.log, "rollouts": n, "seconds": dt, "inv": s.inv, "state": s}
-
-
-if __name__ == "__main__":
-    import sys
-    import json
-    import baseline
-    n_maps = int(sys.argv[1]) if len(sys.argv) > 1 else 4
-    items = world.load_panel("../h2h-panel/panel-200-seed1.jsonl", n_maps)
-    base = baseline.load()
-    for it in items:
-        for seat in (0, 1):
-            r = solve_map(it, seat, rollouts=8)
-            b = base[(it["rec"]["map_hash"], seat)]
-            if r["done"]:
-                print(f"{it['rec']['map_hash']} seat {seat} draw {it['draw']}: solver third troll turn {r['turn']} bank {r['bank']} "
-                      f"plan t2={r['plan']['t2']} t3={r['plan']['t3']} seeds={r['plan']['seeds']} temp={r['plan']['temp']} | "
-                      f"orchard6 second {b['orchard6_second']} third {b['orchard6_third']} {b['orchard6_third_talents']} | "
-                      f"{r['rollouts']} rollouts {r['seconds']:.1f}s")
-            else:
-                print(f"{it['rec']['map_hash']} seat {seat}: NOT DONE within horizon ({r['rollouts']} rollouts {r['seconds']:.1f}s) | orchard6 third {b['orchard6_third']}")
+            "log": s.log, "rollouts": n, "seconds": dt, "inv": s.inv, "state": s,
+            "stage_a_best": stage_a[0][0][0] if stage_a else None}
