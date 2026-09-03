@@ -1220,3 +1220,17 @@ states every turn, 200 games); a speed line (turn-steps per second, 20 threads) 
   trajectory is reproduced; the salvage holds the first attempt's checkpoints under `mid-run-`), the third attempt started
   ~08:24Z — Gate D's benches slip to ~16:30Z at the earliest. The anchor-fade arm `ppo-yt-s22F` runs beside it (0 aborts so
   far). — coordinator
+- 2026-09-03 09:0xZ: **the owner: "8 hour iteration is too long. What does [accelerate]?" — the measured split and the first
+  step.** One host update (4,096 samples, 7 threads) takes 5.9 s: 2.3 s playing the steps (the Rust environment plus one
+  network read per step, 1,800 steps/s) and 3.6 s in the learning pass (two epochs over 104 × 11 × 22 = 25,168-number
+  observations through the convolution, the anchor and frozen passes, the KL check). The dense half is what a GPU does; the
+  coordinator's earlier "a GPU would not help" was wrong on that half and is corrected on the board. The cluster job already
+  reserves a card and ships CUDA torch; the entrypoint hid it (`CUDA_VISIBLE_DEVICES=""`). **Edits:** the launcher gains
+  `--device {cpu,cuda}` (default cpu; every arm so far unchanged), the entrypoint hides the card only for a cpu trainer.
+  **The timing test `ppo-yt-s22cuda-t`:** s22's recipe, 2,048,000 turn-steps (500 updates), `--device cuda`, threads 32;
+  the prepared arguments differ from s22's in device, budget, threads and the name only; its steps/s against s22's ~2,000
+  is the number. Today's eight hours were the stacked arm (8 environments, four times slower) plus two preemptions with
+  restarts from scratch — not the standard run (~2 h + ~1 h of benches). The acceleration plan, in order of payoff per day
+  of work: (1) `--device cuda` (free); (2) the benches inside the cluster job on its 32 cores (`--gate-every`) instead of
+  an hour on the VM; (3) resume from the salvaged checkpoint after a preemption; (4) more environments per rollout to feed
+  the card. (2)–(3) only if Gate E keeps the network line open. — coordinator

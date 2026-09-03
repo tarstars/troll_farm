@@ -332,6 +332,7 @@ def trainer_args(
     entropy_coef: float,
     output_dir: str,
     seed: int,
+    device: str = "cpu",
 ) -> list[str]:
     """The command that runs on this machine today, with the paths moved inside the archive.
 
@@ -391,7 +392,7 @@ def trainer_args(
         "--threads",
         str(threads),
         "--device",
-        "cpu",
+        device,
         "--checkpoint-every",
         str(checkpoint_every),
         "--gate-every",
@@ -559,6 +560,7 @@ def prepare_payload(args) -> dict[str, Any]:
         entropy_coef=args.entropy_coef,
         output_dir=OUTPUT_DIR_ARG,
         seed=args.seed,
+        device=args.device,
     )
 
     content_manifest = {
@@ -1108,6 +1110,11 @@ def build_parser() -> argparse.ArgumentParser:
     prepare.add_argument("--gate-every", type=int, default=0)
     prepare.add_argument("--episode-window", type=int, default=1000)
     prepare.add_argument("--seed", type=int, default=5)
+    # 2026-09-03 (the owner: the eight-hour iteration is too long): the trainer's learning pass is
+    # dense convolution work over 25,168-number observations, 60 % of an update on a CPU; the
+    # cluster job already reserves a card and the wheelhouse ships CUDA torch. "cuda" hands the
+    # card to the trainer (the entrypoint stops hiding it); "cpu" is the recipe every arm so far ran.
+    prepare.add_argument("--device", choices=("cpu", "cuda"), default="cpu")
     prepare.add_argument("--cpu-limit", type=int, default=DEFAULT_CPU_LIMIT)
     prepare.add_argument("--memory-limit", type=parse_size, default=DEFAULT_MEMORY_LIMIT)
     prepare.add_argument("--heartbeat-minutes", type=int, default=DEFAULT_HEARTBEAT_MINUTES)
