@@ -1,0 +1,18 @@
+[package]
+name = "opening-dp-anytime"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[lib]
+name = "opening_dp_anytime"
+path = "src/lib.rs"
+
+[[bin]]
+name = "opening-dp-anytime"
+path = "src/main.rs"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+panic = "abort"
