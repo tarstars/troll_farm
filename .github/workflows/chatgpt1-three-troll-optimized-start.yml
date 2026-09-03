@@ -31,8 +31,7 @@ jobs:
 
       - name: Unpack implementation payload
         run: |
-          base64 -d "$ROOT/source-payload.tar.gz.b64" > /tmp/three-troll-source.tar.gz
-          tar -xzf /tmp/three-troll-source.tar.gz
+          tar -xzf "$ROOT/source-payload.tar.gz.b64"
           rm "$ROOT/source-payload.tar.gz.b64"
 
       - name: Syntax-check generator and analyser
