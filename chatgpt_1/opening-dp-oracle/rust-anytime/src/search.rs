@@ -226,10 +226,7 @@ fn reconstruct<S, A: Clone>(nodes: &[Node<S, A>], mut node: usize) -> Vec<A> {
     reversed
 }
 
-fn min_live_lower_bound<S, A>(
-    heap: &BinaryHeap<QueueEntry>,
-    nodes: &[Node<S, A>],
-) -> Option<u16> {
+fn min_live_lower_bound<S, A>(heap: &BinaryHeap<QueueEntry>, nodes: &[Node<S, A>]) -> Option<u16> {
     // Stale entries may sit at the top. Inspecting the heap is O(n), but this
     // happens only when stopping and keeps the certificate honest.
     heap.iter()
@@ -377,9 +374,7 @@ where
 
         for (successor_index, transition) in successors.drain(..).enumerate() {
             stats.astar_generated += 1;
-            if successor_index % limits.deadline_check_interval == 0
-                && deadline_reached(deadline)
-            {
+            if successor_index % limits.deadline_check_interval == 0 && deadline_reached(deadline) {
                 stop_reason = Some(StopReason::TimeBudget);
                 lower_at_stop = Some(
                     min_live_lower_bound(&heap, &nodes)
@@ -720,10 +715,7 @@ where
         exact.stop_reason = beam.stop_reason;
         exact.stats.beam_expanded += beam.stats.beam_expanded;
         exact.stats.beam_generated += beam.stats.beam_generated;
-        exact.stats.beam_peak_width = exact
-            .stats
-            .beam_peak_width
-            .max(beam.stats.beam_peak_width);
+        exact.stats.beam_peak_width = exact.stats.beam_peak_width.max(beam.stats.beam_peak_width);
         exact.proven_optimal = false;
         used_beam = true;
     }

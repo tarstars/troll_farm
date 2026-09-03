@@ -63,11 +63,10 @@ mod tests {
         assert!(result.proven_optimal);
         assert_eq!(result.completion_time(&problem), Some(10));
         let plan = result.plan.unwrap();
-        assert!(
-            plan.actions
-                .iter()
-                .any(|action| matches!(action, OpeningAction::Plant { .. }))
-        );
+        assert!(plan
+            .actions
+            .iter()
+            .any(|action| matches!(action, OpeningAction::Plant { .. })));
         assert_eq!(replay_actions(&problem, &plan.actions).unwrap(), plan.state);
     }
 

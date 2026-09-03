@@ -380,8 +380,7 @@ impl OpeningProblem {
             let amount = if source.infinite {
                 u16::from(worker.capacity)
             } else {
-                u16::from(worker.capacity)
-                    .min(source.stock.max(u16::from(source.crop_amount)))
+                u16::from(worker.capacity).min(source.stock.max(u16::from(source.crop_amount)))
             };
             if amount == 0 {
                 continue;
@@ -692,10 +691,7 @@ impl OpeningProblem {
         None
     }
 
-    pub fn hybrid_solve(
-        &self,
-        limits: SearchLimits,
-    ) -> SearchResult<OpeningState, OpeningAction> {
+    pub fn hybrid_solve(&self, limits: SearchLimits) -> SearchResult<OpeningState, OpeningAction> {
         let incumbent = self.greedy_incumbent(10_000);
         search_anytime(self, incumbent, limits)
     }
@@ -747,14 +743,13 @@ impl SearchProblem for OpeningProblem {
 
         let stage = self.current_stage(state);
         let pending = self.pending_resources(state);
-        let mut optimistic_bank = std::array::from_fn(|resource| {
-            state.bank[resource].saturating_add(pending[resource])
-        });
+        let mut optimistic_bank: [u16; 4] =
+            std::array::from_fn(|resource| state.bank[resource].saturating_add(pending[resource]));
         for source in &state.sources {
             if source.ready_at != NO_EVENT && source.ready_at > state.now {
                 let resource = usize::from(source.resource);
-                optimistic_bank[resource] = optimistic_bank[resource]
-                    .saturating_add(u16::from(source.crop_amount));
+                optimistic_bank[resource] =
+                    optimistic_bank[resource].saturating_add(u16::from(source.crop_amount));
             }
         }
 
