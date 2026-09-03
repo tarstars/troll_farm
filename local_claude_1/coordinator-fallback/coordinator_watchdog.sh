@@ -14,6 +14,9 @@ PROMPT=/home/tarstars/coordinator-wake-prompt.txt
 CHECKOUT=/home/tarstars/prj/troll_farm
 WT=/home/tarstars/prj/troll_farm-local_claude_1
 SILENCE=${WATCHDOG_SILENCE_SECONDS:-3600}
+# 2026-09-03: the laptop session paused 9.5 h inside one turn with no mail waiting, and this seat
+# never fired. A second threshold fires on silence alone, mail or not.
+SILENCE_ALONE=${WATCHDOG_SILENCE_ALONE_SECONDS:-21600}
 mkdir -p "$STATE"
 log() { echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) $*" >> "$LOG"; }
 
@@ -43,12 +46,12 @@ sweep=$(python3 scripts/inbox_sweep.py --me local_claude_1 --fetch 2>&1)
 unseen=$(printf '%s\n' "$sweep" | grep -oE '^new \(unseen\) \([0-9]+\)' | grep -oE '[0-9]+' | tail -1)
 unacked=$(printf '%s\n' "$sweep" | grep -oE '^unacknowledged, ack required \([0-9]+\)' | grep -oE '[0-9]+' | tail -1)
 unseen=${unseen:-0}; unacked=${unacked:-0}
-if [ "$unseen" = "0" ] && [ "$unacked" = "0" ]; then
-  log "silent ${age}s but no mail waits (unseen 0, unacked 0); nothing to do"
+if [ "$unseen" = "0" ] && [ "$unacked" = "0" ] && [ "$age" -lt "$SILENCE_ALONE" ]; then
+  log "silent ${age}s but no mail waits (unseen 0, unacked 0) and silence < ${SILENCE_ALONE}s; nothing to do"
   exit 0
 fi
 
-log "FALLBACK WAKE: board silent ${age}s, unseen $unseen, unacked $unacked"
+log "FALLBACK WAKE: board silent ${age}s, unseen $unseen, unacked $unacked (silence-alone threshold ${SILENCE_ALONE}s)"
 touch "$STAMP"
 if [ "${WATCHDOG_DRY:-0}" = "1" ]; then log "dry run: would launch the headless coordinator now"; exit 0; fi
 cd "$WT" && /home/tarstars/bin/claude-proxy -p "$(cat "$PROMPT")" --dangerously-skip-permissions \
