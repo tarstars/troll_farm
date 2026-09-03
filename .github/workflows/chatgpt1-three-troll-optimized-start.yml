@@ -1,0 +1,167 @@
+name: chatgpt1-three-troll-optimized-start
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1
+    paths:
+      - 'chatgpt_1/three-troll-optimized-start/**'
+      - '.github/workflows/chatgpt1-three-troll-optimized-start.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  PYTHONDONTWRITEBYTECODE: '1'
+  ROOT: chatgpt_1/three-troll-optimized-start
+
+jobs:
+  build-and-panel:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@v4
+
+      - name: Toolchain identity
+        run: |
+          python3 --version
+          rustc --version
+
+      - name: Unpack implementation payload
+        run: |
+          base64 -d "$ROOT/source-payload.tar.gz.b64" > /tmp/three-troll-source.tar.gz
+          tar -xzf /tmp/three-troll-source.tar.gz
+          rm "$ROOT/source-payload.tar.gz.b64"
+
+      - name: Syntax-check generator and analyser
+        run: |
+          python3 -m py_compile "$ROOT/make_candidate.py" "$ROOT/analyse_results.py"
+
+      - name: Generate candidate and matched control
+        run: |
+          python3 "$ROOT/make_candidate.py" | tee "$ROOT/results/build.log"
+
+      - name: Candidate differential bed
+        shell: bash
+        run: |
+          set +e
+          python3 local_claude_1/third-troll/fixtures_diff.py \
+            --arm "$ROOT/champion-three-troll-optimized-v6-instrument.rs" \
+            --submission "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --out "$ROOT/results/fixtures.json" \
+            2>&1 | tee "$ROOT/results/fixtures.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          # Exit 1 is allowed here only because the legacy bed hard-codes 2/3/0/3;
+          # analyse_results.py rechecks every actual tuple against this experiment's set.
+          if [ "$rc" -gt 1 ]; then exit "$rc"; fi
+
+      - name: Control differential bed
+        shell: bash
+        run: |
+          set +e
+          python3 local_claude_1/third-troll/fixtures_diff.py \
+            --arm "$ROOT/champion-turn2-second-control-v6-instrument.rs" \
+            --submission "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --out "$ROOT/results/control-fixtures.json" \
+            2>&1 | tee "$ROOT/results/control-fixtures.log"
+          rc=${PIPESTATUS[0]}
+          set -e
+          if [ "$rc" -gt 1 ]; then exit "$rc"; fi
+
+      - name: Candidate 24-map smoke
+        run: |
+          python3 local_claude_1/third-troll/smoke.py \
+            --arm "$ROOT/champion-three-troll-optimized-v6-instrument.rs" \
+            --records local_claude_1/third-troll/smoke-maps-seed0.jsonl \
+            --out "$ROOT/results/smoke.json" \
+            --third-spec '1 1 0 1|1 2 0 1|2 2 0 1|2 2 0 2|2 3 0 1|2 3 0 2|2 3 0 3' \
+            2>&1 | tee "$ROOT/results/smoke.log"
+
+      - name: Control 24-map smoke
+        run: |
+          python3 local_claude_1/third-troll/smoke.py \
+            --arm "$ROOT/champion-turn2-second-control-v6-instrument.rs" \
+            --records local_claude_1/third-troll/smoke-maps-seed0.jsonl \
+            --out "$ROOT/results/control-smoke.json" \
+            --third-spec '1 1 0 1|1 2 0 1|2 2 0 1|2 2 0 2|2 3 0 1|2 3 0 2|2 3 0 3' \
+            2>&1 | tee "$ROOT/results/control-smoke.log"
+
+      - name: One-core turn timing
+        run: |
+          taskset -c 0 python3 claude_1/h2h-panel/turn_time.py \
+            --bot "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --maps 3 \
+            --json-out "$ROOT/results/turn-time.json" \
+            2>&1 | tee "$ROOT/results/turn-time.log"
+
+      - name: Direct candidate versus control
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-control.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-control.log"
+
+      - name: Candidate and control versus champion
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-champion.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-champion.log"
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/control-vs-champion.json" \
+            2>&1 | tee "$ROOT/results/control-vs-champion.log"
+
+      - name: Candidate and control versus orchard 6
+        run: |
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-three-troll-optimized-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-orchard6-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/candidate-vs-orchard6.json" \
+            2>&1 | tee "$ROOT/results/candidate-vs-orchard6.log"
+          python3 claude_1/h2h-panel/h2h.py \
+            --policy "$ROOT/candidate-turn2-second-control-v6-instrument.rs" \
+            --bot cgauto/submissions/candidate-orchard6-v6-instrument.rs \
+            --maps 100 --jobs 4 --quiet \
+            --out "$ROOT/results/control-vs-orchard6.json" \
+            2>&1 | tee "$ROOT/results/control-vs-orchard6.log"
+
+      - name: Paired candidate-minus-control reading
+        run: |
+          python3 claude_1/h2h-panel/field.py \
+            --opponent champion="$ROOT/results/candidate-vs-champion.json,$ROOT/results/control-vs-champion.json" \
+            --opponent orchard6="$ROOT/results/candidate-vs-orchard6.json,$ROOT/results/control-vs-orchard6.json" \
+            --expected-cells 200 \
+            --json-out "$ROOT/results/field.json" \
+            2>&1 | tee "$ROOT/results/field.log"
+
+      - name: Render and evaluate the pre-registered gates
+        run: |
+          python3 "$ROOT/analyse_results.py" | tee "$ROOT/results/analyse.log"
+
+      - name: Publish generated sources and executed evidence
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A "$ROOT"
+          if git diff --cached --quiet; then
+            echo 'No generated changes to publish'
+          else
+            git commit -m 'chatgpt_1: build and measure optimized three-troll start [skip ci]'
+            git push origin HEAD:agent/chatgpt_1
+          fi
+          echo "published_commit=$(git rev-parse HEAD)"
+
+      - name: Mark a dead pre-registered result
+        run: |
+          test "$(cat "$ROOT/results/verdict.txt")" = PASS_TO_REVIEW
