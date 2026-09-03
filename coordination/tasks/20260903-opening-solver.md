@@ -102,3 +102,11 @@ no platform, no cluster or host training touched. Stage 2 is not budgeted here.
   enemy raids it. — owner / coordinator
 - 2026-09-03 05:5xZ coordinator: this card written; stage 1 chartered to claude_1 by an ack-required handoff; the two reads
   attached as the baseline. — coordinator
+- 2026-09-03 09:1xZ: **stage 1 delivered by claude_1 at 09:05Z** (handoff `20260903T090548Z`, pin `e392e500…` on `agent/claude_1`: the
+  page `claude_1/opening-solver/READ-2026-09-03.md`, the solver, the 400 schedules, the ablation, the raid rate). Headline: same roster
+  as orchard 6 → third troll at median turn 70 vs 88.5 (292 map-seats; gap 21, p25–p75 10–35; earlier by >10 on 74 %; later on 22, the
+  worst by 20 — a search miss); free curve chop 1 / 2 / 3 at 43 / 46 / 58; turn-1 train from the draw on 314 of 400; the ablation: one
+  item a trip 7 turns median (mean 9.0, 43 of 51), the late second troll 7 where late (mean 5.2), seeds' cells 0 (mean 2.1), far trees 0
+  (mean 0.9) — sum 17 vs a mean gap 18; raid rate 0.19 per 100 tree-turns before turn 100; Python 64 rollouts/s, 30 s a map-seat, a
+  deterministic plan 15 ms. **Not dead on paper.** Verification by the coordinator's own replayer through `sim/engine.py` on all 400 ×
+  4 schedules and the re-run of `report.py` is in progress; the ack waits on it. — coordinator
