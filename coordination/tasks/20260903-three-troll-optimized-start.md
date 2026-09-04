@@ -226,3 +226,35 @@ ladder.**
   had to force it to build, pre-registered four falsifiable numeric dead conditions, ran the gates, and **reported
   `DEAD_AS_BOT` against its own build with figures that the coordinator's independent reproduction then matched in
   every number.** That is the standard the project asks for. — coordinator
+- 2026-09-04 07:2xZ **THE LADDER READING, at the owner's word ("submit this new bot"): 14.07 at rank 154 of 177**
+  (submission `41239996`, 160 games, up 06:15:06Z, read 07:22:11Z; the champion of record restored automatically
+  eleven seconds later and holds at **18.72 / rank 72**). Early looks 12.92 / 12.73 / 13.00 / 14.11 / 14.23 / 13.40 /
+  13.93, flattening near 14. The coordinator's prediction, logged in `queue.json` **before** the submission, was
+  **12–15**: the reading landed inside it. The card remains **DEAD on mechanics** — a submission at the owner's word
+  does not reopen it.
+
+- 2026-09-04 07:3xZ **THE DECODE OF ITS 160 GAMES — the owner's diagnosis confirmed as exactly as evidence allows.**
+  Decoded with `ladder_read_trolls.py` (game turns, converted from the referee's two-frames-per-turn index), beside the
+  champion's own control package `games-41236823`:
+
+  | | the three-troll bot (41239996) | the champion (41236823) |
+  |---|---|---|
+  | rating / rank | **14.07 / 154** | **18.72 / 72** |
+  | second troll | 160/160, median game turn **2** | 160/160, turn 9 |
+  | third troll | **75/160 = 47 %, median game turn 25** (q 17 / 25 / 37) | 0/160 |
+  | the opponents' third troll | 72 %, median turn **96.5** | 59 %, turn 107 |
+  | own score | median **165.5**, mean 166.4 | median **184.5**, mean 188.3 |
+  | wins in its own package | 81/160 = 0.506 | 91/160 = 0.569 |
+
+  **The roster arrives and the wood does not.** This bot reaches three trolls at median game turn **25** — about **71
+  turns before the field it is playing** buys its own third troll, and the earliest of any build this project has made
+  (stage 2A: 74.5; the wood-charging gate: 108). **And it scores 19 points a game less than the champion.** Getting the
+  roster is not the hard part and never was; it has now been done four different ways and lost every time.
+
+  **The matchmaking confound runs *against* this bot, not for it, which makes the comparison stronger.** At rank 154 it
+  met a weaker field — its opponents scored a mean of 172.3 where the champion's scored 210.1 — and it still scored
+  fewer points than the champion did against harder opposition. So the 19-point gap **understates** the difference.
+
+  **Why, in one line, and it is the owner's line:** its optimizer has no `PLANT` in its action space (verified in
+  source — 17 reads of `view.plants` as harvest sources, no plant command ever issued), so it buys trolls it cannot
+  feed. A third troll at turn 25 on a board nobody has planted is three trolls sharing one shrinking forest. — coordinator
