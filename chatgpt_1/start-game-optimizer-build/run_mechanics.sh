@@ -4,6 +4,7 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 cd "$ROOT"
 DIR=chatgpt_1/start-game-optimizer-build
 mkdir -p "$DIR/results"
+python3 "$DIR/repair_generator.py"
 python3 "$DIR/test_model.py" | tee "$DIR/results/model-tests.log"
 python3 "$DIR/make_candidate.py" | tee "$DIR/results/build.log"
 python3 local_claude_1/third-troll/fixtures_diff.py \
