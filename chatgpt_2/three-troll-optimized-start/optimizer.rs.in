@@ -1,0 +1,490 @@
+            // --------------------------------------------------------------------------
+            // Three-troll optimized start (owner, 2026-09-03).
+            //
+            // Unlike stage 2A, this does not optimise "third troll as early as possible".
+            // It searches the small complete roster frontier, estimates the two workers'
+            // contested resource assignments, charges those worker-turns against the wood
+            // they could bank instead, and admits a third-troll plan only when the robust
+            // estimate still pays. The estimate is re-rooted from the live board; a plan
+            // that stops paying is abandoned and the champion resumes immediately.
+            // --------------------------------------------------------------------------
+            const OPENING_ENABLE_THIRD: bool = true;
+            const OPENING_THIRD_LATEST: i32 = 110;
+            const OPENING_THIRD_MIN_NET: f64 = 8.0;
+            const OPENING_THIRD_RECHECK: i32 = 5;
+            const OPENING_RESOURCE_INF: i32 = 20_000;
+
+            fn opening_bank_eta(view: &GameState, unit: &Unit) -> i32 {
+                if unit.total_carried() == 0 {
+                    return 0;
+                }
+                let from = bfs_distances(&view.walkable, &[unit.cell]);
+                Self::opening_doors(view)
+                    .iter()
+                    .filter_map(|door| from.get(door).copied())
+                    .map(|distance| Self::opening_ceil(distance, unit.stats.movement_speed) + 1)
+                    .min()
+                    .unwrap_or(Self::OPENING_RESOURCE_INF)
+            }
+
+            // Cost in turns to bank `amount` units of one resource. The curve uses the
+            // current board, includes full-load trips and regrowth, and treats fruit that
+            // an opponent can reach no later than us as unavailable on the first visit.
+            fn opening_resource_curve(
+                view: &GameState,
+                unit: &Unit,
+                item: usize,
+                contested: bool,
+            ) -> [i32; 13] {
+                let mut out = [Self::OPENING_RESOURCE_INF; 13];
+                out[0] = 0;
+                let capacity = unit.stats.carry_capacity.max(1);
+                let movement = unit.stats.movement_speed.max(1);
+                let doors = Self::opening_doors(view);
+                if doors.is_empty() {
+                    return out;
+                }
+                let from_unit = bfs_distances(&view.walkable, &[unit.cell]);
+                let to_home = bfs_distances(&view.walkable, &doors);
+                let starts_home = unit.total_carried() > 0;
+
+                if item == IRON {
+                    if view.iron.is_empty() || unit.stats.chop_power <= 0 {
+                        return out;
+                    }
+                    let mut best: Option<(i32, i32)> = None;
+                    for iron in &view.iron {
+                        for cell in ortho_neighbors(*iron) {
+                            if !view.walkable.contains(&cell) {
+                                continue;
+                            }
+                            let Some(home_distance) = to_home.get(&cell).copied() else {
+                                continue;
+                            };
+                            let first_distance = if starts_home {
+                                home_distance
+                            } else {
+                                from_unit.get(&cell).copied().unwrap_or(Self::OPENING_RESOURCE_INF)
+                            };
+                            let first = Self::opening_ceil(first_distance, movement);
+                            let home = Self::opening_ceil(home_distance, movement);
+                            let key = (first + home, home);
+                            if best.map_or(true, |old| key < old) {
+                                best = Some(key);
+                            }
+                        }
+                    }
+                    let Some((first_plus_home, home)) = best else {
+                        return out;
+                    };
+                    for amount in 1..=12i32 {
+                        let trips = Self::opening_ceil(amount, capacity);
+                        let mining = Self::opening_ceil(amount, unit.stats.chop_power);
+                        out[amount as usize] = first_plus_home
+                            + mining
+                            + trips
+                            + (trips - 1) * 2 * home;
+                    }
+                    return out;
+                }
+
+                let kind = match item {
+                    PLUM => PlantKind::Plum,
+                    LEMON => PlantKind::Lemon,
+                    APPLE => PlantKind::Apple,
+                    BANANA => PlantKind::Banana,
+                    _ => return out,
+                };
+                if unit.stats.harvest_power <= 0 {
+                    return out;
+                }
+
+                let mut any_source = false;
+                for plant in &view.plants {
+                    if plant.kind != kind || plant.health <= 0 {
+                        continue;
+                    }
+                    let Some(from_distance) = from_unit.get(&plant.cell).copied() else {
+                        continue;
+                    };
+                    let Some(home_distance) = to_home.get(&plant.cell).copied() else {
+                        continue;
+                    };
+                    let arrive = Self::opening_ceil(from_distance, movement);
+                    if MoisanBot::predict_tree(view, plant, arrive).is_none() {
+                        continue;
+                    }
+                    any_source = true;
+                    let home = Self::opening_ceil(home_distance, movement);
+                    let first = if starts_home { home } else { arrive };
+                    let mut cooldown = effective_cooldown(
+                        plant.kind,
+                        Self::opening_near_water(view, plant.cell),
+                    )
+                    .max(1);
+                    let (mut safe_fruits, _, _) =
+                        Self::opening_fruits_at(plant, cooldown, arrive);
+                    let mut wait = (MoisanBot::ticks_until_fruit(view, plant) - arrive).max(0);
+
+                    if contested {
+                        // Manhattan distance is a lower bound on the opponent's real route. It
+                        // therefore errs on the safe side: ambiguous first fruit is removed, and
+                        // the following fruit is charged two cooldowns instead of one.
+                        let opponent_eta = view
+                            .units
+                            .iter()
+                            .filter(|opponent| {
+                                opponent.player == 1 && opponent.stats.harvest_power > 0
+                            })
+                            .map(|opponent| {
+                                Self::opening_ceil(
+                                    manhattan(opponent.cell, plant.cell),
+                                    opponent.stats.movement_speed,
+                                )
+                            })
+                            .min();
+                        if opponent_eta.is_some_and(|eta| eta <= arrive + 1) {
+                            safe_fruits = 0;
+                            wait = wait.max(cooldown);
+                            cooldown = cooldown.saturating_mul(2);
+                        }
+                    }
+
+                    let take_per_trip = capacity.min(3).max(1);
+                    for amount in 1..=12i32 {
+                        let trips = Self::opening_ceil(amount, take_per_trip);
+                        let harvesting = Self::opening_ceil(amount, unit.stats.harvest_power);
+                        let regrowth = (amount - safe_fruits.clamp(0, 3)).max(0) * cooldown;
+                        let cost = first
+                            + home
+                            + wait
+                            + harvesting
+                            + trips
+                            + (trips - 1) * 2 * home
+                            + regrowth;
+                        out[amount as usize] = out[amount as usize].min(cost);
+                    }
+                }
+
+                if !any_source {
+                    return out;
+                }
+                out
+            }
+
+            fn opening_cost_tables(
+                view: &GameState,
+                own: &[&Unit],
+                contested: bool,
+            ) -> [[[i32; 13]; 4]; 2] {
+                let mut tables = [[[Self::OPENING_RESOURCE_INF; 13]; 4]; 2];
+                let items = [PLUM, LEMON, APPLE, IRON];
+                for worker in 0..2 {
+                    for resource in 0..4 {
+                        tables[worker][resource] = Self::opening_resource_curve(
+                            view,
+                            own[worker],
+                            items[resource],
+                            contested,
+                        );
+                    }
+                }
+                tables
+            }
+
+            // Exact enumeration of all splits of the four small training deficits between
+            // two workers. This is the dynamic-programming core: equal deficit vectors keep
+            // only the earliest pair of worker completion times.
+            fn opening_assignment(
+                deficits: [i32; 4],
+                tables: &[[[i32; 13]; 4]; 2],
+                base: [i32; 2],
+            ) -> Option<([i32; 2], i32)> {
+                if deficits.iter().any(|value| *value < 0 || *value > 12) {
+                    return None;
+                }
+                let mut best: Option<((i32, i32, i32, i32), [i32; 2])> = None;
+                for plum0 in 0..=deficits[0] {
+                    for lemon0 in 0..=deficits[1] {
+                        for apple0 in 0..=deficits[2] {
+                            for iron0 in 0..=deficits[3] {
+                                let assigned0 = [plum0, lemon0, apple0, iron0];
+                                let mut turns = base;
+                                let mut feasible = true;
+                                for resource in 0..4 {
+                                    let amount0 = assigned0[resource] as usize;
+                                    let amount1 = (deficits[resource] - assigned0[resource]) as usize;
+                                    let cost0 = tables[0][resource][amount0];
+                                    let cost1 = tables[1][resource][amount1];
+                                    if cost0 >= Self::OPENING_RESOURCE_INF
+                                        || cost1 >= Self::OPENING_RESOURCE_INF
+                                    {
+                                        feasible = false;
+                                        break;
+                                    }
+                                    turns[0] += cost0;
+                                    turns[1] += cost1;
+                                }
+                                if !feasible {
+                                    continue;
+                                }
+                                let key = (
+                                    turns[0].max(turns[1]),
+                                    turns[0] + turns[1],
+                                    turns[0],
+                                    turns[1],
+                                );
+                                if best.as_ref().map_or(true, |(old, _)| key < *old) {
+                                    best = Some((key, turns));
+                                }
+                            }
+                        }
+                    }
+                }
+                best.map(|(key, turns)| (turns, key.0))
+            }
+
+            fn opening_wood_rate(view: &GameState, unit: &Unit) -> f64 {
+                if unit.stats.chop_power <= 0 {
+                    return 0.0;
+                }
+                let mut probe = unit.clone();
+                probe.carry = [0; 6];
+                MoisanBot::chop_candidates(view, &probe, None)
+                    .iter()
+                    .map(|candidate| candidate.score * 0.004)
+                    .fold(0.0f64, f64::max)
+                    .max(0.12 * unit.stats.chop_power as f64)
+            }
+
+            fn opening_third_wood_rate(view: &GameState, stats: Stats) -> f64 {
+                let mut best = 0.0f64;
+                for cell in Self::opening_doors(view) {
+                    let probe = Unit {
+                        id: -1,
+                        player: 0,
+                        cell,
+                        stats,
+                        carry: [0; 6],
+                    };
+                    best = best.max(
+                        MoisanBot::chop_candidates(view, &probe, None)
+                            .iter()
+                            .map(|candidate| candidate.score * 0.004)
+                            .fold(0.0f64, f64::max),
+                    );
+                }
+                best
+            }
+
+            fn opening_standing_wood_points(view: &GameState) -> f64 {
+                4.0 * view
+                    .plants
+                    .iter()
+                    .filter(|plant| plant.health > 0)
+                    .map(|plant| plant.size.clamp(0, 4) as f64)
+                    .sum::<f64>()
+            }
+
+            fn opening_evaluate_third(
+                view: &GameState,
+                own: &[&Unit],
+                target: Stats,
+                idle: &[[[i32; 13]; 4]; 2],
+                contested: &[[[i32; 13]; 4]; 2],
+                wood_rates: [f64; 2],
+            ) -> Option<(i32, [f64; 6], f64)> {
+                let bill = training_cost(2, target.tuple());
+                let mut have = view.inventories[0];
+                for unit in own {
+                    for item in 0..6 {
+                        have[item] += unit.carry[item];
+                    }
+                }
+                let mut deficits = [0i32; 4];
+                let items = [PLUM, LEMON, APPLE, IRON];
+                for resource in 0..4 {
+                    let item = items[resource];
+                    deficits[resource] = if item == IRON && view.iron.is_empty() {
+                        0
+                    } else {
+                        (bill[item] - have[item]).max(0)
+                    };
+                }
+                let base = [
+                    Self::opening_bank_eta(view, own[0]),
+                    Self::opening_bank_eta(view, own[1]),
+                ];
+                let (_, idle_makespan) = Self::opening_assignment(deficits, idle, base)?;
+                let (worker_turns, contested_makespan) =
+                    Self::opening_assignment(deficits, contested, base)?;
+                let finish = view.turn + contested_makespan + 1;
+                if finish > Self::OPENING_THIRD_LATEST {
+                    return None;
+                }
+
+                let third_rate = Self::opening_third_wood_rate(view, target);
+                if third_rate <= 0.0 {
+                    return None;
+                }
+                // The old opening extrapolated an idle-board production rate for the rest
+                // of the game. Cap the estimate by the wood visible now and by the measured
+                // scale on which a third lumberjack has previously paid back. This is a
+                // deliberate anti-fantasy bound, not a proof of game value.
+                let time_value = (TOTAL_TURNS - finish).max(0) as f64 * third_rate * 0.45;
+                let supply_value =
+                    (Self::opening_standing_wood_points(view) * 0.30 + 12.0).min(44.0);
+                let future = time_value.min(supply_value);
+                let funding_cost = worker_turns[0] as f64 * wood_rates[0]
+                    + worker_turns[1] as f64 * wood_rates[1];
+                let fruit_face = (deficits[0] + deficits[1] + deficits[2]) as f64;
+                let contest_delay = (contested_makespan - idle_makespan).max(0) as f64;
+                let net = future
+                    - funding_cost
+                    - fruit_face
+                    - contest_delay * third_rate * 0.50;
+                if net < Self::OPENING_THIRD_MIN_NET {
+                    return None;
+                }
+
+                let total = deficits.iter().sum::<i32>().max(1) as f64;
+                let shared_value = (future / total).clamp(1.0, 28.0);
+                let mut shadows = [1.0f64; 6];
+                shadows[5] = 4.0;
+                for resource in 0..4 {
+                    if deficits[resource] == 0 {
+                        continue;
+                    }
+                    let item = items[resource];
+                    let amount = deficits[resource] as usize;
+                    let mut opportunity = f64::INFINITY;
+                    for worker in 0..2 {
+                        let curve = contested[worker][resource][amount];
+                        if curve < Self::OPENING_RESOURCE_INF {
+                            opportunity = opportunity.min(
+                                curve as f64 / deficits[resource] as f64
+                                    * wood_rates[worker],
+                            );
+                        }
+                    }
+                    if !opportunity.is_finite() {
+                        return None;
+                    }
+                    shadows[item] = shared_value.max(opportunity * 1.08 + 0.5).clamp(1.0, 40.0);
+                }
+                Some((finish, shadows, net))
+            }
+
+            fn opening_score_third(
+                view: &GameState,
+                own: &[&Unit],
+                target: Stats,
+            ) -> Option<(i32, [f64; 6], f64)> {
+                if own.len() != 2 {
+                    return None;
+                }
+                let idle = Self::opening_cost_tables(view, own, false);
+                let contested = Self::opening_cost_tables(view, own, true);
+                let wood_rates = [
+                    Self::opening_wood_rate(view, own[0]),
+                    Self::opening_wood_rate(view, own[1]),
+                ];
+                Self::opening_evaluate_third(
+                    view,
+                    own,
+                    target,
+                    &idle,
+                    &contested,
+                    wood_rates,
+                )
+            }
+
+            fn opening_optimize_third(
+                view: &GameState,
+                own: &[&Unit],
+            ) -> Option<(Stats, i32, [f64; 6], f64)> {
+                if !Self::OPENING_ENABLE_THIRD || own.len() != 2 {
+                    return None;
+                }
+                let idle = Self::opening_cost_tables(view, own, false);
+                let contested = Self::opening_cost_tables(view, own, true);
+                let wood_rates = [
+                    Self::opening_wood_rate(view, own[0]),
+                    Self::opening_wood_rate(view, own[1]),
+                ];
+                let specs = [
+                    Stats {
+                        movement_speed: 1,
+                        carry_capacity: 1,
+                        harvest_power: 0,
+                        chop_power: 1,
+                    },
+                    Stats {
+                        movement_speed: 1,
+                        carry_capacity: 2,
+                        harvest_power: 0,
+                        chop_power: 1,
+                    },
+                    Stats {
+                        movement_speed: 2,
+                        carry_capacity: 2,
+                        harvest_power: 0,
+                        chop_power: 1,
+                    },
+                    Stats {
+                        movement_speed: 2,
+                        carry_capacity: 2,
+                        harvest_power: 0,
+                        chop_power: 2,
+                    },
+                    Stats {
+                        movement_speed: 2,
+                        carry_capacity: 3,
+                        harvest_power: 0,
+                        chop_power: 1,
+                    },
+                    Stats {
+                        movement_speed: 2,
+                        carry_capacity: 3,
+                        harvest_power: 0,
+                        chop_power: 2,
+                    },
+                    Stats {
+                        movement_speed: 2,
+                        carry_capacity: 3,
+                        harvest_power: 0,
+                        chop_power: 3,
+                    },
+                ];
+                let mut best: Option<(Stats, i32, [f64; 6], f64)> = None;
+                for target in specs {
+                    let Some((finish, shadows, net)) = Self::opening_evaluate_third(
+                        view,
+                        own,
+                        target,
+                        &idle,
+                        &contested,
+                        wood_rates,
+                    ) else {
+                        continue;
+                    };
+                    let replace = best.as_ref().map_or(true, |(old, old_finish, _, old_net)| {
+                        net > *old_net + 1e-9
+                            || ((net - *old_net).abs() <= 1e-9
+                                && (finish < *old_finish
+                                    || (finish == *old_finish
+                                        && target.chop_power > old.chop_power)))
+                    });
+                    if replace {
+                        best = Some((target, finish, shadows, net));
+                    }
+                }
+                best.map(|(target, finish, shadows, net)| {
+                    (
+                        target,
+                        (finish + 8).min(Self::OPENING_THIRD_LATEST),
+                        shadows,
+                        net,
+                    )
+                })
+            }

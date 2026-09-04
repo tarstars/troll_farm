@@ -1,0 +1,96 @@
+{
+  "candidate": {
+    "fallback_or_no_third_games": 10,
+    "first_turn_max_ms": 2.397,
+    "maps": 24,
+    "smoke_score_minus_resident": -416,
+    "third_specs": {
+      "1 1 0 1": 10,
+      "1 2 0 1": 4
+    },
+    "third_troll_games": 14,
+    "third_turn_median": 30,
+    "third_turn_p25": 10,
+    "third_turn_p75": 56,
+    "utf16_units": 90070,
+    "warm_p99_ms": 1.045
+  },
+  "control": {
+    "smoke_score_minus_resident": -242,
+    "third_troll_games": 0,
+    "utf16_units": 90071
+  },
+  "direct_candidate_vs_control": {
+    "candidate_wins": 51,
+    "games": 200,
+    "reading": {
+      "bootstrap": {
+        "draws": 10000,
+        "seed": 1
+      },
+      "games": 200,
+      "losses": 92,
+      "maps": 100,
+      "maps_won_on_both_seats": 3,
+      "maps_won_on_neither_seat": 52,
+      "margin_interval_95": [
+        -1.81,
+        -0.24
+      ],
+      "margin_mean": -0.97,
+      "ties": 57,
+      "unit": "map (both seats carried together)",
+      "win_rate": 0.255,
+      "win_rate_interval_95": [
+        0.2,
+        0.31
+      ],
+      "win_rate_interval_above_half": false,
+      "win_rate_interval_below_half": true,
+      "wins": 51
+    }
+  },
+  "gates": {
+    "candidate_fixture_ok": true,
+    "candidate_fixture_problems": [],
+    "candidate_smoke_ok": false,
+    "control_fixture_ok": true,
+    "control_fixture_problems": [],
+    "control_smoke_ok": false,
+    "paired_dead_condition_triggered": false,
+    "panel_faults_zero": true,
+    "source_size_ok": true,
+    "third_trained_by_turn_110": 14,
+    "timing_ok_warm_p99_under_40ms": true
+  },
+  "paired_candidate_minus_control": {
+    "margin_diff": {
+      "above_zero": true,
+      "below_zero": false,
+      "cells": 400,
+      "interval_95": [
+        0.6575,
+        4.175
+      ],
+      "maps": 100,
+      "mean": 2.3875
+    },
+    "opponents": [
+      "champion",
+      "orchard6"
+    ],
+    "win_diff": {
+      "above_zero": true,
+      "below_zero": false,
+      "cells": 400,
+      "interval_95": [
+        0.005,
+        0.095
+      ],
+      "maps": 100,
+      "mean": 0.05
+    }
+  },
+  "scientific_boundary": "The optimizer is a deterministic contested-resource assignment model and live policy gate. Its value estimate is not a proof of turn-300 game value; the paired panel is the value check.",
+  "verdict": "DEAD_AS_BOT"
+}
