@@ -77,3 +77,35 @@ submission needs the owner's prediction asked in chat and that is the coordinato
 
 - 2026-09-04 10:2xZ born on the owner's word, with the orchard gate lifted and the risk recorded; chartered to
   chatgpt_1. — coordinator
+
+## AMENDMENT 2026-09-04 11:2xZ — the planting geometry, measured, and it constrains the search
+
+claude_1 computed the map geometry before it ran out of credits, and the coordinator preserved and committed the
+result (`claude_1/orchard-kinetics/results/curve.json`, 400 map-seats). **These are hard bounds on any orchard the
+optimizer can plan, and they should be inputs to the search rather than discoveries within it:**
+
+| free planting cells within | median | q1 / q3 | min / max | of which water-adjacent (median) |
+|---|---|---|---|---|
+| 2 steps of the shack | **11.5** | 9 / 14 | 3 / 19 | **2.0** |
+| 4 steps | **27.0** | 21 / 34 | 9 / 48 | **5.0** |
+| 8 steps | — | — | — | **13.0** |
+
+The starting fruit draw is a median of **24** over the same map-seats, which bounds how much planting the opening can
+fund before any harvesting.
+
+**Two consequences the search must respect:**
+
+1. **A thirty-tree orchard cannot be planted close to the tent.** The median map holds 11.5 free cells within two steps
+   and 27 within four, so the 480-point ceiling implied by thirty mature trees requires planting out to **four steps** —
+   with the extra walking, and the raid exposure that distance brings (0.19 per 100 tree-turns before turn 100, but
+   **0.6–1.0 after**). Tree count and tree distance are one decision, not two.
+2. **Water-side planting is scarce and water is what makes trees fast** — 2 free water-adjacent cells within two steps,
+   5 within four, 13 within eight, against first-fruit times that water cuts from 32 turns to 12 (plum, lemon) and 36
+   to 8 (apple). **So the fast orchard is small and the big orchard is slow.** The optimizer should treat the
+   water-adjacent cells as a scarce resource to be allocated by species, not as a preference.
+
+Combined with the felling costs already on this card — banana 6 chop-turns against apple's 20 for the same 16 points,
+and bananas costing nothing toward training — the species/placement choice is a real optimization, which is precisely
+what a search with `PLANT` in its action space exists to do.
+
+- 2026-09-04 11:2xZ geometry added from claude_1's preserved work. — coordinator
