@@ -26,7 +26,7 @@ import json
 import random
 import statistics
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -77,10 +77,7 @@ def ceil_div(a: int, b: int) -> int:
     return -(-a // b) if b > 0 else 10**6
 
 
-def bfs(
-    walkable: set[tuple[int, int]],
-    starts: Iterable[tuple[int, int]],
-) -> dict[tuple[int, int], int]:
+def bfs(walkable: set[tuple[int, int]], starts: Iterable[tuple[int, int]]) -> dict[tuple[int, int], int]:
     dist: dict[tuple[int, int], int] = {}
     queue: collections.deque[tuple[int, int]] = collections.deque()
     for start in starts:
@@ -106,12 +103,7 @@ def effective_cd(kind: str, wet: bool) -> int:
     return PLANT_COOLDOWN[kind] - (WATER_BOOST[kind] if wet else 0)
 
 
-def predict_tree(
-    plant: dict[str, Any],
-    turns: int,
-    opponent_chop: int,
-    wet: bool,
-) -> tuple[int, int, int] | None:
+def predict_tree(plant: dict[str, Any], turns: int, opponent_chop: int, wet: bool) -> tuple[int, int, int] | None:
     size = int(plant["size"])
     health = int(plant["health"])
     cooldown = int(plant["cooldown"])
@@ -130,14 +122,7 @@ def predict_tree(
     return size, health, cooldown
 
 
-def chop_outcome(
-    kind: str,
-    size: int,
-    health: int,
-    cooldown: int,
-    chop_power: int,
-    wet: bool,
-) -> tuple[int, int] | None:
+def chop_outcome(kind: str, size: int, health: int, cooldown: int, chop_power: int, wet: bool) -> tuple[int, int] | None:
     if chop_power <= 0:
         return None
     reset = effective_cd(kind, wet)
@@ -217,12 +202,7 @@ def bankable_candidates(
         if predicted is None or predicted[0] <= 0 or predicted[1] <= 0:
             continue
         outcome = chop_outcome(
-            plant["type"],
-            predicted[0],
-            predicted[1],
-            predicted[2],
-            chop_power,
-            wet,
+            plant["type"], predicted[0], predicted[1], predicted[2], chop_power, wet
         )
         if outcome is None:
             continue
@@ -272,11 +252,7 @@ def quantiles(values: list[float]) -> dict[str, float]:
     }
 
 
-def bootstrap_mean_interval(
-    values: list[float],
-    seed: int = 1,
-    draws: int = 20_000,
-) -> list[float]:
+def bootstrap_mean_interval(values: list[float], seed: int = 1, draws: int = 20_000) -> list[float]:
     if not values:
         return [0.0, 0.0]
     rng = random.Random(seed)
@@ -288,10 +264,7 @@ def bootstrap_mean_interval(
     return [means[int(0.025 * draws)], means[int(0.975 * draws) - 1]]
 
 
-def final_tree_births(
-    states: list[dict[str, Any]],
-    n_turns: int,
-) -> dict[tuple[int, int], tuple[str, int]]:
+def final_tree_births(states: list[dict[str, Any]], n_turns: int) -> dict[tuple[int, int], tuple[str, int]]:
     """Birth turn of each tree standing in the final state, by continuity on its cell."""
     final = states[n_turns]
     result: dict[tuple[int, int], tuple[str, int]] = {}
@@ -334,9 +307,7 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
         if int(agent["agentId"]) == agent_id
     ]
     if len(seat_matches) != 1:
-        raise ValueError(
-            f"game {replay['gameId']}: agent {agent_id} seat count {len(seat_matches)}"
-        )
+        raise ValueError(f"game {replay['gameId']}: agent {agent_id} seat count {len(seat_matches)}")
     ours = seat_matches[0]
     if reconstructor.n_turns < LATE_FROM:
         return None
@@ -357,7 +328,10 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
     bucket_counts = collections.Counter()
     bucket_feasible = collections.Counter()
     best_event_points: list[int] = []
-    final_tree_options: dict[tuple[int, int], Candidate] = {}
+    best_event_points_by_verb: dict[str, list[int]] = {
+        verb: [] for verb in ELIGIBLE_VERBS
+    }
+    final_tree_options: dict[tuple[int, int], tuple[Candidate, str, int]] = {}
     examples: list[dict[str, Any]] = []
     greedy_used: set[tuple[int, int]] = set()
     greedy_free_at: dict[int, int] = {}
@@ -393,6 +367,7 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
             feasible[verb] += 1
             bucket_feasible[bucket] += 1
             best_event_points.append(candidates[0].points)
+            best_event_points_by_verb[verb].append(candidates[0].points)
 
             for candidate in candidates:
                 birth_info = births.get(candidate.cell)
@@ -402,20 +377,20 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
                 if turn < birth_turn or candidate.kind != final_kind:
                     continue
                 old = final_tree_options.get(candidate.cell)
-                if old is None or (
+                old_candidate = old[0] if old is not None else None
+                if old_candidate is None or (
                     candidate.points,
                     -candidate.total_turns,
+                    -turn,
                 ) > (
-                    old.points,
-                    -old.total_turns,
+                    old_candidate.points,
+                    -old_candidate.total_turns,
+                    -old[2],
                 ):
-                    final_tree_options[candidate.cell] = candidate
+                    final_tree_options[candidate.cell] = (candidate, verb, turn)
 
             if turn >= greedy_free_at.get(uid, LATE_FROM):
-                choice = next(
-                    (candidate for candidate in candidates if candidate.cell not in greedy_used),
-                    None,
-                )
+                choice = next((candidate for candidate in candidates if candidate.cell not in greedy_used), None)
                 if choice is not None:
                     greedy_used.add(choice.cell)
                     greedy_free_at[uid] = choice.finish_turn + 1
@@ -429,14 +404,18 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
                         "unit": uid,
                         "verb": verb,
                         "cell": [int(unit["x"]), int(unit["y"])],
-                        "best": {
-                            **asdict(candidates[0]),
-                            "cell": list(candidates[0].cell),
-                        },
+                        "best": {**asdict(candidates[0]), "cell": list(candidates[0].cell)},
                     }
                 )
 
-    unique_ceiling_points = sum(candidate.points for candidate in final_tree_options.values())
+    unique_ceiling_points = sum(
+        candidate.points for candidate, _, _ in final_tree_options.values()
+    )
+    final_points_by_verb = collections.Counter()
+    final_trees_by_verb = collections.Counter()
+    for candidate, trigger_verb, _ in final_tree_options.values():
+        final_points_by_verb[trigger_verb] += candidate.points
+        final_trees_by_verb[trigger_verb] += 1
     return {
         "game_id": int(replay["gameId"]),
         "turns": reconstructor.n_turns,
@@ -448,8 +427,11 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
         "buckets_feasible": [bucket_feasible[index] for index in range(5)],
         "event_best_points_sum_repeated": sum(best_event_points),
         "event_best_points": best_event_points,
+        "event_best_points_by_verb": best_event_points_by_verb,
         "unused_final_standing_trees": len(final_tree_options),
         "unused_final_standing_points_ceiling": unique_ceiling_points,
+        "unused_final_standing_points_by_trigger": dict(final_points_by_verb),
+        "unused_final_standing_trees_by_trigger": dict(final_trees_by_verb),
         "scheduled_distinct_tree_points_ceiling": greedy_points,
         "scheduled_distinct_trees": greedy_trees,
         "final_standing_trees": len(births),
@@ -458,12 +440,7 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
     }
 
 
-def summarise_package(
-    *,
-    label: str,
-    path: Path,
-    agent_id: int,
-) -> dict[str, Any]:
+def summarise_package(*, label: str, path: Path, agent_id: int) -> dict[str, Any]:
     replay_rows = sorted(load_package(path), key=lambda row: int(row["gameId"]))
     games_all = [analyse_game(replay, agent_id) for replay in replay_rows]
     games = [game for game in games_all if game is not None]
@@ -472,22 +449,28 @@ def summarise_package(
     buckets_eligible = [0] * 5
     buckets_feasible = [0] * 5
     mismatch = collections.Counter()
+    final_points_by_trigger = collections.Counter()
+    final_trees_by_trigger = collections.Counter()
+    event_points_by_verb: dict[str, list[float]] = {
+        verb: [] for verb in ELIGIBLE_VERBS
+    }
     for game in games:
         eligible.update(game["eligible"])
         feasible.update(game["feasible"])
-        for index in range(5):
-            buckets_eligible[index] += game["buckets_eligible"][index]
-            buckets_feasible[index] += game["buckets_feasible"][index]
+        for i in range(5):
+            buckets_eligible[i] += game["buckets_eligible"][i]
+            buckets_feasible[i] += game["buckets_feasible"][i]
         mismatch.update(game["reconstruction_mismatches"])
+        final_points_by_trigger.update(game["unused_final_standing_points_by_trigger"])
+        final_trees_by_trigger.update(game["unused_final_standing_trees_by_trigger"])
+        for verb in ELIGIBLE_VERBS:
+            event_points_by_verb[verb].extend(
+                float(point)
+                for point in game["event_best_points_by_verb"].get(verb, [])
+            )
 
-    unique_points = [
-        float(game["unused_final_standing_points_ceiling"])
-        for game in games
-    ]
-    scheduled_points = [
-        float(game["scheduled_distinct_tree_points_ceiling"])
-        for game in games
-    ]
+    unique_points = [float(game["unused_final_standing_points_ceiling"]) for game in games]
+    scheduled_points = [float(game["scheduled_distinct_tree_points_ceiling"]) for game in games]
     event_points = [
         float(point)
         for game in games
@@ -495,7 +478,7 @@ def summarise_package(
     ]
     total_eligible = sum(eligible.values())
     total_feasible = sum(feasible.values())
-    return {
+    result = {
         "label": label,
         "package": str(path),
         "package_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -511,6 +494,21 @@ def summarise_package(
         "eligible_total": total_eligible,
         "feasible_total": total_feasible,
         "feasible_share": total_feasible / total_eligible if total_eligible else 0.0,
+        "unused_final_standing_points_by_trigger_total": dict(final_points_by_trigger),
+        "unused_final_standing_points_by_trigger_per_long_game": {
+            verb: final_points_by_trigger[verb] / len(games) if games else 0.0
+            for verb in sorted(ELIGIBLE_VERBS)
+        },
+        "unused_final_standing_trees_by_trigger_total": dict(final_trees_by_trigger),
+        "best_bankable_points_per_feasible_event_by_verb": {
+            verb: {
+                "mean": statistics.mean(event_points_by_verb[verb])
+                if event_points_by_verb[verb]
+                else 0.0,
+                **quantiles(event_points_by_verb[verb]),
+            }
+            for verb in sorted(ELIGIBLE_VERBS)
+        },
         "buckets_eligible": buckets_eligible,
         "buckets_feasible": buckets_feasible,
         "best_bankable_points_per_feasible_event": {
@@ -534,6 +532,7 @@ def summarise_package(
         "reconstruction_mismatches": dict(mismatch),
         "games": games,
     }
+    return result
 
 
 def markdown(results: list[dict[str, Any]]) -> str:
@@ -567,8 +566,8 @@ def markdown(results: list[dict[str, Any]]) -> str:
     lines += [
         "## Exact decision-time feasibility",
         "",
-        "| package | long games | eligible troll-turns | feasible | share | NONE | PICK | PLANT | unused final-standing ceiling, mean / median |",
-        "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
+        "| package | long games | eligible troll-turns | feasible | share | NONE | PICK | PLANT | unused final-standing ceiling, mean / median | ceiling by trigger NONE / PICK / PLANT |",
+        "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for result in results:
         ceiling = result["unused_final_standing_points_ceiling_per_long_game"]
@@ -582,7 +581,10 @@ def markdown(results: list[dict[str, Any]]) -> str:
             f"| {result['label']} | {result['long_games']} | {result['eligible_total']} | "
             f"{result['feasible_total']} | {result['feasible_share']:.1%} | "
             f"{by_verb[0]} | {by_verb[1]} | {by_verb[2]} | "
-            f"{ceiling['mean']:.2f} / {ceiling['median']:.0f} |"
+            f"{ceiling['mean']:.2f} / {ceiling['median']:.0f} | "
+            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('NONE', 0.0):.2f} / "
+            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('PICK', 0.0):.2f} / "
+            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('PLANT', 0.0):.2f} |"
         )
     lines += [
         "",
@@ -593,7 +595,9 @@ def markdown(results: list[dict[str, Any]]) -> str:
         "The `unused final-standing ceiling` counts each tree still standing at game end at most once, "
         "and only if that same continuously existing tree was bankable at an eligible decision. It is "
         "an optimistic upper bound: it does not charge the lost PICK/PLANT continuation and it does not "
-        "replay changed later positions.",
+        "replay changed later positions. The trigger breakdown assigns each tree to the latest equally "
+        "valuable eligible decision used by the deterministic tie-break; it is explanatory, not additive "
+        "evidence beyond the total.",
         "",
         "## Reconciliation",
         "",
@@ -625,12 +629,11 @@ def markdown(results: list[dict[str, Any]]) -> str:
             f"- unique final-standing ceiling: mean {ceiling['mean']:.2f}, 95% bootstrap "
             f"[{ceiling['interval_95_bootstrap'][0]:.2f}, {ceiling['interval_95_bootstrap'][1]:.2f}], "
             f"p25/median/p75/p90/max {ceiling['p25']:.0f}/{ceiling['median']:.0f}/{ceiling['p75']:.0f}/"
-            f"{ceiling['p90']:.0f}/{ceiling['max']:.0f}, positive in "
-            f"{ceiling['positive_games']}/{ceiling['games']} games;",
-            f"- non-overlapping recorded-location scheduling ceiling: mean {scheduled['mean']:.2f}, "
-            f"95% bootstrap [{scheduled['interval_95_bootstrap'][0]:.2f}, "
-            f"{scheduled['interval_95_bootstrap'][1]:.2f}], median {scheduled['median']:.0f}. "
-            "This remains optimistic because later locations are borrowed from the original replay.",
+            f"{ceiling['p90']:.0f}/{ceiling['max']:.0f}, positive in {ceiling['positive_games']}/{ceiling['games']} games;",
+            f"- non-overlapping recorded-location scheduling ceiling: mean {scheduled['mean']:.2f}, 95% bootstrap "
+            f"[{scheduled['interval_95_bootstrap'][0]:.2f}, {scheduled['interval_95_bootstrap'][1]:.2f}], "
+            f"median {scheduled['median']:.0f}. This remains optimistic because later locations are borrowed from "
+            "the original replay.",
             "",
         ]
     lines += [
@@ -646,27 +649,17 @@ def markdown(results: list[dict[str, Any]]) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--out-dir",
-        type=Path,
-        default=Path("chatgpt_2/late-bankable-wood/results"),
-    )
+    parser.add_argument("--out-dir", type=Path, default=Path("chatgpt_2/late-bankable-wood/results"))
     args = parser.parse_args()
     specs = [
         (
             "E-1 package 41202036",
-            Path(
-                "local_claude_1/denial-ablation/games-41202036/"
-                "games-agent6667789-submission41202036.jsonl.gz"
-            ),
+            Path("local_claude_1/denial-ablation/games-41202036/games-agent6667789-submission41202036.jsonl.gz"),
             6667789,
         ),
         (
             "independent champion package 41234663",
-            Path(
-                "local_claude_1/ladder-queue/games-41234663/"
-                "games-agent6693889-submission41234663.jsonl.gz"
-            ),
+            Path("local_claude_1/ladder-queue/games-41234663/games-agent6693889-submission41234663.jsonl.gz"),
             6693889,
         ),
     ]
