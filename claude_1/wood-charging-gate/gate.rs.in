@@ -1,0 +1,163 @@
+            // The wood-charging gate (owner, 2026-09-04: "we are going to predict two outcomes:
+            // with troll and without, and if 'with' wins, we do it"). With two trolls, on every
+            // turn while at least THIRD_TROLL_HORIZON turns remain, the bot forecasts both
+            // futures from the live board for every chop-and-carry shape whose bill this map
+            // can pay, and wants a third troll only while the best shape's forecast beats the
+            // wood its funding would cost. Every input is measured from our doors as a set,
+            // never from a troll's own cell, so the decision cannot flip with a troll's step;
+            // nothing is remembered between turns, so the gate re-decides from the board
+            // every turn and abandons the funding the turn it stops winning.
+            const THIRD_TROLL_HORIZON: i32 = 100;
+            const WOOD_GATE_POINTS: f64 = 4.0;
+            const WOOD_GATE_KAPPA_STARTER: f64 = 0.40;
+            const WOOD_GATE_KAPPA_TRAINED: f64 = 0.60;
+            fn door_cells(view: &GameState, shack: Cell) -> Vec<Cell> {
+                ortho_neighbors(shack)
+                    .into_iter()
+                    .filter(|cell| view.walkable.contains(cell))
+                    .collect()
+            }
+            // The best wood a troll of these talents, empty and standing at one of our doors,
+            // banks per turn on today's board -- the champion's own chop valuation (walk there,
+            // chop it down, walk back), so the gate weighs wood the way the bot earns it.
+            fn door_chop_rate(view: &GameState, stats: Stats) -> f64 {
+                let mut best = 0.0_f64;
+                for door in Self::door_cells(view, view.shacks[0]) {
+                    let phantom = Unit {
+                        id: -1,
+                        player: 0,
+                        cell: door,
+                        stats,
+                        carry: [0; 6],
+                    };
+                    for candidate in MoisanBot::chop_candidates(view, &phantom, None) {
+                        best = best.max(candidate.score / 1000.0);
+                    }
+                }
+                best
+            }
+            // Turns the harvesting troll needs for a bill's missing fruit, one item a trip from
+            // the doors, as the champion's own opening estimate counts them; 10_000 = unfetchable.
+            fn wood_gate_fruit_turns(view: &GameState, cost: &[i32; 6]) -> i32 {
+                let mut turns = 0;
+                for item in [PLUM, LEMON, APPLE] {
+                    let missing = (cost[item] - view.inventories[0][item]).max(0);
+                    let eta = Self::collection_eta(view, item, missing);
+                    if eta >= 10_000 {
+                        return 10_000;
+                    }
+                    turns += eta;
+                }
+                turns
+            }
+            // Turns the mining troll needs for a bill's missing iron from the doors: a trip per
+            // load, each load mined at min(chop, carry) a turn; 0 when the map has no iron (the
+            // referee waives the iron then) or nothing is missing.
+            fn wood_gate_iron_turns(view: &GameState, miner: Stats, cost: &[i32; 6]) -> i32 {
+                let missing = (cost[IRON] - view.inventories[0][IRON]).max(0);
+                if missing <= 0 || view.iron.is_empty() {
+                    return 0;
+                }
+                let starts = Self::door_cells(view, view.shacks[0]);
+                let distance = bfs_distances(&view.walkable, &starts);
+                let Some(d) = view
+                    .iron
+                    .iter()
+                    .flat_map(|iron| ortho_neighbors(*iron))
+                    .filter_map(|cell| distance.get(&cell).copied())
+                    .min()
+                else {
+                    return 10_000;
+                };
+                let load = miner.carry_capacity.max(1);
+                let per_mine = miner.chop_power.min(load).max(1);
+                let trips = MoisanBot::ceil_div(missing, load);
+                let walk = MoisanBot::ceil_div(2 * d, miner.movement_speed.max(1));
+                trips * (walk + MoisanBot::ceil_div(load.min(missing), per_mine))
+            }
+            fn wood_gate_shapes() -> Vec<Stats> {
+                let mut out = Vec::new();
+                for movement_speed in 1..=3 {
+                    for carry_capacity in 1..=3 {
+                        for chop_power in 1..=3 {
+                            out.push(Stats {
+                                movement_speed,
+                                carry_capacity,
+                                harvest_power: 0,
+                                chop_power,
+                            });
+                        }
+                    }
+                }
+                out
+            }
+            // Our two trolls' roles and rates: (the harvester's talents, the miner's talents,
+            // the harvester's trip rate, the miner's trip rate); None until both roles exist.
+            fn wood_gate_rates(view: &GameState) -> Option<(Stats, Stats, f64, f64)> {
+                let mut own: Vec<&Unit> = view.units.iter().filter(|unit| unit.player == 0).collect();
+                own.sort_by_key(|unit| unit.id);
+                let harvester = own.iter().find(|unit| unit.stats.harvest_power > 0)?.stats;
+                let miner = own
+                    .iter()
+                    .find(|unit| unit.stats.harvest_power <= 0 && unit.stats.chop_power > 0)?
+                    .stats;
+                Some((
+                    harvester,
+                    miner,
+                    Self::door_chop_rate(view, harvester),
+                    Self::door_chop_rate(view, miner),
+                ))
+            }
+            // Every payable shape's two futures as (talents, with, without, arrival turn), in
+            // points. A trip rate (the champion's own valuation of the best tree from the door)
+            // overstates what a troll banks: the troll also walks part loads home, waits on
+            // contested trees, replants and harvests. WOOD_GATE_KAPPA_* is the measured ratio
+            // of banked wood per troll-turn to the trip rate -- the starter's and the trained
+            // troll's -- calibrated once on the champion's own play (see the card's report).
+            // WITH: the third troll's realised wood from its arrival to the end, minus the
+            // bill's fruit at face value (a point each, spent). WITHOUT: the wood the two
+            // gathering trolls would have banked in the same turns at their realised rates.
+            // The fruit's value as swap seeds is not charged (reported instead).
+            fn wood_gate_forecasts(view: &GameState) -> Vec<(Stats, f64, f64, i32)> {
+                let Some((_, miner, rate_harvester, rate_miner)) = Self::wood_gate_rates(view) else {
+                    return Vec::new();
+                };
+                let n = view.units.iter().filter(|unit| unit.player == 0).count() as i32;
+                let mut out = Vec::new();
+                for stats in Self::wood_gate_shapes() {
+                    let cost = training_cost(n, stats.tuple());
+                    let fruit_turns = Self::wood_gate_fruit_turns(view, &cost);
+                    let iron_turns = Self::wood_gate_iron_turns(view, miner, &cost);
+                    if fruit_turns >= 10_000 || iron_turns >= 10_000 {
+                        continue;
+                    }
+                    let wall = fruit_turns.max(iron_turns);
+                    let arrival = view.turn + wall + 1;
+                    let turns_left = (TOTAL_TURNS - arrival) as f64;
+                    if turns_left <= 0.0 {
+                        continue;
+                    }
+                    let rate_third = Self::door_chop_rate(view, stats);
+                    let fruit_bill = (cost[PLUM] + cost[LEMON] + cost[APPLE]) as f64;
+                    let with = Self::WOOD_GATE_POINTS * Self::WOOD_GATE_KAPPA_TRAINED * rate_third * turns_left
+                        - fruit_bill;
+                    let without = Self::WOOD_GATE_POINTS
+                        * (fruit_turns as f64 * Self::WOOD_GATE_KAPPA_STARTER * rate_harvester
+                            + iron_turns as f64 * Self::WOOD_GATE_KAPPA_TRAINED * rate_miner);
+                    out.push((stats, with, without, arrival));
+                }
+                out
+            }
+            // The best net forecast of the turn, admitted or not (the reading aid's hook).
+            fn wood_gate_best(view: &GameState) -> Option<(Stats, f64, f64, i32)> {
+                Self::wood_gate_forecasts(view)
+                    .into_iter()
+                    .max_by(|a, b| (a.1 - a.2).total_cmp(&(b.1 - b.2)))
+            }
+            // The shape the gate admits this turn: the best net forecast among those where WITH
+            // beats WITHOUT, strictly; None declines the third troll and the champion plays on.
+            fn wood_gate(view: &GameState) -> Option<Stats> {
+                Self::wood_gate_best(view)
+                    .filter(|(_, with, without, _)| with > without)
+                    .map(|(stats, _, _, _)| stats)
+            }
