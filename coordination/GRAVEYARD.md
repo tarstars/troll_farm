@@ -266,3 +266,44 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   and the comparison means what it claims. Until a build clears the mechanics bar on both arms, nothing measured about
   this gate is admissible. **Instruments kept:** the rescue ref with all 47 files, both generators, and the coordinator's
   reproduction (`/data/scratch/3t-verify` on the VM, log `/home/tarstars/verify_3t.log`).
+
+- **2026-09-04 — the wood-charging gate** (`20260904-wood-charging-gate`; built by claude_1 03:40–04:19Z on the owner's
+  approval, dead 05:3xZ on its own pre-registered condition 1). **What it was:** the owner's own rule, in the owner's
+  own words — *"predict two outcomes: with troll and without, and if 'with' wins, we do it."* The champion of record
+  unchanged, plus a third-troll funding pathway that every turn forecast the same turns spent **funding** against those
+  turns spent **chopping wood at four points a unit**, over 27 candidate troll shapes, admitting only the best shape
+  whose WITH strictly beat WITHOUT and otherwise playing as the champion byte for byte. The control was the champion
+  itself, so it cleared the mechanics bar by construction — the repair for what had broken chatgpt_2's build the day
+  before. **What killed it:** the 24-map smoke read **mechanics ok on 23 of 24**, map `c14dea6aa5d28951` stalling with
+  the second troll idle 30 consecutive turns inside the funding window against the resident's 0 — the card's first dead
+  condition, *any mechanics failure*. claude_1 stopped there as chartered: no timing run, no panel, no field reading,
+  nothing offered for the ladder. The coordinator reproduced it from the pinned commit: the generator regenerates all
+  three artefacts **byte for byte**, the base's token stream matches the resident champion, the round trip is EXACT,
+  both forms compile at zero errors, 67,902 bytes — and the smoke reproduces to the digit, same 23/24, same stalled
+  map, same −174.
+
+  **What we learned, and it is worth more than seven obituaries: the trade was finally computed honestly, and it loses.**
+  Three forecasts were read before any verdict was reported. **The honest one — the version that caps the troll's future
+  wood by the finite, contested forest — DECLINED ON ALL 4,593 EVALUATED TURNS.** On no map, at no turn, did "with"
+  beat "without". The looser versions (the troll's rate × the turns remaining, with no forest limit) admitted in 22 of
+  24 games, and that bot **lost 174 points** over the slice, worse on 18 of 24 maps. Read against the outcome, **WITH
+  was overstated about tenfold and WITHOUT understated two to threefold**: the third troll arrives at median game turn
+  **108**, into a forest four trolls have been felling for a hundred turns, and **adds no whole-game wood on average**
+  (below the champion on 15 of 22 maps). The cost is exact — wood banked **55 against the champion's 204 by turn 50**,
+  225 against 389 by turn 100, 793 against 836 at the end: **the funding cost 149 units of wood by turn 50 and the
+  troll never earned them back.** That is precisely the mechanism the port's loss read and stage 2A's death both
+  pointed at, now measured directly instead of inferred. Two honest caveats the builder volunteered: the letter of the
+  "must decline" condition was met (275 declines of 2,595 turns, 158 of them because the troll could not repay its
+  fruit) but not its substance, since a troll was still bought in 22 of 24 games; and the smoke opponents are **soft** —
+  the resident's realised pair rate here is 0.090 against 0.171 on the real ladder — so the calibration was generous to
+  the troll, not mean.
+
+  **What would reopen it:** on this evidence, nothing about the roster. **Seven lines have now died attacking it, and
+  this one explains why the other six died** — an extra troll bought around turn 100 arrives at an emptied board and
+  cannot repay the wood its shopping cost. The one variant not run is v1 with its forest estimate widened to the
+  record's 108 units felled after arrival; **claude_1 predicted in advance that it would still decline on most maps and
+  read within noise of the champion**, the coordinator agreed, and it is not chartered. If the roster is ever revisited
+  it must be bought **before** the wood race starts, not funded out of it — and stage 2A already showed that reaching
+  three trolls 23 turns ahead of the field does not pay either. **Instruments kept:** `claude_1/wood-charging-gate/`
+  (the generator, the two gate variants, `gate_read.py`, `calibrate_kappa.py` and all three forecast readings), and the
+  coordinator's reproduction at `/data/scratch/wg-verify` on the VM (`/home/tarstars/verify_woodgate.log`).

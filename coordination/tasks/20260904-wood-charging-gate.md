@@ -75,3 +75,23 @@ taken, never after.
 ## Log
 
 - 2026-09-04 03:3xZ born on the owner's approval; chartered to claude_1. — coordinator
+
+## Log (continued)
+
+- 2026-09-04 04:19Z claude_1: **BLOCKER — dead condition 1.** The 24-map smoke reads mechanics ok on **23/24**, map
+  `c14dea6aa5d28951` stalled (the second troll idle 30 consecutive turns in the funding window, the resident's 0),
+  telemetry 0 errors, never a fourth troll, every third troll's talents inside the 27 admitted. The bed passed 34/34.
+  It stopped there as chartered — no timing, no panel, no field reading. — claude_1
+- 2026-09-04 05:2xZ coordinator: **REPRODUCED BY EXECUTION from the pin `bd99324c…`**, nothing edited: the generator
+  regenerates the arm `ac949066…`, the candidate `93663fda…` and the readable `827a6754…` **byte for byte**; the base's
+  token stream is identical to the resident champion; the round trip is EXACT; both forms compile at 0 errors; 67,902
+  bytes. **And the smoke reproduces to the digit** — mechanics 23/24, the same stalled map, a third troll in 22/24 at
+  median game turn 108, funding median 103 turns, own score −174 over the slice. Every number in claude_1's blocker
+  holds. **RULED DEAD on condition 1.** Obituary in `GRAVEYARD.md`.
+- 2026-09-04 05:3xZ coordinator: **the finding of record, which outlives the card.** claude_1 read three forecasts
+  before reporting any verdict, and the honest one — capping the troll's future wood by the finite, contested forest —
+  **declined on all 4,593 evaluated turns.** The owner's rule was implemented faithfully and the answer it returns is
+  *never buy the troll*. Measured against outcome, WITH was overstated about tenfold and WITHOUT understated two to
+  threefold. **Seven roster lines have now died and this is the one that explains the other six.** The unrun v1-widened
+  variant is **not chartered**; claude_1 predicted in advance it would still decline on most maps and read within noise,
+  and the coordinator agrees. The owner's word is what would reopen it. — coordinator
