@@ -1,0 +1,8 @@
+policy candidate-turn2-second-control-v6-instrument.rs
+bot    candidate-orchard6-v6-instrument.rs
+panel  /home/runner/work/troll_farm/troll_farm/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 200 | 92 | 17 | 0.46 [0.37, 0.55] | 2.77 [-1.81, 7.57] | 0/0/0 | 22184.0 |
+-> chatgpt_1/three-troll-optimized-start/results/control-vs-orchard6.json

@@ -2,13 +2,33 @@
 """Read a collected package of ladder games for the opening-solver question: when did our bot
 actually buy its second and third troll against the real field, and did it pay?
 
-The referee's own event tooltips carry every training with its turn ("$<seat> trained a unit"),
-so the roster timeline needs no board reconstruction. Facts only, no verdict.
+The referee's own event tooltips carry every training ("$<seat> trained a unit"), so the roster
+timeline needs no board reconstruction. Facts only, no verdict.
 
     python3 ladder_read_trolls.py <package.jsonl.gz> <our agent id> [label]
+
+CORRECTION 2026-09-03 16:2xZ, after claude_1 caught it: a tooltip's `turn` is NOT a game turn, it
+is a FRAME INDEX, and the referee emits one frame per seat per turn. The first version of this
+script reported frame indices as game turns and so doubled every roster time — it put the opening
+dispatcher's third troll at "turn 147" and called the 24-map bench's 70.5 an artefact, when the
+bench had in fact held. Two independent checks:
+
+  * scale, verified here: 48 of 648 tooltips in the dispatcher's package carry `turn` above 300 and
+    the largest is 550, while a game cannot run past turn 300; frames per game reach 601 = 2*300+1.
+  * offset, verified by claude_1 game by game against the reconstructed pre-turn state on all 156
+    games with a third troll: `turn` = 2 * game_turn - 2 exactly (ratio 1.95-1.99, difference -2
+    every time).
+
+so game_turn = (tooltip_turn + 2) / 2, applied by FRAME_TO_TURN below. Any other reading that timed
+these packages by the tooltip field carries the same doubling.
 """
 import gzip, json, sys, statistics as st
 from collections import Counter
+
+
+def FRAME_TO_TURN(frame_index):
+    """The referee's frame index -> the game turn. See the module docstring."""
+    return (frame_index + 2) / 2
 
 
 def read(path, agent_id):
@@ -23,12 +43,14 @@ def read(path, agent_id):
             if seat is None:
                 continue
             trains = sorted(
-                t["turn"] for t in (json.loads(x) if isinstance(x, str) else x for x in d["tooltips"])
+                FRAME_TO_TURN(t["turn"])
+                for t in (json.loads(x) if isinstance(x, str) else x for x in d["tooltips"])
                 if t.get("text", "").startswith(f"${seat} trained")
             )
             opp_seat = 1 - seat
             opp_trains = sorted(
-                t["turn"] for t in (json.loads(x) if isinstance(x, str) else x for x in d["tooltips"])
+                FRAME_TO_TURN(t["turn"])
+                for t in (json.loads(x) if isinstance(x, str) else x for x in d["tooltips"])
                 if t.get("text", "").startswith(f"${opp_seat} trained")
             )
             games.append({

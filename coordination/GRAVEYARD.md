@@ -203,14 +203,19 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   (submission `41236483`, 160 games) where the champion of record, restored immediately and read in the same field an
   hour later, took **18.72 at rank 72** (`41236823`) — a gap of 4.13, nearly three times the ±1.5 a single reading
   moves by noise. **What we learned — and this is the part worth keeping.** (1) The order *is* implementable as rules
-  and half of it survives contact: on the real ladder the second troll arrives at **median turn 2** against the
-  champion's 16, in 100 % of games, and a third troll arrives in **98 %** of games where the champion never builds one
-  at all. (2) **The early third troll is a bench artefact.** On our 24-map bench against our own resident it landed at
-  median turn 70.5; against the real field it lands at **median turn 147** (quartiles 120 / 147 / 194) — more than
-  twice as late. The offline solver planned against an idle board, chatgpt_1's design review named that assumption
-  explicitly, and the ladder is what the assumption costs. For scale, the real opponents in those same games bought
-  their third troll at median turn 194 when they bought one at all (77 %), so our 147 is early *for the field* and
-  still not worth what it cost. (3) The bot scored **more raw points** than the champion (median 204 against 184.5)
+  and it does what it was designed to do: on the real ladder the second troll arrives at **median game turn 2** against
+  the champion's 9, in 100 % of games, and a third troll arrives in **98 %** of games where the champion never builds
+  one at all. (2) **The plan executed, and the plan was wrong — which is the finding.** *(Corrected 16:2xZ. The
+  coordinator's first decode read the referee's tooltip `turn` as a game turn when it is a frame index at two frames
+  per turn, doubling every roster time; it reported the third troll at "turn 147" and called the bench an artefact.
+  claude_1 caught it and verified `turn` = 2 × game turn − 2 game by game on all 156 games; the coordinator confirmed
+  the scale independently — 48 tooltips exceed 300 and the largest is 550, while a game cannot pass turn 300, and
+  frames per game reach 601 = 2 × 300 + 1. The "bench artefact" reading is withdrawn.)* On our 24-map bench the third
+  troll landed at median turn 70.5; **against the real field it lands at median game turn 74.5** (quartiles 61 / 74.5
+  / 98) — **the bench held.** The real opponents in those same games bought their own third troll at median game turn
+  98 when they bought one at all (77 %), so this build got its third troll **about 23 turns before the field did** and
+  still read 4.13 below the champion. That is a harder and more useful result than a failed plan: the early third troll
+  is not merely difficult to reach — it **is** reached, ahead of the field, and it still does not pay. (3) The bot scored **more raw points** than the champion (median 204 against 184.5)
   while rating 4.13 lower — a reminder that raw score across two packages is confounded by matchmaking (a bot at rank
   147 meets a weaker field: its opponents scored a mean 197.9 against the champion's opponents' 210.1), and that the
   paired panel and the rating, not the score, are the measures. (4) The mechanism of the loss is the port's mechanism
@@ -225,3 +230,80 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   coordinator's reproduction (`local_claude_1/opening-solver-verify/stage2a/`) including the field reading and the new
   `ladder_read_trolls.py` (roster timelines from the referee's own event tooltips, no board reconstruction needed), and
   the two collected 160-game packages `games-41236483` (the dispatcher) and `games-41236823` (the champion control).
+
+- **2026-09-03 — Track 3, the wood-aware three-troll optimized start** (`20260903-three-troll-optimized-start`; built
+  16:2x–16:5xZ by **chatgpt_2** (then accidentally labelled `chatgpt_1`; the identity was settled at 17:58Z by the
+  owner's three-part test), overwritten by the other agent on the shared branch, rescued by the
+  coordinator to `refs/heads/rescue/chatgpt1-three-troll-optimized-start-2026-09-03`, and ruled dead 17:4xZ).
+  **What it was:** the champion of record plus stage 2A's turn-2 second troll, plus the first genuinely new idea anyone
+  had brought to the roster problem — a contested-resource search over third-troll tuples in which a funding trip is
+  **charged against the 4-point wood trip it displaces**, admitting a plan only if it finishes by turn 110 and clears
+  eight points of net continuation value after that charge, abandoning back to the champion when the gate fails, and
+  selecting for all three trolls jointly afterwards. It shipped with a **control arm** — the same opening with the
+  optimizer disabled — which is the right instrument and which its author built without being made to.
+  **What killed it: mechanics, on both arms, reproduced by the coordinator.** From the rescue pin, nothing edited, the
+  generator regenerates all four artefacts **byte for byte** (candidate `d994b3fb…`, control `2d62e0c7…`), both compile
+  with zero errors, the round trip is exact, and the source is 90,070 UTF-16 units of the platform's 100,000. Then the
+  24-map smoke: **the candidate is mechanically OK on 19 of 24 maps and the control on 15 of 24**, against a 24/24 bar —
+  the card's first dead condition, *any mechanics failure*. Five maps stall the candidate and **nine stall the control**;
+  the candidate scores **−416 own points against the resident over 24 games** and the control −242. Its author had
+  already reported the same numbers and its own verdict, `DEAD_AS_BOT`; the coordinator's reproduction agrees with it in
+  every figure, so this is a failure of the build and not of the reporting.
+  **What we learned, and the first point is a correction the coordinator made against its own earlier reading.**
+  (1) **The +0.0500 [+0.0050, +0.0950] by which the candidate beat its control is NOT evidence for charging the foregone
+  wood, and the board and card said it might be.** The comparison is between two arms that *both* fail mechanics, one of
+  which stalls on nine maps of twenty-four: it measures less-broken against more-broken on a damaged base, not the idea
+  against the champion. **Charging the foregone wood remains untested.** (2) The gate did change behaviour, but not in
+  the direction hoped: the third troll arrived at **median turn 30** — far earlier than any previous build — and always
+  as the *weakest* tuple available (`1 1 0 1` ten times of fourteen, `1 2 0 1` four). Charging the wood did not stop a
+  bad trade; it selected a cheaper, earlier troll instead, and the bot still lost 416 points a game to the resident.
+  (3) **A control arm must itself pass the mechanics bar or it is not a control.** This one did not, and it silently
+  invalidated the only comparison the build existed to make. (4) The change costs +1,334 lines and takes the source to
+  90 % of the platform's character limit, leaving little room for anything else.
+  **What would reopen it:** the idea, not this build. **The cheapest honest test of wood-charging uses the champion
+  itself as the control** — the champion unchanged, plus only the wood-charging admission test for a third troll, with
+  no turn-2 second troll and no joint selector confounding it; then the control passes 24/24 mechanics by construction
+  and the comparison means what it claims. Until a build clears the mechanics bar on both arms, nothing measured about
+  this gate is admissible. **Instruments kept:** the rescue ref with all 47 files, both generators, and the coordinator's
+  reproduction (`/data/scratch/3t-verify` on the VM, log `/home/tarstars/verify_3t.log`).
+
+- **2026-09-04 — the wood-charging gate** (`20260904-wood-charging-gate`; built by claude_1 03:40–04:19Z on the owner's
+  approval, dead 05:3xZ on its own pre-registered condition 1). **What it was:** the owner's own rule, in the owner's
+  own words — *"predict two outcomes: with troll and without, and if 'with' wins, we do it."* The champion of record
+  unchanged, plus a third-troll funding pathway that every turn forecast the same turns spent **funding** against those
+  turns spent **chopping wood at four points a unit**, over 27 candidate troll shapes, admitting only the best shape
+  whose WITH strictly beat WITHOUT and otherwise playing as the champion byte for byte. The control was the champion
+  itself, so it cleared the mechanics bar by construction — the repair for what had broken chatgpt_2's build the day
+  before. **What killed it:** the 24-map smoke read **mechanics ok on 23 of 24**, map `c14dea6aa5d28951` stalling with
+  the second troll idle 30 consecutive turns inside the funding window against the resident's 0 — the card's first dead
+  condition, *any mechanics failure*. claude_1 stopped there as chartered: no timing run, no panel, no field reading,
+  nothing offered for the ladder. The coordinator reproduced it from the pinned commit: the generator regenerates all
+  three artefacts **byte for byte**, the base's token stream matches the resident champion, the round trip is EXACT,
+  both forms compile at zero errors, 67,902 bytes — and the smoke reproduces to the digit, same 23/24, same stalled
+  map, same −174.
+
+  **What we learned, and it is worth more than seven obituaries: the trade was finally computed honestly, and it loses.**
+  Three forecasts were read before any verdict was reported. **The honest one — the version that caps the troll's future
+  wood by the finite, contested forest — DECLINED ON ALL 4,593 EVALUATED TURNS.** On no map, at no turn, did "with"
+  beat "without". The looser versions (the troll's rate × the turns remaining, with no forest limit) admitted in 22 of
+  24 games, and that bot **lost 174 points** over the slice, worse on 18 of 24 maps. Read against the outcome, **WITH
+  was overstated about tenfold and WITHOUT understated two to threefold**: the third troll arrives at median game turn
+  **108**, into a forest four trolls have been felling for a hundred turns, and **adds no whole-game wood on average**
+  (below the champion on 15 of 22 maps). The cost is exact — wood banked **55 against the champion's 204 by turn 50**,
+  225 against 389 by turn 100, 793 against 836 at the end: **the funding cost 149 units of wood by turn 50 and the
+  troll never earned them back.** That is precisely the mechanism the port's loss read and stage 2A's death both
+  pointed at, now measured directly instead of inferred. Two honest caveats the builder volunteered: the letter of the
+  "must decline" condition was met (275 declines of 2,595 turns, 158 of them because the troll could not repay its
+  fruit) but not its substance, since a troll was still bought in 22 of 24 games; and the smoke opponents are **soft** —
+  the resident's realised pair rate here is 0.090 against 0.171 on the real ladder — so the calibration was generous to
+  the troll, not mean.
+
+  **What would reopen it:** on this evidence, nothing about the roster. **Seven lines have now died attacking it, and
+  this one explains why the other six died** — an extra troll bought around turn 100 arrives at an emptied board and
+  cannot repay the wood its shopping cost. The one variant not run is v1 with its forest estimate widened to the
+  record's 108 units felled after arrival; **claude_1 predicted in advance that it would still decline on most maps and
+  read within noise of the champion**, the coordinator agreed, and it is not chartered. If the roster is ever revisited
+  it must be bought **before** the wood race starts, not funded out of it — and stage 2A already showed that reaching
+  three trolls 23 turns ahead of the field does not pay either. **Instruments kept:** `claude_1/wood-charging-gate/`
+  (the generator, the two gate variants, `gate_read.py`, `calibrate_kappa.py` and all three forecast readings), and the
+  coordinator's reproduction at `/data/scratch/wg-verify` on the VM (`/home/tarstars/verify_woodgate.log`).

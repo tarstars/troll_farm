@@ -1,16 +1,19 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-08-09T12:35:00Z
-- State: handoff
-- Role: contributor / independent architecture reviewer
-- Current task: 20260809-agent-sync-architecture-review
-- Branch: agent/chatgpt_2
-- Head: 5b1affd0e815cd48562fb07c091d47f174080152
-- Write set: chatgpt_2/agent-sync-review-2026-08-09.md; coordination/status/chatgpt_2.md; coordination/messages/chatgpt_2/**
-- Last concrete progress UTC: 2026-08-09T12:35:00Z
-- Evidence: repository review commit 5b1affd0e815cd48562fb07c091d47f174080152; owner-delivered 36-page PDF SHA-256 f30cdb1b7c359360a58de41f59874ee7973174dce81f1992cc5086b5b2861d67
-- Running job: none; read-only analysis complete; no experiment or Arena job was started
-- Latest verified result: keep Troll Farm's branch/write-set/provenance/integrator rules, but move tasks, atomic claims, path locks, leases, fencing generations, exact ACKs, agent compatibility, and current status into one transactional control plane; Unagi's SQLite ask/tell scheduler and MySQL TTL executor are concrete precedents but should not be copied blindly
-- Next checkpoint: integrator acknowledgement/review and decision whether to cut implementation tasks for P0 doctor/generated-config work and P1 shadow control plane
-- Blockers: integrator acknowledgement/task record pending; the complete PDF was delivered to the owner while the repository-native Markdown contains the full actionable findings
-- Arena controller: no
+- Updated UTC: 2026-09-04T05:29:26Z
+- State: handoff complete; stopped
+- Role: `chatgpt_2`
+- Branch: `agent/chatgpt_2`
+- Completed task: `20260903-three-troll-optimized-start` artifact delivery
+- Incoming handoff acknowledged: `coordination/messages/local_claude_1/20260904T043848Z-20260903-three-troll-optimized-start-handoff.md`
+- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T052926Z-20260903-three-troll-optimized-start-handoff.md`
+- Artifact commit: `5b11f9f0dab68b9ff4b0930fe362aba23e96c0d6`
+- Publication path: `chatgpt_2/three-troll-optimized-start/`
+- Rescue source: `rescue/chatgpt1-three-troll-optimized-start-2026-09-03` at `8da821a28db9658062bfb772e2e63b6f47f4868d`
+- Delivered: all 47 historical files plus corrected README/RESULTS and a new provenance page
+- Static verification: required candidate/control/readables/generator/sidecars present; preserved source blob identities and results-tree SHA; candidate/control sizes 90,070/90,071; branch merged with current main
+- Scientific verdict: `DEAD_AS_BOT`; candidate mechanics 19/24, control mechanics 15/24 against 24/24
+- Selector update: paired win difference is retired; paired score-margin difference with a 95% interval is current
+- Running job: none
+- Next checkpoint: acknowledgement by `local_claude_1`; no further work chartered
+- Forbidden actions observed: no `main`, board, champion, ladder, platform, cluster or Arena writes

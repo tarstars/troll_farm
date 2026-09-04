@@ -1,15 +1,15 @@
 {
- "written": "2026-09-03T13:1xZ: the owner's word 'put it on the platform' — THE OPENING DISPATCHER (stage 2A of the opening solver: the champion of record with the solver's opening planner from turn 1 to the third troll, then the champion's own play) for one hour, round 1, then the champion of record put back. Submitted against the coordinator's stated advice: the local field reading has it well below the champion on three of four opponents (29 wins of 400 against the champion's 113; -21, -28 and -37.5 points of win rate), and the pre-registered rule on the card would have called it dead. The owner's word overrides that rule; the reading is taken as a fact and recorded either way. Gates that did pass before this submission: build reproduced byte for byte from the pin by the coordinator, bed 34/34, smoke 24/24 (a third troll in every game, median turn 70.5 against orchard 6's 87.0 on the same maps), timing 4.27 ms on turn 1 against 1,000 and 2.28 ms at the 99th percentile against 50, 78,035 characters against the 100,000 limit.",
+ "written": "2026-09-04T06:1xZ: the owner's word 'submit this new bot' — chatgpt_2's THREE-TROLL OPTIMIZED START (the champion of record plus the turn-2 second troll and a wood-aware third-troll optimizer; the bot the owner asked chatgpt_2 to provide, delivered 05:29Z and verified byte for byte against the rescue ref) for one hour, round 1, then the champion of record put back. Submitted against the coordinator's stated advice and outside the standing precondition that the bed and the smoke must pass: its 24-map smoke reads mechanics 19/24 with five maps STALLED, it scores -416 own points against the resident over that slice, and its direct duel with the champion is 51 wins of 200 (win rate 0.255 [0.20, 0.31]). The card 20260903-three-troll-optimized-start is DEAD on mechanics and this submission does not reopen it. What did pass, re-verified by the coordinator at 06:1xZ: the build reproduces byte for byte from the rescue ref, it compiles at zero errors, it is 90,070 UTF-16 units against the 100,000 limit, and its timing is first-turn 2.397 ms and warm p99 1.045 ms against limits of 1,000 and 50. Coordinator's prediction, recorded before the reading: 12 to 15, well below the champion's 18.72, with the stalls the most likely cause of a bad tail.",
  "items": [
   {
-   "id": "opening-dispatcher-r1",
-   "label": "THE OPENING DISPATCHER (the champion of record + the opening solver's planner to the third troll; sha fe9e9ec8...) — round 1, one hour, one reading; the owner's 'put it on the platform' of 2026-09-03 13:1xZ",
-   "file": "cgauto/submissions/candidate-opening-dispatcher-v6-instrument.rs",
-   "sha256": "fe9e9ec839183b70fb90c6793cd15bee206da8c85a0ca647b7baf576c3d6dc78"
+   "id": "three-troll-optimized-r1",
+   "label": "chatgpt_2's THREE-TROLL OPTIMIZED START (champion + turn-2 second troll + wood-aware third-troll optimizer; sha d994b3fb...) — round 1, one hour, one reading; the owner's 'submit this new bot' of 2026-09-04",
+   "file": "cgauto/submissions/candidate-three-troll-optimized-v6-instrument.rs",
+   "sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933"
   },
   {
-   "id": "champion-restore-0903b",
-   "label": "THE CHAMPION OF RECORD (sha 0e92f8fa...) put back after the opening dispatcher's hour; holds the ladder",
+   "id": "champion-restore-0904",
+   "label": "THE CHAMPION OF RECORD (sha 0e92f8fa...) put back after the three-troll bot's hour; holds the ladder",
    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
   }

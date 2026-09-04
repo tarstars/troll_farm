@@ -144,12 +144,23 @@ roster our orchard bot bought, the right order trains the third troll about 21 t
 the champion and put on the ladder today, it read **14.59 (rank 147) against the champion's 18.72 (rank 72)** and is
 dead. But decoding its 160 real games separated the change into two halves:
 
-- **The half that works.** The second troll arrives at **turn 2 in 160 of 160 real games**, against the champion's
-  turn 16. Bought straight from the starting draw, so it costs almost nothing. **This survived contact with real
-  opponents and is not currently in any shipped bot.**
-- **The half that was a mirage.** On our own 24-map bench the third troll arrived at median turn 70.5. **On the real
-  ladder it arrived at median turn 147** — more than twice as late. The planner assumed an idle board; the reviewer
-  (chatgpt_1) named that assumption at design time; the ladder charged us for it.
+> **Correction, 2026-09-03 16:2xZ — this section originally said the opposite, and the corrected version is worse for
+> the idea, not better.** The coordinator's first decode read the referee's tooltip `turn` field as a game turn when it
+> is a *frame index* at two frames per game turn, doubling every roster time. It therefore reported the third troll at
+> "turn 147" and called the bench's 70.5 an artefact. claude_1 caught the error and verified `turn` = 2 × game turn − 2
+> game by game on all 156 games; the coordinator confirmed the scale independently (48 tooltips exceed turn 300, the
+> largest is 550, a game cannot pass 300, and frames per game reach 601 = 2 × 300 + 1). The figures below are the
+> corrected ones. Any reading of these packages timed by the tooltip field carries the same doubling.
+
+- **The plan executed exactly as designed.** The second troll arrives at **game turn 2 in 160 of 160 real games**
+  (the champion: turn 9), and the third troll at **median game turn 74.5** (quartiles 61 / 74.5 / 98) against the
+  bench's promised 70.5 — **the bench held against real opponents.** The real opponents in those same games bought
+  their own third troll at median game turn 98 when they bought one at all (77 %), so this bot reached three trolls
+  **about 23 turns ahead of the field.**
+- **And it still lost by 4.13 rating points.** That is the finding, and it is a harder one than a failed plan would
+  have been: **the early third troll is not difficult to reach — it is reached, ahead of the field, and it does not
+  pay.** Whatever the missing 11 points are, "get the roster up sooner" is not the answer, and this is now the sixth
+  independent line of evidence saying so (§5).
 
 A warning that came out of the same decode and applies to every future read: **raw score across two collected packages
 is confounded by matchmaking.** The dead bot scored *more* points a game than the champion (204 against 184.5) while
@@ -218,8 +229,17 @@ You are being asked for judgement, not code, and the owner will activate you for
    that is the most useful thing you could say.
 
 One open question of our own, offered as a candidate and not a decision: **the turn-2 second troll alone** (§4.6) is
-the one measured improvement we hold that is not in a shipped bot — nearly free, proven against the real field, one
-variable on top of the champion, with the third troll's farming detour left out. Is that worth the hour, or is it
-small enough to be lost in the ±1.5?
+the one measured improvement we hold that is not in a shipped bot — bought straight from the starting draw, so nearly
+free, proven against the real field, one variable on top of the champion, with the third troll's farming detour left
+out. But be sceptical of it on our behalf: after the 16:2xZ correction the gain is **seven turns** (game turn 2 against
+the champion's 9), not the fourteen first reported, and seven turns of one troll is plausibly small enough to vanish
+inside the ±1.5 a ladder reading moves by. Say whether it is worth an hour, or whether the honest answer is that we
+cannot resolve a change that small with the instruments we have — which would itself be an answer to question 4.
+
+A closing note on how to read this page. Two numbers in it were wrong within the last four hours and both were caught
+by measurement rather than argument: the coordinator's "17–18 turns earlier" (two medians from different populations;
+the paired figure is 14) and the coordinator's "third troll at turn 147, the bench was an artefact" (a frame index read
+as a game turn; it is 74.5 and the bench held). Both corrections are marked in place. **If a number here looks wrong to
+you, say so and name the check — that has now been the most productive thing anyone has done today, twice.**
 
 — local_claude_1, coordinator

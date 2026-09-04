@@ -1,0 +1,119 @@
+{
+  "instrument": "field.py -- rung 1 of the port's selector: candidate minus champion against the same local field, paired by (opponent, map, seat), clustered bootstrap over maps",
+  "unit": "map (every opponent's seats of one map carried together)",
+  "panel_sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+  "candidate_sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933",
+  "champion_sha256": "2d62e0c77d75cd2457ad82b998c366b6a82deca1741eff6f44b3914f247baa51",
+  "per_opponent": [
+    {
+      "opponent": "champion",
+      "opponent_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "candidate_run": "chatgpt_1/three-troll-optimized-start/results/candidate-vs-champion.json",
+      "champion_run": "chatgpt_1/three-troll-optimized-start/results/control-vs-champion.json",
+      "candidate_sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933",
+      "champion_sha256": "2d62e0c77d75cd2457ad82b998c366b6a82deca1741eff6f44b3914f247baa51",
+      "candidate_wins": 33,
+      "champion_wins": 36,
+      "win_diff": {
+        "mean": -0.015,
+        "interval_95": [
+          -0.065,
+          0.035
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 100,
+        "cells": 200
+      },
+      "margin_diff": {
+        "mean": -0.8,
+        "interval_95": [
+          -2.54,
+          0.94
+        ],
+        "above_zero": false,
+        "below_zero": false,
+        "maps": 100,
+        "cells": 200
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    },
+    {
+      "opponent": "orchard6",
+      "opponent_sha256": "3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350",
+      "candidate_run": "chatgpt_1/three-troll-optimized-start/results/candidate-vs-orchard6.json",
+      "champion_run": "chatgpt_1/three-troll-optimized-start/results/control-vs-orchard6.json",
+      "candidate_sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933",
+      "champion_sha256": "2d62e0c77d75cd2457ad82b998c366b6a82deca1741eff6f44b3914f247baa51",
+      "candidate_wins": 115,
+      "champion_wins": 92,
+      "win_diff": {
+        "mean": 0.115,
+        "interval_95": [
+          0.045,
+          0.185
+        ],
+        "above_zero": true,
+        "below_zero": false,
+        "maps": 100,
+        "cells": 200
+      },
+      "margin_diff": {
+        "mean": 5.575,
+        "interval_95": [
+          2.96,
+          8.41
+        ],
+        "above_zero": true,
+        "below_zero": false,
+        "maps": 100,
+        "cells": 200
+      },
+      "faults": {
+        "candidate": {},
+        "champion": {}
+      },
+      "clean": true
+    }
+  ],
+  "field": {
+    "opponents": [
+      "champion",
+      "orchard6"
+    ],
+    "win_diff": {
+      "mean": 0.05,
+      "interval_95": [
+        0.005,
+        0.095
+      ],
+      "above_zero": true,
+      "below_zero": false,
+      "maps": 100,
+      "cells": 400
+    },
+    "margin_diff": {
+      "mean": 2.3875,
+      "interval_95": [
+        0.6575,
+        4.175
+      ],
+      "above_zero": true,
+      "below_zero": false,
+      "maps": 100,
+      "cells": 400
+    }
+  },
+  "clean": true,
+  "problems": [],
+  "decision_rule": "FIELD_ABOVE_ZERO = the field-mean WIN-INDICATOR difference's 95 % interval wholly above zero (the bar to rung 2; ruling 2026-09-02 09:23Z); FIELD_BELOW_ZERO = wholly below; FIELD_STRADDLES_ZERO = contains zero (rung 2 decides); INCONCLUSIVE = a fault in any run, or an incomplete pairing. The margin difference is printed beside it and does not decide.",
+  "verdict": "FIELD_ABOVE_ZERO",
+  "bootstrap": {
+    "draws": 10000,
+    "seed": 1
+  }
+}
