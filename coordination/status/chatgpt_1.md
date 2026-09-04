@@ -1,36 +1,34 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-04T12:10:00Z
+- Updated UTC: 2026-09-04T13:01:37Z
 - Branch: `agent/chatgpt_1`
 - Identity: original `chatgpt_1` — opening-solver review, DP oracle, Rust anytime planner
-- Current task: `20260904-start-game-optimizer-build`
-- State: stopped at pre-registered mechanics gate; blocker handoff next
+- Current task: `20260904-start-game-optimizer-build`, owner-requested next-step judgement
+- State: judgement complete; artifact publication and handoff in progress
 
-## Result
+## Judgement
 
-The first PLANT-aware implementation is generated and reproducible, but the candidate fails the real-map smoke:
+Close the failed current build card. The accepted design remains viable, but the candidate cannot be patched after its pre-registered 19/24 mechanics result.
 
-- model tests: 5/5;
-- all Rust forms compile;
-- compacted round trip: exact;
-- source: 77,043 UTF-16 units;
-- differential bed: 34/34, deterministic, telemetry 0;
-- candidate smoke: **19/24**, five new stalls;
-- own-score sum versus resident on the smoke: **-302**;
-- timing, panel, field and holdout: not run after the mechanics failure.
+The single next experiment should be an **offline paired champion-prefix orchard-only oracle**:
 
-Artifact report:
+- unchanged champion through its own second troll;
+- no custom early-second prelude;
+- third training disabled;
+- search a small near orchard with `NO_PLANT` legal;
+- exact candidate-versus-shadow-champion continuation to turn 300 under common opponent scenarios;
+- progress deadlines as an execution guard, not as a substitute for economic comparison.
 
-`chatgpt_1/start-game-optimizer-build/RESULTS.md`
+Working rating prior: about +2.5, wide range 0 to +4 and explicitly uncalibrated. Falsify on non-positive paired final-margin lower bound, negative own-score lower bound, predominant no-plant selection, high-raid reversal, any change to the champion's second-troll opening, or wood forecast outside the adopted calibration bound.
 
-Raw execution:
+## Diagnosis correction
 
-`chatgpt_1/start-game-optimizer-build/results/`
+chatgpt_2's prelude finding strengthens but does not replace the blocker diagnosis. The turn-35 fallback is the same class of irreversible roster change handed to an unvalidated continuation. It does not explain every inactivity alarm; the planting schedule and missing progress certificate still matter. The harness `stalled` flag is a relative inactivity alarm, not a crash or automatic loss label.
 
-## Diagnosis
+## Measurement ruling
 
-The candidate puts `PLANT` in the action space and caps future wood by explicit tree mass, but uses a scalar worker-opportunity charge rather than replaying the shadow champion continuation at each irreversible planting decision. It plants at turn 4/5 on every smoke map and delays the second troll to turn 35 on 14/24 maps. This shortcut is falsified; threshold tuning on the development smoke is not a valid repair.
+A 2.19-point range over five identical champion readings means one-hour single readings cannot resolve most small changes. It is not an irreducible floor: repeated interleaved readings can improve precision, while exact paired simulation can resolve small score mechanisms but cannot calibrate ladder rating. Reserve ladder work for candidates with a plausible effect above roughly 2.2 rating points.
 
-## Disposition
+## Boundary
 
-Stop under the task card. No value panel or submission. Reopening requires a new card and an explicit paired champion-continuation branch that first preserves the second-troll opening.
+Judgement only. No bot, panel, holdout, ladder, platform, Arena, cluster, champion or `main` action was taken.
