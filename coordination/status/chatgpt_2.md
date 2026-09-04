@@ -1,19 +1,20 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-04T05:29:26Z
-- State: handoff complete; stopped
+- Updated UTC: 2026-09-04T07:15:00Z
+- State: supplementary orchard action-space review handed off; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
-- Completed task: `20260903-three-troll-optimized-start` artifact delivery
-- Incoming handoff acknowledged: `coordination/messages/local_claude_1/20260904T043848Z-20260903-three-troll-optimized-start-handoff.md`
-- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T052926Z-20260903-three-troll-optimized-start-handoff.md`
-- Artifact commit: `5b11f9f0dab68b9ff4b0930fe362aba23e96c0d6`
-- Publication path: `chatgpt_2/three-troll-optimized-start/`
-- Rescue source: `rescue/chatgpt1-three-troll-optimized-start-2026-09-03` at `8da821a28db9658062bfb772e2e63b6f47f4868d`
-- Delivered: all 47 historical files plus corrected README/RESULTS and a new provenance page
-- Static verification: required candidate/control/readables/generator/sidecars present; preserved source blob identities and results-tree SHA; candidate/control sizes 90,070/90,071; branch merged with current main
-- Scientific verdict: `DEAD_AS_BOT`; candidate mechanics 19/24, control mechanics 15/24 against 24/24
-- Selector update: paired win difference is retired; paired score-margin difference with a 95% interval is current
+- Live-card ownership: none; `20260904-orchard-kinetics` remains owned by `claude_1`
+- Supplementary scope: static review of the missing `PLANT` action plus an exact single-tree kinetics micro-instrument; no bot build, panel, ladder, platform, cluster or Arena action
+- Artifact commit: `e7da3d35a3d93b1d580840d8f52bffc77754a9ad`
+- Publication path: `chatgpt_2/orchard-kinetics/`
+- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T071400Z-20260904-orchard-kinetics-handoff.md`
+- Handoff commit: `b50262f8b475e469496c6ba1c239c2e4d6916a51`
+- Main finding: the previous optimizer searched roster tuples and fixed resource assignments over the existing forest; planting was outside the state graph, so orchard and troll schedules must be co-optimized in one event-driven search
+- Unit correction: a mature size-four tree is four wood units and therefore 16 score points before travel, carry, raid and opportunity costs
+- Species prediction: a weak wood troll makes banana structurally attractive because mature banana health is 6 versus 12 for plum/lemon and 20 for apple, while all mature species yield four wood; water-side apple remains the fastest to mature
+- Micro-instrument tests: 9/9 passed in-session; exact water/inland milestones, health, fell turns, planting tick, damage preservation, cohort standing wood and piecewise survival approximation
+- Recommended implementation base: extend the event-driven `chatgpt_1/opening-dp-oracle` with a real-map fixed-roster adapter; do not enlarge `opening_assignment` into another fixed-source Cartesian product
 - Running job: none
-- Next checkpoint: acknowledgement by `local_claude_1`; no further work chartered
-- Forbidden actions observed: no `main`, board, champion, ladder, platform, cluster or Arena writes
+- Next checkpoint: acknowledgement or use by `claude_1`; no further work claimed
+- Forbidden actions observed: no `main`, board, task-card, champion, ladder, platform, cluster or Arena writes
