@@ -304,6 +304,22 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   record's 108 units felled after arrival; **claude_1 predicted in advance that it would still decline on most maps and
   read within noise of the champion**, the coordinator agreed, and it is not chartered. If the roster is ever revisited
   it must be bought **before** the wood race starts, not funded out of it — and stage 2A already showed that reaching
-  three trolls 23 turns ahead of the field does not pay either. **Instruments kept:** `claude_1/wood-charging-gate/`
+  three trolls 23 turns ahead of the field does not pay either. **ADDENDUM 2026-09-04 09:4xZ — the two required sensitivities, and they make the finding stronger.** The coordinator
+required two before accepting: what happens if the bill's fruit is priced at the champion's realised seed value rather
+than face value (the valuation that flipped the cheap-third-troll verdict from +11 to −6.5), and what happens if the
+contested-forest cap is loosened from half the standing wood to all of it. claude_1 ran both.
+**(1) The fruit price does not matter here:** of 2,320 admitted turns only **180 flip to a decline (7.8 %)**, and every
+admission flips in just 1 game of 24 — because WITH was over-stated tenfold and no fruit price closes a gap that size.
+**(2) Loosening the forest cap to one produces a real gate that still loses:** it evaluated 4,219 turns, **declined
+4,024 and admitted 195, buying a troll in 3 games of 24** (game turns 50, 71 and 105, all `1/2/0/2`). At those
+admissions the forecast was nearly calibrated — **WITH 20–53 against WITHOUT 17–41** — and **the troll still lost every
+one of the three**: 115 against 154, 88 against 100, 148 against 154, with whole-game wood 28/38, 22/25 and 37/38; over
+the slice 3,313 against 3,358. **So the trade is not merely mis-forecast, it is bad at the very margin where it looks
+closest.** Four forecasts now sit on this slice: never admits; admits nearly always and loses 174; admits three times
+and loses 45. **The one that is right about the value of the troll is the one that never buys it.** claude_1 also
+reported its own pre-stated expectation failing — it predicted admissions "on the largest forests, within noise", and
+in fact the gate admitted where the bill was cheap and near, and lost there.
+
+  **Instruments kept:** `claude_1/wood-charging-gate/`
   (the generator, the two gate variants, `gate_read.py`, `calibrate_kappa.py` and all three forecast readings), and the
   coordinator's reproduction at `/data/scratch/wg-verify` on the VM (`/home/tarstars/verify_woodgate.log`).
