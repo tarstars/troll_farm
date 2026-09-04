@@ -1,0 +1,225 @@
+{
+  "centered_arm_observations": 5200,
+  "centered_paired_observations": 2600,
+  "created_utc": "2026-09-04T14:22:28Z",
+  "detectable_effect_interpretation": "A true paired mean score delta must exceed the required-formula half-width for its normal-approximation 95% lower bound to clear zero.",
+  "inputs": [
+    {
+      "path": "claude_1/h2h-panel/results/champion-vs-champion.json",
+      "sha256": "563c91f39ab5f227188b72ef7d8906d5f0bcfe642cf48ae1e2667d243efd5762"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/champion-vs-nn-clone.json",
+      "sha256": "11e7ae378df403e3d5005e0a435a288897a56816d504390b4e380104a8ce7864"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/champion-vs-old-denial-on.json",
+      "sha256": "703938fff6f0d83845c9bbda824a0a9acf7d8e158dce81a14dca114a15423e2f"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/champion-vs-orchard6.json",
+      "sha256": "8ff7782720885c6affc741090bec6bfdfdf1466ca815a1502e3f27936c567fd2"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/opening-dispatcher-vs-champion.json",
+      "sha256": "83d35c7b2a5a8ac08196d82d5a4f349dff0342051572a5bd8e1b7e5c9903a7a8"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/opening-dispatcher-vs-nn-clone.json",
+      "sha256": "ef9d7d307c1d2f0567e81ece914a1a13d9e6db46db364e83976aa09dec3ab924"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/opening-dispatcher-vs-old-denial-on.json",
+      "sha256": "f7bc86c66c63935c281cafd5d2cc030b89f7499962d0e0aab94e7d190d2c0424"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/opening-dispatcher-vs-orchard6.json",
+      "sha256": "0dcb8449330b26c52f89b2a8ae5b32061623f2b29b18bd83cb955ac3e5deeaec"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/orchard6-vs-champion.json",
+      "sha256": "f5a9a080ab3f138e70799d3491d66e46a8b8647fe378f7df03ef6a725e895431"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v2-vs-champion.json",
+      "sha256": "521e0a0c9992b6b15cb5cc085d1691f44a8569720d93bb0a230f3212bc9adef3"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v2-vs-nn-clone.json",
+      "sha256": "1341e35cf935e1f5cabfb191036d72a88f45b074e732b3982675759e87d5fd45"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v2-vs-old-denial-on.json",
+      "sha256": "b673b5fcfb27f29533c43a22ce4ea95ecf9bf4ceb2eb0f899d9d677b20b5542a"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v2-vs-orchard6.json",
+      "sha256": "97c3a886a811d1337abdf204ea46d4272b3aaa687613c79a7a4a5ced5f7f30a7"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v31-vs-champion.json",
+      "sha256": "0b4a490dc34ba3a178ef15a1d5a44cae2123d522ea329041482f670e03db1eb1"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v31-vs-nn-clone.json",
+      "sha256": "38055338f235782e3547d9b78b5684c3196c21070659f3030fb1d7b5310fc41e"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v31-vs-old-denial-on.json",
+      "sha256": "c4592c23c65aed1b22e9d6f613549dc5243dccfb67c66662c8830c633163850a"
+    },
+    {
+      "path": "claude_1/h2h-panel/results/port-v31-vs-orchard6.json",
+      "sha256": "24ac38fd98eae2126332d569a3652ccd27038ff6a5d0d818c5f03294f0d6235f"
+    }
+  ],
+  "local_paired_arm_sd": 40.20345625425082,
+  "local_pooled_paired_difference_sd": 47.93079340191414,
+  "maps_per_pair": 200,
+  "minimum_n_unrounded": 497,
+  "pair_count": 13,
+  "pairs": [
+    {
+      "arm_sd": 26.049634039348035,
+      "candidate": "claude_1/h2h-panel/results/opening-dispatcher-vs-champion.json",
+      "candidate_mean_margin": -35.815,
+      "control": "claude_1/h2h-panel/results/champion-vs-champion.json",
+      "control_mean_margin": -0.795,
+      "maps": 200,
+      "mean_paired_delta": -35.02,
+      "paired_difference_sd": 26.72077090934971
+    },
+    {
+      "arm_sd": 57.270185779321466,
+      "candidate": "claude_1/h2h-panel/results/opening-dispatcher-vs-nn-clone.json",
+      "candidate_mean_margin": 48.97,
+      "control": "claude_1/h2h-panel/results/champion-vs-nn-clone.json",
+      "control_mean_margin": 53.985,
+      "maps": 200,
+      "mean_paired_delta": -5.015,
+      "paired_difference_sd": 63.5251287674777
+    },
+    {
+      "arm_sd": 32.18815922020025,
+      "candidate": "claude_1/h2h-panel/results/opening-dispatcher-vs-old-denial-on.json",
+      "candidate_mean_margin": -42.06,
+      "control": "claude_1/h2h-panel/results/champion-vs-old-denial-on.json",
+      "control_mean_margin": 0.54,
+      "maps": 200,
+      "mean_paired_delta": -42.6,
+      "paired_difference_sd": 34.029842061839915
+    },
+    {
+      "arm_sd": 37.69921553733348,
+      "candidate": "claude_1/h2h-panel/results/opening-dispatcher-vs-orchard6.json",
+      "candidate_mean_margin": -4.23,
+      "control": "claude_1/h2h-panel/results/champion-vs-orchard6.json",
+      "control_mean_margin": 26.56,
+      "maps": 200,
+      "mean_paired_delta": -30.79,
+      "paired_difference_sd": 40.63411814951746
+    },
+    {
+      "arm_sd": 39.554914003250104,
+      "candidate": "claude_1/h2h-panel/results/port-v2-vs-champion.json",
+      "candidate_mean_margin": -62.06,
+      "control": "claude_1/h2h-panel/results/champion-vs-champion.json",
+      "control_mean_margin": -0.795,
+      "maps": 200,
+      "mean_paired_delta": -61.265,
+      "paired_difference_sd": 35.18886265960271
+    },
+    {
+      "arm_sd": 76.35549520414149,
+      "candidate": "claude_1/h2h-panel/results/port-v2-vs-nn-clone.json",
+      "candidate_mean_margin": -10.24,
+      "control": "claude_1/h2h-panel/results/champion-vs-nn-clone.json",
+      "control_mean_margin": 53.985,
+      "maps": 200,
+      "mean_paired_delta": -64.225,
+      "paired_difference_sd": 75.60532521591998
+    },
+    {
+      "arm_sd": 34.18143897902328,
+      "candidate": "claude_1/h2h-panel/results/port-v2-vs-old-denial-on.json",
+      "candidate_mean_margin": -49.515,
+      "control": "claude_1/h2h-panel/results/champion-vs-old-denial-on.json",
+      "control_mean_margin": 0.54,
+      "maps": 200,
+      "mean_paired_delta": -50.055,
+      "paired_difference_sd": 33.29572044572696
+    },
+    {
+      "arm_sd": 70.78573156528851,
+      "candidate": "claude_1/h2h-panel/results/port-v2-vs-orchard6.json",
+      "candidate_mean_margin": -83.265,
+      "control": "claude_1/h2h-panel/results/champion-vs-orchard6.json",
+      "control_mean_margin": 26.56,
+      "maps": 200,
+      "mean_paired_delta": -109.825,
+      "paired_difference_sd": 57.872623734279124
+    },
+    {
+      "arm_sd": 36.07251086492664,
+      "candidate": "claude_1/h2h-panel/results/port-v31-vs-champion.json",
+      "candidate_mean_margin": -57.115,
+      "control": "claude_1/h2h-panel/results/champion-vs-champion.json",
+      "control_mean_margin": -0.795,
+      "maps": 200,
+      "mean_paired_delta": -56.32,
+      "paired_difference_sd": 31.714929984466274
+    },
+    {
+      "arm_sd": 83.05134591863785,
+      "candidate": "claude_1/h2h-panel/results/port-v31-vs-nn-clone.json",
+      "candidate_mean_margin": -42.88,
+      "control": "claude_1/h2h-panel/results/champion-vs-nn-clone.json",
+      "control_mean_margin": 53.985,
+      "maps": 200,
+      "mean_paired_delta": -96.865,
+      "paired_difference_sd": 77.84998313661897
+    },
+    {
+      "arm_sd": 34.70386860626062,
+      "candidate": "claude_1/h2h-panel/results/port-v31-vs-old-denial-on.json",
+      "candidate_mean_margin": -50.18,
+      "control": "claude_1/h2h-panel/results/champion-vs-old-denial-on.json",
+      "control_mean_margin": 0.54,
+      "maps": 200,
+      "mean_paired_delta": -50.72,
+      "paired_difference_sd": 33.56822498499461
+    },
+    {
+      "arm_sd": 61.51590656612019,
+      "candidate": "claude_1/h2h-panel/results/port-v31-vs-orchard6.json",
+      "candidate_mean_margin": -69.055,
+      "control": "claude_1/h2h-panel/results/champion-vs-orchard6.json",
+      "control_mean_margin": 26.56,
+      "maps": 200,
+      "mean_paired_delta": -95.615,
+      "paired_difference_sd": 41.224069358475056
+    },
+    {
+      "arm_sd": 27.409169202859424,
+      "candidate": "claude_1/h2h-panel/results/orchard6-vs-champion.json",
+      "candidate_mean_margin": -25.525,
+      "control": "claude_1/h2h-panel/results/champion-vs-champion.json",
+      "control_mean_margin": -0.795,
+      "maps": 200,
+      "mean_paired_delta": -24.73,
+      "paired_difference_sd": 33.77351553745618
+    }
+  ],
+  "purpose": "sample-size calibration only; the retired panel is not a generalisation test",
+  "required_formula": "halfwidth = 1.96 * local_paired_arm_sd * sqrt(2 / n_maps)",
+  "rounding_multiple": 16,
+  "schema_version": 1,
+  "seat_choice": "policy_seat=0, matching TestSession's submitted-code player index; the unavailable seat swap is not averaged in",
+  "selected_direct_paired_halfwidth_check": 4.151793157662752,
+  "selected_n_maps": 512,
+  "selected_required_formula_halfwidth": 4.924923391145725,
+  "source_commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+  "source_ref": "origin/main",
+  "target_halfwidth": 5.0,
+  "unit": "official map with candidate/control each at player 0"
+}

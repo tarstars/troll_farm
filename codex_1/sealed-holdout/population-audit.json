@@ -1,0 +1,52 @@
+{
+  "claim_scope": "literal decimal seed tokens in every blob at each current authoritative remote tip; this does not prove the platform never generated an identical map geometry",
+  "created_utc": "2026-09-04T14:18:11Z",
+  "hit_count": 0,
+  "hits": [],
+  "population_size": 100000,
+  "ref_prefix": "refs/remotes/origin",
+  "refs": [
+    {
+      "commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+      "ref": "refs/remotes/origin/HEAD"
+    },
+    {
+      "commit": "53ac77bd95ca43d35d9a90003a23f4f3ac41a761",
+      "ref": "refs/remotes/origin/agent/chatgpt_1"
+    },
+    {
+      "commit": "437e746d0d3b2765470b430a03bd58d7889a6be3",
+      "ref": "refs/remotes/origin/agent/chatgpt_2"
+    },
+    {
+      "commit": "afae09d6096aa3c16503cb72b47e6f80520a7a23",
+      "ref": "refs/remotes/origin/agent/claude_1"
+    },
+    {
+      "commit": "095a74876055394f3b2b70a9558f8583f0ad432e",
+      "ref": "refs/remotes/origin/agent/codex_1"
+    },
+    {
+      "commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+      "ref": "refs/remotes/origin/agent/local_claude_1"
+    },
+    {
+      "commit": "dddef0a6e970af5ff8390d9fb10732bde9d7386c",
+      "ref": "refs/remotes/origin/agent/local_codex_1"
+    },
+    {
+      "commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+      "ref": "refs/remotes/origin/main"
+    },
+    {
+      "commit": "8da821a28db9658062bfb772e2e63b6f47f4868d",
+      "ref": "refs/remotes/origin/rescue/chatgpt1-three-troll-optimized-start-2026-09-03"
+    }
+  ],
+  "schema_version": 1,
+  "seed_start": 4000000000,
+  "seed_stop_exclusive": 4000100000,
+  "uncompressed_blob_bytes_scanned": 668884608,
+  "unique_blobs_scanned": 13461,
+  "verdict": "NO_LITERAL_PRIOR_USE_FOUND"
+}

@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-04T14:20:47Z",
+  "source_ref": "origin/main",
+  "source_commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+  "meaning": "Open development data. Unlimited inspection, diagnostics, threshold choice, and tuning are allowed. Results on these maps do not support a generalisation claim.",
+  "sets": [
+    {
+      "name": "smoke-24",
+      "path": "local_claude_1/third-troll/smoke-maps-seed0.jsonl",
+      "maps": 24,
+      "sha256": "c895cd43f7d99781db0fd8f8c30a7cba5b62d0cbec8f97e425ce2fb87171a060",
+      "git_blob": "c3e4f5c0f3fb941ceedc6a92a00d0365216e867b",
+      "status": "DEVELOPMENT_RETIRED",
+      "reason": "Repeatedly read for smoke checks and build diagnostics."
+    },
+    {
+      "name": "h2h-panel-200",
+      "path": "claude_1/h2h-panel/panel-200-seed1.jsonl",
+      "maps": 200,
+      "sha256": "77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7",
+      "git_blob": "0ef726b220456ddb35a35862ae09e2df2633d695",
+      "status": "DEVELOPMENT_RETIRED",
+      "reason": "Repeatedly used to find defects, compare successors, and choose gates."
+    },
+    {
+      "name": "nn-locked-panel-72",
+      "path": "local_claude_1/nn-bot/locked-panel-seed1.jsonl",
+      "maps": 72,
+      "sha256": "9f286fdf0c53d8100dc3c6e8f572eb7f2b3331ff15730884da82e820bb6b4cb5",
+      "git_blob": "07ab209bbf1ce7aadc46fe45d872ca8df1ac4a0f",
+      "status": "DEVELOPMENT_RETIRED",
+      "reason": "Already consumed by repeated neural-bot gates and analyses."
+    }
+  ],
+  "burned_source_populations": [
+    {
+      "path": "local_claude_1/nn-bot/maps-slice-1000.jsonl",
+      "rows": 999,
+      "sha256": "fc2f998e028dfa6859811da3b7a3448af371aa1ebd871660de363cbdbbdad303",
+      "git_blob": "9bbee2761ed50f2835ae72a4823c55629dc296e9",
+      "rule": "Do not draw a sealed holdout from this repeatedly inspected slice."
+    }
+  ]
+}
