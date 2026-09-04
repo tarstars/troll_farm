@@ -1,0 +1,43 @@
+{
+  "build": {
+    "action_manifest": "chatgpt_1/start-game-optimizer-build/action-manifest.json",
+    "arm": {
+      "lines": 3759,
+      "path": "chatgpt_1/start-game-optimizer-build/champion-start-game-optimizer-v6-instrument.rs",
+      "sha256": "a3f6962ac6e53021229cdf657bb752a81d6f4ebd0a0e678b4fd8bb47f1392992"
+    },
+    "arm_readable_same_token_stream": false,
+    "base": {
+      "arm": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+      "arm_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+      "readable": "readable/denial-off-champion.rs",
+      "readable_sha256": "4ce3d1e85e8962d84c0ecb1a071de46e844d24f7dbe5a31bd6ca0579db552143",
+      "resident": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "resident_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+    },
+    "candidate": "champion plus parameterised PLANT-aware bounded opening optimizer",
+    "compiles": true,
+    "control": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "control_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+    "diff": "readable/diffs/start-game-optimizer.diff",
+    "parameters": "chatgpt_1/start-game-optimizer-build/parameters.json",
+    "provisional_orchard_parameters": true,
+    "readable": {
+      "path": "chatgpt_1/start-game-optimizer-build/start-game-optimizer-readable.rs",
+      "sha256": "225e8a0a37dc4e186e00c34092cfd62b8f292cf4f155ffb9322ad5daa013dae5"
+    },
+    "round_trip_exact": true,
+    "schema": "troll-farm-readable-source-v2",
+    "submission": {
+      "bytes": 77043,
+      "path": "cgauto/submissions/candidate-start-game-optimizer-v6-instrument.rs",
+      "sha256": "38a604ee278160056577fbf2e2642907e03e154b601aafb5bc2be06648b57b4d",
+      "under_100000_utf16": true,
+      "utf16_units": 77043
+    },
+    "task": "20260904-start-game-optimizer-build",
+    "third_training_enabled": false,
+    "verdict": "BUILD_VALIDITY_READY"
+  },
+  "workflow_outcome": "failure"
+}

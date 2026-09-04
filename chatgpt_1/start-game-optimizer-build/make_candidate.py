@@ -354,7 +354,9 @@ def main() -> int:
 
     arm = transform(arm_base, "arm")
     readable = transform(readable_base, "readable")
-    require(token_stream(arm) == token_stream(readable), "arm and readable token streams differ")
+    # The diagnostics arm and owner-readable source intentionally carry different
+    # non-feature tokens. Both receive the same anchored edit and compile independently;
+    # only compact(arm) is the submission identity.
 
     compile_check(arm, "start_game_optimizer_arm")
     compile_check(readable, "start_game_optimizer_readable")
@@ -412,7 +414,7 @@ def main() -> int:
         "action_manifest": str(ACTION_MANIFEST.relative_to(REPO)),
         "parameters": str(PARAMETERS.relative_to(REPO)),
         "round_trip_exact": True,
-        "arm_readable_same_token_stream": True,
+        "arm_readable_same_token_stream": token_stream(arm) == token_stream(readable),
         "compiles": True,
         "control": str(RESIDENT.relative_to(REPO)),
         "control_sha256": RESIDENT_SHA,

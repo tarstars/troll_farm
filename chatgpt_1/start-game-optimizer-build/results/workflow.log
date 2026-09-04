@@ -1,0 +1,91 @@
+generator boundary repaired
+ok test_finite_ledger_caps_rate_fantasy
+ok test_no_plant_is_legal_below_activation
+ok test_parameter_bounds_fit_packed_search
+ok test_species_felling_is_not_uniform
+ok test_water_is_a_scarce_timing_resource
+PASS 5 tests
+{
+  "action_manifest": "chatgpt_1/start-game-optimizer-build/action-manifest.json",
+  "arm": {
+    "lines": 3759,
+    "path": "chatgpt_1/start-game-optimizer-build/champion-start-game-optimizer-v6-instrument.rs",
+    "sha256": "a3f6962ac6e53021229cdf657bb752a81d6f4ebd0a0e678b4fd8bb47f1392992"
+  },
+  "arm_readable_same_token_stream": false,
+  "base": {
+    "arm": "local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs",
+    "arm_sha256": "321723933c2a0cfb6bfcd62c57e0d25b6783ffb8ddcfea37c05b053e2e46cd4f",
+    "readable": "readable/denial-off-champion.rs",
+    "readable_sha256": "4ce3d1e85e8962d84c0ecb1a071de46e844d24f7dbe5a31bd6ca0579db552143",
+    "resident": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+    "resident_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "candidate": "champion plus parameterised PLANT-aware bounded opening optimizer",
+  "compiles": true,
+  "control": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+  "control_sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+  "diff": "readable/diffs/start-game-optimizer.diff",
+  "parameters": "chatgpt_1/start-game-optimizer-build/parameters.json",
+  "provisional_orchard_parameters": true,
+  "readable": {
+    "path": "chatgpt_1/start-game-optimizer-build/start-game-optimizer-readable.rs",
+    "sha256": "225e8a0a37dc4e186e00c34092cfd62b8f292cf4f155ffb9322ad5daa013dae5"
+  },
+  "round_trip_exact": true,
+  "schema": "troll-farm-readable-source-v2",
+  "submission": {
+    "bytes": 77043,
+    "path": "cgauto/submissions/candidate-start-game-optimizer-v6-instrument.rs",
+    "sha256": "38a604ee278160056577fbf2e2642907e03e154b601aafb5bc2be06648b57b4d",
+    "under_100000_utf16": true,
+    "utf16_units": 77043
+  },
+  "task": "20260904-start-game-optimizer-build",
+  "third_training_enabled": false,
+  "verdict": "BUILD_VALIDITY_READY"
+}
+  DIFFERS OSC-001    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-002    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-003    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-004    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-005    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-006    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-007    turns 200  first divergence turn 5  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-008    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-009    turns 200  first divergence turn 23  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-010    turns 200  first divergence turn 1  train arm []  champion [{'turn': 19, 'spec': '1 1 0 1'}]  telemetry errors 0
+  DIFFERS OSC-011    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-012    turns 200  first divergence turn 8  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-013    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-014    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-015    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-016    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-017    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-018    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-019    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-020    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-021    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-022    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-023    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-024    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-025    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-026    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-027    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-028    turns 200  first divergence turn 23  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-029    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  SAME    OSC-030    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  SAME    OSC-031    turns 200  first divergence turn None  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-032    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-033    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+  DIFFERS OSC-034    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+Traceback (most recent call last):
+  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 179, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/runner/work/troll_farm/troll_farm/local_claude_1/third-troll/fixtures_diff.py", line 149, in main
+    "arm": str(ARM.relative_to(REPO)), "arm_sha256": sha(arm_text),
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 682, in relative_to
+    raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+ValueError: 'chatgpt_1/start-game-optimizer-build/champion-start-game-optimizer-v6-instrument.rs' is not in the subpath of '/home/runner/work/troll_farm/troll_farm'

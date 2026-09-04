@@ -1,0 +1,774 @@
+--- readable/denial-off-champion.rs
++++ readable/denial-off-champion.rs (start-game optimizer)
+@@ -518,6 +518,63 @@
+             stats: Stats,
+             estimated_eta: i32,
+         }
++        #[derive(Clone, Copy, Debug)]
++        struct OpeningOptimizerConfig {
++            horizon: i32,
++            max_plants: usize,
++            max_plant_distance: i32,
++            max_candidate_cells: usize,
++            max_plan_depth: usize,
++            max_plan_states: usize,
++            activation_points: f64,
++            opportunity_points_per_turn: f64,
++            raid_before_100: f64,
++            raid_after_100: f64,
++            raid_distance_factor: f64,
++            enable_third: bool,
++            third_latest: i32,
++            third_min_orchard_cells: usize,
++            third_min_net: f64,
++        }
++        impl OpeningOptimizerConfig {
++            // Provisional inputs only. The pending orchard-kinetics read replaces values,
++            // never search structure. Raid rates are per tree-turn (0.19 / 100 and 0.8 / 100).
++            const PROVISIONAL: Self = Self {
++                horizon: 120,
++                max_plants: 8,
++                max_plant_distance: 4,
++                max_candidate_cells: 16,
++                max_plan_depth: 8,
++                max_plan_states: 96,
++                activation_points: 4.0,
++                opportunity_points_per_turn: 0.3,
++                raid_before_100: 0.0019,
++                raid_after_100: 0.008,
++                raid_distance_factor: 0.12,
++                enable_third: false,
++                third_latest: 150,
++                third_min_orchard_cells: 6,
++                third_min_net: 8.0,
++            };
++        }
++        #[derive(Clone, Copy, Debug)]
++        struct OptimizerPlantChoice {
++            kind: PlantKind,
++            cell: Cell,
++            net: f64,
++            plant_finish: i32,
++            completion: i32,
++            distance: i32,
++        }
++        #[derive(Clone, Debug)]
++        struct OptimizerPlanState {
++            turn: i32,
++            value: f64,
++            used: [i32; 4],
++            mask: u64,
++            first: Option<OptimizerPlantChoice>,
++            depth: usize,
++        }
+         pub struct YamoBot {
+             announced: bool,
+             announcement: &'static str,
+@@ -533,6 +590,14 @@
+             idle_harvest: bool,
+             idle_harvest_clock_only: bool,
+             regeneration_commitments: BTreeMap<i32, PlantKind>,
++            // Start-game optimizer state. Targets are in-flight PICK->PLANT macros;
++            // cells are trees observed after a successful PLANT.
++            optimizer_targets: BTreeMap<i32, (PlantKind, Cell)>,
++            optimizer_cells: BTreeSet<Cell>,
++            optimizer_handed_back: bool,
++            optimizer_searches: u32,
++            optimizer_plant_offers: u32,
++            optimizer_third_offers: u32,
+             opponent_eta_penalty: i32,
+         }
+         #[derive(Clone, Copy)]
+@@ -945,25 +1010,25 @@
+                         .unwrap();
+                     return vec![best.command.clone()];
+                 }
+-                if ids.len() == 2 {
++                let lists: Vec<&Vec<Candidate>> =
++                    ids.iter().map(|id| &candidates_by_id[id]).collect();
++                let combinations = lists
++                    .iter()
++                    .fold(1usize, |count, list| count.saturating_mul(list.len()));
++                if combinations <= Self::OPTIMIZER_JOINT_LIMIT {
+                     let mut best_score = f64::NEG_INFINITY;
+-                    let mut best_pair = None;
+-                    for a in &candidates_by_id[&ids[0]] {
+-                        for b in &candidates_by_id[&ids[1]] {
+-                            if !Self::compatible(a.target, b.target)
+-                                || !Self::stock_compatible(a, b, inventory)
+-                            {
+-                                continue;
+-                            }
+-                            let score = a.score + b.score;
+-                            if score > best_score {
+-                                best_score = score;
+-                                best_pair = Some((a.command.clone(), b.command.clone()));
+-                            }
+-                        }
+-                    }
+-                    if let Some((a, b)) = best_pair {
+-                        return vec![a, b];
++                    let mut best_set = None;
++                    let mut chosen = Vec::new();
++                    Self::optimizer_select_joint(
++                        &lists,
++                        inventory,
++                        &mut chosen,
++                        0.0,
++                        &mut best_score,
++                        &mut best_set,
++                    );
++                    if let Some(commands) = best_set {
++                        return commands;
+                     }
+                 }
+                 let mut used_targets = Vec::new();
+@@ -990,6 +1055,55 @@
+                     commands.push(best.command);
+                 }
+                 commands
++            }
++            // Joint candidate choice for every own troll. The previous champion searched a
++            // pair exactly and degraded to an id-order greedy pass for three or more trolls.
++            // The bounded recursion preserves the exact pair behaviour and supports an optional
++            // optimizer-created third troll without duplicate targets or overdrawn PICK stock.
++            const OPTIMIZER_JOINT_LIMIT: usize = 400_000;
++            fn optimizer_select_joint<'a>(
++                lists: &[&'a Vec<Candidate>],
++                inventory: &[i32; 6],
++                chosen: &mut Vec<&'a Candidate>,
++                sum: f64,
++                best_score: &mut f64,
++                best_set: &mut Option<Vec<String>>,
++            ) {
++                let depth = chosen.len();
++                if depth == lists.len() {
++                    if sum > *best_score {
++                        *best_score = sum;
++                        *best_set = Some(chosen.iter().map(|candidate| candidate.command.clone()).collect());
++                    }
++                    return;
++                }
++                for candidate in lists[depth] {
++                    if !chosen
++                        .iter()
++                        .all(|earlier| Self::compatible(earlier.target, candidate.target))
++                    {
++                        continue;
++                    }
++                    if let Some(item) = Self::picked_item(&candidate.command) {
++                        let already = chosen
++                            .iter()
++                            .filter(|earlier| Self::picked_item(&earlier.command) == Some(item))
++                            .count() as i32;
++                        if inventory[item] <= already {
++                            continue;
++                        }
++                    }
++                    chosen.push(candidate);
++                    Self::optimizer_select_joint(
++                        lists,
++                        inventory,
++                        chosen,
++                        sum + candidate.score,
++                        best_score,
++                        best_set,
++                    );
++                    chosen.pop();
++                }
+             }
+             fn move_command(command: &str) -> Option<(i32, Cell)> {
+                 let fields: Vec<&str> = command.split_whitespace().collect();
+@@ -1124,6 +1238,12 @@
+                     idle_harvest: false,
+                     idle_harvest_clock_only: false,
+                     regeneration_commitments: BTreeMap::new(),
++                    optimizer_targets: BTreeMap::new(),
++                    optimizer_cells: BTreeSet::new(),
++                    optimizer_handed_back: false,
++                    optimizer_searches: 0,
++                    optimizer_plant_offers: 0,
++                    optimizer_third_offers: 0,
+                     opponent_eta_penalty: 0,
+                 }
+             }
+@@ -2054,6 +2174,508 @@
+                     })
+                     .collect()
+             }
++            // --------------------------------------------------------------------------
++            // Start-game final-value optimizer (owner, 2026-09-04).
++            //
++            // A bounded event search compares an orchard plan with the unchanged champion.
++            // PLANT is a searched action: species, cell, worker and time are valued from a
++            // finite tree ledger.  The plan may choose NO_PLANT and NO_TRAIN.  All numbers
++            // live in one configuration record so the orchard-kinetics read can refit them
++            // without changing the search architecture.
++            // --------------------------------------------------------------------------
++            fn optimizer_config() -> OpeningOptimizerConfig {
++                OpeningOptimizerConfig::PROVISIONAL
++            }
++
++            fn optimizer_doors(view: &GameState) -> Vec<Cell> {
++                ortho_neighbors(view.shacks[0])
++                    .into_iter()
++                    .filter(|cell| view.walkable.contains(cell))
++                    .collect()
++            }
++
++            fn optimizer_kind_slot(kind: PlantKind) -> usize {
++                match kind {
++                    PlantKind::Plum => 0,
++                    PlantKind::Lemon => 1,
++                    PlantKind::Apple => 2,
++                    PlantKind::Banana => 3,
++                }
++            }
++
++            fn optimizer_growth_turns(view: &GameState, kind: PlantKind, cell: Cell) -> i32 {
++                let wet = view.water.iter().any(|water| is_adjacent(*water, cell));
++                3 * effective_cooldown(kind, wet).max(1)
++            }
++
++            fn optimizer_raid_survival(
++                config: OpeningOptimizerConfig,
++                plant_turn: i32,
++                fell_turn: i32,
++                distance: i32,
++            ) -> f64 {
++                let before = (fell_turn.min(100) - plant_turn.min(100)).max(0) as f64;
++                let after = (fell_turn - plant_turn.max(100)).max(0) as f64;
++                let exposure = before * config.raid_before_100
++                    + after * config.raid_after_100;
++                (-exposure * (1.0 + config.raid_distance_factor * distance.max(0) as f64)).exp()
++            }
++
++            fn optimizer_seed_shadow(kind: PlantKind) -> f64 {
++                match kind {
++                    PlantKind::Banana => 1.0,
++                    PlantKind::Plum | PlantKind::Lemon | PlantKind::Apple => 2.0,
++                }
++            }
++
++            fn optimizer_available_seeds(&self, view: &GameState) -> [i32; 4] {
++                let mut stock = [
++                    view.inventories[0][PLUM],
++                    view.inventories[0][LEMON],
++                    view.inventories[0][APPLE],
++                    view.inventories[0][BANANA],
++                ];
++                for (kind, _) in self.optimizer_targets.values() {
++                    stock[Self::optimizer_kind_slot(*kind)] -= 1;
++                }
++                // Before the second troll exists, the three training fruits are reserved.
++                // Bananas do not pay any training bill and remain available immediately.
++                if view.units.iter().filter(|unit| unit.player == 0).count() < 2 {
++                    stock[0] = 0;
++                    stock[1] = 0;
++                    stock[2] = 0;
++                }
++                for value in &mut stock {
++                    *value = (*value).max(0);
++                }
++                stock
++            }
++
++            fn optimizer_candidate_cells(
++                &self,
++                view: &GameState,
++                unit: &Unit,
++            ) -> Vec<(Cell, i32, i32)> {
++                let config = Self::optimizer_config();
++                let doors = Self::optimizer_doors(view);
++                let home = bfs_distances(&view.walkable, &doors);
++                let from = bfs_distances(&view.walkable, &[unit.cell]);
++                let reserved: BTreeSet<Cell> = self
++                    .optimizer_targets
++                    .values()
++                    .map(|(_, cell)| *cell)
++                    .chain(self.optimizer_cells.iter().copied())
++                    .collect();
++                let mut cells: Vec<(Cell, i32, i32)> = view
++                    .walkable
++                    .iter()
++                    .filter_map(|cell| {
++                        let h = home.get(cell).copied()?;
++                        let u = from.get(cell).copied()?;
++                        if h <= 0
++                            || h > config.max_plant_distance
++                            || *cell == view.shacks[0]
++                            || view.plant_at(*cell).is_some()
++                            || reserved.contains(cell)
++                            || view.units.iter().any(|other| {
++                                other.player == 0 && other.id != unit.id && other.cell == *cell
++                            })
++                        {
++                            return None;
++                        }
++                        Some((*cell, h, u))
++                    })
++                    .collect();
++                // Water-side cells are scarce. Keep them before equally distant dry cells;
++                // deterministic cell order makes the planner reproducible.
++                cells.sort_by_key(|(cell, home_distance, from_distance)| {
++                    let wet = view.water.iter().any(|water| is_adjacent(*water, *cell));
++                    (*home_distance, !wet, *from_distance, *cell)
++                });
++                cells.truncate(config.max_candidate_cells);
++                cells
++            }
++
++            fn optimizer_plant_choice(
++                &self,
++                view: &GameState,
++                unit: &Unit,
++                kind: PlantKind,
++                cell: Cell,
++                distance_from_unit: i32,
++                distance_home: i32,
++                start_turn: i32,
++            ) -> Option<OptimizerPlantChoice> {
++                let config = Self::optimizer_config();
++                let speed = unit.stats.movement_speed.max(1);
++                let plant_travel = MoisanBot::ceil_div(distance_from_unit, speed);
++                let plant_finish = start_turn + 1 + plant_travel + 1
++                    + MoisanBot::ceil_div(distance_home, speed);
++                let growth = Self::optimizer_growth_turns(view, kind, cell);
++                let own_chop = view
++                    .units
++                    .iter()
++                    .filter(|worker| worker.player == 0)
++                    .map(|worker| worker.stats.chop_power)
++                    .max()
++                    .unwrap_or(1)
++                    .max(1);
++                let own_speed = view
++                    .units
++                    .iter()
++                    .filter(|worker| worker.player == 0)
++                    .map(|worker| worker.stats.movement_speed)
++                    .max()
++                    .unwrap_or(1)
++                    .max(1);
++                let fell = MoisanBot::ceil_div(tree_health(kind, 4), own_chop);
++                let felling_travel = MoisanBot::ceil_div(distance_home, own_speed);
++                let fell_start = plant_finish + growth + felling_travel;
++                let completion = fell_start + fell + felling_travel + 1;
++                if completion > TOTAL_TURNS {
++                    return None;
++                }
++                let survival = Self::optimizer_raid_survival(
++                    config,
++                    start_turn,
++                    fell_start + fell,
++                    distance_home,
++                );
++                let worker_turns = 1
++                    + plant_travel
++                    + 1
++                    + MoisanBot::ceil_div(distance_home, speed)
++                    + 2 * felling_travel
++                    + fell
++                    + 1;
++                let gross = 16.0 * survival;
++                let net = gross
++                    - Self::optimizer_seed_shadow(kind)
++                    - config.opportunity_points_per_turn * worker_turns as f64;
++                Some(OptimizerPlantChoice {
++                    kind,
++                    cell,
++                    net,
++                    plant_finish,
++                    completion,
++                    distance: distance_home,
++                })
++            }
++
++            // Bounded best-first dynamic programme over future plant events. A state jumps
++            // from one completed PICK->PLANT->return macro to the next. The terminal tree
++            // value is released only at its exact growth/fell/bank completion.
++            fn optimizer_best_plant_plan(
++                &mut self,
++                view: &GameState,
++                unit: &Unit,
++            ) -> Option<(OptimizerPlantChoice, f64)> {
++                let config = Self::optimizer_config();
++                let remaining = config
++                    .max_plants
++                    .saturating_sub(self.optimizer_cells.len() + self.optimizer_targets.len());
++                if remaining == 0 {
++                    return None;
++                }
++                let cells = self.optimizer_candidate_cells(view, unit);
++                if cells.is_empty() {
++                    return None;
++                }
++                let available = self.optimizer_available_seeds(view);
++                let kinds = [
++                    PlantKind::Banana,
++                    PlantKind::Plum,
++                    PlantKind::Lemon,
++                    PlantKind::Apple,
++                ];
++                let mut states = vec![OptimizerPlanState {
++                    turn: view.turn,
++                    value: 0.0,
++                    used: [0; 4],
++                    mask: 0,
++                    first: None,
++                    depth: 0,
++                }];
++                let mut best = states[0].clone();
++                for _ in 0..remaining.min(config.max_plan_depth) {
++                    let mut next = Vec::new();
++                    for state in &states {
++                        for (cell_index, (cell, home_distance, from_distance)) in
++                            cells.iter().enumerate()
++                        {
++                            if state.mask & (1u64 << cell_index) != 0 {
++                                continue;
++                            }
++                            for kind in kinds {
++                                let slot = Self::optimizer_kind_slot(kind);
++                                if state.used[slot] >= available[slot] {
++                                    continue;
++                                }
++                                let Some(choice) = self.optimizer_plant_choice(
++                                    view,
++                                    unit,
++                                    kind,
++                                    *cell,
++                                    if state.depth == 0 { *from_distance } else { *home_distance },
++                                    *home_distance,
++                                    state.turn,
++                                ) else {
++                                    continue;
++                                };
++                                if choice.net <= 0.0 {
++                                    continue;
++                                }
++                                let mut candidate = state.clone();
++                                candidate.turn = choice.plant_finish;
++                                candidate.value += choice.net;
++                                candidate.used[slot] += 1;
++                                candidate.mask |= 1u64 << cell_index;
++                                candidate.depth += 1;
++                                if candidate.first.is_none() {
++                                    candidate.first = Some(choice);
++                                }
++                                if candidate.value > best.value {
++                                    best = candidate.clone();
++                                }
++                                next.push(candidate);
++                            }
++                        }
++                    }
++                    if next.is_empty() {
++                        break;
++                    }
++                    next.sort_by(|left, right| {
++                        right
++                            .value
++                            .total_cmp(&left.value)
++                            .then_with(|| left.turn.cmp(&right.turn))
++                            .then_with(|| left.mask.cmp(&right.mask))
++                    });
++                    next.dedup_by(|a, b| {
++                        a.turn == b.turn && a.used == b.used && a.mask == b.mask
++                    });
++                    next.truncate(config.max_plan_states);
++                    states = next;
++                }
++                self.optimizer_searches = self.optimizer_searches.saturating_add(1);
++                let first = best.first?;
++                (best.value >= config.activation_points).then_some((first, best.value))
++            }
++
++            fn optimizer_planter(view: &GameState) -> Option<i32> {
++                view.units
++                    .iter()
++                    .filter(|unit| unit.player == 0)
++                    .min_by_key(|unit| {
++                        (
++                            !is_adjacent(unit.cell, view.shacks[0]),
++                            unit.total_carried() > 0,
++                            unit.id,
++                        )
++                    })
++                    .map(|unit| unit.id)
++            }
++
++            fn optimizer_reconcile(&mut self, view: &GameState) {
++                self.optimizer_cells.retain(|cell| {
++                    view.plant_at(*cell).is_some_and(|index| view.plants[index].health > 0)
++                });
++                let mut finished = Vec::new();
++                let mut abandoned = Vec::new();
++                for (unit_id, (kind, cell)) in &self.optimizer_targets {
++                    if view.plant_at(*cell).is_some_and(|index| {
++                        view.plants[index].kind == *kind && view.plants[index].health > 0
++                    }) {
++                        self.optimizer_cells.insert(*cell);
++                        finished.push(*unit_id);
++                        continue;
++                    }
++                    let carries = view
++                        .unit(*unit_id)
++                        .is_some_and(|unit| unit.carry[kind.item_index()] > 0);
++                    if view.plant_at(*cell).is_some() && !carries {
++                        abandoned.push(*unit_id);
++                    }
++                }
++                for unit_id in finished.into_iter().chain(abandoned) {
++                    self.optimizer_targets.remove(&unit_id);
++                }
++                if view.turn > Self::optimizer_config().horizon {
++                    self.optimizer_handed_back = true;
++                    self.optimizer_targets.clear();
++                }
++            }
++
++            fn optimizer_retarget(
++                &self,
++                view: &GameState,
++                unit: &Unit,
++                kind: PlantKind,
++            ) -> Option<Cell> {
++                self.optimizer_candidate_cells(view, unit)
++                    .into_iter()
++                    .filter_map(|(cell, home, from)| {
++                        self.optimizer_plant_choice(view, unit, kind, cell, from, home, view.turn)
++                            .map(|choice| (choice.net, choice.distance, cell))
++                    })
++                    .filter(|(net, _, _)| *net > 0.0)
++                    .max_by(|a, b| {
++                        a.0.total_cmp(&b.0)
++                            .then_with(|| b.1.cmp(&a.1))
++                            .then_with(|| b.2.cmp(&a.2))
++                    })
++                    .map(|(_, _, cell)| cell)
++            }
++
++            // Some(...) means the optimizer owns this troll's candidate list. A committed
++            // seed is hard-owned until PLANT or a safe bank fallback. A new plan contributes
++            // a high-valued PICK but still passes through the ordinary joint selector.
++            fn optimizer_candidates(
++                &mut self,
++                view: &GameState,
++                unit: &Unit,
++                any_train: bool,
++            ) -> Option<Vec<Candidate>> {
++                let config = Self::optimizer_config();
++                if let Some((kind, mut cell)) = self.optimizer_targets.get(&unit.id).copied() {
++                    if unit.carry[kind.item_index()] > 0 {
++                        if view.plant_at(cell).is_some() {
++                            let Some(new_cell) = self.optimizer_retarget(view, unit, kind) else {
++                                self.optimizer_targets.remove(&unit.id);
++                                return Some(Self::bank_candidates(view, unit));
++                            };
++                            cell = new_cell;
++                            self.optimizer_targets.insert(unit.id, (kind, cell));
++                        }
++                        let command = if unit.cell == cell {
++                            format!("PLANT {} {}", unit.id, kind.as_str())
++                        } else {
++                            format!("MOVE {} {} {}", unit.id, cell.0, cell.1)
++                        };
++                        return Some(vec![
++                            Candidate {
++                                command,
++                                score: 50_000.0,
++                                target: Target::Cell(cell),
++                            },
++                            MoisanBot::wait(),
++                        ]);
++                    }
++                    if !any_train
++                        && is_adjacent(unit.cell, view.shacks[0])
++                        && unit.total_carried() == 0
++                        && view.inventories[0][kind.item_index()] > 0
++                    {
++                        return Some(vec![Candidate {
++                            command: format!("PICK {} {}", unit.id, kind.as_str()),
++                            score: 50_000.0,
++                            target: Target::Cell(unit.cell),
++                        }]);
++                    }
++                    self.optimizer_targets.remove(&unit.id);
++                }
++
++                if self.optimizer_handed_back
++                    || view.turn > config.horizon
++                    || any_train
++                    || Self::optimizer_planter(view) != Some(unit.id)
++                    || unit.total_carried() != 0
++                    || !is_adjacent(unit.cell, view.shacks[0])
++                {
++                    return None;
++                }
++                let (choice, plan_value) = self.optimizer_best_plant_plan(view, unit)?;
++                self.optimizer_targets
++                    .insert(unit.id, (choice.kind, choice.cell));
++                self.optimizer_plant_offers = self.optimizer_plant_offers.saturating_add(1);
++                Some(vec![Candidate {
++                    command: format!("PICK {} {}", unit.id, choice.kind.as_str()),
++                    score: 8_500.0 + plan_value.min(20.0) * 10.0,
++                    target: Target::Cell(unit.cell),
++                }])
++            }
++
++            fn optimizer_filter_young_orchard(
++                &self,
++                view: &GameState,
++                candidates: &mut Vec<Candidate>,
++            ) {
++                candidates.retain(|candidate| {
++                    let Target::Tree(cell) = candidate.target else {
++                        return true;
++                    };
++                    if !self.optimizer_cells.contains(&cell) {
++                        return true;
++                    }
++                    !view.plant_at(cell).is_some_and(|index| {
++                        view.plants[index].health > 0 && view.plants[index].size < 4
++                    })
++                });
++                if candidates.is_empty() {
++                    candidates.push(MoisanBot::wait());
++                }
++            }
++
++            // The roster branch is deliberately opportunistic in the provisional build:
++            // it never funds a bill. It searches legal tuples only when the bank already
++            // pays them and enough explicit orchard mass exists. The orchard read may turn
++            // this parameter on; NO_TRAIN remains the default incumbent.
++            fn optimizer_train_choice(&mut self, view: &GameState) -> Option<Stats> {
++                let config = Self::optimizer_config();
++                if !config.enable_third
++                    || view.turn > config.third_latest
++                    || view.units.iter().filter(|unit| unit.player == 0).count() != 2
++                    || self.optimizer_cells.len() < config.third_min_orchard_cells
++                {
++                    return None;
++                }
++                let wood_units: i32 = self
++                    .optimizer_cells
++                    .iter()
++                    .filter_map(|cell| view.plant_at(*cell).map(|index| view.plants[index].size.max(0)))
++                    .sum();
++                let mut best: Option<(f64, Stats)> = None;
++                for movement_speed in 1..=3 {
++                    for carry_capacity in 1..=3 {
++                        for harvest_power in 0..=2 {
++                            for chop_power in 1..=3 {
++                                let stats = Stats {
++                                    movement_speed,
++                                    carry_capacity,
++                                    harvest_power,
++                                    chop_power,
++                                };
++                                let bill = training_cost(2, stats.tuple());
++                                let affordable = [PLUM, LEMON, APPLE]
++                                    .into_iter()
++                                    .all(|item| view.inventories[0][item] >= bill[item])
++                                    && (view.iron.is_empty()
++                                        || view.inventories[0][IRON] >= bill[IRON]);
++                                if !affordable {
++                                    continue;
++                                }
++                                let bill_points = (bill[PLUM] + bill[LEMON] + bill[APPLE]) as f64;
++                                let capacity = ((TOTAL_TURNS - view.turn).max(0) * chop_power
++                                    / (tree_health(PlantKind::Banana, 4) + 4))
++                                    .max(0);
++                                let convertible = wood_units.min(capacity) as f64;
++                                let net = 4.0 * convertible - bill_points;
++                                if net < config.third_min_net {
++                                    continue;
++                                }
++                                if best.as_ref().map_or(true, |(old, _)| net > *old) {
++                                    best = Some((net, stats));
++                                }
++                            }
++                        }
++                    }
++                }
++                if best.is_some() {
++                    self.optimizer_third_offers = self.optimizer_third_offers.saturating_add(1);
++                }
++                best.map(|(_, stats)| stats)
++            }
++
+             fn endgame(view: &GameState) -> bool {
+                 view.turn > 250
+                     || (view.plants.len() <= 4
+@@ -2063,6 +2685,7 @@
+         impl Bot for YamoBot {
+             fn commands(&mut self, view: &GameState) -> Vec<String> {
+                 self.reconcile_regeneration_commitments(view);
++                self.optimizer_reconcile(view);
+                 self.ensure_opening(view);
+                 self.enforce_training_deadline(view);
+                 let desired = self
+@@ -2070,24 +2693,27 @@
+                     .map(|objective| objective.stats)
+                     .unwrap_or_else(Self::fallback_second_troll);
+                 let train_now = !self.opening_abandoned && MoisanBot::can_train(view, desired);
++                let optimizer_train = if train_now { None } else { self.optimizer_train_choice(view) };
++                let any_train = train_now || optimizer_train.is_some();
++                let train_stats = optimizer_train.unwrap_or(desired);
+                 let mut out = Vec::new();
+                 if !self.announced {
+                     self.announced = true;
+                     out.push(format!("MSG {}", self.announcement));
+                 }
+-                if train_now {
++                if any_train {
+                     out.push(format!(
+                         "TRAIN {} {} {} {}",
+-                        desired.movement_speed,
+-                        desired.carry_capacity,
+-                        desired.harvest_power,
+-                        desired.chop_power
++                        train_stats.movement_speed,
++                        train_stats.carry_capacity,
++                        train_stats.harvest_power,
++                        train_stats.chop_power
+                     ));
+                 }
+                 let mut my_units: Vec<&Unit> =
+                     view.units.iter().filter(|unit| unit.player == 0).collect();
+                 my_units.sort_by_key(|unit| unit.id);
+-                let early = !self.opening_abandoned && my_units.len() < 2 && !train_now;
++                let early = !self.opening_abandoned && my_units.len() < 2 && !any_train;
+                 let endgame = Self::endgame(view);
+                 let mut by_id = BTreeMap::new();
+                 for unit in my_units {
+@@ -2142,10 +2768,10 @@
+                     {
+                         candidates.extend(Self::idle_harvest_candidates(view, unit));
+                     }
+-                    if self.persistent_regeneration && train_now {
++                    if self.persistent_regeneration && any_train {
+                         candidates.retain(|candidate| !candidate.command.starts_with("PICK "));
+                     }
+-                    if train_now
++                    if any_train
+                         && unit.cell == view.shacks[0]
+                         && !candidates
+                             .iter()
+@@ -2160,6 +2786,15 @@
+                                 score: 6_500.0,
+                                 target: Target::Cell(cell),
+                             });
++                        }
++                    }
++                    self.optimizer_filter_young_orchard(view, &mut candidates);
++                    let optimizer_was_committed = self.optimizer_targets.contains_key(&unit.id);
++                    if let Some(optimizer) = self.optimizer_candidates(view, unit, any_train) {
++                        if optimizer_was_committed {
++                            candidates = optimizer;
++                        } else {
++                            candidates.extend(optimizer);
+                         }
+                     }
+                     by_id.insert(unit.id, candidates);
