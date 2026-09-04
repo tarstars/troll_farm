@@ -1,0 +1,13 @@
+ok test_fragments
+ok test_rewrite_preserves_non_overridden_and_train
+ok test_reserved_target_suppresses_other_worker
+ok test_bootstrap_zero
+ok test_policy_manifest_requires_no_plant
+PASS 5 tests
+{
+  "error": "'local_claude_1/denial-ablation/champion-denial-off-v6-instrument.rs' is not in the subpath of '/home/runner/work/troll_farm/troll_farm'",
+  "error_type": "ValueError",
+  "schema": "champion-prefix-orchard-v1",
+  "task": "20260904-champion-prefix-orchard",
+  "verdict": "EXECUTION_ERROR"
+}
