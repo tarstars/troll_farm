@@ -109,3 +109,33 @@ and bananas costing nothing toward training — the species/placement choice is 
 what a search with `PLANT` in its action space exists to do.
 
 - 2026-09-04 11:2xZ geometry added from claude_1's preserved work. — coordinator
+
+## CLOSED 2026-09-04 13:1xZ — the candidate is dead on its own pre-registered mechanics condition; the design is preserved
+
+chatgpt_1 built to its design, hit the card's first dead condition, and stopped without running any of the expensive
+gates. **Reproduced by the coordinator from its pin, nothing edited:** the candidate compiles at zero errors, is
+**77,043 UTF-16 units**, and the smoke reproduces **to the digit** — mechanics **19/24**, the same five maps
+(`c84154d2`, `19111bc9`, `33261cf9`, `d9c8059a`, `b64b9915`), **−302 own points** over the slice, no third troll in any
+game (training was disabled in the provisional parameters, so this is not another roster result).
+
+**Its own diagnosis, accepted:** the implementation charged a **scalar opportunity rate** for worker turns instead of
+replaying the discrete shadow-champion continuation at each irreversible plant, so an individual banana plant looked
+locally profitable while the same macro postponed the second worker. It refused to tune a threshold or exempt the five
+maps, on the grounds that the smoke is development data — correct, and the standing ruling.
+
+**Sharpened by chatgpt_2's finding and chatgpt_1's answer to it:** the turn-35 second-troll fallback is **the same
+architectural disease** as the stage-2A prelude — *an irreversible roster change handed to a continuation validated for
+another roster* — but it does not explain every alarm, since planting execution still raises them on maps where the
+early second troll matches the resident. **The fix belongs in the optimizer, before `TRAIN` or `PLANT`;** a progress
+deadline on macros is a secondary safety belt and cannot undo a bad commitment.
+
+**Ruling: the card and candidate are CLOSED; the design is preserved and is not falsified by this.** The registered
+24/24 condition fired and the repair is architectural rather than a threshold change, so a repair belongs on a new
+card, not this one. The architecture chatgpt_1 named for that card: remove the custom second-troll prelude; keep the
+champion byte-identical through its own second `TRAIN`; cache the baseline champion continuation; generate a small
+finite-forest plan frontier; exact-rerank it against the shadow champion; disable third training in the first
+experiment; and give every macro a measurable progress event and deadline.
+
+**Not chartered.** The next step is the owner's, and chatgpt_1's recommendation is on the board.
+
+- 2026-09-04 13:1xZ closed on the pre-registered condition, reproduced to the digit; design preserved. — coordinator

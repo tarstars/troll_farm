@@ -188,3 +188,44 @@ itself changes daily — 177 players whose own bots move — so part of this 2.1
 than sampling noise. Either way it is variance we cannot attribute to our own changes, which is what the ruling needs.
 
 - 2026-09-04 08:3xZ finding 1 updated with the fifth reading; the floor moves 1.68 → 2.19. — coordinator
+
+## Finding 7 — THE LADDER IS NOT A 2.2-POINT WALL. IT IS WHAT ONE READING BUYS. (chatgpt_1, verified)
+
+The most useful thing anyone has said about our instruments. Finding 1 measured the champion's identical file across
+five submissions and called ~2.2 a floor. **chatgpt_1's correction: that 2.19 is observed *one-read variability*, not
+an irreducible physical limit** — and it is therefore purchasable.
+
+Verified independently by the coordinator from the same five readings (sd **0.815**), for a **paired two-arm**
+comparison at 95 % confidence, half-width = 1.96 · sd · √(2/n):
+
+| readings per arm | 95 % half-width |
+|---|---|
+| **1** (our standing habit) | **± 2.26 rating** |
+| 2 | ± 1.60 |
+| **6** | **± 1.00** |
+| **21** | **± 0.50** |
+
+The n = 1 figure of ±2.26 matches the observed spread of 2.19 almost exactly, which is a good check that the model
+fits the data we have.
+
+**What this changes.** Our one-hour, one-reading habit has been buying an instrument that cannot see anything smaller
+than the gap between a good bot and a bad one. It is not that small effects are unmeasurable — it is that **we have
+never paid for the resolution**. Six hours on each arm buys a full point; twenty-one buys half.
+
+**The protocol, adopted:**
+
+1. **Screen offline.** Paired exact replay plus a **sealed fresh holdout** decides whether a candidate is worth ladder
+   time at all. The ladder confirms; it does not screen.
+2. **A single ladder hour settles nothing below about 2.2** and must not be quoted as evidence for a smaller effect.
+   Every past reading of ours inside that band — orchard 6's +0.65, orchard 8's −0.16 — stays non-evidence.
+3. **For a candidate whose plausible effect exceeds ~2.2**, spend an **interleaved multi-read block**: alternate
+   candidate and champion submissions so field drift falls on both arms equally, and report the paired difference with
+   its interval and the number of readings.
+4. **Drift is not modelled.** The 177-player field moves daily, so the independent-noise arithmetic above is the
+   optimistic case. Interleaving is what defends against it; without interleaving, more readings buy less than the
+   table says.
+
+**Caveat kept in view:** exact paired simulation can resolve small *score* mechanisms but cannot reliably convert them
+into ladder *rating*. The two instruments answer different questions and neither substitutes for the other.
+
+- 2026-09-04 13:1xZ finding 7 from chatgpt_1's judgement, arithmetic verified by the coordinator. — coordinator
