@@ -1,6 +1,6 @@
 # Champion-prefix orchard experiment
 
-**Verdict: `EXECUTION_ERROR`**
+**Verdict: `DEAD_ON_NORMAL_PAIRED_REPLAY`**
 
 The unchanged champion was the executable in both worlds. The candidate
 forwarded its stdout byte-for-byte through the champion's own second
@@ -9,17 +9,17 @@ training was disabled and `NO_PLANT` was always legal.
 
 ## Registered gates
 
-- Prefix byte-identical: **None**
-- Second TRAIN unchanged: **None**
-- Baseline mechanics clean: **None**
-- Globally valid policies: ``
+- Prefix byte-identical: **True**
+- Second TRAIN unchanged: **True**
+- Baseline mechanics clean: **True**
+- Globally valid policies: `NO_PLANT, BANANA-s55-k4-d4, BANANA-s70-k4-d4`
 
 ## Primary result: leave-one-map-out policy choice
 
-- paired final margin: mean **None**, 95% bootstrap interval **[None, None]**, n=None;
-- paired own score: mean **None**, 95% bootstrap interval **[None, None]**, n=None;
-- `NO_PLANT` was the per-map oracle choice on **None/None** maps;
-- in-sample global policy: `None`.
+- paired final margin: mean **0.0**, 95% bootstrap interval **[0.0, 0.0]**, n=24;
+- paired own score: mean **0.0**, 95% bootstrap interval **[0.0, 0.0]**, n=24;
+- `NO_PLANT` was the per-map oracle choice on **19/24** maps;
+- in-sample global policy: `NO_PLANT`.
 
 The leave-one-map-out number, rather than the per-map oracle upper bound,
 is the primary mechanism estimate. All maps are still development data.
@@ -27,8 +27,24 @@ is the primary mechanism estimate. All maps are still development data.
 ## Wood calibration
 
 ```json
-null
+{
+  "aggregate_overstatement": null,
+  "p90_overstatement": null,
+  "predicted_but_zero_realized_games": 0,
+  "predicted_games": 0,
+  "predicted_total": 0.0,
+  "realized_total": 0
+}
 ```
+
+## Why execution stopped
+
+- paired final-margin lower 95% bound is not above zero
+- NO_PLANT is the per-map oracle choice on most maps
+
+The card requires an immediate stop on any of these conditions, so no
+high-raid rerun, panel, holdout, ladder, platform, Arena or cluster work
+followed.
 
 ## Reproduction
 
