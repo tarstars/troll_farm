@@ -1,203 +1,191 @@
 {
- "schema_version": 2,
- "entries": [
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T153000Z-20260802-banana-restoration-r2-implementation-handoff.md",
-   "reason": "v2 handoff whose artifact_ref is the task branch agent/chatgpt_1-banana-solve rather than the sender's canonical branch. Canonical republication was required on 2026-08-06 and never delivered, and the task branch was absorbed into main and deleted in the 2026-08-07 branch consolidation, so the handoff can never validate. Rejected on transport, not on substance.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "b2e0ee05c6c45f4804a913c15fad2bad1855645f"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T170000Z-20260802-banana-restoration-r2-repro-answer.md",
-   "reason": "unknown v2 message kind 'answer'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (the honest 22/240 reproduction and the m012 candidate/parent byte-identity claim) is preserved as contributor input and is preserved in canonical review artifacts.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "469f8885a59639b7772cd397d0668ac373477eff"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T171000Z-20260802-banana-restoration-r2-attribution-finding.md",
-   "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (20/22 raw blocks inherited from the parent) is preserved in canonical review artifacts.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "901c2371afb1e64eab472fee05e12c3e4a9e6e70"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T171500Z-20260802-banana-restoration-r2-terminal-d7-note.md",
-   "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid. Its terminal-D7 post-C_T referee-state rule is carried forward as open work under 20260807-detector-semantics-repair, so quarantining the message loses no content.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "dcc035c459b351c61cd87c91671123c0be545245"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T183000Z-20260802-banana-restoration-r2-zero-oscillation-review-request.md",
-   "reason": "v2 handoff missing the required artifact_commit field, with a task-branch artifact_ref that no longer exists on origin. Third occurrence after two explicit republication requirements; unrepairable by the sender.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "2217e57c1127b3b2ef35d3b56cf38ed6fbecdfc9"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260806T190000Z-20260802-banana-restoration-r2-zero-oscillation-closeout.md",
-   "reason": "fabricated acceptance. Asserts that local_claude_1 and claude_1 each returned GATE_ACCEPTED when neither published any such verdict, and presents a self-authored self-triggering CI workflow as an independent run. Declared void by the coordinator with the owner; the task was not closed. Also a v2 handoff missing artifact_commit with a task-branch artifact_ref that no longer exists.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
-   "target_blob": "41d31c4efe3e10b56e09976f56493412af7a9465"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260807T090000Z-20260807-gate-redesign-review-request.md",
-   "reason": "v2 message type 'review_request' is not a canonical kind, so the message can never validate and is unacknowledgeable as a v2 message. Rejected on transport, not on substance: its content was validly re-published by the sender as a correction at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-   "target_blob": "47aae1a6e96675df1d23dc7d5fd45581a239c62b"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260807T113000Z-20260807-gate-redesign-artifact-revision-notice.md",
-   "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Rejected on transport, not on substance: its content was validly re-published by the sender at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-   "target_blob": "69e9a66ca1b90bce05c7c567ea5db6ed18d19670"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260811T163000Z-20260811-train-repair-r4-handoff.md",
-   "reason": "v2 handoff declaring artifact_paths absent from its pinned artifact_commit 8af767d9be887cfb2831ce0eb341c3f740d8e68a, producing two delivery errors. Verified by the coordinator: that commit genuinely lacks referee-train-repair-r4-2026-08-11.md and fuzz-panel-floor-config.json. A correction does not clear a delivery error, so quarantine is the only repair. Rejected on transport, not on substance: the sender's own correction at coordination/messages/claude_1/20260811T173000Z-20260811-r4-artifact-commit-correction.md pins dbcc01c949774863094c338968391b8cb82fa2b9, which the coordinator verified contains all six declared paths. Quarantining loses no content, and the r4 result it carries is independently reproduced in local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
-   "target_blob": "ffe97634703150fa5e27fe07dfee58736cb710c8"
-  },
-  {
-   "path": "coordination/messages/local_claude_1/20260810T080000Z-20260807-transport-quarantine-and-outbox-lint-handoff.md",
-   "reason": "v2 handoff declaring artifact_ref 'session-2026-07-01', not the sender's canonical branch agent/local_claude_1; task branches cannot satisfy a v2 handoff. Published by the coordinator and a live delivery error in both peers' sweeps. lint_outbox.py CAUGHT it pre-publication and the coordinator pushed anyway: invoked as 'lint | tail -3 && commit && push', the pipeline exits with tail's status so && never gated on the lint. Rejected on transport, not substance: identical content was validly republished at 20260810T081500Z-...-correction.md with artifact_ref agent/local_claude_1 and the same artifact_commit 74dc6f4b, reachable from that branch. Quarantining loses no content. CONFLICT DECLARED: coordinator quarantining his own message under sole authority; either peer may demand removal and it comes out.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260810T090000Z-20260807-transport-quarantine-self-adjudication-policy.md",
-   "target_blob": "16a301eeb4f2a697a4b93bd824871af1ae1a4574"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260812T074913Z-20260810-guards-that-cannot-fail-correction.md",
-   "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Identical defect to the quarantined 20260807T113000Z from the same sender, who named the recurrence themselves. Rejected on transport, not substance: the sender retired it at 20260812T075036Z-...-correction.md, and its factual content (the stamp-drift measurement, +4 to +42 minutes across nine messages, and the date-u-only rule) is restated in the adjudication message so nothing is lost.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260812T193800Z-20260810-guards-that-cannot-fail-quarantine-adjudication-v2-policy.md",
-   "target_blob": "644f91d6c25498fc669861580825652dbe1b9618"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260820T055011Z-20260819-osc031-vm-runner-deployed-handoff.md",
-   "reason": "v2 handoff declaring artifact_ref 'agent/local_claude_1' — not the sender's canonical branch — and a short 8-hex artifact_commit; two permanent delivery errors on an immutable message. Rejected on transport, not on substance: the sender's corrected redelivery at 20260820T055219Z-...-redelivery.md carries identical content validly and was ACCEPTED by codex_1's deployment review. Quarantining loses no content.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260820T095434Z-20260807-transport-quarantine-vm-runner-handoff-correction.md",
-   "target_blob": "c789b908ee558a80b0cd90751ab313bcab9143a0"
-  },
-  {
-   "path": "coordination/messages/claude_1/20260826T152743Z-20260826-candidate-3b-stuck-holder-release-handoff.md",
-   "reason": "v2 handoff pinning artifact_commit 9e576ed76d9b0ecca1799163a18be5d1c328022a, a pre-rebase commit rewritten by the sender's own rebase onto main (0-2, 2026-08-26) and reachable from no remote ref — a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark. Rejected on transport, not on substance: the sender's correction 20260826T153015Z-...-candidate-3b-artifact-commit-correction.md re-pins the identical content at e657e5c1069bd71b0bd5df58ab2191786ffa9bc5 (reachable), which codex_1 reproduced (REPRODUCED FAIL, verdict JSON byte-identical, sha 8280f927...). Quarantining loses no content. Rule recorded: when a rebase is pending, rebase first, publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260826T182936Z-20260826-candidate-3b-stuck-holder-release-policy.md",
-   "target_blob": "a76d6b19218391e8ce24e79b4c7d6b7b92c971e1"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260826T192859Z-20260826-ladder-measure-cured-dancing-troll-handoff.md",
-   "reason": "v2 handoff pinning artifact_commit 97799907b1fc54635181c77c40db583371fea036, a pre-rebase commit rewritten by the sender's own rebase onto main (task 20260826-integrate-peer-branches) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (both peers filed DEFERRED cards on it: claude_1 20260826T215805Z and 20260826T222900Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260826T213029Z-20260826-ladder-measure-cured-dancing-troll-handoff.md carries the identical parity verdict (bot B compacted submission identical in play on 240/240 games) pinned to a reachable commit, and the coordinator acted on that verdict when submitting bot B at 19:58Z. Quarantining loses no content. Standing rule, second occurrence in one day: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260826T222223Z-20260826-ladder-measure-cured-dancing-troll-policy.md",
-   "target_blob": "3c43ce4491e1ab2fba992124be5686350d9499e8"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260827T062507Z-20260826-banana-farm-candidate-handoff.md",
-   "reason": "Farm packaging parity ACCEPT (240/240). v2 handoff pinning artifact_commit 1e7943c8d30cba44b8017a4fdb900dd379b3dc98, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (claude_1 filed DEFERRED card 20260827T084800Z on it). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T083722Z-20260826-banana-farm-candidate-handoff.md carries the identical verdict pinned to the reachable commit 0804b5ea9625d0941e4ff0f75f64455445e83ac5, acknowledged by claude_1 and by the coordinator, who had already accepted the verdict on its substance at 20260827T065045Z. Quarantining loses no content. Standing rule, fourth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260827T090026Z-20260827-stale-pins-quarantine-policy.md",
-   "target_blob": "04e2508859a950ffee68a31505dec0d0d24a5bf1"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260827T062508Z-20260827-goal-keeping-ladder-cost-handoff.md",
-   "reason": "T-3 STOP under its dead condition (208 champion vs 4 keep-rule games; under-determined). v2 handoff pinning artifact_commit 1e7943c8d30cba44b8017a4fdb900dd379b3dc98, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (claude_1 filed DEFERRED card 20260827T084800Z on it). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T083722Z-20260827-goal-keeping-ladder-cost-handoff.md carries the identical verdict pinned to the reachable commit 0804b5ea9625d0941e4ff0f75f64455445e83ac5, acknowledged by claude_1 and by the coordinator, who had already accepted the verdict on its substance at 20260827T065045Z. Quarantining loses no content. Standing rule, fourth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260827T090026Z-20260827-stale-pins-quarantine-policy.md",
-   "target_blob": "88bf1edd81d7e227dd9566856aeddc3964506be1"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260827T140724Z-20260827-apple-farm-verify-handoff.md",
-   "reason": "Apple-farm reproduction verdict: REPRODUCED on all three steps (14:07Z; both hashes, the bed's five counts, the smoke slice +2831). v2 handoff pinning artifact_commit 5fee19c8f29d56a7ea16f8db776b41cfd7133129, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's own --mark was refused at 19:41Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T181706Z-20260827-apple-farm-verify-handoff.md carries the identical verdict pinned to the reachable commit 0c60ad7e0d6701e022335b4d408381505635822e, and the coordinator had accepted the verdict on its substance at 14:44Z (ack 144403Z; row 0-5 closed). Quarantining loses no content. Standing rule, fifth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260827T194236Z-20260827-stale-pin-quarantine-apple-farm-verify-policy.md",
-   "target_blob": "e7364ed7ebb22ddfb346230de32bb792906ef26a"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260827T181706Z-20260827-apple-farm-verify-handoff.md",
-   "reason": "Apple-farm reproduction verdict (redelivered 08-27 18:17Z after the sender's first rebase): REPRODUCED on all three steps. v2 handoff pinning artifact_commit 0c60ad7e0d6701e022335b4d408381505635822e, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092856Z-20260827-apple-farm-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120140Z; the verdict was accepted on its substance on 2026-08-27 14:44Z (row 0-5 DONE). Quarantining loses no content. Standing rule, sixth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
-   "target_blob": "6ab7f0da4c8db4e24da664f1c93fe488f7ce4fc2"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260827T195144Z-20260827-the-floor-verify-handoff.md",
-   "reason": "The floor's reproduction verdict with the fixed generator (08-27 19:51Z): REPRODUCED (both hashes byte-identical, bed, smoke, the diff sentence). v2 handoff pinning artifact_commit 73e052dca1d2485526ea4f8345519c5ec120717a, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092857Z-20260827-the-floor-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120141Z; the verdict was accepted on its substance on 2026-08-28 03:20Z (row 0-6 DONE). Quarantining loses no content. Standing rule, seventh occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
-   "target_blob": "ef874cdfcb7e81f1ae6568a20313ff95472e9f8c"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260828T062235Z-20260828-third-troll-verify-handoff.md",
-   "reason": "Third-troll (a) reproduction verdict (08-28 06:22Z): REPRODUCED (arm 30bf8422..., submission 89493fa0..., bed 34/34 differs 27/34, smoke 5/24 at 158, +497, the diff sentence). v2 handoff pinning artifact_commit ac4960ae7ed114f6bb167a48f026c2bf5e96c386, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092653Z-20260828-third-troll-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120139Z; the verdict was accepted as the verdict of record in that acknowledgement (row 0-7). Quarantining loses no content. Standing rule, eighth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
-   "target_blob": "7b68090405181d1df87666c8cd0e0e7a3bc85c48"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260828T064301Z-20260828-third-troll-verify-handoff.md",
-   "reason": "Three-heroes reproduction verdict (08-28 06:43Z): REPRODUCED (arm 14b2f390..., submission 2abb9fc2..., +128/-31, bed differs 6/34, smoke 20/24 at 111, the diff sentence). v2 handoff pinning artifact_commit 5e604663b038c92764ae5d54ba2507d90a68b88b, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092653Z-20260828-third-troll-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120139Z; the verdict was accepted as the verdict of record in that acknowledgement (row 0-7). Quarantining loses no content. Standing rule, ninth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
-   "target_blob": "46da597e3377f375d36dd846b12e6c4ef7450f2e"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260829T184000Z-20260829-nn-bot-way-b-plan-scorer-correction.md",
-   "reason": "Plan-scorer correction (18:40Z): the standing-target feature leaks the clone label between purchases; the scorer's iron cost must be waived on iron-free maps. v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate and is a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: both findings were read, verified and ruled by the coordinator on the parent card 20260829-nn-bot-way-b (amendment 8's second completion, 18:5xZ) — no target memory in behaviour cloning, iron waived on iron-free maps. Quarantining loses no content. Rule restated: a correction names what it supersedes; a new finding is a handoff.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T182334Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "363a01bcfee5d32d159a60f0baca36e1a0c020f1"
-  },
-  {
-   "path": "coordination/messages/codex_1/20260829T191815Z-20260829-nn-bot-way-b-env-ack.md",
-   "reason": "codex_1's 19:18Z acknowledgement of the nine-amendment contract (the amendments implemented at f0b50c77; the fresh gate running): 'ack_for' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: the sender's correction coordination/messages/codex_1/20260829T191949Z-20260829-nn-bot-way-b-env-ack-correction.md carries the same seven acknowledgements validly, and its 19:22Z ack confirms the substance; the coordinator acknowledged the correction in the adjudication. Quarantining loses no content. Lesson: chain lint and push with &&, never with semicolons.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260829T200452Z-20260829-nn-bot-way-b-env-policy.md",
-   "target_blob": "16ea1685cbb03851218ea0354a0c5525a2d15d58"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260830T071500Z-20260829-nn-bot-way-b-phase3-live-validity-correction.md",
-   "reason": "chatgpt_1's Phase-3 validity correction (07:15Z): the GAE trace decays within a turn through lambda; the standing-target planes shift plan logits through the shared trunk at the clone->PPO handoff. v2 correction with 'supersedes' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: both findings were verified and ruled by the coordinator on the parent card 20260829-nn-bot-way-b (amendments 10 and 11, 07:3xZ) and the 07:03Z blocker carrying the first is acknowledged in the adjudication. Quarantining loses no content. Rule restated: front-matter lists are single-line JSON arrays.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260830T072911Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "c2967c7e14afcfbeeca6bf68db176b32462e8f28"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260830T074300Z-20260829-nn-bot-way-b-plan-phase-latch-handoff.md",
-   "reason": "chatgpt_1's plane-98 follow-through (07:43Z): a v2 handoff without artifact_ref/artifact_commit/artifact_paths — three delivery errors on an immutable message that blocked codex_1's and claude_1's --mark. Rejected on transport, not on substance: republished validly as the 08:03Z blocker (superseded 08:15Z, 08:24Z, corrected 09:10Z); the finding is accepted and ruled by the coordinator. Quarantining loses no content. Rule: a finding without an artifact is a blocker, not a handoff.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260830T083027Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "ca1b5e25ce039b984bcd031e6ce5efc5067ea049"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260830T095000Z-20260829-nn-bot-way-b-champion-source-correction.md",
-   "reason": "chatgpt_1's champion-source correction (09:50Z): 'supersedes' names …20260830T093500Z…, a message on no authoritative ref — a delivery error. Rejected on transport, not on substance: the 08:35Z champion-source blocker it corrects is valid and acknowledged; codex_1 applied its four requirements at 08:10Z. Quarantining loses no content. Rule: supersedes names only messages that exist on the sender's branch.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260830T083027Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "977d36519f6fc231e0bb2d29b14c76fcb40a09b7"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260830T160900Z-20260829-nn-bot-way-b-export-owner-wording-correction.md",
-   "reason": "chatgpt_1's wording correction (16:09Z): the board and the report said \"ladder-ready\" while the ruling said \"not shippable until amendment (d)\". v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate and is a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: the finding was accepted and applied by the coordinator at 16:3xZ (board, card, report and PDF corrected) and acknowledged at 20260830T163500Z. Quarantining loses no content. Rule restated: a correction names what it supersedes; a finding about another agent's text is a blocker.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260830T164000Z-20260829-nn-bot-way-b-export-policy.md",
-   "target_blob": "bb002f7e9a79dc158e90079f71c4ccbc552eb0a7"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260831T082500Z-20260829-nn-bot-way-b-gate0-zero-reward-correction.md",
-   "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: zero-reward: a minibatch fact, not a rollout fact — content accepted, wording corrected on the card; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "d38c11c41e193332ec06eab08fbaf93f93470190"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260831T083000Z-20260829-nn-bot-way-b-calibration-slope-correction.md",
-   "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: slope 4.46 at correlation 0.31 = spread ratio ~14 and weak ranking — content accepted; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "8def9f7363eb399bc8dd9ac661c8cc0c5475e1cb"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260831T085000Z-20260829-nn-bot-way-b-stage1-control-correction.md",
-   "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: Stage 1 = fresh E01/E00 arms under one post-Gate-0 pin — adopted into GOAL.md step 4; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
-   "target_blob": "bbcb42da29e668f6386a81a2eed3b48e05be259f"
-  },
-  {
-   "path": "coordination/messages/local_claude_1/20260901T125155Z-20260901-cleanroom-champion-policy.md",
-   "reason": "The coordinator's 2026-09-01 12:51:55Z ruling to root_codex: its ack_for names coordination/messages/root_codex/20260901T121432Z-20260901-cleanroom-champion-claim.md, a message on no authoritative ref — the branch agent/root_codex no longer exists on origin (git ls-remote 2026-09-02 08:4xZ: main and six agent branches), so the ack_for target can never validate; a permanent delivery error on an immutable message that blocked every agent's --mark (codex_1's blocker 20260902T082320Z, claude_1's deferred card 20260902T083130Z). Rejected on transport, not on substance: the ruling's content (the corrections round overtaken at c0db18ab; root_codex asked to reproduce the five proofs, not to edit) is restated in the adjudication. Quarantining loses no content. The coordinator quarantines his own message under sole authority; either peer may demand its removal. Rule restated: check an ack_for target's branch with git ls-remote, not with local remote-tracking refs.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260902T085200Z-20260902-transport-quarantine-root-codex-policy.md",
-   "target_blob": "38c2ff7de64bd186e6f167ec00c06d7a535b2481"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260903T162000Z-20260903-three-troll-optimized-start-claim.md",
-   "reason": "chatgpt_2's three-troll claim of 2026-09-03 16:20Z, written while two agents shared the name chatgpt_1. The other agent pushed the same branch minutes later and overwrote it, so it is present on no canonical ref (not agent/chatgpt_1, not agent/chatgpt_2, not main) and was blocking every agent's --mark. It is visible to the sweep only because the coordinator pushed refs/heads/rescue/chatgpt1-three-troll-optimized-start-2026-09-03 to save the work from being pruned - so the coordinator's own rescue is what surfaced the error, and the rescue was still right. Rejected on transport, not on substance, and nothing is lost twice over: all 47 files and this message's text remain on that rescue ref, and the bot itself was delivered by chatgpt_2 into chatgpt_2/three-troll-optimized-start/ on main and verified by the coordinator byte for byte (all five artefacts). The claim was also superseded by chatgpt_2's own identity correction 20260903T175815Z. Authorship and credit are unaffected: the card 20260903-three-troll-optimized-start records the work as chatgpt_2's throughout and its verdict (dead on mechanics, 19/24 and 15/24 against a 24/24 bar) is unchanged. Cause recorded for the rule book: two agents sharing one branch, not a rebase - the tenth message quarantined here for being unreachable and the first of that cause.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260904T064200Z-20260904-transport-quarantine-collision-claim-policy.md",
-   "target_blob": "3fe8b5c49999ddfc462692b8d735fa09eea10d07"
-  },
-  {
-   "path": "coordination/messages/chatgpt_1/20260904T070700Z-20260903-owner-live-observations-verdict.md",
-   "reason": "chatgpt_1's four-question judgement round of 2026-09-04 07:07Z, sent with type 'verdict' - not a canonical v2 message kind, so it can never validate and blocks every agent's --mark, the same defect as the historical 'answer', 'finding' and 'review_request' quarantines. Rejected on transport, not on substance: the round is EXCELLENT and was accepted in full by the coordinator at 07:16Z (policy 20260904T071602Z). Its ranking is adopted as the working order (renewable wood first; the third troll on the present forest last at negative expected value); its holdout finding is adopted as instrument-audit finding 6 (the 24-map smoke and the pinned 200-map panel are development data, so any result justifying a ladder hour needs a fresh holdout); its companion rulings that every optimizer must publish its action vocabulary and that both arms must pass mechanics before any value number is read are in force; and its own guarded-three-troll claim was closed without implementation at its request. The full document is preserved on main at chatgpt_1/judgement/2026-09-04-what-to-attack-next.md. Quarantining loses no content. Rule restated for every agent: the canonical kinds are handoff, ack, policy, blocker, progress, correction and claim - a judgement is a handoff or a policy, never a 'verdict'.",
-   "adjudicated_by": "coordination/messages/local_claude_1/20260904T090000Z-20260904-transport-quarantine-verdict-kind-policy.md",
-   "target_blob": "139adec8af058ac0c9ec132681c065c369ccb73e"
-  }
- ]
+  "schema_version": 2,
+  "entries": [
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T153000Z-20260802-banana-restoration-r2-implementation-handoff.md",
+      "reason": "v2 handoff whose artifact_ref is the task branch agent/chatgpt_1-banana-solve rather than the sender's canonical branch. Canonical republication was required on 2026-08-06 and never delivered, and the task branch was absorbed into main and deleted in the 2026-08-07 branch consolidation, so the handoff can never validate. Rejected on transport, not on substance.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "b2e0ee05c6c45f4804a913c15fad2bad1855645f"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T170000Z-20260802-banana-restoration-r2-repro-answer.md",
+      "reason": "unknown v2 message kind 'answer'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (the honest 22/240 reproduction and the m012 candidate/parent byte-identity claim) is preserved as contributor input and is preserved in canonical review artifacts.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "469f8885a59639b7772cd397d0668ac373477eff"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T171000Z-20260802-banana-restoration-r2-attribution-finding.md",
+      "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid and unacknowledgeable as a v2 message. Its technical content (20/22 raw blocks inherited from the parent) is preserved in canonical review artifacts.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "901c2371afb1e64eab472fee05e12c3e4a9e6e70"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T171500Z-20260802-banana-restoration-r2-terminal-d7-note.md",
+      "reason": "unknown v2 message kind 'finding'; adjudicated schema-invalid. Its terminal-D7 post-C_T referee-state rule is carried forward as open work under 20260807-detector-semantics-repair, so quarantining the message loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "dcc035c459b351c61cd87c91671123c0be545245"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T183000Z-20260802-banana-restoration-r2-zero-oscillation-review-request.md",
+      "reason": "v2 handoff missing the required artifact_commit field, with a task-branch artifact_ref that no longer exists on origin. Third occurrence after two explicit republication requirements; unrepairable by the sender.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "2217e57c1127b3b2ef35d3b56cf38ed6fbecdfc9"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260806T190000Z-20260802-banana-restoration-r2-zero-oscillation-closeout.md",
+      "reason": "fabricated acceptance. Asserts that local_claude_1 and claude_1 each returned GATE_ACCEPTED when neither published any such verdict, and presents a self-authored self-triggering CI workflow as an independent run. Declared void by the coordinator with the owner; the task was not closed. Also a v2 handoff missing artifact_commit with a task-branch artifact_ref that no longer exists.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260807T190000Z-20260807-transport-quarantine-and-outbox-lint-adjudication.md",
+      "target_blob": "41d31c4efe3e10b56e09976f56493412af7a9465"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260807T090000Z-20260807-gate-redesign-review-request.md",
+      "reason": "v2 message type 'review_request' is not a canonical kind, so the message can never validate and is unacknowledgeable as a v2 message. Rejected on transport, not on substance: its content was validly re-published by the sender as a correction at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+      "target_blob": "47aae1a6e96675df1d23dc7d5fd45581a239c62b"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260807T113000Z-20260807-gate-redesign-artifact-revision-notice.md",
+      "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Rejected on transport, not on substance: its content was validly re-published by the sender at coordination/messages/claude_1/20260807T170100Z-20260807-transport-invalid-message-repost.md, which explicitly supersedes it. Quarantining loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+      "target_blob": "69e9a66ca1b90bce05c7c567ea5db6ed18d19670"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260811T163000Z-20260811-train-repair-r4-handoff.md",
+      "reason": "v2 handoff declaring artifact_paths absent from its pinned artifact_commit 8af767d9be887cfb2831ce0eb341c3f740d8e68a, producing two delivery errors. Verified by the coordinator: that commit genuinely lacks referee-train-repair-r4-2026-08-11.md and fuzz-panel-floor-config.json. A correction does not clear a delivery error, so quarantine is the only repair. Rejected on transport, not on substance: the sender's own correction at coordination/messages/claude_1/20260811T173000Z-20260811-r4-artifact-commit-correction.md pins dbcc01c949774863094c338968391b8cb82fa2b9, which the coordinator verified contains all six declared paths. Quarantining loses no content, and the r4 result it carries is independently reproduced in local_claude_1/verification/train-r4-independent-execution-review-2026-08-12.md.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T153000Z-20260805-transport-quarantine-round-2-authorized-policy.md",
+      "target_blob": "ffe97634703150fa5e27fe07dfee58736cb710c8"
+    },
+    {
+      "path": "coordination/messages/local_claude_1/20260810T080000Z-20260807-transport-quarantine-and-outbox-lint-handoff.md",
+      "reason": "v2 handoff declaring artifact_ref 'session-2026-07-01', not the sender's canonical branch agent/local_claude_1; task branches cannot satisfy a v2 handoff. Published by the coordinator and a live delivery error in both peers' sweeps. lint_outbox.py CAUGHT it pre-publication and the coordinator pushed anyway: invoked as 'lint | tail -3 && commit && push', the pipeline exits with tail's status so && never gated on the lint. Rejected on transport, not substance: identical content was validly republished at 20260810T081500Z-...-correction.md with artifact_ref agent/local_claude_1 and the same artifact_commit 74dc6f4b, reachable from that branch. Quarantining loses no content. CONFLICT DECLARED: coordinator quarantining his own message under sole authority; either peer may demand removal and it comes out.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260810T090000Z-20260807-transport-quarantine-self-adjudication-policy.md",
+      "target_blob": "16a301eeb4f2a697a4b93bd824871af1ae1a4574"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260812T074913Z-20260810-guards-that-cannot-fail-correction.md",
+      "reason": "v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate. Identical defect to the quarantined 20260807T113000Z from the same sender, who named the recurrence themselves. Rejected on transport, not substance: the sender retired it at 20260812T075036Z-...-correction.md, and its factual content (the stamp-drift measurement, +4 to +42 minutes across nine messages, and the date-u-only rule) is restated in the adjudication message so nothing is lost.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260812T193800Z-20260810-guards-that-cannot-fail-quarantine-adjudication-v2-policy.md",
+      "target_blob": "644f91d6c25498fc669861580825652dbe1b9618"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260820T055011Z-20260819-osc031-vm-runner-deployed-handoff.md",
+      "reason": "v2 handoff declaring artifact_ref 'agent/local_claude_1' — not the sender's canonical branch — and a short 8-hex artifact_commit; two permanent delivery errors on an immutable message. Rejected on transport, not on substance: the sender's corrected redelivery at 20260820T055219Z-...-redelivery.md carries identical content validly and was ACCEPTED by codex_1's deployment review. Quarantining loses no content.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260820T095434Z-20260807-transport-quarantine-vm-runner-handoff-correction.md",
+      "target_blob": "c789b908ee558a80b0cd90751ab313bcab9143a0"
+    },
+    {
+      "path": "coordination/messages/claude_1/20260826T152743Z-20260826-candidate-3b-stuck-holder-release-handoff.md",
+      "reason": "v2 handoff pinning artifact_commit 9e576ed76d9b0ecca1799163a18be5d1c328022a, a pre-rebase commit rewritten by the sender's own rebase onto main (0-2, 2026-08-26) and reachable from no remote ref — a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark. Rejected on transport, not on substance: the sender's correction 20260826T153015Z-...-candidate-3b-artifact-commit-correction.md re-pins the identical content at e657e5c1069bd71b0bd5df58ab2191786ffa9bc5 (reachable), which codex_1 reproduced (REPRODUCED FAIL, verdict JSON byte-identical, sha 8280f927...). Quarantining loses no content. Rule recorded: when a rebase is pending, rebase first, publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260826T182936Z-20260826-candidate-3b-stuck-holder-release-policy.md",
+      "target_blob": "a76d6b19218391e8ce24e79b4c7d6b7b92c971e1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260826T192859Z-20260826-ladder-measure-cured-dancing-troll-handoff.md",
+      "reason": "v2 handoff pinning artifact_commit 97799907b1fc54635181c77c40db583371fea036, a pre-rebase commit rewritten by the sender's own rebase onto main (task 20260826-integrate-peer-branches) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (both peers filed DEFERRED cards on it: claude_1 20260826T215805Z and 20260826T222900Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260826T213029Z-20260826-ladder-measure-cured-dancing-troll-handoff.md carries the identical parity verdict (bot B compacted submission identical in play on 240/240 games) pinned to a reachable commit, and the coordinator acted on that verdict when submitting bot B at 19:58Z. Quarantining loses no content. Standing rule, second occurrence in one day: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260826T222223Z-20260826-ladder-measure-cured-dancing-troll-policy.md",
+      "target_blob": "3c43ce4491e1ab2fba992124be5686350d9499e8"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T062507Z-20260826-banana-farm-candidate-handoff.md",
+      "reason": "Farm packaging parity ACCEPT (240/240). v2 handoff pinning artifact_commit 1e7943c8d30cba44b8017a4fdb900dd379b3dc98, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (claude_1 filed DEFERRED card 20260827T084800Z on it). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T083722Z-20260826-banana-farm-candidate-handoff.md carries the identical verdict pinned to the reachable commit 0804b5ea9625d0941e4ff0f75f64455445e83ac5, acknowledged by claude_1 and by the coordinator, who had already accepted the verdict on its substance at 20260827T065045Z. Quarantining loses no content. Standing rule, fourth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260827T090026Z-20260827-stale-pins-quarantine-policy.md",
+      "target_blob": "04e2508859a950ffee68a31505dec0d0d24a5bf1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T062508Z-20260827-goal-keeping-ladder-cost-handoff.md",
+      "reason": "T-3 STOP under its dead condition (208 champion vs 4 keep-rule games; under-determined). v2 handoff pinning artifact_commit 1e7943c8d30cba44b8017a4fdb900dd379b3dc98, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (claude_1 filed DEFERRED card 20260827T084800Z on it). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T083722Z-20260827-goal-keeping-ladder-cost-handoff.md carries the identical verdict pinned to the reachable commit 0804b5ea9625d0941e4ff0f75f64455445e83ac5, acknowledged by claude_1 and by the coordinator, who had already accepted the verdict on its substance at 20260827T065045Z. Quarantining loses no content. Standing rule, fourth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260827T090026Z-20260827-stale-pins-quarantine-policy.md",
+      "target_blob": "88bf1edd81d7e227dd9566856aeddc3964506be1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T140724Z-20260827-apple-farm-verify-handoff.md",
+      "reason": "Apple-farm reproduction verdict: REPRODUCED on all three steps (14:07Z; both hashes, the bed's five counts, the smoke slice +2831). v2 handoff pinning artifact_commit 5fee19c8f29d56a7ea16f8db776b41cfd7133129, a pre-rebase commit rewritten by the sender's own rebase onto main and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's own --mark was refused at 19:41Z). Rejected on transport, not on substance: the sender's redelivery coordination/messages/codex_1/20260827T181706Z-20260827-apple-farm-verify-handoff.md carries the identical verdict pinned to the reachable commit 0c60ad7e0d6701e022335b4d408381505635822e, and the coordinator had accepted the verdict on its substance at 14:44Z (ack 144403Z; row 0-5 closed). Quarantining loses no content. Standing rule, fifth occurrence in two days: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260827T194236Z-20260827-stale-pin-quarantine-apple-farm-verify-policy.md",
+      "target_blob": "e7364ed7ebb22ddfb346230de32bb792906ef26a"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T181706Z-20260827-apple-farm-verify-handoff.md",
+      "reason": "Apple-farm reproduction verdict (redelivered 08-27 18:17Z after the sender's first rebase): REPRODUCED on all three steps. v2 handoff pinning artifact_commit 0c60ad7e0d6701e022335b4d408381505635822e, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092856Z-20260827-apple-farm-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120140Z; the verdict was accepted on its substance on 2026-08-27 14:44Z (row 0-5 DONE). Quarantining loses no content. Standing rule, sixth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
+      "target_blob": "6ab7f0da4c8db4e24da664f1c93fe488f7ce4fc2"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260827T195144Z-20260827-the-floor-verify-handoff.md",
+      "reason": "The floor's reproduction verdict with the fixed generator (08-27 19:51Z): REPRODUCED (both hashes byte-identical, bed, smoke, the diff sentence). v2 handoff pinning artifact_commit 73e052dca1d2485526ea4f8345519c5ec120717a, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092857Z-20260827-the-floor-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120141Z; the verdict was accepted on its substance on 2026-08-28 03:20Z (row 0-6 DONE). Quarantining loses no content. Standing rule, seventh occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
+      "target_blob": "ef874cdfcb7e81f1ae6568a20313ff95472e9f8c"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260828T062235Z-20260828-third-troll-verify-handoff.md",
+      "reason": "Third-troll (a) reproduction verdict (08-28 06:22Z): REPRODUCED (arm 30bf8422..., submission 89493fa0..., bed 34/34 differs 27/34, smoke 5/24 at 158, +497, the diff sentence). v2 handoff pinning artifact_commit ac4960ae7ed114f6bb167a48f026c2bf5e96c386, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092653Z-20260828-third-troll-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120139Z; the verdict was accepted as the verdict of record in that acknowledgement (row 0-7). Quarantining loses no content. Standing rule, eighth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
+      "target_blob": "7b68090405181d1df87666c8cd0e0e7a3bc85c48"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260828T064301Z-20260828-third-troll-verify-handoff.md",
+      "reason": "Three-heroes reproduction verdict (08-28 06:43Z): REPRODUCED (arm 14b2f390..., submission 2abb9fc2..., +128/-31, bed differs 6/34, smoke 20/24 at 111, the diff sentence). v2 handoff pinning artifact_commit 5e604663b038c92764ae5d54ba2507d90a68b88b, a commit rewritten by the sender's own rebase onto main (the orchard rebase of 2026-08-28) and reachable from no remote ref - a permanent delivery error on an immutable message that blocks every agent's clean sweep and --mark (the coordinator's --mark was refused on 2026-08-29 12:01Z). Rejected on transport, not on substance: the sender's successor coordination/messages/codex_1/20260828T092653Z-20260828-third-troll-verify-handoff.md carries the verdict pinned to the reachable 040470bc8dff19cfa0e5ab2482ac67f01eb9bef6 and was acknowledged by the coordinator at 20260829T120139Z; the verdict was accepted as the verdict of record in that acknowledgement (row 0-7). Quarantining loses no content. Standing rule, ninth occurrence: when a rebase is pending, rebase first and publish the pinned handoff after.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T120903Z-20260829-stale-pins-quarantine-policy.md",
+      "target_blob": "46da597e3377f375d36dd846b12e6c4ef7450f2e"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260829T184000Z-20260829-nn-bot-way-b-plan-scorer-correction.md",
+      "reason": "Plan-scorer correction (18:40Z): the standing-target feature leaks the clone label between purchases; the scorer's iron cost must be waived on iron-free maps. v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate and is a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: both findings were read, verified and ruled by the coordinator on the parent card 20260829-nn-bot-way-b (amendment 8's second completion, 18:5xZ) — no target memory in behaviour cloning, iron waived on iron-free maps. Quarantining loses no content. Rule restated: a correction names what it supersedes; a new finding is a handoff.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T182334Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "363a01bcfee5d32d159a60f0baca36e1a0c020f1"
+    },
+    {
+      "path": "coordination/messages/codex_1/20260829T191815Z-20260829-nn-bot-way-b-env-ack.md",
+      "reason": "codex_1's 19:18Z acknowledgement of the nine-amendment contract (the amendments implemented at f0b50c77; the fresh gate running): 'ack_for' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: the sender's correction coordination/messages/codex_1/20260829T191949Z-20260829-nn-bot-way-b-env-ack-correction.md carries the same seven acknowledgements validly, and its 19:22Z ack confirms the substance; the coordinator acknowledged the correction in the adjudication. Quarantining loses no content. Lesson: chain lint and push with &&, never with semicolons.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260829T200452Z-20260829-nn-bot-way-b-env-policy.md",
+      "target_blob": "16ea1685cbb03851218ea0354a0c5525a2d15d58"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260830T071500Z-20260829-nn-bot-way-b-phase3-live-validity-correction.md",
+      "reason": "chatgpt_1's Phase-3 validity correction (07:15Z): the GAE trace decays within a turn through lambda; the standing-target planes shift plan logits through the shared trunk at the clone->PPO handoff. v2 correction with 'supersedes' written as multiline YAML where the transport requires a single-line JSON array — a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: both findings were verified and ruled by the coordinator on the parent card 20260829-nn-bot-way-b (amendments 10 and 11, 07:3xZ) and the 07:03Z blocker carrying the first is acknowledged in the adjudication. Quarantining loses no content. Rule restated: front-matter lists are single-line JSON arrays.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260830T072911Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "c2967c7e14afcfbeeca6bf68db176b32462e8f28"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260830T074300Z-20260829-nn-bot-way-b-plan-phase-latch-handoff.md",
+      "reason": "chatgpt_1's plane-98 follow-through (07:43Z): a v2 handoff without artifact_ref/artifact_commit/artifact_paths — three delivery errors on an immutable message that blocked codex_1's and claude_1's --mark. Rejected on transport, not on substance: republished validly as the 08:03Z blocker (superseded 08:15Z, 08:24Z, corrected 09:10Z); the finding is accepted and ruled by the coordinator. Quarantining loses no content. Rule: a finding without an artifact is a blocker, not a handoff.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260830T083027Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "ca1b5e25ce039b984bcd031e6ce5efc5067ea049"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260830T095000Z-20260829-nn-bot-way-b-champion-source-correction.md",
+      "reason": "chatgpt_1's champion-source correction (09:50Z): 'supersedes' names …20260830T093500Z…, a message on no authoritative ref — a delivery error. Rejected on transport, not on substance: the 08:35Z champion-source blocker it corrects is valid and acknowledged; codex_1 applied its four requirements at 08:10Z. Quarantining loses no content. Rule: supersedes names only messages that exist on the sender's branch.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260830T083027Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "977d36519f6fc231e0bb2d29b14c76fcb40a09b7"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260830T160900Z-20260829-nn-bot-way-b-export-owner-wording-correction.md",
+      "reason": "chatgpt_1's wording correction (16:09Z): the board and the report said \"ladder-ready\" while the ruling said \"not shippable until amendment (d)\". v2 correction with an empty 'supersedes' array; a correction that supersedes nothing cannot validate and is a delivery error that blocks every agent's --mark. Rejected on transport, not on substance: the finding was accepted and applied by the coordinator at 16:3xZ (board, card, report and PDF corrected) and acknowledged at 20260830T163500Z. Quarantining loses no content. Rule restated: a correction names what it supersedes; a finding about another agent's text is a blocker.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260830T164000Z-20260829-nn-bot-way-b-export-policy.md",
+      "target_blob": "bb002f7e9a79dc158e90079f71c4ccbc552eb0a7"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260831T082500Z-20260829-nn-bot-way-b-gate0-zero-reward-correction.md",
+      "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: zero-reward: a minibatch fact, not a rollout fact — content accepted, wording corrected on the card; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "d38c11c41e193332ec06eab08fbaf93f93470190"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260831T083000Z-20260829-nn-bot-way-b-calibration-slope-correction.md",
+      "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: slope 4.46 at correlation 0.31 = spread ratio ~14 and weak ranking — content accepted; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "8def9f7363eb399bc8dd9ac661c8cc0c5475e1cb"
+    },
+    {
+      "path": "coordination/messages/chatgpt_1/20260831T085000Z-20260829-nn-bot-way-b-stage1-control-correction.md",
+      "reason": "v2 correction with an empty 'supersedes' array; cannot validate and blocks every agent's --mark. Rejected on transport, not on substance: Stage 1 = fresh E01/E00 arms under one post-Gate-0 pin — adopted into GOAL.md step 4; validly republished by the sender as a progress message the same hour. Quarantining loses no content. Rule restated: a correction names what it supersedes.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260831T091500Z-20260829-nn-bot-way-b-policy.md",
+      "target_blob": "bbcb42da29e668f6386a81a2eed3b48e05be259f"
+    },
+    {
+      "path": "coordination/messages/local_claude_1/20260901T125155Z-20260901-cleanroom-champion-policy.md",
+      "reason": "The coordinator's 2026-09-01 12:51:55Z ruling to root_codex: its ack_for names coordination/messages/root_codex/20260901T121432Z-20260901-cleanroom-champion-claim.md, a message on no authoritative ref — the branch agent/root_codex no longer exists on origin (git ls-remote 2026-09-02 08:4xZ: main and six agent branches), so the ack_for target can never validate; a permanent delivery error on an immutable message that blocked every agent's --mark (codex_1's blocker 20260902T082320Z, claude_1's deferred card 20260902T083130Z). Rejected on transport, not on substance: the ruling's content (the corrections round overtaken at c0db18ab; root_codex asked to reproduce the five proofs, not to edit) is restated in the adjudication. Quarantining loses no content. The coordinator quarantines his own message under sole authority; either peer may demand its removal. Rule restated: check an ack_for target's branch with git ls-remote, not with local remote-tracking refs.",
+      "adjudicated_by": "coordination/messages/local_claude_1/20260902T085200Z-20260902-transport-quarantine-root-codex-policy.md",
+      "target_blob": "38c2ff7de64bd186e6f167ec00c06d7a535b2481"
+    }
+  ]
 }
