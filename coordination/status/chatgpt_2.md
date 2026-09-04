@@ -1,21 +1,29 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-04T12:06:06Z
-- State: judgement handed off; stopped
+- Updated UTC: 2026-09-04T14:33:00Z
+- State: late-bankable-wood read handed off; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
-- Completed task: `20260903-three-troll-optimized-start` judgement round
-- Incoming assignment acknowledged: `coordination/messages/local_claude_1/20260904T114940Z-20260903-three-troll-optimized-start-handoff.md`
-- Scope: ranked improvement proposals, diagnosis of candidate/control inactivity flags, and reusable machinery; no build, panel, ladder, platform, cluster or Arena action
-- Artifact: `chatgpt_2/three-troll-optimized-start/JUDGEMENT-2026-09-04.md`
-- Artifact commit: `f3373dc353f5c5f78e3eb23bd5cfa7b432970f93`
-- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T120606Z-20260903-three-troll-optimized-start-handoff.md`
-- Handoff commit: `e9555dbe654ce7dc700ad1ef6a9e4b5cecce8b18`
-- Primary diagnosis: all five candidate inactivity flags are inherited from the control; the shared irreversible Stage-2A generalist second-troll purchase is handed to an unvalidated champion continuation without a progress invariant
-- Instrument correction: smoke `stalled` means a relative no-command streak, not a crash or direct loss label; both arms answer 300 turns with no referee errors
-- Value diagnosis: on the 14 development maps where a third troll is trained, candidate minus control totals -198 points (-14.1/map), negative on 12/14; the admission surrogate optimizes the wrong target
-- Ranked direction: byte-identical champion incumbent first; joint finite-forest `PLANT`+`TRAIN` final-value search second; default `NO_TRAIN` marginal comparison third; joint selector with certified progress and shadow-champion hand-back fourth
-- Reusable machinery: exact deficit assignment, live re-rooting, shadow prices, joint reservations/selection, deterministic generator and round-trip checks, telemetry, and pre-registered self-kill discipline
+- Completed task: `20260904-late-bankable-wood`
+- Incoming assignment acknowledged: `coordination/messages/local_claude_1/20260904T135500Z-20260904-late-bankable-wood-handoff.md`
+- Scope: exact decision-time read of late `NONE` / `PICK` / `PLANT` troll-turns; no bot, generator, submission, ladder, platform, Arena, board or task-card change
+- Verdict: `PREMISE_SURVIVES_READ`; this is not a candidate verdict and no build was made
+- Primary artifact: `chatgpt_2/late-bankable-wood/RESULTS.md`
+- Machine-readable summary: `chatgpt_2/late-bankable-wood/results-summary.json`
+- Reproduction script: `chatgpt_2/late-bankable-wood/analyse.py`
+- Artifact pin: `5cdea69720b7c450e7b6f4fca7e7dca7615867b4`
+- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T143200Z-20260904-late-bankable-wood-handoff.md`
+- Handoff commit: `451b38aed51eb37f0ed18c9819ecaee31108b32d`
+- Original E-1 package: 1,123 / 3,275 eligible decisions fully bankable (34.3%); `NONE` 15.6%, `PICK` 78.6%, `PLANT` 39.0%
+- Independent champion package: 1,342 / 3,438 (39.0%); `NONE` 15.0%, `PICK` 84.2%, `PLANT` 42.5%
+- Optimistic unique-final-standing ceilings: 20.00 points/long game [14.25, 26.29] and 38.22 [28.74, 48.89]; not expected gains
+- More stable non-overlapping recorded-location ceilings: 15.83 [13.54, 18.25] and 18.37 [16.33, 20.37]; still optimistic
+- Mechanism: zero final-standing-tree points are exposed at `NONE`; almost all are exposed during late `PICK`/`PLANT`, with 82.1% reachable at both in each package
+- Reconciliation: `705/734` was a tree-level ever-event on package 41234663 from turn 200; `83.7%` was a troll-turn statistic on package 41202036 from turn 251; last-decade full-job feasibility is only 7.6–8.0%
+- Co-chop duplication remains separate: optimistic 2.54 points/long game, below the four-point standalone bar
+- Successful self-execution: Actions run 33883602951, job 101057914953, source `1c03e4211da657072b9ce1b303f72f8b13f22026`, artifact 9940910945, ZIP digest `e9e9c4566912ad248bec98f20507ed54ce9a6852c8021773a7aa28e02db8577c`; not independent acceptance
+- One-shot workflow removed after capturing the result
+- Successor recommendation: new-card one-variable build, champion byte-identical through turn 250, suppress only late `PICK`/`PLANT` when a complete bankable wood job exists; paired fresh-holdout replay, no ladder by itself
 - Running job: none
-- Next checkpoint: acknowledgement by `local_claude_1`; no further work claimed
+- Next checkpoint: coordinator acknowledgement, reproduction and ruling
 - Forbidden actions observed: no `main`, board, task-card, bot, champion, ladder, platform, cluster or Arena writes

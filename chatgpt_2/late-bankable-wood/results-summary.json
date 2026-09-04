@@ -1,0 +1,271 @@
+{
+  "cochop_duplication_given_by_e1": {
+    "kept_separate": true,
+    "long_games": 96,
+    "opportunities": 61,
+    "points_per_long_game_ceiling": 2.5416666666666665,
+    "points_per_opportunity": 4
+  },
+  "eligible_verbs": [
+    "NONE",
+    "PICK",
+    "PLANT"
+  ],
+  "execution": {
+    "artifact_id": 9940910945,
+    "artifact_zip_sha256": "e9e9c4566912ad248bec98f20507ed54ce9a6852c8021773a7aa28e02db8577c",
+    "conclusion": "success",
+    "head_sha": "1c03e4211da657072b9ce1b303f72f8b13f22026",
+    "note": "Self-execution for reproducibility; not independent acceptance.",
+    "workflow_job_id": 101057914953,
+    "workflow_run_id": 33883602951
+  },
+  "late_from": 251,
+  "measurement_boundary": "All point figures are optimistic mechanism ceilings on recorded boards, not expected incremental score. A paired policy build is required.",
+  "packages": [
+    {
+      "agent_id": 6667789,
+      "best_bankable_points_per_feasible_event": {
+        "max": 12.0,
+        "mean": 5.392698130008904,
+        "median": 4.0,
+        "min": 4.0,
+        "p25": 4.0,
+        "p75": 8.0,
+        "p90": 8.0
+      },
+      "best_bankable_points_per_feasible_event_by_verb": {
+        "NONE": {
+          "max": 12.0,
+          "mean": 4.882758620689655,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 4.0,
+          "p90": 8.0
+        },
+        "PICK": {
+          "max": 12.0,
+          "mean": 6.0647482014388485,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 8.0,
+          "p90": 8.0
+        },
+        "PLANT": {
+          "max": 8.0,
+          "mean": 4.577617328519856,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 4.0,
+          "p90": 8.0
+        }
+      },
+      "buckets_eligible": [497, 579, 597, 576, 1026],
+      "buckets_feasible": [292, 319, 256, 178, 78],
+      "eligible": {
+        "NONE": 1858,
+        "PICK": 707,
+        "PLANT": 710
+      },
+      "eligible_total": 3275,
+      "feasible": {
+        "NONE": 290,
+        "PICK": 556,
+        "PLANT": 277
+      },
+      "feasible_share": 0.3429007633587786,
+      "feasible_share_by_verb": {
+        "NONE": 0.15608180839612487,
+        "PICK": 0.7864214992927864,
+        "PLANT": 0.3901408450704225
+      },
+      "feasible_total": 1123,
+      "games_total": 160,
+      "label": "E-1 package 41202036",
+      "long_games": 96,
+      "package": "local_claude_1/denial-ablation/games-41202036/games-agent6667789-submission41202036.jsonl.gz",
+      "package_sha256": "3fe5dc498e58ec2c35b198440f469a0932059b584f3791ef8cdee554beb19f9f",
+      "reconstruction_mismatches": {
+        "growth_engine_only(expected)": 15386,
+        "unit_x": 322,
+        "unit_x_unreported": 252,
+        "unit_y": 341,
+        "unit_y_unreported": 241
+      },
+      "scheduled_distinct_tree_points_ceiling_per_long_game": {
+        "games": 96,
+        "interval_95_bootstrap": [13.541666666666666, 18.25],
+        "max": 56.0,
+        "mean": 15.833333333333334,
+        "median": 12.0,
+        "min": 0.0,
+        "p25": 8.0,
+        "p75": 24.0,
+        "p90": 32.0,
+        "positive_games": 87
+      },
+      "unused_final_standing_points_by_trigger_any_per_long_game": {
+        "NONE": 0.0,
+        "PICK": 19.875,
+        "PLANT": 16.541666666666668
+      },
+      "unused_final_standing_points_by_trigger_any_total": {
+        "PICK": 1908,
+        "PLANT": 1588
+      },
+      "unused_final_standing_points_by_trigger_signature_total": {
+        "PICK": 332,
+        "PICK+PLANT": 1576,
+        "PLANT": 12
+      },
+      "unused_final_standing_points_ceiling_per_long_game": {
+        "games": 96,
+        "interval_95_bootstrap": [14.25, 26.291666666666668],
+        "max": 124.0,
+        "mean": 20.0,
+        "median": 4.0,
+        "min": 0.0,
+        "p25": 0.0,
+        "p75": 28.0,
+        "p90": 56.0,
+        "positive_games": 50
+      },
+      "unused_final_standing_trees_by_trigger_any_total": {
+        "PICK": 267,
+        "PLANT": 189
+      },
+      "unused_final_standing_trees_by_trigger_signature_total": {
+        "PICK": 81,
+        "PICK+PLANT": 186,
+        "PLANT": 3
+      }
+    },
+    {
+      "agent_id": 6693889,
+      "best_bankable_points_per_feasible_event": {
+        "max": 12.0,
+        "mean": 5.6453055141579735,
+        "median": 4.0,
+        "min": 4.0,
+        "p25": 4.0,
+        "p75": 8.0,
+        "p90": 8.0
+      },
+      "best_bankable_points_per_feasible_event_by_verb": {
+        "NONE": {
+          "max": 12.0,
+          "mean": 5.015384615384615,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 4.0,
+          "p90": 8.0
+        },
+        "PICK": {
+          "max": 12.0,
+          "mean": 6.311977715877437,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 8.0,
+          "p90": 8.0
+        },
+        "PLANT": {
+          "max": 8.0,
+          "mean": 4.78021978021978,
+          "median": 4.0,
+          "min": 4.0,
+          "p25": 4.0,
+          "p75": 4.0,
+          "p90": 8.0
+        }
+      },
+      "buckets_eligible": [569, 664, 540, 534, 1131],
+      "buckets_feasible": [333, 405, 283, 231, 90],
+      "eligible": {
+        "NONE": 1729,
+        "PICK": 853,
+        "PLANT": 856
+      },
+      "eligible_total": 3438,
+      "feasible": {
+        "NONE": 260,
+        "PICK": 718,
+        "PLANT": 364
+      },
+      "feasible_share": 0.3903432228039558,
+      "feasible_share_by_verb": {
+        "NONE": 0.15037593984962405,
+        "PICK": 0.8417350527549824,
+        "PLANT": 0.4252336448598131
+      },
+      "feasible_total": 1342,
+      "games_total": 160,
+      "label": "independent champion package 41234663",
+      "long_games": 108,
+      "package": "local_claude_1/ladder-queue/games-41234663/games-agent6693889-submission41234663.jsonl.gz",
+      "package_sha256": "c1009cf25652919e2fea1f1db258153d8efabec94c379f4fae9ec93e777f260a",
+      "reconstruction_mismatches": {
+        "growth_engine_only(expected)": 20043,
+        "unit_x": 901,
+        "unit_x_unreported": 554,
+        "unit_y": 881,
+        "unit_y_unreported": 579
+      },
+      "scheduled_distinct_tree_points_ceiling_per_long_game": {
+        "games": 108,
+        "interval_95_bootstrap": [16.333333333333332, 20.37037037037037],
+        "max": 48.0,
+        "mean": 18.37037037037037,
+        "median": 20.0,
+        "min": 0.0,
+        "p25": 8.0,
+        "p75": 28.0,
+        "p90": 32.0,
+        "positive_games": 101
+      },
+      "unused_final_standing_points_by_trigger_any_per_long_game": {
+        "NONE": 0.0,
+        "PICK": 38.074074074074076,
+        "PLANT": 31.51851851851852
+      },
+      "unused_final_standing_points_by_trigger_any_total": {
+        "PICK": 4112,
+        "PLANT": 3404
+      },
+      "unused_final_standing_points_by_trigger_signature_total": {
+        "PICK": 724,
+        "PICK+PLANT": 3388,
+        "PLANT": 16
+      },
+      "unused_final_standing_points_ceiling_per_long_game": {
+        "games": 108,
+        "interval_95_bootstrap": [28.74074074074074, 48.888888888888886],
+        "max": 288.0,
+        "mean": 38.22222222222222,
+        "median": 20.0,
+        "min": 0.0,
+        "p25": 0.0,
+        "p75": 48.0,
+        "p90": 104.0,
+        "positive_games": 75
+      },
+      "unused_final_standing_trees_by_trigger_any_total": {
+        "PICK": 549,
+        "PLANT": 386
+      },
+      "unused_final_standing_trees_by_trigger_signature_total": {
+        "PICK": 167,
+        "PICK+PLANT": 382,
+        "PLANT": 4
+      }
+    }
+  ],
+  "schema_version": 1,
+  "task": "20260904-late-bankable-wood",
+  "total_turns": 300,
+  "verdict": "PREMISE_SURVIVES_READ"
+}
