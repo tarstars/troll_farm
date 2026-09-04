@@ -1,4 +1,103 @@
-# claude_1 status — wake #125, 2026-09-04
+# claude_1 status — wake #127, 2026-09-04
+
+## Wake #127 — the reproduction is chartered and live; its three choices are registered before the first game
+
+Queue: fourteen new messages, two ack-required. **The orchard reproduction is chartered**
+(`coordination/tasks/20260904-orchard-reproduction.md`, coordinator handoff `20260904T172000Z`, due
+**2026-09-06 17:00Z**). Acknowledged at `20260904T172900Z`. My own DEFERRED card of last wake is discharged by
+`20260904T173000Z`, which carries its unresolved item forward.
+
+**Delivered this wake: `claude_1/orchard-repro/PREREGISTRATION-2026-09-04.md`** — committed before a single game,
+which is the point of it. The card's §3 asks for three choices in advance and they are:
+
+1. **Exclusion rule, relative not absolute.** A policy is excluded on a map-seat only if its longest no-command
+   streak exceeds **the champion's own on that same map-seat**. `stalled` is a longest no-command streak, not a loss
+   label, and the champion has such streaks; an absolute threshold can therefore drop a policy for behaviour the
+   baseline is already showing. I compute the absolute variant too and report both counts and **what the excluded
+   policies score** — the question behind chatgpt_1's 17 of 20.
+2. **Selector: leave-one-map-out**, the same family chatgpt_1 registered. Not a weaker one — agreement under the
+   same family is the stronger result. Per-map choice reported only as a labelled hindsight upper bound.
+3. **No separate planting model — the referee is the model.** Both arms run through `fuzz_panel.FuzzReferee` on real
+   ladder maps with the scripted opponents (the `local_claude_1/the-floor/smoke.py` harness shape); the champion
+   binary decides every turn on both arms; arm B interposes a macro layer that rewrites the command of **one
+   designated planter troll and nothing else** and is a pass-through before the branch, so the byte-identical
+   prefix is true by construction. Self-occupancy, growth, raid, felling, carry, banking are whatever the referee
+   does — no model of mine to hold that bug, no repair of chatgpt_1's to inherit. I check the referee against parent
+   card §4 on hand-computed planted-tree cases instead, and a disagreement there is a finding.
+
+**Action vocabulary published:** `NO_PLANT` (always legal), `PICK`, `MOVE`, `PLANT`, `CHOP`, `DROP`; no `WAIT`.
+Policy grid `(species, n_trees ≤ 3, radius ∈ {2,4}, fell_trigger)` = 48 planting policies plus `NO_PLANT`, bounded
+by my own closed kinetics geometry.
+
+**My own addition, and the reason a second pair of hands is worth anything here:** a whole-game Δ of exactly 0.00 on
+every fold is consistent with *the selector never planted* and with *planting gained nothing*, and those are
+different findings. Beside the selected result I report **the fixed-policy Δ of every surviving policy with no
+selection at all**, and the margin as a **curve over turns** rather than only at 300. Pre-registered prediction,
+unchanged from wake #126: a near reserve shows a flat margin through roughly the first hundred turns and opens only
+after the near forest is gone — a flat early margin is the predicted shape, not a null.
+
+**STANDING CONSTRAINT, in force and tested twice now.** No file body under `chatgpt_1/champion-prefix-orchard/`
+until my own numbers are written down and committed. `git ls-tree --name-only` and `git cat-file -e` report names
+and existence, never contents — that is the line. Crossed by accident ⇒ it goes in the handoff.
+
+**`--mark` REFUSED again (exit 2)**, same peer delivery error, unchanged: chatgpt_1's `20260904T144000Z` handoff
+declares `FINAL.md` and pins `2fc4d285`, which does not contain it. Not mine to repair; the remedy is the sender's
+redelivery or the coordinator's quarantine. Seen-state not advanced; all fourteen messages read.
+
+**Next, and it is not blocked by the transport defect:** build the macro layer, prove the byte-identical prefix
+through the champion's own second `TRAIN` on every map-seat, check the referee against §4, then read a value number.
+
+Also read (cc, no action owed): the coordinator acknowledged chatgpt_2's late-bankable-wood read
+(`PREMISE_SURVIVES_READ`, successor not yet chartered — the coordinator's own execution is owed and the platform is
+frozen) and chatgpt_1's orchard result (delivered, dead condition 3, row 3-8 closed); codex_1 acknowledged the
+no-platform rule and confirmed the norxondor port line stays closed.
+
+# claude_1 status — wake #126, 2026-09-04
+
+## Wake #126 — the owner's no-platform rule acknowledged; the orchard result landed and its handoff is malformed
+
+Queue: ten new messages, one ack-required — the coordinator's 14:05Z policy on `20260904-sealed-holdout`, carrying
+**the owner's standing rule of 2026-09-04: nothing goes on the platform until the owner says so.** Acknowledged at
+`20260904T171000Z`. In force for me by every route — manual submission, the ladder queue file, a cron, a script. If
+a build of mine earns a reading I say so in the handoff and stop. The 2026-07-30 Arena grant is not in force. The VM
+ladder-queue cron is disabled and I will not re-enable it. I had nothing in flight.
+
+**`--mark` REFUSED (exit 2)** on one peer delivery error: chatgpt_1's `20260904T144000Z` orchard handoff declares
+`FINAL.md` and pins `2fc4d285`, taken 14:33Z — seven minutes before `FINAL.md` was written. All eight declared paths
+are at the head `041fd60f`. Blocker at `20260904T171500Z`, DEFERRED card at `20260904T172000Z`. The failure mode is
+the pin/publish order again, in its second form: not a rebase that moved the commit, but a pin taken before the
+artifact existed. Seen-state not advanced; every message read.
+
+**Row 3-8 landed and it is dead.** chatgpt_1 reports dead condition 3: seventeen of twenty planting policies
+introduced a new long-inactivity interval and were excluded, the three valid ones all had negative mean paired
+margin, and the registered leave-one-map-out selector chose `NO_PLANT` in all 24 folds — Δ final margin 0.00
+[0.00, 0.00], Δ own score 0.00 [0.00, 0.00], n=24. A hindsight per-map oracle planted on 16/24, which is an
+optimistic upper bound selected from the same outcomes, not a policy. Recommendation: close the row, no ladder slot,
+no tuning on that development set.
+
+**My reproduction is not yet chartered** — §7 of the card says my charter is a separate card at this moment. I have
+started nothing and will ask rather than start if no charter follows within a wake or two.
+
+**STANDING CONSTRAINT, unchanged and now tested once.** I must not read `chatgpt_1/champion-prefix-orchard/` — code,
+parameters, results, action manifest or `FINAL.md` — before my own implementation is written and committed. Verifying
+the delivery error above needed only `git ls-tree --name-only` and `git cat-file -e`, which report names and
+existence, never contents. That is the line: file names yes, file bodies no.
+
+**Pre-registered, unchanged, recorded before I see any number:** if the orchard is a near reserve rather than a value
+engine, arm B's margin is flat through roughly the first hundred turns and opens only after the near forest is
+consumed. A flat early margin is the predicted shape, not a null. **One thing the reproduction must be able to do:**
+tell "the selector never planted" apart from "planting gained nothing" — a whole-game Δ of exactly 0.00 on every
+fold is consistent with both, and they are different findings.
+
+Also read (cc, no action owed): codex_1 is back and delivered the sealed holdout instrument at `20260904T143356Z`
+(512 never-printed seeds as authenticated ciphertext, a disjoint sealed successor, five locked external opponents
+that are not our champion's relatives, `seal.py open` refusing without a frozen ancestor commit and retiring a read
+holdout into development; paired-arm SD 40.203456 giving n=512 at a 4.92-score half-width); chatgpt_2's
+`20260904T143200Z` late-bankable-wood read (`PREMISE_SURVIVES_READ`: 34.3% of late `NONE`/`PICK`/`PLANT` turns had a
+complete bankable job, but **zero** of the standing-tree points are exposed at a `NONE` decision — the mechanism is
+the late replant loop, not idle fallback, and the 705/734 vs 84%-terminal-waits contradiction is a tree-level
+ever-event statistic against a troll-turn statistic, both true); and codex_1's ack that the norxondor port line stays
+closed.
 
 ## Wake #125 — orchard kinetics CLOSED AS SUPERSEDED; I am the independent reproducer of the card that replaces it
 
