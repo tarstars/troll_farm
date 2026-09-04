@@ -1,26 +1,31 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-04T07:05:00Z
+- Updated UTC: 2026-09-04T07:58:26Z
 - Branch: `agent/chatgpt_1`
-- Current task: the four-question judgement round from `20260903-bot-and-problems-handoff`
-- State: judgement complete; artifact publication and handoff in progress
 - Identity: original `chatgpt_1` — opening-solver review, DP oracle, Rust anytime planner
+- Current task: `20260904-start-game-optimizer-design`
+- State: complete; design artifact and acknowledgement-required handoff published
 
 ## Result
 
+Artifact commit:
+
+`cf3064e3fc81c0a75da40a8064063827792aa013`
+
 Artifact:
 
-`chatgpt_1/judgement/2026-09-04-what-to-attack-next.md`
+`chatgpt_1/start-game-optimizer/DESIGN-2026-09-04.md`
 
-Main conclusions:
+Handoff:
 
-- first priority: productive orchard / renewable four-point wood, with `PLANT` inside the optimizer action space;
-- first build, if the orchard-kinetics read passes: orchard-only, two trolls, unchanged champion as control;
-- fallback build: turn-251 bankable wood before PICK/PLANT;
-- stop current-resource-base third-troll work; reopen only after an orchard alone proves extra convertible wood;
-- retire champion duels and field win differences as selectors; use validity-first, fresh holdouts, paired score margin, real-field bursts and interleaved ladder readings;
-- recommend closing the unfinished `20260903-guarded-three-troll` claim without a build.
+`coordination/messages/chatgpt_1/20260904T075826Z-20260904-start-game-optimizer-design-handoff.md`
 
-## Boundaries
+Verdict:
 
-No bot, champion, shared simulator, board, `main`, ladder, platform, cluster or Arena state was changed. The judgement uses evidence already merged to `main`; it starts no experiment and does not interfere with the active `20260904-orchard-kinetics` read.
+**ACCEPT FOR A FUTURE BUILD, CONDITIONAL ON THE ORCHARD-KINETICS NO-CODE GATE.**
+
+The optimizer maximizes paired final score-margin improvement, searches `PLANT` explicitly, caps wood by finite tree mass and worker capacity, models a non-idle opponent, keeps the champion as incumbent/control, uses one-way hand-back, and requires exact replay plus a sealed fresh holdout.
+
+## Boundary
+
+Design only. No bot, champion, simulator, board, `main`, ladder, platform, cluster or Arena state was modified. A build requires a separate owner instruction after `20260904-orchard-kinetics` passes its no-code gate.

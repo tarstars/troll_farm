@@ -1,14 +1,5 @@
 {
-  "current": {
-    "agent_id": null,
-    "early_looks": [],
-    "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
-    "id": "champion-restore-0904",
-    "label": "THE CHAMPION OF RECORD (sha 0e92f8fa...) put back after the three-troll bot's hour; holds the ladder",
-    "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
-    "submission_id": 41240269,
-    "submitted_at": "2026-09-04T07:22:25Z"
-  },
+  "current": null,
   "done": [
     {
       "agent_id": 6670021,
@@ -2167,6 +2158,122 @@
       "sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933",
       "submission_id": 41239996,
       "submitted_at": "2026-09-04T06:15:06Z",
+      "total": 177
+    },
+    {
+      "age_min": 62.6,
+      "agent_id": 6699467,
+      "early_looks": [
+        {
+          "age_min": 2.7,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:25:04Z",
+          "rank": 96,
+          "score": 17.61,
+          "total": 177
+        },
+        {
+          "age_min": 7.7,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:30:04Z",
+          "rank": 106,
+          "score": 17.25,
+          "total": 177
+        },
+        {
+          "age_min": 12.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:35:04Z",
+          "rank": 104,
+          "score": 17.34,
+          "total": 177
+        },
+        {
+          "age_min": 17.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:40:03Z",
+          "rank": 112,
+          "score": 16.94,
+          "total": 177
+        },
+        {
+          "age_min": 22.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:45:04Z",
+          "rank": 108,
+          "score": 17.17,
+          "total": 177
+        },
+        {
+          "age_min": 27.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:50:03Z",
+          "rank": 90,
+          "score": 18.0,
+          "total": 177
+        },
+        {
+          "age_min": 32.7,
+          "agent_id": 6699467,
+          "at": "2026-09-04T07:55:04Z",
+          "rank": 82,
+          "score": 18.4,
+          "total": 177
+        },
+        {
+          "age_min": 37.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T08:00:04Z",
+          "rank": 67,
+          "score": 18.87,
+          "total": 177
+        },
+        {
+          "age_min": 42.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T08:05:04Z",
+          "rank": 60,
+          "score": 19.23,
+          "total": 177
+        },
+        {
+          "age_min": 47.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T08:10:04Z",
+          "rank": 60,
+          "score": 19.23,
+          "total": 177
+        },
+        {
+          "age_min": 52.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T08:15:03Z",
+          "rank": 60,
+          "score": 19.23,
+          "total": 177
+        },
+        {
+          "age_min": 57.6,
+          "agent_id": 6699467,
+          "at": "2026-09-04T08:20:04Z",
+          "rank": 60,
+          "score": 19.23,
+          "total": 177
+        }
+      ],
+      "file": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+      "games_done": 160,
+      "games_in_package": 160,
+      "id": "champion-restore-0904",
+      "label": "THE CHAMPION OF RECORD (sha 0e92f8fa...) put back after the three-troll bot's hour; holds the ladder",
+      "package": "local_claude_1/ladder-queue/games-41240269",
+      "package_sha256": "640449adc5f636583130c74faf4d23b1e301627cf9071e30e4e78a0341a88d77",
+      "rank": 60,
+      "read_at": "2026-09-04T08:27:09Z",
+      "score": 19.23,
+      "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c",
+      "submission_id": 41240269,
+      "submitted_at": "2026-09-04T07:22:25Z",
       "total": 177
     }
   ]

@@ -102,3 +102,79 @@ Two consequences for the read:
   planned orchard must beat — and the top four's ~29 trees are the ceiling to aim at.
 
 - 2026-09-04 06:3xZ the owner's planting observation folded in, verified in both optimizers' sources. — coordinator
+
+## AMENDMENT 2026-09-04 08:0xZ — mechanics verified in the referee, and one of them changes the crop choice
+
+chatgpt_2 sent an unprompted supplement to this read (`20260904T071400Z`, its own directory, no claim on the card).
+**The coordinator checked its mechanical assertions directly against `sim/engine.py` rather than accept them, and every
+one holds.** They are recorded here as facts of record so the read need not re-derive them:
+
+- **A mature tree is worth 16 points, not 4.** `WOOD_POINTS = 4` and felling yields `plant.size` wood, so a size-4 tree
+  gives 4 wood at 4 points each. Thirty planted trees are therefore **480 points of gross standing potential** against a
+  champion score of about 184 a game — the orchard is not a marginal resource if it can be felled and banked.
+- **Health at maturity differs by species, and by a lot.** `TREE_HEALTH_BASE` is plum 4, lemon 4, apple 8, banana 2 and
+  `TREE_HEALTH_SLOPE` is plum 2, lemon 2, apple 3, banana 1, so at four growth steps: **banana 6, plum and lemon 12,
+  apple 20.** Every species still yields the same 4 wood.
+- **Therefore bananas are the efficient wood crop, and by a wide margin.** A chop-1 troll needs **6 turns to fell a
+  banana against 20 for an apple**, for the identical 16 points — **3.3 times the wood per chop-turn.** And the referee
+  prices bananas at **zero** for training, so a banana consumes no resource the roster needs. **Plant bananas for wood
+  and keep plums, lemons and apples for the training bill** is a candidate rule that falls straight out of the
+  mechanics and that no bot of ours has ever followed. The read must price the species separately rather than assume a
+  uniform orchard.
+- One referee quirk to respect in any felling estimate: the chop loop is commented *"last wood can duplicate"* — with
+  several choppers on one tree the final wood unit can be issued more than once. chatgpt_2 correctly excluded this from
+  its single-tree instrument; a multi-chopper schedule must not.
+
+**Three of its design points are adopted into this read as requirements:**
+
+1. **One mutable future-forest state.** The forecast, the admission test and the emitted policy must share it. If
+   planting is added only to the dispatcher, execution creates wood the value model still believes cannot exist — which
+   is a new way to reproduce the tenfold over-statement from the other direction.
+2. **Compare two optimized worlds, not a bot against a bot.** Best turn-300 value with `PLANT` **and** `TRAIN`, minus
+   best turn-300 value with the same orchard action space and `TRAIN` **disabled**, under identical opponent scenarios.
+   Anything else confounds the orchard's value with the troll's.
+3. **The event-driven DP oracle is the right base**, not a fixed-deficit assignment that assumes fixed sources and
+   additive resource curves.
+
+Its nine-test single-tree kinetics instrument is at `chatgpt_2/orchard-kinetics/`; the coordinator has verified the
+mechanics it encodes, not yet re-run its tests.
+
+- 2026-09-04 08:0xZ chatgpt_2's supplement verified against the referee and folded in; the banana finding is new. — coordinator
+
+## BLOCKED 2026-09-04 11:0xZ — claude_1 IS OUT OF MODEL CREDITS, and its uncommitted work is preserved
+
+**The read has not stalled through neglect; the agent cannot run.** `claude_1`'s session log ends with the same line
+repeated ten times: *"You've reached your Fable limit. Switch to another model, or manage usage credits…"*. It was
+woken at 09:18, 09:47 and 10:14Z — the last of those by an ack-required handoff — and produced nothing at any of them.
+Nothing has been written in its worktree since **05:52Z**. **Only the owner can clear this** (credits, or a model
+switch). Recorded rather than left as apparent silence; this is the second agent lost to a usage limit, after codex_1
+on 09-02.
+
+**Its uncommitted work is preserved.** The coordinator copied `kinetics.py`, `curve.py` and the 2 MB
+`results/curve.json` out of its worktree and committed them here unmodified, under claude_1's own directory and
+attributed to it. Nothing was edited; this is preservation, not a takeover, exactly as the rescue ref was on 09-03.
+
+**And the geometry it computed already answers the card's first bounding question, before any timing model.**
+Over 400 map-seats, free planting cells by distance from the shack:
+
+| within | free cells (median) | q1 / q3 | min / max | of which water-adjacent (median) |
+|---|---|---|---|---|
+| 2 steps | **11.5** | 9 / 14 | 3 / 19 | **2.0** |
+| 4 steps | **27.0** | 21 / 34 | 9 / 48 | **5.0** |
+| 8 steps | — | — | — | **13.0** |
+
+**Two consequences fall straight out, and they narrow the read before it resumes:**
+
+1. **A thirty-tree orchard is not reachable close to the tent.** The median map offers 11.5 free cells within two steps
+   and 27 within four. So the 480-point ceiling implied by "thirty mature trees at 16 points" requires planting out to
+   **four steps**, with the walking and the raid exposure that implies — near trees are taken at 0.19 per 100
+   tree-turns before turn 100 but **0.6–1.0 after**, and distance is what decides whether they are ours to fell.
+2. **Water-side planting is scarce, and water is what makes trees fast.** Only **2** free water-adjacent cells within
+   two steps and **5** within four, against 13 within eight. Since water cuts first fruit from 32 turns to 12 for plum
+   and lemon and from 36 to 8 for apple, **the fast orchard is small and the big orchard is slow** — that tension, not
+   the tree count, is the real subject of this card.
+
+The starting fruit draw is a median of 24 across the same map-seats, which bounds how much planting the opening can
+fund before any harvesting.
+
+- 2026-09-04 11:0xZ blocked on credits; work preserved and the geometry recorded. — coordinator
