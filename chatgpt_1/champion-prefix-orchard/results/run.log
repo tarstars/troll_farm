@@ -9,56 +9,58 @@
     "invalid_policies": {
       "BANANA-s55-k1-d2": [
         "a6062948c27575a8: new inactivity {'2': {'candidate': 119, 'baseline': 92}}",
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 29, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 93, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 102, 'baseline': 67}}"
       ],
       "BANANA-s55-k2-d2": [
-        "a6062948c27575a8: new inactivity {'2': {'candidate': 119, 'baseline': 92}}",
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 29, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 93, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "a6062948c27575a8: new inactivity {'2': {'candidate': 115, 'baseline': 92}}",
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 101, 'baseline': 67}, '2': {'candidate': 101, 'baseline': 67}}",
+        "b64b9915e3f228af: new inactivity {'2': {'candidate': 94, 'baseline': 73}}"
       ],
       "BANANA-s55-k3-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 92, 'baseline': 67}, '2': {'candidate': 100, 'baseline': 67}}"
+        "a6062948c27575a8: new inactivity {'2': {'candidate': 116, 'baseline': 92}}"
+      ],
+      "BANANA-s55-k4-d4": [
+        "2433a442a41ce6cb: new inactivity {'2': {'candidate': 88, 'baseline': 67}}",
+        "b64b9915e3f228af: new inactivity {'2': {'candidate': 94, 'baseline': 73}}"
       ],
       "BANANA-s70-k1-d2": [
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 46, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 91, 'baseline': 67}, '2': {'candidate': 103, 'baseline': 67}}",
-        "62694c8c0a48cf44: new inactivity {'2': {'candidate': 121, 'baseline': 88}}",
-        "b64b9915e3f228af: new inactivity {'2': {'candidate': 95, 'baseline': 73}}"
+        "a6062948c27575a8: new inactivity {'2': {'candidate': 113, 'baseline': 92}}",
+        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 71, 'baseline': 0}}",
+        "78e4df84516e04d1: new inactivity {'0': {'candidate': 162, 'baseline': 139}}",
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 101, 'baseline': 67}, '2': {'candidate': 108, 'baseline': 67}}"
       ],
       "BANANA-s70-k2-d2": [
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 46, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 91, 'baseline': 67}, '2': {'candidate': 103, 'baseline': 67}}",
-        "b64b9915e3f228af: new inactivity {'2': {'candidate': 95, 'baseline': 73}}"
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 93, 'baseline': 67}, '2': {'candidate': 94, 'baseline': 67}}",
+        "62694c8c0a48cf44: new inactivity {'2': {'candidate': 121, 'baseline': 88}}"
       ],
       "BANANA-s70-k3-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 91, 'baseline': 67}, '2': {'candidate': 92, 'baseline': 67}}"
+        "62694c8c0a48cf44: new inactivity {'2': {'candidate': 110, 'baseline': 88}}"
+      ],
+      "BANANA-s70-k4-d4": [
+        "879f73412b531333: new inactivity {'0': {'candidate': 172, 'baseline': 128}}"
       ],
       "BANANA-s85-k1-d2": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 96, 'baseline': 67}, '2': {'candidate': 93, 'baseline': 67}}"
+        "a6062948c27575a8: new inactivity {'2': {'candidate': 116, 'baseline': 92}}",
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 95, 'baseline': 67}}"
       ],
       "BANANA-s85-k2-d2": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 96, 'baseline': 67}, '2': {'candidate': 93, 'baseline': 67}}"
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 107, 'baseline': 67}, '2': {'candidate': 108, 'baseline': 67}}",
+        "62694c8c0a48cf44: new inactivity {'2': {'candidate': 115, 'baseline': 88}}",
+        "b64b9915e3f228af: new inactivity {'2': {'candidate': 96, 'baseline': 73}}"
       ],
       "BANANA-s85-k3-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 106, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
-      ],
-      "BANANA-s85-k4-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 106, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 45, 'baseline': 0}}"
       ],
       "BANANA-s100-k1-d2": [
-        "a6062948c27575a8: new inactivity {'2': {'candidate': 117, 'baseline': 92}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 108, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 45, 'baseline': 0}}",
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 92, 'baseline': 67}, '2': {'candidate': 89, 'baseline': 67}}",
+        "b64b9915e3f228af: new inactivity {'2': {'candidate': 103, 'baseline': 73}}"
       ],
       "BANANA-s100-k2-d2": [
-        "a6062948c27575a8: new inactivity {'2': {'candidate': 117, 'baseline': 92}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 108, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "b64b9915e3f228af: new inactivity {'2': {'candidate': 103, 'baseline': 73}}"
       ],
       "BANANA-s100-k3-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 104, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
-      ],
-      "BANANA-s100-k4-d4": [
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 92, 'baseline': 67}, '2': {'candidate': 98, 'baseline': 67}}"
+        "2433a442a41ce6cb: new inactivity {'2': {'candidate': 90, 'baseline': 67}}"
       ],
       "PLUM-s70-k2-d2": [
         "2433a442a41ce6cb: new inactivity {'0': {'candidate': 96, 'baseline': 67}, '2': {'candidate': 93, 'baseline': 67}}",
@@ -66,25 +68,21 @@
         "b64b9915e3f228af: new inactivity {'2': {'candidate': 100, 'baseline': 73}}"
       ],
       "LEMON-s70-k2-d2": [
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 46, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 91, 'baseline': 67}, '2': {'candidate': 103, 'baseline': 67}}",
+        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 25, 'baseline': 0}}",
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 93, 'baseline': 67}, '2': {'candidate': 93, 'baseline': 67}}",
         "62694c8c0a48cf44: new inactivity {'2': {'candidate': 110, 'baseline': 88}}",
         "b64b9915e3f228af: new inactivity {'2': {'candidate': 100, 'baseline': 73}}"
       ],
-      "APPLE-s70-k2-d2": [
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 46, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 91, 'baseline': 67}, '2': {'candidate': 103, 'baseline': 67}}",
-        "b64b9915e3f228af: new inactivity {'2': {'candidate': 95, 'baseline': 73}}"
-      ],
       "BANANA-s70-k2-d4": [
-        "c14dea6aa5d28951: new inactivity {'2': {'candidate': 29, 'baseline': 0}}",
-        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 96, 'baseline': 67}, '2': {'candidate': 108, 'baseline': 67}}"
+        "2433a442a41ce6cb: new inactivity {'0': {'candidate': 93, 'baseline': 67}, '2': {'candidate': 94, 'baseline': 67}}",
+        "62694c8c0a48cf44: new inactivity {'2': {'candidate': 121, 'baseline': 88}}"
       ]
     },
     "globally_valid_policies": [
       "NO_PLANT",
-      "BANANA-s55-k4-d4",
-      "BANANA-s70-k4-d4"
+      "BANANA-s85-k4-d4",
+      "BANANA-s100-k4-d4",
+      "APPLE-s70-k2-d2"
     ]
   }
 }

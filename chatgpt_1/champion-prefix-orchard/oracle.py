@@ -410,7 +410,10 @@ class OrchardController:
         for cell in self.candidate_cells:
             if cell in self.orchard_cells or cell in self.pending_cells or cell in self.skipped_cells:
                 continue
-            if cell in ref.plants or any(tuple(unit["cell"]) == cell for unit in ref.units.values()):
+            if cell in ref.plants or any(
+                uid != self.planter_id and tuple(unit["cell"]) == cell
+                for uid, unit in ref.units.items()
+            ):
                 self.skipped_cells.add(cell)
                 continue
             return cell

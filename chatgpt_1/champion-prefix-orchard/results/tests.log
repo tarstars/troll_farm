@@ -4,3 +4,4 @@ ok test_reserved_target_suppresses_other_worker
 ok test_bootstrap_zero
 ok test_policy_manifest_requires_no_plant
 PASS 5 tests
+PASS planter self-occupancy regression
