@@ -1,0 +1,106 @@
+{
+  "agreeing": 5,
+  "cases": 5,
+  "referee_sha256": "c786b6ed46a57084983ad3206a6ff0c2aa7e1d0818500caaed85a4d82e724cb2",
+  "results": [
+    {
+      "case": "a felled size-4 tree banks 16 points",
+      "expected": 16,
+      "got": 16,
+      "verdict": "AGREES",
+      "wood_banked": 4
+    },
+    {
+      "case": "health at maturity by species (size 4)",
+      "expected": {
+        "APPLE": 20,
+        "BANANA": 6,
+        "LEMON": 12,
+        "PLUM": 12
+      },
+      "got": {
+        "APPLE": 20,
+        "BANANA": 6,
+        "LEMON": 12,
+        "PLUM": 12
+      },
+      "sizes": {
+        "APPLE": 4,
+        "BANANA": 4,
+        "LEMON": 4,
+        "PLUM": 4
+      },
+      "verdict": "AGREES"
+    },
+    {
+      "case": "chop-1 turns to fell a mature tree",
+      "expected": {
+        "APPLE": 20,
+        "BANANA": 6,
+        "LEMON": 12,
+        "PLUM": 12
+      },
+      "got": {
+        "APPLE": 20,
+        "BANANA": 6,
+        "LEMON": 12,
+        "PLUM": 12
+      },
+      "verdict": "AGREES"
+    },
+    {
+      "case": "PLANT places the tree at the planter's own cell; only a tree blocks it",
+      "expected": {
+        "plants_under_itself": true,
+        "refused_on_occupied_cell": true
+      },
+      "got": {
+        "plants_under_itself": true,
+        "refused_on_occupied_cell": true
+      },
+      "verdict": "AGREES"
+    },
+    {
+      "case": "turns from PLANT to first fruit, beside water and inland",
+      "expected": {
+        "APPLE": {
+          "dry": 36,
+          "wet": 8
+        },
+        "BANANA": {
+          "dry": 24,
+          "wet": 16
+        },
+        "LEMON": {
+          "dry": 32,
+          "wet": 12
+        },
+        "PLUM": {
+          "dry": 32,
+          "wet": 12
+        }
+      },
+      "got": {
+        "APPLE": {
+          "dry": 36,
+          "wet": 8
+        },
+        "BANANA": {
+          "dry": 24,
+          "wet": 16
+        },
+        "LEMON": {
+          "dry": 32,
+          "wet": 12
+        },
+        "PLUM": {
+          "dry": 32,
+          "wet": 12
+        }
+      },
+      "verdict": "AGREES"
+    }
+  ],
+  "status": "PASS",
+  "what": "gate 2: the referee against the mechanics the parent card sec 4 gives for free"
+}
