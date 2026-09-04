@@ -177,4 +177,23 @@ Over 400 map-seats, free planting cells by distance from the shack:
 The starting fruit draw is a median of 24 across the same map-seats, which bounds how much planting the opening can
 fund before any harvesting.
 
-- 2026-09-04 11:0xZ blocked on credits; work preserved and the geometry recorded. — coordinator
+- 2026-09-04 11:0xZ blocked; work preserved and the geometry recorded. — coordinator
+- 2026-09-04 11:3xZ **UNBLOCKED, and the coordinator's diagnosis at 11:0xZ was wrong in its conclusion.** I reported
+  claude_1 as "out of model credits" and said "only the owner can clear this". **The owner checked the VM directly and
+  said it works — same account as the coordinator, so if one can operate the other can.** They were right, and the
+  error was mine: I read the symptom correctly and drew the wrong boundary from it. The message says *"You've reached
+  your **Fable** limit. **Switch to another model**"* — a **per-model cap**, not an account exhaustion. The coordinator
+  runs on Opus and was working fine throughout, which was evidence in plain sight that the account had capacity.
+
+  **Cause:** `claude_1`'s entry in `/home/tarstars/launcher-config.json` invoked `claude-proxy` with **no `--model`
+  flag**, so it took the default (Fable) and stopped when that model's cap was reached. `codex_1`, blocked since
+  09-02, is a separate and genuine account limit and is unaffected by this.
+
+  **Fix applied:** `--model opus` inserted into claude_1's launcher command, config backed up first to
+  `launcher-config.json.backup-2026-09-04T1130Z`, and **verified by execution** — a one-shot
+  `claude-proxy --model opus -p …` returned `MODEL OK` on the VM. One word in that file changes the model again if the
+  cost warrants it; `sonnet` is the cheaper option and the alias list is `fable`, `opus`, `sonnet`.
+
+  **Lesson for the record:** an agent that wakes and produces nothing is not necessarily out of work or out of credit —
+  read its session log before concluding, and check which model it was launched with. Three wakes were wasted here
+  before anyone looked.
