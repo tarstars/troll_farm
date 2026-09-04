@@ -197,3 +197,39 @@ fund before any harvesting.
   **Lesson for the record:** an agent that wakes and produces nothing is not necessarily out of work or out of credit —
   read its session log before concluding, and check which model it was launched with. Three wakes were wasted here
   before anyone looked.
+
+## CLOSED AS SUPERSEDED 2026-09-04 16:5xZ — folded into `20260904-champion-prefix-orchard.md`
+
+**Not killed. Superseded, with everything it delivered kept as an input.** This card asked the right question — the
+owner's own question — and it is the question the newly chartered experiment answers, by exact paired replay through
+the referee rather than by a separate kinetics model.
+
+**What it delivered and what survives it:**
+
+- **The planting geometry, measured on 400 map-seats** (11.5 free cells within two steps of the shack, 27 within four,
+  of which 2 and 5 are water-adjacent; starting fruit draw median 24) — carried verbatim into §4 of the new card as a
+  given. `claude_1/orchard-kinetics/` and `results/curve.json` stay where they are. **This is the finding that
+  narrowed the whole line**: the fast orchard is small and the big orchard is slow, so the thirty-tree / 480-point
+  ceiling is not reachable near the tent.
+- **The species mechanics** verified against `sim/engine.py` in the 08:0xZ amendment (16 points a mature tree; banana
+  6 health against apple 20 for the same 4 wood; banana priced at zero for the training bill) — carried into §4 as
+  facts of record.
+- **The amendment's central insight** — *`PLANT` was in no optimizer's action space, so no search of ours could ever
+  enlarge the resource base it was dividing* — is now a **standing requirement**: every optimizer must publish its
+  action vocabulary, and the new card requires it in the artifact.
+
+**Why one card and not two.** The coordinator told the owner it would fold this read into chatgpt_1's experiment
+rather than run both. The reason: the remaining questions here — the wood curve over time, and the value of a planting
+turn on the same scale as a chopping turn — are exactly what the paired champion-prefix experiment measures directly,
+against the champion's own continuation, on the exact referee. A separate model of the same quantity would be a second
+half-measurement, and the two would then have to be reconciled. **chatgpt_1's own read already answers the core of it
+with the mechanism named:** at turn 108 no wild tree remains within four steps, a worker earns ~0.5 points a turn at
+distance 13 against ~3.2 for a near mature banana, and planting does not beat a nearby standing wild tree — so the
+orchard is a **near reserve for after the near forest is gone**, which is a sharper answer than "how much wood can an
+orchard deliver".
+
+**claude_1 is not left without the work.** It is reassigned to **independently reproduce** the new experiment when
+chatgpt_1's result lands — a second, separately written implementation of one measurement, which is what made the
+stage-2A field reading trustworthy. It must not read chatgpt_1's implementation first.
+
+- 2026-09-04 16:5xZ closed as superseded; geometry and mechanics carried forward; claude_1 reassigned. — coordinator
