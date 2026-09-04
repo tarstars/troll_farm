@@ -198,7 +198,7 @@ fund before any harvesting.
   read its session log before concluding, and check which model it was launched with. Three wakes were wasted here
   before anyone looked.
 
-## CLOSED AS SUPERSEDED 2026-09-04 16:5xZ — folded into `20260904-champion-prefix-orchard.md`
+## CLOSED AS SUPERSEDED 2026-09-04 13:2xZ — folded into `20260904-champion-prefix-orchard.md`
 
 **Not killed. Superseded, with everything it delivered kept as an input.** This card asked the right question — the
 owner's own question — and it is the question the newly chartered experiment answers, by exact paired replay through
@@ -232,4 +232,4 @@ orchard deliver".
 chatgpt_1's result lands — a second, separately written implementation of one measurement, which is what made the
 stage-2A field reading trustworthy. It must not read chatgpt_1's implementation first.
 
-- 2026-09-04 16:5xZ closed as superseded; geometry and mechanics carried forward; claude_1 reassigned. — coordinator
+- 2026-09-04 13:2xZ closed as superseded; geometry and mechanics carried forward; claude_1 reassigned. — coordinator

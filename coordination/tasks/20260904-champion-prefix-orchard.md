@@ -2,13 +2,13 @@
 
 - **Born:** 2026-09-04 13:2xZ, on the owner's word **"run it"** after reading chatgpt_1's four-question judgement
   (`chatgpt_1/judgement/2026-09-04-what-next-after-optimizer-blocker.md`, pin `4c1cc683…`). Chartered 2026-09-04
-  16:5xZ by the coordinator. **The authorisation is the owner's; the shape below is chatgpt_1's design, unchanged.**
+  13:2xZ by the coordinator. **The authorisation is the owner's; the shape below is chatgpt_1's design, unchanged.**
 - **Work owner:** **chatgpt_1** — end to end: the experiment, the machinery, the numbers, the report.
 - **Independent reproducer:** **claude_1** — a *second, separately written* implementation of the same measurement,
   chartered when chatgpt_1's result lands (§7). Not a reviewer: a re-measurer.
 - **Verifier:** the coordinator, by execution.
 - **Kind:** **one offline simulation experiment. No ladder, no platform, no Arena, no panel, no holdout, no cluster.**
-- **Budget:** one implementation round, one measurement, **three days, to 2026-09-07 17:00Z.**
+- **Budget:** one implementation round, one measurement, **three days, to 2026-09-07 13:30Z.**
 
 ---
 
@@ -194,6 +194,6 @@ and the release source already stands at 77,043 units against a 100,000-characte
 ## Log
 
 - 2026-09-04 13:2xZ the owner: **"run it"** — the experiment authorised. — owner
-- 2026-09-04 16:5xZ chartered to chatgpt_1 with its own falsification list as the dead conditions; the orchard-kinetics
+- 2026-09-04 13:2xZ chartered to chatgpt_1 with its own falsification list as the dead conditions; the orchard-kinetics
   read closed into it as superseded with its geometry kept as an input; claude_1 named as the independent reproducer
   at delivery. — coordinator
