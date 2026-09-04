@@ -1,0 +1,65 @@
+name: chatgpt_1 start-game optimizer mechanics
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [agent/chatgpt_1]
+    paths:
+      - 'chatgpt_1/start-game-optimizer-build/**'
+      - '.github/workflows/chatgpt1-start-game-optimizer-build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  mechanics:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1
+          fetch-depth: 0
+      - name: Run model, generation, fixtures, smoke and timing
+        id: gates
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          bash chatgpt_1/start-game-optimizer-build/run_mechanics.sh 2>&1 | tee /tmp/start-optimizer-gates.log
+      - name: Record gate outcome
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          DIR=chatgpt_1/start-game-optimizer-build
+          mkdir -p "$DIR/results"
+          cp /tmp/start-optimizer-gates.log "$DIR/results/workflow.log" || true
+          printf '%s\n' '${{ steps.gates.outcome }}' > "$DIR/results/workflow-outcome.txt"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          d=Path('chatgpt_1/start-game-optimizer-build/results')
+          out={'workflow_outcome': (d/'workflow-outcome.txt').read_text().strip()}
+          for name in ('build','fixtures','control-fixtures','smoke','control-smoke','turn-time'):
+              p=d/f'{name}.json'
+              if p.exists():
+                  try: out[name]=json.loads(p.read_text())
+                  except Exception as exc: out[name]={'parse_error':str(exc)}
+          (d/'summary.json').write_text(json.dumps(out,indent=2,sort_keys=True)+'\n')
+          PY
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add chatgpt_1/start-game-optimizer-build \
+                  cgauto/submissions/candidate-start-game-optimizer-v6-instrument.rs* \
+                  readable/diffs/start-game-optimizer.diff \
+                  readable/reports/candidate-start-game-optimizer-v6-instrument.round-trip.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'chatgpt_1: generate and gate start-game optimizer [skip ci]'
+            git push origin HEAD:agent/chatgpt_1
+          fi
+      - name: Enforce mechanics gate
+        if: always()
+        shell: bash
+        run: |
+          test '${{ steps.gates.outcome }}' = success

@@ -1,0 +1,28 @@
+{
+  "schema": "start-game-optimizer-parameters-v1",
+  "status": "provisional_pending_orchard_kinetics",
+  "horizon": 120,
+  "max_plants": 8,
+  "max_plant_distance": 4,
+  "max_candidate_cells": 16,
+  "max_plan_depth": 8,
+  "max_plan_states": 96,
+  "activation_points": 4.0,
+  "opportunity_points_per_turn": 0.30,
+  "raid_before_100_per_tree_turn": 0.0019,
+  "raid_after_100_per_tree_turn": 0.0080,
+  "raid_distance_factor": 0.12,
+  "enable_third": false,
+  "third_latest": 150,
+  "third_min_orchard_cells": 6,
+  "third_min_net": 8.0,
+  "geometry": {
+    "median_free_cells_within_2": 11.5,
+    "median_free_cells_within_4": 27.0,
+    "median_wet_cells_within_2": 2.0,
+    "median_wet_cells_within_4": 5.0,
+    "median_starting_fruit": 24.0
+  },
+  "source": "coordination/tasks/20260904-start-game-optimizer-build.md",
+  "note": "Architecture is fixed; these values are replaced, not redesigned, when orchard kinetics lands."
+}
