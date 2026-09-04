@@ -1,0 +1,60 @@
+{
+ "n": 40,
+ "best_wild_per_turn": {
+  "median": 1.778,
+  "min": 1.0,
+  "max": 4.0
+ },
+ "PLUM": {
+  "chain_per_turn_S1": {
+   "median": 1.455,
+   "min": 1.455,
+   "max": 1.455
+  },
+  "S_star": {
+   "median": 1.222,
+   "min": 0.687,
+   "max": 2.749
+  },
+  "seats_where_S_star_le_1": 12
+ },
+ "LEMON": {
+  "chain_per_turn_S1": {
+   "median": 1.455,
+   "min": 1.455,
+   "max": 1.455
+  },
+  "S_star": {
+   "median": 1.222,
+   "min": 0.687,
+   "max": 2.749
+  },
+  "seats_where_S_star_le_1": 12
+ },
+ "APPLE": {
+  "chain_per_turn_S1": {
+   "median": 1.143,
+   "min": 1.143,
+   "max": 1.143
+  },
+  "S_star": {
+   "median": 1.556,
+   "min": 0.875,
+   "max": 3.5
+  },
+  "seats_where_S_star_le_1": 6
+ },
+ "BANANA": {
+  "chain_per_turn_S1": {
+   "median": 1.778,
+   "min": 1.778,
+   "max": 1.778
+  },
+  "S_star": {
+   "median": 1.0,
+   "min": 0.562,
+   "max": 2.25
+  },
+  "seats_where_S_star_le_1": 22
+ }
+}
