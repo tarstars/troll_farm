@@ -45,13 +45,14 @@ import smoke                        # noqa: E402
 import semantic_harness as sh       # noqa: E402
 
 ANCHOR = "                let third_wanted = third_plan.is_some();\n"
-DEBUG = (
-    "                if own_trolls == 2 && TOTAL_TURNS - view.turn >= Self::THIRD_TROLL_HORIZON {\n"
+DEBUG_RATES = (
     "                    if let Some((h, m, rh, rm)) = Self::wood_gate_rates(view) {\n"
     "                        eprintln!(\"RATES t{} harvester {} {} {} {} {:.4} miner {} {} {} {} {:.4}\", view.turn,\n"
     "                            h.movement_speed, h.carry_capacity, h.harvest_power, h.chop_power, rh,\n"
     "                            m.movement_speed, m.carry_capacity, m.harvest_power, m.chop_power, rm);\n"
     "                    }\n"
+)
+DEBUG_GATE = (
     "                    match Self::wood_gate_best(view) {\n"
     "                        Some((s, w, wo, a)) => eprintln!(\n"
     "                            \"GATE t{} best {} {} {} {} with {:.3} without {:.3} arrival {} admit {}\",\n"
@@ -59,8 +60,16 @@ DEBUG = (
     "                            s.chop_power, w, wo, a, w > wo),\n"
     "                        None => eprintln!(\"GATE t{} none\", view.turn),\n"
     "                    }\n"
-    "                }\n"
 )
+
+
+def debug_block(arm_text: str) -> str:
+    """The RATES line only where the gate has `wood_gate_rates` (the v1 gate has none)."""
+    rates = DEBUG_RATES if "fn wood_gate_rates(" in arm_text else ""
+    return ("                if own_trolls == 2 && TOTAL_TURNS - view.turn >= Self::THIRD_TROLL_HORIZON {\n"
+            + rates + DEBUG_GATE + "                }\n")
+
+
 CHECKPOINTS = (50, 100)
 
 
@@ -156,7 +165,7 @@ def main() -> int:
 
     arm_text = args.arm.read_text()
     assert arm_text.count(ANCHOR) == 1, "the debug anchor must occur exactly once in the arm"
-    debug_text = arm_text.replace(ANCHOR, ANCHOR + DEBUG, 1)
+    debug_text = arm_text.replace(ANCHOR, ANCHOR + debug_block(arm_text), 1)
     res_text = smoke.RESIDENT.read_text()
     plan = [json.loads(l) for l in open(args.records) if l.strip()]
 
