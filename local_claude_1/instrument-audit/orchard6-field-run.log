@@ -1,0 +1,63 @@
+=== instrument audit: orchard 6's field reading ===
+Fri Sep  4 03:32:56 UTC 2026
+policy:
+3238493631d6489fe4080a27c428e828931cff720d4c30ad0749e475eeb10350  cgauto/submissions/candidate-orchard6-v6-instrument.rs
+panel:
+77556dc9214290264945274d6388cacb424f6d0db513cf68040bab45985d5ca7  claude_1/h2h-panel/panel-200-seed1.jsonl
+
+--- orchard6 vs champion  03:33:14Z ---
+policy candidate-orchard6-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /data/scratch/audit-orchard6/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 65 | 11 | 0.1625 [0.12, 0.2075] | -26.04 [-30.57, -21.55] | 0/0/0 | 15053.3 |
+-> /data/scratch/audit-orchard6/claude_1/h2h-panel/results/orchard6-vs-champion.json
+  exit=0
+
+--- orchard6 vs orchard6  03:35:02Z ---
+policy candidate-orchard6-v6-instrument.rs
+bot    candidate-orchard6-v6-instrument.rs
+panel  /data/scratch/audit-orchard6/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 174 | 52 | 0.435 [0.41, 0.4575] | 0.0 [0.0, 0.0] | 0/0/0 | 10098.8 |
+-> /data/scratch/audit-orchard6/claude_1/h2h-panel/results/orchard6-vs-orchard6.json
+  exit=0
+
+--- orchard6 vs old-denial-on  03:37:40Z ---
+policy candidate-orchard6-v6-instrument.rs
+bot    candidate-champion-v6-instrument.rs
+panel  /data/scratch/audit-orchard6/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 21 | 12 | 0.0525 [0.03, 0.08] | -35.35 [-39.17, -31.6] | 0/0/0 | 10854.8 |
+-> /data/scratch/audit-orchard6/claude_1/h2h-panel/results/orchard6-vs-old-denial-on.json
+  exit=0
+
+--- orchard6 vs nn-clone  03:40:05Z ---
+policy candidate-orchard6-v6-instrument.rs
+bot    candidate-nn-clone.rs
+panel  /data/scratch/audit-orchard6/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 400 | 340 | 0 | 0.85 [0.805, 0.8925] | 68.7 [59.3, 78.06] | 0/0/0 | 2652.2 |
+-> /data/scratch/audit-orchard6/claude_1/h2h-panel/results/orchard6-vs-nn-clone.json
+  exit=0
+
+=== the field reading, paired with the champion's pinned runs ===
+Fri Sep  4 03:49:19 UTC 2026
+champion     maps  200 cells   400  Δwin -0.1200 [-0.1750, -0.0650]  Δmargin -26.04 [-30.57, -21.55]  wins 65 vs 113
+orchard6     maps  200 cells   400  Δwin -0.3750 [-0.4275, -0.3200]  Δmargin -26.04 [-30.57, -21.55]  wins 174 vs 324
+old-denial-on maps  200 cells   400  Δwin -0.3150 [-0.3725, -0.2550]  Δmargin -36.03 [-39.99, -32.20]  wins 21 vs 147
+nn-clone     maps  200 cells   400  Δwin +0.0225 [-0.0375, +0.0800]  Δmargin +13.18 [+3.80, +22.48]  wins 340 vs 331
+FIELD        maps  200 cells  1600  Δwin -0.1969 [-0.2344, -0.1581]  Δmargin -18.74 [-23.46, -14.05]
+VERDICT: FIELD_BELOW_ZERO
+field exit=0
+
+=== done ===
+Fri Sep  4 03:49:27 UTC 2026

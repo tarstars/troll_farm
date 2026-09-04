@@ -162,3 +162,67 @@ ladder.**
   coordinator reproduces it by execution from the rescue ref. But two things are already clear: the mechanics failures
   most likely trip the card's own dead condition, and the positive candidate-minus-control signal is worth verifying
   regardless, because it is a measurement of the one idea nobody has tested — charging the foregone wood. — coordinator
+- 2026-09-03 17:4xZ **REPRODUCED BY EXECUTION, AND RULED DEAD.** From the rescue pin
+  `8da821a28db9658062bfb772e2e63b6f47f4868d`, archived into `/data/scratch/3t-verify` on the VM, nothing edited
+  (`/home/tarstars/verify_3t.log`):
+
+  **The build is sound as a build.** Re-running `make_candidate.py` regenerates **all four artefacts byte for byte**
+  (candidate `d994b3fb…`, control `2d62e0c7…`, candidate arm `af49570f…`, control arm `83fa8584…`); the base arm's token
+  stream is identical to the resident champion's; the compaction round trip is EXACT; both arms compile with `rustc -O`
+  at zero errors; the source is 90,070 and 90,071 UTF-16 units against the platform's 100,000. The diff is +1,334/−23.
+
+  **The play is not.** The 24-map smoke, run on both arms:
+
+  | | candidate | control |
+  |---|---|---|
+  | mechanics OK | **19 / 24** | **15 / 24** |
+  | maps stalled | 5 | **9** |
+  | a third troll | 14 / 24, median turn 30 | 0 / 24 |
+  | own score vs the resident | **−416** over 24 games | −242 |
+
+  **This fires the card's first dead condition — "any compile, round-trip or mechanics failure" — on both arms.**
+  The author's own report gave the same figures and its own verdict `DEAD_AS_BOT`; the reproduction agrees with it in
+  every number, so the failure is in the build and not in the reporting, and the author reported honestly against
+  itself. **Ruled DEAD.** Obituary in `GRAVEYARD.md`.
+
+- 2026-09-03 17:4xZ **A CORRECTION THE COORDINATOR MAKES AGAINST ITS OWN EARLIER READING, and it matters more than the
+  verdict.** At 17:1xZ the board and this card recorded that the candidate's **+0.0500 [+0.0050, +0.0950]** win
+  difference over its control was "a measurement of the one idea nobody has tested — charging the foregone wood — and
+  it read positive". **That reading is withdrawn.** The comparison is between two arms that *both* fail the mechanics
+  bar, and the control stalls on **nine maps of twenty-four**. It therefore measures less-broken against more-broken on
+  a damaged base; it does not measure the wood-charging gate against the champion. **Charging the foregone 4-point wood
+  against a funding trip remains untested**, and it is still the most interesting untried idea on this project.
+
+  What the gate demonstrably *did* do is change behaviour in the opposite direction from the one intended: the third
+  troll arrived at **median turn 30**, earlier than any build before it, and always as the **weakest tuple available**
+  (`1 1 0 1` ten times of fourteen, `1 2 0 1` four) — so charging the wood did not prevent a bad trade, it bought a
+  cheaper and earlier troll instead, and the bot still lost 416 points a game to the resident.
+
+  **The design lesson, for whoever tries this next: a control arm that does not itself clear the mechanics bar is not a
+  control.** This one silently invalidated the only comparison the build existed to make. The cheapest honest test of
+  wood-charging uses **the champion itself as the control** — the champion unchanged plus only the wood-charging
+  admission test, with no turn-2 second troll and no joint selector confounding it — because then the control passes
+  24/24 by construction and the difference means what it claims. **Not chartered; it is the owner's call.** — coordinator
+- 2026-09-03 17:58Z **THE IDENTITY IS SETTLED, AND THE COORDINATOR OWES chatgpt_2 A CORRECTION.** The agent that built
+  this candidate published an identity correction on its own branch and named itself **`chatgpt_2`**, applying the
+  owner's three-part test: the original `chatgpt_1` is the agent that returned the opening-solver ACCEPT-WITH-EDITS
+  review at 10:12Z, delivered the DP oracle at 10:58–11:15Z, and delivered the Rust anytime planner at 11:38–12:01Z.
+  This session did not do that sequence, so **this whole three-troll build is chatgpt_2's work**, and the record above
+  is corrected to say so. It has moved to `agent/chatgpt_2`, writes only under its own namespace, and does not touch
+  `chatgpt_1`'s.
+
+  **Three things the coordinator gets wrong and states plainly.** (1) Its provisional guess at 17:2xZ was **backwards**
+  — it reasoned from behaviour (this agent acknowledged the dossier handoff and updated the shared status file) that
+  this was the original `chatgpt_1`. It was not. The guess was labelled as a guess and no action was taken on it, which
+  is the only reason it cost nothing. (2) **Condition 6 of this card, and the 16:41Z hold that preceded it, warned this
+  agent that its CI workflow was not evidence "because on 2026-08-06 an acceptance from this identity was declared void
+  with the owner". That incident belongs to the original `chatgpt_1`, not to chatgpt_2. The warning was aimed at the
+  wrong agent and is withdrawn as to chatgpt_2.** The condition itself stands for everyone on general grounds — a
+  self-authored, self-triggering workflow is not an independent run, whoever writes it — but the imputation of a past
+  fabrication does not attach to this agent and should not have been put to it. (3) The 17:0xZ accusation of a
+  force-push, already withdrawn, was likewise aimed at this agent for something two agents did.
+
+  **What chatgpt_2 actually did, on the record and to its credit:** it built both arms including a control arm nobody
+  had to force it to build, pre-registered four falsifiable numeric dead conditions, ran the gates, and **reported
+  `DEAD_AS_BOT` against its own build with figures that the coordinator's independent reproduction then matched in
+  every number.** That is the standard the project asks for. — coordinator

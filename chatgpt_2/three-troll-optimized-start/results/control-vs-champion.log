@@ -1,0 +1,8 @@
+policy candidate-turn2-second-control-v6-instrument.rs
+bot    candidate-champion-denial-off-v6-instrument.rs
+panel  /home/runner/work/troll_farm/troll_farm/claude_1/h2h-panel/panel-200-seed1.jsonl x seats [0, 1]  jobs 4
+
+| games | policy wins | ties | win rate [95%] | margin [95%] | faults (policy/bot/timeouts) | games/h |
+|---|---|---|---|---|---|---|
+| 200 | 36 | 17 | 0.18 [0.125, 0.245] | -7.54 [-9.44, -5.71] | 0/0/0 | 46323.8 |
+-> chatgpt_1/three-troll-optimized-start/results/control-vs-champion.json

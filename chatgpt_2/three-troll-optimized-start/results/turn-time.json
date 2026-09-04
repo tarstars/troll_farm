@@ -1,0 +1,18 @@
+{
+ "bot": "chatgpt_1/three-troll-optimized-start/candidate-three-troll-optimized-v6-instrument.rs",
+ "bot_sha256": "d994b3fb6a1271105167efc09f85aae83623cd27b1534713cba32de922df1933",
+ "opponent": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+ "games": 6,
+ "turns_timed": 796,
+ "first_turn_max_ms": 2.397,
+ "warm_median_ms": 0.268,
+ "warm_p99_ms": 1.045,
+ "warm_max_ms": 2.813,
+ "warm_over_50ms": 0,
+ "platform_limits_ms": {
+  "first_turn": 1000.0,
+  "turn": 50.0
+ },
+ "note": "wall time around the pipe round-trip on this host, referee included in neither figure; the clock also counts the pipe and the host's load",
+ "inside_platform_budget": true
+}
