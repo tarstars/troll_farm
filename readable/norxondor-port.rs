@@ -1253,7 +1253,7 @@ mod bot {
             }
             pub fn tuned_carry_regeneration_transit_idle_harvest() -> Self {
                 let mut bot = Self::with_opening_policy(YamoOpeningPolicy::TUNED_CARRY);
-                bot.announcement = "norxondor-port-v2";
+                bot.announcement = "norxondor-port-v3";
                 bot.door_unblocking = true;
                 bot.partial_bank_transit = true;
                 bot
@@ -2779,6 +2779,7 @@ mod bot {
 
             // === Norxondor hybrid macro ================================================
             const LAST_TRAIN_TURN: i32 = 185;
+            const PRODUCE_ROSTER_CAP: i32 = 3;
 
             fn switch_deadline(roster: i32) -> Option<i32> {
                 match roster {
@@ -2988,7 +2989,7 @@ mod bot {
                 let floor_unaffordable = !Self::floor_affordable(view);
                 let hard_switch = Self::switch_deadline(roster)
                     .is_some_and(|deadline| view.turn >= deadline);
-                if roster >= 5
+                if roster >= Self::PRODUCE_ROSTER_CAP
                     || view.turn > Self::LAST_TRAIN_TURN
                     || (!train_now
                         && floor_unaffordable
@@ -3763,16 +3764,16 @@ mod bot {
             }
 
             #[test]
-            fn roster_three_turn_106_stays_produce() {
-                let view = test_view(3, 106, true);
+            fn roster_two_turn_106_stays_produce() {
+                let view = test_view(2, 106, true);
                 let mut bot = bot();
                 bot.update_mode(&view, false);
                 assert_eq!(bot.mode, EconomyMode::Produce);
             }
 
             #[test]
-            fn roster_four_turn_138_switches_deforest() {
-                let view = test_view(4, 138, true);
+            fn third_troll_ends_produce_on_the_next_turn() {
+                let view = test_view(3, 75, true);
                 let mut bot = bot();
                 bot.update_mode(&view, false);
                 assert_eq!(bot.mode, EconomyMode::Deforest);
@@ -3780,7 +3781,7 @@ mod bot {
 
             #[test]
             fn missing_source_is_hopeless_but_iron_free_is_omitted() {
-                let mut iron_free = test_view(3, 106, false);
+                let mut iron_free = test_view(2, 106, false);
                 let mut first = bot();
                 first.update_mode(&iron_free, false);
                 assert_eq!(first.mode, EconomyMode::Produce);
@@ -3819,8 +3820,8 @@ mod bot {
             }
 
             #[test]
-            fn roster_five_forces_deforest() {
-                let view = test_view(5, 50, true);
+            fn produce_roster_cap_is_three() {
+                let view = test_view(YamoBot::PRODUCE_ROSTER_CAP as usize, 50, true);
                 let mut bot = bot();
                 bot.update_mode(&view, false);
                 assert_eq!(bot.mode, EconomyMode::Deforest);
@@ -3930,7 +3931,7 @@ mod bot {
 
             #[test]
             fn roster_deadlines_are_hard_only_when_floor_is_unaffordable() {
-                for (roster, deadline) in [(2, 129), (3, 144), (4, 154)] {
+                for (roster, deadline) in [(2, 129)] {
                     let mut view = test_view(roster, deadline - 1, true);
                     let cost = YamoBot::floor_cost(&view).unwrap();
                     view.inventories[0] = cost;

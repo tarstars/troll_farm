@@ -1,0 +1,33 @@
+diff --git a/readable/norxondor-port.rs b/readable/norxondor-port.rs
+index 0555e21d..489cacfd 100644
+--- a/readable/norxondor-port.rs
++++ b/readable/norxondor-port.rs
+@@ -1256 +1256 @@ mod bot {
+-                bot.announcement = "norxondor-port-v2";
++                bot.announcement = "norxondor-port-v3";
+@@ -2781,0 +2782 @@ mod bot {
++            const PRODUCE_ROSTER_CAP: i32 = 3;
+@@ -2991 +2992 @@ mod bot {
+-                if roster >= 5
++                if roster >= Self::PRODUCE_ROSTER_CAP
+@@ -3766,2 +3767,2 @@ mod bot {
+-            fn roster_three_turn_106_stays_produce() {
+-                let view = test_view(3, 106, true);
++            fn roster_two_turn_106_stays_produce() {
++                let view = test_view(2, 106, true);
+@@ -3774,2 +3775,2 @@ mod bot {
+-            fn roster_four_turn_138_switches_deforest() {
+-                let view = test_view(4, 138, true);
++            fn third_troll_ends_produce_on_the_next_turn() {
++                let view = test_view(3, 75, true);
+@@ -3783 +3784 @@ mod bot {
+-                let mut iron_free = test_view(3, 106, false);
++                let mut iron_free = test_view(2, 106, false);
+@@ -3822,2 +3823,2 @@ mod bot {
+-            fn roster_five_forces_deforest() {
+-                let view = test_view(5, 50, true);
++            fn produce_roster_cap_is_three() {
++                let view = test_view(YamoBot::PRODUCE_ROSTER_CAP as usize, 50, true);
+@@ -3933 +3934 @@ mod bot {
+-                for (roster, deadline) in [(2, 129), (3, 144), (4, 154)] {
++                for (roster, deadline) in [(2, 129)] {
