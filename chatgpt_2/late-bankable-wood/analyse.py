@@ -331,7 +331,7 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
     best_event_points_by_verb: dict[str, list[int]] = {
         verb: [] for verb in ELIGIBLE_VERBS
     }
-    final_tree_options: dict[tuple[int, int], tuple[Candidate, str, int]] = {}
+    final_tree_options: dict[tuple[int, int], dict[str, Any]] = {}
     examples: list[dict[str, Any]] = []
     greedy_used: set[tuple[int, int]] = set()
     greedy_free_at: dict[int, int] = {}
@@ -376,18 +376,27 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
                 final_kind, birth_turn = birth_info
                 if turn < birth_turn or candidate.kind != final_kind:
                     continue
-                old = final_tree_options.get(candidate.cell)
-                old_candidate = old[0] if old is not None else None
-                if old_candidate is None or (
-                    candidate.points,
-                    -candidate.total_turns,
-                    -turn,
-                ) > (
-                    old_candidate.points,
-                    -old_candidate.total_turns,
-                    -old[2],
-                ):
-                    final_tree_options[candidate.cell] = (candidate, verb, turn)
+                entry = final_tree_options.get(candidate.cell)
+                if entry is None:
+                    final_tree_options[candidate.cell] = {
+                        "candidate": candidate,
+                        "triggers": {verb},
+                        "first_turn": turn,
+                        "last_turn": turn,
+                    }
+                else:
+                    entry["triggers"].add(verb)
+                    entry["first_turn"] = min(entry["first_turn"], turn)
+                    entry["last_turn"] = max(entry["last_turn"], turn)
+                    old_candidate = entry["candidate"]
+                    if (
+                        candidate.points,
+                        -candidate.total_turns,
+                    ) > (
+                        old_candidate.points,
+                        -old_candidate.total_turns,
+                    ):
+                        entry["candidate"] = candidate
 
             if turn >= greedy_free_at.get(uid, LATE_FROM):
                 choice = next((candidate for candidate in candidates if candidate.cell not in greedy_used), None)
@@ -409,13 +418,21 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
                 )
 
     unique_ceiling_points = sum(
-        candidate.points for candidate, _, _ in final_tree_options.values()
+        entry["candidate"].points for entry in final_tree_options.values()
     )
-    final_points_by_verb = collections.Counter()
-    final_trees_by_verb = collections.Counter()
-    for candidate, trigger_verb, _ in final_tree_options.values():
-        final_points_by_verb[trigger_verb] += candidate.points
-        final_trees_by_verb[trigger_verb] += 1
+    final_points_by_trigger_any = collections.Counter()
+    final_trees_by_trigger_any = collections.Counter()
+    final_points_by_trigger_signature = collections.Counter()
+    final_trees_by_trigger_signature = collections.Counter()
+    for entry in final_tree_options.values():
+        candidate = entry["candidate"]
+        triggers = sorted(entry["triggers"])
+        signature = "+".join(triggers)
+        final_points_by_trigger_signature[signature] += candidate.points
+        final_trees_by_trigger_signature[signature] += 1
+        for trigger_verb in triggers:
+            final_points_by_trigger_any[trigger_verb] += candidate.points
+            final_trees_by_trigger_any[trigger_verb] += 1
     return {
         "game_id": int(replay["gameId"]),
         "turns": reconstructor.n_turns,
@@ -430,8 +447,14 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
         "event_best_points_by_verb": best_event_points_by_verb,
         "unused_final_standing_trees": len(final_tree_options),
         "unused_final_standing_points_ceiling": unique_ceiling_points,
-        "unused_final_standing_points_by_trigger": dict(final_points_by_verb),
-        "unused_final_standing_trees_by_trigger": dict(final_trees_by_verb),
+        "unused_final_standing_points_by_trigger_any": dict(final_points_by_trigger_any),
+        "unused_final_standing_trees_by_trigger_any": dict(final_trees_by_trigger_any),
+        "unused_final_standing_points_by_trigger_signature": dict(
+            final_points_by_trigger_signature
+        ),
+        "unused_final_standing_trees_by_trigger_signature": dict(
+            final_trees_by_trigger_signature
+        ),
         "scheduled_distinct_tree_points_ceiling": greedy_points,
         "scheduled_distinct_trees": greedy_trees,
         "final_standing_trees": len(births),
@@ -449,8 +472,10 @@ def summarise_package(*, label: str, path: Path, agent_id: int) -> dict[str, Any
     buckets_eligible = [0] * 5
     buckets_feasible = [0] * 5
     mismatch = collections.Counter()
-    final_points_by_trigger = collections.Counter()
-    final_trees_by_trigger = collections.Counter()
+    final_points_by_trigger_any = collections.Counter()
+    final_trees_by_trigger_any = collections.Counter()
+    final_points_by_trigger_signature = collections.Counter()
+    final_trees_by_trigger_signature = collections.Counter()
     event_points_by_verb: dict[str, list[float]] = {
         verb: [] for verb in ELIGIBLE_VERBS
     }
@@ -461,8 +486,18 @@ def summarise_package(*, label: str, path: Path, agent_id: int) -> dict[str, Any
             buckets_eligible[i] += game["buckets_eligible"][i]
             buckets_feasible[i] += game["buckets_feasible"][i]
         mismatch.update(game["reconstruction_mismatches"])
-        final_points_by_trigger.update(game["unused_final_standing_points_by_trigger"])
-        final_trees_by_trigger.update(game["unused_final_standing_trees_by_trigger"])
+        final_points_by_trigger_any.update(
+            game["unused_final_standing_points_by_trigger_any"]
+        )
+        final_trees_by_trigger_any.update(
+            game["unused_final_standing_trees_by_trigger_any"]
+        )
+        final_points_by_trigger_signature.update(
+            game["unused_final_standing_points_by_trigger_signature"]
+        )
+        final_trees_by_trigger_signature.update(
+            game["unused_final_standing_trees_by_trigger_signature"]
+        )
         for verb in ELIGIBLE_VERBS:
             event_points_by_verb[verb].extend(
                 float(point)
@@ -494,12 +529,22 @@ def summarise_package(*, label: str, path: Path, agent_id: int) -> dict[str, Any
         "eligible_total": total_eligible,
         "feasible_total": total_feasible,
         "feasible_share": total_feasible / total_eligible if total_eligible else 0.0,
-        "unused_final_standing_points_by_trigger_total": dict(final_points_by_trigger),
-        "unused_final_standing_points_by_trigger_per_long_game": {
-            verb: final_points_by_trigger[verb] / len(games) if games else 0.0
+        "unused_final_standing_points_by_trigger_any_total": dict(
+            final_points_by_trigger_any
+        ),
+        "unused_final_standing_points_by_trigger_any_per_long_game": {
+            verb: final_points_by_trigger_any[verb] / len(games) if games else 0.0
             for verb in sorted(ELIGIBLE_VERBS)
         },
-        "unused_final_standing_trees_by_trigger_total": dict(final_trees_by_trigger),
+        "unused_final_standing_trees_by_trigger_any_total": dict(
+            final_trees_by_trigger_any
+        ),
+        "unused_final_standing_points_by_trigger_signature_total": dict(
+            final_points_by_trigger_signature
+        ),
+        "unused_final_standing_trees_by_trigger_signature_total": dict(
+            final_trees_by_trigger_signature
+        ),
         "best_bankable_points_per_feasible_event_by_verb": {
             verb: {
                 "mean": statistics.mean(event_points_by_verb[verb])
@@ -566,7 +611,7 @@ def markdown(results: list[dict[str, Any]]) -> str:
     lines += [
         "## Exact decision-time feasibility",
         "",
-        "| package | long games | eligible troll-turns | feasible | share | NONE | PICK | PLANT | unused final-standing ceiling, mean / median | ceiling by trigger NONE / PICK / PLANT |",
+        "| package | long games | eligible troll-turns | feasible | share | NONE | PICK | PLANT | unused final-standing ceiling, mean / median | ceiling reachable at any NONE / PICK / PLANT (overlap) |",
         "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
     ]
     for result in results:
@@ -582,9 +627,9 @@ def markdown(results: list[dict[str, Any]]) -> str:
             f"{result['feasible_total']} | {result['feasible_share']:.1%} | "
             f"{by_verb[0]} | {by_verb[1]} | {by_verb[2]} | "
             f"{ceiling['mean']:.2f} / {ceiling['median']:.0f} | "
-            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('NONE', 0.0):.2f} / "
-            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('PICK', 0.0):.2f} / "
-            f"{result['unused_final_standing_points_by_trigger_per_long_game'].get('PLANT', 0.0):.2f} |"
+            f"{result['unused_final_standing_points_by_trigger_any_per_long_game'].get('NONE', 0.0):.2f} / "
+            f"{result['unused_final_standing_points_by_trigger_any_per_long_game'].get('PICK', 0.0):.2f} / "
+            f"{result['unused_final_standing_points_by_trigger_any_per_long_game'].get('PLANT', 0.0):.2f} |"
         )
     lines += [
         "",
@@ -595,9 +640,9 @@ def markdown(results: list[dict[str, Any]]) -> str:
         "The `unused final-standing ceiling` counts each tree still standing at game end at most once, "
         "and only if that same continuously existing tree was bankable at an eligible decision. It is "
         "an optimistic upper bound: it does not charge the lost PICK/PLANT continuation and it does not "
-        "replay changed later positions. The trigger breakdown assigns each tree to the latest equally "
-        "valuable eligible decision used by the deterministic tie-break; it is explanatory, not additive "
-        "evidence beyond the total.",
+        "replay changed later positions. The trigger columns overlap: one final tree may be bankable at "
+        "both a PICK and a PLANT decision, so they explain where the opportunities appear but must not be "
+        "summed.",
         "",
         "## Reconciliation",
         "",
