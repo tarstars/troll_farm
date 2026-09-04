@@ -66,3 +66,39 @@ troll pays when it arrives into a grown orchard. A build, if any, is a separate 
 ## Log
 
 - 2026-09-04 05:4xZ born from the owner's own idea; chartered to claude_1 as a read. — coordinator
+
+## AMENDMENT 2026-09-04 06:3xZ — the owner's second observation, and it generalises: PLANTING IS NOT IN ANY OPTIMIZER'S ACTION SPACE
+
+The owner watched the live games of chatgpt_2's bot on the ladder (submission `41239996`) and reported:
+
+> *"optimization doesn't include planting trees, because of it trolls are weak and wood gain is small"*
+
+**Checked in the source, and it is exactly right — of both optimizers we have built.** In chatgpt_2's
+`optimizer.rs.in` the word `plant` occurs 17 times and **every occurrence reads `view.plants`, the trees already
+standing on the board, as harvest sources**; it never issues a `PLANT` command, and a grep for one returns nothing.
+claude_1's wood-charging gate is the same: its forecast values the troll's future wood entirely out of the **existing**
+forest. So both searched over *roster tuples and trip assignments against a fixed, depleting resource base*, and
+neither could ever choose to enlarge that base.
+
+**That is a better explanation of the last two failures than either build's own post-mortem gave.** The trolls come out
+weak because the optimizer picks the cheapest tuple that its forecast can justify against a forest that is being cut
+away, and the wood gain is small because nothing in the search creates wood — it only divides what is already there.
+It also explains the shape of the choices: chatgpt_2's optimizer took the weakest tuples available (`1 1 0 1` ten times
+of fourteen), and claude_1's took speed 1 with chop 3 in 19 of 22 — in both cases a small troll, because a large one
+could not repay itself out of a shrinking forest.
+
+**So this card's requirement is strengthened, and this is the point of it:** it is not enough to model an orchard as a
+fixed prelude that happens before the optimizer runs. **PLANT must be inside the searched action space**, competing
+turn by turn against harvesting, mining, chopping and training on the same points-per-turn scale — so the planner can
+choose to spend turns now creating wood that will exist at turn 150. Question 3 on this card ("what does the
+orchestration look like") is therefore the co-optimization question the owner is naming: **the planting schedule and
+the troll schedule are one problem, not two.**
+
+Two consequences for the read:
+
+- Report the value of a planting turn **on the same scale** as a chopping turn, so the comparison the planner would
+  make is visible in the numbers even before any bot exists.
+- Report what the champion's own unaided 9.8 trees are already worth on that scale, since that is the baseline any
+  planned orchard must beat — and the top four's ~29 trees are the ceiling to aim at.
+
+- 2026-09-04 06:3xZ the owner's planting observation folded in, verified in both optimizers' sources. — coordinator
