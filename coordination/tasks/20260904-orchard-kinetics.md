@@ -140,3 +140,41 @@ Its nine-test single-tree kinetics instrument is at `chatgpt_2/orchard-kinetics/
 mechanics it encodes, not yet re-run its tests.
 
 - 2026-09-04 08:0xZ chatgpt_2's supplement verified against the referee and folded in; the banana finding is new. — coordinator
+
+## BLOCKED 2026-09-04 11:0xZ — claude_1 IS OUT OF MODEL CREDITS, and its uncommitted work is preserved
+
+**The read has not stalled through neglect; the agent cannot run.** `claude_1`'s session log ends with the same line
+repeated ten times: *"You've reached your Fable limit. Switch to another model, or manage usage credits…"*. It was
+woken at 09:18, 09:47 and 10:14Z — the last of those by an ack-required handoff — and produced nothing at any of them.
+Nothing has been written in its worktree since **05:52Z**. **Only the owner can clear this** (credits, or a model
+switch). Recorded rather than left as apparent silence; this is the second agent lost to a usage limit, after codex_1
+on 09-02.
+
+**Its uncommitted work is preserved.** The coordinator copied `kinetics.py`, `curve.py` and the 2 MB
+`results/curve.json` out of its worktree and committed them here unmodified, under claude_1's own directory and
+attributed to it. Nothing was edited; this is preservation, not a takeover, exactly as the rescue ref was on 09-03.
+
+**And the geometry it computed already answers the card's first bounding question, before any timing model.**
+Over 400 map-seats, free planting cells by distance from the shack:
+
+| within | free cells (median) | q1 / q3 | min / max | of which water-adjacent (median) |
+|---|---|---|---|---|
+| 2 steps | **11.5** | 9 / 14 | 3 / 19 | **2.0** |
+| 4 steps | **27.0** | 21 / 34 | 9 / 48 | **5.0** |
+| 8 steps | — | — | — | **13.0** |
+
+**Two consequences fall straight out, and they narrow the read before it resumes:**
+
+1. **A thirty-tree orchard is not reachable close to the tent.** The median map offers 11.5 free cells within two steps
+   and 27 within four. So the 480-point ceiling implied by "thirty mature trees at 16 points" requires planting out to
+   **four steps**, with the walking and the raid exposure that implies — near trees are taken at 0.19 per 100
+   tree-turns before turn 100 but **0.6–1.0 after**, and distance is what decides whether they are ours to fell.
+2. **Water-side planting is scarce, and water is what makes trees fast.** Only **2** free water-adjacent cells within
+   two steps and **5** within four, against 13 within eight. Since water cuts first fruit from 32 turns to 12 for plum
+   and lemon and from 36 to 8 for apple, **the fast orchard is small and the big orchard is slow** — that tension, not
+   the tree count, is the real subject of this card.
+
+The starting fruit draw is a median of 24 across the same map-seats, which bounds how much planting the opening can
+fund before any harvesting.
+
+- 2026-09-04 11:0xZ blocked on credits; work preserved and the geometry recorded. — coordinator
