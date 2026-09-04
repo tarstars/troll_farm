@@ -1,0 +1,97 @@
+{
+  "geometry": {
+    "backup_cells": "up to max(3*k,8) deterministic cells retained for live occupation repair",
+    "door_cells": "excluded from planting to preserve bank access",
+    "max_door_distance": [
+      2,
+      4
+    ],
+    "ordering": [
+      "water-adjacent first",
+      "shorter own-door distance",
+      "larger enemy-door distance",
+      "cell lexicographic"
+    ]
+  },
+  "not_overridden": {
+    "HARVEST": "unchanged champion action; the orchard experiment does not reserve a fruit-harvest phase",
+    "MINE": "unchanged champion action",
+    "TRAIN": "the champion's own second TRAIN is preserved; all later TRAIN is forbidden"
+  },
+  "policy_dimensions": {
+    "banana_distance_by_count": {
+      "1": 2,
+      "2": 2,
+      "3": 4,
+      "4": 4
+    },
+    "extra_geometry_probe": "BANANA at start 70, k=2, distance 4",
+    "extra_species_probe": "PLUM/LEMON/APPLE at start 70, k=2, distance 2",
+    "fell_size": [
+      4
+    ],
+    "plant_count": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "start_turn": [
+      55,
+      70,
+      85,
+      100
+    ]
+  },
+  "prefix": {
+    "boundary": "candidate stdout is forwarded byte-for-byte through the accepted second TRAIN; first possible override is the following turn",
+    "executable": "unchanged champion of record",
+    "no_plant": "always legal and represented by unchanged champion",
+    "train_after_prefix": "disabled"
+  },
+  "schema": "champion-prefix-orchard-action-vocabulary-v1",
+  "searched_macros": {
+    "CHOP": {
+      "searched": "candidate-owned orchard tree once it reaches the policy's fell size"
+    },
+    "DROP": {
+      "searched": "bank carried seed residue/wood before another macro"
+    },
+    "MOVE": {
+      "routing": "referee exact deterministic movement",
+      "searched": "target cell for seed acquisition, planting, felling, or banking"
+    },
+    "PICK": {
+      "searched": "species seed from own inventory after second TRAIN"
+    },
+    "PLANT": {
+      "searched": "species, near-shack cell, start window, count"
+    },
+    "WAIT": {
+      "searched": "implicit: leave the continuously advanced champion in control while crops grow or no macro dominates"
+    }
+  },
+  "selection": {
+    "descriptive_only": [
+      "in-sample global best",
+      "per-map oracle upper bound"
+    ],
+    "guards": [
+      "paired own score",
+      "byte-identical prefix",
+      "same second TRAIN event",
+      "mechanics",
+      "new inactivity",
+      "wood calibration",
+      "high raid"
+    ],
+    "primary": "leave-one-map-out choice of one global policy, paired final margin"
+  },
+  "species": [
+    "BANANA",
+    "PLUM",
+    "LEMON",
+    "APPLE"
+  ],
+  "task": "20260904-champion-prefix-orchard"
+}

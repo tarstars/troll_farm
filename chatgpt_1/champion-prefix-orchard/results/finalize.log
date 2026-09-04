@@ -1,0 +1,41 @@
+{
+  "artifact": "2fc4d285c391b66fc575ae2fec00d0957ea3c9e2",
+  "hindsight_choice_counts": {
+    "APPLE-s70-k2-d2": 5,
+    "BANANA-s100-k4-d4": 2,
+    "BANANA-s85-k4-d4": 9,
+    "NO_PLANT": 8
+  },
+  "hindsight_oracle_margin": {
+    "lower95": 4.208333333333333,
+    "mean": 7.333333333333333,
+    "n": 24,
+    "upper95": 11.083333333333334
+  },
+  "hindsight_oracle_own": {
+    "lower95": 5.625,
+    "mean": 9.25,
+    "n": 24,
+    "upper95": 13.541666666666666
+  },
+  "invalid_planting_policies": 17,
+  "primary_margin": {
+    "lower95": 0.0,
+    "mean": 0.0,
+    "n": 24,
+    "upper95": 0.0
+  },
+  "primary_own": {
+    "lower95": 0.0,
+    "mean": 0.0,
+    "n": 24,
+    "upper95": 0.0
+  },
+  "valid_policies": [
+    "NO_PLANT",
+    "BANANA-s85-k4-d4",
+    "BANANA-s100-k4-d4",
+    "APPLE-s70-k2-d2"
+  ],
+  "verdict": "DEAD_ON_NORMAL_PAIRED_REPLAY"
+}

@@ -1,0 +1,217 @@
+{
+  "policies": [
+    {
+      "enabled": false,
+      "fell_size": 4,
+      "latest_plant_turn": 70,
+      "max_door_distance": 2,
+      "name": "NO_PLANT",
+      "plant_count": 0,
+      "species": "BANANA",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 90,
+      "max_door_distance": 2,
+      "name": "BANANA-s55-k1-d2",
+      "plant_count": 1,
+      "species": "BANANA",
+      "start_turn": 55
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 100,
+      "max_door_distance": 2,
+      "name": "BANANA-s55-k2-d2",
+      "plant_count": 2,
+      "species": "BANANA",
+      "start_turn": 55
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 115,
+      "max_door_distance": 4,
+      "name": "BANANA-s55-k3-d4",
+      "plant_count": 3,
+      "species": "BANANA",
+      "start_turn": 55
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 125,
+      "max_door_distance": 4,
+      "name": "BANANA-s55-k4-d4",
+      "plant_count": 4,
+      "species": "BANANA",
+      "start_turn": 55
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 105,
+      "max_door_distance": 2,
+      "name": "BANANA-s70-k1-d2",
+      "plant_count": 1,
+      "species": "BANANA",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 115,
+      "max_door_distance": 2,
+      "name": "BANANA-s70-k2-d2",
+      "plant_count": 2,
+      "species": "BANANA",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 130,
+      "max_door_distance": 4,
+      "name": "BANANA-s70-k3-d4",
+      "plant_count": 3,
+      "species": "BANANA",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 140,
+      "max_door_distance": 4,
+      "name": "BANANA-s70-k4-d4",
+      "plant_count": 4,
+      "species": "BANANA",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 120,
+      "max_door_distance": 2,
+      "name": "BANANA-s85-k1-d2",
+      "plant_count": 1,
+      "species": "BANANA",
+      "start_turn": 85
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 130,
+      "max_door_distance": 2,
+      "name": "BANANA-s85-k2-d2",
+      "plant_count": 2,
+      "species": "BANANA",
+      "start_turn": 85
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 145,
+      "max_door_distance": 4,
+      "name": "BANANA-s85-k3-d4",
+      "plant_count": 3,
+      "species": "BANANA",
+      "start_turn": 85
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 155,
+      "max_door_distance": 4,
+      "name": "BANANA-s85-k4-d4",
+      "plant_count": 4,
+      "species": "BANANA",
+      "start_turn": 85
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 135,
+      "max_door_distance": 2,
+      "name": "BANANA-s100-k1-d2",
+      "plant_count": 1,
+      "species": "BANANA",
+      "start_turn": 100
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 145,
+      "max_door_distance": 2,
+      "name": "BANANA-s100-k2-d2",
+      "plant_count": 2,
+      "species": "BANANA",
+      "start_turn": 100
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 160,
+      "max_door_distance": 4,
+      "name": "BANANA-s100-k3-d4",
+      "plant_count": 3,
+      "species": "BANANA",
+      "start_turn": 100
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 170,
+      "max_door_distance": 4,
+      "name": "BANANA-s100-k4-d4",
+      "plant_count": 4,
+      "species": "BANANA",
+      "start_turn": 100
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 115,
+      "max_door_distance": 2,
+      "name": "PLUM-s70-k2-d2",
+      "plant_count": 2,
+      "species": "PLUM",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 115,
+      "max_door_distance": 2,
+      "name": "LEMON-s70-k2-d2",
+      "plant_count": 2,
+      "species": "LEMON",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 115,
+      "max_door_distance": 2,
+      "name": "APPLE-s70-k2-d2",
+      "plant_count": 2,
+      "species": "APPLE",
+      "start_turn": 70
+    },
+    {
+      "enabled": true,
+      "fell_size": 4,
+      "latest_plant_turn": 125,
+      "max_door_distance": 4,
+      "name": "BANANA-s70-k2-d4",
+      "plant_count": 2,
+      "species": "BANANA",
+      "start_turn": 70
+    }
+  ],
+  "schema": "champion-prefix-orchard-policy-grid-v1",
+  "selection": "global and leave-one-map-out exact paired final margin; NO_PLANT legal",
+  "task": "20260904-champion-prefix-orchard"
+}
