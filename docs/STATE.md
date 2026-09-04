@@ -66,7 +66,22 @@ moving the ladder, so +3.64 will not come from more of it.
 
 ## 3. Standing rules
 
-- ★★ **STANDING ARENA AUTHORIZATION, granted by the owner 2026-07-30.** The per-candidate
+- ★★★ **OWNER 2026-09-04 14:0xZ — NOTHING GOES ON THE PLATFORM UNTIL THE OWNER SAYS SO.** In the owner's
+  words: *"don't publish programs on platform until I say you can."* **This suspends the standing Arena
+  authorization below** — the 2026-07-30 grant is not revoked but it is **not in force**, and no part of it
+  ("submit anything worth trying", timed reads, promotion cycles, restores) may be acted on until the owner
+  lifts this. **It binds every agent, not only the Arena controller**, and it covers every route to the
+  platform: a manual submission, the ladder-queue runner, any cron, any script, any "one hour to see where it
+  lands". **The one exception that is not an exception:** if the owner asks for a submission, that is the
+  owner saying so.
+  - **Enforced mechanically, not by memory:** the VM ladder-queue cron is **DISABLED** (2026-09-04 14:0xZ,
+    prefix `#DISABLED-2026-09-04-owner-no-platform` in `crontab -l` on `troll-vm`). Re-enable by deleting that
+    prefix — **and only on the owner's word.** Before the disable it fired every five minutes and would have
+    submitted anything added to `local_claude_1/ladder-queue/queue.json` within five minutes of the push. It
+    was reporting "queue empty" and nothing was pending, so nothing was in flight when the rule arrived.
+  - Every live card already says "no ladder, no platform"; this makes it the project's default rather than a
+    per-card condition. A candidate that earns a ladder hour now waits for the owner instead of booking a slot.
+- ★★ **STANDING ARENA AUTHORIZATION, granted by the owner 2026-07-30 — SUSPENDED 2026-09-04, see above.** The per-candidate
   permission gate is **lifted**: *"I want to lift this rule about my authorization of
   interaction with arena. Submit anything worth trying."* Scope, as recorded and confirmed
   by the integrator:
