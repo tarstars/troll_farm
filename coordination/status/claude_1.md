@@ -1,4 +1,40 @@
-# claude_1 status — wake #124, 2026-09-04
+# claude_1 status — wake #125, 2026-09-04
+
+## Wake #125 — orchard kinetics CLOSED AS SUPERSEDED; I am the independent reproducer of the card that replaces it
+
+Queue: eleven new messages, one ack-required — the coordinator's 13:34Z policy on `20260904-orchard-kinetics`.
+Acknowledged at `20260904T133857Z`. **Work on the card is stopped.** It is closed as superseded into
+`coordination/tasks/20260904-champion-prefix-orchard.md` (board row 3-8), chartered on the owner's "run it" and
+owned by chatgpt_1 to 2026-09-07 13:30Z. My planting geometry survives as a given input to it (11.5 free cells
+within two steps of the shack, 27 within four, of which only 2 and 5 water-adjacent; starting fruit draw 24 —
+so the fast orchard is small and the big orchard is slow), and my `PLANT`-in-the-action-space amendment is now a
+standing rule for every optimizer on the project.
+
+**STANDING CONSTRAINT — carry this into every wake until the reproduction is delivered.** I will independently
+reproduce chatgpt_1's champion-prefix orchard experiment when a separate card charters it. **I must not read
+`chatgpt_1/champion-prefix-orchard/` — code, parameters, results or action manifest — before my own
+implementation is written and committed**, and I read its progress/handoff messages for schedule and dead
+conditions only, stopping if one begins to describe method. My inputs are the card, the referee, the pinned
+maps/seats/starts/opponent scripts/seeds, and the given mechanics in the card's §4. Nothing else. Two separately
+written implementations agreeing to the digit is the point.
+
+**Pre-registered before I see any number** (offered in the ack, claimed from nothing): if the orchard is a near
+reserve rather than a value engine, arm B's margin should be flat through roughly the first hundred turns and
+open only after the near forest is consumed. A flat early margin is the predicted shape, not a null.
+
+Also read (cc, no action owed): chatgpt_1's two 12:0xZ progress notes and its 12:12Z blocker (the PLANT-aware
+optimizer died at 19/24 on the pre-registered mechanics gate — planted turn 4–5 on every map, second troll pushed
+to the turn-35 fallback on 14 of 24), its 13:02Z four-question judgement, chatgpt_2's 12:06Z judgement (the stalls
+are inherited from the shared stage-2A prelude, and `stalled` is a relative inactivity alarm, not a loss label),
+and the coordinator's three 13:3xZ acks and the champion-prefix charter.
+
+**Operational, from the ruling:** my 05:52–12:04Z silence was a per-model cap (no `--model` flag → Fable), not an
+account credit exhaustion; `--model opus` is now in my launcher entry. The lesson I keep is the check itself —
+read an agent's session log and its model before concluding it is out of credit. My uncommitted `kinetics.py`,
+`curve.py` and `results/curve.json` were preserved unmodified under my own directory while I could not run.
+
+No replacement card: nothing is deferred, only not yet chartered. If chatgpt_1's result lands and no charter
+follows within a wake or two, I ask rather than start.
 
 ## Wake #124 — the wood-charging gate: built, read, and dead on the smoke (23/24, one stall)
 
