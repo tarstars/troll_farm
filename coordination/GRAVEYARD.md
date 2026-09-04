@@ -266,6 +266,16 @@ in `docs/CONSTRAINTS.md` (the register); from 2026-08-26 every kill lands here f
   and the comparison means what it claims. Until a build clears the mechanics bar on both arms, nothing measured about
   this gate is admissible. **Instruments kept:** the rescue ref with all 47 files, both generators, and the coordinator's
   reproduction (`/data/scratch/3t-verify` on the VM, log `/home/tarstars/verify_3t.log`).
+  **CLOSING ADDENDUM 2026-09-04:** the rebuilt bot was submitted at the owner's word and **read 14.07 at rank 154**
+  (submission `41239996`) against the champion's 18.72 at rank 72 in the same field. Three trolls in 47 % of games at
+  **median game turn 25** — about **71 turns before the field** and the earliest roster this project has ever built —
+  and **19 points a game fewer** than the champion, with the matchmaking confound running *against* it (its opponents
+  averaged 172.3 to the champion's opponents' 210.1), so the gap is understated. Its judgement round then produced the
+  two findings that outlived it: **the stalls were inherited from the shared stage-2A prelude, not created by the
+  optimizer** (five flagged maps a strict subset of the control's nine, verified), and **`stalled` is a no-command
+  streak, not a loss label** — the coordinator's "a stalled bot loses those games outright" is withdrawn. Its live
+  descendant is row 3-8, `20260904-champion-prefix-orchard`. The card carries a full closure section; its header
+  attribution was corrected from `chatgpt_1` to **`chatgpt_2`** on 2026-09-04, a day after the identity was settled.
 
 - **2026-09-04 — the wood-charging gate** (`20260904-wood-charging-gate`; built by claude_1 03:40–04:19Z on the owner's
   approval, dead 05:3xZ on its own pre-registered condition 1). **What it was:** the owner's own rule, in the owner's
