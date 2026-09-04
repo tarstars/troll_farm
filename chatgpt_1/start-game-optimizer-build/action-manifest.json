@@ -1,0 +1,28 @@
+{
+  "schema": "start-game-optimizer-action-vocabulary-v1",
+  "candidate": "candidate-start-game-optimizer-v6-instrument.rs",
+  "objective": "paired final score-margin improvement over frozen champion continuation",
+  "incumbent": "unchanged champion command policy",
+  "searched_irreversible_choices": {
+    "PLANT": ["species", "cell", "worker", "timing", "sequence up to configured depth"],
+    "NO_PLANT": ["always legal"],
+    "TRAIN_THIRD": ["full tuple when enabled and already affordable; disabled in provisional parameters"],
+    "NO_TRAIN": ["default and always legal"]
+  },
+  "searched_joint_execution": {
+    "MOVE": "canonical shortest-path target inherited from the selected macro or champion candidate",
+    "PICK": "seed reservation step of a selected planting macro",
+    "PLANT": "committed live-repaired planting target",
+    "CHOP": "all champion chop candidates remain available; young optimizer trees are protected until size 4",
+    "HARVEST": "champion candidates remain available",
+    "DROP": "champion bank candidates remain available",
+    "MINE": "champion candidates remain available",
+    "TRAIN": "champion second-troll choice plus optional optimizer third-troll choice",
+    "WAIT": "champion wait plus event wait"
+  },
+  "exactness_boundary": "The online candidate uses a bounded planting-sequence surrogate to decide whether to override the champion. Every emitted command is replayed by the project referee gates. The full stochastic turn-300 optimum is not claimed.",
+  "finite_ledger": true,
+  "rate_times_remaining_without_tree_cap": false,
+  "opponent_idle_used_for_value_gate": false,
+  "control": "unchanged champion"
+}

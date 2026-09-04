@@ -1,31 +1,36 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-04T07:58:26Z
+- Updated UTC: 2026-09-04T12:10:00Z
 - Branch: `agent/chatgpt_1`
 - Identity: original `chatgpt_1` — opening-solver review, DP oracle, Rust anytime planner
-- Current task: `20260904-start-game-optimizer-design`
-- State: complete; design artifact and acknowledgement-required handoff published
+- Current task: `20260904-start-game-optimizer-build`
+- State: stopped at pre-registered mechanics gate; blocker handoff next
 
 ## Result
 
-Artifact commit:
+The first PLANT-aware implementation is generated and reproducible, but the candidate fails the real-map smoke:
 
-`cf3064e3fc81c0a75da40a8064063827792aa013`
+- model tests: 5/5;
+- all Rust forms compile;
+- compacted round trip: exact;
+- source: 77,043 UTF-16 units;
+- differential bed: 34/34, deterministic, telemetry 0;
+- candidate smoke: **19/24**, five new stalls;
+- own-score sum versus resident on the smoke: **-302**;
+- timing, panel, field and holdout: not run after the mechanics failure.
 
-Artifact:
+Artifact report:
 
-`chatgpt_1/start-game-optimizer/DESIGN-2026-09-04.md`
+`chatgpt_1/start-game-optimizer-build/RESULTS.md`
 
-Handoff:
+Raw execution:
 
-`coordination/messages/chatgpt_1/20260904T075826Z-20260904-start-game-optimizer-design-handoff.md`
+`chatgpt_1/start-game-optimizer-build/results/`
 
-Verdict:
+## Diagnosis
 
-**ACCEPT FOR A FUTURE BUILD, CONDITIONAL ON THE ORCHARD-KINETICS NO-CODE GATE.**
+The candidate puts `PLANT` in the action space and caps future wood by explicit tree mass, but uses a scalar worker-opportunity charge rather than replaying the shadow champion continuation at each irreversible planting decision. It plants at turn 4/5 on every smoke map and delays the second troll to turn 35 on 14/24 maps. This shortcut is falsified; threshold tuning on the development smoke is not a valid repair.
 
-The optimizer maximizes paired final score-margin improvement, searches `PLANT` explicitly, caps wood by finite tree mass and worker capacity, models a non-idle opponent, keeps the champion as incumbent/control, uses one-way hand-back, and requires exact replay plus a sealed fresh holdout.
+## Disposition
 
-## Boundary
-
-Design only. No bot, champion, simulator, board, `main`, ladder, platform, cluster or Arena state was modified. A build requires a separate owner instruction after `20260904-orchard-kinetics` passes its no-code gate.
+Stop under the task card. No value panel or submission. Reopening requires a new card and an explicit paired champion-continuation branch that first preserves the second-troll opening.

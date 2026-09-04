@@ -1,0 +1,57 @@
+        #[derive(Clone, Copy, Debug)]
+        struct OpeningOptimizerConfig {
+            horizon: i32,
+            max_plants: usize,
+            max_plant_distance: i32,
+            max_candidate_cells: usize,
+            max_plan_depth: usize,
+            max_plan_states: usize,
+            activation_points: f64,
+            opportunity_points_per_turn: f64,
+            raid_before_100: f64,
+            raid_after_100: f64,
+            raid_distance_factor: f64,
+            enable_third: bool,
+            third_latest: i32,
+            third_min_orchard_cells: usize,
+            third_min_net: f64,
+        }
+        impl OpeningOptimizerConfig {
+            // Provisional inputs only. The pending orchard-kinetics read replaces values,
+            // never search structure. Raid rates are per tree-turn (0.19 / 100 and 0.8 / 100).
+            const PROVISIONAL: Self = Self {
+                horizon: __HORIZON__,
+                max_plants: __MAX_PLANTS__,
+                max_plant_distance: __MAX_PLANT_DISTANCE__,
+                max_candidate_cells: __MAX_CANDIDATE_CELLS__,
+                max_plan_depth: __MAX_PLAN_DEPTH__,
+                max_plan_states: __MAX_PLAN_STATES__,
+                activation_points: __ACTIVATION_POINTS__,
+                opportunity_points_per_turn: __OPPORTUNITY_POINTS_PER_TURN__,
+                raid_before_100: __RAID_BEFORE_100__,
+                raid_after_100: __RAID_AFTER_100__,
+                raid_distance_factor: __RAID_DISTANCE_FACTOR__,
+                enable_third: __ENABLE_THIRD__,
+                third_latest: __THIRD_LATEST__,
+                third_min_orchard_cells: __THIRD_MIN_ORCHARD_CELLS__,
+                third_min_net: __THIRD_MIN_NET__,
+            };
+        }
+        #[derive(Clone, Copy, Debug)]
+        struct OptimizerPlantChoice {
+            kind: PlantKind,
+            cell: Cell,
+            net: f64,
+            plant_finish: i32,
+            completion: i32,
+            distance: i32,
+        }
+        #[derive(Clone, Debug)]
+        struct OptimizerPlanState {
+            turn: i32,
+            value: f64,
+            used: [i32; 4],
+            mask: u64,
+            first: Option<OptimizerPlantChoice>,
+            depth: usize,
+        }
