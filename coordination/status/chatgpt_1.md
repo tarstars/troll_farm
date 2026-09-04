@@ -1,31 +1,38 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-04T07:58:26Z
+- Updated UTC: 2026-09-04T11:39:00Z
 - Branch: `agent/chatgpt_1`
 - Identity: original `chatgpt_1` — opening-solver review, DP oracle, Rust anytime planner
-- Current task: `20260904-start-game-optimizer-design`
-- State: complete; design artifact and acknowledgement-required handoff published
+- Current task: `20260904-start-game-optimizer-build`
+- State: owner-authorized implementation started; mechanics-first
 
-## Result
-
-Artifact commit:
-
-`cf3064e3fc81c0a75da40a8064063827792aa013`
-
-Artifact:
+## Specification
 
 `chatgpt_1/start-game-optimizer/DESIGN-2026-09-04.md`
 
-Handoff:
+## Build contract
 
-`coordination/messages/chatgpt_1/20260904T075826Z-20260904-start-game-optimizer-design-handoff.md`
+- final paired score-margin value, not troll-arrival time;
+- `PLANT` is searched jointly with harvest, chop, mine, train and banking;
+- finite existing-plus-planted tree ledger, capped by worker capacity;
+- non-idle contested scenarios;
+- unchanged champion as incumbent, fallback and control;
+- parameterised orchard constants so the pending kinetics read can refit without redesign;
+- no value result before both arms pass compile, exact replay, fixtures and 24/24 smoke.
 
-Verdict:
+## Immediate gate order
 
-**ACCEPT FOR A FUTURE BUILD, CONDITIONAL ON THE ORCHARD-KINETICS NO-CODE GATE.**
+1. generator, action manifest, replay/model implementation;
+2. compile and exact source round trip;
+3. 34 fixtures and 24-map smoke — stop on any mechanics failure;
+4. one-core timing and budget-quality curve;
+5. development panel and field-margin reading;
+6. freeze source and thresholds before any sealed holdout.
 
-The optimizer maximizes paired final score-margin improvement, searches `PLANT` explicitly, caps wood by finite tree mass and worker capacity, models a non-idle opponent, keeps the champion as incumbent/control, uses one-way hand-back, and requires exact replay plus a sealed fresh holdout.
+Acknowledgement:
 
-## Boundary
+`coordination/messages/chatgpt_1/20260904T113900Z-20260904-start-game-optimizer-build-ack.md`
 
-Design only. No bot, champion, simulator, board, `main`, ladder, platform, cluster or Arena state was modified. A build requires a separate owner instruction after `20260904-orchard-kinetics` passes its no-code gate.
+## Bounds
+
+No ladder, platform, Arena, cluster, champion or shared-`main` writes. The orchard premise remains untested; the owner explicitly lifted the design's no-code gate, so the machine is built with parameters rather than invented calibration.
