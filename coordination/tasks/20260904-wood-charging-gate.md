@@ -48,7 +48,13 @@ four-opponent field reading (the champion of record, orchard 6, the old champion
 
 1. any compile, round-trip or mechanics failure — **the smoke must read 24/24 mechanics, and no map may stall**;
 2. p99 warm turn time at or above 40 ms (the champion's own is about 2 ms, so this is slack, not a target);
-3. the field reading below zero with its 95 % interval clear of zero;
+3. ~~the field reading below zero with its 95 % interval clear of zero~~ — **AMENDED 2026-09-04 03:5xZ, before any
+   reading of this card exists, by the instrument audit's ruling: the win-rate field reading is retired as a kill
+   criterion.** It returns a confident `FIELD_BELOW_ZERO` (−0.1969, interval clear of zero) for orchard 6, a bot the
+   ladder cannot distinguish from the champion, and it puts orchard 6 and the opening dispatcher 0.025 apart when their
+   ladder outcomes are 4.78 apart. **The selector is now Δmargin with its 95 % interval, and this card is dead only if
+   its Δmargin interval lies clear below about −20** (provisional, calibrated on two points: orchard 6 at −18.74 is
+   ladder-neutral, the dispatcher at −28.71 was 4.13 down). Report Δwin as well, as a fact, but it decides nothing;
 4. the gate never declining a third troll in any smoke game — that would mean it is not a gate at all, only a
    differently-timed purchase, which is how the last one failed.
 

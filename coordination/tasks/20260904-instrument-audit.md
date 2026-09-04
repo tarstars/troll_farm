@@ -61,3 +61,67 @@ against the same four opponents on the same pinned 200-map panel).
 
 - 2026-09-04 03:2x–03:3xZ born on the owner's word; findings 1 and 2 computed from `readings.jsonl` and the panel
   results; finding 3's decisive run launched. — coordinator
+
+## Finding 4 — THE SELECTOR RETURNS "DEAD" FOR A BOT THE LADDER CANNOT TELL FROM THE CHAMPION
+
+orchard 6's four-opponent field reading, run on the exact file that read 18.84 (sha `32384936…`), same pinned panel,
+same four opponents, same champion baselines, zero faults:
+
+| opponent | orchard 6 | the champion | Δwin |
+|---|---|---|---|
+| the champion of record | 65 / 400 | 113 | −0.1200 [−0.1750, −0.0650] |
+| orchard 6 *(self-play — structurally invalid, see finding 3)* | 174 / 400 | 324 | −0.3750 |
+| the old champion, denial on | 21 / 400 | 147 | −0.3150 [−0.3725, −0.2550] |
+| the network clone | 340 / 400 | 331 | **+0.0225** [−0.0375, +0.0800] |
+| **FIELD** | | | **−0.1969 [−0.2344, −0.1581]**, `FIELD_BELOW_ZERO` |
+
+**Set beside the opening dispatcher, which we killed yesterday:**
+
+| | field Δwin | field Δmargin | ladder | the champion that week | ladder delta |
+|---|---|---|---|---|---|
+| orchard 6 | **−0.1969** [−0.234, −0.158] | **−18.74** [−23.5, −14.1] | 18.84 | 18.19 | **+0.65** |
+| opening dispatcher | **−0.2219** [−0.256, −0.186] | **−28.71** [−32.7, −24.9] | 14.59 | 18.72 | **−4.13** |
+
+**The two Δwin figures are 0.025 apart — smaller than the width of either one's own confidence interval — while their
+ladder outcomes are 4.78 apart.** Our pre-registered kill rule ("below zero with the interval clear of zero") fires on
+both. **So the instrument that killed the port and killed stage 2A returns a confident "dead" for a bot the ladder
+cannot distinguish from the champion.** Even dropping the invalid self-play cell, orchard 6's remaining three average
+−0.1375 and still read dead.
+
+Stated carefully, because the noise cuts both ways: orchard 6's 18.84 against 18.19 is **inside** the 1.68 spread, so
+orchard 6 is not *better* than the champion — it is **indistinguishable** from it. That is the point. The field reading
+claims a large, confident negative where the ladder finds no difference at all, and assigns nearly the same number to a
+bot that is ladder-neutral and one that is four points worse.
+
+## Finding 5 — the same run shows the repair: use MARGIN, not the win indicator
+
+The win indicator throws away every drawn game, and draw rates swing from 0.8 % to 43.5 % between matchups (finding 2),
+so it compresses everything into a band narrower than its own error bars. **Score margin uses the whole game and does
+not.** On the three bots for which we have both a field reading and external evidence:
+
+| | field Δmargin | external verdict |
+|---|---|---|
+| orchard 6 | **−18.74** [−23.5, −14.1] | ladder-neutral (+0.65, inside noise) |
+| opening dispatcher | **−28.71** [−32.7, −24.9] | ladder −4.13 |
+| the port v2 | **−75.7** | 0 wins of 15 against the five real Legend agents |
+
+The margin separates them with non-overlapping intervals and ranks them in the right order; the win rate does not.
+A provisional slope from the two ladder points: about **0.5 ladder points per unit of Δmargin**, so **Δmargin ≈ −19 is
+ladder-neutral** and −29 is about four points down. **n = 2. This is a working rule, not a law**, and the next bot with
+both measurements either confirms it or replaces it.
+
+## Rulings
+
+1. **Δwin is retired as a kill criterion.** No card may kill a build on the win-rate field reading alone.
+2. **Δmargin with its 95 % interval is the selector** from now on, with the provisional bar that a candidate is dead
+   only if its Δmargin interval lies clear below about −20. Every card carrying the old condition is revised **before**
+   its reading is taken, never after — the wood-charging card is amended in this pass.
+3. **A candidate that is itself one of the four panel opponents must have that cell dropped** and the field averaged
+   over the remaining three.
+4. **Nothing below 1.7 on the ladder is evidence** (finding 1), so a ladder hour cannot settle a small change and
+   should not be spent on one.
+5. **What this does not overturn:** stage 2A's death, which rests on its own ladder reading of 14.59 against 18.72, and
+   the port's, which rests on 0 wins of 15 against the real Legend agents — both independent of the panel. The orchard
+   line's closure was the owner's call on ladder readings, all of which now sit inside the noise.
+
+- 2026-09-04 03:5xZ findings 4 and 5 measured and ruled. — coordinator
