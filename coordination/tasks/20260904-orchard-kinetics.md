@@ -102,3 +102,41 @@ Two consequences for the read:
   planned orchard must beat — and the top four's ~29 trees are the ceiling to aim at.
 
 - 2026-09-04 06:3xZ the owner's planting observation folded in, verified in both optimizers' sources. — coordinator
+
+## AMENDMENT 2026-09-04 08:0xZ — mechanics verified in the referee, and one of them changes the crop choice
+
+chatgpt_2 sent an unprompted supplement to this read (`20260904T071400Z`, its own directory, no claim on the card).
+**The coordinator checked its mechanical assertions directly against `sim/engine.py` rather than accept them, and every
+one holds.** They are recorded here as facts of record so the read need not re-derive them:
+
+- **A mature tree is worth 16 points, not 4.** `WOOD_POINTS = 4` and felling yields `plant.size` wood, so a size-4 tree
+  gives 4 wood at 4 points each. Thirty planted trees are therefore **480 points of gross standing potential** against a
+  champion score of about 184 a game — the orchard is not a marginal resource if it can be felled and banked.
+- **Health at maturity differs by species, and by a lot.** `TREE_HEALTH_BASE` is plum 4, lemon 4, apple 8, banana 2 and
+  `TREE_HEALTH_SLOPE` is plum 2, lemon 2, apple 3, banana 1, so at four growth steps: **banana 6, plum and lemon 12,
+  apple 20.** Every species still yields the same 4 wood.
+- **Therefore bananas are the efficient wood crop, and by a wide margin.** A chop-1 troll needs **6 turns to fell a
+  banana against 20 for an apple**, for the identical 16 points — **3.3 times the wood per chop-turn.** And the referee
+  prices bananas at **zero** for training, so a banana consumes no resource the roster needs. **Plant bananas for wood
+  and keep plums, lemons and apples for the training bill** is a candidate rule that falls straight out of the
+  mechanics and that no bot of ours has ever followed. The read must price the species separately rather than assume a
+  uniform orchard.
+- One referee quirk to respect in any felling estimate: the chop loop is commented *"last wood can duplicate"* — with
+  several choppers on one tree the final wood unit can be issued more than once. chatgpt_2 correctly excluded this from
+  its single-tree instrument; a multi-chopper schedule must not.
+
+**Three of its design points are adopted into this read as requirements:**
+
+1. **One mutable future-forest state.** The forecast, the admission test and the emitted policy must share it. If
+   planting is added only to the dispatcher, execution creates wood the value model still believes cannot exist — which
+   is a new way to reproduce the tenfold over-statement from the other direction.
+2. **Compare two optimized worlds, not a bot against a bot.** Best turn-300 value with `PLANT` **and** `TRAIN`, minus
+   best turn-300 value with the same orchard action space and `TRAIN` **disabled**, under identical opponent scenarios.
+   Anything else confounds the orchard's value with the troll's.
+3. **The event-driven DP oracle is the right base**, not a fixed-deficit assignment that assumes fixed sources and
+   additive resource curves.
+
+Its nine-test single-tree kinetics instrument is at `chatgpt_2/orchard-kinetics/`; the coordinator has verified the
+mechanics it encodes, not yet re-run its tests.
+
+- 2026-09-04 08:0xZ chatgpt_2's supplement verified against the referee and folded in; the banana finding is new. — coordinator
