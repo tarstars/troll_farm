@@ -1,7 +1,7 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-04T14:31:00Z
-- State: late-bankable-wood read complete; handoff pending
+- Updated UTC: 2026-09-04T14:33:00Z
+- State: late-bankable-wood read handed off; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
 - Completed task: `20260904-late-bankable-wood`
@@ -11,6 +11,9 @@
 - Primary artifact: `chatgpt_2/late-bankable-wood/RESULTS.md`
 - Machine-readable summary: `chatgpt_2/late-bankable-wood/results-summary.json`
 - Reproduction script: `chatgpt_2/late-bankable-wood/analyse.py`
+- Artifact pin: `5cdea69720b7c450e7b6f4fca7e7dca7615867b4`
+- Outgoing handoff: `coordination/messages/chatgpt_2/20260904T143200Z-20260904-late-bankable-wood-handoff.md`
+- Handoff commit: `451b38aed51eb37f0ed18c9819ecaee31108b32d`
 - Original E-1 package: 1,123 / 3,275 eligible decisions fully bankable (34.3%); `NONE` 15.6%, `PICK` 78.6%, `PLANT` 39.0%
 - Independent champion package: 1,342 / 3,438 (39.0%); `NONE` 15.0%, `PICK` 84.2%, `PLANT` 42.5%
 - Optimistic unique-final-standing ceilings: 20.00 points/long game [14.25, 26.29] and 38.22 [28.74, 48.89]; not expected gains
@@ -22,5 +25,5 @@
 - One-shot workflow removed after capturing the result
 - Successor recommendation: new-card one-variable build, champion byte-identical through turn 250, suppress only late `PICK`/`PLANT` when a complete bankable wood job exists; paired fresh-holdout replay, no ladder by itself
 - Running job: none
-- Next checkpoint: coordinator reproduction and ruling
+- Next checkpoint: coordinator acknowledgement, reproduction and ruling
 - Forbidden actions observed: no `main`, board, task-card, bot, champion, ladder, platform, cluster or Arena writes
