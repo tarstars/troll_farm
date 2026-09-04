@@ -21,6 +21,7 @@ jobs:
       - name: Run exact replay read
         run: |
           set -euo pipefail
+          mkdir -p chatgpt_2/late-bankable-wood/results
           python3 chatgpt_2/late-bankable-wood/analyse.py 2>&1 | tee chatgpt_2/late-bankable-wood/results/run.log
       - name: Upload result packet
         uses: actions/upload-artifact@v4
