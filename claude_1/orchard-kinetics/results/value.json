@@ -1,0 +1,1273 @@
+{
+ "cycles": [
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 15,
+   "points": 4,
+   "per_turn": 0.267,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 15,
+   "points": 16,
+   "per_turn": 1.067,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 7,
+   "points": 4,
+   "per_turn": 0.571,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 7,
+   "points": 16,
+   "per_turn": 2.286,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "PLUM",
+   "water": true,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 15,
+   "points": 4,
+   "per_turn": 0.267,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 15,
+   "points": 16,
+   "per_turn": 1.067,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 7,
+   "points": 4,
+   "per_turn": 0.571,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 7,
+   "points": 16,
+   "per_turn": 2.286,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 15,
+   "points": 4,
+   "per_turn": 0.267,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 15,
+   "points": 16,
+   "per_turn": 1.067,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 7,
+   "points": 4,
+   "per_turn": 0.571,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 7,
+   "points": 16,
+   "per_turn": 2.286,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 15,
+   "points": 4,
+   "per_turn": 0.267,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 15,
+   "points": 16,
+   "per_turn": 1.067,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 7,
+   "points": 4,
+   "per_turn": 0.571,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 7,
+   "points": 16,
+   "per_turn": 2.286,
+   "mature": [
+    4,
+    12,
+    1
+   ]
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 23,
+   "points": 4,
+   "per_turn": 0.174,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 23,
+   "points": 16,
+   "per_turn": 0.696,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 13,
+   "points": 4,
+   "per_turn": 0.308,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 13,
+   "points": 16,
+   "per_turn": 1.231,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 10,
+   "points": 4,
+   "per_turn": 0.4,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 10,
+   "points": 16,
+   "per_turn": 1.6,
+   "mature": [
+    4,
+    20,
+    2
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 23,
+   "points": 4,
+   "per_turn": 0.174,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 23,
+   "points": 16,
+   "per_turn": 0.696,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 13,
+   "points": 4,
+   "per_turn": 0.308,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 13,
+   "points": 16,
+   "per_turn": 1.231,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 10,
+   "points": 4,
+   "per_turn": 0.4,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 10,
+   "points": 16,
+   "per_turn": 1.6,
+   "mature": [
+    4,
+    20,
+    1
+   ]
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 6,
+   "points": 4,
+   "per_turn": 0.667,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 6,
+   "points": 16,
+   "per_turn": 2.667,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 5,
+   "points": 4,
+   "per_turn": 0.8,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 5,
+   "points": 16,
+   "per_turn": 3.2,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 1,
+   "turns": 9,
+   "points": 4,
+   "per_turn": 0.444,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 1,
+   "carry": 4,
+   "turns": 9,
+   "points": 16,
+   "per_turn": 1.778,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 1,
+   "turns": 6,
+   "points": 4,
+   "per_turn": 0.667,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 2,
+   "carry": 4,
+   "turns": 6,
+   "points": 16,
+   "per_turn": 2.667,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 1,
+   "turns": 5,
+   "points": 4,
+   "per_turn": 0.8,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "CHOP",
+   "chop": 3,
+   "carry": 4,
+   "turns": 5,
+   "points": 16,
+   "per_turn": 3.2,
+   "mature": [
+    4,
+    6,
+    1
+   ]
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 1,
+   "carry": 3,
+   "turns": 4,
+   "points": 1,
+   "per_turn": 0.25
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "HARVEST",
+   "hp": 3,
+   "carry": 3,
+   "turns": 4,
+   "points": 3,
+   "per_turn": 0.75
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "dd": 1,
+   "verb": "PLANT",
+   "turns": 5,
+   "points": -1,
+   "per_turn": 0.0
+  }
+ ],
+ "wild": [
+  {
+   "dd": 1,
+   "kind": "APPLE",
+   "turns": 9,
+   "points": 8,
+   "per_turn": 0.889
+  },
+  {
+   "dd": 2,
+   "kind": "PLUM",
+   "turns": 10,
+   "points": 16,
+   "per_turn": 1.6
+  },
+  {
+   "dd": 3,
+   "kind": "BANANA",
+   "turns": 10,
+   "points": 16,
+   "per_turn": 1.6
+  },
+  {
+   "dd": 4,
+   "kind": "BANANA",
+   "turns": 12,
+   "points": 16,
+   "per_turn": 1.333
+  },
+  {
+   "dd": 8,
+   "kind": "BANANA",
+   "turns": 20,
+   "points": 16,
+   "per_turn": 0.8
+  }
+ ],
+ "breakeven": [
+  {
+   "kind": "PLUM",
+   "water": true,
+   "plant_turns": 5,
+   "chop_turns": 7,
+   "chain_turns": 12,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.333,
+   "wild_per_turn": 1.6,
+   "S_star": 1.2,
+   "reachable": false
+  },
+  {
+   "kind": "PLUM",
+   "water": false,
+   "plant_turns": 5,
+   "chop_turns": 7,
+   "chain_turns": 12,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.333,
+   "wild_per_turn": 1.6,
+   "S_star": 1.2,
+   "reachable": false
+  },
+  {
+   "kind": "LEMON",
+   "water": true,
+   "plant_turns": 5,
+   "chop_turns": 7,
+   "chain_turns": 12,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.333,
+   "wild_per_turn": 1.6,
+   "S_star": 1.2,
+   "reachable": false
+  },
+  {
+   "kind": "LEMON",
+   "water": false,
+   "plant_turns": 5,
+   "chop_turns": 7,
+   "chain_turns": 12,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.333,
+   "wild_per_turn": 1.6,
+   "S_star": 1.2,
+   "reachable": false
+  },
+  {
+   "kind": "APPLE",
+   "water": true,
+   "plant_turns": 5,
+   "chop_turns": 10,
+   "chain_turns": 15,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.067,
+   "wild_per_turn": 1.6,
+   "S_star": 1.5,
+   "reachable": false
+  },
+  {
+   "kind": "APPLE",
+   "water": false,
+   "plant_turns": 5,
+   "chop_turns": 10,
+   "chain_turns": 15,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.067,
+   "wild_per_turn": 1.6,
+   "S_star": 1.5,
+   "reachable": false
+  },
+  {
+   "kind": "BANANA",
+   "water": true,
+   "plant_turns": 5,
+   "chop_turns": 5,
+   "chain_turns": 10,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.6,
+   "wild_per_turn": 1.6,
+   "S_star": 1.0,
+   "reachable": true
+  },
+  {
+   "kind": "BANANA",
+   "water": false,
+   "plant_turns": 5,
+   "chop_turns": 5,
+   "chain_turns": 10,
+   "chain_points_if_survives": 16,
+   "chain_per_turn_S1": 1.6,
+   "wild_per_turn": 1.6,
+   "S_star": 1.0,
+   "reachable": true
+  }
+ ],
+ "programme": [
+  {
+   "kind": "BANANA",
+   "k": 5,
+   "plant_turns": 21.5,
+   "fell_turns": 26.0,
+   "points": 26.5,
+   "per_turn": 0.559,
+   "trees_felled": 1.66
+  },
+  {
+   "kind": "BANANA",
+   "k": 10,
+   "plant_turns": 58.0,
+   "fell_turns": 62.0,
+   "points": 53.5,
+   "per_turn": 0.447,
+   "trees_felled": 3.34
+  },
+  {
+   "kind": "BANANA",
+   "k": 20,
+   "plant_turns": 165.5,
+   "fell_turns": 106.0,
+   "points": 77.0,
+   "per_turn": 0.283,
+   "trees_felled": 4.81
+  },
+  {
+   "kind": "BANANA",
+   "k": 30,
+   "plant_turns": 313.5,
+   "fell_turns": 106.0,
+   "points": 77.0,
+   "per_turn": 0.183,
+   "trees_felled": 4.81
+  },
+  {
+   "kind": "PLUM",
+   "k": 5,
+   "plant_turns": 21.5,
+   "fell_turns": 36.0,
+   "points": 25.9,
+   "per_turn": 0.451,
+   "trees_felled": 1.62
+  },
+  {
+   "kind": "PLUM",
+   "k": 10,
+   "plant_turns": 58.0,
+   "fell_turns": 82.0,
+   "points": 50.7,
+   "per_turn": 0.362,
+   "trees_felled": 3.17
+  },
+  {
+   "kind": "PLUM",
+   "k": 20,
+   "plant_turns": 165.5,
+   "fell_turns": 105.0,
+   "points": 60.6,
+   "per_turn": 0.224,
+   "trees_felled": 3.79
+  },
+  {
+   "kind": "PLUM",
+   "k": 30,
+   "plant_turns": 313.5,
+   "fell_turns": 105.0,
+   "points": 60.6,
+   "per_turn": 0.146,
+   "trees_felled": 3.79
+  },
+  {
+   "kind": "APPLE",
+   "k": 5,
+   "plant_turns": 21.5,
+   "fell_turns": 51.0,
+   "points": 24.9,
+   "per_turn": 0.344,
+   "trees_felled": 1.56
+  },
+  {
+   "kind": "APPLE",
+   "k": 10,
+   "plant_turns": 58.0,
+   "fell_turns": 108.0,
+   "points": 45.6,
+   "per_turn": 0.275,
+   "trees_felled": 2.85
+  },
+  {
+   "kind": "APPLE",
+   "k": 20,
+   "plant_turns": 165.5,
+   "fell_turns": 108.0,
+   "points": 45.6,
+   "per_turn": 0.168,
+   "trees_felled": 2.85
+  },
+  {
+   "kind": "APPLE",
+   "k": 30,
+   "plant_turns": 313.5,
+   "fell_turns": 108.0,
+   "points": 45.6,
+   "per_turn": 0.11,
+   "trees_felled": 2.85
+  }
+ ],
+ "champion": {
+  "trees": 9.8,
+  "top4_trees": 29.0,
+  "champion_unaided_wood_points_if_all_felled": 156.8,
+  "champion_unaided_wood_points_raided_to_200": 68.3,
+  "top4_ceiling_wood_points_if_all_felled": 464.0,
+  "top4_ceiling_wood_points_raided_to_200": 202.1
+ }
+}
