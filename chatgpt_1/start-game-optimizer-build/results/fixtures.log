@@ -32,3 +32,5 @@
   DIFFERS OSC-032    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
   DIFFERS OSC-033    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
   DIFFERS OSC-034    turns 200  first divergence turn 1  train arm []  champion []  telemetry errors 0
+
+  PASS  plays 34/34, differs from the champion on 28/34, deterministic 34/34, compacted==arm 34/34, telemetry errors 0; arm trained in 0/34 (champion 1/34), a third troll in [], wrong spec [], more than three []  -> /home/runner/work/troll_farm/troll_farm/chatgpt_1/start-game-optimizer-build/results/fixtures.json
