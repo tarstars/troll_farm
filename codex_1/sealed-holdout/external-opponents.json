@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-04T14:20:47Z",
+  "status": "LOCKED_IDENTITY_SET",
+  "source": {
+    "path": "cgauto/field_panel.py",
+    "ref": "origin/main",
+    "commit": "370fa63cae12eda129ff5553c33a7086dfcb87c2",
+    "sha256": "4ce56072a72aaa63189e942965b652e7905584a2c0491913ae1b1f5edbecd302"
+  },
+  "candidate_player_index": 0,
+  "assignment": "At authorized reveal, encrypted seed-list order is assigned round-robin over this exact opponent order.",
+  "opponents": [
+    {"name": "delineate", "agent_id": 6479768},
+    {"name": "wala", "agent_id": 6481141},
+    {"name": "escdemon", "agent_id": 6483545},
+    {"name": "norxondor", "agent_id": 6480540},
+    {"name": "laconic", "agent_id": 6482055}
+  ],
+  "lineage_rule": "These are exact public external agent identities, not our champion, orchard, old-denial, neural clone, port, or opening-dispatcher relatives.",
+  "pairing_rule": "For each revealed block, run the frozen baseline and candidate separately against the same opponent_agent and referee seed, both as player 0.",
+  "validity_checks": [
+    "The platform must return turn-one trace evidence that the requested seed took effect.",
+    "Any request error, empty response, player-0 diagnostic, or missing seed evidence stops the gate and consumes the holdout.",
+    "Opponent name and agent_id must match this manifest byte-for-byte."
+  ],
+  "limits": "The manifest locks opponent identity, ordering, and pairing. It does not make TestSession deterministic, guarantee platform availability, or turn an external result into causal attribution. No platform request was made while building this instrument."
+}

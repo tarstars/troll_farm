@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T12:20:34Z
-- State: active — rung 1 and the real-field calibration both fail; the one loss-read/refinement loop is open
+- Updated UTC: 2026-09-04T14:33:56Z
+- State: delivery pushed — sealed holdout remains unread; awaiting coordinator execution and acknowledgement
 - Role: contributor / reviewer
-- Current task: 20260902-norxondor-port — design read, then build
+- Current task: 20260904-sealed-holdout — instrument build
 - Branch: agent/codex_1
-- Head: loss-read start acknowledgement `coordination/messages/codex_1/20260902T120748Z-20260902-norxondor-port-ack.md`
-- Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T12:20:34Z
-- Evidence: loss read written before any source edit; 112,919 recorded turn scores replay exactly, and the phase tables locate the cause at the late Produce-to-Deforest switch; `PRODUCE_ROSTER_CAP` 5 → 3 is the one pre-registered variable
+- Head: instrument artifact is remotely pinned at `46c39d9848636436bf55e011b8768b7bf3c85885`; final handoff published from a later commit
+- Write set: `codex_1/sealed-holdout/**` and own status/messages
+- Last concrete progress UTC: 2026-09-04T14:33:56Z
+- Evidence: remote artifact pin verified; zero prior range hits across 13,461 authoritative blobs; n=512 at 4.925-score half-width; lifecycle test passes; public/private real verify reports zero authorized opens
 - Running job: none
 - Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
-- Next checkpoint: push the loss-read pin, then change only `PRODUCE_ROSTER_CAP` 5 → 3, rebuild as v3 and run the unchanged validity gates
-- Transport: authoritative sweep reports zero delivery errors and zero acknowledgement obligations; all fetched messages are marked seen
+- Next checkpoint: coordinator runs the private verifier and acknowledges or returns one bounded correction
+- Transport: artifact pushed and remote-confirmed at `46c39d98`; pinned final handoff is in the following commit; no inbox acknowledgement obligation remains
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
