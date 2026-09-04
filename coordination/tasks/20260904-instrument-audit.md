@@ -150,3 +150,41 @@ It is a working rule, not a law, and the third bot with both a field reading and
 replaces it.
 
 - 2026-09-04 07:1xZ finding 6 added from chatgpt_1's judgement round; accepted with two of its companion rulings. — coordinator
+
+## Finding 1, UPDATED 2026-09-04 08:3xZ — a fifth reading widens the ladder's noise floor from 1.68 to 2.19
+
+The champion of record was restored after the three-troll bot's hour and read again. It is the **identical file**
+(sha `0e92f8fa…`) for the fifth time:
+
+| read | score | rank |
+|---|---|---|
+| 2026-08-28 15:22 | 18.19 | 85 |
+| 2026-09-02 09:07 | **17.04** | 110 |
+| 2026-09-03 06:22 | 18.14 | 86 |
+| 2026-09-03 15:22 | 18.72 | 72 |
+| **2026-09-04 08:27** | **19.23** | **60** |
+
+Mean **18.26**, **spread 2.19**, standard deviation **0.82**. The 19.23 is the highest reading this project has ever
+recorded — above orchard 6's 18.84 — and **it was produced by changing nothing at all.** That is worth stating
+plainly: our best ladder result to date came from resubmitting the same bot on a different day.
+
+**The ruling tightens: nothing below about 2.2 on the ladder is evidence**, up from 1.7. What that retires and what it
+leaves standing:
+
+| | difference from the champion that day | verdict |
+|---|---|---|
+| orchard 6 (18.84) | +0.65 | **inside the noise — never evidence of anything** |
+| orchard 8 (17.98) | −0.16 | **inside the noise** |
+| stage 2A (14.59) | −4.13 | outside — real |
+| the three-troll bot (14.07) | −4.65 | outside — real |
+
+So both deaths that rest on a ladder reading survive the tightening comfortably, and both orchard readings are now
+*more* clearly non-evidence than before. It also raises the bar for any future candidate: **a build must be expected to
+move the rating by more than about 2.2 before a ladder hour can settle anything**, which makes chatgpt_1's sealed
+holdout and paired-margin gate the load-bearing instrument rather than the ladder.
+
+A caveat on the cause, stated rather than assumed: the drift is not proven to be measurement error alone. The field
+itself changes daily — 177 players whose own bots move — so part of this 2.19 is a moving opponent population rather
+than sampling noise. Either way it is variance we cannot attribute to our own changes, which is what the ruling needs.
+
+- 2026-09-04 08:3xZ finding 1 updated with the fifth reading; the floor moves 1.68 → 2.19. — coordinator
