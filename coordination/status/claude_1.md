@@ -1,4 +1,49 @@
-# claude_1 status — wake #125, 2026-09-04
+# claude_1 status — wake #126, 2026-09-04
+
+## Wake #126 — the owner's no-platform rule acknowledged; the orchard result landed and its handoff is malformed
+
+Queue: ten new messages, one ack-required — the coordinator's 14:05Z policy on `20260904-sealed-holdout`, carrying
+**the owner's standing rule of 2026-09-04: nothing goes on the platform until the owner says so.** Acknowledged at
+`20260904T171000Z`. In force for me by every route — manual submission, the ladder queue file, a cron, a script. If
+a build of mine earns a reading I say so in the handoff and stop. The 2026-07-30 Arena grant is not in force. The VM
+ladder-queue cron is disabled and I will not re-enable it. I had nothing in flight.
+
+**`--mark` REFUSED (exit 2)** on one peer delivery error: chatgpt_1's `20260904T144000Z` orchard handoff declares
+`FINAL.md` and pins `2fc4d285`, taken 14:33Z — seven minutes before `FINAL.md` was written. All eight declared paths
+are at the head `041fd60f`. Blocker at `20260904T171500Z`, DEFERRED card at `20260904T172000Z`. The failure mode is
+the pin/publish order again, in its second form: not a rebase that moved the commit, but a pin taken before the
+artifact existed. Seen-state not advanced; every message read.
+
+**Row 3-8 landed and it is dead.** chatgpt_1 reports dead condition 3: seventeen of twenty planting policies
+introduced a new long-inactivity interval and were excluded, the three valid ones all had negative mean paired
+margin, and the registered leave-one-map-out selector chose `NO_PLANT` in all 24 folds — Δ final margin 0.00
+[0.00, 0.00], Δ own score 0.00 [0.00, 0.00], n=24. A hindsight per-map oracle planted on 16/24, which is an
+optimistic upper bound selected from the same outcomes, not a policy. Recommendation: close the row, no ladder slot,
+no tuning on that development set.
+
+**My reproduction is not yet chartered** — §7 of the card says my charter is a separate card at this moment. I have
+started nothing and will ask rather than start if no charter follows within a wake or two.
+
+**STANDING CONSTRAINT, unchanged and now tested once.** I must not read `chatgpt_1/champion-prefix-orchard/` — code,
+parameters, results, action manifest or `FINAL.md` — before my own implementation is written and committed. Verifying
+the delivery error above needed only `git ls-tree --name-only` and `git cat-file -e`, which report names and
+existence, never contents. That is the line: file names yes, file bodies no.
+
+**Pre-registered, unchanged, recorded before I see any number:** if the orchard is a near reserve rather than a value
+engine, arm B's margin is flat through roughly the first hundred turns and opens only after the near forest is
+consumed. A flat early margin is the predicted shape, not a null. **One thing the reproduction must be able to do:**
+tell "the selector never planted" apart from "planting gained nothing" — a whole-game Δ of exactly 0.00 on every
+fold is consistent with both, and they are different findings.
+
+Also read (cc, no action owed): codex_1 is back and delivered the sealed holdout instrument at `20260904T143356Z`
+(512 never-printed seeds as authenticated ciphertext, a disjoint sealed successor, five locked external opponents
+that are not our champion's relatives, `seal.py open` refusing without a frozen ancestor commit and retiring a read
+holdout into development; paired-arm SD 40.203456 giving n=512 at a 4.92-score half-width); chatgpt_2's
+`20260904T143200Z` late-bankable-wood read (`PREMISE_SURVIVES_READ`: 34.3% of late `NONE`/`PICK`/`PLANT` turns had a
+complete bankable job, but **zero** of the standing-tree points are exposed at a `NONE` decision — the mechanism is
+the late replant loop, not idle fallback, and the 705/734 vs 84%-terminal-waits contradiction is a tree-level
+ever-event statistic against a troll-turn statistic, both true); and codex_1's ack that the norxondor port line stays
+closed.
 
 ## Wake #125 — orchard kinetics CLOSED AS SUPERSEDED; I am the independent reproducer of the card that replaces it
 
