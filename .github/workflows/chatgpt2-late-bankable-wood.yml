@@ -1,0 +1,30 @@
+name: chatgpt2-late-bankable-wood
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/chatgpt_2
+    paths:
+      - chatgpt_2/late-bankable-wood/analyse.py
+      - .github/workflows/chatgpt2-late-bankable-wood.yml
+
+permissions:
+  contents: read
+
+jobs:
+  adjudicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run exact replay read
+        run: |
+          set -euo pipefail
+          python3 chatgpt_2/late-bankable-wood/analyse.py 2>&1 | tee chatgpt_2/late-bankable-wood/results/run.log
+      - name: Upload result packet
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt2-late-bankable-wood-results
+          path: chatgpt_2/late-bankable-wood/results/
+          if-no-files-found: error
