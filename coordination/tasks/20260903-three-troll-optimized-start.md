@@ -4,9 +4,13 @@
   *"implement three troll bot with optimization on start"* — which the owner **confirmed to the coordinator at
   16:5xZ ("yes")** after the coordinator held the claim pending verification. The hold and its conditions are
   `coordination/messages/local_claude_1/20260903T164125Z`; the charter is the ack that follows this card.
-- Work owner: **chatgpt_1** (builds). Verifier: **the coordinator** (reproduces everything by execution from the
-  pinned commit; nothing enters the record otherwise). The owner reads one page and gives the prediction if it ever
-  reaches a ladder hour.
+- Work owner: **chatgpt_2** (builds) — **corrected 2026-09-04 13:4xZ; this header said `chatgpt_1` until now and
+  that was wrong.** The identity was settled at 2026-09-03 17:58Z on the owner's three-part test (§ the 17:58Z log
+  entry): the agent that built this candidate is `chatgpt_2`, and the original `chatgpt_1` is the one that returned
+  the opening-solver ACCEPT-WITH-EDITS. The body of this card was corrected that evening; **the header was not**, so
+  for a day the board showed two open tasks against `chatgpt_1` when it only ever had one. Every "chatgpt_1" below the
+  16:20Z–17:58Z line means `chatgpt_2`. Verifier: **the coordinator** (reproduces everything by execution from the
+  pinned commit; nothing enters the record otherwise).
 - Budget (chatgpt_1's own, accepted): one implementation, one validity/smoke/timing run, one paired local panel, one
   review and handoff. Two days, to **2026-09-05 17:00Z**; no evidence for two days = STALLED and the owner says kill
   or extend.
@@ -258,3 +262,38 @@ ladder.**
   **Why, in one line, and it is the owner's line:** its optimizer has no `PLANT` in its action space (verified in
   source — 17 reads of `view.plants` as harvest sources, no plant command ever issued), so it buys trolls it cannot
   feed. A third troll at turn 25 on a board nobody has planted is three trolls sharing one shrinking forest. — coordinator
+
+## CLOSED 2026-09-04 13:4xZ — the bot is dead on the ladder, the judgement is delivered and acked, nothing is open
+
+Written because the card had no closure section even though every part of it had finished. The work is **chatgpt_2's**
+throughout (see the corrected header).
+
+**What closed it:** the bot was submitted at the owner's word and read **14.07 at rank 154** (submission `41239996`)
+against the champion's 18.72 at rank 72 in the same field. It reached three trolls in 47 % of games at **median game
+turn 25** — about **71 turns before the field** buys its own third, the earliest of any build this project has made —
+and scored **19 points a game less** than the champion. The matchmaking confound runs *against* it (its opponents
+averaged 172.3 to the champion's opponents' 210.1), so the gap is understated. **Getting the roster early is not the
+hard part and never was.** This is the fourth independent closure of the roster question.
+
+**The judgement round that followed is delivered, verified and acknowledged**
+(`chatgpt_2/three-troll-optimized-start/JUDGEMENT-2026-09-04.md`, handoff `20260904T120606Z`, acked
+`20260904T133300Z`). Two of its findings outlived the bot and are now project-wide:
+
+1. **The stalls were inherited from the shared stage-2A prelude, not created by the optimizer** — all five of the
+   candidate's flagged maps are a strict subset of the control's nine (5 of 5, checked by the coordinator), and on
+   those maps both arms record the same second troll, no third troll and the same final score. chatgpt_1 confirmed the
+   same shape in its own build. This is the architectural disease that killed three builds in a row.
+2. **The harness's `stalled` field is a longest no-command streak — not a crash, not a referee end condition and not a
+   loss label.** The coordinator's repeated "a stalled bot loses those games outright" is withdrawn. It remains a
+   valid fail-closed mechanics gate.
+3. **"Activity is not value"** — its optimizer removed four of the control's nine inactivity flags and those four maps
+   totalled **+1 point**.
+
+**Where its live work went:** its ranked item 2 — search `PLANT` and `TRAIN` jointly over an explicit finite forest and
+optimize paired final margin — is the experiment the owner authorised with **"run it"** and is chartered as
+`20260904-champion-prefix-orchard` (row 3-8), in the conservative form that also satisfies its item 1 (the champion is
+the byte-identical incumbent, no prelude at all) and its item 3 (the third troll is not defaulted off but disabled).
+
+**Nothing here is open.** No build, no panel, no ladder slot, no budget left. Obituary in `GRAVEYARD.md`.
+
+- 2026-09-04 13:4xZ closed; header attribution corrected from chatgpt_1 to chatgpt_2. — coordinator
