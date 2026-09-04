@@ -18,7 +18,7 @@ abandoned back to ordinary play the turn it stops winning. The control is the ch
 | `variant_read.py` | a read-only variant of the gate (another `gate*.rs.in`, text substitutions) built through the same chain into `results/variants/<name>/`, never into `cgauto/submissions/`, then `gate_read.py` on it — the sensitivities the coordinator asked for (v1 with the forest at one: `results/gate-read-v1-forest-x2.json`) |
 | `calibrate_kappa.py` | the one calibration: the ratio of the record's realised wood per troll-turn (the starter's, the trained troll's) to the gate's trip rate on this slice |
 | `gate-v1.rs.in`, `results/*-v1.*` | the first forecast (trip rates as realised rates, a contested-forest cap) and its read: it declined on every one of 4,593 evaluated turns and the candidate was the champion in play on 24/24 — kept as the record of why the calibration exists |
-| `results/` | `build.json`, `kappa.json`, the gate read, the bed (`fixtures.json`, `bed.log`), the smoke (`smoke.json`, `smoke.log`), the timing (`turn-time.json`), the panel and field runs, `field.json` |
+| `results/` | `build.json`, `kappa.json`, the gate reads (`gate-read.json`; `-v1`, `-kappa1`, `-v1-forest-x2`), the bed (`fixtures.json`, `bed.log`), the smoke (`smoke.json`, `smoke.log` — FAIL 23/24, so no timing, panel or field files exist), `variants/` |
 
     python3 claude_1/wood-charging-gate/make_wood_gate.py
     python3 claude_1/wood-charging-gate/gate_read.py --out claude_1/wood-charging-gate/results/gate-read.json
