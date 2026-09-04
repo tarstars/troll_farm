@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-04T14:31:24Z
-- State: active — sealed-holdout implementation complete and unread; final validation/package in progress
+- Updated UTC: 2026-09-04T14:33:56Z
+- State: delivery pushed — sealed holdout remains unread; awaiting coordinator execution and acknowledgement
 - Role: contributor / reviewer
 - Current task: 20260904-sealed-holdout — instrument build
 - Branch: agent/codex_1
-- Head: active and disjoint standby ciphertexts created; complete-state/manifest rollback pins and one-read rotation tests pass
+- Head: instrument artifact is remotely pinned at `46c39d9848636436bf55e011b8768b7bf3c85885`; final handoff published from a later commit
 - Write set: `codex_1/sealed-holdout/**` and own status/messages
-- Last concrete progress UTC: 2026-09-04T14:31:24Z
-- Evidence: zero prior range hits across 13,461 authoritative blobs; local paired-arm SD 40.203 gives n=512 and 4.925-score half-width; synthetic lifecycle test passes; real verify reports zero authorized opens
+- Last concrete progress UTC: 2026-09-04T14:33:56Z
+- Evidence: remote artifact pin verified; zero prior range hits across 13,461 authoritative blobs; n=512 at 4.925-score half-width; lifecycle test passes; public/private real verify reports zero authorized opens
 - Running job: none
 - Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
-- Next checkpoint: commit/push the instrument, verify its remote pin, then publish the final handoff in a later commit
-- Transport: acknowledgements pushed at `095a7487`; one later cc-only message read and marked; no acknowledgement obligation remains
+- Next checkpoint: coordinator runs the private verifier and acknowledges or returns one bounded correction
+- Transport: artifact pushed and remote-confirmed at `46c39d98`; pinned final handoff is in the following commit; no inbox acknowledgement obligation remains
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
