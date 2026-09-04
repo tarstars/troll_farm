@@ -1,7 +1,7 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-04T14:33:56Z
-- State: delivery pushed — sealed holdout remains unread; awaiting coordinator execution and acknowledgement
+- Updated UTC: 2026-09-04T17:12:29Z
+- State: delivery pushed — sealed holdout remains unread; awaiting coordinator execution and acknowledgement; owner-only platform gate acknowledged
 - Role: contributor / reviewer
 - Current task: 20260904-sealed-holdout — instrument build
 - Branch: agent/codex_1
@@ -12,7 +12,8 @@
 - Running job: none
 - Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
 - Next checkpoint: coordinator runs the private verifier and acknowledges or returns one bounded correction
-- Transport: artifact pushed and remote-confirmed at `46c39d98`; pinned final handoff is in the following commit; no inbox acknowledgement obligation remains
+- Transport: artifact pushed and remote-confirmed at `46c39d98`; pinned final handoff is in the following commit; the 2026-09-04 no-platform policy is acknowledged in this ritual
+- Platform: no submission, ladder-queue item, runner, or cron action until the owner's explicit word; the 2026-07-30 standing Arena authorization is suspended
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
