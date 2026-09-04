@@ -1,0 +1,185 @@
+{
+ "what": "kappa = realised wood per troll-turn (the record's) / the gate's trip rate (this slice's)",
+ "read": "claude_1/wood-charging-gate/results/gate-read-kappa1.json",
+ "starter_realised_turns_1_100": 0.029,
+ "trained_realised_pooled": 0.142,
+ "harvester_trip_mean_to_100": 0.07217821067821067,
+ "harvester_trip_turns": 2079,
+ "miner_trip_mean": 0.2351756312165264,
+ "miner_trip_turns": 2614,
+ "kappa_starter": 0.40178330451124067,
+ "kappa_trained": 0.6038040559961779,
+ "consistency_resident_pair_realised_to_100_mean": 0.08950499459957505,
+ "consistency_record_pair": 0.17099999999999999,
+ "consistency_games": 24,
+ "per_game": [
+  {
+   "map_hash": "7b515d6db8085355",
+   "second_troll_turn": 18,
+   "harvester_trip_mean_to_100": 0.11233536585365854,
+   "miner_trip_mean": 0.20261666666666667,
+   "resident_pair_realised_to_100": 0.07317073170731707
+  },
+  {
+   "map_hash": "64b1d4b14f026f9f",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.07179333333333333,
+   "miner_trip_mean": 0.2579766666666667,
+   "resident_pair_realised_to_100": 0.07575757575757576
+  },
+  {
+   "map_hash": "c84154d29ea19fbc",
+   "second_troll_turn": 10,
+   "harvester_trip_mean_to_100": 0.06836625,
+   "miner_trip_mean": 0.1642125,
+   "resident_pair_realised_to_100": 0.06666666666666667
+  },
+  {
+   "map_hash": "b086e0e6163a45ac",
+   "second_troll_turn": 8,
+   "harvester_trip_mean_to_100": 0.07193260869565217,
+   "miner_trip_mean": 0.1963556701030928,
+   "resident_pair_realised_to_100": 0.07065217391304347
+  },
+  {
+   "map_hash": "89e906123ff36a86",
+   "second_troll_turn": 14,
+   "harvester_trip_mean_to_100": 0.0670280487804878,
+   "miner_trip_mean": 0.28857926829268293,
+   "resident_pair_realised_to_100": 0.09883720930232558
+  },
+  {
+   "map_hash": "a6062948c27575a8",
+   "second_troll_turn": 21,
+   "harvester_trip_mean_to_100": 0.07452278481012659,
+   "miner_trip_mean": 0.18712014925373133,
+   "resident_pair_realised_to_100": 0.10126582278481013
+  },
+  {
+   "map_hash": "50bcce5e7ae4a14c",
+   "second_troll_turn": 20,
+   "harvester_trip_mean_to_100": 0.07169249999999999,
+   "miner_trip_mean": 0.24650555555555556,
+   "resident_pair_realised_to_100": 0.0875
+  },
+  {
+   "map_hash": "daadbfd7e8423f86",
+   "second_troll_turn": 10,
+   "harvester_trip_mean_to_100": 0.06624444444444444,
+   "miner_trip_mean": 0.1197647619047619,
+   "resident_pair_realised_to_100": 0.05555555555555555
+  },
+  {
+   "map_hash": "b6a5501980dd849a",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.06938484848484848,
+   "miner_trip_mean": 0.10616291390728477,
+   "resident_pair_realised_to_100": 0.04040404040404041
+  },
+  {
+   "map_hash": "19111bc9b90011bb",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.08567272727272728,
+   "miner_trip_mean": 0.1610753768844221,
+   "resident_pair_realised_to_100": 0.08080808080808081
+  },
+  {
+   "map_hash": "b91f102962423ddd",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.06119393939393939,
+   "miner_trip_mean": 0.08997999999999999,
+   "resident_pair_realised_to_100": 0.045454545454545456
+  },
+  {
+   "map_hash": "6d81a00871f22f23",
+   "second_troll_turn": 16,
+   "harvester_trip_mean_to_100": 0.072185,
+   "miner_trip_mean": 0.46815,
+   "resident_pair_realised_to_100": 0.13690476190476192
+  },
+  {
+   "map_hash": "c14dea6aa5d28951",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.04786969696969697,
+   "miner_trip_mean": 0.2141180904522613,
+   "resident_pair_realised_to_100": 0.050505050505050504
+  },
+  {
+   "map_hash": "78e4df84516e04d1",
+   "second_troll_turn": 10,
+   "harvester_trip_mean_to_100": 0.05683421052631579,
+   "miner_trip_mean": 0.3266842105263158,
+   "resident_pair_realised_to_100": 0.1388888888888889
+  },
+  {
+   "map_hash": "33261cf926f7a3eb",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.10716565656565656,
+   "miner_trip_mean": 0.3072457364341085,
+   "resident_pair_realised_to_100": 0.09090909090909091
+  },
+  {
+   "map_hash": "2433a442a41ce6cb",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.07357272727272728,
+   "miner_trip_mean": 0.18639272727272727,
+   "resident_pair_realised_to_100": 0.08080808080808081
+  },
+  {
+   "map_hash": "7a082aa227d4192a",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.05099191919191919,
+   "miner_trip_mean": 0.18003203883495145,
+   "resident_pair_realised_to_100": 0.0707070707070707
+  },
+  {
+   "map_hash": "62694c8c0a48cf44",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.07591010101010101,
+   "miner_trip_mean": 0.47872,
+   "resident_pair_realised_to_100": 0.15656565656565657
+  },
+  {
+   "map_hash": "21d2746745cd7896",
+   "second_troll_turn": 10,
+   "harvester_trip_mean_to_100": 0.13140925925925925,
+   "miner_trip_mean": 0.5881166666666666,
+   "resident_pair_realised_to_100": 0.07777777777777778
+  },
+  {
+   "map_hash": "2d8f315778eba2a8",
+   "second_troll_turn": 20,
+   "harvester_trip_mean_to_100": 0.06408749999999999,
+   "miner_trip_mean": 0.14353986013986014,
+   "resident_pair_realised_to_100": 0.0625
+  },
+  {
+   "map_hash": "879f73412b531333",
+   "second_troll_turn": 1,
+   "harvester_trip_mean_to_100": 0.056391304347826084,
+   "miner_trip_mean": 0.20002608695652174,
+   "resident_pair_realised_to_100": 0.07575757575757576
+  },
+  {
+   "map_hash": "80385f5fdcac43f7",
+   "second_troll_turn": 14,
+   "harvester_trip_mean_to_100": 0.06760116279069767,
+   "miner_trip_mean": 0.26744893617021276,
+   "resident_pair_realised_to_100": 0.11627906976744186
+  },
+  {
+   "map_hash": "d9c8059a3038862e",
+   "second_troll_turn": 10,
+   "harvester_trip_mean_to_100": 0.0667,
+   "miner_trip_mean": 0.27625964912280704,
+   "resident_pair_realised_to_100": 0.12777777777777777
+  },
+  {
+   "map_hash": "b64b9915e3f228af",
+   "second_troll_turn": 16,
+   "harvester_trip_mean_to_100": 0.0648202380952381,
+   "miner_trip_mean": 0.43898275862068964,
+   "resident_pair_realised_to_100": 0.16666666666666666
+  }
+ ]
+}

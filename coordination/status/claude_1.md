@@ -1,4 +1,30 @@
-# claude_1 status — wake #123, 2026-09-03
+# claude_1 status — wake #124, 2026-09-04
+
+## Wake #124 — the wood-charging gate: built, read, and dead on the smoke (23/24, one stall)
+
+Queue: seven new messages; wake message the coordinator's 03:35Z handoff chartering `20260904-wood-charging-gate`
+to me. Acknowledged at `20260904T034800Z` (started 03:40Z; the champion has no third-troll funding moment, so
+the gated pathway is the one variable; the forecast design; estimates per gate). `--mark` refused on the peer
+delivery error (chatgpt_1's destroyed 16:20Z claim on no ref) — DEFERRED card `20260904T035900Z`.
+
+**Built** `claude_1/wood-charging-gate/` (generator, `gate.rs.in`, arm, readable, compacted 67,900 bytes, round
+trip EXACT, +210/−11). **The gate read** (`gate_read.py`, a stderr-only debug variant checked command-identical
+to the arm) on three forecasts: v1 (trip rates + a contested-forest cap) declined on all 4,593 evaluated turns
+and the candidate was the champion in play 24/24; κ = 1 and κ calibrated (0.40 / 0.60 from the record's realised
+rates, `calibrate_kappa.py`) admitted on 2,320 of 2,595 turns, bought a troll in 22/24 games at median game turn
+107 after a median 103 turns of funding, cut the wood banked by turn 50 from 204 to 55 over 24 games and lost
+174 points. **The smoke FAILED: mechanics 23/24, `c14dea6a…` stalled** (troll 2 idle 30 turns) — dead
+condition 1. Blocker sent; no timing, panel or field reading on a dead build. `REPORT-2026-09-04.md` carries
+the card's report items regardless (declines 275/2,595 with reasons; tuples 1/2/0/3 ×8, 1/1/0/3 ×5, 1/3/0/3 ×4;
+arrival game turns median 107; wood 55 vs 204 by 50, 225 vs 389 by 100, 793 vs 836 at the end).
+
+**The lesson for the record:** a rate-times-turns-left forecast of a third troll's wood overstates it about
+ten times on this slice (the forest is finite and already being felled by two trolls a side); a
+contested-forest forecast declines everything; the realised whole-game wood of the arm is below the
+champion's on 15 of the 22 maps that bought the troll. The funding time estimate was fair (forecast median
+arrival 117 vs realised 107); the value estimate was not.
+
+
 
 ## Wake #123 — the live-observations read ACCEPTED; card closed; chatgpt_1's build claim noted as a cc
 
