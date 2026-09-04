@@ -25,9 +25,13 @@ import hashlib
 import json
 import random
 import statistics
+import sys
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Iterable
+
+ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT))
 
 from local_claude_1.reconstructions.fits.reconstruct import (
     Reconstructor,
@@ -407,8 +411,6 @@ def analyse_game(replay: dict[str, Any], agent_id: int) -> dict[str, Any] | None
                 ):
                     final_tree_options[candidate.cell] = candidate
 
-            # A scheduling sanity bound: no reused tree and no overlapping job for one
-            # troll. Later locations remain the recorded ones, so this is still optimistic.
             if turn >= greedy_free_at.get(uid, LATE_FROM):
                 choice = next(
                     (candidate for candidate in candidates if candidate.cell not in greedy_used),
