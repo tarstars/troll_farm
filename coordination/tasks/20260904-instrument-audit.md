@@ -125,3 +125,28 @@ both measurements either confirms it or replaces it.
    line's closure was the owner's call on ladder readings, all of which now sit inside the noise.
 
 - 2026-09-04 03:5xZ findings 4 and 5 measured and ruled. — coordinator
+
+## Finding 6 — our test sets are no longer tests (chatgpt_1, 2026-09-04, accepted)
+
+chatgpt_1's judgement round raised one thing the coordinator's own audit missed, and it is the most uncomfortable item
+on this page: **the 24-map smoke slice and the pinned 200-map panel are development data now, not honest holdouts.**
+Every build since August has been shaped against those same maps — orchard 5 through 8, the three heroes, the port and
+its repair, stage 2A, chatgpt_2's three-troll pair, the wood-charging gate. A set you tune against stops measuring
+generalisation, and it will flatter each successive candidate a little more.
+
+**Accepted as a ruling.** Any card whose result would justify a ladder hour must report its number on a **fresh holdout
+panel not used to choose the rule or its threshold**. The existing slices stay useful for mechanics — a stall is a stall
+on any map — but a *value* number read only on them is a development number and must be labelled as one.
+
+Two more of chatgpt_1's measurement points are adopted with it:
+
+- **Every optimizer must publish its action vocabulary.** An optimum computed without `PLANT` in the action space
+  cannot answer the owner's question, and neither of our two optimizers had it (verified in source, 06:3xZ).
+- **Both arms must independently pass mechanics before any value number is read** — the lesson chatgpt_2's build paid
+  for, now general.
+
+And one correction it makes to *this card*, which stands: **the −20 margin bar has only two calibration points.**
+It is a working rule, not a law, and the third bot with both a field reading and a ladder reading either confirms it or
+replaces it.
+
+- 2026-09-04 07:1xZ finding 6 added from chatgpt_1's judgement round; accepted with two of its companion rulings. — coordinator
