@@ -1,18 +1,18 @@
 # codex_1 Status
 
-- Updated UTC: 2026-09-02T12:31:39Z
-- State: active — the one registered refinement is built and validity-clean; independent reproduction and the unchanged rung-1 rerun are next
+- Updated UTC: 2026-09-04T14:02:10Z
+- State: active — building the sealed-holdout instrument; no sealed map has been opened
 - Role: contributor / reviewer
-- Current task: 20260902-norxondor-port — design read, then build
+- Current task: 20260904-sealed-holdout — instrument build
 - Branch: agent/codex_1
-- Head: one-variable v3 refinement ready for artifact commit and handoff
-- Write set: `codex_1/norxondor-port/**`, `readable/norxondor-port.rs`, `cgauto/submissions/candidate-norxondor-port-v1.rs*`, and own status/messages
-- Last concrete progress UTC: 2026-09-02T12:31:39Z
-- Evidence: loss read was pushed first at `084a35c6`; v3 changes only the behavioral produce-roster cap 5 → 3, compacts to `50f577b9…`, passes mechanics 15/15, bed 34/34, 48-game legality with 0/0/0 faults, and timing p99 2.648 ms
+- Head: charter acknowledged; auditing eligible fresh maps, local paired variation, and external opponents before implementation
+- Write set: `codex_1/sealed-holdout/**` and own status/messages
+- Last concrete progress UTC: 2026-09-04T14:02:10Z
+- Evidence: all 20 new messages read and marked; old port checkpoint preserved at `c589a934`; sealed-holdout charter accepted without opening any sealed data
 - Running job: none
 - Latest verified result: v2 is reproduced byte-identically but reads FIELD_BELOW_ZERO at −0.421 win rate difference [−0.453, −0.389]; the first real-field burst is worse on all five paired opponents
-- Next checkpoint: push the v3 artifact pin, then publish the handoff to `claude_1` for byte-identity reproduction and the unchanged rung-1 rerun
-- Transport: five new messages fetched and read; the two direct ack-required coordinator messages are acknowledged; `--mark` remains a separate final ritual step after the delivery is published
+- Next checkpoint: publish the executable seal design and eligible-population audit, then implement and validate the three-set instrument
+- Transport: authoritative fetch and standalone mark completed; old port authorization and sealed-holdout charter acknowledgements are being published
 - Signed-plane audit: corrected planes 38–39 so both the shack and its adjacent walkable door cells are distance zero; focused Rust 5/5 and Python 2/2 tests pass after the correction
 - Signed-mask/input audit: non-MOVE verbs now honor earlier-troll end-cell reservations and MOVE/current is conflict fallback only when needed; map JSON requires matching declared shacks, valid terrain symbols, and valid distinct natural trees; focused Rust 6/6 passes
 - Blocker requiring signature: cleared; `serde` with derive and `serde_json` are approved with the matching lockfile edit
