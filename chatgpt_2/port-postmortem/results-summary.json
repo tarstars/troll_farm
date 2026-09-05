@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "task": "20260905-port-postmortem",
+  "verdict": "PORT_SPECIFIC_HYBRID_FAILURE",
+  "which_task_outcome": 3,
+  "plain_answer": "The native #2 design is genuinely much stronger than our champion, but the port did not implement that closed-loop design. It combined reconstructed macro timing with our champion's unrecovered target and assignment layer and invented lifecycle constraints.",
+  "native_vs_champion": {
+    "native_games": 218,
+    "champion_games": 320,
+    "native_platform_rating": 29.66,
+    "champion_platform_rating_mean_in_packages": 18.42888930465097,
+    "platform_rating_gap": 11.231110695349031,
+    "native_opponent_rating_mean": 25.503761467889905,
+    "champion_opponent_rating_mean": 17.505459656779756,
+    "raw_native_final_margin": 73.9908256880734,
+    "raw_champion_final_margin": -19.565625,
+    "raw_margin_difference": 93.5564506880734,
+    "raw_margin_bootstrap_95": [72.32554472477065, 114.29461009174312],
+    "raw_score_difference": 158.32686353211005,
+    "raw_score_bootstrap_95": [143.86315940366975, 173.75593463302752],
+    "direct_nonparametric_matching_valid": false,
+    "support_reason": "Only four of 320 champion games faced an opponent rated 20 or above, while 209 of 218 norxondor games did. A nonparametric reweighting would be almost entirely extrapolation.",
+    "fixed_effect_sensitivity": {
+      "calibration_observations": 1108,
+      "margin_points_per_opponent_rating": -7.406666513060402,
+      "slope_bootstrap_95": [-11.168585788824988, -3.709949033462417],
+      "adjusted_margin_difference": 152.79720487377332,
+      "adjusted_margin_bootstrap_95_conditional_on_slope": [131.59516350385002, 173.59383589236262],
+      "warning": "This is an extrapolating sensitivity analysis, not a paired causal estimate."
+    },
+    "weak_shared_support": {
+      "definition": "opponent rating below 22",
+      "native_n": 9,
+      "champion_n": 317,
+      "native_opponent_rating_mean": 20.48,
+      "champion_opponent_rating_mean": 17.439704707900223,
+      "margin_difference": 156.56922537679637,
+      "margin_bootstrap_95": [102.73221170697512, 207.96670171749037],
+      "warning": "The native sample is only nine games and still faced the stronger field."
+    }
+  },
+  "native_vs_port_trajectory": {
+    "100": {
+      "native_score": 31.86,
+      "native_wood_points": 6.6,
+      "native_cumulative_plants": 9.44,
+      "port_score": 25.76,
+      "port_wood_points": 6.6,
+      "port_cumulative_plants": 4.01
+    },
+    "150": {
+      "native_score": 78.7,
+      "native_wood_points": 49.32,
+      "native_cumulative_plants": 15.13,
+      "port_score": 45.96,
+      "port_wood_points": 26.05,
+      "port_cumulative_plants": 7.34
+    },
+    "200": {
+      "native_score": 185.43,
+      "native_wood_points": 154.72,
+      "native_cumulative_plants": 21.53,
+      "port_score": 78.8,
+      "port_wood_points": 61.65,
+      "port_cumulative_plants": 10.34
+    },
+    "end": {
+      "native_public_source_turn": 295,
+      "native_score": 366.1,
+      "native_wood_points": 334.16,
+      "native_cumulative_plants": 31.89,
+      "port_score": 114.48,
+      "port_wood_points": 99.95,
+      "port_cumulative_plants": 13.01
+    }
+  },
+  "roster_and_phase": {
+    "native_third_train_median_turn": 100.5,
+    "port_v2_third_train_median_turn": 74,
+    "native_first_D_median_turn": 153,
+    "port_v2_switch_median_turn": 144,
+    "port_v3_direct_margin_after_early_switch_repair": -59.62,
+    "native_first_wood_median_turn": 96.5
+  },
+  "command_throughput": {
+    "native_101_150_per_game": {"HARVEST": 24.35, "CHOP": 21.29, "PLANT": 5.28},
+    "port_100_150_per_game": {"HARVEST": 9.2125, "CHOP": 17.8825, "PLANT": 3.3775},
+    "native_151_200_per_game": {"HARVEST": 13.94, "CHOP": 55.16, "PLANT": 5.8},
+    "port_151_200_per_game": {"HARVEST": 0.16, "CHOP": 28.73, "PLANT": 3.005}
+  },
+  "port_boundary": {
+    "from_reconstruction": [
+      "train floor and cap ladder and talents",
+      "near-shack orchard and Produce-Deforest macro",
+      "fruit and iron funding priorities",
+      "banana conversion"
+    ],
+    "from_champion": [
+      "parser and state machinery",
+      "movement resolver and joint assignment",
+      "harvest target selection",
+      "chop target selection",
+      "banking and low-level candidate execution"
+    ],
+    "invented_for_port": [
+      "one exclusive P-D phase switch",
+      "hard seven-living-tree orchard cap",
+      "one global planting job",
+      "no harvesting in D",
+      "deterministic choices for unresolved rules"
+    ]
+  },
+  "recommendation": {
+    "reopen": true,
+    "specific_repair_name": "native orchard-turnover controller",
+    "not_a_patch_to_v3": true,
+    "requirements": [
+      "recover the transitional T and second flag well enough to preserve mixed harvesting and chopping",
+      "recover planting admission, replacement, and own-orchard thinning",
+      "recover crop and chop target selection instead of grafting champion targeting",
+      "validate native closed-loop state trajectories before any champion graft or platform action"
+    ]
+  },
+  "provenance": {
+    "analysis_source_commit": "599788b113a0dba80d0678d7d537fe8ccdad93fa",
+    "actions_run": 33950166405,
+    "actions_job": 101263309543,
+    "artifact_id": 9964561803,
+    "artifact_zip_sha256": "ec1545b0ffde5b8335fdfc6b2deb475452fef58e0d6c78de659acc41f07c1bae",
+    "platform_action": false
+  }
+}
