@@ -7,6 +7,7 @@ on:
       - agent/chatgpt_2
     paths:
       - chatgpt_2/port-postmortem/analyse.py
+      - chatgpt_2/port-postmortem/calibrate.py
       - .github/workflows/chatgpt2-port-postmortem.yml
 
 permissions:
@@ -23,6 +24,7 @@ jobs:
           set -euo pipefail
           mkdir -p chatgpt_2/port-postmortem/results
           python3 chatgpt_2/port-postmortem/analyse.py 2>&1 | tee chatgpt_2/port-postmortem/results/run.log
+          python3 chatgpt_2/port-postmortem/calibrate.py 2>&1 | tee chatgpt_2/port-postmortem/results/calibration.log
       - name: Upload result packet
         uses: actions/upload-artifact@v4
         with:
