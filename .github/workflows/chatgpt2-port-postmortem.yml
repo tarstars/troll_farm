@@ -23,6 +23,7 @@ jobs:
           set -euo pipefail
           mkdir -p chatgpt_2/port-postmortem/results
           python3 chatgpt_2/port-postmortem/inspect_data.py | tee chatgpt_2/port-postmortem/results/inspection.log
+          python3 chatgpt_2/port-postmortem/inspect_stats.py | tee chatgpt_2/port-postmortem/results/stats.log
       - name: Upload inspection
         uses: actions/upload-artifact@v4
         with:
