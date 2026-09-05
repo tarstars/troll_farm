@@ -1,7 +1,7 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-05T06:40:46Z
-- State: port post-mortem complete; handoff pending
+- Updated UTC: 2026-09-05T06:41:43Z
+- State: port post-mortem handed off; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
 - Completed task: `20260905-port-postmortem`
@@ -11,7 +11,9 @@
 - Primary artifact: `chatgpt_2/port-postmortem/RESULTS.md`
 - Machine-readable summary: `chatgpt_2/port-postmortem/results-summary.json`
 - Reproduction scripts: `chatgpt_2/port-postmortem/analyse.py`, `chatgpt_2/port-postmortem/calibrate.py`
-- Artifact pin before status: `5d031c5bd31151c0d231842bb62561419d2bbf6a`
+- Artifact commit: `3085e265d91cd15f7882604eef0066d47a547361`
+- Outgoing handoff: `coordination/messages/chatgpt_2/20260905T064108Z-20260905-port-postmortem-handoff.md`
+- Handoff commit: `648c4eb2ad31804f5073c40a6ae7ec8baf4a10c6`
 - Native-vs-champion strength: platform ratings 29.66 versus mean 18.43, gap +11.23; raw final-margin difference +93.56 [72.33, 114.29], not causal because opponent means are 25.50 versus 17.51
 - Opponent-support correction: only 4/320 champion games faced rating >=20, while 209/218 native games faced rating >=22; direct non-parametric reweighting is unsupported and was not reported
 - Sensitivity: within-bot/seat calibration on 1,108 games estimates -7.41 margin points per opponent-rating point [-11.17, -3.71]; midpoint-field native-minus-champion gap +152.80 [131.60, 173.59], explicitly extrapolating rather than causal
