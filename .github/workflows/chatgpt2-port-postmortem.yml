@@ -1,0 +1,31 @@
+name: chatgpt2-port-postmortem
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - agent/chatgpt_2
+    paths:
+      - chatgpt_2/port-postmortem/**
+      - .github/workflows/chatgpt2-port-postmortem.yml
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect evidence layout
+        run: |
+          set -euo pipefail
+          mkdir -p chatgpt_2/port-postmortem/results
+          python3 chatgpt_2/port-postmortem/inspect_data.py | tee chatgpt_2/port-postmortem/results/inspection.log
+      - name: Upload inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: chatgpt2-port-postmortem-inspection
+          path: chatgpt_2/port-postmortem/results/
+          if-no-files-found: error
