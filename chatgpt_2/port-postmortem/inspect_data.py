@@ -1,38 +1,74 @@
 #!/usr/bin/env python3
-import gzip, json
+import gzip
+import json
 from pathlib import Path
+
 root = Path(__file__).resolve().parents[2]
 target = 6480540
-hits = []
-for p in sorted((root / 'data/raw/games').glob('*.json')):
+
+
+def compact(value, limit=6000):
+    text = json.dumps(value, sort_keys=True, separators=(",", ":"))
+    return text[:limit]
+
+
+profile = json.loads((root / "local_claude_1/reconstructions/profiles/norxondor_gorgonax.json").read_text())
+print("PROFILE_GAME_COUNT", len(profile.get("games", [])))
+if profile.get("games"):
+    first = profile["games"][0]
+    print("PROFILE_GAME_KEYS", sorted(first))
+    print("PROFILE_GAME_SAMPLE", compact(first, 12000))
+    all_keys = sorted({key for row in profile["games"] for key in row})
+    print("PROFILE_GAME_ALL_KEYS", all_keys)
+
+for section in ("verbs_by_bucket_per_game", "training", "planting", "harvesting", "chopping", "mining"):
+    print("PROFILE_SECTION_SAMPLE", section, compact(profile.get(section), 12000))
+
+raw_hits = []
+for path in sorted((root / "data/raw/games").glob("*.json")):
     try:
-        d = json.loads(p.read_text())
+        game = json.loads(path.read_text())
     except Exception:
         continue
-    ids = []
-    for a in d.get('agents', []):
-        value = a.get('agentId')
-        if value is not None:
-            ids.append(int(value))
+    ids = [int(agent["agentId"]) for agent in game.get("agents", []) if agent.get("agentId") is not None]
     if target in ids:
-        hits.append((p, d))
-print('target_games', len(hits))
-if hits:
-    p, d = hits[0]
-    print('sample_path', p.relative_to(root))
-    print('sample_keys', sorted(d))
-    print('agent_keys', [sorted(a) for a in d.get('agents', [])])
-for p in sorted((root / 'local_claude_1/ladder-queue').glob('games-*/games-*.jsonl.gz'))[-12:]:
-    try:
-        with gzip.open(p, 'rt', encoding='utf-8') as f:
-            row = json.loads(next(line for line in f if line.strip()))
-        print('package', p.parent.name, sorted(row), [sorted(a) for a in row.get('agents', [])])
-    except Exception as exc:
-        print('package_error', p.parent.name, type(exc).__name__)
-profile = json.loads((root / 'local_claude_1/reconstructions/profiles/norxondor_gorgonax.json').read_text())
-print('profile_keys', sorted(profile))
-for k, v in profile.items():
-    if isinstance(v, dict):
-        print('profile_section', k, sorted(v))
-processed = root / 'data/processed/games.jsonl'
-print('processed_games', processed.exists(), processed.stat().st_size if processed.exists() else 0)
+        raw_hits.append((path, game))
+print("RAW_TARGET_GAMES", len(raw_hits))
+if raw_hits:
+    path, game = raw_hits[0]
+    print("RAW_SAMPLE_PATH", path.relative_to(root))
+    print("RAW_SAMPLE_AGENTS", compact(game.get("agents"), 12000))
+    print("RAW_SAMPLE_METADATA", compact(game.get("metadata"), 12000))
+    print("RAW_SAMPLE_SCORES", compact(game.get("scores"), 12000))
+
+package_names = ["games-41202036", "games-41234663", "games-41236823"]
+for dirname in package_names:
+    directory = root / "local_claude_1"
+    candidates = list(directory.glob(f"**/{dirname}/games-*.jsonl.gz"))
+    if not candidates:
+        print("PACKAGE_MISSING", dirname)
+        continue
+    package = candidates[0]
+    with gzip.open(package, "rt", encoding="utf-8") as handle:
+        row = json.loads(next(line for line in handle if line.strip()))
+    print("PACKAGE_PATH", package.relative_to(root))
+    print("PACKAGE_ROW_KEYS", dirname, sorted(row))
+    print("PACKAGE_AGENTS", dirname, compact(row.get("agents"), 12000))
+    print("PACKAGE_METADATA", dirname, compact(row.get("metadata"), 12000))
+    manifest = package.parent / "manifest.json"
+    if manifest.exists():
+        data = json.loads(manifest.read_text())
+        print("PACKAGE_MANIFEST_KEYS", dirname, sorted(data))
+        print("PACKAGE_MANIFEST_SAMPLE", dirname, compact(data, 16000))
+    ladder = package.parent / "ladder-read.json"
+    if ladder.exists():
+        data = json.loads(ladder.read_text())
+        print("PACKAGE_LADDER_KEYS", dirname, sorted(data[0]) if isinstance(data, list) and data else sorted(data))
+        print("PACKAGE_LADDER_SAMPLE", dirname, compact(data[:2] if isinstance(data, list) else data, 16000))
+
+for path in [
+    root / "data/raw/leaderboard.json",
+    root / "data/processed/stats.json",
+]:
+    data = json.loads(path.read_text())
+    print("DATA_SAMPLE", path.relative_to(root), compact(data, 16000))
