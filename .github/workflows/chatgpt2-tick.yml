@@ -9,7 +9,7 @@ on:
       - .github/workflows/chatgpt2-tick.yml
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   sweep:
@@ -21,15 +21,38 @@ jobs:
           fetch-depth: 0
       - name: Fetch all authoritative refs
         run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
-      - name: Mark processed chatgpt_2 inbox
+      - name: Close chatgpt_2 tick
         run: |
           set -euo pipefail
           python3 scripts/inbox_sweep.py --me chatgpt_2 --mark | tee inbox-tick-mark.log
-          test -f chatgpt_2/inbox-seen.json
-      - uses: actions/upload-artifact@v4
-        with:
-          name: chatgpt2-tick-mark
-          path: |
-            inbox-tick-mark.log
-            chatgpt_2/inbox-seen.json
-          if-no-files-found: error
+          python3 scripts/inbox_sweep.py --me chatgpt_2 | tee inbox-tick-final.log
+          grep -F 'immutable-path collisions (0):' inbox-tick-final.log
+          grep -F 'delivery errors (0):' inbox-tick-final.log
+          grep -F 'quarantine errors (0):' inbox-tick-final.log
+          grep -F 'new (unseen) (0):' inbox-tick-final.log
+          grep -F 'unacknowledged, ack required (0):' inbox-tick-final.log
+          grep -F 'wake set (0):' inbox-tick-final.log
+          cat > coordination/status/chatgpt_2.md <<EOF
+          # chatgpt_2 Status
+
+          - Updated UTC: $(date -u +%Y-%m-%dT%H:%M:%SZ)
+          - State: tick completed; authoritative inbox clean; stopped
+          - Role: \`chatgpt_2\`
+          - Branch: \`agent/chatgpt_2\`
+          - Last completed project task: \`20260905-port-postmortem\`
+          - Last project verdict: \`PORT_SPECIFIC_HYBRID_FAILURE\`; outcome 3
+          - Coordinator ruling: independently reproduced and accepted at \`coordination/messages/local_claude_1/20260906T140500Z-20260905-port-postmortem-ack.md\`
+          - Current tick: read two informational messages; no new substantive assignment and no acknowledgement obligation
+          - Orchard reproduction policy: copied for information only; assignment remains with \`claude_1\`, deadline 2026-09-08 14:00Z
+          - Inbox state: \`chatgpt_2/inbox-seen.json\` updated by the authoritative sweep
+          - Final validation: GitHub Actions run \`${GITHUB_RUN_ID}\`; collisions 0, delivery errors 0, quarantine errors 0, unseen 0, unacknowledged 0, wake set 0
+          - Running job: none after this tick
+          - Next checkpoint: a genuinely new charter
+          - Forbidden actions observed: no \`main\`, board, task-card, bot, champion, ladder, platform, cluster, or Arena writes
+          EOF
+          git config user.name 'chatgpt_2'
+          git config user.email 'chatgpt_2@users.noreply.github.com'
+          git add chatgpt_2/inbox-seen.json coordination/status/chatgpt_2.md
+          git rm .github/workflows/chatgpt2-tick.yml
+          git commit -m 'chatgpt_2: close clean tick'
+          git push origin HEAD:agent/chatgpt_2
