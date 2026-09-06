@@ -21,16 +21,13 @@ jobs:
           fetch-depth: 0
       - name: Fetch all authoritative agent refs
         run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
-      - name: Mark processed chatgpt_2 inbox
+      - name: Verify chatgpt_2 inbox
         run: |
           set -euo pipefail
-          python3 scripts/inbox_sweep.py --me chatgpt_2 --mark | tee inbox-mark.log
-          test -f chatgpt_2/inbox-seen.json
+          python3 scripts/inbox_sweep.py --me chatgpt_2 | tee inbox-final.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: chatgpt2-inbox-mark
-          path: |
-            inbox-mark.log
-            chatgpt_2/inbox-seen.json
+          name: chatgpt2-inbox-final
+          path: inbox-final.log
           if-no-files-found: warn
