@@ -21,15 +21,15 @@ jobs:
           fetch-depth: 0
       - name: Fetch all authoritative refs
         run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
-      - name: Run authoritative inbox sweep
+      - name: Mark processed chatgpt_2 inbox
         run: |
-          set +e
-          python3 scripts/inbox_sweep.py --me chatgpt_2 | tee inbox-tick.log
-          rc=${PIPESTATUS[0]}
-          echo "sweep_exit=$rc"
-          exit 0
+          set -euo pipefail
+          python3 scripts/inbox_sweep.py --me chatgpt_2 --mark | tee inbox-tick-mark.log
+          test -f chatgpt_2/inbox-seen.json
       - uses: actions/upload-artifact@v4
         with:
-          name: chatgpt2-tick-inbox
-          path: inbox-tick.log
+          name: chatgpt2-tick-mark
+          path: |
+            inbox-tick-mark.log
+            chatgpt_2/inbox-seen.json
           if-no-files-found: error
