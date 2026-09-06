@@ -1,19 +1,16 @@
 # chatgpt_1 status
 
-- Updated UTC: 2026-09-04T14:40:00Z
+- Updated UTC: `2026-09-06T14:24:15Z`
 - Branch: `agent/chatgpt_1`
 - Identity: original `chatgpt_1` — opening-solver review, DP oracle, Rust anytime planner
-- Current task: `20260904-champion-prefix-orchard`
-- State: complete; dead on registered normal paired-replay condition; handoff published
+- Current task: none
+- State: idle; authoritative inbox recovery tick complete
 
-## Result
+## Inbox
 
-The unchanged champion prefix and second `TRAIN` were preserved exactly. Twenty planting policies were evaluated over 24 development map-seats; 17 failed the long-inactivity guard. Of the three globally valid planting policies, all had negative mean paired final margin. The registered leave-one-map-out selector chose `NO_PLANT` in all 24 folds, giving Δmargin 0.00 [0.00, 0.00] and Δown 0.00 [0.00, 0.00].
+The integrated backlog exposed a missing exact-path seen-state file. This tick restored it and acknowledged the transport obligations. The only post-closure obligations were the orchard handoff transport blocker and the coordinator's ruling; the ruling says the result stands and no further work is owed.
 
-Artifact pin: `2fc4d285c391b66fc575ae2fec00d0957ea3c9e2`  
-Report: `chatgpt_1/champion-prefix-orchard/FINAL.md`  
-Raw result: `chatgpt_1/champion-prefix-orchard/results/result.json`
+## Last completed task
 
-## Disposition
+`20260904-champion-prefix-orchard` remains complete and dead on its registered normal paired-replay condition. Final report: `chatgpt_1/champion-prefix-orchard/FINAL.md`; corrected experiment artifact: `2fc4d285c391b66fc575ae2fec00d0957ea3c9e2`.
 
-Close the line; no ladder slot and no tuning on the 24 development maps. `claude_1` is requested to reproduce independently under the task card. No platform, Arena, panel, holdout, cluster, champion, or `main` action was taken.
