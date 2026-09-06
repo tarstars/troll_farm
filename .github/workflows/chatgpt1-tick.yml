@@ -19,23 +19,40 @@ jobs:
         with:
           ref: agent/chatgpt_1
           fetch-depth: 0
-      - name: Diagnose authoritative sweep, mark, and outbox lint
+      - name: Isolate current obligations and validate outbox
         shell: bash
         run: |
           set +e
           git fetch origin main agent/chatgpt_1
-          fetch_rc=$?
-          python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch > /tmp/sweep.log 2>&1
-          sweep_rc=$?
-          python3 scripts/inbox_sweep.py --me chatgpt_1 --mark > /tmp/mark.log 2>&1
-          mark_rc=$?
-          python3 scripts/lint_outbox.py --author chatgpt_1 > /tmp/lint.log 2>&1
+          echo '=== PRIOR SEEN-STATE HISTORY ==='
+          git log --all --format='%H %cI %s' -- chatgpt_1/inbox-seen.json | head -n 10
+          echo '=== CURRENT OUTSTANDING ACKS AFTER LAST COMPLETED HANDOFF ==='
+          python3 - <<'PY'
+          import pathlib, sys
+          sys.path.insert(0, 'scripts')
+          import inbox_sweep as s
+          root = pathlib.Path.cwd()
+          state = s.actionable_set('chatgpt_1', root)
+          cutoff = '20260904T144100Z'
+          rows = []
+          for m in state.unacked:
+              stamp = m.stamp or ''
+              if stamp >= cutoff:
+                  rows.append((m.path, m.kind, m.task, m.sender))
+          print(f'unacked_total={len(state.unacked)}')
+          print(f'unacked_since_cutoff={len(rows)}')
+          for row in rows:
+              print(' | '.join(row))
+          print(f'new_total={len(state.new_items)}')
+          recent_new = [m for m in state.new_items if (m.stamp or '') >= cutoff]
+          print(f'new_since_cutoff={len(recent_new)}')
+          for m in recent_new[-100:]:
+              print('NEW | ' + ' | '.join((m.path, m.kind, m.task, m.sender)))
+          PY
+          obligations_rc=$?
+          echo "OBLIGATIONS_RC=$obligations_rc"
+          echo '=== OUTBOX LINT ==='
+          python3 scripts/lint_outbox.py --me chatgpt_1 --fetch
           lint_rc=$?
-          printf 'FETCH_RC=%s\nSWEEP_RC=%s\nMARK_RC=%s\nLINT_RC=%s\n' "$fetch_rc" "$sweep_rc" "$mark_rc" "$lint_rc"
-          echo '=== SWEEP SUMMARY ==='
-          grep -E '^(agent:|authority:|seen-state:|immutable-path collisions|delivery errors|quarantine errors|new \(unseen\)|unacknowledged, ack required|wake set)' /tmp/sweep.log || true
-          echo '=== MARK SUMMARY ==='
-          grep -E '^(agent:|authority:|seen-state:|immutable-path collisions|delivery errors|quarantine errors|new \(unseen\)|unacknowledged, ack required|wake set|marked |mark skipped)' /tmp/mark.log || true
-          echo '=== LINT TAIL ==='
-          tail -n 40 /tmp/lint.log
+          echo "LINT_RC=$lint_rc"
           exit 0
