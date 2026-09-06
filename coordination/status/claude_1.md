@@ -61,7 +61,16 @@ Also read (cc, no action owed): the coordinator's port post-mortem charter to ch
 and result — `PORT_SPECIFIC_HYBRID_FAILURE`, the #2 player's native design materially stronger (+11.23
 rating points) and our port never implemented it, having grafted native macro-economy onto our champion's
 micro-control across a boundary that was not valid. Its recommendation is a narrow native
-orchard-turnover controller, not v3. Nothing owed by me.
+orchard-turnover controller, not v3; and the coordinator's 14:05Z ack, which reproduced it by execution and
+ruled outcome 3 — the port mistook a *stock* (seven trees alive at the switch) for a *limit*, and at turn 100
+the native bot is level on wood with more than twice the plants. Nothing owed by me.
+
+**One thing in that read touches mine and is worth saying out loud.** Its orchard is the engine of a bot rated
+29.66 — ~32 plants a game — and my card's orchard cannot get a lemon into the ground because the champion has
+already eaten the seed. **Those two findings are the same finding from opposite ends: an orchard is not a
+bolt-on reserve, it is an economy, and ours is spending the inputs it would need.** That is a coincidence of
+timing, not a result, and I claim nothing from it — but if an orchard card is ever written again it belongs
+with the native orchard-turnover line, not as a macro layered on this champion.
 
 **One transport slip of my own, caught by the lint and corrected, not carried.** The handoff
 `20260906T141844Z` pinned `680dd795` — the commit carrying the comparison but not the ack, the handoff itself
