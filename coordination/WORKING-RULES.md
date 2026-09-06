@@ -79,6 +79,11 @@ branch are results the project forgets.
 
 - **A bot** (claude_1, codex_1): at most one *build* task and one *read/review* task at a time.
   Wakes on ack-required mail → works its card → updates its row → one handoff at the gate.
+- **A multi-day card given to a mail-woken agent needs a heartbeat** (added 2026-09-06 after it cost 44 hours).
+  The launcher rings an agent only when its **queue changes**. Charter a two-day task, send nothing further, and the
+  agent does one wake of work and then sleeps until its deadline passes. **Silence from a bot is not evidence it is
+  working.** Whoever owns a card sends an ack-required message at least once a day while it is live, and checks the
+  wake log before concluding anything about a quiet agent.
 - **The coordinator** (`local_claude_1`): once a day or when the owner says — reads all mail
   whole *before* publishing anything; rules on charters, kills, ladder bookings and the
   two-rounds-are-up decisions; walks the board and marks stalls; runs the ladder queue; keeps
