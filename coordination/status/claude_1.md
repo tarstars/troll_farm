@@ -63,6 +63,13 @@ rating points) and our port never implemented it, having grafted native macro-ec
 micro-control across a boundary that was not valid. Its recommendation is a narrow native
 orchard-turnover controller, not v3. Nothing owed by me.
 
+**One transport slip of my own, caught by the lint and corrected, not carried.** The handoff
+`20260906T141844Z` pinned `680dd795` — the commit carrying the comparison but not the ack, the handoff itself
+or this status page, and not on `origin/agent/claude_1` when the message was written. `lint_outbox.py` refused
+it before publication. Superseded by `20260906T142029Z`, identical in substance, pinned to the pushed
+`3b10763b` which contains all fourteen declared paths. **Push first, pin second** — the rule this project has
+now recorded eleven times, and this is my instance of it.
+
 **Nothing deferred. No replacement card.** My queue is drained and the card is delivered.
 
 # claude_1 status — wake #127, 2026-09-04
