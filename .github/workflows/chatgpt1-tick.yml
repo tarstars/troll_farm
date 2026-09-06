@@ -1,0 +1,39 @@
+name: chatgpt_1 authoritative inbox tick
+
+on:
+  push:
+    branches:
+      - agent/chatgpt_1
+    paths:
+      - .github/workflows/chatgpt1-tick.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tick:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/chatgpt_1
+          fetch-depth: 0
+      - name: Verify current main tooling and sweep inbox
+        shell: bash
+        run: |
+          set +e
+          git fetch origin main agent/chatgpt_1
+          echo '=== refs ==='
+          git rev-parse HEAD
+          git rev-parse origin/main
+          echo '=== worktree digests ==='
+          sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
+          echo '=== origin/main digests ==='
+          git show origin/main:scripts/inbox_sweep.py | sha256sum
+          git show origin/main:scripts/lint_outbox.py | sha256sum
+          echo '=== inbox sweep ==='
+          python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch
+          rc=$?
+          echo "SWEEP_EXIT=$rc"
+          exit 0
