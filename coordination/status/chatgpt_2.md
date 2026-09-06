@@ -1,28 +1,22 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-05T06:41:43Z
-- State: port post-mortem handed off; stopped
+- Updated UTC: 2026-09-06T13:41:00Z
+- State: port post-mortem handed off; authoritative inbox drained; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
-- Completed task: `20260905-port-postmortem`
-- Incoming assignment acknowledged: `coordination/messages/local_claude_1/20260905T060000Z-20260905-port-postmortem-handoff.md`
-- Scope: read-only comparison of the real `norxondor_gorgonax`, two champion packages, and the closed-loop port; no bot, build, submission, ladder, platform, Arena, board, task-card, or `main` change
-- Verdict: `PORT_SPECIFIC_HYBRID_FAILURE`; task outcome 3
-- Primary artifact: `chatgpt_2/port-postmortem/RESULTS.md`
-- Machine-readable summary: `chatgpt_2/port-postmortem/results-summary.json`
-- Reproduction scripts: `chatgpt_2/port-postmortem/analyse.py`, `chatgpt_2/port-postmortem/calibrate.py`
-- Artifact commit: `3085e265d91cd15f7882604eef0066d47a547361`
-- Outgoing handoff: `coordination/messages/chatgpt_2/20260905T064108Z-20260905-port-postmortem-handoff.md`
-- Handoff commit: `648c4eb2ad31804f5073c40a6ae7ec8baf4a10c6`
-- Native-vs-champion strength: platform ratings 29.66 versus mean 18.43, gap +11.23; raw final-margin difference +93.56 [72.33, 114.29], not causal because opponent means are 25.50 versus 17.51
-- Opponent-support correction: only 4/320 champion games faced rating >=20, while 209/218 native games faced rating >=22; direct non-parametric reweighting is unsupported and was not reported
-- Sensitivity: within-bot/seat calibration on 1,108 games estimates -7.41 margin points per opponent-rating point [-11.17, -3.71]; midpoint-field native-minus-champion gap +152.80 [131.60, 173.59], explicitly extrapolating rather than causal
-- Native-vs-port divergence: both have 6.60 wood points at turn 100; by turn 150 native has 49.32 wood points and 15.13 cumulative plants versus 26.05 and 7.34; by turn 200, 154.72 and 21.53 versus 61.65 and 10.34
-- Roster/phase correction: port third troll median 74 versus native 100.5; port switch 144 versus native first-D median 153; forcing v3 switch near 75 still left direct margin -59.62
-- Identified break: the port collapsed two asynchronous P/T/D flags into one exclusive switch, treated seven living trees as an orchard-production cap, allowed one plant job, inherited champion crop/chop targeting, and disabled harvest in D; it copied macro timing but severed native orchard turnover
-- Recommendation: reopen only as a standalone `native orchard-turnover controller`, recovering T/second-flag behaviour, planting replacement, own-orchard thinning, and native crop/chop targets before any champion graft
-- Successful self-execution: Actions run 33950166405, job 101263309543, source `599788b113a0dba80d0678d7d537fe8ccdad93fa`, artifact 9964561803, ZIP digest `ec1545b0ffde5b8335fdfc6b2deb475452fef58e0d6c78de659acc41f07c1bae`; author reproduction, not independent acceptance
-- One-shot workflow and temporary inspection files removed after capturing the result
+- Last completed project task: `20260905-port-postmortem`
+- Last project verdict: `PORT_SPECIFIC_HYBRID_FAILURE`; task outcome 3
+- Primary project artifact: `chatgpt_2/port-postmortem/RESULTS.md`
+- Project handoff: `coordination/messages/chatgpt_2/20260905T064108Z-20260905-port-postmortem-handoff.md`
+- Current turn: no newer substantive assignment was present on any authoritative remote ref
+- Inbox repair: created `chatgpt_2/inbox-seen.json` with the 160 addressed paths selected by the authoritative sweep
+- Historical obligations: all 12 outstanding acknowledgement requirements were read and discharged through eight exact-path v2 acknowledgements
+- Transport digest debt discharged at source `97bfd655571100515c8e9f8a234d916427161d8f`: `scripts/inbox_sweep.py` SHA-256 `5734a753bb29133ce459fcb39b0c74cc36fc8db91a3a9cc64a3c99d950302729`; `scripts/lint_outbox.py` SHA-256 `c98ea24b2cef60432590413e0bcac06ddada97a2023ea99042006e7002ea7b02`
+- Digest acknowledgement: `coordination/messages/chatgpt_2/20260906T133300Z-20260805-coordination-transport-hardening-ack.md`
+- Standing policy acknowledged: only the owner, through the coordinator, may authorize submission, ladder mutation, runner invocation, cron activation, or another platform route
+- Final authoritative validation: Actions run `34036772107`, job `101496162135`, success; collisions 0, delivery errors 0, quarantine errors 0, unseen 0, unacknowledged 0, wake set 0; 34 historical quarantines remain expected
+- Seen-state generation: Actions run `34036563100`, job `101495596788`; 160 selected addressed paths marked; artifact `9990349422`, ZIP SHA-256 `e3ee5299adbe248ef127225d880034c9b511bb813d4ebfd67cbe867afdeb33fd`
+- One-shot inbox workflow removed after successful validation
 - Running job: none
-- Next checkpoint: coordinator reproduction, ruling, and acknowledgement
+- Next checkpoint: coordinator reads the acknowledgements or publishes a new charter
 - Forbidden actions observed: no `main`, board, task-card, bot, champion, ladder, platform, cluster, or Arena writes
