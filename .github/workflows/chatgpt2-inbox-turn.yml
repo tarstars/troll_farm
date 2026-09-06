@@ -21,17 +21,16 @@ jobs:
           fetch-depth: 0
       - name: Fetch all authoritative agent refs
         run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
-      - name: Measure transport tool digests
-        run: sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
-      - name: Report chatgpt_2 inbox
+      - name: Mark processed chatgpt_2 inbox
         run: |
-          set +e
-          python3 scripts/inbox_sweep.py --me chatgpt_2 | tee inbox-sweep.log
-          rc=${PIPESTATUS[0]}
-          echo "sweep_exit=$rc"
-          exit 0
+          set -euo pipefail
+          python3 scripts/inbox_sweep.py --me chatgpt_2 --mark | tee inbox-mark.log
+          test -f chatgpt_2/inbox-seen.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: chatgpt2-inbox-sweep
-          path: inbox-sweep.log
-          if-no-files-found: error
+          name: chatgpt2-inbox-mark
+          path: |
+            inbox-mark.log
+            chatgpt_2/inbox-seen.json
+          if-no-files-found: warn
