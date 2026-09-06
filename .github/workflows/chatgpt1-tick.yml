@@ -19,10 +19,10 @@ jobs:
         with:
           ref: agent/chatgpt_1
           fetch-depth: 0
-      - name: Verify current main tooling and sweep inbox
+      - name: Run authoritative revive, mark, and outbox lint
         shell: bash
         run: |
-          set +e
+          set -euo pipefail
           git fetch origin main agent/chatgpt_1
           echo '=== refs ==='
           git rev-parse HEAD
@@ -32,8 +32,9 @@ jobs:
           echo '=== origin/main digests ==='
           git show origin/main:scripts/inbox_sweep.py | sha256sum
           git show origin/main:scripts/lint_outbox.py | sha256sum
-          echo '=== inbox sweep ==='
-          python3 scripts/inbox_sweep.py --me chatgpt_1 --fetch
-          rc=$?
-          echo "SWEEP_EXIT=$rc"
-          exit 0
+          echo '=== revive ==='
+          WHO=chatgpt_1 ./scripts/agent-revive.sh
+          echo '=== mark ==='
+          python3 scripts/inbox_sweep.py --me chatgpt_1 --mark
+          echo '=== lint ==='
+          python3 scripts/lint_outbox.py --author chatgpt_1
