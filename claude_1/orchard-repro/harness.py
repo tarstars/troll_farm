@@ -118,7 +118,7 @@ def rewrite_line(line: str, uid: int, replacement: str | None) -> str:
     return ";".join(out)
 
 
-def run_arm(binary: Path, ref, turns: int, macro=None):
+def run_arm(binary: Path, ref, turns: int, macro=None, post=None):
     """One closed-loop game. `macro(turn, ref, line) -> line` sees the champion's emitted
     line and the referee state BEFORE the line is applied, and returns the line to apply.
 
@@ -144,6 +144,8 @@ def run_arm(binary: Path, ref, turns: int, macro=None):
             applied.append(out)
             ref.apply(out)
             ref.grow()
+            if post is not None:
+                post(turn, ref)
         proc.stdin.close()
     return emitted, applied
 
