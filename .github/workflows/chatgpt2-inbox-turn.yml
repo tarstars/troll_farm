@@ -21,6 +21,8 @@ jobs:
           fetch-depth: 0
       - name: Fetch all authoritative agent refs
         run: git fetch origin '+refs/heads/*:refs/remotes/origin/*'
+      - name: Measure transport tool digests
+        run: sha256sum scripts/inbox_sweep.py scripts/lint_outbox.py
       - name: Report chatgpt_2 inbox
         run: |
           set +e
