@@ -21,3 +21,5 @@ jobs:
           fetch-depth: 0
       - name: Finalize tick
         run: python3 chatgpt_1/tick_finalize.py
+
+# trigger: lint-debt-aware finalizer
