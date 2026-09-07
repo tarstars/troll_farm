@@ -58,11 +58,11 @@ neighbour's V370 **25.21 / rank 17** (09-01) and today's 24.9 / rank 18.
 
 | where | what | size | at closing |
 |---|---|---|---|
-| laptop `~/prj/troll_farm/data/raw` | the raw replay corpus (the collector's output) | 21 GB | kept; the cold archive up to 08-11 is in the Yandex bucket (memory `yandex-cloud-setup`); the delta since 08-11 exists only here |
+| laptop `~/prj/troll_farm/data/raw` | the raw replay corpus (the collector's output) | 21 GB | **DELETED 11:3xZ on the owner's word** (`git clean -fdX` on `games/` and `snapshots/`: 32,589 ignored files; every one of the 325 tracked files under `data/raw` — the battles index, the 08-06 leaderboard, the logs, 290 sample game records — is still there; 91 MB remain). The cold archive up to 08-11 is in the Yandex bucket (memory `yandex-cloud-setup`); the games collected after 08-11 are gone. |
 | laptop `~/prj/troll_farm/data/processed` | `games.jsonl`, `turns.jsonl.gz` (174 MB), `stats.json` (32,878 games, the last run, committed) | 1.7 GB | kept — the corpus of record |
-| laptop `~/nn-data` | the network arms' checkpoints (r22, s22, s22L, hs22…), the host map corpus, bench replays (incl. 11 files moved out of the worktree today) | 968 MB | kept pending the owner's word |
+| laptop `~/nn-data` | the network arms' checkpoints (r22, s22, s22L, hs22…), the host map corpus, bench replays | 1.2 GB | **DELETED 11:3xZ on the owner's word** (the battery-guard loop that lived there stopped first). The one-file exported network bot and every gate verdict stay in the repository under `local_claude_1/nn-bot/`. |
 | VM `/data/archive` | the archive | 2.2 GB | keep |
-| VM `/data/scratch` | verification scratch (3t / wg / sgo / 2a), regenerable from the pins | 5.5 GB | delete on the owner's word |
+| VM `/data/scratch` | verification scratch (3t / wg / sgo / 2a / audit-orchard6 / claude_1's runs / the corpus copy), plus neighbour-named panel files | 5.5 GB | **DELETED 11:3xZ on the owner's word, down to 297 MB.** The filter spared the neighbour's dash-named entries (`candidate-v3xx-*` panels, `v4xx-*` field records — the 297 MB that remain) but not its underscore-named ones (`candidate_v3xx_*panel_runner` build products, `candidate_v379_bridge`) or three `candidate-failure-summary-v38x/v392` JSONs, which went with ours. The exact deleted and kept lists: `local_claude_1/closing/vm-scratch-cleanup-2026-09-07.txt`. |
 | VM `/data/separate_troll_farm-working` | the neighbour's working storage | 16 GB | not ours; untouched |
 | cloud | the Yandex Object Storage cold archive; the YT cluster pool | — | bucket kept; no operation of ours running or pending at 11:0xZ |
 
@@ -78,6 +78,11 @@ neighbour's V370 **25.21 / rank 17** (09-01) and today's 24.9 / rank 18.
 | build outputs `rust/target` (two checkouts) and `chatgpt_1/opening-dp-oracle/rust-anytime/target` | **deleted** (5.2 GB, regenerable) | `cargo build --release` |
 
 The standing rule of 09-04 — nothing goes on the platform until the owner says so — stays in force at closing.
+
+**The owner's cleanup rulings, 11:2xZ:** *"remove Raw replays, network checkpoints, VM verification scratch; keep VM;
+keep neighbour's worktree."* All three removals are done (table above). The VM stays up; the neighbour's worktree
+(200 uncommitted entries at 11:0xZ) is untouched. Disk after cleanup: the laptop 450 GB used of 899 (from 476 at the
+start of the day); the VM `/data` 5.8 GB used of 98.
 
 ## 4. The honest scoreboard at closing
 
