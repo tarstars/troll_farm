@@ -1,0 +1,54 @@
+compiled; 290 maps in the corpus, 24 sampled (seed 0)
+arm A done: 24 map-seats, mean margin 87.21  (13s)
+  NO_PLANT                    dMargin    +0.00  planted   0/  0  maxstreak 151
+  BANK_ONLY                   dMargin    -5.12  planted   0/  0  maxstreak 151
+  banana/1/r2/maturity        dMargin   -18.04  planted 133/133  maxstreak 140
+  banana/1/r2/forest_gone     dMargin   -18.04  planted 133/133  maxstreak 140
+  banana/1/r4/maturity        dMargin   -20.21  planted 131/131  maxstreak 140
+  banana/1/r4/forest_gone     dMargin   -20.33  planted 131/131  maxstreak 140
+  banana/2/r2/maturity        dMargin   -18.04  planted 126/126  maxstreak 132
+  banana/2/r2/forest_gone     dMargin   -19.25  planted 127/127  maxstreak 140
+  banana/2/r4/maturity        dMargin   -27.33  planted 123/123  maxstreak 118
+  banana/2/r4/forest_gone     dMargin   -25.42  planted 124/124  maxstreak 140
+  banana/3/r2/maturity        dMargin   -20.00  planted 127/127  maxstreak 132
+  banana/3/r2/forest_gone     dMargin   -26.88  planted 125/125  maxstreak 140
+  banana/3/r4/maturity        dMargin   -24.96  planted 127/127  maxstreak 118
+  banana/3/r4/forest_gone     dMargin   -26.21  planted 125/125  maxstreak 140
+  plum/1/r2/maturity          dMargin    -4.21  planted  30/ 30  maxstreak 127
+  plum/1/r2/forest_gone       dMargin    -4.42  planted  30/ 30  maxstreak 127
+  plum/1/r4/maturity          dMargin    -3.17  planted  30/ 30  maxstreak 127
+  plum/1/r4/forest_gone       dMargin    -3.33  planted  30/ 30  maxstreak 127
+  plum/2/r2/maturity          dMargin    -5.33  planted  30/ 30  maxstreak 127
+  plum/2/r2/forest_gone       dMargin    -4.88  planted  30/ 30  maxstreak 127
+  plum/2/r4/maturity          dMargin    -6.33  planted  30/ 30  maxstreak 127
+  plum/2/r4/forest_gone       dMargin    -4.88  planted  30/ 30  maxstreak 127
+  plum/3/r2/maturity          dMargin    -6.38  planted  30/ 30  maxstreak 127
+  plum/3/r2/forest_gone       dMargin    -3.08  planted  30/ 30  maxstreak 127
+  plum/3/r4/maturity          dMargin   -10.46  planted  30/ 30  maxstreak 127
+  plum/3/r4/forest_gone       dMargin    -4.62  planted  30/ 30  maxstreak 127
+  lemon/1/r2/maturity         dMargin    -1.88  planted  22/ 22  maxstreak 147
+  lemon/1/r2/forest_gone      dMargin    -1.33  planted  22/ 22  maxstreak 161
+  lemon/1/r4/maturity         dMargin    -1.17  planted  22/ 22  maxstreak 147
+  lemon/1/r4/forest_gone      dMargin    -0.46  planted  22/ 22  maxstreak 161
+  lemon/2/r2/maturity         dMargin    -1.21  planted  22/ 22  maxstreak 147
+  lemon/2/r2/forest_gone      dMargin    -1.50  planted  22/ 22  maxstreak 161
+  lemon/2/r4/maturity         dMargin    -2.17  planted  22/ 22  maxstreak 147
+  lemon/2/r4/forest_gone      dMargin    -2.71  planted  22/ 22  maxstreak 161
+  lemon/3/r2/maturity         dMargin    -1.04  planted  22/ 22  maxstreak 147
+  lemon/3/r2/forest_gone      dMargin    -1.54  planted  22/ 22  maxstreak 161
+  lemon/3/r4/maturity         dMargin    -2.00  planted  22/ 22  maxstreak 147
+  lemon/3/r4/forest_gone      dMargin    -3.25  planted  22/ 22  maxstreak 161
+  apple/1/r2/maturity         dMargin    -7.21  planted  99/ 99  maxstreak 145
+  apple/1/r2/forest_gone      dMargin    -4.71  planted  99/ 99  maxstreak 132
+  apple/1/r4/maturity         dMargin    -6.88  planted  99/ 99  maxstreak 145
+  apple/1/r4/forest_gone      dMargin    -0.75  planted  99/ 99  maxstreak 132
+  apple/2/r2/maturity         dMargin   -16.17  planted  93/ 93  maxstreak 161
+  apple/2/r2/forest_gone      dMargin   -10.92  planted  93/ 93  maxstreak 152
+  apple/2/r4/maturity         dMargin   -19.62  planted  93/ 93  maxstreak 161
+  apple/2/r4/forest_gone      dMargin   -13.33  planted  90/ 90  maxstreak 177
+  apple/3/r2/maturity         dMargin   -19.17  planted  93/ 93  maxstreak 161
+  apple/3/r2/forest_gone      dMargin   -15.88  planted  93/ 93  maxstreak 182
+  apple/3/r4/maturity         dMargin   -20.12  planted  93/ 93  maxstreak 161
+  apple/3/r4/forest_gone      dMargin    -9.62  planted  93/ 93  maxstreak 135
+
+wrote /home/tarstars/prj/troll_farm-claude_1/claude_1/orchard-repro/results/value.json (204s)
