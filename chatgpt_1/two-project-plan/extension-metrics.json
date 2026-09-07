@@ -1,0 +1,66 @@
+{
+  "census": {
+    "explanation": "Numeric labels, aliases and documentary tags; source inventory not executed",
+    "family_tag_counts_nonexclusive": {
+      "UNRESOLVED": 189,
+      "adaptive_economy": 8,
+      "allocation": 37,
+      "denial": 79,
+      "instrument": 4,
+      "legacy_reference": 15,
+      "orchard": 214,
+      "roster": 62,
+      "traffic": 23
+    },
+    "kinds": {
+      "built_unmeasured_reported": 1,
+      "documented_label": 417,
+      "measurement_only": 7,
+      "publication_or_recheck_alias": 16,
+      "unresolved": 189
+    },
+    "unique_completed_build_count": null,
+    "version_labels": 630
+  },
+  "checkout_audit": "NOT_RUN",
+  "matched_records": {
+    "V543_384_candidate_points": 342.0,
+    "V543_384_parent_points": 342.0,
+    "funding_candidate_points": 10.5,
+    "funding_parent_points": 10.0,
+    "homegrowth_candidate_points": 175.5,
+    "homegrowth_parent_points": 175.5
+  },
+  "precision": {
+    "local_margin_halfwidth_n512": 4.924923391145725,
+    "matchpoint_blocks_80pct_power_5pp_sd1": 3140,
+    "matchpoint_halfwidth_worst_sd1_n512": 0.08662058069535207
+  },
+  "proposed_budgets": {
+    "aa": 20,
+    "confirmation": 1024,
+    "confirmation_chunks": 86,
+    "development": 768,
+    "ladder_nominal": 1280,
+    "pilot": 48,
+    "stage_separate_chunks": 92,
+    "unranked_total": 1092
+  },
+  "recent_champion": {
+    "mean": 18.264,
+    "n": 5,
+    "normal_halfwidth": {
+      "1": 2.260433254046667,
+      "21": 0.4932669757173426,
+      "4": 1.1302166270233336,
+      "6": 0.9228180116722187
+    },
+    "range": 2.1900000000000013,
+    "sample_sd": 0.8154937154877409
+  },
+  "scope": "Arithmetic and manually sourced documentary tags only",
+  "source_pins": {
+    "main": "67b2acc1e828cf25a7e6e76c2814dfcd3268a45c",
+    "neighbour": "badf27efee7eca794c149f0707c087f7ed1eb0ff"
+  }
+}
