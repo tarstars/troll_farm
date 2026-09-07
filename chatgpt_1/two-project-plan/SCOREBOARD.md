@@ -1,12 +1,12 @@
 # Joint ladder ledger — evidence available on 2026-09-07
 
-Source pin: `fb7801a740c8c16eca7e3e22cb2c008fd9e58b17`. Author: chatgpt_1. Read-only reconstruction, not fresh platform verification.
+Source pin: `fb7801a740c8c16eca7e3e22cb2c008fd9e58b17`. Author: chatgpt_1. Read-only reconstruction, not fresh platform verification. All dates below are in 2026.
 
 ## What this table does and does not certify
 
-This is one ledger of the completed-reading assertions found in the source project's two detailed ledgers and the neighbour's narrative. It includes all **16 final rows** of `local_claude_1/ladder-queue/readings.jsonl`; early_looks are NOT additional experiments. The older ledger supplies another 15 completed-rollout entries. The neighbour narrative supplies 30 completed-reading assertions below, plus an explicitly non-independent September 7 poll. Thus there are **61 completed-reading assertions and one later poll** here, not 62 independent measurements.
+This is one ledger of completed-reading assertions found in the source project's two detailed ledgers and the neighbour's narrative. It includes all **16 final rows** of `local_claude_1/ladder-queue/readings.jsonl`; early_looks are NOT additional experiments. The older ledger supplies another **15** completed-rollout entries. The neighbour narrative supplies **33** completed-reading assertions below, plus an explicitly non-independent September 7 poll. Thus there are **64 completed-reading assertions and one later poll**, not 65 independent measurements. This inventory is not pooled to estimate a common mean or variance.
 
-**The request for an exhaustive August 20–September 7 historical ledger cannot be certified from this snapshot.** In particular, the neighbour's original V54/V100 readings and most early neighbour mature timestamps are absent from the narrative, as are the complete August 20–25 main rollout records and contemporaneous top-ten boundaries. The summary of '23 readings' does not enumerate its membership. These are missing records, not zeros, and no dates have been fabricated from version numbers. The coordinator has been asked to retain/fetch the underlying ledger. The analysis does not require pretending this gap is filled.
+**An exhaustive August 20–September 7 historical ledger cannot be certified from this snapshot.** The neighbour's original V54/V100 readings and most early neighbour mature timestamps are absent from the narrative, as are the complete August 20–25 main rollout records and contemporaneous top-ten boundaries. The summary of '23 readings' does not enumerate its membership. These are missing records, not zeros, and no dates have been fabricated from version numbers. The coordinator has been asked to retain/fetch the underlying ledger.
 
 Kinds: `J` = final JSONL row, package recorded; `L` = completed-reading assertion in the older ledger; `N` = neighbour narrative's mature/completed result; `P` = later poll of the SAME deployed agent. These are documentary classifications, not independently rerun checks. An unrecorded exact mature timestamp is `NA`; a submission date is explicitly labelled `submitted`, never presented as its maturity time. Every top-ten-boundary entry is `NA`: no same-time boundary is stored with these rows. The separate September 4 field snapshot is discussed below.
 
@@ -80,8 +80,6 @@ Kinds: `J` = final JSONL row, package recorded; `L` = completed-reading assertio
 | 09-05; five-minute mature confirmation reported | neighbour | N | Exact V439 restored, `7f61a6cd…` | 41245746 / 6704418 | 23.43 | 28/177 | NA |
 | 09-07; snapshot poll, NOT a new rollout | neighbour | P | Same restored V439, same agent | 41245746 / 6704418 | 23.35 | 28/178 | NA |
 
-**Count correction for the narrative above:** the table contains **33 N entries**, not 30. Therefore the actual table has **64 completed-reading assertions (15 L + 16 J + 33 N) and one P poll**. The first paragraph's provisional 61 count is superseded by this explicit counted total; the verifier must use row kinds, not either prose assertion. This is an evidence inventory, not a pooled statistical sample.
-
 ## Source identities and audit cautions
 
 Main older ledger: `local_claude_1/ladder-measure/ledger-2026-08-26.md`, blob `ad0368aa2fee13d139585ca761a9d0b255f94943`. Main final JSONL: `local_claude_1/ladder-queue/readings.jsonl`, blob `2909dab7526e157f2cbb1f2d9ae04cc2c09c70f0`. Neighbour narrative: `neighbour/separate_troll_farm/README.md`, blob `4247cf742c57d289209cf5612c4b2e531674f0e9`; current poll: its `WORKSTATE.md`. All are pinned by the commit above. Full source hashes and archived game-package identities remain in those ledgers; the abbreviated hashes in this table are labels, not substitutes for deployment checks.
@@ -92,4 +90,4 @@ Do not count the older ledger's ABL-2h through ABL-5h or apple-farm hourly polls
 
 **Boundary observation, not a backfilled column:** `neighbour/separate_troll_farm/V587-RANK7-GAP-RESULTS-2026-09-04.md` records its September 4 22:49Z field snapshot with rank 10 at **26.73**, rank 7 at **26.99**. That is not the boundary at every preceding rollout's maturity. The old 25.40 target and July 22 boundary 25.59 must not be carried forward as September measurements. The source V543 report records rank-seven 26.99 at maturity, not rank-ten.
 
-The repeated-source counterexamples matter more than a best-score leaderboard: exact V368 reads 25.21 and 21.06; unchanged putibuzu agent/submission reads 24.92 in an earlier snapshot and 26.99 in the September field. A changing rating is not a source change. The main champion's older 21.2 is not included in the five-reading *recent* SD estimate; it remains visible here so that stationarity is not assumed away.
+The repeated-source counterexamples matter more than a best-score leaderboard: exact V368 reads 25.21 and 21.06; unchanged putibuzu agent/submission reads 24.92 in an earlier snapshot and 26.99 in the September field. A changing rating is not a source change. The main champion's older 21.2 is not included in the five-reading recent SD estimate; it remains visible here so that stationarity is not assumed away.
