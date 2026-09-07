@@ -43,7 +43,7 @@ builders, all binaries, panels, replays and the working storage.
   binaries and archives excluded), `planning/2026-09-06/policy-flat-field/` and `policy-flat-smoke/`,
   `planning/2026-09-07/`, the platform readings ledgers (`root-artifacts/platform-readings*.jsonl`,
   `baseline-restoration/2026-09-05/…`), the `monitor/` and `platform/` small files, and the 09-04 top-15
-  inventory / audit / report under `analysis/2026-09-04-v587-rank7-gap/`. Files over 4 MB were not copied.
+  inventory / audit / report under `analysis/2026-09-04-v587-rank7-gap/`. Pruned before commit to keep the push small on a metered link — no logs, no per-game panel tables, no readable source duplicates, the three 828 KB leaderboard freezes cut to their first 80 rows; the exact rule and what was left out are in `working-storage/COPY-RULE.txt`; everything left out is still on the VM at the same relative path and can be fetched on request.
 - `refresh-2026-09-07-08xxZ/` — the neighbour's `WORKSTATE.md`, `PROGRESS.md` and `git status` as of that hour;
   the 07:10Z copies at the top level are untouched so earlier citations still hold.
 
