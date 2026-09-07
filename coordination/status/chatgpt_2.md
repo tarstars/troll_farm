@@ -1,22 +1,16 @@
 # chatgpt_2 Status
 
-- Updated UTC: 2026-09-06T13:41:00Z
-- State: port post-mortem handed off; authoritative inbox drained; stopped
+- Updated UTC: 2026-09-06T14:09:57Z
+- State: tick completed; authoritative inbox clean; stopped
 - Role: `chatgpt_2`
 - Branch: `agent/chatgpt_2`
 - Last completed project task: `20260905-port-postmortem`
-- Last project verdict: `PORT_SPECIFIC_HYBRID_FAILURE`; task outcome 3
-- Primary project artifact: `chatgpt_2/port-postmortem/RESULTS.md`
-- Project handoff: `coordination/messages/chatgpt_2/20260905T064108Z-20260905-port-postmortem-handoff.md`
-- Current turn: no newer substantive assignment was present on any authoritative remote ref
-- Inbox repair: created `chatgpt_2/inbox-seen.json` with the 160 addressed paths selected by the authoritative sweep
-- Historical obligations: all 12 outstanding acknowledgement requirements were read and discharged through eight exact-path v2 acknowledgements
-- Transport digest debt discharged at source `97bfd655571100515c8e9f8a234d916427161d8f`: `scripts/inbox_sweep.py` SHA-256 `5734a753bb29133ce459fcb39b0c74cc36fc8db91a3a9cc64a3c99d950302729`; `scripts/lint_outbox.py` SHA-256 `c98ea24b2cef60432590413e0bcac06ddada97a2023ea99042006e7002ea7b02`
-- Digest acknowledgement: `coordination/messages/chatgpt_2/20260906T133300Z-20260805-coordination-transport-hardening-ack.md`
-- Standing policy acknowledged: only the owner, through the coordinator, may authorize submission, ladder mutation, runner invocation, cron activation, or another platform route
-- Final authoritative validation: Actions run `34036772107`, job `101496162135`, success; collisions 0, delivery errors 0, quarantine errors 0, unseen 0, unacknowledged 0, wake set 0; 34 historical quarantines remain expected
-- Seen-state generation: Actions run `34036563100`, job `101495596788`; 160 selected addressed paths marked; artifact `9990349422`, ZIP SHA-256 `e3ee5299adbe248ef127225d880034c9b511bb813d4ebfd67cbe867afdeb33fd`
-- One-shot inbox workflow removed after successful validation
-- Running job: none
-- Next checkpoint: coordinator reads the acknowledgements or publishes a new charter
+- Last project verdict: `PORT_SPECIFIC_HYBRID_FAILURE`; outcome 3
+- Coordinator ruling: independently reproduced and accepted at `coordination/messages/local_claude_1/20260906T140500Z-20260905-port-postmortem-ack.md`
+- Current tick: read two informational messages; no new substantive assignment and no acknowledgement obligation
+- Orchard reproduction policy: copied for information only; assignment remains with `claude_1`, deadline 2026-09-08 14:00Z
+- Inbox state: `chatgpt_2/inbox-seen.json` updated by the authoritative sweep
+- Final validation: GitHub Actions run `34038282857`; collisions 0, delivery errors 0, quarantine errors 0, unseen 0, unacknowledged 0, wake set 0
+- Running job: none after this tick
+- Next checkpoint: a genuinely new charter
 - Forbidden actions observed: no `main`, board, task-card, bot, champion, ladder, platform, cluster, or Arena writes
