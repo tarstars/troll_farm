@@ -1,0 +1,33 @@
+label,observed_utc,rating,rank,submission_id,agent_id,source_under_W,evidence
+V2,2026-08-28T23:05:25.228072Z,23.03,32,41210542,6671640,root-artifacts/platform-readings-v2.jsonl,65.1-minute poll plus README maturity assertion; no modern counts in poll
+V100,2026-08-30T06:34:28.905512Z,24.03,25,41215495,6676729,root-artifacts/platform-readings-v100-safe-or-apple-reserve-lean-farm.jsonl,recorded complete counts
+V108,2026-08-30T10:36:40.644001Z,22.90,32,41216145,6677556,root-artifacts/platform-readings-v108-v54-value-banana-supply.jsonl,recorded complete counts
+V115,2026-08-30T11:25:15.959332Z,23.53,29,41216293,6677635,root-artifacts/platform-readings-v115-v54-recheck.jsonl,recorded complete counts
+V121,2026-08-30T12:10:23.947379Z,22.92,31,41216441,6677694,root-artifacts/platform-readings-v121-v54-recheck.jsonl,recorded complete counts
+V125,2026-08-30T12:56:01.586529Z,23.76,26,41216602,6677755,root-artifacts/platform-readings-v125-v100-recheck.jsonl,recorded complete counts
+V133,2026-08-30T13:38:17.445298Z,22.30,35,41216748,6677822,root-artifacts/platform-readings-v133-priority-tuple.jsonl,recorded complete counts
+V137,2026-08-30T14:23:58.286291Z,23.35,28,41216910,6677924,root-artifacts/platform-readings-v137-tree-sparse-farm.jsonl,recorded complete counts
+V140,2026-08-30T15:12:56.217859Z,21.52,37,41217058,6677957,root-artifacts/platform-readings-v140-guarded-compact-tuple.jsonl,recorded complete counts
+V152,2026-08-30T16:18:22.802217Z,22.72,30,41217305,6678035,root-artifacts/platform-readings-v152-early-tuple-scalar-endgame.jsonl,recorded complete counts
+V231,2026-08-30T21:24:34.859675Z,24.01,25,41218295,6678547,root-artifacts/platform-readings-v231-strict-arrival-tax-fsm.jsonl,recorded complete counts
+V236,2026-08-30T22:18:02.592231Z,23.05,29,41218425,6678620,root-artifacts/platform-readings-v236-ahead-only-arrival-tax-fsm.jsonl,recorded complete counts
+V248,2026-08-30T23:01:32.196841Z,22.45,32,41218538,6678643,root-artifacts/platform-readings-v248-dense-map-apple-orchard.jsonl,recorded complete counts
+V251,2026-08-30T23:47:15.543569Z,23.81,27,41218608,6678709,root-artifacts/platform-readings-v251-enemy-eta6-apple-orchard.jsonl,recorded complete counts
+V256,2026-08-31T00:31:08.390504Z,23.65,28,41218724,6678874,root-artifacts/platform-readings-v256-enemy-door7-apple-orchard.jsonl,recorded complete counts
+V258,2026-08-31T05:16:08.186093Z,24.59,21,41219291,6679604,root-artifacts/platform-readings-v258-dynamic-only-apple-orchard.jsonl,recorded complete counts
+V266,2026-08-31T06:48:51.459354Z,22.85,30,41219458,6679799,root-artifacts/platform-readings-v266-small-deficit-arrival-tax.jsonl,recorded complete counts
+V274,2026-08-31T07:32:09.830453Z,23.32,28,41219594,6679963,root-artifacts/platform-readings-v274-arrival-tax-and-early-crop-pressure.jsonl,recorded complete counts
+V311,2026-08-31T13:40:10.238337Z,24.67,22,41221074,6681109,root-artifacts/platform-readings-v311-idle-last-fruit-rescue.jsonl,recorded complete counts
+V314,2026-08-31T14:29:07.610173Z,22.72,30,41221356,6681205,root-artifacts/platform-readings-v314-idle-underfoot-apple-harvest.jsonl,recorded complete counts
+V350,2026-08-31T17:59:53.503986Z,24.79,20,41222477,6681943,root-artifacts/platform-readings-v350-v311-recheck.jsonl,recorded complete counts
+V353,2026-08-31T18:45:29.929610Z,23.22,29,41222732,6682147,root-artifacts/platform-readings-v353-v314-recheck.jsonl,recorded complete counts; 161 games
+V356,2026-08-31T19:30:46.442175Z,22.60,30,41222915,6682252,root-artifacts/platform-readings-v356-backtracking-wood-bank-swap.jsonl,recorded complete counts
+V370,2026-08-31T20:49:46.295775Z,25.21,17,41223244,6682355,root-artifacts/platform-readings-v370-close-game-crop-finish.jsonl,recorded complete counts
+V381,2026-08-31T22:34:11.112026Z,24.73,22,41223623,6682505,root-artifacts/platform-readings-v381-opening-safe-collecting-finish.jsonl,recorded complete counts
+V392,2026-09-01T00:39:47.402730Z,21.15,38,41223986,6682801,root-artifacts/platform-readings-v392-harvest-specialist-pressure.jsonl,recorded complete counts
+V414,2026-09-01T03:30:48.891294Z,22.66,32,41224374,6683331,root-artifacts/platform-readings-v414-sustained-banking-door-escape.jsonl,recorded complete counts
+V417,2026-09-01T04:21:18.779717Z,24.95,20,41224449,6683528,root-artifacts/platform-readings-v417-empty-trapped-door-swap.jsonl,recorded complete counts
+V421,2026-09-01T05:22:50.006375Z,23.54,27,41224609,6683824,root-artifacts/platform-readings-v421-earlier-out-of-phase-door-clear.jsonl,recorded complete counts
+V424,2026-09-01T06:17:06.517984Z,21.06,37,41224723,6684088,root-artifacts/platform-readings-v424-v368-remeasure.jsonl,recorded complete counts
+V438,2026-09-01T07:59:48.192397Z,22.07,35,41225002,6684652,monitor/v438/platform-readings-v438-payback-window-one-wood-swap.jsonl,recorded complete counts
+V440,2026-09-01T09:02:57.000094Z,22.91,29,41225204,6684947,monitor/v440/platform-readings-v440-early-exhausted-one-wood-swap.jsonl,recorded complete counts
