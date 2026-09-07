@@ -1,3 +1,5 @@
+# CLOSED 2026-09-07 — the contest is closed (the owner, ~10:5xZ). This file is history. The closing record is `coordination/HANDOVER-2026-09-07-closing.md`; the analysis to start from if the game is ever reopened is `chatgpt_1/two-project-plan/OWNER-PAGE-v2.md`. Nothing goes on the platform.
+
 # GOAL — raise the bot's ladder score as fast as possible (owner 2026-09-02 ~07:5xZ: "I like this approach. Write it down and let's do it. I took submission control from codex, it's yours now. We don't need stop neuronetwork approach, we can conduct another tasks while waiting for training.")
 
 ## THE PLAN NOW (2026-09-02; the coordinator's estimate the owner accepted)

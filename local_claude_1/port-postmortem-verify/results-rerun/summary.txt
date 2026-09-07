@@ -1,0 +1,7 @@
+PORT_SPECIFIC_HYBRID_FAILURE
+real norx raw margin 73.99
+champion raw margin -19.57
+rating-seat adjusted margin gap 0.00 [0.0, 0.0]
+rating-seat adjusted own-score gap 0.00 [0.0, 0.0]
+exact-opponent margin sensitivity {'opponents': 0, 'matched_weight': 0, 'difference': None, 'opponent_ids': []}
+champion reconstruction mismatches {'growth_engine_only(expected)': 49158, 'unit_x': 2464, 'unit_y': 2349, 'unit_y_unreported': 1499, 'unit_x_unreported': 1367, 'unit_created_overpredicted': 1, 'inventory': 2, 'unit_created_fields': 1, 'final_score': 1}

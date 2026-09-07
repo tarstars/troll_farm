@@ -1,0 +1,48 @@
+{
+ "schema": 1,
+ "started_at": "2026-09-02T11:53:38.156974+00:00",
+ "completed_at": null,
+ "status": "dry-run",
+ "requested_game_options": "",
+ "seed_bank": null,
+ "sources": {
+  "baseline": {
+   "path": "cgauto/submissions/candidate-champion-denial-off-v6-instrument.rs",
+   "bytes": 63808,
+   "sha256": "0e92f8fa1e9097dd3df81989e222be8810f3cebdcd3efc950f84353f0bd1d57c"
+  },
+  "candidate": {
+   "path": "cgauto/submissions/candidate-norxondor-port-v2.rs",
+   "bytes": 82518,
+   "sha256": "411b0565ecda0139c96daaec02d26df0a7304c9b0aefa5c3823ff54ac1a9a8c1"
+  }
+ },
+ "jobs": [
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "delineate",
+   "opponent_agent": 6479768,
+   "bot": "candidate"
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "baseline"
+  },
+  {
+   "repetition": 0,
+   "opponent": "norxondor",
+   "opponent_agent": 6480540,
+   "bot": "candidate"
+  }
+ ],
+ "rows": [],
+ "stop_reason": null
+}

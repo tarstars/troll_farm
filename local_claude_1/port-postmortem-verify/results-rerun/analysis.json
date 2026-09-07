@@ -1,0 +1,520 @@
+{
+  "opponent_strength": {
+    "champion_bins": [
+      {
+        "bin": "<20",
+        "chops": 168.873417721519,
+        "fruit_pts": 3.382911392405063,
+        "harvests": 0.8164556962025317,
+        "margin": -20.626582278481013,
+        "n": 316,
+        "opp_arena": 17.428327636035814,
+        "opp_score": 207.1740506329114,
+        "plants": 9.848101265822784,
+        "score": 186.54746835443038,
+        "trolls": 2.0,
+        "win_rate": 0.5490506329113924,
+        "wood_pts": 183.16455696202533
+      },
+      {
+        "bin": "20-22",
+        "chops": 95.0,
+        "fruit_pts": 3.0,
+        "harvests": 3.0,
+        "margin": 68.0,
+        "n": 1,
+        "opp_arena": 21.034859417053728,
+        "opp_score": 139.0,
+        "plants": 12.0,
+        "score": 207.0,
+        "trolls": 2.0,
+        "win_rate": 1.0,
+        "wood_pts": 204.0
+      },
+      {
+        "bin": "22-24",
+        "chops": 278.0,
+        "fruit_pts": 8.0,
+        "harvests": 2.0,
+        "margin": 40.0,
+        "n": 1,
+        "opp_arena": 22.078022844697067,
+        "opp_score": 196.0,
+        "plants": 6.0,
+        "score": 236.0,
+        "trolls": 2.0,
+        "win_rate": 1.0,
+        "wood_pts": 228.0
+      },
+      {
+        "bin": "24-26",
+        "chops": 59.0,
+        "fruit_pts": 10.0,
+        "harvests": 0.0,
+        "margin": 35.0,
+        "n": 1,
+        "opp_arena": 25.06017476181579,
+        "opp_score": 79.0,
+        "plants": 0.0,
+        "score": 114.0,
+        "trolls": 2.0,
+        "win_rate": 1.0,
+        "wood_pts": 104.0
+      },
+      {
+        "bin": "26-28",
+        "chops": 283.0,
+        "fruit_pts": 1.0,
+        "harvests": 1.0,
+        "margin": 114.0,
+        "n": 1,
+        "opp_arena": 26.222500158637818,
+        "opp_score": 271.0,
+        "plants": 8.0,
+        "score": 385.0,
+        "trolls": 2.0,
+        "win_rate": 1.0,
+        "wood_pts": 384.0
+      }
+    ],
+    "common_strata": [],
+    "exact_opponent_id_sensitivity": {
+      "margin": {
+        "difference": null,
+        "matched_weight": 0,
+        "opponent_ids": [],
+        "opponents": 0
+      },
+      "opp_score": {
+        "difference": null,
+        "matched_weight": 0,
+        "opponent_ids": [],
+        "opponents": 0
+      },
+      "score": {
+        "difference": null,
+        "matched_weight": 0,
+        "opponent_ids": [],
+        "opponents": 0
+      }
+    },
+    "limitation": "The cohorts use different maps, draws, dates and opponent submissions; rating/seat and exact-ID adjustment do not make this a causal head-to-head.",
+    "real_norxondor_bins": [
+      {
+        "bin": "<20",
+        "chops": 206.33333333333334,
+        "fruit_pts": 21.0,
+        "harvests": 67.33333333333333,
+        "margin": 166.66666666666666,
+        "n": 3,
+        "opp_arena": 19.093333333333334,
+        "opp_score": 183.66666666666666,
+        "plants": 22.333333333333332,
+        "score": 350.3333333333333,
+        "trolls": 3.6666666666666665,
+        "win_rate": 1.0,
+        "wood_pts": 329.3333333333333
+      },
+      {
+        "bin": "20-22",
+        "chops": 206.5,
+        "fruit_pts": 21.166666666666668,
+        "harvests": 70.66666666666667,
+        "margin": 121.0,
+        "n": 6,
+        "opp_arena": 21.173333333333332,
+        "opp_score": 222.83333333333334,
+        "plants": 24.333333333333332,
+        "score": 343.8333333333333,
+        "trolls": 3.8333333333333335,
+        "win_rate": 1.0,
+        "wood_pts": 322.6666666666667
+      },
+      {
+        "bin": "22-24",
+        "chops": 157.30612244897958,
+        "fruit_pts": 54.42857142857143,
+        "harvests": 90.0,
+        "margin": 85.57142857142857,
+        "n": 49,
+        "opp_arena": 22.26061224489796,
+        "opp_score": 218.81632653061226,
+        "plants": 35.53061224489796,
+        "score": 304.38775510204084,
+        "trolls": 2.9183673469387754,
+        "win_rate": 0.7551020408163265,
+        "wood_pts": 249.9591836734694
+      },
+      {
+        "bin": "24-26",
+        "chops": 179.5,
+        "fruit_pts": 47.0,
+        "harvests": 93.1,
+        "margin": -8.5,
+        "n": 10,
+        "opp_arena": 24.873,
+        "opp_score": 406.7,
+        "plants": 23.5,
+        "score": 398.2,
+        "trolls": 3.7,
+        "win_rate": 0.5,
+        "wood_pts": 351.2
+      },
+      {
+        "bin": "26-28",
+        "chops": 199.24,
+        "fruit_pts": 25.926666666666666,
+        "harvests": 73.84666666666666,
+        "margin": 71.97333333333333,
+        "n": 150,
+        "opp_arena": 26.906666666666666,
+        "opp_score": 283.3933333333333,
+        "plants": 27.666666666666668,
+        "score": 355.3666666666667,
+        "trolls": 3.6266666666666665,
+        "win_rate": 0.6266666666666667,
+        "wood_pts": 329.44
+      }
+    ],
+    "standardized_to_real_norxondor_rating_and_seat_mix": {
+      "margin": {
+        "bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0
+      },
+      "opp_score": {
+        "bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0
+      },
+      "score": {
+        "bootstrap_95": [
+          0.0,
+          0.0
+        ],
+        "estimate": 0.0
+      }
+    }
+  },
+  "raw": {
+    "champion_combined": {
+      "chops": 168.996875,
+      "fruit_pts": 3.409375,
+      "harvests": 0.825,
+      "margin": -19.565625,
+      "n": 320,
+      "opp_arena": 17.505459656779756,
+      "opp_score": 206.725,
+      "plants": 9.80625,
+      "score": 187.159375,
+      "trolls": 2.0,
+      "win_rate": 0.5546875,
+      "wood_pts": 183.75
+    },
+    "champion_packages": {
+      "champion-41234663": {
+        "chops": 168.15,
+        "fruit_pts": 3.575,
+        "harvests": 0.88125,
+        "margin": -17.35625,
+        "n": 160,
+        "opp_arena": 17.448807096130796,
+        "opp_score": 203.38125,
+        "plants": 10.175,
+        "score": 186.025,
+        "trolls": 2.0,
+        "win_rate": 0.540625,
+        "wood_pts": 182.45
+      },
+      "champion-41236823": {
+        "chops": 169.84375,
+        "fruit_pts": 3.24375,
+        "harvests": 0.76875,
+        "margin": -21.775,
+        "n": 160,
+        "opp_arena": 17.562112217428716,
+        "opp_score": 210.06875,
+        "plants": 9.4375,
+        "score": 188.29375,
+        "trolls": 2.0,
+        "win_rate": 0.56875,
+        "wood_pts": 185.05
+      }
+    },
+    "real_norxondor": {
+      "chops": 189.20642201834863,
+      "fruit_pts": 33.10091743119266,
+      "harvests": 78.18348623853211,
+      "margin": 73.9908256880734,
+      "n": 218,
+      "opp_arena": 25.503761467889905,
+      "opp_score": 271.4954128440367,
+      "plants": 29.077981651376145,
+      "score": 345.48623853211006,
+      "trolls": 3.477064220183486,
+      "win_rate": 0.6651376146788991,
+      "wood_pts": 312.38532110091745
+    }
+  },
+  "reconstruction_validation": {
+    "champion_games": 320,
+    "max_abs_final_score_error": 0.0,
+    "mismatches": {
+      "final_score": 1,
+      "growth_engine_only(expected)": 49158,
+      "inventory": 2,
+      "unit_created_fields": 1,
+      "unit_created_overpredicted": 1,
+      "unit_x": 2464,
+      "unit_x_unreported": 1367,
+      "unit_y": 2349,
+      "unit_y_unreported": 1499
+    }
+  },
+  "roster": {
+    "champion_packages": {
+      "train_1": {
+        "mean": 8.8875,
+        "median": 8.0,
+        "n": 320
+      }
+    },
+    "port_v2_switch_median_reported": 144,
+    "port_v2_third_train_median_reported": 74,
+    "port_v3_validity_duel_margin_reported": -59.62,
+    "real_norxondor_profile": {
+      "train_1": {
+        "mean": 23.49074074074074,
+        "median": 9.0,
+        "n": 216,
+        "p25": 1,
+        "p75": 36
+      },
+      "train_2": {
+        "mean": 103.76881720430107,
+        "median": 100.5,
+        "n": 186,
+        "p25": 77,
+        "p75": 126
+      },
+      "train_3": {
+        "mean": 132.07079646017698,
+        "median": 132,
+        "n": 113,
+        "p25": 108,
+        "p75": 153
+      },
+      "train_4": {
+        "mean": 152.375,
+        "median": 153.0,
+        "n": 24,
+        "p25": 135,
+        "p75": 173
+      },
+      "train_5": {
+        "mean": 156.0,
+        "median": 156,
+        "n": 1,
+        "p25": 156,
+        "p75": 156
+      }
+    }
+  },
+  "schema_version": 1,
+  "task": "20260905-port-postmortem",
+  "throughput": {
+    "port_commands_100_150_per_game": {
+      "chop": 17.8825,
+      "drop": 12.0675,
+      "harvest": 9.2125,
+      "idle": 17.285,
+      "mine": 2.3325,
+      "move": 76.0625,
+      "pick": 2.865,
+      "plant": 3.3775
+    },
+    "port_commands_151_200_per_game": {
+      "chop": 28.73,
+      "drop": 5.7525,
+      "harvest": 0.16,
+      "idle": 37.1225,
+      "mine": 0.0275,
+      "move": 62.7875,
+      "pick": 2.915,
+      "plant": 3.005
+    },
+    "port_cumulative_plants_at_50_turn_endpoints": {
+      "50": 2.08,
+      "100": 4.01,
+      "150": 7.34,
+      "200": 10.34,
+      "250": 11.98,
+      "300": 13.01
+    },
+    "port_total_fruit_items_banked": 35.74,
+    "real_norxondor_commands_101_150_per_game": {
+      "CHOP": 21.29,
+      "DROP": 22.209999999999997,
+      "HARVEST": 24.35,
+      "MINE": 3.41,
+      "MOVE": 63.129999999999995,
+      "PICK": 1.71,
+      "PLANT": 5.279999999999999,
+      "TRAIN": 0.7100000000000001
+    },
+    "real_norxondor_commands_151_200_per_game": {
+      "CHOP": 55.160000000000004,
+      "DROP": 20.29,
+      "HARVEST": 13.94,
+      "MINE": 0.8600000000000001,
+      "MOVE": 69.52,
+      "PICK": 3.03,
+      "PLANT": 5.799999999999999,
+      "TRAIN": 0.30000000000000004
+    },
+    "real_norxondor_total_harvested_profile": {
+      "max": 265,
+      "mean": 89.65,
+      "median": 83.0,
+      "min": 19,
+      "n": 218,
+      "p25": 60.0,
+      "p75": 111.0
+    },
+    "real_norxondor_total_plants_profile": {
+      "max": 81,
+      "mean": 29.08,
+      "median": 30.0,
+      "min": 0,
+      "n": 218,
+      "p25": 17.0,
+      "p75": 38.0
+    }
+  },
+  "trajectory": [
+    {
+      "champion_package_score": 23.946875,
+      "port_fruit_current": 0.0,
+      "port_minus_paired_champion": null,
+      "port_score": 0.0,
+      "port_wood_pts": 0.0,
+      "public_source_turn": 0,
+      "public_yamo_score": 18.81,
+      "real_norx_cumulative_plants": 0.0,
+      "real_norx_fruit_current": 16.77,
+      "real_norx_minus_port": 16.77,
+      "real_norx_minus_yamo": -2.039999999999999,
+      "real_norx_opp_score": 18.79,
+      "real_norx_score": 16.77,
+      "real_norx_wood_pts": 0.0,
+      "requested_turn": 0
+    },
+    {
+      "champion_package_score": 46.478125,
+      "port_fruit_current": 17.509999999999998,
+      "port_minus_paired_champion": -30.12,
+      "port_score": 17.77,
+      "port_wood_pts": 0.26,
+      "public_source_turn": 50,
+      "public_yamo_score": 33.81,
+      "real_norx_cumulative_plants": 5.71,
+      "real_norx_fruit_current": 18.770000000000003,
+      "real_norx_minus_port": 3.240000000000002,
+      "real_norx_minus_yamo": -12.8,
+      "real_norx_opp_score": 22.13,
+      "real_norx_score": 21.01,
+      "real_norx_wood_pts": 2.24,
+      "requested_turn": 50
+    },
+    {
+      "champion_package_score": 80.784375,
+      "port_fruit_current": 19.160000000000004,
+      "port_minus_paired_champion": -55.04,
+      "port_score": 25.76,
+      "port_wood_pts": 6.6,
+      "public_source_turn": 100,
+      "public_yamo_score": 68.8,
+      "real_norx_cumulative_plants": 9.44,
+      "real_norx_fruit_current": 25.259999999999998,
+      "real_norx_minus_port": 6.099999999999998,
+      "real_norx_minus_yamo": -36.94,
+      "real_norx_opp_score": 36.85,
+      "real_norx_score": 31.86,
+      "real_norx_wood_pts": 6.6,
+      "requested_turn": 100
+    },
+    {
+      "champion_package_score": 112.071875,
+      "port_fruit_current": 19.910000000000004,
+      "port_minus_paired_champion": -64.11,
+      "port_score": 45.96,
+      "port_wood_pts": 26.049999999999997,
+      "public_source_turn": 150,
+      "public_yamo_score": 101.52,
+      "real_norx_cumulative_plants": 15.13,
+      "real_norx_fruit_current": 29.380000000000003,
+      "real_norx_minus_port": 32.74,
+      "real_norx_minus_yamo": -22.819999999999993,
+      "real_norx_opp_score": 78.58,
+      "real_norx_score": 78.7,
+      "real_norx_wood_pts": 49.32,
+      "requested_turn": 150
+    },
+    {
+      "champion_package_score": 140.6625,
+      "port_fruit_current": 17.15,
+      "port_minus_paired_champion": -56.94,
+      "port_score": 78.8,
+      "port_wood_pts": 61.65,
+      "public_source_turn": 200,
+      "public_yamo_score": 133.68,
+      "real_norx_cumulative_plants": 21.53,
+      "real_norx_fruit_current": 30.710000000000008,
+      "real_norx_minus_port": 106.63000000000001,
+      "real_norx_minus_yamo": 51.75,
+      "real_norx_opp_score": 169.94,
+      "real_norx_score": 185.43,
+      "real_norx_wood_pts": 154.72,
+      "requested_turn": 200
+    },
+    {
+      "champion_package_score": 164.378125,
+      "port_fruit_current": 15.530000000000001,
+      "port_minus_paired_champion": -55.89,
+      "port_score": 94.58,
+      "port_wood_pts": 79.05,
+      "public_source_turn": 250,
+      "public_yamo_score": 164.18,
+      "real_norx_cumulative_plants": 26.96,
+      "real_norx_fruit_current": 31.560000000000002,
+      "real_norx_minus_port": 195.5,
+      "real_norx_minus_yamo": 125.89999999999998,
+      "real_norx_opp_score": 273.16,
+      "real_norx_score": 290.08,
+      "real_norx_wood_pts": 258.52,
+      "requested_turn": 250
+    },
+    {
+      "champion_package_score": 187.159375,
+      "port_fruit_current": 14.530000000000015,
+      "port_minus_paired_champion": -59.78,
+      "port_score": 114.48,
+      "port_wood_pts": 99.94999999999999,
+      "public_source_turn": 295,
+      "public_yamo_score": 199.14,
+      "real_norx_cumulative_plants": 31.889999999999997,
+      "real_norx_fruit_current": 31.939999999999998,
+      "real_norx_minus_port": 251.62,
+      "real_norx_minus_yamo": 166.96000000000004,
+      "real_norx_opp_score": 368.67,
+      "real_norx_score": 366.1,
+      "real_norx_wood_pts": 334.16,
+      "requested_turn": 300
+    }
+  ],
+  "verdict": "PORT_SPECIFIC_HYBRID_FAILURE"
+}

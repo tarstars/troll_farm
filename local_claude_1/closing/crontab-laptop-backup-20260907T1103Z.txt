@@ -1,0 +1,3 @@
+
+0 0 03 08 * /usr/bin/itsme-cli reissue
+17 5 * * * /home/tarstars/prj/troll_farm/data/scripts/collect_wide_cron.sh # troll-farm-wide-collect

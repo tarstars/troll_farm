@@ -1,0 +1,261 @@
+{
+  "aggregate_host_cpu_percent": 39.7363143338988,
+  "checkpoint": "/home/tarstars/prj/troll_farm-local_claude_1/data/analysis/live-agent-6553250/curriculum-level1-phase0-smoke.pt",
+  "checkpoint_sha256": "db9589bf2b0b3519f42c786de9246ee16b4c195fafb0bd9f34bb4dd3cf87520e",
+  "config": {
+    "chunk_size": 200,
+    "chunk_steps": 10,
+    "chunks": 20,
+    "curriculum_level": 1,
+    "epochs": 1,
+    "eval_episodes": 1000,
+    "eval_seed_base": 5000,
+    "final_learning_rate": 0.0001,
+    "initial_checkpoint": null,
+    "initial_checkpoint_sha256": null,
+    "learning_rate": 0.001,
+    "level5_opponent_mode": "natural-forager",
+    "max_turns": 180,
+    "minibatch_size": 200,
+    "model_seed": 41,
+    "num_envs": 20,
+    "parameter_count": 34926,
+    "protocol": "/home/tarstars/prj/troll_farm-local_claude_1/data/analysis/live-agent-6553250/curriculum-level1-bfs-bc-protocol-2026-07-19.md",
+    "protocol_sha256": "bff0a52917419f66d370a5b00c12c98a306a5414205f7bb968a1399cf83fa9a9",
+    "run_name": "phase0-smoke",
+    "samples": 4000,
+    "teacher_baseline": "/home/tarstars/prj/troll_farm-local_claude_1/data/analysis/live-agent-6553250/curriculum-level1-v2-teacher-debug5000-5999-exact.json",
+    "teacher_baseline_sha256": "43a5ef18618353dd60568be821755008791242afdfdcb76b435fb5fcaef84dde",
+    "threads": 8,
+    "torch_version": "2.13.0+cpu",
+    "train_seed_base": 0
+  },
+  "elapsed_cpu_seconds": 206.488886432,
+  "elapsed_wall_seconds": 25.98239040200133,
+  "evaluation": {
+    "created_crop_rate": null,
+    "functional_gate": false,
+    "height_floor": 0.10756972111553785,
+    "level5_mechanism_gate": null,
+    "median_score_gain": null,
+    "median_success_turn": 1.0,
+    "median_training_turn": null,
+    "nontrivial_success_rate": 0.00903954802259887,
+    "paired_teacher_median_turn_delta": 0.0,
+    "path": "/home/tarstars/prj/troll_farm-local_claude_1/data/analysis/live-agent-6553250/curriculum-level1-phase0-smoke-evaluation.json",
+    "recipe_floor": null,
+    "renewable_harvest_rate": null,
+    "success_rate": 0.123
+  },
+  "label_planes": {
+    "0": 3232,
+    "1": 388,
+    "3": 380
+  },
+  "logs": [
+    {
+      "accuracy": 0.014999999664723873,
+      "chunk": 1,
+      "collect_sps": 7547.904121960719,
+      "event": "chunk",
+      "learning_rate": 0.000994459753267812,
+      "loss": 3.7017154693603516,
+      "samples": 200,
+      "train_samples_per_second": 511.9930571925356
+    },
+    {
+      "accuracy": 0.20499999821186066,
+      "chunk": 2,
+      "collect_sps": 7607.47873282794,
+      "event": "chunk",
+      "learning_rate": 0.0009779754323328191,
+      "loss": 3.684767246246338,
+      "samples": 400,
+      "train_samples_per_second": 4690.485317399613
+    },
+    {
+      "accuracy": 0.22499999403953552,
+      "chunk": 3,
+      "collect_sps": 28534.916197229395,
+      "event": "chunk",
+      "learning_rate": 0.0009509529358847655,
+      "loss": 3.6783933639526367,
+      "samples": 600,
+      "train_samples_per_second": 4361.84667319383
+    },
+    {
+      "accuracy": 0.25999999046325684,
+      "chunk": 4,
+      "collect_sps": 26339.561144613817,
+      "event": "chunk",
+      "learning_rate": 0.0009140576474687263,
+      "loss": 3.6546144485473633,
+      "samples": 800,
+      "train_samples_per_second": 4516.109991017052
+    },
+    {
+      "accuracy": 0.23499999940395355,
+      "chunk": 5,
+      "collect_sps": 44139.538073904434,
+      "event": "chunk",
+      "learning_rate": 0.0008681980515339464,
+      "loss": 3.619215965270996,
+      "samples": 1000,
+      "train_samples_per_second": 4451.48273087631
+    },
+    {
+      "accuracy": 0.23499999940395355,
+      "chunk": 6,
+      "collect_sps": 47346.82464642015,
+      "event": "chunk",
+      "learning_rate": 0.000814503363531613,
+      "loss": 3.618152379989624,
+      "samples": 1200,
+      "train_samples_per_second": 4304.217532942222
+    },
+    {
+      "accuracy": 0.2849999964237213,
+      "chunk": 7,
+      "collect_sps": 32928.537675057334,
+      "event": "chunk",
+      "learning_rate": 0.000754295724882796,
+      "loss": 3.5934324264526367,
+      "samples": 1400,
+      "train_samples_per_second": 4517.413013532766
+    },
+    {
+      "accuracy": 0.26499998569488525,
+      "chunk": 8,
+      "collect_sps": 42101.10621866501,
+      "event": "chunk",
+      "learning_rate": 0.0006890576474687264,
+      "loss": 3.562776803970337,
+      "samples": 1600,
+      "train_samples_per_second": 4865.219669087667
+    },
+    {
+      "accuracy": 0.25999999046325684,
+      "chunk": 9,
+      "collect_sps": 24249.981302811513,
+      "event": "chunk",
+      "learning_rate": 0.000620395509268104,
+      "loss": 3.5300562381744385,
+      "samples": 1800,
+      "train_samples_per_second": 4492.518884223343
+    },
+    {
+      "accuracy": 0.20999999344348907,
+      "chunk": 10,
+      "collect_sps": 68407.31227972767,
+      "event": "chunk",
+      "learning_rate": 0.00055,
+      "loss": 3.483736276626587,
+      "samples": 2000,
+      "train_samples_per_second": 4560.277830167399
+    },
+    {
+      "accuracy": 0.18000000715255737,
+      "chunk": 11,
+      "collect_sps": 47280.36269763439,
+      "event": "chunk",
+      "learning_rate": 0.000479604490731896,
+      "loss": 3.4620578289031982,
+      "samples": 2200,
+      "train_samples_per_second": 4492.398095638597
+    },
+    {
+      "accuracy": 0.23999999463558197,
+      "chunk": 12,
+      "collect_sps": 41359.16093130947,
+      "event": "chunk",
+      "learning_rate": 0.0004109423525312737,
+      "loss": 3.385120153427124,
+      "samples": 2400,
+      "train_samples_per_second": 4704.287543315372
+    },
+    {
+      "accuracy": 0.2150000035762787,
+      "chunk": 13,
+      "collect_sps": 36405.608320308726,
+      "event": "chunk",
+      "learning_rate": 0.00034570427511720393,
+      "loss": 3.3204076290130615,
+      "samples": 2600,
+      "train_samples_per_second": 4784.854171309573
+    },
+    {
+      "accuracy": 0.24500000476837158,
+      "chunk": 14,
+      "collect_sps": 37778.78904513208,
+      "event": "chunk",
+      "learning_rate": 0.00028549663646838715,
+      "loss": 3.2326323986053467,
+      "samples": 2800,
+      "train_samples_per_second": 4965.187078301074
+    },
+    {
+      "accuracy": 0.20999999344348907,
+      "chunk": 15,
+      "collect_sps": 34205.604493591425,
+      "event": "chunk",
+      "learning_rate": 0.00023180194846605365,
+      "loss": 3.3051819801330566,
+      "samples": 3000,
+      "train_samples_per_second": 4643.28054863345
+    },
+    {
+      "accuracy": 0.19499999284744263,
+      "chunk": 16,
+      "collect_sps": 42653.408780621125,
+      "event": "chunk",
+      "learning_rate": 0.00018594235253127368,
+      "loss": 3.2502188682556152,
+      "samples": 3200,
+      "train_samples_per_second": 4780.025045852559
+    },
+    {
+      "accuracy": 0.2849999964237213,
+      "chunk": 17,
+      "collect_sps": 23186.68259100923,
+      "event": "chunk",
+      "learning_rate": 0.0001490470641152345,
+      "loss": 3.1514852046966553,
+      "samples": 3400,
+      "train_samples_per_second": 4583.8998183254325
+    },
+    {
+      "accuracy": 0.2800000011920929,
+      "chunk": 18,
+      "collect_sps": 39274.75297924016,
+      "event": "chunk",
+      "learning_rate": 0.00012202456766718092,
+      "loss": 3.0828378200531006,
+      "samples": 3600,
+      "train_samples_per_second": 4657.065350531304
+    },
+    {
+      "accuracy": 0.29499998688697815,
+      "chunk": 19,
+      "collect_sps": 25917.09920341575,
+      "event": "chunk",
+      "learning_rate": 0.00010554024673218806,
+      "loss": 3.091548442840576,
+      "samples": 3800,
+      "train_samples_per_second": 4685.606241497592
+    },
+    {
+      "accuracy": 0.25,
+      "chunk": 20,
+      "collect_sps": 36792.861325300524,
+      "event": "chunk",
+      "learning_rate": 0.0001,
+      "loss": 3.180360794067383,
+      "samples": 4000,
+      "train_samples_per_second": 4443.93438702855
+    }
+  ],
+  "teacher_generation": {
+    "episodes": 90,
+    "successes": 90
+  }
+}
