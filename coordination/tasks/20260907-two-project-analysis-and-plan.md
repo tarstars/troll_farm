@@ -167,8 +167,90 @@ closures), `coordination/tasks/20260904-instrument-audit.md`, `coordination/task
 162 KB ledger; read it by section, not whole). The live bot's source is `bot.rs`; its experimental modules
 `next_bot/`, `lookahead_search.rs`, `home_growth.rs`, `serviced_source.rs`.
 
+## Amendment 2026-09-07 08:3xZ — check again against the published repository, and extend
+
+**Owner:** *"I published separate_troll_farm. Give chatgpt_1 task to check again and extend the analysis."*
+
+**What changed since the charter.**
+
+- **The first packet is delivered and verified.** chatgpt_1 delivered at 08:13Z (handoff
+  `coordination/messages/chatgpt_1/20260907T081307Z-20260907-two-project-analysis-and-plan-handoff.md`, pin `1141f74e…`),
+  integrated by merge at `eda83df6` (merge, not cherry-pick — our git rule). The coordinator's verification by
+  execution: `audit.py --self-test` 6/6 PASS; the default run reproduces (mean 18.264, sample SD 0.8155, range 2.19,
+  half-widths 0.923 / 0.493 at 6 / 21 per arm); `--source-root` against the integrated checkout **PASS** (readings
+  blob `2909dab7…`, 16 final records, the 162-game row flagged). **Its six corrections are accepted** and carried to
+  the board: standalone controllers *have* been built (our A2-1 in July; the neighbour's V543, `next_bot`, and the
+  09-07 dispatch line); the second-worker "harvest zero" statement over-generalised one cohort (our own census records
+  putibuzu's second worker harvesting in 100 % of its sample, most often 2/2/2/2); the policy-flat planner is
+  deployed under Rust 1.90 and its fresh real-agent screen is 2W/4L for both arms; fruit-first was not the port's
+  error; the 23-reading summary is V54–V440 and mixes policies; the sealed bank's two-arm cost is 1,024 games.
+- **The neighbour is now public:** https://github.com/tarstars/separate_troll_farm — branch `main`, HEAD
+  `badf27efee7eca794c149f0707c087f7ed1eb0ff` (2026-09-05 19:02Z), 111 commits since its 09-02 baseline snapshot;
+  the whole committed tree (the ~1,000 candidate sources and builders, the tests, the tooling, the README ledger).
+  **Precedence:** for anything committed, the published repository is the source of truth and the snapshot here is a
+  copy; the snapshot is the *only* copy of the ten working-tree files of 09-06/07 that the published HEAD lacks
+  (`AGENTS.md`, `CLAUDE.md`, the newer `EVALUATION.md`, `GOAL.md`, `PROGRESS.md`, `WORKFLOW.md`, `WORKSTATE.md`,
+  `PLANNER-ROOT-SELECTOR-RESULTS-2026-09-05.md`, `docs/CLAUDE-HISTORICAL-2026-09-02.md`,
+  `docs/REFEREE-LEAGUE-SCOPE-2026-09-07.md`).
+- **The evidence asked for in the ack, the progress note and the handoff is in the snapshot now**, under
+  `neighbour/separate_troll_farm/working-storage/` (copied from the VM's `/data/separate_troll_farm-working/`,
+  secret-scanned): the eight 09-07 `claude-runs/20260907T*` directories' `PLAN`, `PRIMARY-REVIEW`, `RESULT`, hashes,
+  logs and candidate sources — including the **complete-funding run `20260907T065010Z-749733-1`** and the dispatch
+  ledger / forestry / fruit / timed runs; `planning/2026-09-06/policy-flat-field/SCREEN-RESULT.md` with its plan and
+  manifest, the policy-flat smoke, and `planning/2026-09-07/`; the platform readings ledgers
+  (`root-artifacts/platform-readings*.jsonl`, the V439 restoration's readings under `baseline-restoration/`); the
+  `monitor/` and `platform/` directories' small files; the 09-04 top-15 inventory, audit and report JSON under
+  `analysis/2026-09-04-v587-rank7-gap/`. `neighbour/separate_troll_farm/refresh-2026-09-07-08xxZ/` holds the
+  neighbour's `WORKSTATE.md`, `PROGRESS.md` and `git status` as of that hour. The 07:10Z snapshot files are untouched.
+
+**The extension — same directory, new files, append-only (do not rewrite the 08:13Z packet), same deadline
+2026-09-09 08:00Z:**
+
+- **E1 Re-check** (`RECHECK-<date>.md`): every statement in the first packet that changes when read against the
+  published repository and the new evidence, as a numbered corrections list; confirm the snapshot's committed
+  documents match the published ones (by hash or by diff of the files you relied on); name what you could not check.
+- **E2 Phase 0, done now** (`PHASE0-AUDIT-<date>.md`): the comparison matrix of PLAN §5 — every existing controller
+  (theirs: `next_bot`, the 09-07 dispatch variants, the complete-funding run, V543/V564, the home-growth kernel;
+  ours: A2-1, the port v2/v3.1 in `codex_1/norxondor-port/`, the b100 / banana R2 line, the orchard macros of rows
+  3-8/3-9) against the nine lifecycle properties (a)–(i), IMPLEMENTED / ABSENT / UNKNOWN with the code path and a
+  trace where one exists. **Read the complete-funding run's primary review first** and say whether it implements
+  the lifecycle and what it measured; then say whether TURNOVER survives as a non-duplicate hypothesis, or is
+  DUPLICATE_HYPOTHESIS, and what follows.
+- **E3 The lineage diff** (`LINEAGE-DIFF-<date>.md`): what V439 (`bot.rs` in the published repository) contains that
+  our champion of record (`readable/denial-off-champion.rs`) and the old champion with the denial bonus do not; which
+  of those additions carry measured evidence in the neighbour's ledger and which do not; and whether the same-day
+  readings show the neighbour's lineage above ours for reasons in the code rather than in the field (08-28: the
+  neighbour's V2 23.03 / rank 32 against our champion 18.19 / 85 and orchard 6 18.84 / 70 the same day; 09-04/05:
+  19.23 / 60 against 23.43 / 28). End with what, if anything, is worth carrying from V439 into a unified champion,
+  with its evidence, and what it would cost to test.
+- **E4 The scoreboard, second edition** (`SCOREBOARD-v2.md`): the neighbour rows' mature dates from the readings
+  ledgers; top-ten boundaries where the inventories give them; the same-day pairs; NA where the record is silent.
+- **E5 The tooling inventory as code** (`TOOLING-<date>.md`), from the published repository and ours: the unranked
+  real-agent collector (its twelve-game limit, manifests, identity checks), the rank monitor, the replay/command
+  audit, the panel runner and legacy gate; ours: the sealed-holdout runner (`codex_1/sealed-holdout/`), the field
+  panel (`claude_1/h2h-panel/`), `cgauto/field_panel.py`. For each: what it does, what it needs, whether it can
+  serve PLAN Phases 3–5 as written, and the exact gap (the chunked, resumable execution path).
+- **E6 The candidate census** (`CANDIDATE-CENSUS-<date>.md`): every V-candidate V1–V630 from the README ledger, the
+  results files and the published builders and sources, clustered by mechanism family with counts and the best
+  mature or paired outcome per family — so the owner sees what was tried, how many times, and with what best result.
+- **E7 Revise** (`PLAN-<date>-v2.md`, `OWNER-PAGE-v2.md`): fold E1–E6 in; keep the three one-word decisions or
+  replace them with better ones; if E2 finds the mechanism already implemented and lost, say so and name the next
+  hypothesis.
+
+Rules of §6 unchanged; the heartbeat both ways unchanged; a handoff pinning the commit when done, progress messages
+per working session.
+
 ## Log
 
 - 2026-09-07 07:2xZ born on the owner's word; the neighbour's documents snapshotted into `neighbour/separate_troll_farm/`
   (it has no git remote and lives on the VM, which chatgpt_1 cannot reach); charter sent to chatgpt_1, ack-required;
   the owner asked to activate it. — coordinator
+- 2026-09-07 07:25:58Z chatgpt_1 acked (the owner activated it); 07:45Z progress with five corrections; **08:13:07Z
+  the first packet delivered** (`chatgpt_1/two-project-plan/`: ANALYSIS, PLAN, OWNER-PAGE, SCOREBOARD,
+  DECISION-MATRIX, VERIFICATION, `audit.py`). Its recommendation: UNIFY the account queue and coordination; HOLD
+  V439; TURNOVER only as a bounded offline audit / design / prototype conditional on the mechanism being genuinely
+  missing from the neighbour's completed attempts; a conditional budget of 1,092 unranked games and a separately
+  approved 1,280-game ladder block; zero games run. — chatgpt_1
+- 2026-09-07 08:3xZ the coordinator's verification by execution (above) PASS; the packet merged at `eda83df6`; the
+  owner published the neighbour and asked for a re-check and an extension; the requested evidence copied from the
+  VM; the amendment above sent as the extended charter, ack-required. — coordinator

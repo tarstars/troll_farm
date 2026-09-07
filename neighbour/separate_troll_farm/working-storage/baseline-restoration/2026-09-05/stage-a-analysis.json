@@ -1,0 +1,879 @@
+{
+ "stage": "stage-a",
+ "control_repeat_identical": true,
+ "pairs": [
+  {
+   "seed": 2609054701,
+   "opponent_agent": 6479779,
+   "opponent": "putibuzu",
+   "seat": 0,
+   "v439": {
+    "game_id": 901541742,
+    "scores": [
+     196.0,
+     271.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     49,
+     48
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      1
+     ],
+     "training_turns": [
+      [
+       1
+      ],
+      [
+       1
+      ]
+     ],
+     "max": [
+      2,
+      2
+     ],
+     "final": [
+      2,
+      2
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543339,
+    "scores": [
+     110.0,
+     264.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     16,
+     28
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      3,
+      1
+     ],
+     "training_turns": [
+      [
+       2,
+       193,
+       266
+      ],
+      [
+       1
+      ]
+     ],
+     "max": [
+      4,
+      2
+     ],
+     "final": [
+      4,
+      2
+     ]
+    }
+   },
+   "point_delta": 0.0,
+   "margin_delta": 79.0
+  },
+  {
+   "seed": 2609054702,
+   "opponent_agent": 6479779,
+   "opponent": "putibuzu",
+   "seat": 1,
+   "v439": {
+    "game_id": 901541759,
+    "scores": [
+     216.0,
+     257.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     54,
+     52
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      1
+     ],
+     "training_turns": [
+      [
+       10
+      ],
+      [
+       1
+      ]
+     ],
+     "max": [
+      2,
+      2
+     ],
+     "final": [
+      2,
+      2
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543377,
+    "scores": [
+     84.0,
+     191.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     4,
+     26
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      2,
+      1
+     ],
+     "training_turns": [
+      [
+       2,
+       262
+      ],
+      [
+       1
+      ]
+     ],
+     "max": [
+      3,
+      2
+     ],
+     "final": [
+      3,
+      2
+     ]
+    }
+   },
+   "point_delta": 0.0,
+   "margin_delta": 66.0
+  },
+  {
+   "seed": 2609054801,
+   "opponent_agent": 6505289,
+   "opponent": "tonigineer",
+   "seat": 0,
+   "v439": {
+    "game_id": 901541787,
+    "scores": [
+     232.0,
+     241.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     58,
+     53
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      1
+     ],
+     "training_turns": [
+      [
+       1
+      ],
+      [
+       44
+      ]
+     ],
+     "max": [
+      2,
+      2
+     ],
+     "final": [
+      2,
+      2
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543417,
+    "scores": [
+     65.0,
+     298.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     6,
+     63
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      2,
+      1
+     ],
+     "training_turns": [
+      [
+       2,
+       198
+      ],
+      [
+       44
+      ]
+     ],
+     "max": [
+      3,
+      2
+     ],
+     "final": [
+      3,
+      2
+     ]
+    }
+   },
+   "point_delta": 0.0,
+   "margin_delta": 224.0
+  },
+  {
+   "seed": 2609054201,
+   "opponent_agent": 6480540,
+   "opponent": "norxondor_gorgonax",
+   "seat": 1,
+   "v439": {
+    "game_id": 901541808,
+    "scores": [
+     200.0,
+     296.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     50,
+     74
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      3
+     ],
+     "training_turns": [
+      [
+       10
+      ],
+      [
+       1,
+       63,
+       144
+      ]
+     ],
+     "max": [
+      2,
+      4
+     ],
+     "final": [
+      2,
+      4
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543439,
+    "scores": [
+     70.0,
+     481.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     0,
+     119
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      4
+     ],
+     "training_turns": [
+      [
+       2
+      ],
+      [
+       1,
+       75,
+       111,
+       158
+      ]
+     ],
+     "max": [
+      2,
+      5
+     ],
+     "final": [
+      2,
+      5
+     ]
+    }
+   },
+   "point_delta": 0.0,
+   "margin_delta": 315.0
+  },
+  {
+   "seed": 2609054601,
+   "opponent_agent": 6541377,
+   "opponent": "PonyPonyCodeCode",
+   "seat": 0,
+   "v439": {
+    "game_id": 901541866,
+    "scores": [
+     231.0,
+     59.0
+    ],
+    "outcome": "W",
+    "points": 1.0,
+    "wood": [
+     21,
+     4
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      0
+     ],
+     "training_turns": [
+      [
+       1
+      ],
+      []
+     ],
+     "max": [
+      2,
+      1
+     ],
+     "final": [
+      2,
+      1
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543481,
+    "scores": [
+     204.0,
+     239.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     38,
+     59
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      3,
+      1
+     ],
+     "training_turns": [
+      [
+       2,
+       102,
+       261
+      ],
+      [
+       46
+      ]
+     ],
+     "max": [
+      4,
+      2
+     ],
+     "final": [
+      4,
+      2
+     ]
+    }
+   },
+   "point_delta": 1.0,
+   "margin_delta": 207.0
+  },
+  {
+   "seed": 2609054802,
+   "opponent_agent": 6505289,
+   "opponent": "tonigineer",
+   "seat": 1,
+   "v439": {
+    "game_id": 901541874,
+    "scores": [
+     120.0,
+     219.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     29,
+     42
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      1,
+      1
+     ],
+     "training_turns": [
+      [
+       1
+      ],
+      [
+       46
+      ]
+     ],
+     "max": [
+      2,
+      2
+     ],
+     "final": [
+      2,
+      2
+     ]
+    }
+   },
+   "v543": {
+    "game_id": 901543497,
+    "scores": [
+     107.0,
+     132.0
+    ],
+    "outcome": "L",
+    "points": 0.0,
+    "wood": [
+     14,
+     18
+    ],
+    "workforce": {
+     "source": "referee_summary",
+     "snapshots": 0,
+     "training_events": [
+      2,
+      1
+     ],
+     "training_turns": [
+      [
+       2,
+       93
+      ],
+      [
+       46
+      ]
+     ],
+     "max": [
+      3,
+      2
+     ],
+     "final": [
+      3,
+      2
+     ]
+    }
+   },
+   "point_delta": 0.0,
+   "margin_delta": -74.0
+  }
+ ],
+ "summary": {
+  "v439": {
+   "games": 6,
+   "wdl": [
+    1,
+    0,
+    5
+   ],
+   "match_points": 1.0,
+   "own_score_mean": 199.16666666666666,
+   "opponent_score_mean": 223.83333333333334,
+   "margin_mean": -24.666666666666668,
+   "wood_mean": 43.5,
+   "diagnostic_games": 0
+  },
+  "v543": {
+   "games": 6,
+   "wdl": [
+    0,
+    0,
+    6
+   ],
+   "match_points": 0.0,
+   "own_score_mean": 106.66666666666667,
+   "opponent_score_mean": 267.5,
+   "margin_mean": -160.83333333333334,
+   "wood_mean": 13,
+   "diagnostic_games": 0
+  }
+ },
+ "audits": [
+  {
+   "game_id": 901543310,
+   "policy": "v439",
+   "seat": 0,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.13356711389496922,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0023888186551630497,
+    0.0020970720797777176,
+    0.0020490651950240135,
+    0.002026665024459362,
+    0.0020326380617916584,
+    0.0020569516345858574,
+    0.002080172300338745,
+    0.002072026953101158,
+    0.0020728041417896748,
+    0.002056816127151251
+   ]
+  },
+  {
+   "game_id": 901543339,
+   "policy": "v543",
+   "seat": 0,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.08458377094939351,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0015557981096208096,
+    0.0012694131582975388,
+    0.0011490988545119762,
+    0.0011106077581644058,
+    0.0011490327306091785,
+    0.001165894791483879,
+    0.001123633235692978,
+    0.0011374433524906635,
+    0.0012303069233894348,
+    0.0011371471919119358
+   ]
+  },
+  {
+   "game_id": 901543377,
+   "policy": "v543",
+   "seat": 1,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.1402682620100677,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0016279611736536026,
+    0.0013370728120207787,
+    0.0015505501069128513,
+    0.001456886064261198,
+    0.0013279817067086697,
+    0.0012617846950888634,
+    0.0012593762949109077,
+    0.0011801631189882755,
+    0.001270882785320282,
+    0.0011927089653909206
+   ]
+  },
+  {
+   "game_id": 901543417,
+   "policy": "v543",
+   "seat": 0,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.13338575698435307,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0016008107922971249,
+    0.0012360247783362865,
+    0.001224086619913578,
+    0.0011980743147432804,
+    0.0011313548311591148,
+    0.0011446313001215458,
+    0.001192730851471424,
+    0.0011882469989359379,
+    0.0011116471141576767,
+    0.0011120326817035675
+   ]
+  },
+  {
+   "game_id": 901543439,
+   "policy": "v543",
+   "seat": 1,
+   "turns": 296,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.13930503325536847,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0016227113083004951,
+    0.0013006669469177723,
+    0.001207705121487379,
+    0.0011636046692728996,
+    0.0011727283708751202,
+    0.0012340489774942398,
+    0.0012272801250219345,
+    0.0012471778318285942,
+    0.0011905580759048462,
+    0.0014660363085567951
+   ]
+  },
+  {
+   "game_id": 901543481,
+   "policy": "v543",
+   "seat": 0,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.07554454496130347,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0014846869744360447,
+    0.0012124120257794857,
+    0.0011574551463127136,
+    0.001116333995014429,
+    0.0011104890145361423,
+    0.0011058878153562546,
+    0.001157611608505249,
+    0.0012097577564418316,
+    0.0011697141453623772,
+    0.0011224756017327309
+   ]
+  },
+  {
+   "game_id": 901543497,
+   "policy": "v543",
+   "seat": 1,
+   "turns": 300,
+   "mismatch_turns": [],
+   "full_process_seconds": 0.11189916078001261,
+   "startup_plus_first_turn_and_exit_seconds": [
+    0.0015697297640144825,
+    0.0012775440700352192,
+    0.0011739162728190422,
+    0.00111675588414073,
+    0.0011865831911563873,
+    0.0010858462192118168,
+    0.001118592917919159,
+    0.0011470848694443703,
+    0.001093382015824318,
+    0.0010672579519450665
+   ]
+  }
+ ],
+ "clean": true,
+ "by_opponent": {
+  "PonyPonyCodeCode": {
+   "v439": {
+    "games": 1,
+    "wdl": [
+     1,
+     0,
+     0
+    ],
+    "match_points": 1.0,
+    "own_score_mean": 231.0,
+    "opponent_score_mean": 59.0,
+    "margin_mean": 172.0,
+    "wood_mean": 21,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 1,
+    "wdl": [
+     0,
+     0,
+     1
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 204.0,
+    "opponent_score_mean": 239.0,
+    "margin_mean": -35.0,
+    "wood_mean": 38,
+    "diagnostic_games": 0
+   }
+  },
+  "norxondor_gorgonax": {
+   "v439": {
+    "games": 1,
+    "wdl": [
+     0,
+     0,
+     1
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 200.0,
+    "opponent_score_mean": 296.0,
+    "margin_mean": -96.0,
+    "wood_mean": 50,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 1,
+    "wdl": [
+     0,
+     0,
+     1
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 70.0,
+    "opponent_score_mean": 481.0,
+    "margin_mean": -411.0,
+    "wood_mean": 0,
+    "diagnostic_games": 0
+   }
+  },
+  "putibuzu": {
+   "v439": {
+    "games": 2,
+    "wdl": [
+     0,
+     0,
+     2
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 206.0,
+    "opponent_score_mean": 264.0,
+    "margin_mean": -58.0,
+    "wood_mean": 51.5,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 2,
+    "wdl": [
+     0,
+     0,
+     2
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 97.0,
+    "opponent_score_mean": 227.5,
+    "margin_mean": -130.5,
+    "wood_mean": 10,
+    "diagnostic_games": 0
+   }
+  },
+  "tonigineer": {
+   "v439": {
+    "games": 2,
+    "wdl": [
+     0,
+     0,
+     2
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 176.0,
+    "opponent_score_mean": 230.0,
+    "margin_mean": -54.0,
+    "wood_mean": 43.5,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 2,
+    "wdl": [
+     0,
+     0,
+     2
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 86.0,
+    "opponent_score_mean": 215.0,
+    "margin_mean": -129.0,
+    "wood_mean": 10,
+    "diagnostic_games": 0
+   }
+  }
+ },
+ "by_seat": {
+  "0": {
+   "v439": {
+    "games": 3,
+    "wdl": [
+     1,
+     0,
+     2
+    ],
+    "match_points": 1.0,
+    "own_score_mean": 219.66666666666666,
+    "opponent_score_mean": 190.33333333333334,
+    "margin_mean": 29.333333333333332,
+    "wood_mean": 42.666666666666664,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 3,
+    "wdl": [
+     0,
+     0,
+     3
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 126.33333333333333,
+    "opponent_score_mean": 267.0,
+    "margin_mean": -140.66666666666666,
+    "wood_mean": 20,
+    "diagnostic_games": 0
+   }
+  },
+  "1": {
+   "v439": {
+    "games": 3,
+    "wdl": [
+     0,
+     0,
+     3
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 178.66666666666666,
+    "opponent_score_mean": 257.3333333333333,
+    "margin_mean": -78.66666666666667,
+    "wood_mean": 44.333333333333336,
+    "diagnostic_games": 0
+   },
+   "v543": {
+    "games": 3,
+    "wdl": [
+     0,
+     0,
+     3
+    ],
+    "match_points": 0.0,
+    "own_score_mean": 87.0,
+    "opponent_score_mean": 268.0,
+    "margin_mean": -181.0,
+    "wood_mean": 6,
+    "diagnostic_games": 0
+   }
+  }
+ },
+ "point_gain": 1.0,
+ "median_margin_gain": 143.0,
+ "empirical_six_block_bootstrap_mean_95pct": {
+  "point_delta": [
+   0.0,
+   0.5
+  ],
+  "margin_delta": [
+   26.666666666666668,
+   235.0
+  ]
+ },
+ "uncertainty_limit": "Small fixed-opponent panel; resampling cannot invent unseen outcome flips. Neither rank prediction nor coverage of unseen strategies.",
+ "advance_to_confirmation": true
+}

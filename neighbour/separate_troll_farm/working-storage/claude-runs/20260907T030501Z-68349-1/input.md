@@ -1,0 +1,66 @@
+# Repair the missing acquisition plan; prove actual economic recruitment
+
+Budget40 minutes. Own claude_candidate_orchard* and test_claude_candidate_orchard.rs
+ONLY plus runartifacts. Archive exact previous family files/hashes into this new
+run BEFORE edits. Parent/canonical/neighbor/WORKSTATE unchanged; offline only,
+no platform, commits, agents, new holdouts, or tuning sweep. Use apply_patch.
+Read prior PRIMARY-REVIEW.md in run20260907T024202Z-4185751-1, not fullhistory.
+
+Primary independently reran13 tests and verified192 controls and155vs170points.
+Current variant is rejected: zero actual third hires in192 games. Missing MINE
+and ungated repeated harvest are implementation defects, not a strategy verdict.
+This ticket authorizes ONE coherent repair, with ordinary debugging inside it.
+Previous batch returned after20/45minutes: do not stop merely on encountering a
+repairable missing acquisition leg while substantial authorized time remains.
+
+CRITICAL fixture defect: bank[3,3,4,6,3,0] already funds cheapest1111 third hire;
+TRAIN44 is BEFORE firstHARVEST52. Parent and candidate PLANT/HARVEST sequences are
+identical in this fixture. It proves unlocking a pre-funded hire, NOT farming
+paying for recruitment. Payment loop0..4 skips IRON index4; no-spawn else passes.
+Do not preserve these vacuous assertions or claim equivalent proof again.
+
+Implement the complete finite acquisition plan for ONE fixed affordable target
+spec at a time: fruit deficits AND iron, including actual mined ore delivery;
+change targets only by explicit coherent invalidation. Avoid strongest-spec fruit
+funding paired with arbitrary cheapest-spec recruitment. Harvest toward remaining
+deficits (account cargo already in transit and seed withdrawals), not unbounded
+surplus of one kind. Two-site cap must not deadlock a missing third fruit kind;
+choose existing wild source/appropriate site/rotation or another concrete route.
+If a missing fruit has no bank seed, collecting its seed is a real plan step.
+Stop fruit protection/acquisition when no active funded target requires it, and
+do not spend the existing forester's full income on permanently infeasible plans.
+Allocate mining/harvesting by real capability and preserve joint legality AFTER
+overrides. Keep banked scoring/carry and finite turn opportunity costs explicit.
+
+BEFORE panel, add end-to-end controller+referee regression starting at a real
+post-opening state with TWO workers (actual1/1/1/1starter), ZERO banked/carried
+iron and at least TWO underfunded fruit kinds. Prefer an existing dev trajectory
+state rather than an invented rich board. For a legitimately feasible state the
+bot must actually acquire each missing kind, mine ore, bank it, then pay every
+resource at referee training_cost and spawn worker3 AFTER those deposits. The
+test must FAIL if MINE, missing-kind harvesting, banking, or recruitment is removed;
+no fallback success branch, pre-granted cargo/stock/stats, fake outputs, or altered
+rules. Record emitted commands and actual referee inventory/unit transitions.
+Include a paired parent result and net final banked score; hiring itself is not
+profit. Include no-iron-map rule, unreachable target abandonment and blocked-bank
+recovery. Inspect all actual command legality counts, not only critical errors.
+
+Freeze repaired source and decision before one192 dev comparison, same8knownseeds
+9947500..9947507, bothseats,12adaptive opponents. Rule unchanged: whole-panel
+W+0.5D>parent AND zero candidate issues before further evaluation. Failure/tie
+means park. Report allWDL/points/scores/margins/per-opponent/failures, real extra
+hire activation and funding-resource provenance; no post-treatment selection.
+Use baseline/control arrays run20260906T210944Z-3184968-1, verifyall192 again.
+Existing pool is development, not holdout. No additional variants or freshmaps.
+
+Exact export<=100000UTF16 and serial16readable/compact equal,max<50ms before panel;
+no simultaneous heavyjobs during timing. Use actual absolute Rust1.90 verified at
+/data/separate_troll_farm-working/toolchains/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustc;
+--crate-name for dotted sourcefiles, run-local Cargo targetdir and just-built
+binary after final source snapshots. Do not rerun full160 certification now.
+
+RESULT<=400words: repair, exacthashes, non-vacuous funding/profit fixture evidence,
+checks and paired activation/outcomes, limitations,nextaction. Collect all jobs;
+if the proper fixture cannot be made to pass, report the concrete unresolved
+controller defect and preserve work rather than weakening it or running a broad
+panel that cannot test the mechanism. Main agent will independently verify.

@@ -1,0 +1,43 @@
+# Exact-source certification for a bounded field diagnostic
+
+Budget30minutes, runartifacts ONLY. No source changes, panels, platform calls,
+commits or neighbor writes. Primary prepares a separate two-game unranked diagnostic
+on the known tonigineer map. This does NOT pass/replace the failed local strength
+gate, authorize publication, or claim independent validation.
+
+Freeze readableclaude_candidate_chopup_a.rs SHA256
+7a5722e48742d1e2712a5a37853f02e7edc860660a361bdaba9c34a219346a01;
+SHIPPED compactclaude_candidate_chopup_a.min.rs SHA256
+d40ed6449518d9eb00d60a95bd7c5d8c37eafa610c398e5a1d1a6a866eaef59d.
+Parentpolicyflat95ee691ee1b26e074ac90851575a6a56d5b0bec738ff3851cd141585d85c6d23.
+
+Use existing helpers/data to certify all160 archived streams: exact readable vs
+exact shipped compact command equality, timing<50ms, protocol/startup, no errors.
+The compact is PRUNED; do not substitute a generic minified arm or infer unpruned
+equivalence from testing only pruned-vs-minified. Snapshot/hash actualsources/binaries.
+Use absoluteRust1.90, >=full160unique game/seat inputs, no competing heavyjobs during
+timing. Exercise startup/fullprocess I/O (use existing320-start checker). Compile
+exact compact with0diagnostics, <=100000UTF16, compare serial compile time against
+V439compact; criterion<=1.10x V439, established earlier (diagnostic, not strength).
+
+Prior cert artifacts/scripts in claude-runs/20260906T173455Z-2544959-1 and nearby
+policyflat tasks; reuse selectively. 16-stream/12field equivalence already reported
+in20260907T012354Z and014717Z; full160/startup stillmissing. No newframework needed.
+If discrepancy, preserve exactreproducer and STOP; no repair under same frozenhash.
+Collect exactPIDs; PROGRESS actualUTC milestones. RESULT<=400words: verdict, frozen
+hashes, actualmetrics and exactcoverage, artifacts, limitations and nextaction.
+
+--- delegation envelope (added by run_claude_task.sh) ---
+Time budget: 30 minutes of wall clock; the process group is killed after that.
+Started UTC: 2026-09-07T02:11:24Z. Deadline UTC: 2026-09-07T02:41:24Z.
+Check date -u before claiming wall-clock exhaustion. A voluntary early return is not
+a timeout. Report unfinished work honestly. Use high reasoning effort for this task.
+Never measure latency while a local panel, compiler or other heavy job is running.
+Before ending, collect the bounded jobs you launched or report their exact live PIDs;
+do not call them finished from a log snapshot or leave unbounded detached work.
+When finished, write a report to the file: /data/separate_troll_farm-working/claude-runs/20260907T021124Z-4097278-1/RESULT.md
+RESULT.md must be at most 400 words and must contain, in this order:
+verdict; exact changed files with their source hashes; tests run and their results;
+paths to supporting evidence; limitations; one recommended next action.
+Do not commit, do not publish, do not submit anything to the platform, and do not
+write outside this repository, /data/separate_troll_farm-working, or the run directory above.

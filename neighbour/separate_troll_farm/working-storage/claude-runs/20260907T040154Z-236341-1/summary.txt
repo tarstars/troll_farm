@@ -1,0 +1,30 @@
+file /data/separate_troll_farm-working/claude-runs/20260907T040154Z-236341-1/panel.tsv
+games 192
+baseline  167/6/19 pts=170.0 own=231.35 opp=116.92 margin=114.43 issues=1 crit=0
+candidate 77/1/114 pts=77.5 own=111.66 opp=142.03 margin=-30.37 issues=26313 crit=0
+PAIRED POINT DELTA (cand - base) = -92.5
+own score delta -119.69  opp +25.11 margin -144.80
+own score @t100: base 79.99 cand 30.68 delta -49.31
+own score @t200: base 159.18 cand 76.39 delta -82.79
+
+per-opponent (W/D/L pts own opp margin):
+  boss_real              base 16/0/0 pts=16.0 own=244.38 opp=80.94 marg=163.44 | cand 7/0/9 pts=7.0 own=92.12 opp=99.12 marg=-7.00 | dpts=-9.0
+  compact_gold           base 5/0/11 pts=5.0 own=235.31 opp=271.62 marg=-36.31 | cand 1/0/15 pts=1.0 own=108.38 opp=324.56 marg=-216.19 | dpts=-4.0
+  gold_adaptive          base 14/0/2 pts=14.0 own=212.62 opp=99.25 marg=113.38 | cand 6/0/10 pts=6.0 own=106.50 opp=159.75 marg=-53.25 | dpts=-8.0
+  legend_balanced        base 14/0/2 pts=14.0 own=254.06 opp=142.19 marg=111.88 | cand 6/0/10 pts=6.0 own=136.88 opp=176.44 marg=-39.56 | dpts=-8.0
+  legend_v3_hp2_four     base 16/0/0 pts=16.0 own=263.00 opp=107.50 marg=155.50 | cand 7/0/9 pts=7.0 own=122.06 opp=133.00 marg=-10.94 | dpts=-9.0
+  legend_v7_hp2_four     base 16/0/0 pts=16.0 own=258.81 opp=87.81 marg=171.00 | cand 7/1/8 pts=7.5 own=112.38 opp=107.25 marg=5.12 | dpts=-8.5
+  legend_v8_hp2_four     base 16/0/0 pts=16.0 own=243.69 opp=69.56 marg=174.12 | cand 7/0/9 pts=7.0 own=137.69 opp=132.69 marg=5.00 | dpts=-9.0
+  mybot                  base 15/0/1 pts=15.0 own=225.75 opp=130.44 marg=95.31 | cand 8/0/8 pts=8.0 own=150.12 opp=144.81 marg=5.31 | dpts=-7.0
+  norx_native_three      base 16/0/0 pts=16.0 own=247.62 opp=93.12 marg=154.50 | cand 10/0/6 pts=10.0 own=112.38 opp=99.06 marg=13.31 | dpts=-6.0
+  resident               base 7/6/3 pts=10.0 own=172.25 opp=158.50 marg=13.75 | cand 0/0/16 pts=0.0 own=78.56 opp=141.00 marg=-62.44 | dpts=-10.0
+  script_boss            base 16/0/0 pts=16.0 own=226.81 opp=76.56 marg=150.25 | cand 7/0/9 pts=7.0 own=98.06 opp=104.06 marg=-6.00 | dpts=-9.0
+  silver_boss            base 16/0/0 pts=16.0 own=191.88 opp=85.50 marg=106.38 | cand 11/0/5 pts=11.0 own=84.81 opp=82.62 marg=2.19 | dpts=-5.0
+
+per-map paired point delta:
+  map 9947500 dpts=-4.5 down=-8.37
+  map 9947501 dpts=-17.0 down=-204.50
+  map 9947502 dpts=-7.5 down=-68.92
+  map 9947503 dpts=-8.0 down=-135.79
+  map 9947504 dpts=-13.5 down=-101.08
+  map 9947505 dpts=-16.0 down=-164.83

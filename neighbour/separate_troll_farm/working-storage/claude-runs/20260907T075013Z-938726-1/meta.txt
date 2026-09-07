@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/banked-seed-macro.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T075013Z-938726-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=60
+kill_grace_seconds=30
+start_utc=2026-09-07T07:50:13Z
+end_utc=2026-09-07T08:11:16Z
+duration_seconds=1263
+exit_status=0
+timed_out=no
+result_report=present

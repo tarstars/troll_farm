@@ -1,0 +1,6 @@
+pairs 192 ctrl 192 baseline command mismatches: 0 []
+wood/game base 42.45 cand 33.36; workers base 2.00 cand 2.28
+games with a hire: base 192 cand 192 of 192
+candidate first-TRAIN turn: n=192 median=14 min=2 max=28
+candidate TRAIN specs: [('TRAIN 2 2 0 2', 89), ('TRAIN 1 1 0 1', 82), ('TRAIN 2 2 0 3', 68), ('TRAIN 1 2 0 2', 6)]
+issues total cand 0 base 1

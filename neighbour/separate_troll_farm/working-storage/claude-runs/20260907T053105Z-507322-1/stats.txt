@@ -1,0 +1,12 @@
+pairs 192 ctrl 192 baseline command mismatches: 0 []
+wood/game base 42.45 cand 34.54; workers base 2.00 cand 2.31
+games with a hire: base 192 cand 192 of 192
+candidate first-TRAIN turn: n=192 median=14 min=3 max=28
+candidate TRAIN specs: [('TRAIN 2 2 0 2', 124), ('TRAIN 1 1 0 1', 71), ('TRAIN 2 2 0 3', 52), ('TRAIN 1 2 0 2', 2), ('TRAIN 1 2 1 1', 2)]
+issues total cand 0 base 1
+ring plants    baseline    1197 candidate     370
+ring picks     baseline    1065 candidate       0
+ring drops     baseline   17220 candidate   10583
+ring chops     baseline    9851 candidate    2028
+ring harvests  baseline   11239 candidate    3289
+seed cost (candidate PICKs of a fruit, 1 banked point each) <= ring_picks above

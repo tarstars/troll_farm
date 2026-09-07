@@ -1,0 +1,46 @@
+# Frozen chopup: field activation and broader map evidence
+
+Budget45minutes. Run artifacts ONLY; no candidate/parent/canonical/neighbor changes,
+no platform calls/commits/agents or parameter tuning. Read EVALUATION.md.
+This is a prospective broader diagnostic/development sample, NOT a claim that the
+old192-map-pair superiority gate passed. That sample had0activation on8maps.
+
+Freeze candidate readableclaude_candidate_chopup_a.rs SHA256
+7a5722e48742d1e2712a5a37853f02e7edc860660a361bdaba9c34a219346a01;
+compactclaude_candidate_chopup_a.min.rs SHA256
+d40ed6449518d9eb00d60a95bd7c5d8c37eafa610c398e5a1d1a6a866eaef59d.
+Parentpolicyflat95ee691ee1b26e074ac90851575a6a56d5b0bec738ff3851cd141585d85c6d23.
+Primary independently reran20passing tests/1ignored. Real fixture has1/1/1/1starter,
+extraore collection, changed+1chop, preservedmovement/carry and a banked gain.
+Do not call one-ore-per-trip inherently wrong for a cc1starter; don't 'repair'
+capacity assumptions by silently granting it cc4. No rule changes this batch.
+
+First use existing exact-standalone replay tooling on stored policy-flat-field/
+screen games under planning/2026-09-06 to check first-hire/early command activation
+vs parent. These are recorded field states, not adaptive counterfactual strength.
+Identify specific eligibility rejections on representative ineligible cases and
+any actual field divergence; don't infer unreachable on allmaps from8samples.
+Run-local instrumentation only if needed; prove it command-neutral. No newframework.
+
+Then ONE frozen24-map/576-pair broader comparison, same12adaptive opponents,both
+seats. Proposed unconsumed seeds426092000..426092023; verify history plan/manifest/
+panel records before writing PLAN. If spent, choose another contiguous unconsumed
+range prospectively, not by measured activation/outcomes. Do not curate maps based
+on favourable eligibility. Spent426091000..23,9963000..23,9947500..7 excluded as new.
+Use ALLOW_ANY_MAP_SEED=1, exactsource build snapshot/run-localtarget, Rust1.90,
+same initialstate eachpair. No policychanges, extra variants, or repeat/look-again
+samples. If runtimewon'tfit, preservework/report rather than short-timeout thepanel.
+576pairs recently835s; give measured headroom inside the absolute45min deadline.
+
+Prospective decision: whole-panel paired W+0.5D>0 AND zero candidate issues supports
+further evaluation; otherwise no promotion. Failure-free tie or noactivation is
+inconclusive, not success. Report allWDL/points,own/opponent score,margin,per-opponent,
+shared-map uncertainty and actualfirst-hire/spec-change counts. No false rank claim.
+Movement/carry/harvest changes must be0. Preserve failed outcomes in denominator.
+
+If positive and time remains, full160 exactexport/runtime/startup certification
+using the SHIPPED compact, not genericshort. Otherwise leave that for next batch.
+No simultaneous heavyjobs during timing. Preserve exacthashes/logs/terminaljobs;
+no unbounded detachedwaiters or automaticreruns. PROGRESS actualstages/PIDs.
+RESULT<=400words: fieldactivation, broadened pairedoutcome and activation, frozen
+hashes/checks/evidence, uncertainty/limitations, one nextaction.

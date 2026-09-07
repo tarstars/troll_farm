@@ -1,0 +1,66 @@
+# One substantive wood-efficiency update from actual field transactions
+
+Budget50 minutes. NEW claude_candidate_lumber* family/tests only; otherfamilies,
+parent/canonical/neighbor unchanged. Offline only; no platform/commits/agents.
+Follow CLAUDE.md/EVALUATION.md and prior verification discipline.
+
+Last timber run235854Z-3695865-1 is parked:170vs170points,1issue each. Parent
+already has a timber relay, but existence on one fixture does NOT establish equal
+timing or no early role gap. Final idle-only variant wasn't the originally requested
+active role switch. Primary rechecked saved officialgame901697520: ownfirst100 has
+1PLANT38CHOP135MOVE vs tonigineer14PLANT41CHOP83MOVE, both2workers. Opponent trained
+2/2/0/3 atturn18, ours2/2/0/2 at8. Primary extracted originalworker0 planting and
+chopping at bankadjacent(6,0), while trainedworker3 chopped(10,2)/(12,7).
+Prior CLAIM '0.28 vs0.58 wood/chop' needs exact per-worker transaction verification.
+
+Within~10min use existing replay diffdecoder on the stored field game (resolve
+gameId/seat from planning/2026-09-06/policy-flat-field/screen/manifest.json) to locate
+the dominant actual wood-efficiency loss: per-worker movement/training timing,
+real CHOP progress/growth, wood obtained vs capacity overflow, banking and initial
+timber relay timing. No new framework or replayed-opponent strength claim. Compare
+like quantities, not action counts alone. Relevant source helpers already exist.
+
+Then implement ONE substantial, falsifiable improvement that addresses that loss:
+e.g. map-aware chop investment, actual growth-aware wood-job completion and return
+cost, or earlier economically justified starter production. Choose from evidence;
+do not merely append another idle-only micro-rule because it preserves the parent.
+Do not infer a concept impossible from earlier partial/failedvariants. Check only
+directly relevant prior implementations to avoid duplication. Runnablecandidate
+with actual changed strategic behavior is the deliverable.
+
+Freeze one prospective PLAN using actualdate-u, parentpolicyflatSHA256
+95ee691ee1b26e074ac90851575a6a56d5b0bec738ff3851cd141585d85c6d23, concrete mechanism,
+realcontroller/referee fixtures, fixed192pairs9947500..9947507,12opponents,bothseats.
+Acceptance remains positive whole-panel W+0.5D AND zero ALLcandidate issues; include
+baseline failures, fullWDL/score/margin/per-opponent metrics. No post-treatment
+subgroup gate or freshholdout. Explain any deployment limitations.
+
+Use actual referee for growth/health, finite trees/seeds, harvestpower, cargo and
+training costs. Demonstrate the intended new behavior BEFORE broadpanel, with
+productive banking and jointmovement regression. Don't replace a missing requirement
+with an easier passing idle-only fixture. Avoid whole-history rereads.
+
+Exact deterministic export<=100000UTF16, guarded pruning ifneeded, built source/
+module/binary hashes. AbsoluteRust1.90; explicit run-local cargo target and actual
+artifactpath. Serial16stream<50ms AND exact/readable equality BEFORE192panel.
+Set ALLOW_ANY_MAP_SEED=1 before launch; the generic runner's legacy allowed window
+doesn't include our development seeds. Preserve failed launch logs. Match all192
+baseline command streams to gap210944Z-3184968-1. One heavyjob at a time, adequate
+timeouts, no detached/rerun loops; collect exactPIDs. PROGRESS actual milestones.
+RESULT<=400words: causalevidence, implementedchange/hashes, tests/timing/equality,
+adaptiveactivation/pairedresult, limitations, one nextaction.
+
+--- delegation envelope (added by run_claude_task.sh) ---
+Time budget: 50 minutes of wall clock; the process group is killed after that.
+Started UTC: 2026-09-07T00:34:56Z. Deadline UTC: 2026-09-07T01:24:56Z.
+Check date -u before claiming wall-clock exhaustion. A voluntary early return is not
+a timeout. Report unfinished work honestly. Use high reasoning effort for this task.
+Never measure latency while a local panel, compiler or other heavy job is running.
+Before ending, collect the bounded jobs you launched or report their exact live PIDs;
+do not call them finished from a log snapshot or leave unbounded detached work.
+When finished, write a report to the file: /data/separate_troll_farm-working/claude-runs/20260907T003456Z-3804114-1/RESULT.md
+RESULT.md must be at most 400 words and must contain, in this order:
+verdict; exact changed files with their source hashes; tests run and their results;
+paths to supporting evidence; limitations; one recommended next action.
+Do not commit, do not publish, do not submit anything to the platform, and do not
+write outside this repository, /data/separate_troll_farm-working, or the run directory above.

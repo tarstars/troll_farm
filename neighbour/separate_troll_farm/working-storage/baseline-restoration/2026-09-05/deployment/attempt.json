@@ -1,0 +1,55 @@
+{
+  "at": "2026-09-05T08:01:21.411077+00:00",
+  "source_sha256": "7f61a6cd510a70e9389e794571512e2c5d0afb33bab957c70791c2c16fbff0bc",
+  "source": "/home/tarstars/prj/separate_troll_farm/candidate-v439-early-exhausted-one-wood-swap.min.rs",
+  "replaced_agent_id": 6701731,
+  "replaced_submission_id": 41242929,
+  "preflight_room": {
+    "pseudo": "tass",
+    "rank": 155,
+    "localRank": 155,
+    "total": 177,
+    "score": 13.92,
+    "testSessionHandle": "77167730956ef53402472b3c52474908f5b73026",
+    "league": {
+      "divisionIndex": 5,
+      "divisionCount": 6,
+      "openingLeaguesCount": 0,
+      "divisionOffset": 0
+    },
+    "eligibleForPromotion": false,
+    "programmingLanguage": "Rust",
+    "updateTime": 1788540864872,
+    "creationTime": 1788537814889,
+    "percentage": 100,
+    "agentId": 6701731,
+    "inProgress": false,
+    "school": "MSU - Moscow",
+    "company": "Yandex",
+    "codingamer": {
+      "userId": 1302251,
+      "pseudo": "tass",
+      "countryId": "RU",
+      "publicHandle": "9f145f85b81a0a551a0f3ab40c6df6a51522031",
+      "schoolId": 845,
+      "companyId": 1581,
+      "avatar": 17938130361895,
+      "level": 22,
+      "category": "PROFESSIONAL"
+    },
+    "percentageNoCache": 100
+  },
+  "preflight_state": {
+    "listed_battles": 160,
+    "pending_battles": 0,
+    "stabilized": true,
+    "mature": true,
+    "rank_qualified": false
+  },
+  "evidence_sha256": {
+    "analysis": "598ad77414a60aece64fb3a7a8a941fad4b1f3bda280e4e83ac4b68befd6ab01",
+    "packaging": "ff2d2550306faca279212a8c8946a7350debaf5614aaac65d62d97672904cd1e",
+    "manifest": "f0a0d3648277a81a809d7984349ebaaab98b5cfb46a4e18fd89de277d54b5d65"
+  },
+  "status": "in_flight; an interrupted response is not permission to retry"
+}

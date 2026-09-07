@@ -1,0 +1,15 @@
+rows this run 192 gap 210944Z rows 192
+pairs absent from the gap control: 0
+baseline columns compared: 25 -> mismatching pairs: 80
+baseline COMMAND STREAM mismatches vs gap 210944Z: 0 / 192
+first-hire spec changes: 0  train-turn changes: 0  whole-stream changes: 0 / 192
+movement changes: 0  carry changes: 0  chop changes: 0
+parent first-hire specs actually bought:
+   baseline 'TRAIN 2 2 0 3' -> candidate 'TRAIN 2 2 0 3'  x48
+   baseline 'TRAIN 2 1 0 2' -> candidate 'TRAIN 2 1 0 2'  x24
+   baseline 'TRAIN 2 1 0 3' -> candidate 'TRAIN 2 1 0 3'  x24
+   baseline 'TRAIN 3 2 0 2' -> candidate 'TRAIN 3 2 0 2'  x24
+   baseline 'TRAIN 1 2 0 3' -> candidate 'TRAIN 1 2 0 3'  x24
+   baseline 'TRAIN 2 2 0 1' -> candidate 'TRAIN 2 2 0 1'  x24
+   baseline 'TRAIN 1 3 0 2' -> candidate 'TRAIN 1 3 0 2'  x23
+   baseline 'TRAIN 1 2 0 2' -> candidate 'TRAIN 1 2 0 2'  x1

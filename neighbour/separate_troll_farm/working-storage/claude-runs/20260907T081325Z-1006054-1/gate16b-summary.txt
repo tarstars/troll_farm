@@ -1,0 +1,33 @@
+file /data/separate_troll_farm-working/claude-runs/20260907T081325Z-1006054-1/gate16b.tsv
+games 16
+baseline  14/0/2 pts=14.0 own=212.62 opp=99.25 margin=113.38 issues=0 crit=0
+candidate 14/0/2 pts=14.0 own=211.56 opp=100.06 margin=111.50 issues=0 crit=0
+PAIRED POINT DELTA (cand - base) = +0.0
+own score delta -1.06  opp +0.81 margin -1.88
+own score @t100: base 80.25 cand 81.62 delta +1.38
+own score @t200: base 152.56 cand 153.50 delta +0.94
+
+per-opponent (W/D/L pts own opp margin):
+  gold_adaptive          base 14/0/2 pts=14.0 own=212.62 opp=99.25 marg=113.38 | cand 14/0/2 pts=14.0 own=211.56 opp=100.06 marg=111.50 | dpts=+0.0
+
+per-map paired point delta:
+  map 9947500 dpts=+0.0 down=+2.00
+  map 9947501 dpts=+0.0 down=+0.00
+  map 9947502 dpts=+0.0 down=-4.00
+  map 9947503 dpts=+0.0 down=-18.50
+  map 9947504 dpts=+0.0 down=+1.50
+  map 9947505 dpts=+0.0 down=+12.00
+  map 9947506 dpts=+0.0 down=+0.00
+  map 9947507 dpts=+0.0 down=-1.50
+
+score-changed pairs: 9
+  ('9947500', '1', 'gold_adaptive') base 116:33 -> cand 120:37 first_divergence_turn=55
+  ('9947502', '0', 'gold_adaptive') base 160:89 -> cand 156:76 first_divergence_turn=55
+  ('9947502', '1', 'gold_adaptive') base 160:82 -> cand 156:85 first_divergence_turn=62
+  ('9947503', '1', 'gold_adaptive') base 294:119 -> cand 257:128 first_divergence_turn=30
+  ('9947504', '0', 'gold_adaptive') base 205:25 -> cand 204:29 first_divergence_turn=55
+  ('9947504', '1', 'gold_adaptive') base 184:58 -> cand 188:62 first_divergence_turn=57
+  ('9947505', '0', 'gold_adaptive') base 160:72 -> cand 176:77 first_divergence_turn=55
+  ('9947505', '1', 'gold_adaptive') base 164:70 -> cand 172:75 first_divergence_turn=55
+  ('9947507', '1', 'gold_adaptive') base 252:87 -> cand 249:79 first_divergence_turn=30
+outcome-changed pairs: 0

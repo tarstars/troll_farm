@@ -1,0 +1,513 @@
+[
+ {
+  "index": 0,
+  "policy": "v439",
+  "seat": 0,
+  "opponent": "viewlagoon",
+  "game_id": 901697357,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 1,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "1"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 1,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "1"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 1,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "1"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [
+   236
+  ],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 1,
+  "policy": "policy-flat",
+  "seat": 0,
+  "opponent": "viewlagoon",
+  "game_id": 901697461,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 1,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "1"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 1,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "1"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 1,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "1"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 2,
+  "policy": "policy-flat",
+  "seat": 1,
+  "opponent": "tonigineer",
+  "game_id": 901697520,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 8,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "2"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 8,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "2"
+   ]
+  },
+  "candidate_first_train": null,
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [
+   8
+  ],
+  "first_divergence_turn": 8,
+  "first_divergence": {
+   "parent": [
+    "TRAIN 2 2 0 2",
+    "MOVE 1 9 6"
+   ],
+   "candidate": [
+    "MINE 1"
+   ]
+  }
+ },
+ {
+  "index": 3,
+  "policy": "v439",
+  "seat": 1,
+  "opponent": "tonigineer",
+  "game_id": 901697559,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 8,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "2"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 8,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "2"
+   ]
+  },
+  "candidate_first_train": null,
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [
+   8
+  ],
+  "first_divergence_turn": 8,
+  "first_divergence": {
+   "parent": [
+    "TRAIN 2 2 0 2",
+    "MOVE 1 9 6"
+   ],
+   "candidate": [
+    "MINE 1"
+   ]
+  }
+ },
+ {
+  "index": 4,
+  "policy": "v439",
+  "seat": 0,
+  "opponent": "DoubtinGiyov",
+  "game_id": 901697629,
+  "outcome": "L",
+  "turns": 166,
+  "recorded_first_train": [
+   {
+    "turn": 14,
+    "spec": [
+     "1",
+     "3",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 14,
+   "spec": [
+    "1",
+    "3",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 14,
+   "spec": [
+    "1",
+    "3",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 5,
+  "policy": "policy-flat",
+  "seat": 0,
+  "opponent": "DoubtinGiyov",
+  "game_id": 901697692,
+  "outcome": "L",
+  "turns": 166,
+  "recorded_first_train": [
+   {
+    "turn": 14,
+    "spec": [
+     "1",
+     "3",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 14,
+   "spec": [
+    "1",
+    "3",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 14,
+   "spec": [
+    "1",
+    "3",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 6,
+  "policy": "policy-flat",
+  "seat": 1,
+  "opponent": "_H3R0_",
+  "game_id": 901697714,
+  "outcome": "W",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 4,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 4,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 4,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 7,
+  "policy": "v439",
+  "seat": 1,
+  "opponent": "_H3R0_",
+  "game_id": 901697726,
+  "outcome": "W",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 4,
+    "spec": [
+     "2",
+     "2",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 4,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 4,
+   "spec": [
+    "2",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [
+   221,
+   227,
+   236,
+   239,
+   247,
+   281,
+   282
+  ],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 8,
+  "policy": "v439",
+  "seat": 0,
+  "opponent": "mehdi_ayari",
+  "game_id": 901697745,
+  "outcome": "W",
+  "turns": 245,
+  "recorded_first_train": [
+   {
+    "turn": 6,
+    "spec": [
+     "1",
+     "2",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 6,
+   "spec": [
+    "1",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 6,
+   "spec": [
+    "1",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 9,
+  "policy": "policy-flat",
+  "seat": 0,
+  "opponent": "mehdi_ayari",
+  "game_id": 901697772,
+  "outcome": "W",
+  "turns": 245,
+  "recorded_first_train": [
+   {
+    "turn": 6,
+    "spec": [
+     "1",
+     "2",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 6,
+   "spec": [
+    "1",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 6,
+   "spec": [
+    "1",
+    "2",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 10,
+  "policy": "policy-flat",
+  "seat": 1,
+  "opponent": "viewlagoon",
+  "game_id": 901697789,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 14,
+    "spec": [
+     "2",
+     "1",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 14,
+   "spec": [
+    "2",
+    "1",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 14,
+   "spec": [
+    "2",
+    "1",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ },
+ {
+  "index": 11,
+  "policy": "v439",
+  "seat": 1,
+  "opponent": "viewlagoon",
+  "game_id": 901697845,
+  "outcome": "L",
+  "turns": 300,
+  "recorded_first_train": [
+   {
+    "turn": 14,
+    "spec": [
+     "2",
+     "1",
+     "0",
+     "3"
+    ]
+   }
+  ],
+  "parent_first_train": {
+   "turn": 14,
+   "spec": [
+    "2",
+    "1",
+    "0",
+    "3"
+   ]
+  },
+  "candidate_first_train": {
+   "turn": 14,
+   "spec": [
+    "2",
+    "1",
+    "0",
+    "3"
+   ]
+  },
+  "parent_vs_recorded_mismatch_turns": [
+   230,
+   234
+  ],
+  "divergence_turns": [],
+  "first_divergence_turn": null
+ }
+]

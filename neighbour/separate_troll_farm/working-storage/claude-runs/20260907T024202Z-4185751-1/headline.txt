@@ -1,0 +1,17 @@
+pairs 192
+baseline: W167/D6/L19 pts=170.0 own=231.35 oppo=116.92 margin=114.43 issues=1
+candidate: W154/D2/L36 pts=155.0 own=210.88 oppo=132.00 margin=78.88 issues=1
+worker-count changed pairs: 0 cand>=3: 0 base>=3: 0
+cand wood avg 35.1875 base wood avg 42.447916666666664
+  script_boss: base 16 cand 13 delta -3
+  mybot: base 15 cand 13 delta -2
+  legend_v3_hp2_four: base 16 cand 14 delta -2
+  legend_v7_hp2_four: base 16 cand 14 delta -2
+  legend_v8_hp2_four: base 16 cand 14 delta -2
+  silver_boss: base 16 cand 14 delta -2
+  compact_gold: base 5 cand 4 delta -1
+  legend_balanced: base 14 cand 13 delta -1
+  resident: base 10.0 cand 10.0 delta +0.0
+  gold_adaptive: base 14 cand 14 delta +0
+  norx_native_three: base 16 cand 16 delta +0
+  boss_real: base 16 cand 16 delta +0

@@ -1,0 +1,102 @@
+file /data/separate_troll_farm-working/claude-runs/20260907T014717Z-4021423-1/panel.tsv
+games 576
+baseline  519/14/43 pts=526.0 own=218.36 opp=102.95 margin=115.41 issues=2 crit=0
+candidate 518/15/43 pts=525.5 own=219.83 opp=103.28 margin=116.55 issues=2 crit=0
+PAIRED POINT DELTA (cand - base) = -0.5
+own score delta +1.47  opp +0.34 margin +1.14
+own score @t100: base 82.11 cand 82.27 delta +0.15
+own score @t200: base 157.02 cand 157.65 delta +0.63
+
+per-opponent (W/D/L pts own opp margin):
+  boss_real              base 48/0/0 pts=48.0 own=231.31 opp=65.58 marg=165.73 | cand 48/0/0 pts=48.0 own=232.35 opp=65.19 marg=167.17 | dpts=+0.0
+  compact_gold           base 24/0/24 pts=24.0 own=224.67 opp=220.67 marg=4.00 | cand 24/0/24 pts=24.0 own=227.75 opp=223.23 marg=4.52 | dpts=+0.0
+  gold_adaptive          base 43/0/5 pts=43.0 own=206.62 opp=93.56 marg=113.06 | cand 43/0/5 pts=43.0 own=210.17 opp=93.27 marg=116.90 | dpts=+0.0
+  legend_balanced        base 42/1/5 pts=42.5 own=249.94 opp=127.21 marg=122.73 | cand 42/1/5 pts=42.5 own=251.21 opp=127.65 marg=123.56 | dpts=+0.0
+  legend_v3_hp2_four     base 48/0/0 pts=48.0 own=262.21 opp=90.12 marg=172.08 | cand 48/0/0 pts=48.0 own=263.10 opp=89.75 marg=173.35 | dpts=+0.0
+  legend_v7_hp2_four     base 48/0/0 pts=48.0 own=253.67 opp=73.29 marg=180.38 | cand 48/0/0 pts=48.0 own=254.31 opp=73.40 marg=180.92 | dpts=+0.0
+  legend_v8_hp2_four     base 48/0/0 pts=48.0 own=224.81 opp=60.42 marg=164.40 | cand 48/0/0 pts=48.0 own=226.04 opp=60.52 marg=165.52 | dpts=+0.0
+  mybot                  base 46/0/2 pts=46.0 own=220.42 opp=138.94 marg=81.48 | cand 46/0/2 pts=46.0 own=221.56 opp=139.08 marg=82.48 | dpts=+0.0
+  norx_native_three      base 48/0/0 pts=48.0 own=227.90 opp=75.90 marg=152.00 | cand 48/0/0 pts=48.0 own=227.88 opp=78.31 marg=149.56 | dpts=+0.0
+  resident               base 28/13/7 pts=34.5 own=149.96 opp=141.50 marg=8.46 | cand 27/14/7 pts=34.0 own=150.06 opp=141.75 marg=8.31 | dpts=-0.5
+  script_boss            base 48/0/0 pts=48.0 own=202.27 opp=60.71 marg=141.56 | cand 48/0/0 pts=48.0 own=202.58 opp=60.25 marg=142.33 | dpts=+0.0
+  silver_boss            base 48/0/0 pts=48.0 own=166.50 opp=87.46 marg=79.04 | cand 48/0/0 pts=48.0 own=170.94 opp=86.98 marg=83.96 | dpts=+0.0
+
+per-map paired point delta:
+  map 426092000 dpts=+0.0 down=+0.00
+  map 426092001 dpts=+0.0 down=+0.00
+  map 426092002 dpts=+0.0 down=+0.00
+  map 426092003 dpts=+0.0 down=+0.00
+  map 426092004 dpts=-1.0 down=+39.21
+  map 426092005 dpts=+0.0 down=+0.00
+  map 426092006 dpts=+0.0 down=+0.00
+  map 426092007 dpts=+0.0 down=+0.00
+  map 426092008 dpts=+0.0 down=+0.00
+  map 426092009 dpts=+0.0 down=+0.00
+  map 426092010 dpts=+0.5 down=-3.83
+  map 426092011 dpts=+0.0 down=+0.00
+  map 426092012 dpts=+0.0 down=+0.00
+  map 426092013 dpts=+0.0 down=+0.00
+  map 426092014 dpts=+0.0 down=+0.00
+  map 426092015 dpts=+0.0 down=+0.00
+  map 426092016 dpts=+0.0 down=+0.00
+  map 426092017 dpts=+0.0 down=+0.00
+  map 426092018 dpts=+0.0 down=+0.00
+  map 426092019 dpts=+0.0 down=+0.00
+  map 426092020 dpts=+0.0 down=+0.00
+  map 426092021 dpts=+0.0 down=+0.00
+  map 426092022 dpts=+0.0 down=+0.00
+  map 426092023 dpts=+0.0 down=+0.00
+
+score-changed pairs: 48
+  ('426092004', '0', 'resident') base 158:156 -> cand 196:204 first_divergence_turn=2
+  ('426092004', '0', 'gold_adaptive') base 316:62 -> cand 435:90 first_divergence_turn=2
+  ('426092004', '0', 'compact_gold') base 288:131 -> cand 382:177 first_divergence_turn=2
+  ('426092004', '0', 'norx_native_three') base 376:73 -> cand 420:75 first_divergence_turn=2
+  ('426092004', '0', 'legend_balanced') base 475:29 -> cand 576:20 first_divergence_turn=2
+  ('426092004', '0', 'mybot') base 341:113 -> cand 421:82 first_divergence_turn=2
+  ('426092004', '0', 'legend_v3_hp2_four') base 475:29 -> cand 576:20 first_divergence_turn=2
+  ('426092004', '0', 'legend_v7_hp2_four') base 475:29 -> cand 576:20 first_divergence_turn=2
+  ('426092004', '0', 'legend_v8_hp2_four') base 475:29 -> cand 576:20 first_divergence_turn=2
+  ('426092004', '0', 'boss_real') base 359:73 -> cand 372:66 first_divergence_turn=2
+  ('426092004', '0', 'script_boss') base 348:83 -> cand 399:86 first_divergence_turn=2
+  ('426092004', '0', 'silver_boss') base 249:172 -> cand 365:142 first_divergence_turn=2
+  ('426092004', '1', 'resident') base 312:304 -> cand 275:264 first_divergence_turn=1
+  ('426092004', '1', 'gold_adaptive') base 322:87 -> cand 413:38 first_divergence_turn=1
+  ('426092004', '1', 'compact_gold') base 351:230 -> cand 413:279 first_divergence_turn=1
+  ('426092004', '1', 'norx_native_three') base 375:77 -> cand 336:77 first_divergence_turn=1
+  ('426092004', '1', 'legend_balanced') base 442:37 -> cand 397:22 first_divergence_turn=1
+  ('426092004', '1', 'mybot') base 368:108 -> cand 335:137 first_divergence_turn=1
+  ('426092004', '1', 'legend_v3_hp2_four') base 442:37 -> cand 392:24 first_divergence_turn=1
+  ('426092004', '1', 'legend_v7_hp2_four') base 442:37 -> cand 392:24 first_divergence_turn=1
+  ('426092004', '1', 'legend_v8_hp2_four') base 442:37 -> cand 392:24 first_divergence_turn=1
+  ('426092004', '1', 'boss_real') base 340:70 -> cand 380:69 first_divergence_turn=1
+  ('426092004', '1', 'script_boss') base 281:125 -> cand 281:109 first_divergence_turn=1
+  ('426092004', '1', 'silver_boss') base 282:136 -> cand 375:148 first_divergence_turn=1
+  ('426092010', '0', 'resident') base 140:144 -> cand 144:140 first_divergence_turn=1
+  ('426092010', '0', 'gold_adaptive') base 204:77 -> cand 184:81 first_divergence_turn=1
+  ('426092010', '0', 'compact_gold') base 257:357 -> cand 245:369 first_divergence_turn=1
+  ('426092010', '0', 'norx_native_three') base 234:87 -> cand 234:105 first_divergence_turn=1
+  ('426092010', '0', 'legend_balanced') base 238:317 -> cand 245:286 first_divergence_turn=1
+  ('426092010', '0', 'mybot') base 228:217 -> cand 232:185 first_divergence_turn=1
+  ('426092010', '0', 'legend_v3_hp2_four') base 248:78 -> cand 250:88 first_divergence_turn=1
+  ('426092010', '0', 'legend_v7_hp2_four') base 260:73 -> cand 246:93 first_divergence_turn=1
+  ('426092010', '0', 'legend_v8_hp2_four') base 236:23 -> cand 238:31 first_divergence_turn=1
+  ('426092010', '0', 'boss_real') base 224:78 -> cand 221:75 first_divergence_turn=1
+  ('426092010', '0', 'script_boss') base 212:93 -> cand 184:90 first_divergence_turn=1
+  ('426092010', '0', 'silver_boss') base 164:115 -> cand 164:108 first_divergence_turn=1
+  ('426092010', '1', 'resident') base 144:136 -> cand 144:144 first_divergence_turn=1
+  ('426092010', '1', 'gold_adaptive') base 220:84 -> cand 200:87 first_divergence_turn=1
+  ('426092010', '1', 'compact_gold') base 224:317 -> cand 228:333 first_divergence_turn=1
+  ('426092010', '1', 'norx_native_three') base 211:47 -> cand 205:143 first_divergence_turn=1
+  ('426092010', '1', 'legend_balanced') base 239:284 -> cand 237:360 first_divergence_turn=1
+  ('426092010', '1', 'mybot') base 224:166 -> cand 228:207 first_divergence_turn=1
+  ('426092010', '1', 'legend_v3_hp2_four') base 251:131 -> cand 241:125 first_divergence_turn=1
+  ('426092010', '1', 'legend_v7_hp2_four') base 243:111 -> cand 237:118 first_divergence_turn=1
+  ('426092010', '1', 'legend_v8_hp2_four') base 216:24 -> cand 222:43 first_divergence_turn=1
+  ('426092010', '1', 'boss_real') base 216:83 -> cand 216:75 first_divergence_turn=1
+  ('426092010', '1', 'script_boss') base 224:97 -> cand 216:91 first_divergence_turn=1
+  ('426092010', '1', 'silver_boss') base 144:100 -> cand 148:102 first_divergence_turn=1
+outcome-changed pairs: 3
+  ('426092004', '0', 'resident') W -> L
+  ('426092010', '0', 'resident') L -> W
+  ('426092010', '1', 'resident') W -> D

@@ -1,0 +1,4 @@
+test candidate::chopup_tests::a_bare_stand_is_still_priced_on_the_orchard_that_remains ... stand 0: candidate (2, 2, 0, 2) vs baseline (2, 2, 0, 1)
+stand 1: candidate (2, 2, 0, 2) vs baseline (2, 2, 0, 1)
+test candidate::chopup_tests::a_late_deadline_opening_gives_the_chop_back_and_stays_legal ... deadline board: candidate [] baseline []
+test candidate::chopup_tests::the_upgraded_hire_banks_real_wood_against_a_measured_parent ... paired 150 turns: candidate 121 points / 28 wood / hire Some((2, 2, 0, 2)) at Some(27) vs baseline 105 points / 24 wood / hire Some((2, 2, 0, 1)) at Some(15)

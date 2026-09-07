@@ -1,0 +1,265 @@
+file /data/separate_troll_farm-working/claude-runs/20260907T045048Z-386364-1/panel.tsv
+games 192
+baseline  167/6/19 pts=170.0 own=231.35 opp=116.92 margin=114.43 issues=1 crit=0
+candidate 139/0/53 pts=139.0 own=149.87 opp=108.42 margin=41.45 issues=0 crit=0
+PAIRED POINT DELTA (cand - base) = -31.0
+own score delta -81.48  opp -8.49 margin -72.98
+own score @t100: base 79.99 cand 67.18 delta -12.82
+own score @t200: base 159.18 cand 114.49 delta -44.69
+
+per-opponent (W/D/L pts own opp margin):
+  boss_real              base 16/0/0 pts=16.0 own=244.38 opp=80.94 marg=163.44 | cand 16/0/0 pts=16.0 own=153.75 opp=76.69 marg=77.06 | dpts=+0.0
+  compact_gold           base 5/0/11 pts=5.0 own=235.31 opp=271.62 marg=-36.31 | cand 2/0/14 pts=2.0 own=139.50 opp=237.19 marg=-97.69 | dpts=-3.0
+  gold_adaptive          base 14/0/2 pts=14.0 own=212.62 opp=99.25 marg=113.38 | cand 11/0/5 pts=11.0 own=114.75 opp=80.38 marg=34.38 | dpts=-3.0
+  legend_balanced        base 14/0/2 pts=14.0 own=254.06 opp=142.19 marg=111.88 | cand 8/0/8 pts=8.0 own=185.94 opp=170.00 marg=15.94 | dpts=-6.0
+  legend_v3_hp2_four     base 16/0/0 pts=16.0 own=263.00 opp=107.50 marg=155.50 | cand 15/0/1 pts=15.0 own=195.12 opp=104.19 marg=90.94 | dpts=-1.0
+  legend_v7_hp2_four     base 16/0/0 pts=16.0 own=258.81 opp=87.81 marg=171.00 | cand 16/0/0 pts=16.0 own=184.31 opp=78.62 marg=105.69 | dpts=+0.0
+  legend_v8_hp2_four     base 16/0/0 pts=16.0 own=243.69 opp=69.56 marg=174.12 | cand 14/0/2 pts=14.0 own=178.44 opp=91.50 marg=86.94 | dpts=-2.0
+  mybot                  base 15/0/1 pts=15.0 own=225.75 opp=130.44 marg=95.31 | cand 13/0/3 pts=13.0 own=174.81 opp=126.44 marg=48.38 | dpts=-2.0
+  norx_native_three      base 16/0/0 pts=16.0 own=247.62 opp=93.12 marg=154.50 | cand 16/0/0 pts=16.0 own=172.75 opp=61.12 marg=111.62 | dpts=+0.0
+  resident               base 7/6/3 pts=10.0 own=172.25 opp=158.50 marg=13.75 | cand 0/0/16 pts=0.0 own=93.75 opp=132.50 marg=-38.75 | dpts=-10.0
+  script_boss            base 16/0/0 pts=16.0 own=226.81 opp=76.56 marg=150.25 | cand 14/0/2 pts=14.0 own=112.56 opp=72.56 marg=40.00 | dpts=-2.0
+  silver_boss            base 16/0/0 pts=16.0 own=191.88 opp=85.50 marg=106.38 | cand 14/0/2 pts=14.0 own=92.75 opp=69.88 marg=22.88 | dpts=-2.0
+
+per-map paired point delta:
+  map 9947500 dpts=-6.5 down=-31.17
+  map 9947501 dpts=-9.0 down=-162.46
+  map 9947502 dpts=-4.0 down=-59.62
+  map 9947503 dpts=-1.0 down=-90.04
+  map 9947504 dpts=-4.5 down=-41.54
+  map 9947505 dpts=-3.0 down=-88.88
+  map 9947506 dpts=+0.0 down=-60.29
+  map 9947507 dpts=-3.0 down=-117.83
+
+score-changed pairs: 192
+  ('9947500', '0', 'resident') base 88:88 -> cand 52:76 first_divergence_turn=1
+  ('9947500', '0', 'gold_adaptive') base 112:33 -> cand 66:56 first_divergence_turn=1
+  ('9947500', '0', 'compact_gold') base 100:63 -> cand 124:194 first_divergence_turn=1
+  ('9947500', '0', 'norx_native_three') base 160:60 -> cand 144:45 first_divergence_turn=1
+  ('9947500', '0', 'legend_balanced') base 137:64 -> cand 75:91 first_divergence_turn=1
+  ('9947500', '0', 'mybot') base 140:92 -> cand 124:133 first_divergence_turn=1
+  ('9947500', '0', 'legend_v3_hp2_four') base 124:14 -> cand 86:14 first_divergence_turn=1
+  ('9947500', '0', 'legend_v7_hp2_four') base 156:64 -> cand 102:39 first_divergence_turn=1
+  ('9947500', '0', 'legend_v8_hp2_four') base 124:13 -> cand 90:34 first_divergence_turn=1
+  ('9947500', '0', 'boss_real') base 160:52 -> cand 97:63 first_divergence_turn=1
+  ('9947500', '0', 'script_boss') base 116:31 -> cand 85:81 first_divergence_turn=1
+  ('9947500', '0', 'silver_boss') base 104:54 -> cand 63:50 first_divergence_turn=1
+  ('9947500', '1', 'resident') base 100:96 -> cand 56:84 first_divergence_turn=1
+  ('9947500', '1', 'gold_adaptive') base 116:33 -> cand 67:71 first_divergence_turn=1
+  ('9947500', '1', 'compact_gold') base 100:63 -> cand 108:142 first_divergence_turn=1
+  ('9947500', '1', 'norx_native_three') base 124:46 -> cand 90:30 first_divergence_turn=1
+  ('9947500', '1', 'legend_balanced') base 148:12 -> cand 120:13 first_divergence_turn=1
+  ('9947500', '1', 'mybot') base 140:94 -> cand 128:114 first_divergence_turn=1
+  ('9947500', '1', 'legend_v3_hp2_four') base 144:14 -> cand 128:14 first_divergence_turn=1
+  ('9947500', '1', 'legend_v7_hp2_four') base 158:31 -> cand 128:42 first_divergence_turn=1
+  ('9947500', '1', 'legend_v8_hp2_four') base 144:18 -> cand 133:27 first_divergence_turn=1
+  ('9947500', '1', 'boss_real') base 169:64 -> cand 100:71 first_divergence_turn=1
+  ('9947500', '1', 'script_boss') base 116:32 -> cand 92:34 first_divergence_turn=1
+  ('9947500', '1', 'silver_boss') base 96:44 -> cand 70:56 first_divergence_turn=1
+  ('9947501', '0', 'resident') base 251:208 -> cand 55:148 first_divergence_turn=1
+  ('9947501', '0', 'gold_adaptive') base 305:63 -> cand 101:76 first_divergence_turn=1
+  ('9947501', '0', 'compact_gold') base 310:342 -> cand 116:214 first_divergence_turn=1
+  ('9947501', '0', 'norx_native_three') base 313:169 -> cand 184:49 first_divergence_turn=1
+  ('9947501', '0', 'legend_balanced') base 289:141 -> cand 164:240 first_divergence_turn=1
+  ('9947501', '0', 'mybot') base 229:119 -> cand 180:98 first_divergence_turn=1
+  ('9947501', '0', 'legend_v3_hp2_four') base 313:149 -> cand 177:100 first_divergence_turn=1
+  ('9947501', '0', 'legend_v7_hp2_four') base 293:143 -> cand 153:141 first_divergence_turn=1
+  ('9947501', '0', 'legend_v8_hp2_four') base 299:27 -> cand 172:194 first_divergence_turn=1
+  ('9947501', '0', 'boss_real') base 305:101 -> cand 137:101 first_divergence_turn=1
+  ('9947501', '0', 'script_boss') base 308:99 -> cand 84:82 first_divergence_turn=1
+  ('9947501', '0', 'silver_boss') base 245:76 -> cand 60:64 first_divergence_turn=1
+  ('9947501', '1', 'resident') base 262:204 -> cand 69:136 first_divergence_turn=1
+  ('9947501', '1', 'gold_adaptive') base 305:20 -> cand 105:179 first_divergence_turn=1
+  ('9947501', '1', 'compact_gold') base 305:370 -> cand 137:394 first_divergence_turn=1
+  ('9947501', '1', 'norx_native_three') base 294:47 -> cand 148:69 first_divergence_turn=1
+  ('9947501', '1', 'legend_balanced') base 302:281 -> cand 125:128 first_divergence_turn=1
+  ('9947501', '1', 'mybot') base 223:120 -> cand 125:97 first_divergence_turn=1
+  ('9947501', '1', 'legend_v3_hp2_four') base 302:201 -> cand 189:133 first_divergence_turn=1
+  ('9947501', '1', 'legend_v7_hp2_four') base 297:126 -> cand 185:104 first_divergence_turn=1
+  ('9947501', '1', 'legend_v8_hp2_four') base 310:181 -> cand 149:201 first_divergence_turn=1
+  ('9947501', '1', 'boss_real') base 302:100 -> cand 132:92 first_divergence_turn=1
+  ('9947501', '1', 'script_boss') base 302:103 -> cand 72:119 first_divergence_turn=1
+  ('9947501', '1', 'silver_boss') base 306:52 -> cand 52:51 first_divergence_turn=1
+  ('9947502', '0', 'resident') base 124:124 -> cand 67:124 first_divergence_turn=1
+  ('9947502', '0', 'gold_adaptive') base 160:89 -> cand 99:100 first_divergence_turn=1
+  ('9947502', '0', 'compact_gold') base 189:230 -> cand 107:269 first_divergence_turn=1
+  ('9947502', '0', 'norx_native_three') base 192:58 -> cand 99:62 first_divergence_turn=1
+  ('9947502', '0', 'legend_balanced') base 187:69 -> cand 159:136 first_divergence_turn=1
+  ('9947502', '0', 'mybot') base 171:77 -> cand 103:77 first_divergence_turn=1
+  ('9947502', '0', 'legend_v3_hp2_four') base 200:58 -> cand 195:70 first_divergence_turn=1
+  ('9947502', '0', 'legend_v7_hp2_four') base 195:65 -> cand 171:42 first_divergence_turn=1
+  ('9947502', '0', 'legend_v8_hp2_four') base 162:19 -> cand 139:20 first_divergence_turn=1
+  ('9947502', '0', 'boss_real') base 155:49 -> cand 95:64 first_divergence_turn=1
+  ('9947502', '0', 'script_boss') base 160:34 -> cand 88:42 first_divergence_turn=1
+  ('9947502', '0', 'silver_boss') base 140:47 -> cand 87:68 first_divergence_turn=1
+  ('9947502', '1', 'resident') base 124:124 -> cand 62:132 first_divergence_turn=1
+  ('9947502', '1', 'gold_adaptive') base 160:82 -> cand 87:93 first_divergence_turn=1
+  ('9947502', '1', 'compact_gold') base 185:277 -> cand 103:289 first_divergence_turn=1
+  ('9947502', '1', 'norx_native_three') base 178:39 -> cand 95:45 first_divergence_turn=1
+  ('9947502', '1', 'legend_balanced') base 169:49 -> cand 104:73 first_divergence_turn=1
+  ('9947502', '1', 'mybot') base 170:68 -> cand 99:74 first_divergence_turn=1
+  ('9947502', '1', 'legend_v3_hp2_four') base 168:20 -> cand 112:84 first_divergence_turn=1
+  ('9947502', '1', 'legend_v7_hp2_four') base 168:28 -> cand 112:77 first_divergence_turn=1
+  ('9947502', '1', 'legend_v8_hp2_four') base 156:20 -> cand 104:68 first_divergence_turn=1
+  ('9947502', '1', 'boss_real') base 159:46 -> cand 92:57 first_divergence_turn=1
+  ('9947502', '1', 'script_boss') base 160:36 -> cand 83:93 first_divergence_turn=1
+  ('9947502', '1', 'silver_boss') base 140:48 -> cand 79:57 first_divergence_turn=1
+  ('9947503', '0', 'resident') base 172:180 -> cand 140:160 first_divergence_turn=1
+  ('9947503', '0', 'gold_adaptive') base 301:124 -> cand 150:42 first_divergence_turn=1
+  ('9947503', '0', 'compact_gold') base 204:114 -> cand 124:72 first_divergence_turn=1
+  ('9947503', '0', 'norx_native_three') base 320:120 -> cand 262:44 first_divergence_turn=1
+  ('9947503', '0', 'legend_balanced') base 296:66 -> cand 321:52 first_divergence_turn=1
+  ('9947503', '0', 'mybot') base 348:118 -> cand 296:136 first_divergence_turn=1
+  ('9947503', '0', 'legend_v3_hp2_four') base 360:56 -> cand 197:12 first_divergence_turn=1
+  ('9947503', '0', 'legend_v7_hp2_four') base 329:66 -> cand 253:29 first_divergence_turn=1
+  ('9947503', '0', 'legend_v8_hp2_four') base 288:22 -> cand 280:72 first_divergence_turn=1
+  ('9947503', '0', 'boss_real') base 284:82 -> cand 225:56 first_divergence_turn=1
+  ('9947503', '0', 'script_boss') base 186:85 -> cand 144:57 first_divergence_turn=1
+  ('9947503', '0', 'silver_boss') base 196:131 -> cand 116:81 first_divergence_turn=1
+  ('9947503', '1', 'resident') base 205:204 -> cand 144:152 first_divergence_turn=1
+  ('9947503', '1', 'gold_adaptive') base 294:119 -> cand 144:44 first_divergence_turn=1
+  ('9947503', '1', 'compact_gold') base 364:294 -> cand 148:105 first_divergence_turn=1
+  ('9947503', '1', 'norx_native_three') base 307:135 -> cand 269:85 first_divergence_turn=1
+  ('9947503', '1', 'legend_balanced') base 441:92 -> cand 290:109 first_divergence_turn=1
+  ('9947503', '1', 'mybot') base 327:134 -> cand 296:117 first_divergence_turn=1
+  ('9947503', '1', 'legend_v3_hp2_four') base 453:114 -> cand 344:63 first_divergence_turn=1
+  ('9947503', '1', 'legend_v7_hp2_four') base 421:57 -> cand 242:12 first_divergence_turn=1
+  ('9947503', '1', 'legend_v8_hp2_four') base 347:85 -> cand 236:20 first_divergence_turn=1
+  ('9947503', '1', 'boss_real') base 334:74 -> cand 216:65 first_divergence_turn=1
+  ('9947503', '1', 'script_boss') base 301:96 -> cand 136:58 first_divergence_turn=1
+  ('9947503', '1', 'silver_boss') base 188:127 -> cand 132:88 first_divergence_turn=1
+  ('9947504', '0', 'resident') base 144:140 -> cand 95:132 first_divergence_turn=1
+  ('9947504', '0', 'gold_adaptive') base 205:25 -> cand 127:48 first_divergence_turn=1
+  ('9947504', '0', 'compact_gold') base 213:322 -> cand 155:282 first_divergence_turn=1
+  ('9947504', '0', 'norx_native_three') base 235:135 -> cand 215:49 first_divergence_turn=1
+  ('9947504', '0', 'legend_balanced') base 246:162 -> cand 207:314 first_divergence_turn=1
+  ('9947504', '0', 'mybot') base 224:215 -> cand 115:146 first_divergence_turn=1
+  ('9947504', '0', 'legend_v3_hp2_four') base 232:143 -> cand 219:205 first_divergence_turn=1
+  ('9947504', '0', 'legend_v7_hp2_four') base 246:131 -> cand 199:115 first_divergence_turn=1
+  ('9947504', '0', 'legend_v8_hp2_four') base 184:22 -> cand 199:60 first_divergence_turn=1
+  ('9947504', '0', 'boss_real') base 203:84 -> cand 175:64 first_divergence_turn=1
+  ('9947504', '0', 'script_boss') base 204:62 -> cand 147:70 first_divergence_turn=1
+  ('9947504', '0', 'silver_boss') base 148:79 -> cand 119:89 first_divergence_turn=1
+  ('9947504', '1', 'resident') base 132:132 -> cand 91:132 first_divergence_turn=1
+  ('9947504', '1', 'gold_adaptive') base 184:58 -> cand 131:44 first_divergence_turn=1
+  ('9947504', '1', 'compact_gold') base 217:338 -> cand 139:222 first_divergence_turn=1
+  ('9947504', '1', 'norx_native_three') base 223:139 -> cand 199:36 first_divergence_turn=1
+  ('9947504', '1', 'legend_balanced') base 213:171 -> cand 188:301 first_divergence_turn=1
+  ('9947504', '1', 'mybot') base 204:224 -> cand 151:197 first_divergence_turn=1
+  ('9947504', '1', 'legend_v3_hp2_four') base 220:128 -> cand 207:128 first_divergence_turn=1
+  ('9947504', '1', 'legend_v7_hp2_four') base 221:116 -> cand 203:113 first_divergence_turn=1
+  ('9947504', '1', 'legend_v8_hp2_four') base 188:17 -> cand 187:46 first_divergence_turn=1
+  ('9947504', '1', 'boss_real') base 208:73 -> cand 175:65 first_divergence_turn=1
+  ('9947504', '1', 'script_boss') base 208:67 -> cand 139:62 first_divergence_turn=1
+  ('9947504', '1', 'silver_boss') base 172:112 -> cand 95:68 first_divergence_turn=1
+  ('9947505', '0', 'resident') base 148:148 -> cand 120:148 first_divergence_turn=1
+  ('9947505', '0', 'gold_adaptive') base 160:72 -> cand 123:46 first_divergence_turn=1
+  ('9947505', '0', 'compact_gold') base 340:235 -> cand 179:207 first_divergence_turn=1
+  ('9947505', '0', 'norx_native_three') base 335:63 -> cand 231:53 first_divergence_turn=1
+  ('9947505', '0', 'legend_balanced') base 355:70 -> cand 249:186 first_divergence_turn=1
+  ('9947505', '0', 'mybot') base 271:107 -> cand 236:174 first_divergence_turn=1
+  ('9947505', '0', 'legend_v3_hp2_four') base 339:14 -> cand 259:99 first_divergence_turn=1
+  ('9947505', '0', 'legend_v7_hp2_four') base 339:73 -> cand 232:34 first_divergence_turn=1
+  ('9947505', '0', 'legend_v8_hp2_four') base 347:69 -> cand 232:99 first_divergence_turn=1
+  ('9947505', '0', 'boss_real') base 317:93 -> cand 175:77 first_divergence_turn=1
+  ('9947505', '0', 'script_boss') base 294:87 -> cand 127:55 first_divergence_turn=1
+  ('9947505', '0', 'silver_boss') base 275:63 -> cand 118:56 first_divergence_turn=1
+  ('9947505', '1', 'resident') base 148:148 -> cand 119:144 first_divergence_turn=1
+  ('9947505', '1', 'gold_adaptive') base 164:70 -> cand 159:107 first_divergence_turn=1
+  ('9947505', '1', 'compact_gold') base 224:243 -> cand 171:219 first_divergence_turn=1
+  ('9947505', '1', 'norx_native_three') base 308:34 -> cand 211:43 first_divergence_turn=1
+  ('9947505', '1', 'legend_balanced') base 333:265 -> cand 236:254 first_divergence_turn=1
+  ('9947505', '1', 'mybot') base 260:192 -> cand 227:165 first_divergence_turn=1
+  ('9947505', '1', 'legend_v3_hp2_four') base 338:132 -> cand 255:131 first_divergence_turn=1
+  ('9947505', '1', 'legend_v7_hp2_four') base 303:21 -> cand 255:109 first_divergence_turn=1
+  ('9947505', '1', 'legend_v8_hp2_four') base 327:139 -> cand 195:28 first_divergence_turn=1
+  ('9947505', '1', 'boss_real') base 303:93 -> cand 191:76 first_divergence_turn=1
+  ('9947505', '1', 'script_boss') base 300:82 -> cand 123:65 first_divergence_turn=1
+  ('9947505', '1', 'silver_boss') base 144:65 -> cand 116:70 first_divergence_turn=1
+  ('9947506', '0', 'resident') base 164:220 -> cand 100:136 first_divergence_turn=1
+  ('9947506', '0', 'gold_adaptive') base 184:186 -> cand 108:90 first_divergence_turn=1
+  ('9947506', '0', 'compact_gold') base 249:354 -> cand 144:265 first_divergence_turn=1
+  ('9947506', '0', 'norx_native_three') base 230:81 -> cand 148:110 first_divergence_turn=1
+  ('9947506', '0', 'legend_balanced') base 177:212 -> cand 196:146 first_divergence_turn=1
+  ('9947506', '0', 'mybot') base 210:114 -> cand 168:117 first_divergence_turn=1
+  ('9947506', '0', 'legend_v3_hp2_four') base 228:205 -> cand 197:154 first_divergence_turn=1
+  ('9947506', '0', 'legend_v7_hp2_four') base 231:58 -> cand 168:76 first_divergence_turn=1
+  ('9947506', '0', 'legend_v8_hp2_four') base 243:202 -> cand 204:152 first_divergence_turn=1
+  ('9947506', '0', 'boss_real') base 248:96 -> cand 172:80 first_divergence_turn=1
+  ('9947506', '0', 'script_boss') base 237:108 -> cand 116:81 first_divergence_turn=1
+  ('9947506', '0', 'silver_boss') base 210:123 -> cand 104:108 first_divergence_turn=1
+  ('9947506', '1', 'resident') base 172:216 -> cand 152:184 first_divergence_turn=1
+  ('9947506', '1', 'gold_adaptive') base 247:424 -> cand 144:186 first_divergence_turn=1
+  ('9947506', '1', 'compact_gold') base 221:377 -> cand 176:341 first_divergence_turn=1
+  ('9947506', '1', 'norx_native_three') base 207:104 -> cand 128:96 first_divergence_turn=1
+  ('9947506', '1', 'legend_balanced') base 217:322 -> cand 184:289 first_divergence_turn=1
+  ('9947506', '1', 'mybot') base 203:135 -> cand 196:142 first_divergence_turn=1
+  ('9947506', '1', 'legend_v3_hp2_four') base 227:209 -> cand 197:217 first_divergence_turn=1
+  ('9947506', '1', 'legend_v7_hp2_four') base 227:206 -> cand 188:95 first_divergence_turn=1
+  ('9947506', '1', 'legend_v8_hp2_four') base 249:235 -> cand 197:151 first_divergence_turn=1
+  ('9947506', '1', 'boss_real') base 227:104 -> cand 172:85 first_divergence_turn=1
+  ('9947506', '1', 'script_boss') base 212:105 -> cand 108:83 first_divergence_turn=1
+  ('9947506', '1', 'silver_boss') base 190:153 -> cand 96:91 first_divergence_turn=1
+  ('9947507', '0', 'resident') base 257:148 -> cand 99:120 first_divergence_turn=1
+  ('9947507', '0', 'gold_adaptive') base 253:103 -> cand 113:40 first_divergence_turn=1
+  ('9947507', '0', 'compact_gold') base 271:336 -> cand 149:276 first_divergence_turn=1
+  ('9947507', '0', 'norx_native_three') base 271:125 -> cand 177:79 first_divergence_turn=1
+  ('9947507', '0', 'legend_balanced') base 282:165 -> cand 181:214 first_divergence_turn=1
+  ('9947507', '0', 'mybot') base 250:150 -> cand 180:118 first_divergence_turn=1
+  ('9947507', '0', 'legend_v3_hp2_four') base 287:143 -> cand 184:123 first_divergence_turn=1
+  ('9947507', '0', 'legend_v7_hp2_four') base 279:110 -> cand 186:98 first_divergence_turn=1
+  ('9947507', '0', 'legend_v8_hp2_four') base 266:22 -> cand 173:137 first_divergence_turn=1
+  ('9947507', '0', 'boss_real') base 263:90 -> cand 154:105 first_divergence_turn=1
+  ('9947507', '0', 'script_boss') base 263:95 -> cand 133:88 first_divergence_turn=1
+  ('9947507', '0', 'silver_boss') base 268:89 -> cand 93:54 first_divergence_turn=1
+  ('9947507', '1', 'resident') base 265:156 -> cand 79:112 first_divergence_turn=1
+  ('9947507', '1', 'gold_adaptive') base 252:87 -> cand 112:64 first_divergence_turn=1
+  ('9947507', '1', 'compact_gold') base 273:388 -> cand 152:304 first_divergence_turn=1
+  ('9947507', '1', 'norx_native_three') base 265:135 -> cand 164:83 first_divergence_turn=1
+  ('9947507', '1', 'legend_balanced') base 273:134 -> cand 176:174 first_divergence_turn=1
+  ('9947507', '1', 'mybot') base 242:128 -> cand 173:118 first_divergence_turn=1
+  ('9947507', '1', 'legend_v3_hp2_four') base 273:120 -> cand 176:120 first_divergence_turn=1
+  ('9947507', '1', 'legend_v7_hp2_four') base 278:110 -> cand 172:132 first_divergence_turn=1
+  ('9947507', '1', 'legend_v8_hp2_four') base 265:22 -> cand 165:155 first_divergence_turn=1
+  ('9947507', '1', 'boss_real') base 273:94 -> cand 152:106 first_divergence_turn=1
+  ('9947507', '1', 'script_boss') base 262:103 -> cand 124:91 first_divergence_turn=1
+  ('9947507', '1', 'silver_boss') base 248:105 -> cand 84:67 first_divergence_turn=1
+outcome-changed pairs: 38
+  ('9947500', '0', 'resident') D -> L
+  ('9947500', '0', 'compact_gold') W -> L
+  ('9947500', '0', 'legend_balanced') W -> L
+  ('9947500', '0', 'mybot') W -> L
+  ('9947500', '1', 'resident') W -> L
+  ('9947500', '1', 'gold_adaptive') W -> L
+  ('9947500', '1', 'compact_gold') W -> L
+  ('9947501', '0', 'resident') W -> L
+  ('9947501', '0', 'legend_balanced') W -> L
+  ('9947501', '0', 'legend_v8_hp2_four') W -> L
+  ('9947501', '0', 'silver_boss') W -> L
+  ('9947501', '1', 'resident') W -> L
+  ('9947501', '1', 'gold_adaptive') W -> L
+  ('9947501', '1', 'legend_balanced') W -> L
+  ('9947501', '1', 'legend_v8_hp2_four') W -> L
+  ('9947501', '1', 'script_boss') W -> L
+  ('9947502', '0', 'resident') D -> L
+  ('9947502', '0', 'gold_adaptive') W -> L
+  ('9947502', '1', 'resident') D -> L
+  ('9947502', '1', 'gold_adaptive') W -> L
+  ('9947502', '1', 'script_boss') W -> L
+  ('9947503', '1', 'resident') W -> L
+  ('9947504', '0', 'resident') W -> L
+  ('9947504', '0', 'legend_balanced') W -> L
+  ('9947504', '0', 'mybot') W -> L
+  ('9947504', '1', 'resident') D -> L
+  ('9947504', '1', 'legend_balanced') W -> L
+  ('9947505', '0', 'resident') D -> L
+  ('9947505', '0', 'compact_gold') W -> L
+  ('9947505', '1', 'resident') D -> L
+  ('9947505', '1', 'legend_balanced') W -> L
+  ('9947506', '0', 'gold_adaptive') L -> W
+  ('9947506', '0', 'legend_balanced') L -> W
+  ('9947506', '0', 'silver_boss') W -> L
+  ('9947506', '1', 'legend_v3_hp2_four') W -> L
+  ('9947507', '0', 'resident') W -> L
+  ('9947507', '0', 'legend_balanced') W -> L
+  ('9947507', '1', 'resident') W -> L

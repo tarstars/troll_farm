@@ -1,0 +1,13 @@
+Copy rule for this excerpt of the VM's /data/separate_troll_farm-working/ (taken 2026-09-07 08:3xZ):
+- included: files under the eight claude-runs/20260907T* run directories (top level only), planning/2026-09-06/policy-flat-field,
+  planning/2026-09-06/policy-flat-smoke, planning/2026-09-07, root-artifacts/platform-readings*.jsonl,
+  baseline-restoration/2026-09-05 (two levels), analysis/2026-09-04-v587-rank7-gap/*.json, monitor/ and platform/ (three levels);
+  extensions md, txt, json, jsonl, tsv, rs, log; files over 4 MB excluded at copy time.
+- pruned before commit, to keep the push small on a metered link: every panel*.tsv (per-game panel rows; the PRIMARY-REVIEW and
+  RESULT files summarise them), other .tsv over 300 KB, .log over 100 KB, every .rs that is not a *.min.rs compact artefact and any
+  .rs over 400 KB, any .jsonl over 1.5 MB. Binaries, archives and build directories were never copied.
+- Anything pruned is still on the VM at the same relative path; ask the coordinator to fetch a specific file.
+- second prune (08:4xZ): every .log and .tsv removed; .txt over 50 KB removed; the three 828 KB leaderboard freezes
+  (planning/2026-09-07/chopup-known-map-diagnostic/freeze/leaderboard.json, planning/2026-09-06/policy-flat-field/plans/leaderboard.json,
+  baseline-restoration/2026-09-05/pre-confirmation-board.json) replaced by *.top80.json copies holding their first 80 rows —
+  the top-ten boundary on 09-05, 09-06 and 09-07 is in them. Everything removed is still on the VM.

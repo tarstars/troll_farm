@@ -1,0 +1,93 @@
+{
+  "schema": "interactive-first-output-v2",
+  "starts": 40,
+  "commands_equal_reference": true,
+  "reference": {
+    "path": "/data/separate_troll_farm-working/tmp/tmp8xnixisa/fake-8040643670788649784.py",
+    "sha256": "e23fcaa311ba7f0d604463eeabed73381128e22c8ad4e4abe38fef0f8edd2b4b",
+    "is_v439_baseline": false
+  },
+  "mean_us": 20071.525875,
+  "max_us": 23517.242,
+  "over_50ms": 0,
+  "binaries": {
+    "readable": {
+      "path": "/data/separate_troll_farm-working/tmp/tmp8xnixisa/fake-8040643670788649784.py",
+      "sha256": "e23fcaa311ba7f0d604463eeabed73381128e22c8ad4e4abe38fef0f8edd2b4b"
+    },
+    "short": {
+      "path": "/data/separate_troll_farm-working/tmp/tmp8xnixisa/fake-4030508662319045778.py",
+      "sha256": "ddcb847b2dc28455e956e5f8153a979baefe797ef7decb10a1edecbdc5a16681"
+    }
+  },
+  "rows": [
+    {
+      "game_id": 901547815,
+      "seat": 0,
+      "arm": "readable",
+      "times_us": [
+        19327.596,
+        19950.854,
+        19478.602,
+        19512.252,
+        20182.686,
+        19918.333,
+        19512.794,
+        19780.039,
+        19173.042,
+        19973.83
+      ]
+    },
+    {
+      "game_id": 901547815,
+      "seat": 0,
+      "arm": "short",
+      "times_us": [
+        20844.571,
+        19342.772,
+        22599.228,
+        20885.764,
+        21902.206,
+        21020.756,
+        21396.789,
+        21182.094,
+        23517.242,
+        20204.112
+      ]
+    },
+    {
+      "game_id": 901547815,
+      "seat": 1,
+      "arm": "readable",
+      "times_us": [
+        19604.219,
+        19562.64,
+        19125.935,
+        19864.135,
+        19295.365,
+        19591.731,
+        19989.135,
+        19799.754,
+        20516.435,
+        19658.838
+      ]
+    },
+    {
+      "game_id": 901547815,
+      "seat": 1,
+      "arm": "short",
+      "times_us": [
+        19364.145,
+        19670.53,
+        19084.824,
+        19536.56,
+        19672.036,
+        20053.279,
+        20094.341,
+        19517.246,
+        19625.067,
+        19529.258
+      ]
+    }
+  ]
+}

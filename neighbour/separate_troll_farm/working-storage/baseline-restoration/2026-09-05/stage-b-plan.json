@@ -1,0 +1,21 @@
+{
+  "purpose": "Prospective V439 restoration confirmation under BASELINE-RESTORATION-PROTOCOL-2026-09-05.md. Six new blocks fixed before play; no tuning. Exact agents from pre-confirmation-board.json. V439 must gain >=1 point, regress on no target-rank outcome, and be worse on no majority of blocks; all audits clean.",
+  "sources": {
+    "v439": {"path": "/home/tarstars/prj/separate_troll_farm/candidate-v439-early-exhausted-one-wood-swap.min.rs", "sha256": "7f61a6cd510a70e9389e794571512e2c5d0afb33bab957c70791c2c16fbff0bc"},
+    "v543": {"path": "/home/tarstars/prj/separate_troll_farm/submission.rs", "sha256": "922a233526ed590dafcc6302461de2dafef720fb003bd2359f55dfd93ac1b4a7"}
+  },
+  "jobs": [
+    {"policy":"v439","opponent":"putibuzu","opponent_agent":6479779,"seed":2609055701,"seat":0},
+    {"policy":"v543","opponent":"putibuzu","opponent_agent":6479779,"seed":2609055701,"seat":0},
+    {"policy":"v543","opponent":"tonigineer","opponent_agent":6505289,"seed":2609055801,"seat":1},
+    {"policy":"v439","opponent":"tonigineer","opponent_agent":6505289,"seed":2609055801,"seat":1},
+    {"policy":"v439","opponent":"a76a44","opponent_agent":6604638,"seed":2609055201,"seat":0},
+    {"policy":"v543","opponent":"a76a44","opponent_agent":6604638,"seed":2609055201,"seat":0},
+    {"policy":"v543","opponent":"GoodDevel","opponent_agent":6541379,"seed":2609055401,"seat":1},
+    {"policy":"v439","opponent":"GoodDevel","opponent_agent":6541379,"seed":2609055401,"seat":1},
+    {"policy":"v439","opponent":"PonyPonyCodeCode","opponent_agent":6541377,"seed":2609055601,"seat":0},
+    {"policy":"v543","opponent":"PonyPonyCodeCode","opponent_agent":6541377,"seed":2609055601,"seat":0},
+    {"policy":"v543","opponent":"putibuzu","opponent_agent":6479779,"seed":2609055702,"seat":1},
+    {"policy":"v439","opponent":"putibuzu","opponent_agent":6479779,"seed":2609055702,"seat":1}
+  ]
+}

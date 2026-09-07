@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/repair-orchard-funding.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T030501Z-68349-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=40
+kill_grace_seconds=30
+start_utc=2026-09-07T03:05:01Z
+end_utc=2026-09-07T03:21:07Z
+duration_seconds=966
+exit_status=0
+timed_out=no
+result_report=present

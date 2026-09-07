@@ -1,0 +1,10 @@
+pairs 192
+first-hire spec changed: 168
+first-hire turn changed: 72
+  TRAIN 2 1 0 2 -> TRAIN 1 1 0 2   x24
+  TRAIN 2 2 0 3 -> TRAIN 1 2 0 2   x24
+  TRAIN 2 1 0 3 -> TRAIN 1 1 0 3   x24
+  TRAIN 2 2 0 3 -> TRAIN 1 2 0 3   x24
+  TRAIN 3 2 0 2 -> TRAIN 1 2 0 2   x24
+  TRAIN 1 2 0 3 -> TRAIN 1 2 0 2   x24
+  TRAIN 2 2 0 1 -> TRAIN 1 2 0 1   x24

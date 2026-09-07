@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/certify-frozen-chopup.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T021124Z-4097278-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=30
+kill_grace_seconds=30
+start_utc=2026-09-07T02:11:24Z
+end_utc=2026-09-07T02:19:35Z
+duration_seconds=491
+exit_status=0
+timed_out=no
+result_report=present

@@ -1,0 +1,105 @@
+# Build one integrated competitive controller, not another override layer
+
+Budget45minutes. Own NEW claude_candidate_dispatch* and focused tests ONLY, plus
+runartifacts. Parent, all previous candidates (especially orchard), canonical,
+neighbor and WORKSTATE remain unchanged. Offline/no platform/commit/extraagents.
+Use apply_patch. Follow CLAUDE.md/EVALUATION.md and project working storage.
+
+Deliver a materially different runnable policy with one authority over economic
+plans, worker assignments, shared inventory, movement and final emitted commands.
+The orchard branch is CLOSED: do not resume it or copy its layered runtime path.
+Previous work repeatedly modified a deep wrapper chain that later overwrote the
+new plan. A fresh authoritative controller is warranted, but architectural purity
+alone is NOT a strength claim. Competitive measurement is the goal of this batch.
+
+Implement DispatchBot (or your name) as the actual exported Bot from turn1 through
+endgame. Reuse existing protocol/types/rules/navigation/referee/serialization and
+isolated safe helpers where useful, but do NOT call parent's full commands() chain
+or merely choose/override its final strings. Own the decision path and state.
+No new framework/docs programme: choose a compact approach and make it run by the
+halfway point. You own strategy/algorithm decisions within this coherent design.
+
+Falsifiable mechanism: comparing complete finite jobs across workers with one
+shared budget avoids command conflicts and stranded investment, and permits
+productive expansion beyond the parent's two-worker cap. Include useful wood,
+fruit and bank jobs, plus full mining/fruit acquisition for a chosen recruitment
+bill. Seed planting is a priced finite growth/harvest/bank job when worthwhile,
+not a mandatory orchard on every map. Jobs should retain ownership while valid
+without locking a worker into an infeasible route. Price actual banked reward,
+time/travel/carry, capability, seed/recruitment cost and finite opportunity; do not
+credit whole-tree wood when the assigned worker can carry only one. Account other
+workers' cargo/claims and adaptive contest before multiple workers commit to the
+same resource. Choose useful worker stats/productivity, not just cheapest hires
+or an unvalidated stat-sum score. Prefer opportunity-aware plans over forced roles.
+
+Treat legal joint emission as part of the controller: one action per worker,
+at most one TRAIN, reservation of its full bill against same-turn PICK/PLANT,
+physical move destinations/collisions, and state committed for actual emitted
+commands only. Preserve productive wood income when investment isn't viable;
+bank pending value before endgame. Integrate recruitment/collect/delivery rather
+than delegating some legs back to an uncontrolled parent policy.
+
+Relevant facts (don't reread all failed sources): the original orchard variant
+lost155vs170points on192, with no third hire; missingore and surplusfruit loops.
+Repaired variants acquired a fullbill synthetically but stilllost24vs40 after
+paying a cheap1111 worker. Repeatedseed replacement on a contested dryplot funded
+nothing. The iron-free fixture was NOT a universal obligation to hire on any
+map; don't spend this batch tuning to that old synthetic map. Protect owned
+projects through one explicit ownership path, not broad bans on opponent crops.
+Stored field games show strongviewlagoon earlyPICK/PLANT/HARVEST + repeatedhires,
+and tonigineer uses a slowstarter timberrelay alongside a fastforester. These
+are evidence of possible policies, not proof a universal farmer assignment wins.
+
+Rules: actualstarter1/1/1/1; hp0 cannotHARVEST; capacitycaps yield; score4WOOD+sum4
+fruits,IRON0. training_cost n+stat² with iron charged only on maps containing it.
+PICK withdraws banked seed, and executes beforeTRAIN. Crops don't blockwalking,
+ownunitsdo; enemyunitsdon't. Planting atshack-adjacent or drygrass canbelegal.
+Use actualreferee seedhealth/growth/water/regrow; don't equate newlyplanted crops
+with fullygrownfruit income. Read only needed realrules or neighbor code.
+
+Before measurement write shortPLAN with one controller, frozen comparison and
+fixed192developmentpairs9947500..9947507,12adaptive opponents,bothseats. Baseline
+policyflat95ee691ee1b26e074ac90851575a6a56d5b0bec738ff3851cd141585d85c6d23.
+Decision: positive whole-panel W+0.5D AND zero candidateissues supports further
+evaluation; otherwise park or propose ONE concrete repair backed by a reproducer.
+No parameter sweep/favourable-mapselection/freshholdout or after-panel tuning.
+
+Focused executed controller/referee fixtures BEFORE panel: realistic opening,
+full acquisition of at least two missingfruit kinds plus zero-initialiron through
+mining+bank+paidspawn, no-iron-map affordability, sharedstock conflict, friendly
+blockedbank recovery, actual capacity/woodyield, and endgamebanking. Add a real
+regeneration/growth transaction if planting is implemented. No pregranted funding,
+inflatedworkers/cargo, no-spawn passingbranch for the fundingtest, or alteredrules.
+Include actual stats/state from a known development opening, not only synthetic
+two1111workers. Report recruitment and net bankedprofit separately. It is valid
+to abandon a genuinely infeasible contested investment rather than force ahire.
+
+Export exact readable/compact<=100000UTF16; serial16recordedstreams equality and
+maxdecision<50ms before192panel. No full160certification now. Absolute Rust1.90 is
+/data/separate_troll_farm-working/toolchains/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustc;
+explicit --crate-name for dottedfiles. Use runlocalCargo targetdir and actual
+just-built artifact AFTER source freeze. ALLOW_ANY_MAP_SEED=1 forknownpanel;
+all192 baseline commandarrays must match20260906T210944Z-3184968-1 authoritative
+controls. Timingmustnot overlapheavyjobs. Reuse existing runner/export/harness.
+
+RESULT<=400words: actual authoritative architecture/files/hashes, focusedmechanism
+and netreturn checks, runtime/export,192WDL/points/scores/margins/peropponent/all
+failures, actual investment/hires activation, limitations,nextaction. Details in
+runstorage. Collect jobs. Continue ordinary repairs within this timebudget; if
+deadline precludes comparison, hand off runnable testedartifact and exactcommand,
+not a speculative design or falseclaim of strategic superiority.
+
+--- delegation envelope (added by run_claude_task.sh) ---
+Time budget: 45 minutes of wall clock; the process group is killed after that.
+Started UTC: 2026-09-07T04:01:54Z. Deadline UTC: 2026-09-07T04:46:54Z.
+Check date -u before claiming wall-clock exhaustion. A voluntary early return is not
+a timeout. Report unfinished work honestly. Use high reasoning effort for this task.
+Never measure latency while a local panel, compiler or other heavy job is running.
+Before ending, collect the bounded jobs you launched or report their exact live PIDs;
+do not call them finished from a log snapshot or leave unbounded detached work.
+When finished, write a report to the file: /data/separate_troll_farm-working/claude-runs/20260907T040154Z-236341-1/RESULT.md
+RESULT.md must be at most 400 words and must contain, in this order:
+verdict; exact changed files with their source hashes; tests run and their results;
+paths to supporting evidence; limitations; one recommended next action.
+Do not commit, do not publish, do not submit anything to the platform, and do not
+write outside this repository, /data/separate_troll_farm-working, or the run directory above.

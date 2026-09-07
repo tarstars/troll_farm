@@ -1,0 +1,4 @@
+candidate issue reason tokens: [('move_blocked:1', 11), ('move_blocked:384', 6), ('move_blocked:314', 3), ('move_blocked:176', 3), ('move_blocked:58', 3), ('move_blocked:8', 3), ('move_blocked:321', 3), ('move_blocked:98', 2), ('move_blocked:42', 2), ('move_blocked:3', 2)]
+candidate hires: games with workers>2: 186 | mean workers 3.7135416666666665 | baseline mean 2.0
+candidate train_turn set: [('18', 48), ('2', 48), ('14', 48), ('74', 24), ('68', 8)]
+candidate wood mean 23.302083333333332 baseline 42.447916666666664

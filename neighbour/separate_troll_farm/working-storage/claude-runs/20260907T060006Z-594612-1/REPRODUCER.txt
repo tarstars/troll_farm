@@ -1,0 +1,147 @@
+no occurrence: map=9947500 seat=0 opponent=resident
+no occurrence: map=9947500 seat=0 opponent=gold_adaptive
+no occurrence: map=9947500 seat=0 opponent=compact_gold
+no occurrence: map=9947500 seat=0 opponent=norx_native_three
+no occurrence: map=9947500 seat=0 opponent=legend_balanced
+no occurrence: map=9947500 seat=0 opponent=mybot
+no occurrence: map=9947500 seat=0 opponent=legend_v3_hp2_four
+no occurrence: map=9947500 seat=0 opponent=legend_v7_hp2_four
+no occurrence: map=9947500 seat=0 opponent=legend_v8_hp2_four
+no occurrence: map=9947500 seat=0 opponent=boss_real
+no occurrence: map=9947500 seat=0 opponent=script_boss
+no occurrence: map=9947500 seat=0 opponent=silver_boss
+no occurrence: map=9947500 seat=1 opponent=resident
+no occurrence: map=9947500 seat=1 opponent=gold_adaptive
+no occurrence: map=9947500 seat=1 opponent=compact_gold
+no occurrence: map=9947500 seat=1 opponent=norx_native_three
+no occurrence: map=9947500 seat=1 opponent=legend_balanced
+no occurrence: map=9947500 seat=1 opponent=mybot
+no occurrence: map=9947500 seat=1 opponent=legend_v3_hp2_four
+no occurrence: map=9947500 seat=1 opponent=legend_v7_hp2_four
+no occurrence: map=9947500 seat=1 opponent=legend_v8_hp2_four
+no occurrence: map=9947500 seat=1 opponent=boss_real
+no occurrence: map=9947500 seat=1 opponent=script_boss
+no occurrence: map=9947500 seat=1 opponent=silver_boss
+no occurrence: map=9947501 seat=0 opponent=resident
+no occurrence: map=9947501 seat=0 opponent=gold_adaptive
+no occurrence: map=9947501 seat=0 opponent=compact_gold
+no occurrence: map=9947501 seat=0 opponent=norx_native_three
+no occurrence: map=9947501 seat=0 opponent=legend_balanced
+no occurrence: map=9947501 seat=0 opponent=mybot
+no occurrence: map=9947501 seat=0 opponent=legend_v3_hp2_four
+no occurrence: map=9947501 seat=0 opponent=legend_v7_hp2_four
+no occurrence: map=9947501 seat=0 opponent=legend_v8_hp2_four
+no occurrence: map=9947501 seat=0 opponent=boss_real
+no occurrence: map=9947501 seat=0 opponent=script_boss
+no occurrence: map=9947501 seat=0 opponent=silver_boss
+no occurrence: map=9947501 seat=1 opponent=resident
+no occurrence: map=9947501 seat=1 opponent=gold_adaptive
+no occurrence: map=9947501 seat=1 opponent=compact_gold
+no occurrence: map=9947501 seat=1 opponent=norx_native_three
+no occurrence: map=9947501 seat=1 opponent=legend_balanced
+no occurrence: map=9947501 seat=1 opponent=mybot
+no occurrence: map=9947501 seat=1 opponent=legend_v3_hp2_four
+no occurrence: map=9947501 seat=1 opponent=legend_v7_hp2_four
+no occurrence: map=9947501 seat=1 opponent=legend_v8_hp2_four
+no occurrence: map=9947501 seat=1 opponent=boss_real
+no occurrence: map=9947501 seat=1 opponent=script_boss
+no occurrence: map=9947501 seat=1 opponent=silver_boss
+no occurrence: map=9947502 seat=0 opponent=resident
+no occurrence: map=9947502 seat=0 opponent=gold_adaptive
+no occurrence: map=9947502 seat=0 opponent=compact_gold
+no occurrence: map=9947502 seat=0 opponent=norx_native_three
+no occurrence: map=9947502 seat=0 opponent=legend_balanced
+no occurrence: map=9947502 seat=0 opponent=mybot
+no occurrence: map=9947502 seat=0 opponent=legend_v3_hp2_four
+no occurrence: map=9947502 seat=0 opponent=legend_v7_hp2_four
+no occurrence: map=9947502 seat=0 opponent=legend_v8_hp2_four
+no occurrence: map=9947502 seat=0 opponent=boss_real
+no occurrence: map=9947502 seat=0 opponent=script_boss
+no occurrence: map=9947502 seat=0 opponent=silver_boss
+no occurrence: map=9947502 seat=1 opponent=resident
+no occurrence: map=9947502 seat=1 opponent=gold_adaptive
+no occurrence: map=9947502 seat=1 opponent=compact_gold
+no occurrence: map=9947502 seat=1 opponent=norx_native_three
+no occurrence: map=9947502 seat=1 opponent=legend_balanced
+no occurrence: map=9947502 seat=1 opponent=mybot
+no occurrence: map=9947502 seat=1 opponent=legend_v3_hp2_four
+no occurrence: map=9947502 seat=1 opponent=legend_v7_hp2_four
+no occurrence: map=9947502 seat=1 opponent=legend_v8_hp2_four
+no occurrence: map=9947502 seat=1 opponent=boss_real
+no occurrence: map=9947502 seat=1 opponent=script_boss
+no occurrence: map=9947502 seat=1 opponent=silver_boss
+no occurrence: map=9947503 seat=0 opponent=resident
+no occurrence: map=9947503 seat=0 opponent=gold_adaptive
+no occurrence: map=9947503 seat=0 opponent=compact_gold
+no occurrence: map=9947503 seat=0 opponent=norx_native_three
+no occurrence: map=9947503 seat=0 opponent=legend_balanced
+no occurrence: map=9947503 seat=0 opponent=mybot
+no occurrence: map=9947503 seat=0 opponent=legend_v3_hp2_four
+no occurrence: map=9947503 seat=0 opponent=legend_v7_hp2_four
+no occurrence: map=9947503 seat=0 opponent=legend_v8_hp2_four
+no occurrence: map=9947503 seat=0 opponent=boss_real
+no occurrence: map=9947503 seat=0 opponent=script_boss
+no occurrence: map=9947503 seat=0 opponent=silver_boss
+no occurrence: map=9947503 seat=1 opponent=resident
+no occurrence: map=9947503 seat=1 opponent=gold_adaptive
+no occurrence: map=9947503 seat=1 opponent=compact_gold
+no occurrence: map=9947503 seat=1 opponent=norx_native_three
+no occurrence: map=9947503 seat=1 opponent=legend_balanced
+FIRST OCCURRENCE map_seed=9947503 seat=1 opponent=5 (mybot) turn=250
+DEFECT bill_units-claims-a-full-first-load-before-fruit-exists
+  worker id=5 at (4, 3) stats ms1/cc2/hp1/chop1 carry[0, 0, 0, 0, 0, 0] free=2
+  plant Banana at (4, 3) size=4 fruits=1 cooldown=4 effective_cooldown=4 near_water=true
+  distances: unit->plant=0 (go=0 turns at ms1), plant->door=7 (return=7 turns)
+  fruit_service PROMISE: banked=6 busy=41 turns=41 first_bank_turn_offset=9
+  jobs_for bill_units[3] = 2   (min(banked, free, cc))
+  REFEREE TRUTH: first load can hold only 1 fruit; ripening during travel: []
+                 harvest window (2 turns at hp1): [+1=>s4f0c3 +0=>s4f0c2]
+                 to load the promised 2 the worker must stay 5 turns, so the first
+                 bank is turn offset 12 not 9
+  FEASIBLE ALTERNATIVES for this worker on this tree: HARVEST(service 6 pts over 41 busy)
+                 vs CHOP(Some(2) wood -> Some(8) pts)
+
+  FULL REFEREE STATE (unmodified map):
+    turn=250 scores=[111, 254] inventories=[[22, 1, 4, 8, 2, 19], [0, 0, 6, 4, 0, 61]]
+    shacks=[(6, 4), (9, 3)] size=16x8 walkable=74 cells
+    unit id=0 player=0 at (5,4) ms1/cc1/hp1/chop1 carry[0, 0, 0, 0, 0, 1]
+    unit id=1 player=1 at (7,5) ms1/cc1/hp1/chop1 carry[0, 0, 0, 0, 0, 0]
+    unit id=2 player=0 at (5,5) ms1/cc2/hp2/chop0 carry[2, 0, 0, 0, 0, 0]
+    unit id=3 player=0 at (5,1) ms1/cc1/hp1/chop0 carry[0, 0, 0, 1, 0, 0]
+    unit id=4 player=1 at (10,2) ms2/cc2/hp0/chop2 carry[0, 0, 0, 0, 0, 2]
+    unit id=5 player=1 at (4,3) ms1/cc2/hp1/chop1 carry[0, 0, 0, 0, 0, 0]
+    plant PLUM at (3,5) size=4 health=12 fruits=3 cooldown=0
+    plant PLUM at (12,2) size=4 health=12 fruits=3 cooldown=0
+    plant LEMON at (1,5) size=4 health=12 fruits=3 cooldown=0
+    plant APPLE at (11,5) size=4 health=20 fruits=3 cooldown=0
+    plant APPLE at (1,6) size=4 health=20 fruits=3 cooldown=0
+    plant APPLE at (14,1) size=4 health=20 fruits=3 cooldown=0
+    plant BANANA at (0,1) size=4 health=6 fruits=3 cooldown=0
+    plant BANANA at (15,6) size=4 health=6 fruits=3 cooldown=0
+    plant BANANA at (4,3) size=4 health=2 fruits=1 cooldown=4
+    plant PLUM at (4,5) size=4 health=12 fruits=0 cooldown=3
+    iron=[(0, 3), (15, 4)]
+    water=[(0, 4), (1, 2), (1, 3), (1, 4), (2, 2), (2, 3), (2, 4), (2, 6), (2, 7), (3, 3), (3, 4), (3, 7), (4, 6), (4, 7), (5, 6), (5, 7), (6, 6), (6, 7), (9, 0), (9, 1), (10, 0), (10, 1), (11, 0), (11, 1), (12, 0), (12, 3), (12, 4), (13, 0), (13, 1), (13, 3), (13, 4), (13, 5), (14, 3), (14, 4), (14, 5), (15, 3)]
+
+  WHAT ACTUALLY HAPPENED (next 20 referee turns, real transitions):
+  t250 score=254 inv=[0, 0, 6, 4, 0, 61] own=[1@(7,5)[0, 0, 0, 0, 0, 0] 4@(10,2)[0, 0, 0, 0, 0, 2] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 6 5", "MOVE 4 9 2", "CHOP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 BA(4,3)s4f1c4 PL(4,5)s4f0c3]
+  t251 score=254 inv=[0, 0, 6, 4, 0, 61] own=[1@(6,5)[0, 0, 0, 0, 0, 0] 4@(9,2)[0, 0, 0, 0, 0, 2] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 5 5", "DROP 4", "CHOP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 BA(4,3)s4f1c3 PL(4,5)s4f0c2 PL(5,5)s1f0c3]
+  t252 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(9,2)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 2]] cmd=["CHOP 1", "MOVE 4 8 3", "MOVE 5 4 2"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f0c1 PL(5,5)s1f0c2]
+  t253 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(8,3)[0, 0, 0, 0, 0, 0] 5@(4,2)[0, 0, 0, 0, 0, 2]] cmd=["CHOP 1", "MOVE 4 7 4", "MOVE 5 5 2"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f1c3 PL(5,5)s1f0c1]
+  t254 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(7,4)[0, 0, 0, 0, 0, 0] 5@(5,2)[0, 0, 0, 0, 0, 2]] cmd=["CHOP 1", "MOVE 4 6 5", "MOVE 5 6 2"] trees=[PL(3,5)s4f3c3 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f1c2 PL(5,5)s2f0c3]
+  t255 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(6,5)[0, 0, 0, 0, 0, 0] 5@(6,2)[0, 0, 0, 0, 0, 2]] cmd=["CHOP 1", "MOVE 4 4 5", "MOVE 5 6 3"] trees=[PL(3,5)s4f3c2 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f1c1 PL(5,5)s2f0c2]
+  t256 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(5,5)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(6,3)[0, 0, 0, 0, 0, 2]] cmd=["MOVE 1 6 5", "CHOP 4", "MOVE 5 7 3"] trees=[PL(3,5)s4f3c1 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f2c3 BA(4,3)s1f0c4]
+  t257 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(6,5)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(7,3)[0, 0, 0, 0, 0, 2]] cmd=["MOVE 1 7 5", "CHOP 4", "MOVE 5 8 3"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f2c2 BA(4,3)s1f0c3]
+  t258 score=262 inv=[0, 0, 6, 4, 0, 63] own=[1@(7,5)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(8,3)[0, 0, 0, 0, 0, 2]] cmd=["MOVE 1 7 4", "CHOP 4", "DROP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f2c1 BA(4,3)s1f0c2 PL(5,5)s1f0c3]
+  t259 score=270 inv=[0, 0, 6, 4, 0, 65] own=[1@(7,4)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(8,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 7 3", "CHOP 4", "WAIT"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f3c3 BA(4,3)s1f0c1 PL(5,5)s1f0c2]
+  t260 score=270 inv=[0, 0, 6, 4, 0, 65] own=[1@(7,3)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(8,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 8 3", "CHOP 4", "MOVE 5 7 3"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f2c2 BA(4,3)s2f0c4 PL(5,5)s1f0c1]
+  t261 score=270 inv=[0, 0, 6, 4, 0, 65] own=[1@(8,3)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(7,3)[0, 0, 0, 0, 0, 0]] cmd=["DROP 1", "CHOP 4", "MOVE 5 6 3"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 PL(4,5)s4f2c1 BA(4,3)s2f0c3 PL(5,5)s2f0c3]
+  t262 score=274 inv=[0, 0, 6, 4, 0, 66] own=[1@(8,3)[0, 0, 0, 0, 0, 0] 4@(4,5)[0, 0, 0, 0, 0, 2] 5@(6,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 7 3", "MOVE 4 6 5", "MOVE 5 6 2"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 BA(4,3)s2f0c2 PL(5,5)s2f0c2]
+  t263 score=274 inv=[0, 0, 6, 4, 0, 66] own=[1@(7,3)[0, 0, 0, 0, 0, 0] 4@(6,5)[0, 0, 0, 0, 0, 2] 5@(6,2)[0, 0, 0, 0, 0, 0]] cmd=["WAIT", "MOVE 4 7 4", "MOVE 5 5 2"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 BA(4,3)s2f0c1 PL(5,5)s2f0c1 PL(4,5)s1f0c3]
+  t264 score=274 inv=[0, 0, 6, 4, 0, 66] own=[1@(7,3)[0, 0, 0, 0, 0, 0] 4@(7,4)[0, 0, 0, 0, 0, 2] 5@(5,2)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 7 4", "MOVE 4 8 3", "MOVE 5 4 2"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c0 BA(15,6)s4f3c0 BA(4,3)s3f0c4 PL(5,5)s3f0c3 PL(4,5)s1f0c2]
+  t265 score=274 inv=[0, 0, 6, 4, 0, 66] own=[1@(7,4)[0, 0, 0, 0, 0, 0] 4@(8,3)[0, 0, 0, 0, 0, 2] 5@(4,2)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 7 5", "DROP 4", "MOVE 5 4 3"] trees=[PL(3,5)s4f3c3 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c6 BA(15,6)s4f3c0 BA(4,3)s3f0c3 PL(5,5)s3f0c2 PL(4,5)s1f0c1]
+  t266 score=282 inv=[0, 0, 6, 4, 0, 68] own=[1@(7,5)[0, 0, 0, 0, 0, 0] 4@(8,3)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 6 5", "MOVE 4 7 4", "CHOP 5"] trees=[PL(3,5)s4f3c2 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c5 BA(15,6)s4f3c0 BA(4,3)s3f0c2 PL(5,5)s3f0c1 PL(4,5)s2f0c3]
+  t267 score=282 inv=[0, 0, 6, 4, 0, 68] own=[1@(6,5)[0, 0, 0, 0, 0, 0] 4@(7,4)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 5 5", "MOVE 4 6 5", "CHOP 5"] trees=[PL(3,5)s4f3c1 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c4 BA(15,6)s4f3c0 BA(4,3)s3f0c1 PL(5,5)s4f0c3 PL(4,5)s2f0c2]
+  t268 score=282 inv=[0, 0, 6, 4, 0, 68] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(6,5)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["CHOP 1", "MOVE 4 4 5", "CHOP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c3 BA(15,6)s4f3c0 BA(4,3)s4f0c4 PL(5,5)s4f0c2 PL(4,5)s2f0c1]
+  t269 score=282 inv=[0, 0, 6, 4, 0, 68] own=[1@(5,5)[0, 0, 0, 0, 0, 0] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["CHOP 1", "CHOP 4", "CHOP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c2 BA(15,6)s4f3c0 BA(4,3)s4f0c3 PL(5,5)s4f0c1 PL(4,5)s3f0c3]
+  t270 score=282 inv=[0, 0, 6, 4, 0, 68] own=[1@(5,5)[0, 0, 0, 0, 0, 1] 4@(4,5)[0, 0, 0, 0, 0, 0] 5@(4,3)[0, 0, 0, 0, 0, 0]] cmd=["MOVE 1 6 5", "CHOP 4", "CHOP 5"] trees=[PL(3,5)s4f3c0 PL(12,2)s4f3c0 LE(1,5)s4f3c0 AP(11,5)s4f3c0 AP(1,6)s4f3c0 AP(14,1)s4f3c0 BA(0,1)s4f3c1 BA(15,6)s4f3c0 BA(4,3)s4f0c2 PL(4,5)s3f0c2]

@@ -1,0 +1,17 @@
+{
+ "accepted": true,
+ "ambiguous": false,
+ "phase": "submit",
+ "http_status": 200,
+ "response": "41245746",
+ "submission_id": 41245746,
+ "source": "/home/tarstars/prj/separate_troll_farm/candidate-v439-early-exhausted-one-wood-swap.min.rs",
+ "source_sha256": "7f61a6cd510a70e9389e794571512e2c5d0afb33bab957c70791c2c16fbff0bc",
+ "source_bytes": 96985,
+ "mutation_calls": 1,
+ "endpoint": "TestSession/submit",
+ "submitted_at": "2026-09-05T08:01:23.406808+00:00",
+ "reason": "fresh paired real-agent restoration: V439 4/6 vs V543 2/6",
+ "replaced_agent_id": 6701731,
+ "replaced_submission_id": 41242929
+}

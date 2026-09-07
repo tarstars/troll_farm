@@ -1,0 +1,23 @@
+pairs 576  maps 24
+command-divergent pairs: 48/576
+first-hire spec-changed pairs: 48
+first-hire train-turn-changed pairs: 48
+spec field changes: movement=0, carry=0, harvest=0, chop=48
+  example 426092004 seat0 resident: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 gold_adaptive: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 compact_gold: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 norx_native_three: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 legend_balanced: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 mybot: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 legend_v3_hp2_four: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 legend_v7_hp2_four: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 legend_v8_hp2_four: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 boss_real: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 script_boss: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+  example 426092004 seat0 silver_boss: ('2', '3', '0', '2') -> ('2', '3', '0', '3')
+
+total paired point delta -0.5 over 24 maps
+per-map delta mean -0.021 sd 0.227
+map-cluster bootstrap 95% interval on the total delta: [-3.0, +1.5]
+maps with positive delta 1, zero 22, negative 1
+This resamples maps only; it cannot quantify uncertainty over unseen opponent strategies, and the 12 opponents are fixed, not sampled.

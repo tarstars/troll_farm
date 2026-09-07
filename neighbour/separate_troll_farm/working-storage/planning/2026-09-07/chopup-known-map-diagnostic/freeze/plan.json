@@ -1,0 +1,42 @@
+{
+ "schema": "chopup-known-map-diagnostic-v1",
+ "frozen_at": "2026-09-07T02:12:56.943411+00:00",
+ "purpose": "Two unranked games on previously used map; diagnosis, not fresh validation or publication.",
+ "authority": "Active GOAL.md permits bounded unranked evaluation; primary explicitly chose this diagnostic despite inconclusive local outcomes.",
+ "historical_control_game": 901697520,
+ "request_budget": 2,
+ "decision": "After exact-source certification: run each job once. Verify initial-state, seat and fixed opponent identity; compare official ranks with failures retained. Only a clean strictly better paired outcome supports proposing a fresh field test. Otherwise park. No repeat, publication, or rank claim.",
+ "limitations": "Map previously inspected; one adaptive pair; local broader sample -0.5 points with bootstrap [-3,+1.5], not superiority.",
+ "sources": {
+  "policy-flat": {
+   "path": "/home/tarstars/prj/separate_troll_farm/claude_candidate_policy_flat.min.rs",
+   "sha256": "80eafde93140749d7c5de8da9899bfd269290341a591ca0e58b014cf2de13adb"
+  },
+  "chopup": {
+   "path": "/home/tarstars/prj/separate_troll_farm/claude_candidate_chopup_a.min.rs",
+   "sha256": "d40ed6449518d9eb00d60a95bd7c5d8c37eafa610c398e5a1d1a6a866eaef59d"
+  }
+ },
+ "jobs": [
+  {
+   "block": 0,
+   "seed": 260906110801,
+   "seat": 1,
+   "opponent": "tonigineer",
+   "opponent_agent": 6505289,
+   "frozen_rank": 8,
+   "frozen_score": 26.94,
+   "policy": "policy-flat"
+  },
+  {
+   "block": 0,
+   "seed": 260906110801,
+   "seat": 1,
+   "opponent": "tonigineer",
+   "opponent_agent": 6505289,
+   "frozen_rank": 8,
+   "frozen_score": 26.94,
+   "policy": "chopup"
+  }
+ ]
+}

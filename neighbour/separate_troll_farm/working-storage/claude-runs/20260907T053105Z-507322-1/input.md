@@ -1,0 +1,62 @@
+# Close dispatch's fruit-production gap with recurring asset service
+
+Budget45minutes. Own dispatch family/tests and run artifacts only. Archive current
+sources. No parent/orchard/canonical/neighbor/sharedmodel/WORKSTATE writes, platform,
+commits, agents or new holdouts. Use apply_patch; preserve movement, ledger and timber.
+Read20260907T050904Z-441221-1/PRIMARY-REVIEW.md. One coherent candidate, no tuning scan.
+
+Primary verified34tests,192controlstreams,146.5vs170points,0candidateissues and81598
+UTF16. Mean score deficit70.46875 splits into23.75 woodpoints and46.71875 fruitpoints.
+Ring harvest counts are NOT total harvests. Timber is useful but is not enough.
+
+Working hypothesis: immediate-fruit-only jobs and gross-wood CHOP destroy/ignore
+valuable recurring fruit service; hire_plan cannot price a productive fruit role
+with current hp<=1 specs. Spend <=first8minutes reproducing the actual cause on
+one UNMODIFIED known development map9947500..07 against its adaptive opponent.
+Track reachable ripe assets, actual HARVEST/DROP/CHOP decisions and priced alternatives
+for the starter. If this hypothesis is contradicted, implement the concrete fruit
+decision defect the trace actually demonstrates within this same bounded ticket;
+document the falsification before editing. No analysis-only return if a safe fix exists.
+
+Implement one integrated recurring-fruit service model: arrival-time ripening, finite
+horizon, actual capacity/harvest power and growth schedule, repeated harvest-bank
+trips, productive work between visits, and opportunity cost when felling a serviced
+tree. Reserve only worthwhile assets the actual roster can service; don't forbid
+all CHOP, invent free future fruit or double-credit a tree to several workers. Tree
+retention must expire when contest, capability, travel or endgame makes felling better.
+Allow growing a fruit asset when lifetime returns repay the seed, including cc1
+repeated visits (not the prior single-load want-1=0 valuation). Distinguish growth
+elapsed time from labor; keep complete seed and ownership transaction paths.
+Recruitment compares marginal realizable fruit throughput with timber alternatives
+on actual reachable supply, using a small predeclared capability-aware spec set
+that can express useful harvesters (hp2+ when costs pay). Not mandatory high-hp hires,
+blanket tree preservation or an arbitrary HARVEST bonus. Shared bill/seed promises
+remain quantity-capped; don't tie up all seeds forever for an infeasible expansion.
+
+Freeze PLAN before implementation: one candidate, policyflat95ee691e baseline,
+192 known development pairs9947500..07,12 existing adaptive opponents,both seats;
+positive full-panel W+0.5D and0candidateissues supports further evaluation.
+Prior146.5 is descriptive only. No fresh seeds, favorable subset scoring, or
+after-panel tuning. A local win is not a rank prediction.
+
+Tests: true known-map adaptive trajectory proves the repaired decision and actual
+banked fruit, including OFF-vs-ON fixture mechanism ablation; regenerative fruit
+can repay a seed over multiple cc1 visits; harvesting/preservation passes up a
+genuinely profitable chop only when net repeat service wins; contested/inaccessible
+or endgame asset is released; hp0 never HARVESTs; no duplicate service/seed claims;
+profitable harvester pays actual highestleague bill and produces rather than merely
+spawning. Existing34tests maintained with justified semantic updates only.
+IMPORTANT: prior opening(false) is a hand-built11x11 synthetic, NOT a known map.
+Use actual map generator/archive provenance. Do not call modified terrain/stock or
+a passive opponent a real known-map adaptive comparison. Keep negative examples.
+
+Before single192 panel: runnable original/pruned/compact,<=100000UTF16, actual
+Rust1.90, focused tests,16 exact archived streams and per-turn max<50ms. Reuse local
+export cut logic; do not remove live code. Prior select+readline does not fully
+bound partial-line reads and stderr.read; use robust existing runner or minimal
+bounded byte reading if needed, not new generic audit infrastructure. All errors
+retained. Build explicit run-local Cargo target after source freeze, no stale binary.
+Verify all192baseline_commands against gap20260906T210944Z-3184968-1. Report full
+WDL/points/scores/margins/opponent breakdown/errors, fruit+wood+workforce separately,
+actual recurring service/hire activation. Collect jobs; RESULT<=400words with hashes,
+commands/evidence/limitations/one next action. No panel if prerequisites fail.

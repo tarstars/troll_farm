@@ -1,0 +1,8 @@
+map 9947503 seat 1
+  baseline reasons : 
+  candidate reasons: move_blocked:4,no_capacity:46
+  unclassified b/c : 0 0
+  scores t100 b 88 8 c 78 13
+  scores t200 b 197 59 c 190 81
+  divergence state: turn=30 score=29:26 inv=[1, 0, 9, 7, 0, 3]:[5, 7, 8, 6, 3, 0] workers=2:2 plants=3/2/6/5 shacks=9,3:6,4 own=[1@5,4:1/1/1/1:c[0, 0, 0, 0, 0, 0],3@7,5:1/3/0/2:c[0, 0, 0, 0, 0, 0]] opponent=[0@5,4:1/1/1/1:c[0, 0, 0, 0, 0, 0],2@11,2:1/1/1/1:c[1, 0, 0, 0, 0, 0]] trees=[PLUM@3,5:s4:h11:f3:c0,PLUM@12,2:s4:
+  b div cmd: CHOP 1|MOVE 3 6 5 | c div cmd: MOVE 3 6 5|MOVE 1 5 5

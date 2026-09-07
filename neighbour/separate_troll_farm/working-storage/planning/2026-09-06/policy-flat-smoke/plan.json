@@ -1,0 +1,21 @@
+{
+  "schema": "policy-flat-deployment-smoke-v1",
+  "purpose": "ONE primary-authorized new-source unranked deployment smoke, not publication or fresh competitive evidence. Consumed seed260905990701 versus fixed historical agent6479779; frozen_rank is historical only. Policy-flat source is different from all failed exports. Offline evidence:160 streams/43263 turns command-identical to persistent planner and compact; max37ms BENCH decisions,320 open-stdin starts max1.645ms; Rust1.90 compact median6.661s versus V4396.400s, zero candidate diagnostics,98848 UTF16. Primary reviewed containers, source hashes and evidence; focused tests rerun. Stop after this one request on any error, no POST retries. Earlier compilation failures remain in the record. A successful game proves deployment only, not rank or superiority.",
+  "sources": {
+    "policy-flat": {
+      "path": "/home/tarstars/prj/separate_troll_farm/claude_candidate_policy_flat.min.rs",
+      "sha256": "80eafde93140749d7c5de8da9899bfd269290341a591ca0e58b014cf2de13adb"
+    }
+  },
+  "jobs": [
+    {
+      "block": 0,
+      "policy": "policy-flat",
+      "seed": 260905990701,
+      "seat": 0,
+      "opponent": "putibuzu",
+      "opponent_agent": 6479779,
+      "frozen_rank": 7
+    }
+  ]
+}

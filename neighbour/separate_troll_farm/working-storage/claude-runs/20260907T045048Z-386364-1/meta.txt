@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/dispatch-marginal-investment.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T045048Z-386364-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=45
+kill_grace_seconds=30
+start_utc=2026-09-07T04:50:48Z
+end_utc=2026-09-07T05:06:20Z
+duration_seconds=932
+exit_status=0
+timed_out=no
+result_report=present

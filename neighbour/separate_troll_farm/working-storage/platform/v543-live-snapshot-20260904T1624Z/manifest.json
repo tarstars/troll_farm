@@ -1,0 +1,21 @@
+{
+  "agent_id": 6701731,
+  "failures": [],
+  "files": {
+    "battle-index-agent6701731.json": {
+      "bytes": 50653,
+      "sha256": "54586363835f3ceae1d9866817bf319b78981b6c9dc4820b64061c16dfbd9e7f"
+    },
+    "games-agent6701731.jsonl.gz": {
+      "bytes": 3210353,
+      "sha256": "89708689e3ef78ec0a52f662307fa1ec78c48d9d36807ce8371f02d8b49c52e6"
+    }
+  },
+  "listed": 68,
+  "schema": "public-agent-replays-v1",
+  "source": {
+    "agent_id": 6701731,
+    "kind": "agent"
+  },
+  "written": 68
+}

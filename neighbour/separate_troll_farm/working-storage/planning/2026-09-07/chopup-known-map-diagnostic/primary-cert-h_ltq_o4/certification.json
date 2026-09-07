@@ -1,0 +1,66 @@
+{
+  "compiler": "/data/separate_troll_farm-working/toolchains/rustup/toolchains/1.90.0-x86_64-unknown-linux-gnu/bin/rustc",
+  "version": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+  "compiler_sha256": "e6abf55ab1859e7c990be77fd593f51661ea99fb2fde626ae9f4108aaa34e7fa",
+  "sources": {
+    "control": [
+      "submission.rs",
+      "7f61a6cd510a70e9389e794571512e2c5d0afb33bab957c70791c2c16fbff0bc"
+    ],
+    "candidate": [
+      "claude_candidate_chopup_a.min.rs",
+      "d40ed6449518d9eb00d60a95bd7c5d8c37eafa610c398e5a1d1a6a866eaef59d"
+    ],
+    "readable": [
+      "claude_candidate_chopup_a.rs",
+      "7a5722e48742d1e2712a5a37853f02e7edc860660a361bdaba9c34a219346a01"
+    ]
+  },
+  "rows": [
+    {
+      "label": "control",
+      "repeat": 0,
+      "seconds": 6.520687970332801,
+      "binary_sha256": "99a8ae154f22ee4330223db2652a63d1271d237b8487496f10492a4adc34fd0e"
+    },
+    {
+      "label": "candidate",
+      "repeat": 0,
+      "seconds": 6.735845603048801,
+      "binary_sha256": "9c2ca3d82c4ad3703fbe9c7b33a7462ebf70344663ef5e8aede1b94e479d650f"
+    },
+    {
+      "label": "control",
+      "repeat": 1,
+      "seconds": 6.260680817067623,
+      "binary_sha256": "99a8ae154f22ee4330223db2652a63d1271d237b8487496f10492a4adc34fd0e"
+    },
+    {
+      "label": "candidate",
+      "repeat": 1,
+      "seconds": 6.503117652609944,
+      "binary_sha256": "9c2ca3d82c4ad3703fbe9c7b33a7462ebf70344663ef5e8aede1b94e479d650f"
+    },
+    {
+      "label": "control",
+      "repeat": 2,
+      "seconds": 6.381588324904442,
+      "binary_sha256": "99a8ae154f22ee4330223db2652a63d1271d237b8487496f10492a4adc34fd0e"
+    },
+    {
+      "label": "candidate",
+      "repeat": 2,
+      "seconds": 7.1688089170493186,
+      "binary_sha256": "9c2ca3d82c4ad3703fbe9c7b33a7462ebf70344663ef5e8aede1b94e479d650f"
+    }
+  ],
+  "medians": {
+    "control": 6.381588324904442,
+    "candidate": 6.735845603048801
+  },
+  "ratio": 1.0555123991251292,
+  "pass_compile": true,
+  "startup_starts": 320,
+  "startup_max_us": 1569.774,
+  "focused_checks_pass": true
+}

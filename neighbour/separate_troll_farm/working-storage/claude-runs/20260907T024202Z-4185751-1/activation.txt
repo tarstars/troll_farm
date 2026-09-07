@@ -1,0 +1,8 @@
+ring_plants: baseline 1197 candidate 1122 (pairs differing 51)
+ring_picks: baseline 1065 candidate 1067 (pairs differing 24)
+ring_harvests: baseline 11239 candidate 12564 (pairs differing 83)
+ring_chops: baseline 9851 candidate 9670 (pairs differing 133)
+ring_drops: baseline 17220 candidate 18443 (pairs differing 135)
+pairs with any command difference: 152
+candidate issue rows: [('9947505', '1', 'norx_native_three', 'move_blocked:1')]
+baseline issue rows: [('9947504', '0', 'mybot', 'move_blocked:1')]

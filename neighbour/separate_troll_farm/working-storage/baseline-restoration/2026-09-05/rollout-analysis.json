@@ -1,0 +1,11576 @@
+{
+ "agent_id": 6704418,
+ "submission_id": 41245746,
+ "all": {
+  "games": 160,
+  "wdl": [
+   95,
+   0,
+   65
+  ],
+  "points": 95.0,
+  "own_failure_games": 0,
+  "opponent_failure_games": 0,
+  "own_score_mean": 207.4125,
+  "opponent_score_mean": 200.0625,
+  "margin_mean": 7.35,
+  "wood_means": [
+   45.13125,
+   46.04375
+  ],
+  "workers_means": [
+   2,
+   2.31875
+  ],
+  "mean_commands": {
+   "CHOP": [
+    161.7625,
+    109.3875
+   ],
+   "HARVEST": [
+    27.24375,
+    39.2
+   ],
+   "PLANT": [
+    12.05625,
+    28.88125
+   ],
+   "TRAIN": [
+    1,
+    1.55625
+   ],
+   "MOVE": [
+    237.85625,
+    309.4625
+   ],
+   "PICK": [
+    11.59375,
+    15.025
+   ],
+   "DROP": [
+    57.575,
+    46.69375
+   ],
+   "WAIT": [
+    23.41875,
+    18.16875
+   ]
+  }
+ },
+ "clean_games_only": {
+  "games": 160,
+  "wdl": [
+   95,
+   0,
+   65
+  ],
+  "points": 95.0,
+  "own_failure_games": 0,
+  "opponent_failure_games": 0,
+  "own_score_mean": 207.4125,
+  "opponent_score_mean": 200.0625,
+  "margin_mean": 7.35,
+  "wood_means": [
+   45.13125,
+   46.04375
+  ],
+  "workers_means": [
+   2,
+   2.31875
+  ],
+  "mean_commands": {
+   "CHOP": [
+    161.7625,
+    109.3875
+   ],
+   "HARVEST": [
+    27.24375,
+    39.2
+   ],
+   "PLANT": [
+    12.05625,
+    28.88125
+   ],
+   "TRAIN": [
+    1,
+    1.55625
+   ],
+   "MOVE": [
+    237.85625,
+    309.4625
+   ],
+   "PICK": [
+    11.59375,
+    15.025
+   ],
+   "DROP": [
+    57.575,
+    46.69375
+   ],
+   "WAIT": [
+    23.41875,
+    18.16875
+   ]
+  }
+ },
+ "by_seat": {
+  "0": {
+   "games": 83,
+   "wdl": [
+    52,
+    0,
+    31
+   ],
+   "points": 52.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 209.10843373493975,
+   "opponent_score_mean": 200.0,
+   "margin_mean": 9.108433734939759,
+   "wood_means": [
+    46.19277108433735,
+    46.493975903614455
+   ],
+   "workers_means": [
+    2,
+    2.3373493975903616
+   ],
+   "mean_commands": {
+    "CHOP": [
+     171.85542168674698,
+     113.24096385542168
+    ],
+    "HARVEST": [
+     25.048192771084338,
+     37.855421686746986
+    ],
+    "PLANT": [
+     12.19277108433735,
+     28.337349397590362
+    ],
+    "TRAIN": [
+     1,
+     1.7228915662650603
+    ],
+    "MOVE": [
+     237.81927710843374,
+     317.6265060240964
+    ],
+    "PICK": [
+     11.74698795180723,
+     13.759036144578314
+    ],
+    "DROP": [
+     55.72289156626506,
+     44.373493975903614
+    ],
+    "WAIT": [
+     22.903614457831324,
+     19.433734939759034
+    ]
+   }
+  },
+  "1": {
+   "games": 77,
+   "wdl": [
+    43,
+    0,
+    34
+   ],
+   "points": 43.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 205.58441558441558,
+   "opponent_score_mean": 200.12987012987014,
+   "margin_mean": 5.454545454545454,
+   "wood_means": [
+    43.98701298701299,
+    45.55844155844156
+   ],
+   "workers_means": [
+    2,
+    2.2987012987012987
+   ],
+   "mean_commands": {
+    "CHOP": [
+     150.88311688311688,
+     105.23376623376623
+    ],
+    "HARVEST": [
+     29.61038961038961,
+     40.64935064935065
+    ],
+    "PLANT": [
+     11.909090909090908,
+     29.467532467532468
+    ],
+    "TRAIN": [
+     1,
+     1.3766233766233766
+    ],
+    "MOVE": [
+     237.8961038961039,
+     300.6623376623377
+    ],
+    "PICK": [
+     11.428571428571429,
+     16.38961038961039
+    ],
+    "DROP": [
+     59.57142857142857,
+     49.1948051948052
+    ],
+    "WAIT": [
+     23.974025974025974,
+     16.805194805194805
+    ]
+   }
+  }
+ },
+ "by_opponent": {
+  "6479385": {
+   "name": "Meruem",
+   "games": 7,
+   "wdl": [
+    2,
+    0,
+    5
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 226.57142857142858,
+   "opponent_score_mean": 376.14285714285717,
+   "margin_mean": -149.57142857142858,
+   "wood_means": [
+    56,
+    93.28571428571429
+   ],
+   "workers_means": [
+    2,
+    3.4285714285714284
+   ],
+   "mean_commands": {
+    "CHOP": [
+     204.28571428571428,
+     124.42857142857143
+    ],
+    "HARVEST": [
+     3.7142857142857144,
+     71.42857142857143
+    ],
+    "PLANT": [
+     15.142857142857142,
+     45.857142857142854
+    ],
+    "TRAIN": [
+     1,
+     2.4285714285714284
+    ],
+    "MOVE": [
+     301.14285714285717,
+     449.42857142857144
+    ],
+    "PICK": [
+     13.285714285714286,
+     18.142857142857142
+    ],
+    "DROP": [
+     39.857142857142854,
+     80.28571428571429
+    ],
+    "WAIT": [
+     10.428571428571429,
+     0
+    ]
+   }
+  },
+  "6479388": {
+   "name": "Kheopsian",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 120.0,
+   "opponent_score_mean": 153.0,
+   "margin_mean": -33.0,
+   "wood_means": [
+    30,
+    38
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     122,
+     120
+    ],
+    "HARVEST": [
+     3,
+     42
+    ],
+    "PLANT": [
+     4,
+     45
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     406,
+     278
+    ],
+    "PICK": [
+     4,
+     40
+    ],
+    "DROP": [
+     24,
+     75
+    ],
+    "WAIT": [
+     12,
+     0
+    ]
+   }
+  },
+  "6479542": {
+   "name": "xSkyline",
+   "games": 7,
+   "wdl": [
+    4,
+    0,
+    3
+   ],
+   "points": 4.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 216.0,
+   "opponent_score_mean": 196.57142857142858,
+   "margin_mean": 19.428571428571427,
+   "wood_means": [
+    48.142857142857146,
+    46
+   ],
+   "workers_means": [
+    2,
+    2.7142857142857144
+   ],
+   "mean_commands": {
+    "CHOP": [
+     213.71428571428572,
+     193.14285714285714
+    ],
+    "HARVEST": [
+     22,
+     76.85714285714286
+    ],
+    "PLANT": [
+     10.428571428571429,
+     28.142857142857142
+    ],
+    "TRAIN": [
+     1,
+     7
+    ],
+    "MOVE": [
+     247.57142857142858,
+     315.2857142857143
+    ],
+    "PICK": [
+     10.428571428571429,
+     18.142857142857142
+    ],
+    "DROP": [
+     54.42857142857143,
+     49
+    ],
+    "WAIT": [
+     7.714285714285714,
+     2.142857142857143
+    ]
+   }
+  },
+  "6479657": {
+   "name": "Konstant",
+   "games": 5,
+   "wdl": [
+    3,
+    0,
+    2
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 203.4,
+   "opponent_score_mean": 173.4,
+   "margin_mean": 30.0,
+   "wood_means": [
+    47.6,
+    42.8
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     161.6,
+     168.8
+    ],
+    "HARVEST": [
+     13,
+     27.4
+    ],
+    "PLANT": [
+     12,
+     35.2
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     318.8,
+     284
+    ],
+    "PICK": [
+     12,
+     16.8
+    ],
+    "DROP": [
+     49,
+     30.4
+    ],
+    "WAIT": [
+     29.6,
+     0.8
+    ]
+   }
+  },
+  "6479750": {
+   "name": "mehdi_ayari",
+   "games": 2,
+   "wdl": [
+    2,
+    0,
+    0
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 134.0,
+   "opponent_score_mean": 76.5,
+   "margin_mean": 57.5,
+   "wood_means": [
+    33.5,
+    15.5
+   ],
+   "workers_means": [
+    2,
+    1.5
+   ],
+   "mean_commands": {
+    "CHOP": [
+     192.5,
+     57
+    ],
+    "HARVEST": [
+     0,
+     1
+    ],
+    "PLANT": [
+     19,
+     7.5
+    ],
+    "TRAIN": [
+     1,
+     0.5
+    ],
+    "MOVE": [
+     159.5,
+     253
+    ],
+    "PICK": [
+     19,
+     8
+    ],
+    "DROP": [
+     33.5,
+     14
+    ],
+    "WAIT": [
+     64.5,
+     0
+    ]
+   }
+  },
+  "6479842": {
+   "name": "icecuber",
+   "games": 5,
+   "wdl": [
+    4,
+    0,
+    1
+   ],
+   "points": 4.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 189.8,
+   "opponent_score_mean": 86.8,
+   "margin_mean": 103.0,
+   "wood_means": [
+    47.2,
+    13
+   ],
+   "workers_means": [
+    2,
+    1.4
+   ],
+   "mean_commands": {
+    "CHOP": [
+     247.2,
+     12
+    ],
+    "HARVEST": [
+     3.4,
+     44.4
+    ],
+    "PLANT": [
+     12.8,
+     25.8
+    ],
+    "TRAIN": [
+     1,
+     0.4
+    ],
+    "MOVE": [
+     273.2,
+     240.4
+    ],
+    "PICK": [
+     10.4,
+     15.8
+    ],
+    "DROP": [
+     39.6,
+     41
+    ],
+    "WAIT": [
+     9.2,
+     0
+    ]
+   }
+  },
+  "6479914": {
+   "name": "FinkPloyd",
+   "games": 2,
+   "wdl": [
+    2,
+    0,
+    0
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 245.5,
+   "opponent_score_mean": 152.5,
+   "margin_mean": 93.0,
+   "wood_means": [
+    61,
+    36
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     164.5,
+     185.5
+    ],
+    "HARVEST": [
+     3.5,
+     17.5
+    ],
+    "PLANT": [
+     9.5,
+     26.5
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     224.5,
+     156.5
+    ],
+    "PICK": [
+     9,
+     25.5
+    ],
+    "DROP": [
+     31,
+     43.5
+    ],
+    "WAIT": [
+     31.5,
+     0
+    ]
+   }
+  },
+  "6479932": {
+   "name": "frictionless",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 236.0,
+   "opponent_score_mean": 237.0,
+   "margin_mean": -1.0,
+   "wood_means": [
+    59,
+    55
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     249,
+     169
+    ],
+    "HARVEST": [
+     7,
+     38
+    ],
+    "PLANT": [
+     13,
+     5
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     207,
+     479
+    ],
+    "PICK": [
+     11,
+     0
+    ],
+    "DROP": [
+     36,
+     60
+    ],
+    "WAIT": [
+     17,
+     0
+    ]
+   }
+  },
+  "6480520": {
+   "name": "skotz",
+   "games": 3,
+   "wdl": [
+    2,
+    0,
+    1
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 148.66666666666666,
+   "opponent_score_mean": 126.0,
+   "margin_mean": 22.666666666666668,
+   "wood_means": [
+    36.666666666666664,
+    27.333333333333332
+   ],
+   "workers_means": [
+    2,
+    1.6666666666666667
+   ],
+   "mean_commands": {
+    "CHOP": [
+     111,
+     72.66666666666667
+    ],
+    "HARVEST": [
+     0,
+     20.666666666666668
+    ],
+    "PLANT": [
+     9.666666666666666,
+     19.666666666666668
+    ],
+    "TRAIN": [
+     1,
+     0.6666666666666666
+    ],
+    "MOVE": [
+     252,
+     296.3333333333333
+    ],
+    "PICK": [
+     9.666666666666666,
+     5
+    ],
+    "DROP": [
+     28.333333333333332,
+     20
+    ],
+    "WAIT": [
+     106,
+     0
+    ]
+   }
+  },
+  "6480544": {
+   "name": "m4l0s4n",
+   "games": 6,
+   "wdl": [
+    4,
+    0,
+    2
+   ],
+   "points": 4.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 236.33333333333334,
+   "opponent_score_mean": 207.0,
+   "margin_mean": 29.333333333333332,
+   "wood_means": [
+    41.5,
+    50.666666666666664
+   ],
+   "workers_means": [
+    2,
+    2.5
+   ],
+   "mean_commands": {
+    "CHOP": [
+     124.33333333333333,
+     122.5
+    ],
+    "HARVEST": [
+     67.66666666666667,
+     38.333333333333336
+    ],
+    "PLANT": [
+     9,
+     37
+    ],
+    "TRAIN": [
+     1,
+     1.5
+    ],
+    "MOVE": [
+     218.16666666666666,
+     379
+    ],
+    "PICK": [
+     8.833333333333334,
+     9.5
+    ],
+    "DROP": [
+     91.66666666666667,
+     34.333333333333336
+    ],
+    "WAIT": [
+     22.333333333333332,
+     0
+    ]
+   }
+  },
+  "6480545": {
+   "name": "BoatBuilder",
+   "games": 6,
+   "wdl": [
+    1,
+    0,
+    5
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 220.5,
+   "opponent_score_mean": 338.8333333333333,
+   "margin_mean": -118.33333333333333,
+   "wood_means": [
+    49.666666666666664,
+    83.16666666666667
+   ],
+   "workers_means": [
+    2,
+    2.6666666666666665
+   ],
+   "mean_commands": {
+    "CHOP": [
+     155.16666666666666,
+     167.16666666666666
+    ],
+    "HARVEST": [
+     21.5,
+     68.66666666666667
+    ],
+    "PLANT": [
+     13.5,
+     63.166666666666664
+    ],
+    "TRAIN": [
+     1,
+     1.6666666666666667
+    ],
+    "MOVE": [
+     320.1666666666667,
+     374.5
+    ],
+    "PICK": [
+     12.666666666666666,
+     9.666666666666666
+    ],
+    "DROP": [
+     54.833333333333336,
+     53.166666666666664
+    ],
+    "WAIT": [
+     9.833333333333334,
+     300
+    ]
+   }
+  },
+  "6480943": {
+   "name": "Dridriun",
+   "games": 5,
+   "wdl": [
+    3,
+    0,
+    2
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 156.8,
+   "opponent_score_mean": 152.8,
+   "margin_mean": 4.0,
+   "wood_means": [
+    39.2,
+    31.2
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     160.6,
+     124.6
+    ],
+    "HARVEST": [
+     0.6,
+     27.4
+    ],
+    "PLANT": [
+     15.4,
+     9.6
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     175.2,
+     210.4
+    ],
+    "PICK": [
+     15.4,
+     9.4
+    ],
+    "DROP": [
+     32,
+     45.2
+    ],
+    "WAIT": [
+     50.4,
+     3.2
+    ]
+   }
+  },
+  "6480947": {
+   "name": "khanh-alice",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 164.0,
+   "opponent_score_mean": 160.0,
+   "margin_mean": 4.0,
+   "wood_means": [
+    41,
+    40
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     141,
+     156
+    ],
+    "HARVEST": [
+     1,
+     0
+    ],
+    "PLANT": [
+     12,
+     11
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     98,
+     107
+    ],
+    "PICK": [
+     12,
+     12
+    ],
+    "DROP": [
+     24,
+     18
+    ],
+    "WAIT": [
+     17,
+     0
+    ]
+   }
+  },
+  "6480950": {
+   "name": "Epigene",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 100.0,
+   "opponent_score_mean": 79.0,
+   "margin_mean": 21.0,
+   "wood_means": [
+    25,
+    16
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     155,
+     64
+    ],
+    "HARVEST": [
+     0,
+     10
+    ],
+    "PLANT": [
+     13,
+     6
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     125,
+     196
+    ],
+    "PICK": [
+     13,
+     21
+    ],
+    "DROP": [
+     25,
+     42
+    ],
+    "WAIT": [
+     10,
+     0
+    ]
+   }
+  },
+  "6480951": {
+   "name": "0x6E0FF",
+   "games": 2,
+   "wdl": [
+    2,
+    0,
+    0
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 199.0,
+   "opponent_score_mean": 174.5,
+   "margin_mean": 24.5,
+   "wood_means": [
+    49,
+    43.5
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     178.5,
+     147
+    ],
+    "HARVEST": [
+     0.5,
+     13.5
+    ],
+    "PLANT": [
+     8.5,
+     24.5
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     276,
+     298
+    ],
+    "PICK": [
+     8.5,
+     12
+    ],
+    "DROP": [
+     33,
+     27
+    ],
+    "WAIT": [
+     9,
+     0
+    ]
+   }
+  },
+  "6481143": {
+   "name": "Pafin",
+   "games": 5,
+   "wdl": [
+    3,
+    0,
+    2
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 232.2,
+   "opponent_score_mean": 241.6,
+   "margin_mean": -9.4,
+   "wood_means": [
+    38.8,
+    57
+   ],
+   "workers_means": [
+    2,
+    3.2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     128,
+     96.8
+    ],
+    "HARVEST": [
+     74.4,
+     65.4
+    ],
+    "PLANT": [
+     9.8,
+     47.2
+    ],
+    "TRAIN": [
+     1,
+     2.4
+    ],
+    "MOVE": [
+     257.2,
+     449.6
+    ],
+    "PICK": [
+     9.4,
+     17.4
+    ],
+    "DROP": [
+     103,
+     68.4
+    ],
+    "WAIT": [
+     10.8,
+     0.4
+    ]
+   }
+  },
+  "6481176": {
+   "name": "Frac",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 224.0,
+   "opponent_score_mean": 196.0,
+   "margin_mean": 28.0,
+   "wood_means": [
+    47,
+    42
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     238,
+     53
+    ],
+    "HARVEST": [
+     33,
+     62
+    ],
+    "PLANT": [
+     9,
+     31
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     236,
+     525
+    ],
+    "PICK": [
+     7,
+     11
+    ],
+    "DROP": [
+     62,
+     63
+    ],
+    "WAIT": [
+     14,
+     0
+    ]
+   }
+  },
+  "6481225": {
+   "name": "mikmak",
+   "games": 6,
+   "wdl": [
+    2,
+    0,
+    4
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 271.6666666666667,
+   "opponent_score_mean": 288.6666666666667,
+   "margin_mean": -17.0,
+   "wood_means": [
+    61.333333333333336,
+    53.833333333333336
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     182.66666666666666,
+     47.333333333333336
+    ],
+    "HARVEST": [
+     26.5,
+     107.66666666666667
+    ],
+    "PLANT": [
+     14.166666666666666,
+     39
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     277,
+     413
+    ],
+    "PICK": [
+     13.666666666666666,
+     17
+    ],
+    "DROP": [
+     64.16666666666667,
+     86.66666666666667
+    ],
+    "WAIT": [
+     10.833333333333334,
+     0
+    ]
+   }
+  },
+  "6481252": {
+   "name": "DaNinja",
+   "games": 8,
+   "wdl": [
+    6,
+    0,
+    2
+   ],
+   "points": 6.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 220.75,
+   "opponent_score_mean": 202.625,
+   "margin_mean": 18.125,
+   "wood_means": [
+    47.375,
+    46.375
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     178,
+     132
+    ],
+    "HARVEST": [
+     28.625,
+     27.5
+    ],
+    "PLANT": [
+     10.375,
+     24.125
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     272.75,
+     309.125
+    ],
+    "PICK": [
+     10.125,
+     14.625
+    ],
+    "DROP": [
+     60.375,
+     42.875
+    ],
+    "WAIT": [
+     19.875,
+     0.875
+    ]
+   }
+  },
+  "6481270": {
+   "name": "zasmu",
+   "games": 2,
+   "wdl": [
+    2,
+    0,
+    0
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 170.0,
+   "opponent_score_mean": 134.0,
+   "margin_mean": 36.0,
+   "wood_means": [
+    42.5,
+    33.5
+   ],
+   "workers_means": [
+    2,
+    3.5
+   ],
+   "mean_commands": {
+    "CHOP": [
+     150,
+     79.5
+    ],
+    "HARVEST": [
+     0.5,
+     34.5
+    ],
+    "PLANT": [
+     10.5,
+     20
+    ],
+    "TRAIN": [
+     1,
+     2.5
+    ],
+    "MOVE": [
+     245.5,
+     395
+    ],
+    "PICK": [
+     10.5,
+     30
+    ],
+    "DROP": [
+     31,
+     65
+    ],
+    "WAIT": [
+     68.5,
+     137
+    ]
+   }
+  },
+  "6481397": {
+   "name": "gaha",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 164.0,
+   "opponent_score_mean": 113.0,
+   "margin_mean": 51.0,
+   "wood_means": [
+    41,
+    0
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     145,
+     4
+    ],
+    "HARVEST": [
+     0,
+     106
+    ],
+    "PLANT": [
+     9,
+     38
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     380,
+     243
+    ],
+    "PICK": [
+     9,
+     11
+    ],
+    "DROP": [
+     42,
+     82
+    ],
+    "WAIT": [
+     6,
+     0
+    ]
+   }
+  },
+  "6482016": {
+   "name": "DoubtinGiyov",
+   "games": 2,
+   "wdl": [
+    1,
+    0,
+    1
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 140.0,
+   "opponent_score_mean": 128.0,
+   "margin_mean": 12.0,
+   "wood_means": [
+    35,
+    32
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     92.5,
+     115
+    ],
+    "HARVEST": [
+     2.5,
+     3.5
+    ],
+    "PLANT": [
+     13.5,
+     16
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     155.5,
+     153
+    ],
+    "PICK": [
+     13,
+     16
+    ],
+    "DROP": [
+     29,
+     30
+    ],
+    "WAIT": [
+     18,
+     0
+    ]
+   }
+  },
+  "6482167": {
+   "name": "Astrobytes",
+   "games": 3,
+   "wdl": [
+    2,
+    0,
+    1
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 232.66666666666666,
+   "opponent_score_mean": 210.66666666666666,
+   "margin_mean": 22.0,
+   "wood_means": [
+    48.666666666666664,
+    47.666666666666664
+   ],
+   "workers_means": [
+    2,
+    2.3333333333333335
+   ],
+   "mean_commands": {
+    "CHOP": [
+     175,
+     124.33333333333333
+    ],
+    "HARVEST": [
+     41,
+     50
+    ],
+    "PLANT": [
+     8.333333333333334,
+     41.333333333333336
+    ],
+    "TRAIN": [
+     1,
+     1.3333333333333333
+    ],
+    "MOVE": [
+     274,
+     284
+    ],
+    "PICK": [
+     8.333333333333334,
+     39
+    ],
+    "DROP": [
+     68.33333333333333,
+     80
+    ],
+    "WAIT": [
+     10,
+     0
+    ]
+   }
+  },
+  "6483491": {
+   "name": "VINCE_MX",
+   "games": 2,
+   "wdl": [
+    0,
+    0,
+    2
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 148.5,
+   "opponent_score_mean": 162.0,
+   "margin_mean": -13.5,
+   "wood_means": [
+    36.5,
+    40.5
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     147,
+     119.5
+    ],
+    "HARVEST": [
+     0,
+     15
+    ],
+    "PLANT": [
+     4,
+     17.5
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     254.5,
+     280.5
+    ],
+    "PICK": [
+     4,
+     5
+    ],
+    "DROP": [
+     29,
+     25
+    ],
+    "WAIT": [
+     18,
+     0
+    ]
+   }
+  },
+  "6483545": {
+   "name": "Escdemon",
+   "games": 7,
+   "wdl": [
+    5,
+    0,
+    2
+   ],
+   "points": 5.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 167.57142857142858,
+   "opponent_score_mean": 157.0,
+   "margin_mean": 10.571428571428571,
+   "wood_means": [
+    39,
+    37.42857142857143
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     196.42857142857142,
+     129
+    ],
+    "HARVEST": [
+     19.714285714285715,
+     1.2857142857142858
+    ],
+    "PLANT": [
+     20.857142857142858,
+     5.857142857142857
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     120.42857142857143,
+     278.42857142857144
+    ],
+    "PICK": [
+     20.714285714285715,
+     5.857142857142857
+    ],
+    "DROP": [
+     49.714285714285715,
+     25.857142857142858
+    ],
+    "WAIT": [
+     24.142857142857142,
+     0
+    ]
+   }
+  },
+  "6488390": {
+   "name": "Pduhard-",
+   "games": 4,
+   "wdl": [
+    3,
+    0,
+    1
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 259.5,
+   "opponent_score_mean": 221.75,
+   "margin_mean": 37.75,
+   "wood_means": [
+    59.75,
+    52.75
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     149.25,
+     101.25
+    ],
+    "HARVEST": [
+     22.5,
+     27
+    ],
+    "PLANT": [
+     16.25,
+     34.25
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     276.5,
+     297.75
+    ],
+    "PICK": [
+     16.25,
+     7.5
+    ],
+    "DROP": [
+     61,
+     27.5
+    ],
+    "WAIT": [
+     15.5,
+     73.75
+    ]
+   }
+  },
+  "6488432": {
+   "name": "anuragm",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 112.0,
+   "opponent_score_mean": 96.0,
+   "margin_mean": 16.0,
+   "wood_means": [
+    28,
+    23
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     121,
+     63
+    ],
+    "HARVEST": [
+     1,
+     3
+    ],
+    "PLANT": [
+     7,
+     3
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     102,
+     89
+    ],
+    "PICK": [
+     7,
+     4
+    ],
+    "DROP": [
+     17,
+     14
+    ],
+    "WAIT": [
+     17,
+     0
+    ]
+   }
+  },
+  "6488436": {
+   "name": "NOIIICE",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 176.0,
+   "opponent_score_mean": 215.0,
+   "margin_mean": -39.0,
+   "wood_means": [
+    44,
+    52
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     92,
+     58
+    ],
+    "HARVEST": [
+     5,
+     9
+    ],
+    "PLANT": [
+     12,
+     14
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     122,
+     189
+    ],
+    "PICK": [
+     12,
+     6
+    ],
+    "DROP": [
+     31,
+     22
+    ],
+    "WAIT": [
+     6,
+     0
+    ]
+   }
+  },
+  "6491198": {
+   "name": "Renatys",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 212.0,
+   "opponent_score_mean": 101.0,
+   "margin_mean": 111.0,
+   "wood_means": [
+    24,
+    0
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     148,
+     0
+    ],
+    "HARVEST": [
+     120,
+     84
+    ],
+    "PLANT": [
+     7,
+     4
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     160,
+     394
+    ],
+    "PICK": [
+     7,
+     4
+    ],
+    "DROP": [
+     143,
+     72
+    ],
+    "WAIT": [
+     11,
+     0
+    ]
+   }
+  },
+  "6491404": {
+   "name": "daaskare",
+   "games": 9,
+   "wdl": [
+    3,
+    0,
+    6
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 220.44444444444446,
+   "opponent_score_mean": 242.55555555555554,
+   "margin_mean": -22.11111111111111,
+   "wood_means": [
+    47.22222222222222,
+    56.77777777777778
+   ],
+   "workers_means": [
+    2,
+    2.2222222222222223
+   ],
+   "mean_commands": {
+    "CHOP": [
+     158.66666666666666,
+     70.44444444444444
+    ],
+    "HARVEST": [
+     29.77777777777778,
+     38.888888888888886
+    ],
+    "PLANT": [
+     11.555555555555555,
+     42.888888888888886
+    ],
+    "TRAIN": [
+     1,
+     1.2222222222222223
+    ],
+    "MOVE": [
+     305.8888888888889,
+     296.55555555555554
+    ],
+    "PICK": [
+     10.777777777777779,
+     37.666666666666664
+    ],
+    "DROP": [
+     62.666666666666664,
+     61.55555555555556
+    ],
+    "WAIT": [
+     13.11111111111111,
+     0
+    ]
+   }
+  },
+  "6491567": {
+   "name": "_H3R0_",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 189.0,
+   "opponent_score_mean": 403.0,
+   "margin_mean": -214.0,
+   "wood_means": [
+    46,
+    100
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     205,
+     72
+    ],
+    "HARVEST": [
+     0,
+     59
+    ],
+    "PLANT": [
+     9,
+     42
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     332,
+     488
+    ],
+    "PICK": [
+     9,
+     9
+    ],
+    "DROP": [
+     31,
+     52
+    ],
+    "WAIT": [
+     13,
+     58
+    ]
+   }
+  },
+  "6498661": {
+   "name": "Yohann62",
+   "games": 10,
+   "wdl": [
+    8,
+    0,
+    2
+   ],
+   "points": 8.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 161.4,
+   "opponent_score_mean": 120.0,
+   "margin_mean": 41.4,
+   "wood_means": [
+    35.1,
+    28.6
+   ],
+   "workers_means": [
+    2,
+    1.9
+   ],
+   "mean_commands": {
+    "CHOP": [
+     156.4,
+     98.4
+    ],
+    "HARVEST": [
+     26.7,
+     2.2
+    ],
+    "PLANT": [
+     16.2,
+     7.3
+    ],
+    "TRAIN": [
+     1,
+     0.9
+    ],
+    "MOVE": [
+     121.5,
+     231.6
+    ],
+    "PICK": [
+     16.1,
+     7.6
+    ],
+    "DROP": [
+     52.1,
+     25.2
+    ],
+    "WAIT": [
+     54.3,
+     24.6
+    ]
+   }
+  },
+  "6505284": {
+   "name": "Titanmito",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 268.0,
+   "opponent_score_mean": 234.0,
+   "margin_mean": 34.0,
+   "wood_means": [
+    28,
+    58
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     109,
+     196
+    ],
+    "HARVEST": [
+     145,
+     47
+    ],
+    "PLANT": [
+     7,
+     34
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     162,
+     399
+    ],
+    "PICK": [
+     7,
+     17
+    ],
+    "DROP": [
+     161,
+     60
+    ],
+    "WAIT": [
+     8,
+     0
+    ]
+   }
+  },
+  "6505286": {
+   "name": "Highruler",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 229.0,
+   "opponent_score_mean": 219.0,
+   "margin_mean": 10.0,
+   "wood_means": [
+    21,
+    36
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     92,
+     64
+    ],
+    "HARVEST": [
+     144,
+     76
+    ],
+    "PLANT": [
+     8,
+     29
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     174,
+     458
+    ],
+    "PICK": [
+     8,
+     5
+    ],
+    "DROP": [
+     164,
+     83
+    ],
+    "WAIT": [
+     9,
+     0
+    ]
+   }
+  },
+  "6512040": {
+   "name": "celeria",
+   "games": 2,
+   "wdl": [
+    1,
+    0,
+    1
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 146.0,
+   "opponent_score_mean": 129.0,
+   "margin_mean": 17.0,
+   "wood_means": [
+    36.5,
+    24
+   ],
+   "workers_means": [
+    2,
+    2.5
+   ],
+   "mean_commands": {
+    "CHOP": [
+     151.5,
+     97.5
+    ],
+    "HARVEST": [
+     0.5,
+     48
+    ],
+    "PLANT": [
+     16,
+     20
+    ],
+    "TRAIN": [
+     1,
+     1.5
+    ],
+    "MOVE": [
+     234,
+     234
+    ],
+    "PICK": [
+     16,
+     20
+    ],
+    "DROP": [
+     31,
+     46
+    ],
+    "WAIT": [
+     124.5,
+     25.5
+    ]
+   }
+  },
+  "6541377": {
+   "name": "PonyPonyCodeCode",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 233.0,
+   "opponent_score_mean": 144.0,
+   "margin_mean": 89.0,
+   "wood_means": [
+    58,
+    36
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     191,
+     95
+    ],
+    "HARVEST": [
+     0,
+     10
+    ],
+    "PLANT": [
+     14,
+     20
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     325,
+     434
+    ],
+    "PICK": [
+     14,
+     16
+    ],
+    "DROP": [
+     40,
+     23
+    ],
+    "WAIT": [
+     15,
+     0
+    ]
+   }
+  },
+  "6541379": {
+   "name": "GoodDevel",
+   "games": 8,
+   "wdl": [
+    4,
+    0,
+    4
+   ],
+   "points": 4.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 192.875,
+   "opponent_score_mean": 203.875,
+   "margin_mean": -11.0,
+   "wood_means": [
+    42.25,
+    50.75
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     138.25,
+     122.125
+    ],
+    "HARVEST": [
+     23.5,
+     22.5
+    ],
+    "PLANT": [
+     9.625,
+     32.375
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     277.625,
+     277.125
+    ],
+    "PICK": [
+     9.25,
+     16.375
+    ],
+    "DROP": [
+     50.125,
+     36.75
+    ],
+    "WAIT": [
+     14.5,
+     8.125
+    ]
+   }
+  },
+  "6541416": {
+   "name": "Ticasali",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 180.0,
+   "opponent_score_mean": 133.0,
+   "margin_mean": 47.0,
+   "wood_means": [
+    45,
+    31
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     144,
+     99
+    ],
+    "HARVEST": [
+     2,
+     10
+    ],
+    "PLANT": [
+     12,
+     8
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     208,
+     242
+    ],
+    "PICK": [
+     10,
+     2
+    ],
+    "DROP": [
+     32,
+     31
+    ],
+    "WAIT": [
+     21,
+     0
+    ]
+   }
+  },
+  "6553375": {
+   "name": "Dapps",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 253.0,
+   "opponent_score_mean": 354.0,
+   "margin_mean": -101.0,
+   "wood_means": [
+    54,
+    75
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     157,
+     155
+    ],
+    "HARVEST": [
+     37,
+     76
+    ],
+    "PLANT": [
+     8,
+     32
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     291,
+     467
+    ],
+    "PICK": [
+     8,
+     3
+    ],
+    "DROP": [
+     63,
+     71
+    ],
+    "WAIT": [
+     28,
+     0
+    ]
+   }
+  },
+  "6559862": {
+   "name": "therealbeef",
+   "games": 3,
+   "wdl": [
+    1,
+    0,
+    2
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 128.0,
+   "opponent_score_mean": 124.0,
+   "margin_mean": 4.0,
+   "wood_means": [
+    32,
+    31
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     121,
+     118.33333333333333
+    ],
+    "HARVEST": [
+     1,
+     0
+    ],
+    "PLANT": [
+     9,
+     9.666666666666666
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     197.66666666666666,
+     213
+    ],
+    "PICK": [
+     9,
+     9.666666666666666
+    ],
+    "DROP": [
+     22.666666666666668,
+     22
+    ],
+    "WAIT": [
+     23.666666666666668,
+     0
+    ]
+   }
+  },
+  "6579290": {
+   "name": "Elost",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 198.0,
+   "opponent_score_mean": 222.0,
+   "margin_mean": -24.0,
+   "wood_means": [
+    48,
+    31
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     234,
+     68
+    ],
+    "HARVEST": [
+     0,
+     104
+    ],
+    "PLANT": [
+     14,
+     25
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     294,
+     270
+    ],
+    "PICK": [
+     14,
+     30
+    ],
+    "DROP": [
+     33,
+     102
+    ],
+    "WAIT": [
+     6,
+     0
+    ]
+   }
+  },
+  "6588342": {
+   "name": "ghhttt",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 272.0,
+   "opponent_score_mean": 366.0,
+   "margin_mean": -94.0,
+   "wood_means": [
+    41,
+    90
+   ],
+   "workers_means": [
+    2,
+    4
+   ],
+   "mean_commands": {
+    "CHOP": [
+     102,
+     244
+    ],
+    "HARVEST": [
+     99,
+     69
+    ],
+    "PLANT": [
+     10,
+     41
+    ],
+    "TRAIN": [
+     1,
+     3
+    ],
+    "MOVE": [
+     233,
+     0
+    ],
+    "PICK": [
+     10,
+     10
+    ],
+    "DROP": [
+     125,
+     75
+    ],
+    "WAIT": [
+     13,
+     0
+    ]
+   }
+  },
+  "6588457": {
+   "name": "Hydrazer",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 313.0,
+   "opponent_score_mean": 74.0,
+   "margin_mean": 239.0,
+   "wood_means": [
+    44,
+    17
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     62,
+     38
+    ],
+    "HARVEST": [
+     136,
+     24
+    ],
+    "PLANT": [
+     8,
+     16
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     192,
+     207
+    ],
+    "PICK": [
+     8,
+     8
+    ],
+    "DROP": [
+     154,
+     26
+    ],
+    "WAIT": [
+     23,
+     0
+    ]
+   }
+  },
+  "6588475": {
+   "name": "DaFish",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 342.0,
+   "opponent_score_mean": 439.0,
+   "margin_mean": -97.0,
+   "wood_means": [
+    48,
+    109
+   ],
+   "workers_means": [
+    2,
+    4
+   ],
+   "mean_commands": {
+    "CHOP": [
+     100,
+     115
+    ],
+    "HARVEST": [
+     145,
+     93
+    ],
+    "PLANT": [
+     8,
+     66
+    ],
+    "TRAIN": [
+     1,
+     3
+    ],
+    "MOVE": [
+     157,
+     608
+    ],
+    "PICK": [
+     8,
+     4
+    ],
+    "DROP": [
+     172,
+     81
+    ],
+    "WAIT": [
+     9,
+     0
+    ]
+   }
+  },
+  "6589996": {
+   "name": "Exhilarin",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 132.0,
+   "opponent_score_mean": 82.0,
+   "margin_mean": 50.0,
+   "wood_means": [
+    33,
+    20
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     141,
+     145
+    ],
+    "HARVEST": [
+     0,
+     6
+    ],
+    "PLANT": [
+     11,
+     11
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     157,
+     169
+    ],
+    "PICK": [
+     11,
+     9
+    ],
+    "DROP": [
+     21,
+     19
+    ],
+    "WAIT": [
+     32,
+     0
+    ]
+   }
+  },
+  "6591734": {
+   "name": "SF",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 176.0,
+   "opponent_score_mean": 105.0,
+   "margin_mean": 71.0,
+   "wood_means": [
+    44,
+    25
+   ],
+   "workers_means": [
+    2,
+    4
+   ],
+   "mean_commands": {
+    "CHOP": [
+     153,
+     56
+    ],
+    "HARVEST": [
+     0,
+     79
+    ],
+    "PLANT": [
+     12,
+     68
+    ],
+    "TRAIN": [
+     1,
+     3
+    ],
+    "MOVE": [
+     354,
+     551
+    ],
+    "PICK": [
+     12,
+     13
+    ],
+    "DROP": [
+     37,
+     64
+    ],
+    "WAIT": [
+     15,
+     0
+    ]
+   }
+  },
+  "6591735": {
+   "name": "timbersson",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 205.0,
+   "opponent_score_mean": 86.0,
+   "margin_mean": 119.0,
+   "wood_means": [
+    20,
+    0
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     106,
+     0
+    ],
+    "HARVEST": [
+     122,
+     89
+    ],
+    "PLANT": [
+     7,
+     13
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     204,
+     393
+    ],
+    "PICK": [
+     7,
+     10
+    ],
+    "DROP": [
+     141,
+     90
+    ],
+    "WAIT": [
+     12,
+     0
+    ]
+   }
+  },
+  "6596308": {
+   "name": "ATsibin",
+   "games": 7,
+   "wdl": [
+    3,
+    0,
+    4
+   ],
+   "points": 3.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 247.14285714285714,
+   "opponent_score_mean": 262.0,
+   "margin_mean": -14.857142857142858,
+   "wood_means": [
+    51.285714285714285,
+    61.57142857142857
+   ],
+   "workers_means": [
+    2,
+    2.142857142857143
+   ],
+   "mean_commands": {
+    "CHOP": [
+     145.85714285714286,
+     92.57142857142857
+    ],
+    "HARVEST": [
+     43.57142857142857,
+     42.142857142857146
+    ],
+    "PLANT": [
+     11.428571428571429,
+     34.142857142857146
+    ],
+    "TRAIN": [
+     1,
+     1.1428571428571428
+    ],
+    "MOVE": [
+     221.14285714285714,
+     287
+    ],
+    "PICK": [
+     10.142857142857142,
+     15.428571428571429
+    ],
+    "DROP": [
+     73.14285714285714,
+     53.857142857142854
+    ],
+    "WAIT": [
+     16.285714285714285,
+     0.5714285714285714
+    ]
+   }
+  },
+  "6604638": {
+   "name": "a76a44",
+   "games": 1,
+   "wdl": [
+    0,
+    0,
+    1
+   ],
+   "points": 0.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 273.0,
+   "opponent_score_mean": 544.0,
+   "margin_mean": -271.0,
+   "wood_means": [
+    34,
+    134
+   ],
+   "workers_means": [
+    2,
+    4
+   ],
+   "mean_commands": {
+    "CHOP": [
+     133,
+     135
+    ],
+    "HARVEST": [
+     133,
+     73
+    ],
+    "PLANT": [
+     8,
+     40
+    ],
+    "TRAIN": [
+     1,
+     3
+    ],
+    "MOVE": [
+     125,
+     523
+    ],
+    "PICK": [
+     8,
+     21
+    ],
+    "DROP": [
+     154,
+     95
+    ],
+    "WAIT": [
+     14,
+     20
+    ]
+   }
+  },
+  "6606406": {
+   "name": "picatrai",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 413.0,
+   "opponent_score_mean": 62.0,
+   "margin_mean": 351.0,
+   "wood_means": [
+    67,
+    0
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     78,
+     0
+    ],
+    "HARVEST": [
+     143,
+     103
+    ],
+    "PLANT": [
+     12,
+     52
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     162,
+     381
+    ],
+    "PICK": [
+     12,
+     14
+    ],
+    "DROP": [
+     181,
+     48
+    ],
+    "WAIT": [
+     11,
+     0
+    ]
+   }
+  },
+  "6607429": {
+   "name": "Ando_Riccardo",
+   "games": 2,
+   "wdl": [
+    2,
+    0,
+    0
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 244.0,
+   "opponent_score_mean": 82.0,
+   "margin_mean": 162.0,
+   "wood_means": [
+    60,
+    20.5
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     162,
+     143
+    ],
+    "HARVEST": [
+     3,
+     14.5
+    ],
+    "PLANT": [
+     6.5,
+     24
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     280.5,
+     287
+    ],
+    "PICK": [
+     6,
+     13
+    ],
+    "DROP": [
+     35,
+     16
+    ],
+    "WAIT": [
+     17.5,
+     2.5
+    ]
+   }
+  },
+  "6620507": {
+   "name": "a7aQC",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 265.0,
+   "opponent_score_mean": 144.0,
+   "margin_mean": 121.0,
+   "wood_means": [
+    66,
+    36
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     222,
+     211
+    ],
+    "HARVEST": [
+     0,
+     40
+    ],
+    "PLANT": [
+     9,
+     54
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     302,
+     257
+    ],
+    "PICK": [
+     9,
+     17
+    ],
+    "DROP": [
+     42,
+     20
+    ],
+    "WAIT": [
+     15,
+     0
+    ]
+   }
+  },
+  "6630225": {
+   "name": "Kamoun",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 331.0,
+   "opponent_score_mean": 151.0,
+   "margin_mean": 180.0,
+   "wood_means": [
+    81,
+    27
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     229,
+     79
+    ],
+    "HARVEST": [
+     4,
+     48
+    ],
+    "PLANT": [
+     16,
+     44
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     274,
+     318
+    ],
+    "PICK": [
+     12,
+     37
+    ],
+    "DROP": [
+     52,
+     63
+    ],
+    "WAIT": [
+     12,
+     0
+    ]
+   }
+  },
+  "6635480": {
+   "name": "darkhorse64",
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 176.0,
+   "opponent_score_mean": 174.0,
+   "margin_mean": 2.0,
+   "wood_means": [
+    44,
+    41
+   ],
+   "workers_means": [
+    2,
+    3
+   ],
+   "mean_commands": {
+    "CHOP": [
+     264,
+     72
+    ],
+    "HARVEST": [
+     1,
+     20
+    ],
+    "PLANT": [
+     17,
+     11
+    ],
+    "TRAIN": [
+     1,
+     2
+    ],
+    "MOVE": [
+     158,
+     483
+    ],
+    "PICK": [
+     17,
+     11
+    ],
+    "DROP": [
+     31,
+     46
+    ],
+    "WAIT": [
+     52,
+     45
+    ]
+   }
+  },
+  "6697190": {
+   "name": "Stounate",
+   "games": 3,
+   "wdl": [
+    2,
+    0,
+    1
+   ],
+   "points": 2.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 206.66666666666666,
+   "opponent_score_mean": 173.66666666666666,
+   "margin_mean": 33.0,
+   "wood_means": [
+    42.666666666666664,
+    42.333333333333336
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     116.66666666666667,
+     91.33333333333333
+    ],
+    "HARVEST": [
+     38.333333333333336,
+     17.333333333333332
+    ],
+    "PLANT": [
+     10.333333333333334,
+     21.333333333333332
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     187.66666666666666,
+     258
+    ],
+    "PICK": [
+     9.666666666666666,
+     9.666666666666666
+    ],
+    "DROP": [
+     65.33333333333333,
+     29.666666666666668
+    ],
+    "WAIT": [
+     13.666666666666666,
+     0
+    ]
+   }
+  }
+ },
+ "by_recorded_opponent_rating": {
+  "below18": {
+   "games": 20,
+   "wdl": [
+    13,
+    0,
+    7
+   ],
+   "points": 13.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 235.85,
+   "opponent_score_mean": 174.05,
+   "margin_mean": 61.8,
+   "wood_means": [
+    46.65,
+    36.2
+   ],
+   "workers_means": [
+    2,
+    2.5
+   ],
+   "mean_commands": {
+    "CHOP": [
+     150.95,
+     98.95
+    ],
+    "HARVEST": [
+     48.7,
+     51.95
+    ],
+    "PLANT": [
+     10.05,
+     29.3
+    ],
+    "TRAIN": [
+     1,
+     1.5
+    ],
+    "MOVE": [
+     230.8,
+     335.9
+    ],
+    "PICK": [
+     9.6,
+     12.45
+    ],
+    "DROP": [
+     77.6,
+     54
+    ],
+    "WAIT": [
+     16.95,
+     2.5
+    ]
+   }
+  },
+  "18to22": {
+   "games": 56,
+   "wdl": [
+    39,
+    0,
+    17
+   ],
+   "points": 39.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 195.51785714285714,
+   "opponent_score_mean": 181.58928571428572,
+   "margin_mean": 13.928571428571429,
+   "wood_means": [
+    42.767857142857146,
+    42.767857142857146
+   ],
+   "workers_means": [
+    2,
+    2.2142857142857144
+   ],
+   "mean_commands": {
+    "CHOP": [
+     152.94642857142858,
+     106.30357142857143
+    ],
+    "HARVEST": [
+     25.267857142857142,
+     26.589285714285715
+    ],
+    "PLANT": [
+     12.642857142857142,
+     23.857142857142858
+    ],
+    "TRAIN": [
+     1,
+     1.2321428571428572
+    ],
+    "MOVE": [
+     212.69642857142858,
+     284.7142857142857
+    ],
+    "PICK": [
+     12.321428571428571,
+     13.571428571428571
+    ],
+    "DROP": [
+     54.142857142857146,
+     40.42857142857143
+    ],
+    "WAIT": [
+     32.69642857142857,
+     18.053571428571427
+    ]
+   }
+  },
+  "22to25": {
+   "games": 83,
+   "wdl": [
+    42,
+    0,
+    41
+   ],
+   "points": 42.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 209.10843373493975,
+   "opponent_score_mean": 219.84337349397592,
+   "margin_mean": -10.734939759036145,
+   "wood_means": [
+    46.40963855421687,
+    51.18072289156626
+   ],
+   "workers_means": [
+    2,
+    2.3493975903614457
+   ],
+   "mean_commands": {
+    "CHOP": [
+     170.51807228915663,
+     115.25301204819277
+    ],
+    "HARVEST": [
+     23.734939759036145,
+     43.83132530120482
+    ],
+    "PLANT": [
+     12.180722891566266,
+     32.06024096385542
+    ],
+    "TRAIN": [
+     1,
+     1.7951807228915662
+    ],
+    "MOVE": [
+     254.81927710843374,
+     320.5903614457831
+    ],
+    "PICK": [
+     11.614457831325302,
+     16.674698795180724
+    ],
+    "DROP": [
+     55.25301204819277,
+     48.734939759036145
+    ],
+    "WAIT": [
+     18.927710843373493,
+     22.240963855421686
+    ]
+   }
+  },
+  "25plus": {
+   "games": 1,
+   "wdl": [
+    1,
+    0,
+    0
+   ],
+   "points": 1.0,
+   "own_failure_games": 0,
+   "opponent_failure_games": 0,
+   "own_score_mean": 164.0,
+   "opponent_score_mean": 113.0,
+   "margin_mean": 51.0,
+   "wood_means": [
+    41,
+    0
+   ],
+   "workers_means": [
+    2,
+    2
+   ],
+   "mean_commands": {
+    "CHOP": [
+     145,
+     4
+    ],
+    "HARVEST": [
+     0,
+     106
+    ],
+    "PLANT": [
+     9,
+     38
+    ],
+    "TRAIN": [
+     1,
+     1
+    ],
+    "MOVE": [
+     380,
+     243
+    ],
+    "PICK": [
+     9,
+     11
+    ],
+    "DROP": [
+     42,
+     82
+    ],
+    "WAIT": [
+     6,
+     0
+    ]
+   }
+  }
+ },
+ "decode_errors": [],
+ "limit": "Adaptive ladder sampling is not a fixed paired screen. Opponent ratings are those stored in replay metadata.",
+ "rows": [
+  {
+   "game_id": 901547815,
+   "seat": 1,
+   "opponent": "DoubtinGiyov",
+   "opponent_agent": 6482016,
+   "opponent_rating": 24.952255621208877,
+   "scores": [
+    168.0,
+    136.0
+   ],
+   "margin": 32.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 153,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 139,
+    "HARVEST": 2,
+    "DROP": 27,
+    "TRAIN": 1,
+    "CHOP": 82,
+    "PLANT": 14,
+    "PICK": 13,
+    "WAIT": 19
+   },
+   "opponent_verbs": {
+    "MOVE": 148,
+    "HARVEST": 1,
+    "DROP": 24,
+    "TRAIN": 1,
+    "PICK": 12,
+    "PLANT": 12,
+    "CHOP": 99
+   },
+   "wood": [
+    42,
+    34
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547802,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    128.0,
+    160.0
+   ],
+   "margin": -32.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 322,
+    "CHOP": 210,
+    "DROP": 32,
+    "HARVEST": 2,
+    "PLANT": 11,
+    "PICK": 9,
+    "WAIT": 13
+   },
+   "opponent_verbs": {
+    "MOVE": 273,
+    "MSG": 300,
+    "PICK": 27,
+    "PLANT": 36,
+    "HARVEST": 32,
+    "DROP": 47,
+    "MINE": 5,
+    "TRAIN": 1,
+    "CHOP": 46
+   },
+   "wood": [
+    32,
+    38
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547785,
+   "seat": 1,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    246.0,
+    195.0
+   ],
+   "margin": 51.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 200,
+    "MINE": 1,
+    "DROP": 140,
+    "TRAIN": 1,
+    "CHOP": 96,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 13,
+    "HARVEST": 120
+   },
+   "opponent_verbs": {
+    "MOVE": 265,
+    "HARVEST": 25,
+    "DROP": 43,
+    "MINE": 1,
+    "TRAIN": 1,
+    "PICK": 17,
+    "PLANT": 22,
+    "CHOP": 145
+   },
+   "wood": [
+    29,
+    44
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547751,
+   "seat": 0,
+   "opponent": "a76a44",
+   "opponent_agent": 6604638,
+   "opponent_rating": 24.994404528279038,
+   "scores": [
+    273.0,
+    544.0
+   ],
+   "margin": -271.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 125,
+    "WAIT": 14,
+    "HARVEST": 133,
+    "DROP": 154,
+    "TRAIN": 1,
+    "PICK": 8,
+    "PLANT": 8,
+    "CHOP": 133
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "PICK": 21,
+    "MOVE": 523,
+    "PLANT": 40,
+    "HARVEST": 73,
+    "DROP": 95,
+    "TRAIN": 3,
+    "MINE": 14,
+    "CHOP": 135,
+    "WAIT": 20
+   },
+   "wood": [
+    34,
+    134
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901547733,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    182.0,
+    160.0
+   ],
+   "margin": 22.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 210,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 201,
+    "HARVEST": 1,
+    "DROP": 29,
+    "TRAIN": 1,
+    "CHOP": 161,
+    "PICK": 8,
+    "PLANT": 8
+   },
+   "opponent_verbs": {
+    "MOVE": 263,
+    "HARVEST": 39,
+    "TRAIN": 16,
+    "DROP": 39,
+    "PLANT": 20,
+    "CHOP": 131,
+    "PICK": 19,
+    "WAIT": 7
+   },
+   "wood": [
+    44,
+    40
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547712,
+   "seat": 0,
+   "opponent": "therealbeef",
+   "opponent_agent": 6559862,
+   "opponent_rating": 24.654828295030924,
+   "scores": [
+    156.0,
+    140.0
+   ],
+   "margin": 16.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 286,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 312,
+    "HARVEST": 3,
+    "DROP": 26,
+    "TRAIN": 1,
+    "CHOP": 147,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 52
+   },
+   "opponent_verbs": {
+    "MOVE": 347,
+    "MSG": 286,
+    "MINE": 1,
+    "DROP": 25,
+    "TRAIN": 1,
+    "CHOP": 137,
+    "PICK": 11,
+    "PLANT": 11
+   },
+   "wood": [
+    39,
+    35
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547698,
+   "seat": 1,
+   "opponent": "therealbeef",
+   "opponent_agent": 6559862,
+   "opponent_rating": 24.654828295030924,
+   "scores": [
+    104.0,
+    108.0
+   ],
+   "margin": -4.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 148,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 134,
+    "CHOP": 120,
+    "DROP": 19,
+    "PICK": 6,
+    "PLANT": 6,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 129,
+    "TRAIN": 1,
+    "MSG": 148,
+    "CHOP": 129,
+    "DROP": 19,
+    "PICK": 6,
+    "PLANT": 6
+   },
+   "wood": [
+    26,
+    27
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547682,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    156.0,
+    112.0
+   ],
+   "margin": 44.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 369,
+    "CHOP": 156,
+    "DROP": 38,
+    "WAIT": 12,
+    "PICK": 12,
+    "PLANT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 136,
+    "MSG": 300,
+    "PICK": 91,
+    "PLANT": 27,
+    "HARVEST": 24,
+    "DROP": 99,
+    "TRAIN": 1,
+    "MINE": 1,
+    "CHOP": 33
+   },
+   "wood": [
+    38,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547653,
+   "seat": 0,
+   "opponent": "skotz",
+   "opponent_agent": 6480520,
+   "opponent_rating": 24.507019218278035,
+   "scores": [
+    140.0,
+    129.0
+   ],
+   "margin": 11.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 215,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 167,
+    "MINE": 5,
+    "DROP": 31,
+    "TRAIN": 1,
+    "CHOP": 123,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 66
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 296,
+    "CHOP": 89,
+    "HARVEST": 10,
+    "DROP": 16,
+    "PLANT": 14,
+    "PICK": 4
+   },
+   "wood": [
+    35,
+    30
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547628,
+   "seat": 1,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    192.0,
+    290.0
+   ],
+   "margin": -98.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 367,
+    "MINE": 1,
+    "DROP": 33,
+    "TRAIN": 1,
+    "CHOP": 167,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "PICK": 6,
+    "WAIT": 300,
+    "MOVE": 449,
+    "TRAIN": 2,
+    "PLANT": 78,
+    "HARVEST": 88,
+    "MINE": 4,
+    "DROP": 55,
+    "CHOP": 141
+   },
+   "wood": [
+    48,
+    72
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547616,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    257.0,
+    231.0
+   ],
+   "margin": 26.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 362,
+    "MINE": 1,
+    "DROP": 45,
+    "TRAIN": 1,
+    "CHOP": 136,
+    "PICK": 13,
+    "PLANT": 16,
+    "HARVEST": 4,
+    "WAIT": 11
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 298,
+    "CHOP": 74,
+    "MSG": 300,
+    "PICK": 49,
+    "PLANT": 59,
+    "HARVEST": 45,
+    "DROP": 65,
+    "MINE": 4
+   },
+   "wood": [
+    63,
+    52
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547600,
+   "seat": 0,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    222.0,
+    199.0
+   ],
+   "margin": 23.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 297,
+    "MINE": 1,
+    "DROP": 38,
+    "TRAIN": 1,
+    "CHOP": 218,
+    "HARVEST": 1,
+    "PLANT": 13,
+    "PICK": 12,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 311,
+    "MINE": 1,
+    "DROP": 54,
+    "TRAIN": 1,
+    "HARVEST": 38,
+    "PLANT": 24,
+    "PICK": 18,
+    "CHOP": 140
+   },
+   "wood": [
+    54,
+    42
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547586,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    274.0,
+    165.0
+   ],
+   "margin": 109.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 208,
+    "PICK": 8,
+    "CHOP": 58,
+    "PLANT": 8,
+    "WAIT": 10,
+    "HARVEST": 144,
+    "DROP": 163
+   },
+   "opponent_verbs": {
+    "MOVE": 390,
+    "TRAIN": 4,
+    "PICK": 12,
+    "PLANT": 16,
+    "HARVEST": 121,
+    "DROP": 33,
+    "CHOP": 219,
+    "WAIT": 7
+   },
+   "wood": [
+    32,
+    41
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547578,
+   "seat": 1,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    247.0,
+    252.0
+   ],
+   "margin": -5.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 224,
+    "MINE": 4,
+    "DROP": 142,
+    "TRAIN": 1,
+    "CHOP": 72,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 9,
+    "HARVEST": 117
+   },
+   "opponent_verbs": {
+    "PICK": 19,
+    "WAIT": 300,
+    "MOVE": 270,
+    "PLANT": 46,
+    "HARVEST": 34,
+    "DROP": 37,
+    "TRAIN": 1,
+    "CHOP": 159
+   },
+   "wood": [
+    31,
+    63
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547555,
+   "seat": 1,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    260.0,
+    175.0
+   ],
+   "margin": 85.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 200,
+    "HARVEST": 105,
+    "DROP": 126,
+    "TRAIN": 1,
+    "CHOP": 119,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "MOVE": 321,
+    "HARVEST": 16,
+    "PLANT": 20,
+    "DROP": 30,
+    "TRAIN": 1,
+    "CHOP": 122,
+    "PICK": 13
+   },
+   "wood": [
+    39,
+    42
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547543,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    264.0,
+    262.0
+   ],
+   "margin": 2.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 334,
+    "HARVEST": 4,
+    "DROP": 34,
+    "TRAIN": 1,
+    "WAIT": 11,
+    "CHOP": 187,
+    "PICK": 6,
+    "PLANT": 8
+   },
+   "opponent_verbs": {
+    "PICK": 8,
+    "WAIT": 300,
+    "MOVE": 398,
+    "PLANT": 67,
+    "HARVEST": 108,
+    "DROP": 53,
+    "TRAIN": 2,
+    "MINE": 2,
+    "CHOP": 168
+   },
+   "wood": [
+    66,
+    63
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547528,
+   "seat": 0,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    145.0,
+    224.0
+   ],
+   "margin": -79.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 280,
+    "HARVEST": 1,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 245,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 278,
+    "MINE": 3,
+    "DROP": 56,
+    "HARVEST": 34,
+    "TRAIN": 1,
+    "PICK": 19,
+    "PLANT": 26,
+    "CHOP": 128
+   },
+   "wood": [
+    35,
+    50
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547517,
+   "seat": 0,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    274.0,
+    257.0
+   ],
+   "margin": 17.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 60,
+    "PICK": 37,
+    "PLANT": 37,
+    "WAIT": 9,
+    "CHOP": 300,
+    "DROP": 100,
+    "HARVEST": 56
+   },
+   "opponent_verbs": {
+    "MOVE": 398,
+    "TRAIN": 1,
+    "CHOP": 139,
+    "DROP": 32,
+    "PICK": 10,
+    "PLANT": 10
+   },
+   "wood": [
+    59,
+    62
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547507,
+   "seat": 0,
+   "opponent": "Konstant",
+   "opponent_agent": 6479657,
+   "opponent_rating": 24.02916277737565,
+   "scores": [
+    190.0,
+    288.0
+   ],
+   "margin": -98.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 343,
+    "CHOP": 158,
+    "DROP": 29,
+    "WAIT": 61,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 310,
+    "MSG": 300,
+    "MINE": 3,
+    "DROP": 33,
+    "HARVEST": 30,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PICK": 8,
+    "PLANT": 36,
+    "CHOP": 119
+   },
+   "wood": [
+    45,
+    71
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547483,
+   "seat": 1,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    236.0,
+    448.0
+   ],
+   "margin": -212.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 324,
+    "MINE": 2,
+    "DROP": 47,
+    "TRAIN": 1,
+    "CHOP": 158,
+    "HARVEST": 4,
+    "PLANT": 22,
+    "PICK": 21,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "PICK": 3,
+    "WAIT": 300,
+    "MOVE": 408,
+    "TRAIN": 2,
+    "PLANT": 71,
+    "HARVEST": 80,
+    "DROP": 72,
+    "CHOP": 222
+   },
+   "wood": [
+    59,
+    109
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547472,
+   "seat": 0,
+   "opponent": "Konstant",
+   "opponent_agent": 6479657,
+   "opponent_rating": 24.02916277737565,
+   "scores": [
+    193.0,
+    236.0
+   ],
+   "margin": -43.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 338,
+    "HARVEST": 6,
+    "DROP": 30,
+    "TRAIN": 1,
+    "CHOP": 173,
+    "WAIT": 33,
+    "PICK": 3,
+    "PLANT": 3
+   },
+   "opponent_verbs": {
+    "MOVE": 291,
+    "MSG": 300,
+    "MINE": 2,
+    "DROP": 29,
+    "HARVEST": 40,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PLANT": 34,
+    "CHOP": 174,
+    "PICK": 5
+   },
+   "wood": [
+    47,
+    59
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547438,
+   "seat": 1,
+   "opponent": "Astrobytes",
+   "opponent_agent": 6482167,
+   "opponent_rating": 24.06816332989819,
+   "scores": [
+    169.0,
+    223.0
+   ],
+   "margin": -54.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 298,
+    "HARVEST": 8,
+    "DROP": 32,
+    "WAIT": 10,
+    "TRAIN": 1,
+    "CHOP": 210,
+    "PICK": 6,
+    "PLANT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 321,
+    "PICK": 32,
+    "PLANT": 37,
+    "HARVEST": 56,
+    "DROP": 85,
+    "TRAIN": 2,
+    "MINE": 15,
+    "CHOP": 161
+   },
+   "wood": [
+    42,
+    53
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547425,
+   "seat": 1,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    223.0,
+    196.0
+   ],
+   "margin": 27.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 311,
+    "HARVEST": 3,
+    "DROP": 38,
+    "TRAIN": 1,
+    "CHOP": 213,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 7
+   },
+   "opponent_verbs": {
+    "MOVE": 243,
+    "HARVEST": 90,
+    "TRAIN": 5,
+    "DROP": 61,
+    "PICK": 21,
+    "PLANT": 35,
+    "CHOP": 140
+   },
+   "wood": [
+    55,
+    40
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547406,
+   "seat": 1,
+   "opponent": "Konstant",
+   "opponent_agent": 6479657,
+   "opponent_rating": 24.02916277737565,
+   "scores": [
+    158.0,
+    99.0
+   ],
+   "margin": 59.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 412,
+    "CHOP": 118,
+    "DROP": 38,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 208,
+    "WAIT": 1,
+    "MSG": 300,
+    "PICK": 31,
+    "PLANT": 42,
+    "CHOP": 243,
+    "HARVEST": 32,
+    "DROP": 44
+   },
+   "wood": [
+    38,
+    23
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547391,
+   "seat": 0,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    240.0,
+    234.0
+   ],
+   "margin": 6.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 272,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 279,
+    "CHOP": 189,
+    "DROP": 31,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 28
+   },
+   "opponent_verbs": {
+    "MOVE": 266,
+    "TRAIN": 1,
+    "PICK": 8,
+    "PLANT": 28,
+    "CHOP": 140,
+    "DROP": 35,
+    "HARVEST": 25,
+    "WAIT": 7
+   },
+   "wood": [
+    60,
+    56
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547374,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    350.0,
+    460.0
+   ],
+   "margin": -110.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 210,
+    "HARVEST": 121,
+    "DROP": 146,
+    "TRAIN": 1,
+    "CHOP": 87,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 410,
+    "MSG": 300,
+    "PICK": 43,
+    "PLANT": 59,
+    "HARVEST": 46,
+    "DROP": 75,
+    "TRAIN": 2,
+    "MINE": 1,
+    "CHOP": 143
+   },
+   "wood": [
+    57,
+    115
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547352,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    351.0,
+    256.0
+   ],
+   "margin": 95.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 154,
+    "WAIT": 13,
+    "HARVEST": 138,
+    "DROP": 161,
+    "TRAIN": 1,
+    "CHOP": 101,
+    "PICK": 9,
+    "PLANT": 9
+   },
+   "opponent_verbs": {
+    "PICK": 10,
+    "MOVE": 514,
+    "PLANT": 74,
+    "TRAIN": 2,
+    "HARVEST": 77,
+    "DROP": 41,
+    "MINE": 3,
+    "CHOP": 127
+   },
+   "wood": [
+    53,
+    64
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547335,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    275.0,
+    282.0
+   ],
+   "margin": -7.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 208,
+    "MINE": 1,
+    "DROP": 161,
+    "TRAIN": 1,
+    "CHOP": 53,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 9,
+    "HARVEST": 140
+   },
+   "opponent_verbs": {
+    "PICK": 7,
+    "MOVE": 265,
+    "PLANT": 50,
+    "HARVEST": 45,
+    "DROP": 37,
+    "MINE": 1,
+    "TRAIN": 1,
+    "CHOP": 149
+   },
+   "wood": [
+    32,
+    68
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547318,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    256.0,
+    189.0
+   ],
+   "margin": 67.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 210,
+    "HARVEST": 122,
+    "DROP": 138,
+    "TRAIN": 1,
+    "CHOP": 92,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "PICK": 12,
+    "MOVE": 365,
+    "PLANT": 26,
+    "HARVEST": 18,
+    "DROP": 31,
+    "MINE": 4,
+    "TRAIN": 1,
+    "CHOP": 94
+   },
+   "wood": [
+    33,
+    46
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547275,
+   "seat": 1,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    268.0,
+    409.0
+   ],
+   "margin": -141.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 284,
+    "MINE": 1,
+    "DROP": 39,
+    "HARVEST": 3,
+    "TRAIN": 1,
+    "CHOP": 227,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "TRAIN": 3,
+    "MOVE": 529,
+    "PICK": 18,
+    "HARVEST": 94,
+    "PLANT": 41,
+    "DROP": 103,
+    "MINE": 13,
+    "CHOP": 109
+   },
+   "wood": [
+    67,
+    90
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901547263,
+   "seat": 0,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    204.0,
+    190.0
+   ],
+   "margin": 14.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 298,
+    "MINE": 2,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 182,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 50
+   },
+   "opponent_verbs": {
+    "MOVE": 378,
+    "TRAIN": 1,
+    "PICK": 13,
+    "PLANT": 21,
+    "CHOP": 125,
+    "HARVEST": 20,
+    "DROP": 35
+   },
+   "wood": [
+    51,
+    45
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547236,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    272.0,
+    425.0
+   ],
+   "margin": -153.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 329,
+    "HARVEST": 6,
+    "DROP": 41,
+    "WAIT": 14,
+    "TRAIN": 1,
+    "CHOP": 155,
+    "PICK": 10,
+    "PLANT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 394,
+    "MSG": 300,
+    "PICK": 29,
+    "PLANT": 61,
+    "HARVEST": 54,
+    "DROP": 74,
+    "TRAIN": 2,
+    "MINE": 5,
+    "CHOP": 123
+   },
+   "wood": [
+    68,
+    105
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547219,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    152.0,
+    140.0
+   ],
+   "margin": 12.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 166,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 117,
+    "HARVEST": 3,
+    "DROP": 30,
+    "TRAIN": 1,
+    "CHOP": 138,
+    "PLANT": 15,
+    "PICK": 14,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "PICK": 15,
+    "MOVE": 274,
+    "PLANT": 17,
+    "TRAIN": 2,
+    "MINE": 1,
+    "HARVEST": 13,
+    "DROP": 35,
+    "CHOP": 100
+   },
+   "wood": [
+    38,
+    35
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901547207,
+   "seat": 1,
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "opponent_rating": 24.23893921419586,
+   "scores": [
+    108.0,
+    112.0
+   ],
+   "margin": -4.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 163,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 155,
+    "CHOP": 131,
+    "DROP": 27,
+    "PICK": 4,
+    "PLANT": 4,
+    "WAIT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 179,
+    "MSG": 163,
+    "HARVEST": 9,
+    "DROP": 23,
+    "TRAIN": 1,
+    "CHOP": 99,
+    "PICK": 4,
+    "PLANT": 10
+   },
+   "wood": [
+    27,
+    28
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547152,
+   "seat": 0,
+   "opponent": "Astrobytes",
+   "opponent_agent": 6482167,
+   "opponent_rating": 24.06816332989819,
+   "scores": [
+    260.0,
+    182.0
+   ],
+   "margin": 78.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 314,
+    "CHOP": 211,
+    "DROP": 42,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 311,
+    "PICK": 48,
+    "PLANT": 49,
+    "MINE": 3,
+    "DROP": 60,
+    "HARVEST": 29,
+    "CHOP": 99
+   },
+   "wood": [
+    65,
+    45
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547125,
+   "seat": 1,
+   "opponent": "skotz",
+   "opponent_agent": 6480520,
+   "opponent_rating": 24.507019218278035,
+   "scores": [
+    128.0,
+    37.0
+   ],
+   "margin": 91.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 279,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 228,
+    "CHOP": 148,
+    "DROP": 20,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 141
+   },
+   "opponent_verbs": {
+    "MOVE": 237,
+    "HARVEST": 18,
+    "DROP": 17,
+    "PLANT": 4,
+    "PICK": 3
+   },
+   "wood": [
+    32,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901547093,
+   "seat": 0,
+   "opponent": "Astrobytes",
+   "opponent_agent": 6482167,
+   "opponent_rating": 24.06816332989819,
+   "scores": [
+    269.0,
+    227.0
+   ],
+   "margin": 42.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 210,
+    "HARVEST": 115,
+    "DROP": 131,
+    "TRAIN": 1,
+    "CHOP": 104,
+    "PICK": 6,
+    "PLANT": 6,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "MOVE": 220,
+    "PICK": 37,
+    "PLANT": 38,
+    "HARVEST": 65,
+    "DROP": 95,
+    "TRAIN": 1,
+    "MINE": 2,
+    "CHOP": 113
+   },
+   "wood": [
+    39,
+    45
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547070,
+   "seat": 0,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    204.0,
+    130.0
+   ],
+   "margin": 74.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 290,
+    "MINE": 1,
+    "DROP": 40,
+    "HARVEST": 11,
+    "TRAIN": 1,
+    "CHOP": 190,
+    "PLANT": 22,
+    "PICK": 12,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 280,
+    "PICK": 15,
+    "PLANT": 40,
+    "HARVEST": 40,
+    "DROP": 45,
+    "TRAIN": 1,
+    "CHOP": 142
+   },
+   "wood": [
+    51,
+    30
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547051,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    194.0,
+    271.0
+   ],
+   "margin": -77.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 352,
+    "MINE": 1,
+    "DROP": 37,
+    "TRAIN": 1,
+    "CHOP": 161,
+    "PICK": 15,
+    "PLANT": 15,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "PICK": 16,
+    "WAIT": 300,
+    "MOVE": 269,
+    "PLANT": 48,
+    "HARVEST": 34,
+    "DROP": 41,
+    "TRAIN": 1,
+    "CHOP": 171
+   },
+   "wood": [
+    48,
+    67
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901547020,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    192.0,
+    206.0
+   ],
+   "margin": -14.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 294,
+    "HARVEST": 2,
+    "DROP": 32,
+    "TRAIN": 1,
+    "CHOP": 216,
+    "PICK": 6,
+    "PLANT": 6,
+    "WAIT": 20
+   },
+   "opponent_verbs": {
+    "PICK": 4,
+    "MOVE": 321,
+    "PLANT": 39,
+    "HARVEST": 38,
+    "DROP": 27,
+    "TRAIN": 1,
+    "CHOP": 133
+   },
+   "wood": [
+    48,
+    50
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546994,
+   "seat": 0,
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "opponent_rating": 23.16717430620934,
+   "scores": [
+    145.0,
+    68.0
+   ],
+   "margin": 77.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 229,
+    "CHOP": 286,
+    "DROP": 40,
+    "HARVEST": 5,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 13
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "MOVE": 131,
+    "PICK": 14,
+    "PLANT": 20,
+    "HARVEST": 71,
+    "DROP": 64
+   },
+   "wood": [
+    35,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546986,
+   "seat": 1,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    92.0,
+    93.0
+   ],
+   "margin": -1.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 141,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 105,
+    "MINE": 4,
+    "DROP": 27,
+    "TRAIN": 1,
+    "CHOP": 72,
+    "PICK": 14,
+    "PLANT": 14,
+    "WAIT": 36
+   },
+   "opponent_verbs": {
+    "MOVE": 158,
+    "TRAIN": 1,
+    "CHOP": 83,
+    "DROP": 22,
+    "PICK": 9,
+    "PLANT": 9
+   },
+   "wood": [
+    23,
+    22
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546970,
+   "seat": 0,
+   "opponent": "DoubtinGiyov",
+   "opponent_agent": 6482016,
+   "opponent_rating": 24.952255621208877,
+   "scores": [
+    112.0,
+    120.0
+   ],
+   "margin": -8.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 186,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 172,
+    "HARVEST": 3,
+    "DROP": 31,
+    "TRAIN": 1,
+    "CHOP": 103,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 17
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 158,
+    "HARVEST": 6,
+    "DROP": 36,
+    "CHOP": 131,
+    "PICK": 20,
+    "PLANT": 20
+   },
+   "wood": [
+    28,
+    30
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546962,
+   "seat": 1,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    120.0,
+    113.0
+   ],
+   "margin": 7.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 176,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 140,
+    "HARVEST": 2,
+    "DROP": 23,
+    "TRAIN": 1,
+    "CHOP": 122,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 25
+   },
+   "opponent_verbs": {
+    "MOVE": 212,
+    "HARVEST": 2,
+    "DROP": 18,
+    "TRAIN": 1,
+    "CHOP": 92,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "wood": [
+    30,
+    26
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546953,
+   "seat": 0,
+   "opponent": "BoatBuilder",
+   "opponent_agent": 6480545,
+   "opponent_rating": 23.91201012618355,
+   "scores": [
+    190.0,
+    510.0
+   ],
+   "margin": -320.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 320,
+    "HARVEST": 4,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 186,
+    "PLANT": 18,
+    "PICK": 16,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "PICK": 6,
+    "WAIT": 300,
+    "MOVE": 453,
+    "PLANT": 69,
+    "HARVEST": 68,
+    "DROP": 61,
+    "TRAIN": 2,
+    "MINE": 6,
+    "CHOP": 142
+   },
+   "wood": [
+    46,
+    125
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546936,
+   "seat": 1,
+   "opponent": "therealbeef",
+   "opponent_agent": 6559862,
+   "opponent_rating": 24.654828295030924,
+   "scores": [
+    124.0,
+    124.0
+   ],
+   "margin": 0.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 150,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 147,
+    "CHOP": 96,
+    "DROP": 23,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "MOVE": 163,
+    "TRAIN": 1,
+    "MSG": 150,
+    "CHOP": 89,
+    "DROP": 22,
+    "PICK": 12,
+    "PLANT": 12
+   },
+   "wood": [
+    31,
+    31
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546920,
+   "seat": 0,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    260.0,
+    195.0
+   ],
+   "margin": 65.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 306,
+    "MINE": 7,
+    "DROP": 43,
+    "TRAIN": 1,
+    "CHOP": 179,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 27
+   },
+   "opponent_verbs": {
+    "MOVE": 368,
+    "MINE": 2,
+    "DROP": 34,
+    "HARVEST": 22,
+    "TRAIN": 1,
+    "PICK": 10,
+    "PLANT": 24,
+    "CHOP": 96
+   },
+   "wood": [
+    65,
+    46
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546900,
+   "seat": 1,
+   "opponent": "skotz",
+   "opponent_agent": 6480520,
+   "opponent_rating": 24.507019218278035,
+   "scores": [
+    178.0,
+    212.0
+   ],
+   "margin": -34.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 361,
+    "MINE": 6,
+    "DROP": 34,
+    "TRAIN": 1,
+    "CHOP": 62,
+    "WAIT": 111,
+    "PICK": 6,
+    "PLANT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 356,
+    "MINE": 1,
+    "DROP": 27,
+    "TRAIN": 1,
+    "PICK": 8,
+    "PLANT": 41,
+    "CHOP": 129,
+    "HARVEST": 34
+   },
+   "wood": [
+    43,
+    52
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546867,
+   "seat": 0,
+   "opponent": "Konstant",
+   "opponent_agent": 6479657,
+   "opponent_rating": 24.02916277737565,
+   "scores": [
+    267.0,
+    208.0
+   ],
+   "margin": 59.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 312,
+    "CHOP": 133,
+    "PICK": 16,
+    "PLANT": 16,
+    "DROP": 69,
+    "WAIT": 25,
+    "HARVEST": 28
+   },
+   "opponent_verbs": {
+    "MOVE": 305,
+    "MSG": 300,
+    "HARVEST": 21,
+    "DROP": 37,
+    "TRAIN": 1,
+    "PLANT": 37,
+    "CHOP": 145,
+    "PICK": 26
+   },
+   "wood": [
+    60,
+    52
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546859,
+   "seat": 0,
+   "opponent": "Konstant",
+   "opponent_agent": 6479657,
+   "opponent_rating": 24.02916277737565,
+   "scores": [
+    209.0,
+    36.0
+   ],
+   "margin": 173.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 299,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 189,
+    "PICK": 26,
+    "PLANT": 26,
+    "WAIT": 20,
+    "HARVEST": 31,
+    "CHOP": 226,
+    "DROP": 79
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 306,
+    "WAIT": 1,
+    "MSG": 299,
+    "PICK": 14,
+    "PLANT": 27,
+    "CHOP": 163,
+    "HARVEST": 14,
+    "DROP": 9
+   },
+   "wood": [
+    48,
+    9
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546845,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    187.0,
+    225.0
+   ],
+   "margin": -38.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 280,
+    "CHOP": 255,
+    "DROP": 33,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 5
+   },
+   "opponent_verbs": {
+    "MOVE": 346,
+    "TRAIN": 9,
+    "PICK": 20,
+    "PLANT": 30,
+    "HARVEST": 62,
+    "CHOP": 264,
+    "DROP": 53,
+    "MINE": 3
+   },
+   "wood": [
+    46,
+    54
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546837,
+   "seat": 1,
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "opponent_rating": 23.16717430620934,
+   "scores": [
+    160.0,
+    76.0
+   ],
+   "margin": 84.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 290,
+    "CHOP": 216,
+    "DROP": 40,
+    "HARVEST": 7,
+    "PLANT": 22,
+    "PICK": 15,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "MOVE": 151,
+    "PICK": 7,
+    "PLANT": 11,
+    "HARVEST": 68,
+    "DROP": 63
+   },
+   "wood": [
+    40,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546825,
+   "seat": 0,
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "opponent_rating": 20.93613454091816,
+   "scores": [
+    156.0,
+    140.0
+   ],
+   "margin": 16.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 214,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 150,
+    "MINE": 3,
+    "DROP": 34,
+    "TRAIN": 1,
+    "CHOP": 164,
+    "PICK": 21,
+    "PLANT": 21,
+    "WAIT": 21
+   },
+   "opponent_verbs": {
+    "PICK": 9,
+    "MOVE": 221,
+    "TRAIN": 1,
+    "PLANT": 9,
+    "CHOP": 144,
+    "DROP": 23,
+    "WAIT": 2
+   },
+   "wood": [
+    39,
+    32
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546813,
+   "seat": 1,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    100.0,
+    96.0
+   ],
+   "margin": 4.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 196,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 92,
+    "MINE": 2,
+    "DROP": 23,
+    "TRAIN": 1,
+    "CHOP": 124,
+    "PICK": 15,
+    "PLANT": 15,
+    "WAIT": 107
+   },
+   "opponent_verbs": {
+    "MOVE": 127,
+    "MSG": 196,
+    "MINE": 3,
+    "DROP": 26,
+    "HARVEST": 11,
+    "TRAIN": 1,
+    "PICK": 14,
+    "PLANT": 14,
+    "CHOP": 106,
+    "WAIT": 52
+   },
+   "wood": [
+    25,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546807,
+   "seat": 1,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    276.0,
+    252.0
+   ],
+   "margin": 24.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 222,
+    "MINE": 4,
+    "DROP": 131,
+    "TRAIN": 1,
+    "PICK": 11,
+    "CHOP": 88,
+    "PLANT": 11,
+    "WAIT": 15,
+    "HARVEST": 108
+   },
+   "opponent_verbs": {
+    "MOVE": 354,
+    "HARVEST": 26,
+    "DROP": 32,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PICK": 7,
+    "PLANT": 29,
+    "CHOP": 113
+   },
+   "wood": [
+    43,
+    63
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546799,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    261.0,
+    190.0
+   ],
+   "margin": 71.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 183,
+    "MINE": 1,
+    "DROP": 52,
+    "TRAIN": 1,
+    "CHOP": 315,
+    "HARVEST": 3,
+    "PICK": 14,
+    "PLANT": 14,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 295,
+    "HARVEST": 41,
+    "DROP": 51,
+    "TRAIN": 4,
+    "PICK": 29,
+    "PLANT": 39,
+    "CHOP": 129,
+    "MINE": 1,
+    "WAIT": 1
+   },
+   "wood": [
+    65,
+    45
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546786,
+   "seat": 0,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    198.0,
+    188.0
+   ],
+   "margin": 10.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 302,
+    "HARVEST": 3,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 223,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 309,
+    "HARVEST": 31,
+    "DROP": 37,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PICK": 13,
+    "CHOP": 163,
+    "PLANT": 38
+   },
+   "wood": [
+    49,
+    47
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546780,
+   "seat": 1,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    276.0,
+    224.0
+   ],
+   "margin": 52.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 37,
+    "PICK": 33,
+    "CHOP": 350,
+    "PLANT": 33,
+    "WAIT": 16,
+    "DROP": 85,
+    "HARVEST": 45
+   },
+   "opponent_verbs": {
+    "MOVE": 383,
+    "TRAIN": 1,
+    "CHOP": 165,
+    "DROP": 34,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "wood": [
+    63,
+    54
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546766,
+   "seat": 1,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    255.0,
+    691.0
+   ],
+   "margin": -436.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 315,
+    "MINE": 2,
+    "DROP": 48,
+    "TRAIN": 1,
+    "CHOP": 174,
+    "HARVEST": 3,
+    "PLANT": 21,
+    "PICK": 20,
+    "WAIT": 11
+   },
+   "opponent_verbs": {
+    "TRAIN": 3,
+    "MOVE": 532,
+    "PICK": 23,
+    "HARVEST": 79,
+    "PLANT": 63,
+    "DROP": 98,
+    "CHOP": 169,
+    "MINE": 8
+   },
+   "wood": [
+    63,
+    172
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901546760,
+   "seat": 0,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    144.0,
+    136.0
+   ],
+   "margin": 8.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 207,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 238,
+    "HARVEST": 2,
+    "DROP": 22,
+    "TRAIN": 1,
+    "CHOP": 95,
+    "WAIT": 49,
+    "PICK": 1,
+    "PLANT": 1
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 247,
+    "HARVEST": 6,
+    "DROP": 22,
+    "PICK": 14,
+    "PLANT": 18,
+    "CHOP": 96,
+    "WAIT": 10
+   },
+   "wood": [
+    34,
+    34
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546753,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    136.0,
+    127.0
+   ],
+   "margin": 9.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 127,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 111,
+    "MINE": 1,
+    "DROP": 19,
+    "HARVEST": 2,
+    "TRAIN": 1,
+    "CHOP": 72,
+    "PLANT": 7,
+    "PICK": 6,
+    "WAIT": 20
+   },
+   "opponent_verbs": {
+    "MOVE": 122,
+    "MSG": 127,
+    "MINE": 2,
+    "DROP": 21,
+    "TRAIN": 1,
+    "PICK": 3,
+    "CHOP": 89,
+    "PLANT": 3,
+    "WAIT": 10
+   },
+   "wood": [
+    34,
+    30
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546748,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    256.0,
+    50.0
+   ],
+   "margin": 206.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 128,
+    "CHOP": 163,
+    "DROP": 150,
+    "PICK": 6,
+    "PLANT": 6,
+    "WAIT": 13,
+    "HARVEST": 133
+   },
+   "opponent_verbs": {
+    "MOVE": 235,
+    "MSG": 300,
+    "PICK": 2,
+    "PLANT": 2,
+    "HARVEST": 28,
+    "DROP": 30,
+    "MINE": 3
+   },
+   "wood": [
+    28,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546730,
+   "seat": 0,
+   "opponent": "Stounate",
+   "opponent_agent": 6697190,
+   "opponent_rating": 22.047105119867084,
+   "scores": [
+    236.0,
+    262.0
+   ],
+   "margin": -26.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 208,
+    "HARVEST": 112,
+    "DROP": 129,
+    "TRAIN": 1,
+    "CHOP": 99,
+    "PLANT": 7,
+    "PICK": 6,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "PICK": 6,
+    "MSG": 300,
+    "MOVE": 327,
+    "PLANT": 29,
+    "HARVEST": 27,
+    "DROP": 41,
+    "MINE": 2,
+    "TRAIN": 1,
+    "CHOP": 114
+   },
+   "wood": [
+    32,
+    65
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546710,
+   "seat": 0,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    336.0,
+    226.0
+   ],
+   "margin": 110.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 296,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 284,
+    "HARVEST": 7,
+    "DROP": 45,
+    "TRAIN": 1,
+    "CHOP": 195,
+    "PLANT": 20,
+    "PICK": 14,
+    "WAIT": 19
+   },
+   "opponent_verbs": {
+    "PICK": 20,
+    "MOVE": 354,
+    "PLANT": 29,
+    "HARVEST": 23,
+    "DROP": 41,
+    "TRAIN": 1,
+    "CHOP": 92,
+    "MINE": 1
+   },
+   "wood": [
+    84,
+    55
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546679,
+   "seat": 1,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    194.0,
+    194.0
+   ],
+   "margin": 0.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 352,
+    "CHOP": 173,
+    "DROP": 34,
+    "PICK": 12,
+    "PLANT": 14,
+    "HARVEST": 2,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 261,
+    "MSG": 300,
+    "PICK": 34,
+    "PLANT": 41,
+    "HARVEST": 33,
+    "DROP": 49,
+    "TRAIN": 1,
+    "MINE": 1,
+    "CHOP": 70
+   },
+   "wood": [
+    48,
+    45
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546660,
+   "seat": 1,
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "opponent_rating": 20.93613454091816,
+   "scores": [
+    132.0,
+    105.0
+   ],
+   "margin": 27.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 167,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 127,
+    "CHOP": 137,
+    "DROP": 24,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 21
+   },
+   "opponent_verbs": {
+    "PICK": 3,
+    "MOVE": 195,
+    "TRAIN": 1,
+    "PLANT": 3,
+    "CHOP": 92,
+    "DROP": 16,
+    "WAIT": 7
+   },
+   "wood": [
+    33,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546636,
+   "seat": 0,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    274.0,
+    296.0
+   ],
+   "margin": -22.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 292,
+    "MINE": 3,
+    "DROP": 49,
+    "TRAIN": 1,
+    "CHOP": 192,
+    "HARVEST": 1,
+    "PLANT": 19,
+    "PICK": 18,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "TRAIN": 2,
+    "MOVE": 416,
+    "PICK": 20,
+    "MINE": 8,
+    "PLANT": 44,
+    "DROP": 72,
+    "HARVEST": 93,
+    "CHOP": 49
+   },
+   "wood": [
+    68,
+    59
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546625,
+   "seat": 0,
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "opponent_rating": 20.93613454091816,
+   "scores": [
+    224.0,
+    171.0
+   ],
+   "margin": 53.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 241,
+    "MINE": 1,
+    "DROP": 38,
+    "HARVEST": 2,
+    "TRAIN": 1,
+    "CHOP": 167,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 115
+   },
+   "opponent_verbs": {
+    "MOVE": 267,
+    "HARVEST": 39,
+    "DROP": 63,
+    "TRAIN": 1,
+    "CHOP": 146,
+    "PICK": 18,
+    "PLANT": 18,
+    "WAIT": 6
+   },
+   "wood": [
+    56,
+    35
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546615,
+   "seat": 0,
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "opponent_rating": 23.16717430620934,
+   "scores": [
+    228.0,
+    272.0
+   ],
+   "margin": -44.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 296,
+    "CHOP": 240,
+    "DROP": 36,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "MOVE": 459,
+    "PICK": 21,
+    "PLANT": 45,
+    "HARVEST": 50,
+    "DROP": 62,
+    "TRAIN": 2,
+    "MINE": 4,
+    "CHOP": 60
+   },
+   "wood": [
+    57,
+    65
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546609,
+   "seat": 1,
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "opponent_rating": 23.16717430620934,
+   "scores": [
+    160.0,
+    8.0
+   ],
+   "margin": 152.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 281,
+    "MINE": 3,
+    "DROP": 43,
+    "TRAIN": 1,
+    "CHOP": 231,
+    "PICK": 7,
+    "PLANT": 12,
+    "HARVEST": 5,
+    "WAIT": 4
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "MOVE": 223,
+    "PICK": 18,
+    "PLANT": 27,
+    "HARVEST": 21,
+    "DROP": 11
+   },
+   "wood": [
+    40,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546603,
+   "seat": 1,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    268.0,
+    115.0
+   ],
+   "margin": 153.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 334,
+    "CHOP": 199,
+    "DROP": 33,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 13
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 333,
+    "HARVEST": 140,
+    "PLANT": 26,
+    "DROP": 82,
+    "PICK": 13,
+    "MINE": 5
+   },
+   "wood": [
+    67,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546590,
+   "seat": 0,
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "opponent_rating": 20.93613454091816,
+   "scores": [
+    104.0,
+    178.0
+   ],
+   "margin": -74.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 260,
+    "CHOP": 207,
+    "DROP": 26,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 85,
+    "HARVEST": 1
+   },
+   "opponent_verbs": {
+    "MOVE": 232,
+    "HARVEST": 94,
+    "DROP": 97,
+    "TRAIN": 1,
+    "CHOP": 108,
+    "PLANT": 10,
+    "PICK": 9
+   },
+   "wood": [
+    26,
+    25
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546584,
+   "seat": 0,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    136.0,
+    140.0
+   ],
+   "margin": -4.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 148,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 125,
+    "HARVEST": 1,
+    "DROP": 20,
+    "TRAIN": 1,
+    "CHOP": 109,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 17
+   },
+   "opponent_verbs": {
+    "PICK": 4,
+    "MOVE": 165,
+    "PLANT": 12,
+    "DROP": 19,
+    "HARVEST": 10,
+    "TRAIN": 1,
+    "CHOP": 62
+   },
+   "wood": [
+    34,
+    34
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546579,
+   "seat": 0,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    179.0,
+    176.0
+   ],
+   "margin": 3.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 172,
+    "PICK": 19,
+    "PLANT": 19,
+    "WAIT": 25,
+    "CHOP": 274,
+    "HARVEST": 32,
+    "DROP": 58
+   },
+   "opponent_verbs": {
+    "MOVE": 337,
+    "TRAIN": 1,
+    "CHOP": 213,
+    "DROP": 29,
+    "PICK": 2,
+    "PLANT": 2
+   },
+   "wood": [
+    40,
+    43
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546570,
+   "seat": 1,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    310.0,
+    243.0
+   ],
+   "margin": 67.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 323,
+    "HARVEST": 7,
+    "DROP": 53,
+    "TRAIN": 1,
+    "CHOP": 185,
+    "PICK": 8,
+    "PLANT": 10,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 297,
+    "CHOP": 101,
+    "DROP": 71,
+    "HARVEST": 57,
+    "PICK": 25,
+    "PLANT": 43
+   },
+   "wood": [
+    77,
+    55
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546560,
+   "seat": 1,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    298.0,
+    298.0
+   ],
+   "margin": 0.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 185,
+    "CHOP": 76,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 15,
+    "DROP": 164,
+    "HARVEST": 143
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 236,
+    "CHOP": 97,
+    "DROP": 104,
+    "PICK": 31,
+    "PLANT": 43,
+    "HARVEST": 82
+   },
+   "wood": [
+    37,
+    61
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546547,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    250.0,
+    20.0
+   ],
+   "margin": 230.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 128,
+    "WAIT": 10,
+    "PICK": 7,
+    "PLANT": 7,
+    "CHOP": 144,
+    "HARVEST": 144,
+    "DROP": 159
+   },
+   "opponent_verbs": {
+    "MOVE": 186,
+    "MSG": 300,
+    "MINE": 26,
+    "DROP": 27,
+    "HARVEST": 2,
+    "WAIT": 59
+   },
+   "wood": [
+    26,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546529,
+   "seat": 1,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    216.0,
+    232.0
+   ],
+   "margin": -16.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 299,
+    "MINE": 1,
+    "DROP": 43,
+    "HARVEST": 7,
+    "TRAIN": 1,
+    "CHOP": 197,
+    "PICK": 15,
+    "PLANT": 18,
+    "WAIT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 284,
+    "MINE": 1,
+    "DROP": 41,
+    "TRAIN": 1,
+    "WAIT": 9,
+    "PICK": 21,
+    "PLANT": 44,
+    "CHOP": 162,
+    "HARVEST": 28
+   },
+   "wood": [
+    54,
+    58
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546519,
+   "seat": 0,
+   "opponent": "_H3R0_",
+   "opponent_agent": 6491567,
+   "opponent_rating": 20.30278535399704,
+   "scores": [
+    189.0,
+    403.0
+   ],
+   "margin": -214.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 332,
+    "CHOP": 205,
+    "DROP": 31,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 13
+   },
+   "opponent_verbs": {
+    "PICK": 9,
+    "MOVE": 488,
+    "TRAIN": 2,
+    "PLANT": 42,
+    "MINE": 10,
+    "DROP": 52,
+    "HARVEST": 59,
+    "WAIT": 58,
+    "CHOP": 72
+   },
+   "wood": [
+    46,
+    100
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546495,
+   "seat": 1,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    315.0,
+    173.0
+   ],
+   "margin": 142.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 170,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 8,
+    "CHOP": 89,
+    "HARVEST": 144,
+    "DROP": 168
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 309,
+    "PICK": 8,
+    "PLANT": 26,
+    "MINE": 8,
+    "DROP": 116,
+    "HARVEST": 132
+   },
+   "wood": [
+    41,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546486,
+   "seat": 0,
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "opponent_rating": 20.06254144971485,
+   "scores": [
+    136.0,
+    115.0
+   ],
+   "margin": 21.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 387,
+    "MINE": 1,
+    "DROP": 35,
+    "TRAIN": 1,
+    "CHOP": 145,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 362,
+    "PICK": 18,
+    "PLANT": 37,
+    "HARVEST": 49,
+    "CHOP": 69,
+    "DROP": 49,
+    "TRAIN": 3,
+    "MSG": 7,
+    "WAIT": 1
+   },
+   "wood": [
+    34,
+    27
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546466,
+   "seat": 1,
+   "opponent": "zasmu",
+   "opponent_agent": 6481270,
+   "opponent_rating": 20.013891521045196,
+   "scores": [
+    184.0,
+    180.0
+   ],
+   "margin": 4.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 235,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 223,
+    "MINE": 2,
+    "DROP": 35,
+    "HARVEST": 1,
+    "TRAIN": 1,
+    "CHOP": 144,
+    "WAIT": 27,
+    "PICK": 12,
+    "PLANT": 12
+   },
+   "opponent_verbs": {
+    "PICK": 22,
+    "MOVE": 494,
+    "PLANT": 16,
+    "HARVEST": 39,
+    "DROP": 67,
+    "TRAIN": 3,
+    "WAIT": 2,
+    "MINE": 9,
+    "CHOP": 84
+   },
+   "wood": [
+    46,
+    45
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901546445,
+   "seat": 1,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    190.0,
+    212.0
+   ],
+   "margin": -22.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 349,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 11,
+    "CHOP": 81,
+    "DROP": 83,
+    "HARVEST": 61
+   },
+   "opponent_verbs": {
+    "MOVE": 330,
+    "HARVEST": 25,
+    "DROP": 38,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PICK": 13,
+    "PLANT": 33,
+    "CHOP": 122
+   },
+   "wood": [
+    31,
+    53
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546427,
+   "seat": 0,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    342.0,
+    510.0
+   ],
+   "margin": -168.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 187,
+    "HARVEST": 141,
+    "DROP": 160,
+    "TRAIN": 1,
+    "CHOP": 73,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "PICK": 13,
+    "MOVE": 437,
+    "PLANT": 56,
+    "HARVEST": 74,
+    "DROP": 74,
+    "TRAIN": 2,
+    "MINE": 1,
+    "CHOP": 136
+   },
+   "wood": [
+    50,
+    126
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546420,
+   "seat": 1,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    299.0,
+    375.0
+   ],
+   "margin": -76.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 231,
+    "WAIT": 9,
+    "HARVEST": 3,
+    "DROP": 50,
+    "TRAIN": 1,
+    "CHOP": 268,
+    "PICK": 14,
+    "PLANT": 14
+   },
+   "opponent_verbs": {
+    "TRAIN": 3,
+    "MOVE": 476,
+    "PICK": 29,
+    "MINE": 8,
+    "DROP": 101,
+    "PLANT": 50,
+    "HARVEST": 98,
+    "CHOP": 122
+   },
+   "wood": [
+    74,
+    93
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901546391,
+   "seat": 0,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    88.0,
+    88.0
+   ],
+   "margin": 0.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 212,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 202,
+    "MINE": 3,
+    "DROP": 26,
+    "TRAIN": 1,
+    "CHOP": 107,
+    "HARVEST": 2,
+    "PICK": 10,
+    "PLANT": 11,
+    "WAIT": 49
+   },
+   "opponent_verbs": {
+    "MOVE": 254,
+    "TRAIN": 1,
+    "CHOP": 111,
+    "DROP": 21,
+    "PICK": 5,
+    "PLANT": 5
+   },
+   "wood": [
+    22,
+    21
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546381,
+   "seat": 1,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    157.0,
+    101.0
+   ],
+   "margin": 56.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 288,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 238,
+    "HARVEST": 1,
+    "DROP": 18,
+    "TRAIN": 1,
+    "CHOP": 172,
+    "WAIT": 121,
+    "PICK": 6,
+    "PLANT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 333,
+    "MSG": 288,
+    "MINE": 1,
+    "DROP": 19,
+    "HARVEST": 3,
+    "TRAIN": 1,
+    "PICK": 2,
+    "PLANT": 2,
+    "CHOP": 94,
+    "WAIT": 20
+   },
+   "wood": [
+    39,
+    23
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546355,
+   "seat": 0,
+   "opponent": "Escdemon",
+   "opponent_agent": 6483545,
+   "opponent_rating": 22.561724955092675,
+   "scores": [
+    144.0,
+    148.0
+   ],
+   "margin": -4.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 188,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 127,
+    "HARVEST": 1,
+    "DROP": 29,
+    "TRAIN": 1,
+    "CHOP": 150,
+    "PICK": 19,
+    "PLANT": 19,
+    "WAIT": 9
+   },
+   "opponent_verbs": {
+    "MOVE": 207,
+    "CHOP": 100,
+    "HARVEST": 7,
+    "DROP": 25,
+    "TRAIN": 1,
+    "PICK": 7,
+    "PLANT": 7
+   },
+   "wood": [
+    36,
+    34
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546339,
+   "seat": 1,
+   "opponent": "Dridriun",
+   "opponent_agent": 6480943,
+   "opponent_rating": 20.93613454091816,
+   "scores": [
+    168.0,
+    170.0
+   ],
+   "margin": -2.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 166,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 98,
+    "MINE": 4,
+    "DROP": 38,
+    "TRAIN": 1,
+    "CHOP": 128,
+    "PICK": 22,
+    "PLANT": 22,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 137,
+    "HARVEST": 4,
+    "DROP": 27,
+    "TRAIN": 1,
+    "PICK": 8,
+    "PLANT": 8,
+    "CHOP": 133,
+    "WAIT": 1
+   },
+   "wood": [
+    42,
+    40
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546303,
+   "seat": 1,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    264.0,
+    378.0
+   ],
+   "margin": -114.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 285,
+    "MINE": 2,
+    "DROP": 51,
+    "TRAIN": 1,
+    "CHOP": 209,
+    "PICK": 16,
+    "PLANT": 16,
+    "HARVEST": 5,
+    "WAIT": 2
+   },
+   "opponent_verbs": {
+    "TRAIN": 3,
+    "MOVE": 518,
+    "HARVEST": 95,
+    "PLANT": 56,
+    "MINE": 22,
+    "DROP": 80,
+    "PICK": 23,
+    "CHOP": 76
+   },
+   "wood": [
+    65,
+    93
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901546294,
+   "seat": 0,
+   "opponent": "m4l0s4n",
+   "opponent_agent": 6480544,
+   "opponent_rating": 23.47727987456873,
+   "scores": [
+    192.0,
+    169.0
+   ],
+   "margin": 23.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 326,
+    "HARVEST": 1,
+    "DROP": 28,
+    "TRAIN": 1,
+    "CHOP": 146,
+    "WAIT": 71,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "opponent_verbs": {
+    "PICK": 9,
+    "MOVE": 535,
+    "PLANT": 16,
+    "HARVEST": 39,
+    "DROP": 35,
+    "TRAIN": 2,
+    "MINE": 1,
+    "CHOP": 132
+   },
+   "wood": [
+    45,
+    41
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546279,
+   "seat": 1,
+   "opponent": "icecuber",
+   "opponent_agent": 6479842,
+   "opponent_rating": 23.16717430620934,
+   "scores": [
+    256.0,
+    10.0
+   ],
+   "margin": 246.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 270,
+    "CHOP": 263,
+    "DROP": 39,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 11
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "MOVE": 238,
+    "PICK": 19,
+    "PLANT": 26,
+    "HARVEST": 12,
+    "DROP": 5
+   },
+   "wood": [
+    64,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901546246,
+   "seat": 1,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    160.0,
+    176.0
+   ],
+   "margin": -16.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 238,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 282,
+    "CHOP": 127,
+    "DROP": 29,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 261,
+    "PICK": 11,
+    "PLANT": 29,
+    "CHOP": 88,
+    "DROP": 29,
+    "HARVEST": 18,
+    "WAIT": 39
+   },
+   "wood": [
+    40,
+    44
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546241,
+   "seat": 0,
+   "opponent": "Pduhard-",
+   "opponent_agent": 6488390,
+   "opponent_rating": 20.0844034799858,
+   "scores": [
+    236.0,
+    119.0
+   ],
+   "margin": 117.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 268,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 280,
+    "CHOP": 173,
+    "DROP": 43,
+    "PICK": 17,
+    "PLANT": 17,
+    "WAIT": 5
+   },
+   "opponent_verbs": {
+    "MOVE": 245,
+    "TRAIN": 1,
+    "PICK": 6,
+    "PLANT": 18,
+    "CHOP": 84,
+    "HARVEST": 12,
+    "DROP": 15,
+    "WAIT": 155
+   },
+   "wood": [
+    59,
+    27
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546232,
+   "seat": 1,
+   "opponent": "celeria",
+   "opponent_agent": 6512040,
+   "opponent_rating": 20.88515241812005,
+   "scores": [
+    172.0,
+    192.0
+   ],
+   "margin": -20.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 177,
+    "MINE": 2,
+    "DROP": 32,
+    "HARVEST": 1,
+    "TRAIN": 1,
+    "CHOP": 117,
+    "PICK": 16,
+    "PLANT": 16,
+    "WAIT": 219
+   },
+   "opponent_verbs": {
+    "TRAIN": 2,
+    "MOVE": 209,
+    "PICK": 38,
+    "PLANT": 38,
+    "HARVEST": 39,
+    "DROP": 58,
+    "CHOP": 195
+   },
+   "wood": [
+    43,
+    48
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546208,
+   "seat": 0,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    152.0,
+    289.0
+   ],
+   "margin": -137.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 274,
+    "WAIT": 16,
+    "HARVEST": 5,
+    "DROP": 42,
+    "TRAIN": 1,
+    "CHOP": 218,
+    "PLANT": 18,
+    "PICK": 17
+   },
+   "opponent_verbs": {
+    "PICK": 11,
+    "MOVE": 267,
+    "PLANT": 47,
+    "DROP": 45,
+    "HARVEST": 41,
+    "MINE": 1,
+    "TRAIN": 1,
+    "CHOP": 85
+   },
+   "wood": [
+    38,
+    70
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546201,
+   "seat": 1,
+   "opponent": "celeria",
+   "opponent_agent": 6512040,
+   "opponent_rating": 20.88515241812005,
+   "scores": [
+    120.0,
+    66.0
+   ],
+   "margin": 54.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 285,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 291,
+    "CHOP": 186,
+    "DROP": 30,
+    "PICK": 16,
+    "PLANT": 16,
+    "WAIT": 30
+   },
+   "opponent_verbs": {
+    "MOVE": 259,
+    "PICK": 2,
+    "PLANT": 2,
+    "HARVEST": 57,
+    "DROP": 34,
+    "TRAIN": 1,
+    "MINE": 4,
+    "WAIT": 51
+   },
+   "wood": [
+    30,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546180,
+   "seat": 1,
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "opponent_rating": 20.06254144971485,
+   "scores": [
+    301.0,
+    253.0
+   ],
+   "margin": 48.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 209,
+    "MINE": 1,
+    "DROP": 141,
+    "TRAIN": 1,
+    "CHOP": 100,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 9,
+    "HARVEST": 112
+   },
+   "opponent_verbs": {
+    "TRAIN": 2,
+    "MOVE": 465,
+    "PICK": 18,
+    "MINE": 8,
+    "PLANT": 53,
+    "DROP": 65,
+    "CHOP": 92,
+    "HARVEST": 58,
+    "MSG": 2
+   },
+   "wood": [
+    45,
+    60
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901546171,
+   "seat": 1,
+   "opponent": "Stounate",
+   "opponent_agent": 6697190,
+   "opponent_rating": 22.047105119867084,
+   "scores": [
+    156.0,
+    93.0
+   ],
+   "margin": 63.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 125,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 98,
+    "CHOP": 93,
+    "DROP": 27,
+    "HARVEST": 1,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "MOVE": 154,
+    "MSG": 125,
+    "TRAIN": 1,
+    "PICK": 12,
+    "PLANT": 7,
+    "CHOP": 47,
+    "DROP": 23,
+    "HARVEST": 5
+   },
+   "wood": [
+    39,
+    22
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546150,
+   "seat": 0,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    213.0,
+    273.0
+   ],
+   "margin": -60.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 334,
+    "MINE": 1,
+    "DROP": 39,
+    "TRAIN": 1,
+    "CHOP": 166,
+    "PICK": 17,
+    "PLANT": 17,
+    "WAIT": 20
+   },
+   "opponent_verbs": {
+    "MOVE": 280,
+    "MSG": 300,
+    "PICK": 37,
+    "PLANT": 57,
+    "MINE": 7,
+    "DROP": 61,
+    "HARVEST": 44,
+    "TRAIN": 1,
+    "CHOP": 86
+   },
+   "wood": [
+    52,
+    63
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546140,
+   "seat": 0,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    181.0,
+    400.0
+   ],
+   "margin": -219.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 292,
+    "WAIT": 21,
+    "HARVEST": 7,
+    "DROP": 40,
+    "TRAIN": 1,
+    "CHOP": 184,
+    "PICK": 15,
+    "PLANT": 15
+   },
+   "opponent_verbs": {
+    "MOVE": 415,
+    "PICK": 23,
+    "PLANT": 46,
+    "HARVEST": 103,
+    "DROP": 107,
+    "TRAIN": 3,
+    "CHOP": 98,
+    "MINE": 6
+   },
+   "wood": [
+    45,
+    99
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901546126,
+   "seat": 0,
+   "opponent": "ATsibin",
+   "opponent_agent": 6596308,
+   "opponent_rating": 21.11649070121023,
+   "scores": [
+    156.0,
+    128.0
+   ],
+   "margin": 28.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 209,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 170,
+    "HARVEST": 1,
+    "DROP": 28,
+    "TRAIN": 1,
+    "CHOP": 165,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 26
+   },
+   "opponent_verbs": {
+    "PICK": 4,
+    "MOVE": 253,
+    "PLANT": 9,
+    "HARVEST": 8,
+    "DROP": 23,
+    "TRAIN": 1,
+    "CHOP": 75,
+    "WAIT": 4
+   },
+   "wood": [
+    39,
+    30
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546119,
+   "seat": 1,
+   "opponent": "Stounate",
+   "opponent_agent": 6697190,
+   "opponent_rating": 22.047105119867084,
+   "scores": [
+    228.0,
+    166.0
+   ],
+   "margin": 62.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 255,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 257,
+    "HARVEST": 2,
+    "DROP": 40,
+    "TRAIN": 1,
+    "CHOP": 158,
+    "PLANT": 16,
+    "PICK": 15,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "PICK": 11,
+    "MSG": 255,
+    "MOVE": 293,
+    "PLANT": 28,
+    "HARVEST": 20,
+    "DROP": 25,
+    "TRAIN": 1,
+    "CHOP": 113
+   },
+   "wood": [
+    57,
+    40
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546086,
+   "seat": 1,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    136.0,
+    134.0
+   ],
+   "margin": 2.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 158,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 100,
+    "MINE": 2,
+    "DROP": 31,
+    "HARVEST": 1,
+    "TRAIN": 1,
+    "CHOP": 104,
+    "PICK": 20,
+    "PLANT": 20,
+    "WAIT": 22
+   },
+   "opponent_verbs": {
+    "MOVE": 133,
+    "MSG": 158,
+    "HARVEST": 1,
+    "DROP": 25,
+    "TRAIN": 1,
+    "PICK": 14,
+    "PLANT": 14,
+    "CHOP": 111,
+    "WAIT": 10
+   },
+   "wood": [
+    34,
+    32
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546079,
+   "seat": 1,
+   "opponent": "Pduhard-",
+   "opponent_agent": 6488390,
+   "opponent_rating": 20.0844034799858,
+   "scores": [
+    302.0,
+    283.0
+   ],
+   "margin": 19.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 165,
+    "WAIT": 31,
+    "HARVEST": 87,
+    "DROP": 118,
+    "TRAIN": 1,
+    "CHOP": 147,
+    "PICK": 18,
+    "PLANT": 18
+   },
+   "opponent_verbs": {
+    "MOVE": 296,
+    "TRAIN": 1,
+    "PICK": 7,
+    "PLANT": 35,
+    "CHOP": 121,
+    "DROP": 35,
+    "HARVEST": 28,
+    "WAIT": 77
+   },
+   "wood": [
+    55,
+    68
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546067,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    209.0,
+    149.0
+   ],
+   "margin": 60.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 298,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 48,
+    "PICK": 38,
+    "PLANT": 38,
+    "CHOP": 310,
+    "WAIT": 32,
+    "DROP": 86,
+    "HARVEST": 43
+   },
+   "opponent_verbs": {
+    "MOVE": 407,
+    "MSG": 298,
+    "TRAIN": 1,
+    "PICK": 7,
+    "PLANT": 6,
+    "CHOP": 117,
+    "DROP": 27,
+    "WAIT": 30
+   },
+   "wood": [
+    49,
+    37
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546036,
+   "seat": 1,
+   "opponent": "Pduhard-",
+   "opponent_agent": 6488390,
+   "opponent_rating": 20.0844034799858,
+   "scores": [
+    236.0,
+    275.0
+   ],
+   "margin": -39.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 304,
+    "MINE": 3,
+    "DROP": 47,
+    "TRAIN": 1,
+    "CHOP": 176,
+    "PICK": 21,
+    "PLANT": 21,
+    "HARVEST": 2,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 366,
+    "TRAIN": 1,
+    "PICK": 9,
+    "CHOP": 112,
+    "PLANT": 43,
+    "DROP": 34,
+    "HARVEST": 35
+   },
+   "wood": [
+    59,
+    66
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901546018,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    209.0,
+    221.0
+   ],
+   "margin": -12.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 283,
+    "CHOP": 263,
+    "DROP": 33,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 2
+   },
+   "opponent_verbs": {
+    "MOVE": 348,
+    "TRAIN": 5,
+    "PICK": 12,
+    "PLANT": 36,
+    "HARVEST": 62,
+    "DROP": 54,
+    "CHOP": 267,
+    "MINE": 2
+   },
+   "wood": [
+    51,
+    50
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545960,
+   "seat": 0,
+   "opponent": "zasmu",
+   "opponent_agent": 6481270,
+   "opponent_rating": 20.013891521045196,
+   "scores": [
+    156.0,
+    88.0
+   ],
+   "margin": 68.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 293,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 268,
+    "MINE": 1,
+    "DROP": 27,
+    "TRAIN": 1,
+    "CHOP": 156,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 110
+   },
+   "opponent_verbs": {
+    "PICK": 38,
+    "TRAIN": 2,
+    "MOVE": 296,
+    "PLANT": 24,
+    "HARVEST": 30,
+    "WAIT": 272,
+    "DROP": 63,
+    "MINE": 5,
+    "CHOP": 75
+   },
+   "wood": [
+    39,
+    22
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545927,
+   "seat": 1,
+   "opponent": "DaNinja",
+   "opponent_agent": 6481252,
+   "opponent_rating": 22.14190472669053,
+   "scores": [
+    189.0,
+    209.0
+   ],
+   "margin": -20.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 322,
+    "MINE": 1,
+    "DROP": 33,
+    "HARVEST": 2,
+    "TRAIN": 1,
+    "CHOP": 196,
+    "PLANT": 10,
+    "PICK": 9,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "MOVE": 286,
+    "HARVEST": 40,
+    "DROP": 56,
+    "MINE": 1,
+    "TRAIN": 1,
+    "PICK": 19,
+    "PLANT": 28,
+    "CHOP": 160
+   },
+   "wood": [
+    46,
+    46
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545887,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    212.0,
+    156.0
+   ],
+   "margin": 56.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 218,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 85,
+    "WAIT": 35,
+    "HARVEST": 18,
+    "DROP": 52,
+    "TRAIN": 1,
+    "CHOP": 182,
+    "PICK": 24,
+    "PLANT": 24
+   },
+   "opponent_verbs": {
+    "MOVE": 281,
+    "MSG": 218,
+    "TRAIN": 1,
+    "PICK": 4,
+    "PLANT": 3,
+    "CHOP": 106,
+    "DROP": 26,
+    "WAIT": 14
+   },
+   "wood": [
+    53,
+    37
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545870,
+   "seat": 0,
+   "opponent": "daaskare",
+   "opponent_agent": 6491404,
+   "opponent_rating": 22.390525000422574,
+   "scores": [
+    158.0,
+    278.0
+   ],
+   "margin": -120.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 347,
+    "CHOP": 182,
+    "DROP": 39,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 13
+   },
+   "opponent_verbs": {
+    "MOVE": 382,
+    "MSG": 300,
+    "PICK": 27,
+    "PLANT": 44,
+    "HARVEST": 44,
+    "DROP": 54,
+    "TRAIN": 2,
+    "MINE": 5,
+    "CHOP": 59
+   },
+   "wood": [
+    39,
+    69
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545844,
+   "seat": 0,
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "opponent_rating": 20.06254144971485,
+   "scores": [
+    216.0,
+    223.0
+   ],
+   "margin": -7.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 339,
+    "CHOP": 180,
+    "DROP": 36,
+    "PICK": 10,
+    "PLANT": 12,
+    "HARVEST": 2,
+    "WAIT": 20
+   },
+   "opponent_verbs": {
+    "TRAIN": 2,
+    "MOVE": 441,
+    "HARVEST": 53,
+    "DROP": 56,
+    "PICK": 22,
+    "PLANT": 43,
+    "CHOP": 108,
+    "MINE": 6,
+    "MSG": 3
+   },
+   "wood": [
+    54,
+    54
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545833,
+   "seat": 0,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    96.0,
+    97.0
+   ],
+   "margin": -1.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 202,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 174,
+    "HARVEST": 2,
+    "DROP": 19,
+    "TRAIN": 1,
+    "CHOP": 96,
+    "WAIT": 83,
+    "PICK": 8,
+    "PLANT": 8
+   },
+   "opponent_verbs": {
+    "MOVE": 242,
+    "MSG": 202,
+    "HARVEST": 4,
+    "DROP": 21,
+    "TRAIN": 1,
+    "PICK": 6,
+    "PLANT": 6,
+    "CHOP": 95
+   },
+   "wood": [
+    24,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545792,
+   "seat": 0,
+   "opponent": "xSkyline",
+   "opponent_agent": 6479542,
+   "opponent_rating": 22.15346816486252,
+   "scores": [
+    176.0,
+    219.0
+   ],
+   "margin": -43.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 267,
+    "WAIT": 20,
+    "HARVEST": 3,
+    "DROP": 33,
+    "TRAIN": 1,
+    "CHOP": 231,
+    "PICK": 12,
+    "PLANT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 322,
+    "PICK": 14,
+    "PLANT": 21,
+    "HARVEST": 123,
+    "DROP": 52,
+    "TRAIN": 6,
+    "CHOP": 202,
+    "MINE": 3
+   },
+   "wood": [
+    44,
+    52
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545775,
+   "seat": 1,
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "opponent_rating": 20.06254144971485,
+   "scores": [
+    242.0,
+    100.0
+   ],
+   "margin": 142.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 159,
+    "HARVEST": 142,
+    "DROP": 165,
+    "TRAIN": 1,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 11,
+    "CHOP": 97
+   },
+   "opponent_verbs": {
+    "MOVE": 376,
+    "PICK": 19,
+    "PLANT": 34,
+    "HARVEST": 48,
+    "TRAIN": 1,
+    "DROP": 50,
+    "CHOP": 52,
+    "MSG": 3,
+    "WAIT": 1
+   },
+   "wood": [
+    24,
+    17
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545750,
+   "seat": 1,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    204.0,
+    128.0
+   ],
+   "margin": 76.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 306,
+    "CHOP": 231,
+    "DROP": 36,
+    "HARVEST": 1,
+    "PLANT": 11,
+    "PICK": 10,
+    "WAIT": 4
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 429,
+    "MINE": 4,
+    "DROP": 27,
+    "HARVEST": 15,
+    "CHOP": 89,
+    "PLANT": 25,
+    "PICK": 10
+   },
+   "wood": [
+    50,
+    32
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545728,
+   "seat": 0,
+   "opponent": "0x6E0FF",
+   "opponent_agent": 6480951,
+   "opponent_rating": 19.909489985350888,
+   "scores": [
+    206.0,
+    172.0
+   ],
+   "margin": 34.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 223,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 229,
+    "MINE": 3,
+    "DROP": 34,
+    "TRAIN": 1,
+    "CHOP": 151,
+    "HARVEST": 1,
+    "PLANT": 7,
+    "PICK": 7
+   },
+   "opponent_verbs": {
+    "MSG": 223,
+    "TRAIN": 1,
+    "MOVE": 229,
+    "PICK": 13,
+    "PLANT": 25,
+    "CHOP": 140,
+    "DROP": 26,
+    "HARVEST": 12
+   },
+   "wood": [
+    50,
+    43
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545714,
+   "seat": 1,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    172.0,
+    477.0
+   ],
+   "margin": -305.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 362,
+    "CHOP": 176,
+    "DROP": 31,
+    "HARVEST": 1,
+    "PLANT": 12,
+    "PICK": 11,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 441,
+    "PICK": 15,
+    "PLANT": 49,
+    "HARVEST": 97,
+    "DROP": 102,
+    "TRAIN": 3,
+    "MINE": 7,
+    "CHOP": 130
+   },
+   "wood": [
+    42,
+    119
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901545659,
+   "seat": 0,
+   "opponent": "mikmak",
+   "opponent_agent": 6481225,
+   "opponent_rating": 22.441011856782687,
+   "scores": [
+    241.0,
+    361.0
+   ],
+   "margin": -120.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 297,
+    "HARVEST": 6,
+    "DROP": 45,
+    "WAIT": 16,
+    "TRAIN": 1,
+    "CHOP": 180,
+    "PICK": 17,
+    "PLANT": 19
+   },
+   "opponent_verbs": {
+    "MOVE": 373,
+    "HARVEST": 92,
+    "DROP": 67,
+    "PLANT": 41,
+    "PICK": 20,
+    "TRAIN": 2,
+    "MINE": 3,
+    "CHOP": 50
+   },
+   "wood": [
+    60,
+    81
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901545648,
+   "seat": 1,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    178.0,
+    259.0
+   ],
+   "margin": -81.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 305,
+    "HARVEST": 6,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 201,
+    "PICK": 16,
+    "PLANT": 16,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 250,
+    "MINE": 3,
+    "DROP": 60,
+    "HARVEST": 30,
+    "TRAIN": 1,
+    "WAIT": 1,
+    "PICK": 32,
+    "PLANT": 39,
+    "CHOP": 161
+   },
+   "wood": [
+    43,
+    63
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545617,
+   "seat": 1,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    152.0,
+    149.0
+   ],
+   "margin": 3.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 183,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 95,
+    "CHOP": 132,
+    "DROP": 29,
+    "PICK": 17,
+    "PLANT": 17,
+    "WAIT": 75
+   },
+   "opponent_verbs": {
+    "MOVE": 134,
+    "MSG": 183,
+    "TRAIN": 1,
+    "PICK": 17,
+    "PLANT": 16,
+    "CHOP": 131,
+    "DROP": 28,
+    "WAIT": 38
+   },
+   "wood": [
+    38,
+    37
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545582,
+   "seat": 1,
+   "opponent": "Pduhard-",
+   "opponent_agent": 6488390,
+   "opponent_rating": 20.0844034799858,
+   "scores": [
+    264.0,
+    210.0
+   ],
+   "margin": 54.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 272,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 357,
+    "MINE": 3,
+    "DROP": 36,
+    "HARVEST": 1,
+    "TRAIN": 1,
+    "CHOP": 101,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "MOVE": 284,
+    "TRAIN": 1,
+    "PICK": 8,
+    "CHOP": 88,
+    "PLANT": 41,
+    "HARVEST": 33,
+    "DROP": 26,
+    "WAIT": 63
+   },
+   "wood": [
+    66,
+    50
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545505,
+   "seat": 1,
+   "opponent": "Meruem",
+   "opponent_agent": 6479385,
+   "opponent_rating": 22.084606349851562,
+   "scores": [
+    271.0,
+    432.0
+   ],
+   "margin": -161.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 312,
+    "MINE": 1,
+    "DROP": 34,
+    "TRAIN": 1,
+    "CHOP": 207,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 573,
+    "HARVEST": 68,
+    "DROP": 82,
+    "TRAIN": 3,
+    "PLANT": 48,
+    "PICK": 12,
+    "CHOP": 121,
+    "MINE": 7
+   },
+   "wood": [
+    67,
+    108
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901545495,
+   "seat": 0,
+   "opponent": "GoodDevel",
+   "opponent_agent": 6541379,
+   "opponent_rating": 20.35091195053689,
+   "scores": [
+    181.0,
+    176.0
+   ],
+   "margin": 5.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 179,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 224,
+    "HARVEST": 1,
+    "DROP": 21,
+    "TRAIN": 1,
+    "CHOP": 94,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 182,
+    "PICK": 20,
+    "PLANT": 29,
+    "CHOP": 72,
+    "DROP": 35,
+    "HARVEST": 16,
+    "WAIT": 3
+   },
+   "wood": [
+    44,
+    44
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545453,
+   "seat": 0,
+   "opponent": "0x6E0FF",
+   "opponent_agent": 6480951,
+   "opponent_rating": 19.909489985350888,
+   "scores": [
+    192.0,
+    177.0
+   ],
+   "margin": 15.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 323,
+    "CHOP": 206,
+    "DROP": 32,
+    "PICK": 10,
+    "PLANT": 10,
+    "WAIT": 18
+   },
+   "opponent_verbs": {
+    "MSG": 300,
+    "TRAIN": 1,
+    "MOVE": 367,
+    "PICK": 11,
+    "PLANT": 24,
+    "CHOP": 154,
+    "DROP": 28,
+    "HARVEST": 15
+   },
+   "wood": [
+    48,
+    44
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545368,
+   "seat": 0,
+   "opponent": "mehdi_ayari",
+   "opponent_agent": 6479750,
+   "opponent_rating": 19.317173973689787,
+   "scores": [
+    140.0,
+    29.0
+   ],
+   "margin": 111.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 242,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 136,
+    "CHOP": 238,
+    "DROP": 35,
+    "PICK": 21,
+    "PLANT": 21,
+    "WAIT": 32
+   },
+   "opponent_verbs": {
+    "MOVE": 238,
+    "MINE": 2,
+    "DROP": 2
+   },
+   "wood": [
+    35,
+    0
+   ],
+   "workers": [
+    2,
+    1
+   ]
+  },
+  {
+   "game_id": 901545348,
+   "seat": 1,
+   "opponent": "Pafin",
+   "opponent_agent": 6481143,
+   "opponent_rating": 20.06254144971485,
+   "scores": [
+    266.0,
+    517.0
+   ],
+   "margin": -251.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 192,
+    "HARVEST": 116,
+    "DROP": 138,
+    "TRAIN": 1,
+    "CHOP": 118,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 604,
+    "PICK": 10,
+    "PLANT": 69,
+    "HARVEST": 119,
+    "TRAIN": 4,
+    "DROP": 122,
+    "CHOP": 163,
+    "MINE": 12
+   },
+   "wood": [
+    37,
+    127
+   ],
+   "workers": [
+    2,
+    5
+   ]
+  },
+  {
+   "game_id": 901545321,
+   "seat": 0,
+   "opponent": "FinkPloyd",
+   "opponent_agent": 6479914,
+   "opponent_rating": 19.309225333220457,
+   "scores": [
+    323.0,
+    209.0
+   ],
+   "margin": 114.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 273,
+    "HARVEST": 5,
+    "DROP": 40,
+    "TRAIN": 1,
+    "CHOP": 226,
+    "PICK": 12,
+    "PLANT": 13,
+    "WAIT": 17
+   },
+   "opponent_verbs": {
+    "PICK": 35,
+    "MOVE": 191,
+    "TRAIN": 1,
+    "PLANT": 36,
+    "MINE": 3,
+    "DROP": 58,
+    "HARVEST": 26,
+    "CHOP": 246
+   },
+   "wood": [
+    80,
+    48
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545302,
+   "seat": 1,
+   "opponent": "Yohann62",
+   "opponent_agent": 6498661,
+   "opponent_rating": 20.306436788337283,
+   "scores": [
+    166.0,
+    171.0
+   ],
+   "margin": -5.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 296,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 144,
+    "PICK": 20,
+    "PLANT": 20,
+    "WAIT": 38,
+    "CHOP": 228,
+    "HARVEST": 56,
+    "DROP": 85
+   },
+   "opponent_verbs": {
+    "MOVE": 351,
+    "MSG": 296,
+    "MINE": 2,
+    "DROP": 32,
+    "HARVEST": 1,
+    "TRAIN": 1,
+    "PICK": 9,
+    "PLANT": 9,
+    "CHOP": 135,
+    "WAIT": 13
+   },
+   "wood": [
+    29,
+    42
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545288,
+   "seat": 0,
+   "opponent": "khanh-alice",
+   "opponent_agent": 6480947,
+   "opponent_rating": 19.651899476825108,
+   "scores": [
+    164.0,
+    160.0
+   ],
+   "margin": 4.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 153,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 98,
+    "CHOP": 141,
+    "DROP": 24,
+    "HARVEST": 1,
+    "WAIT": 17,
+    "PICK": 12,
+    "PLANT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 107,
+    "TRAIN": 1,
+    "CHOP": 156,
+    "DROP": 18,
+    "PICK": 12,
+    "PLANT": 11
+   },
+   "wood": [
+    41,
+    40
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545225,
+   "seat": 1,
+   "opponent": "mehdi_ayari",
+   "opponent_agent": 6479750,
+   "opponent_rating": 19.317173973689787,
+   "scores": [
+    128.0,
+    124.0
+   ],
+   "margin": 4.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 247,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 183,
+    "CHOP": 147,
+    "DROP": 32,
+    "PICK": 17,
+    "PLANT": 17,
+    "WAIT": 97
+   },
+   "opponent_verbs": {
+    "PICK": 16,
+    "MOVE": 268,
+    "PLANT": 15,
+    "HARVEST": 2,
+    "DROP": 26,
+    "TRAIN": 1,
+    "MSG": 196,
+    "CHOP": 114
+   },
+   "wood": [
+    32,
+    31
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545216,
+   "seat": 0,
+   "opponent": "PonyPonyCodeCode",
+   "opponent_agent": 6541377,
+   "opponent_rating": 19.062387622164472,
+   "scores": [
+    233.0,
+    144.0
+   ],
+   "margin": 89.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 325,
+    "CHOP": 191,
+    "DROP": 40,
+    "PICK": 14,
+    "PLANT": 14,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 434,
+    "PICK": 16,
+    "PLANT": 20,
+    "CHOP": 95,
+    "HARVEST": 10,
+    "DROP": 23
+   },
+   "wood": [
+    58,
+    36
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545185,
+   "seat": 0,
+   "opponent": "Epigene",
+   "opponent_agent": 6480950,
+   "opponent_rating": 18.256789270586594,
+   "scores": [
+    100.0,
+    79.0
+   ],
+   "margin": 21.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 171,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 125,
+    "CHOP": 155,
+    "DROP": 25,
+    "PICK": 13,
+    "PLANT": 13,
+    "WAIT": 10
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 196,
+    "MSG": 138,
+    "PICK": 21,
+    "PLANT": 6,
+    "MINE": 2,
+    "DROP": 42,
+    "CHOP": 64,
+    "HARVEST": 10
+   },
+   "wood": [
+    25,
+    16
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545175,
+   "seat": 1,
+   "opponent": "a7aQC",
+   "opponent_agent": 6620507,
+   "opponent_rating": 17.960801379559374,
+   "scores": [
+    265.0,
+    144.0
+   ],
+   "margin": 121.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 302,
+    "CHOP": 222,
+    "DROP": 42,
+    "PICK": 9,
+    "PLANT": 9,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 257,
+    "PICK": 17,
+    "PLANT": 54,
+    "CHOP": 211,
+    "HARVEST": 40,
+    "DROP": 20
+   },
+   "wood": [
+    66,
+    36
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545158,
+   "seat": 1,
+   "opponent": "anuragm",
+   "opponent_agent": 6488432,
+   "opponent_rating": 18.225776507952578,
+   "scores": [
+    112.0,
+    96.0
+   ],
+   "margin": 16.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 140,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 102,
+    "HARVEST": 1,
+    "DROP": 17,
+    "TRAIN": 1,
+    "CHOP": 121,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 17
+   },
+   "opponent_verbs": {
+    "MSG": 79,
+    "MOVE": 89,
+    "HARVEST": 3,
+    "DROP": 14,
+    "MINE": 1,
+    "TRAIN": 1,
+    "PICK": 4,
+    "PLANT": 3,
+    "CHOP": 63
+   },
+   "wood": [
+    28,
+    23
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545128,
+   "seat": 0,
+   "opponent": "Hydrazer",
+   "opponent_agent": 6588457,
+   "opponent_rating": 17.65998214792291,
+   "scores": [
+    313.0,
+    74.0
+   ],
+   "margin": 239.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 192,
+    "WAIT": 23,
+    "HARVEST": 136,
+    "DROP": 154,
+    "TRAIN": 1,
+    "PICK": 8,
+    "PLANT": 8,
+    "CHOP": 62
+   },
+   "opponent_verbs": {
+    "MOVE": 207,
+    "PICK": 8,
+    "PLANT": 16,
+    "MSG": 159,
+    "HARVEST": 24,
+    "DROP": 26,
+    "CHOP": 38,
+    "TRAIN": 1
+   },
+   "wood": [
+    44,
+    17
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545070,
+   "seat": 0,
+   "opponent": "Renatys",
+   "opponent_agent": 6491198,
+   "opponent_rating": 17.094560053042144,
+   "scores": [
+    212.0,
+    101.0
+   ],
+   "margin": 111.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 160,
+    "HARVEST": 120,
+    "DROP": 143,
+    "TRAIN": 1,
+    "CHOP": 148,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 11
+   },
+   "opponent_verbs": {
+    "PICK": 4,
+    "MOVE": 394,
+    "PLANT": 4,
+    "HARVEST": 84,
+    "DROP": 72,
+    "TRAIN": 1
+   },
+   "wood": [
+    24,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545059,
+   "seat": 0,
+   "opponent": "Ticasali",
+   "opponent_agent": 6541416,
+   "opponent_rating": 16.420091423978615,
+   "scores": [
+    180.0,
+    133.0
+   ],
+   "margin": 47.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 217,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 208,
+    "MINE": 1,
+    "DROP": 32,
+    "TRAIN": 1,
+    "CHOP": 144,
+    "HARVEST": 2,
+    "PLANT": 12,
+    "PICK": 10,
+    "WAIT": 21
+   },
+   "opponent_verbs": {
+    "MOVE": 242,
+    "HARVEST": 10,
+    "DROP": 31,
+    "TRAIN": 1,
+    "PICK": 2,
+    "PLANT": 8,
+    "CHOP": 99
+   },
+   "wood": [
+    45,
+    31
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901545015,
+   "seat": 0,
+   "opponent": "Ando_Riccardo",
+   "opponent_agent": 6607429,
+   "opponent_rating": 16.292359137734522,
+   "scores": [
+    248.0,
+    68.0
+   ],
+   "margin": 180.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 227,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 255,
+    "HARVEST": 2,
+    "DROP": 33,
+    "TRAIN": 1,
+    "CHOP": 148,
+    "PICK": 3,
+    "PLANT": 3
+   },
+   "opponent_verbs": {
+    "MOVE": 248,
+    "MSG": 667,
+    "HARVEST": 17,
+    "DROP": 12,
+    "TRAIN": 1,
+    "PICK": 14,
+    "CHOP": 121,
+    "PLANT": 28
+   },
+   "wood": [
+    60,
+    17
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544995,
+   "seat": 1,
+   "opponent": "Exhilarin",
+   "opponent_agent": 6589996,
+   "opponent_rating": 15.720537534647812,
+   "scores": [
+    132.0,
+    82.0
+   ],
+   "margin": 50.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 187,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 157,
+    "WAIT": 32,
+    "CHOP": 141,
+    "DROP": 21,
+    "PICK": 11,
+    "PLANT": 11
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 169,
+    "MSG": 135,
+    "HARVEST": 6,
+    "PLANT": 11,
+    "DROP": 19,
+    "CHOP": 145,
+    "PICK": 9
+   },
+   "wood": [
+    33,
+    20
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544968,
+   "seat": 1,
+   "opponent": "frictionless",
+   "opponent_agent": 6479932,
+   "opponent_rating": 16.84990600247234,
+   "scores": [
+    236.0,
+    237.0
+   ],
+   "margin": -1.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 276,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 207,
+    "HARVEST": 7,
+    "DROP": 36,
+    "TRAIN": 1,
+    "CHOP": 249,
+    "PLANT": 13,
+    "PICK": 11,
+    "WAIT": 17
+   },
+   "opponent_verbs": {
+    "MOVE": 479,
+    "TRAIN": 2,
+    "HARVEST": 38,
+    "DROP": 60,
+    "MINE": 8,
+    "CHOP": 169,
+    "PLANT": 5
+   },
+   "wood": [
+    59,
+    55
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544948,
+   "seat": 0,
+   "opponent": "ghhttt",
+   "opponent_agent": 6588342,
+   "opponent_rating": 17.018500481263683,
+   "scores": [
+    272.0,
+    366.0
+   ],
+   "margin": -94.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 233,
+    "WAIT": 13,
+    "HARVEST": 99,
+    "DROP": 125,
+    "TRAIN": 1,
+    "CHOP": 102,
+    "PICK": 10,
+    "PLANT": 10
+   },
+   "opponent_verbs": {
+    "Move": 505,
+    "PICK": 10,
+    "PLANT": 41,
+    "HARVEST": 69,
+    "DROP": 75,
+    "TRAIN": 3,
+    "CHOP": 244,
+    "MINE": 9
+   },
+   "wood": [
+    41,
+    90
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901544924,
+   "seat": 0,
+   "opponent": "Ando_Riccardo",
+   "opponent_agent": 6607429,
+   "opponent_rating": 16.292359137734522,
+   "scores": [
+    240.0,
+    96.0
+   ],
+   "margin": 144.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 306,
+    "WAIT": 35,
+    "HARVEST": 4,
+    "DROP": 37,
+    "TRAIN": 1,
+    "CHOP": 176,
+    "PICK": 9,
+    "PLANT": 10
+   },
+   "opponent_verbs": {
+    "MOVE": 326,
+    "MSG": 860,
+    "HARVEST": 12,
+    "DROP": 20,
+    "TRAIN": 1,
+    "PICK": 12,
+    "PLANT": 20,
+    "CHOP": 165,
+    "WAIT": 5
+   },
+   "wood": [
+    60,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544896,
+   "seat": 1,
+   "opponent": "timbersson",
+   "opponent_agent": 6591735,
+   "opponent_rating": 16.628822550809588,
+   "scores": [
+    205.0,
+    86.0
+   ],
+   "margin": 119.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 204,
+    "CHOP": 106,
+    "DROP": 141,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 12,
+    "HARVEST": 122
+   },
+   "opponent_verbs": {
+    "TRAIN": 1,
+    "MOVE": 393,
+    "PICK": 10,
+    "PLANT": 13,
+    "HARVEST": 89,
+    "DROP": 90,
+    "MINE": 4
+   },
+   "wood": [
+    20,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544842,
+   "seat": 0,
+   "opponent": "Dapps",
+   "opponent_agent": 6553375,
+   "opponent_rating": 16.785217162266044,
+   "scores": [
+    253.0,
+    354.0
+   ],
+   "margin": -101.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 291,
+    "HARVEST": 37,
+    "DROP": 63,
+    "TRAIN": 1,
+    "CHOP": 157,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 28
+   },
+   "opponent_verbs": {
+    "MOVE": 467,
+    "HARVEST": 76,
+    "DROP": 71,
+    "TRAIN": 2,
+    "MINE": 1,
+    "PICK": 3,
+    "PLANT": 32,
+    "CHOP": 155
+   },
+   "wood": [
+    54,
+    75
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544717,
+   "seat": 1,
+   "opponent": "Highruler",
+   "opponent_agent": 6505286,
+   "opponent_rating": 15.726420411843705,
+   "scores": [
+    229.0,
+    219.0
+   ],
+   "margin": 10.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 174,
+    "CHOP": 92,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 9,
+    "HARVEST": 144,
+    "DROP": 164
+   },
+   "opponent_verbs": {
+    "MOVE": 458,
+    "MSG": 300,
+    "PICK": 5,
+    "PLANT": 29,
+    "HARVEST": 76,
+    "DROP": 83,
+    "TRAIN": 2,
+    "MINE": 8,
+    "CHOP": 64
+   },
+   "wood": [
+    21,
+    36
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544666,
+   "seat": 1,
+   "opponent": "Kamoun",
+   "opponent_agent": 6630225,
+   "opponent_rating": 15.710148271012473,
+   "scores": [
+    331.0,
+    151.0
+   ],
+   "margin": 180.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 274,
+    "CHOP": 229,
+    "DROP": 52,
+    "HARVEST": 4,
+    "PLANT": 16,
+    "PICK": 12,
+    "WAIT": 12
+   },
+   "opponent_verbs": {
+    "MOVE": 318,
+    "TRAIN": 1,
+    "PICK": 37,
+    "PLANT": 44,
+    "DROP": 63,
+    "MINE": 10,
+    "HARVEST": 48,
+    "CHOP": 79
+   },
+   "wood": [
+    81,
+    27
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544635,
+   "seat": 1,
+   "opponent": "Kheopsian",
+   "opponent_agent": 6479388,
+   "opponent_rating": 16.34758972427784,
+   "scores": [
+    120.0,
+    153.0
+   ],
+   "margin": -33.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 406,
+    "WAIT": 12,
+    "HARVEST": 3,
+    "DROP": 24,
+    "TRAIN": 1,
+    "CHOP": 122,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 278,
+    "TRAIN": 1,
+    "CHOP": 120,
+    "DROP": 75,
+    "PICK": 40,
+    "PLANT": 45,
+    "HARVEST": 42
+   },
+   "wood": [
+    30,
+    38
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544617,
+   "seat": 0,
+   "opponent": "SF",
+   "opponent_agent": 6591734,
+   "opponent_rating": 15.184809885767404,
+   "scores": [
+    176.0,
+    105.0
+   ],
+   "margin": 71.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 354,
+    "MINE": 5,
+    "DROP": 37,
+    "TRAIN": 1,
+    "CHOP": 153,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 15
+   },
+   "opponent_verbs": {
+    "TRAIN": 3,
+    "MOVE": 551,
+    "MSG": 300,
+    "PICK": 13,
+    "PLANT": 68,
+    "HARVEST": 79,
+    "DROP": 64,
+    "CHOP": 56,
+    "MINE": 12
+   },
+   "wood": [
+    44,
+    25
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901544580,
+   "seat": 0,
+   "opponent": "darkhorse64",
+   "opponent_agent": 6635480,
+   "opponent_rating": 11.870248306614897,
+   "scores": [
+    176.0,
+    174.0
+   ],
+   "margin": 2.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 273,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 158,
+    "HARVEST": 1,
+    "DROP": 31,
+    "TRAIN": 1,
+    "CHOP": 264,
+    "PICK": 17,
+    "PLANT": 17,
+    "WAIT": 52
+   },
+   "opponent_verbs": {
+    "MOVE": 483,
+    "MINE": 7,
+    "DROP": 46,
+    "TRAIN": 2,
+    "HARVEST": 20,
+    "PICK": 11,
+    "PLANT": 11,
+    "WAIT": 45,
+    "CHOP": 72
+   },
+   "wood": [
+    44,
+    41
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544579,
+   "seat": 0,
+   "opponent": "Elost",
+   "opponent_agent": 6579290,
+   "opponent_rating": 14.652003372084739,
+   "scores": [
+    198.0,
+    222.0
+   ],
+   "margin": -24.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 294,
+    "MINE": 1,
+    "DROP": 33,
+    "TRAIN": 1,
+    "CHOP": 234,
+    "PICK": 14,
+    "PLANT": 14,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 270,
+    "PICK": 30,
+    "PLANT": 25,
+    "CHOP": 68,
+    "DROP": 102,
+    "HARVEST": 104
+   },
+   "wood": [
+    48,
+    31
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544578,
+   "seat": 0,
+   "opponent": "picatrai",
+   "opponent_agent": 6606406,
+   "opponent_rating": 14.799068886210893,
+   "scores": [
+    413.0,
+    62.0
+   ],
+   "margin": 351.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 162,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 11,
+    "CHOP": 78,
+    "HARVEST": 143,
+    "DROP": 181
+   },
+   "opponent_verbs": {
+    "MOVE": 381,
+    "TRAIN": 1,
+    "PICK": 14,
+    "PLANT": 52,
+    "DROP": 48,
+    "HARVEST": 103
+   },
+   "wood": [
+    67,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544577,
+   "seat": 0,
+   "opponent": "DaFish",
+   "opponent_agent": 6588475,
+   "opponent_rating": 16.126415144470364,
+   "scores": [
+    342.0,
+    439.0
+   ],
+   "margin": -97.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 157,
+    "PICK": 8,
+    "PLANT": 8,
+    "WAIT": 9,
+    "CHOP": 100,
+    "HARVEST": 145,
+    "DROP": 172
+   },
+   "opponent_verbs": {
+    "PICK": 4,
+    "MOVE": 608,
+    "PLANT": 66,
+    "TRAIN": 3,
+    "HARVEST": 93,
+    "DROP": 81,
+    "MINE": 10,
+    "CHOP": 115
+   },
+   "wood": [
+    48,
+    109
+   ],
+   "workers": [
+    2,
+    4
+   ]
+  },
+  {
+   "game_id": 901544576,
+   "seat": 1,
+   "opponent": "NOIIICE",
+   "opponent_agent": 6488436,
+   "opponent_rating": 17.312042652465173,
+   "scores": [
+    176.0,
+    215.0
+   ],
+   "margin": -39.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 153,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 122,
+    "MINE": 2,
+    "DROP": 31,
+    "HARVEST": 5,
+    "TRAIN": 1,
+    "CHOP": 92,
+    "PICK": 12,
+    "PLANT": 12,
+    "WAIT": 6
+   },
+   "opponent_verbs": {
+    "MOVE": 189,
+    "MINE": 2,
+    "DROP": 22,
+    "TRAIN": 1,
+    "PICK": 6,
+    "CHOP": 58,
+    "PLANT": 14,
+    "HARVEST": 9
+   },
+   "wood": [
+    44,
+    52
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544574,
+   "seat": 0,
+   "opponent": "Frac",
+   "opponent_agent": 6481176,
+   "opponent_rating": 18.098115181374837,
+   "scores": [
+    224.0,
+    196.0
+   ],
+   "margin": 28.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 236,
+    "CHOP": 238,
+    "DROP": 62,
+    "HARVEST": 33,
+    "PLANT": 9,
+    "PICK": 7,
+    "WAIT": 14
+   },
+   "opponent_verbs": {
+    "MOVE": 525,
+    "TRAIN": 2,
+    "PICK": 11,
+    "PLANT": 31,
+    "MINE": 4,
+    "DROP": 63,
+    "HARVEST": 62,
+    "CHOP": 53
+   },
+   "wood": [
+    47,
+    42
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544573,
+   "seat": 1,
+   "opponent": "Titanmito",
+   "opponent_agent": 6505284,
+   "opponent_rating": 18.713112034221147,
+   "scores": [
+    268.0,
+    234.0
+   ],
+   "margin": 34.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "TRAIN": 1,
+    "MOVE": 162,
+    "PICK": 7,
+    "PLANT": 7,
+    "WAIT": 8,
+    "CHOP": 109,
+    "HARVEST": 145,
+    "DROP": 161
+   },
+   "opponent_verbs": {
+    "MOVE": 399,
+    "TRAIN": 2,
+    "PICK": 17,
+    "PLANT": 34,
+    "HARVEST": 47,
+    "DROP": 60,
+    "MINE": 5,
+    "CHOP": 196
+   },
+   "wood": [
+    28,
+    58
+   ],
+   "workers": [
+    2,
+    3
+   ]
+  },
+  {
+   "game_id": 901544572,
+   "seat": 1,
+   "opponent": "FinkPloyd",
+   "opponent_agent": 6479914,
+   "opponent_rating": 19.309225333220457,
+   "scores": [
+    168.0,
+    96.0
+   ],
+   "margin": 72.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 187,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 176,
+    "WAIT": 46,
+    "HARVEST": 2,
+    "DROP": 22,
+    "TRAIN": 1,
+    "CHOP": 103,
+    "PICK": 6,
+    "PLANT": 6
+   },
+   "opponent_verbs": {
+    "PICK": 16,
+    "MOVE": 122,
+    "PLANT": 17,
+    "HARVEST": 9,
+    "DROP": 29,
+    "CHOP": 125,
+    "TRAIN": 1,
+    "MINE": 3
+   },
+   "wood": [
+    42,
+    24
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544571,
+   "seat": 1,
+   "opponent": "VINCE_MX",
+   "opponent_agent": 6483491,
+   "opponent_rating": 24.23893921419586,
+   "scores": [
+    189.0,
+    212.0
+   ],
+   "margin": -23.0,
+   "outcome": "L",
+   "points": 0.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 354,
+    "MINE": 2,
+    "DROP": 31,
+    "TRAIN": 1,
+    "CHOP": 163,
+    "WAIT": 32,
+    "PICK": 4,
+    "PLANT": 4
+   },
+   "opponent_verbs": {
+    "MOVE": 382,
+    "MSG": 300,
+    "MINE": 2,
+    "DROP": 27,
+    "HARVEST": 21,
+    "TRAIN": 1,
+    "PLANT": 25,
+    "CHOP": 140,
+    "PICK": 6
+   },
+   "wood": [
+    46,
+    53
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  },
+  {
+   "game_id": 901544570,
+   "seat": 1,
+   "opponent": "gaha",
+   "opponent_agent": 6481397,
+   "opponent_rating": 26.291783377455822,
+   "scores": [
+    164.0,
+    113.0
+   ],
+   "margin": 51.0,
+   "outcome": "W",
+   "points": 1.0,
+   "own_failure": false,
+   "opponent_failure": false,
+   "diagnostics": {
+    "0": [],
+    "1": []
+   },
+   "turns": 300,
+   "own_verbs": {
+    "MSG": 1,
+    "MOVE": 380,
+    "MINE": 1,
+    "DROP": 42,
+    "TRAIN": 1,
+    "CHOP": 145,
+    "WAIT": 6,
+    "PICK": 9,
+    "PLANT": 9
+   },
+   "opponent_verbs": {
+    "MOVE": 243,
+    "PICK": 11,
+    "PLANT": 38,
+    "HARVEST": 106,
+    "DROP": 82,
+    "CHOP": 4,
+    "TRAIN": 1,
+    "MINE": 4
+   },
+   "wood": [
+    41,
+    0
+   ],
+   "workers": [
+    2,
+    2
+   ]
+  }
+ ]
+}

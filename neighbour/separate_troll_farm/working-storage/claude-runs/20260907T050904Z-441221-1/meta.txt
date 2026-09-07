@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/dispatch-regenerative-wood.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T050904Z-441221-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=45
+kill_grace_seconds=30
+start_utc=2026-09-07T05:09:04Z
+end_utc=2026-09-07T05:28:43Z
+duration_seconds=1179
+exit_status=0
+timed_out=no
+result_report=present

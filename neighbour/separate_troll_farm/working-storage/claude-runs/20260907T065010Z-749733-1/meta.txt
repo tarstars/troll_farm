@@ -1,0 +1,11 @@
+task_file=/home/tarstars/prj/separate_troll_farm/tasks/macroplan-complete-funding.md
+run_dir=/data/separate_troll_farm-working/claude-runs/20260907T065010Z-749733-1
+executable=/home/tarstars/bin/claude-proxy
+timeout_minutes=60
+kill_grace_seconds=30
+start_utc=2026-09-07T06:50:11Z
+end_utc=2026-09-07T07:16:29Z
+duration_seconds=1579
+exit_status=0
+timed_out=no
+result_report=present

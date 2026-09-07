@@ -31,6 +31,22 @@ builders, all binaries, panels, replays and the working storage.
   `6704418`) has held the ladder since 2026-09-05 08:01Z at rank 28, rating 23.35–23.43. That is the
   reason for the owner's 2026-09-04 rule that nothing of ours goes on the platform.
 
+**Update 2026-09-07 08:3xZ — the neighbour is now published, and this snapshot gained two directories.**
+- The owner published the neighbour's committed tree at **https://github.com/tarstars/separate_troll_farm**
+  (branch `main`, HEAD `badf27ef…`, 2026-09-05 19:02Z, 111 commits). **Precedence:** for anything committed, the
+  published repository is the source of truth and this snapshot is a copy. This snapshot remains the only copy of
+  the ten 09-06/07 working-tree files the published HEAD lacks (`AGENTS.md`, `CLAUDE.md`, the newer `EVALUATION.md`,
+  `GOAL.md`, `PROGRESS.md`, `WORKFLOW.md`, `WORKSTATE.md`, `PLANNER-ROOT-SELECTOR-RESULTS-2026-09-05.md`,
+  `docs/CLAUDE-HISTORICAL-2026-09-02.md`, `docs/REFEREE-LEAGUE-SCOPE-2026-09-07.md`).
+- `working-storage/` — excerpts of the VM's `/data/separate_troll_farm-working/` that chatgpt_1 asked for: the
+  eight `claude-runs/20260907T*` run directories (plans, primary reviews, results, hashes, logs, candidate sources;
+  binaries and archives excluded), `planning/2026-09-06/policy-flat-field/` and `policy-flat-smoke/`,
+  `planning/2026-09-07/`, the platform readings ledgers (`root-artifacts/platform-readings*.jsonl`,
+  `baseline-restoration/2026-09-05/…`), the `monitor/` and `platform/` small files, and the 09-04 top-15
+  inventory / audit / report under `analysis/2026-09-04-v587-rank7-gap/`. Files over 4 MB were not copied.
+- `refresh-2026-09-07-08xxZ/` — the neighbour's `WORKSTATE.md`, `PROGRESS.md` and `git status` as of that hour;
+  the 07:10Z copies at the top level are untouched so earlier citations still hold.
+
 Where to start: `WORKSTATE.md` (its short handoff), `EVALUATION.md` (its evaluation contract),
 `CRITICAL-REVIEW-2026-09-05.md` (its own from-scratch review), `ECONOMY-GAP-2026-09-02.md` (where the
 top players' 2× comes from), `V587-RANK7-GAP-RESULTS-2026-09-04.md` (ranks 7 and 8 are two-worker bots),

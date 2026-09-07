@@ -1,0 +1,17 @@
+test baseline::policy::base::bot::moisan::ranking_tests::all_ranks_keep_joint_inventory_constraints ... ok
+test baseline::policy::base::bot::moisan::ranking_tests::one_unit_last_tie_wins_and_duplicate_commands_do_not_consume_ranks ... ok
+test baseline::policy::base::bot::moisan::ranking_tests::pairs_preserve_first_tie_and_priority_cutover ... ok
+test baseline::policy::base::game::nav::cache_tests::cached_distances_match_every_source_and_changed_terrain ... ok
+test candidate::orchard_tests::a_blocked_bank_does_not_waste_the_bill ... ok
+test candidate::orchard_tests::a_map_without_iron_needs_no_ore ... FAILED
+test candidate::orchard_tests::a_sealed_fruit_source_is_not_obtainable ... ok
+test candidate::orchard_tests::an_unreachable_target_is_abandoned ... ok
+test candidate::orchard_tests::late_game_stays_legal_and_stops_planting ... ok
+test candidate::orchard_tests::the_orchard_really_plants_grows_harvests_and_banks ... ok
+test candidate::orchard_tests::the_orchardist_is_capability_aware_and_not_the_best_forester ... ok
+test candidate::orchard_tests::the_plan_really_acquires_fruit_and_ore_and_then_hires ... ok
+test candidate::policy::base::bot::moisan::ranking_tests::all_ranks_keep_joint_inventory_constraints ... ok
+test candidate::policy::base::bot::moisan::ranking_tests::one_unit_last_tie_wins_and_duplicate_commands_do_not_consume_ranks ... ok
+test candidate::policy::base::bot::moisan::ranking_tests::pairs_preserve_first_tie_and_priority_cutover ... ok
+test candidate::policy::base::game::nav::cache_tests::cached_distances_match_every_source_and_changed_terrain ... ok
+test result: FAILED. 15 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.56s

@@ -1,0 +1,276 @@
+{
+  "summary": {
+    "games": 16,
+    "turns": 4312,
+    "pruned_mismatched_games": 0,
+    "compact_mismatched_games": 0,
+    "worst_max_ms": {
+      "original": 0.977,
+      "pruned": 1.08,
+      "compact": 1.006
+    },
+    "worst_mean_ms": {
+      "original": 0.077,
+      "pruned": 0.077,
+      "compact": 0.067
+    }
+  },
+  "rows": [
+    {
+      "game_id": 901547815,
+      "turns": 153,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.929,
+        "pruned": 0.879,
+        "compact": 0.837
+      },
+      "mean_ms": {
+        "original": 0.061,
+        "pruned": 0.049,
+        "compact": 0.049
+      }
+    },
+    {
+      "game_id": 901547802,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.872,
+        "pruned": 0.807,
+        "compact": 0.87
+      },
+      "mean_ms": {
+        "original": 0.049,
+        "pruned": 0.049,
+        "compact": 0.048
+      }
+    },
+    {
+      "game_id": 901547785,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.79,
+        "pruned": 0.857,
+        "compact": 0.813
+      },
+      "mean_ms": {
+        "original": 0.043,
+        "pruned": 0.042,
+        "compact": 0.049
+      }
+    },
+    {
+      "game_id": 901547751,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.906,
+        "pruned": 0.881,
+        "compact": 0.907
+      },
+      "mean_ms": {
+        "original": 0.05,
+        "pruned": 0.077,
+        "compact": 0.049
+      }
+    },
+    {
+      "game_id": 901547733,
+      "turns": 210,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.977,
+        "pruned": 1.08,
+        "compact": 0.897
+      },
+      "mean_ms": {
+        "original": 0.077,
+        "pruned": 0.059,
+        "compact": 0.058
+      }
+    },
+    {
+      "game_id": 901547712,
+      "turns": 286,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.759,
+        "pruned": 0.877,
+        "compact": 0.94
+      },
+      "mean_ms": {
+        "original": 0.057,
+        "pruned": 0.052,
+        "compact": 0.054
+      }
+    },
+    {
+      "game_id": 901547698,
+      "turns": 148,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.898,
+        "pruned": 0.881,
+        "compact": 0.876
+      },
+      "mean_ms": {
+        "original": 0.066,
+        "pruned": 0.047,
+        "compact": 0.046
+      }
+    },
+    {
+      "game_id": 901547682,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.908,
+        "pruned": 0.78,
+        "compact": 1.006
+      },
+      "mean_ms": {
+        "original": 0.04,
+        "pruned": 0.038,
+        "compact": 0.052
+      }
+    },
+    {
+      "game_id": 901547653,
+      "turns": 215,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.922,
+        "pruned": 0.898,
+        "compact": 0.866
+      },
+      "mean_ms": {
+        "original": 0.043,
+        "pruned": 0.043,
+        "compact": 0.045
+      }
+    },
+    {
+      "game_id": 901547628,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.94,
+        "pruned": 0.91,
+        "compact": 0.925
+      },
+      "mean_ms": {
+        "original": 0.058,
+        "pruned": 0.07,
+        "compact": 0.067
+      }
+    },
+    {
+      "game_id": 901547616,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.804,
+        "pruned": 0.976,
+        "compact": 0.999
+      },
+      "mean_ms": {
+        "original": 0.054,
+        "pruned": 0.055,
+        "compact": 0.053
+      }
+    },
+    {
+      "game_id": 901547600,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.932,
+        "pruned": 0.896,
+        "compact": 0.881
+      },
+      "mean_ms": {
+        "original": 0.042,
+        "pruned": 0.042,
+        "compact": 0.049
+      }
+    },
+    {
+      "game_id": 901547586,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.889,
+        "pruned": 0.836,
+        "compact": 0.917
+      },
+      "mean_ms": {
+        "original": 0.043,
+        "pruned": 0.054,
+        "compact": 0.044
+      }
+    },
+    {
+      "game_id": 901547578,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.855,
+        "pruned": 0.925,
+        "compact": 0.894
+      },
+      "mean_ms": {
+        "original": 0.056,
+        "pruned": 0.058,
+        "compact": 0.059
+      }
+    },
+    {
+      "game_id": 901547555,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.879,
+        "pruned": 0.884,
+        "compact": 0.894
+      },
+      "mean_ms": {
+        "original": 0.043,
+        "pruned": 0.052,
+        "compact": 0.053
+      }
+    },
+    {
+      "game_id": 901547543,
+      "turns": 300,
+      "pruned_differing": [],
+      "compact_differing": [],
+      "max_ms": {
+        "original": 0.891,
+        "pruned": 0.842,
+        "compact": 0.802
+      },
+      "mean_ms": {
+        "original": 0.048,
+        "pruned": 0.055,
+        "compact": 0.047
+      }
+    }
+  ]
+}

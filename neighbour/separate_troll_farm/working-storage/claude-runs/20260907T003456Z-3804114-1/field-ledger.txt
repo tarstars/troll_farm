@@ -1,0 +1,39 @@
+game=901697520 seat=1 scores=[262, 241] shacks={0: (5, 0), 1: (10, 7)}
+states=301 analysed_turns=300
+OPP u0 born=0 power=1 CHOP=10 wood=3 eff=0.30 zero=7 MOVE=185 WAIT=0 PLANT=35 PICK=13 banked=3 first_chop=32 first_drop=36
+      targets=[((6, 0), [4, 1]), ((4, 2), [3, 1]), ((10, 6), [3, 1])]
+OPP u2 born=None power=None CHOP=0 wood=0 eff=0.00 zero=0 MOVE=0 WAIT=0 PLANT=0 PICK=0 banked=0 first_chop=None first_drop=None
+      targets=[]
+OPP u3 born=18 power=3 CHOP=92 wood=60 eff=0.65 zero=61 MOVE=152 WAIT=0 PLANT=0 PICK=0 banked=60 first_chop=19 first_drop=23
+      targets=[((6, 0), [13, 10]), ((3, 0), [12, 10]), ((6, 1), [7, 6]), ((7, 4), [7, 2])]
+OWN u1 born=0 power=1 CHOP=91 wood=19 eff=0.21 zero=72 MOVE=143 WAIT=0 PLANT=15 PICK=12 banked=19 first_chop=16 first_drop=33
+      targets=[((10, 6), [43, 4]), ((11, 7), [33, 11]), ((6, 1), [9, 2]), ((6, 2), [3, 1])]
+OWN u2 born=8 power=2 CHOP=82 wood=41 eff=0.50 zero=58 MOVE=170 WAIT=0 PLANT=4 PICK=4 banked=41 first_chop=9 first_drop=16
+      targets=[((9, 7), [29, 6]), ((5, 1), [9, 8]), ((6, 0), [8, 7]), ((9, 6), [6, 2])]
+turn own_wood opp_wood own_units opp_units own_carry opp_carry
+   0      0      0      1      1      0      0
+  12      0      0      2      1      0      0
+  24      2      2      2      2      1      0
+  36      5      2      2      2      1      3
+  48      7      3      2      2      1      2
+  60     10      5      2      2      0      0
+  72     12     11      2      2      1      0
+  84     15     13      2      2      0      0
+  96     16     15      2      2      2      0
+ 108     18     17      2      2      2      2
+ 120     22     22      2      2      2      0
+ 132     26     22      2      2      2      2
+ 144     30     29      2      2      1      0
+ 156     34     33      2      2      0      0
+ 168     37     35      2      2      0      0
+ 180     40     37      2      2      0      0
+ 192     40     39      2      2      2      0
+ 204     43     39      2      2      0      2
+ 216     45     43      2      2      0      0
+ 228     47     47      2      2      1      2
+ 240     48     49      2      2      1      2
+ 252     51     51      2      2      0      0
+ 264     54     53      2      2      0      0
+ 276     54     58      2      2      3      2
+ 288     57     60      2      2      3      3
+ 300     60     63      2      2      0      0

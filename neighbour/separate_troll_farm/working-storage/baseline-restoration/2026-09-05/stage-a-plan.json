@@ -1,0 +1,16 @@
+{
+ "purpose":"Seven-request DEVELOPMENT comparison for BASELINE-RESTORATION-PROTOCOL-2026-09-05.md. Repeat exact V439 on first prior block, then V543 on all six already-inspected blocks, joining archived V439 rows. These are reused development maps, not fresh confirmation. No tuning, automatic retries or publication. Verify identities, seeds, initial states, control repeat and exact commands.",
+ "sources": {
+  "v439":{"path":"/home/tarstars/prj/separate_troll_farm/candidate-v439-early-exhausted-one-wood-swap.min.rs","sha256":"7f61a6cd510a70e9389e794571512e2c5d0afb33bab957c70791c2c16fbff0bc"},
+  "v543":{"path":"/home/tarstars/prj/separate_troll_farm/submission.rs","sha256":"922a233526ed590dafcc6302461de2dafef720fb003bd2359f55dfd93ac1b4a7"}
+ },
+ "jobs":[
+  {"policy":"v439","opponent":"putibuzu","opponent_agent":6479779,"seed":2609054701,"seat":0},
+  {"policy":"v543","opponent":"putibuzu","opponent_agent":6479779,"seed":2609054701,"seat":0},
+  {"policy":"v543","opponent":"putibuzu","opponent_agent":6479779,"seed":2609054702,"seat":1},
+  {"policy":"v543","opponent":"tonigineer","opponent_agent":6505289,"seed":2609054801,"seat":0},
+  {"policy":"v543","opponent":"norxondor_gorgonax","opponent_agent":6480540,"seed":2609054201,"seat":1},
+  {"policy":"v543","opponent":"PonyPonyCodeCode","opponent_agent":6541377,"seed":2609054601,"seat":0},
+  {"policy":"v543","opponent":"tonigineer","opponent_agent":6505289,"seed":2609054802,"seat":1}
+ ]
+}

@@ -1,0 +1,4 @@
+control rows compared: 192 baseline columns differing: 173
+  ('9947502', '0', 'norx_native_three') baseline_divergent_command '' vs 'MOVE 0 9 3|CHOP 2'
+rows: 192 differing baseline rows (divergence columns excluded): 0
+compared fields: ['baseline_commands', 'baseline_critical', 'baseline_issue_reasons', 'baseline_issues', 'baseline_margin', 'baseline_max_ring_bananas', 'baseline_opponent_score', 'baseline_opponent_score_t100', 'baseline_opponent_score_t200', 'baseline_opponent_wood', 'baseline_period2', 'baseline_ring_chops', 'baseline_ring_drops', 'baseline_ring_harvests', 'baseline_ring_picks', 'baseline_ring_plants', 'baseline_score', 'baseline_score_t100', 'baseline_score_t200', 'baseline_train_turn', 'baseline_turn', 'baseline_unclassified', 'baseline_wood', 'baseline_workers']

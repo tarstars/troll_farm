@@ -1,0 +1,431 @@
+{
+ "binaries": {
+  "baseline_v439": {
+   "path": "/data/separate_troll_farm-working/baseline-restoration/2026-09-05/packaging/compact-bot",
+   "sha256": "bee2b029fd38604bd73073697cbffd2702dcf1ae3cdc80b8cefd50eec50f1b93"
+  },
+  "chopup_readable": {
+   "path": "/data/separate_troll_farm-working/chopup-cert-2026-09-07/bin/readable",
+   "sha256": "90650544043374f5eef6171bd0a689a2e8df33d3a0789d88917d16ad125bf993"
+  },
+  "chopup_compact": {
+   "path": "/data/separate_troll_farm-working/chopup-cert-2026-09-07/bin/compact",
+   "sha256": "96c191df4a9068c3442de48b78557fa96bb87f13d40a62e582a60fa35068edda"
+  }
+ },
+ "cases": [
+  {
+   "game_id": 901547815,
+   "seat": 0,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "671b309b0a392003619aa521850b06ae297b9d536a0e03cd32dc6242f811b19e",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 9 7",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 9 7",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 9 7",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547815,
+   "seat": 1,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "9c335b67cbf80c0b42951a37ba7d22cad9636e61424faf8358840a571d2cb41c",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 10 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547802,
+   "seat": 0,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "8dd23acc7512facbb70eda1e40e788f50b7d4b007986f9a2c073d0266b96ceb3",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 0 5 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 0 5 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 0 5 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547802,
+   "seat": 1,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "267687abba23763c58e0670cfe12dd3a385c2866050cc9af4f29538b66dceb81",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 1 11 7",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 1 11 7",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 1;MOVE 1 11 7",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547785,
+   "seat": 0,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "80a92828353245faf64476359db494819836ac8cf3aa48a3b7215bf82fce96be",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 3 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 3 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 3 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547785,
+   "seat": 1,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "089f1718bdeb1c97789abedd0f8a96b360336ad8c5fb75bcdf94627f0b9fa689",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 6",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 6",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 6",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547751,
+   "seat": 0,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "42672fea894e6409cd8d246e081dfad21242d183fcde0093f6d5d73a9f31b909",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 5 3",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 6 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": false,
+   "protocol_path": "/data/separate_troll_farm-working/chopup-cert-2026-09-07/reproducer-901547751-seat0.txt"
+  },
+  {
+   "game_id": 901547751,
+   "seat": 1,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "a0560a44b89d23e1bf953961290d7943ed9cc95a62e21602518fd7eef356ba32",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 5",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 6",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 11 6",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": false,
+   "protocol_path": "/data/separate_troll_farm-working/chopup-cert-2026-09-07/reproducer-901547751-seat1.txt"
+  },
+  {
+   "game_id": 901547733,
+   "seat": 0,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "6656a0d39efc3b7ceb441bdf71ee47cb95ab278bd1266ed6d2e6cd14efc43bcf",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 7",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 7",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 7",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547733,
+   "seat": 1,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "2ee05ab5ae59ccc368839ade47d9c5820611256668467113fae3bcdf0368b401",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 12 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547712,
+   "seat": 0,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "183ec03bb32886e6b9992d6ac51c6f6d9c3bf3a94bf969d30e985467ee15e18f",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 8",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 8",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 0 8 8",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547712,
+   "seat": 1,
+   "agent6704418_seat": 0,
+   "protocol_sha256": "e4ccd1013a17d9493f9457184a52198fef90471b6845c698da87379a0be6d9df",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;MOVE 1 13 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547698,
+   "seat": 0,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "9cdfe154c3e949210c0804fa1833cc5b2890698faf5699a225e48753a670c828",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 7 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 7 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 0 7 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547698,
+   "seat": 1,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "6355e3b1f9af2a0fff019af6545fef4e5b2e203741d215b5995690d9f4a9be89",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 1 8 5",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 1 8 5",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 2 0 1;MOVE 1 8 5",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547682,
+   "seat": 0,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "5be5d5632a6d8c03f50c5c5af3bc13cdd52f40dd8ac845430ba7df477d40dd9f",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 0 5 5",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 0 5 5",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 0 5 5",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  },
+  {
+   "game_id": 901547682,
+   "seat": 1,
+   "agent6704418_seat": 1,
+   "protocol_sha256": "ad4551d86051f9645a0b121bb71016b6ddbcafcb92ebeb7ffc08976fa5714b63",
+   "first": {
+    "baseline_v439": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 11 2",
+     "stderr": ""
+    },
+    "chopup_readable": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 11 2",
+     "stderr": ""
+    },
+    "chopup_compact": {
+     "rc": 0,
+     "line": "MSG yamo-carry-regen-transit-idle-harvest-rust;TRAIN 2 1 0 3;MOVE 1 11 2",
+     "stderr": ""
+    }
+   },
+   "readable_eq_compact": true,
+   "readable_eq_baseline": true
+  }
+ ],
+ "cases_first_command_differs_from_v439": [
+  [
+   901547751,
+   0
+  ],
+  [
+   901547751,
+   1
+  ]
+ ],
+ "cases_readable_vs_compact_differ": []
+}
